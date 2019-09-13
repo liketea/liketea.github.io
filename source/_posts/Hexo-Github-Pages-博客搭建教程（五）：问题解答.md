@@ -101,6 +101,130 @@ $ hexo g -d
 即可完成谷歌收录网站，只需要等待谷歌收录，这个过程会比较久。
 
 
+## github 托管博客原始文件
+
+Hexo生成的博客静态网页会被自动托管到 github，我们同样可以通过 github 来实现对博客原始文件的版本管理，这样我们就可以随时随地地将博客迁移至新的电脑，在新的电脑上继续我们的创作了。
+
+Hexo生成的文件里面是有一个`.gitignore`的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的，但如果用额外一个仓库来存放这些文件会显得冗余，我们完全可以在同一个仓库中使用不同分支来分别存放生成的静态网页和原始文件（分支名可以自己决定）：
+
+1. master 分支：用于存放网页发布的静态文件，当执行 `hexo d` 时实际上是将生成的静态网页push到github远程仓库的master分支中去，并使用master分支的文件通过git pages生成博客页面，由于这些过程都是Hexo自动完成的，我们没有必要在本地仓库显式地创建 master 分支；
+2. files 分支：用于存放原始文件(博客文件、图片、配置文件等)，由于我们需要手动管理这个分支，可以将 github 中的files分支设置为默认分支，这样每次通过 `git pull` 合并远程分支时默认都是从origin/files分支获取的；
+
+以上是git管理博客文件的答题思路，下面来看看在具体场景下的操作。
+
+### 将博客原始文件同步到github
+
+- 默认情况下，Hexo 博客目录应该已经是一个本地 git 仓库了(包含.git)，且已经将静态网页所存放的远程仓库添加为了远程仓库，否则你需要先将静态网页关联的github仓库添加为博客本地仓库的远程仓库：
+
+```
+# 创建本地仓库
+$ git init
+$ git add -A
+$ git commit -m "创建本地仓库"
+# 添加远程仓库
+$ git remote
+$ git remote add origin https://github.com/paulboone/ticgit
+```
+
+- 创建新的分支：
+
+```bash
+# 创建新的分支
+$ git branch files
+# 创建远程分支
+$ git push origin files:files
+```
+
+- 修改 `.gitignore` 文件：默认`.gitignore`文件中过滤了以下文件，这些文件都是被动生成的，不用托管
+
+```
+# mac版本文件
+.DS_Store
+Thumbs.db
+db.json
+*.log
+# npm依赖包，不用托管，npm install 会自动下载
+node_modules/
+# hexo g 生成的静态网页文件
+public/
+# hexo d 生成的版本管理文件
+.deploy*/%
+```
+
+- 新增忽略规则：如果在提交了之后，希望在`.gitignore`文件中添加新的过滤规则，除了修改`.gitignore`文件外，还需要清除缓存后重新添加并提交
+
+```
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+```
+
+- 将子仓库转化为正常文件：如果你是通过 git clone 拷贝的 `themes/next`，next目录就会作为一个子仓库嵌套在博客仓库内，在push或pull时会发现next目录虽有但是空的，这是因为外层仓库是不会跟踪内层仓库的变化的，这需要将内层仓库转化为普通目录，除此之外还需要将next目录移出-提交-移入-提交，否则博客仓库也还是无法将其纳入版本控制
+
+```zsh
+$ cd themes/next
+# 删除 .git 文件
+$ rm -rf .git
+# 移出next后
+$ git add -A
+$ git commit -m "移出next"
+# 移入next
+$ git add -A 
+$ git commit -m "移入next"
+# 同步到远程仓库
+$ git push origin files:files
+```
+
+### 在新电脑上部署博客
+先安装好homebrew，再安装 node 和 hexo：
+
+```
+# 安装node
+$ brew install node
+$ node -v
+v8.4.0
+
+# 安装 hexo
+$ npm install -g hexo-cli
+$ hexo version
+hexo-cli: 1.1.0
+os: Darwin 18.0.0 darwin x64
+```
+
+
+克隆远程仓库到本地：
+
+```
+$ git clone ***
+```
+
+进入仓库目录，安装依赖：不要 `hexo init` 会覆盖博客配置文件 `_config.yml`，npm install 安装过程可能会报错，忽略就行
+
+```
+# 安装npm依赖
+$ cd <folder>
+$ npm install
+
+# 安装启动服务
+$ npm install hexo-server --save
+# 安装部署服务
+$ npm install hexo-deployer-git --save
+```
+
+### 新的工作流
+
+```
+# 1. 创建文章
+$ hexo new filename
+
+# 2. 编辑文章
+# 3. 发布文章
+$ hexo g -d
+# 4. 上传原始文件
+$ git commit -a -m "更新了一篇文章"
+$ git push 
+```
+
 
 ## 参考
 
