@@ -202,6 +202,8 @@ Mweb 有以下一些优点:
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553062205605.jpg)
 
+
+
 #### PicGo图片上传工具
 [PicGo](https://picgo.github.io/PicGo-Doc/zh/) 是一款开源跨平台的免费图片上传工具以及图床相册管理软件，它能帮你快速地将图片上传到微博、又拍云、阿里云 OSS、腾讯云 COS、七牛、GitHub、sm.ms、Imgur 等常见的免费图床网站或云存储服务上，并自动复制图片的链接到剪贴板里，使用上非常高效便捷。
 
@@ -210,6 +212,10 @@ Mweb 有以下一些优点:
 关于 PicGo 的下载安装和配置使用的详细过程请参照[PicGo指南](https://picgo.github.io/PicGo-Doc/zh/)。PicGo 支持剪切板上传和拖拽上传两种方式：
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/sdf.gif)
+
+以PicGo配置腾讯COS为例：
+
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/企业微信截图_30def863-06fd-4cad-8820-77f155dc1e58.png)
 
 
 

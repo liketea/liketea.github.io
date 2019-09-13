@@ -175,6 +175,11 @@ $ git commit -m "移入next"
 $ git push origin files:files
 ```
 
+本地分支只有一个`files`，但有两个远程分支 `origin/files` 和 `origin/master`：
+
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190913213734.png)
+
+
 ### 在新电脑上部署博客
 先安装好homebrew，再安装 node 和 hexo：
 
