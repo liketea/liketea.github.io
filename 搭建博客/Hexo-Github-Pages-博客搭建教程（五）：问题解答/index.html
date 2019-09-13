@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553085549734.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553084916927.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553085912959.jpg">
-<meta property="og:updated_time" content="2019-09-13T09:00:15.902Z">
+<meta property="og:updated_time" content="2019-09-13T12:44:18.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github Pages 博客搭建教程（五）：问题解答">
 <meta name="twitter:description" content="百度和Google收录使用 GitHub + Hexo 搭建的博客，默认只能你自己能看到，别人是无法通过百度、谷歌等搜索引擎搜索到的:  可以手动将自己的博客站点提交给百度、谷歌的搜索引擎，这样就可以通过百度或谷歌搜索到自己的博客内容了：  百度收录验证站点登录百度搜索资源平台&amp;gt;用户中心&amp;gt;站点管理&amp;gt;添加网站，输入网站域名，选择站点属性，到第三步“验证网站”：  有三种不同的验证">
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-13T17:00:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-13T20:44:18+08:00">
                 2019-09-13
               </time>
             
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  784
+                  1.9k
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  7
                 </span>
               
             </div>
@@ -509,6 +509,40 @@
 <h4 id="添加站点地图-1"><a href="#添加站点地图-1" class="headerlink" title="添加站点地图"></a>添加站点地图</h4><p>安装插件、修改配置文件在上述百度收录过程已经做过了，现在只需要点击前往站点资源页面 &gt; 点击站点地图，添加新的站点地图 <code>sitemap.xml</code>：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553085912959.jpg" alt></p>
 <p>即可完成谷歌收录网站，只需要等待谷歌收录，这个过程会比较久。</p>
+<h2 id="github-托管博客原始文件"><a href="#github-托管博客原始文件" class="headerlink" title="github 托管博客原始文件"></a>github 托管博客原始文件</h2><p>Hexo生成的博客静态网页会被自动托管到 github，我们同样可以通过 github 来实现对博客原始文件的版本管理，这样我们就可以随时随地地将博客迁移至新的电脑，在新的电脑上继续我们的创作了。</p>
+<p>Hexo生成的文件里面是有一个<code>.gitignore</code>的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的，但如果用额外一个仓库来存放这些文件会显得冗余，我们完全可以在同一个仓库中使用不同分支来分别存放生成的静态网页和原始文件（分支名可以自己决定）：</p>
+<ol>
+<li>master 分支：用于存放网页发布的静态文件，当执行 <code>hexo d</code> 时实际上是将生成的静态网页push到github远程仓库的master分支中去，并使用master分支的文件通过git pages生成博客页面，由于这些过程都是Hexo自动完成的，我们没有必要在本地仓库显式地创建 master 分支；</li>
+<li>files 分支：用于存放原始文件(博客文件、图片、配置文件等)，由于我们需要手动管理这个分支，可以将 github 中的files分支设置为默认分支，这样每次通过 <code>git pull</code> 合并远程分支时默认都是从origin/files分支获取的；</li>
+</ol>
+<p>以上是git管理博客文件的答题思路，下面来看看在具体场景下的操作。</p>
+<h3 id="将博客原始文件同步到github"><a href="#将博客原始文件同步到github" class="headerlink" title="将博客原始文件同步到github"></a>将博客原始文件同步到github</h3><ul>
+<li>默认情况下，Hexo 博客目录应该已经是一个本地 git 仓库了(包含.git)，且已经将静态网页所存放的远程仓库添加为了远程仓库，否则你需要先将静态网页关联的github仓库添加为博客本地仓库的远程仓库：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 创建本地仓库</span><br><span class="line">$ git init</span><br><span class="line">$ git add -A</span><br><span class="line">$ git commit -m &quot;创建本地仓库&quot;</span><br><span class="line"># 添加远程仓库</span><br><span class="line">$ git remote</span><br><span class="line">$ git remote add origin https://github.com/paulboone/ticgit</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建新的分支：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建新的分支</span></span><br><span class="line">$ git branch files</span><br><span class="line"><span class="comment"># 创建远程分支</span></span><br><span class="line">$ git push origin files:files</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 <code>.gitignore</code> 文件：默认<code>.gitignore</code>文件中过滤了以下文件，这些文件都是被动生成的，不用托管</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># mac版本文件</span><br><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line"># npm依赖包，不用托管，npm install 会自动下载</span><br><span class="line">node_modules/</span><br><span class="line"># hexo g 生成的静态网页文件</span><br><span class="line">public/</span><br><span class="line"># hexo d 生成的版本管理文件</span><br><span class="line">.deploy*/%</span><br></pre></td></tr></table></figure>
+<ul>
+<li>新增忽略规则：如果在提交了之后，希望在<code>.gitignore</code>文件中添加新的过滤规则，除了修改<code>.gitignore</code>文件外，还需要清除缓存后重新添加并提交</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;update .gitignore&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将子仓库转化为正常文件：如果你是通过 git clone 拷贝的 <code>themes/next</code>，next目录就会作为一个子仓库嵌套在博客仓库内，在push或pull时会发现next目录虽有但是空的，这是因为外层仓库是不会跟踪内层仓库的变化的，这需要将内层仓库转化为普通目录，除此之外还需要将next目录移出-提交-移入-提交，否则博客仓库也还是无法将其纳入版本控制</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line"><span class="comment"># 删除 .git 文件</span></span><br><span class="line">$ rm -rf .git</span><br><span class="line"><span class="comment"># 移出next后</span></span><br><span class="line">$ git add -A</span><br><span class="line">$ git commit -m <span class="string">"移出next"</span></span><br><span class="line"><span class="comment"># 移入next</span></span><br><span class="line">$ git add -A </span><br><span class="line">$ git commit -m <span class="string">"移入next"</span></span><br><span class="line"><span class="comment"># 同步到远程仓库</span></span><br><span class="line">$ git push origin files:files</span><br></pre></td></tr></table></figure>
+<h3 id="在新电脑上部署博客"><a href="#在新电脑上部署博客" class="headerlink" title="在新电脑上部署博客"></a>在新电脑上部署博客</h3><p>先安装好homebrew，再安装 node 和 hexo：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 安装node</span><br><span class="line">$ brew install node</span><br><span class="line">$ node -v</span><br><span class="line">v8.4.0</span><br><span class="line"></span><br><span class="line"># 安装 hexo</span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line">$ hexo version</span><br><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Darwin 18.0.0 darwin x64</span><br></pre></td></tr></table></figure>
+<p>克隆远程仓库到本地：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone ***</span><br></pre></td></tr></table></figure>
+<p>进入仓库目录，安装依赖：不要 <code>hexo init</code> 会覆盖博客配置文件 <code>_config.yml</code>，npm install 安装过程可能会报错，忽略就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 安装npm依赖</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br><span class="line"></span><br><span class="line"># 安装启动服务</span><br><span class="line">$ npm install hexo-server --save</span><br><span class="line"># 安装部署服务</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="新的工作流"><a href="#新的工作流" class="headerlink" title="新的工作流"></a>新的工作流</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 1. 创建文章</span><br><span class="line">$ hexo new filename</span><br><span class="line"></span><br><span class="line"># 2. 编辑文章</span><br><span class="line"># 3. 发布文章</span><br><span class="line">$ hexo g -d</span><br><span class="line"># 4. 上传原始文件</span><br><span class="line">$ git commit -a -m &quot;更新了一篇文章&quot;</span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://www.jianshu.com/p/f8ec422ebd52" target="_blank" rel="noopener">Hexo博客提交百度和Google收录</a></li>
 <li><a href="https://ziyuan.baidu.com" target="_blank" rel="noopener">百度资源平台</a></li>
@@ -666,7 +700,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -762,7 +796,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度和Google收录"><span class="nav-number">1.</span> <span class="nav-text">百度和Google收录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#百度收录"><span class="nav-number">1.1.</span> <span class="nav-text">百度收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点"><span class="nav-number">1.1.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图"><span class="nav-number">1.1.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谷歌收录"><span class="nav-number">1.2.</span> <span class="nav-text">谷歌收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度和Google收录"><span class="nav-number">1.</span> <span class="nav-text">百度和Google收录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#百度收录"><span class="nav-number">1.1.</span> <span class="nav-text">百度收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点"><span class="nav-number">1.1.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图"><span class="nav-number">1.1.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谷歌收录"><span class="nav-number">1.2.</span> <span class="nav-text">谷歌收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-托管博客原始文件"><span class="nav-number">2.</span> <span class="nav-text">github 托管博客原始文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将博客原始文件同步到github"><span class="nav-number">2.1.</span> <span class="nav-text">将博客原始文件同步到github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在新电脑上部署博客"><span class="nav-number">2.2.</span> <span class="nav-text">在新电脑上部署博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的工作流"><span class="nav-number">2.3.</span> <span class="nav-text">新的工作流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -800,7 +834,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.9k</span>
+    <span title="Site words total count">22k</span>
   
 </div>
 
