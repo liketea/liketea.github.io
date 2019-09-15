@@ -472,7 +472,7 @@ pb	https://github.com/paulboone/ticgit (fetch)
 pb	https://github.com/paulboone/ticgit (push)
 ```
 
-### SSH 公钥
+### 配置SSH 公钥
 许多 Git 服务器都使用 SSH 公钥进行认证，需要在本地生成SSH 公钥，然后将公钥发送给 Git 服务器管理员（配置到github中）。
 
 - 生成SSH 公钥
