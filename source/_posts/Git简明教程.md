@@ -161,18 +161,34 @@ index 8ebb991..643e24f 100644
 $ git diff --staged
 ```
 
-#### 取消攒出
+#### 取消暂存
 
-`git reset HEAD <file>`：取消对文件file的暂存
+`git restore --staged <file>`：取消对文件file的暂存
 
 ```
-$ git reset HEAD CONTRIBUTING.md
-Unstaged changes after reset:
-M	CONTRIBUTING.md
+$ git restore --staged text.txt
+位于分支 demo
+您的分支领先 'origin/files' 共 1 个提交。
+  （使用 "git push" 来发布您的本地提交）
+
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+	修改：     text.txt
 ```
 
 #### 取消修改
-`git checkout -- <file>`：取消对文件file的修改，也就是用上次提交时的文件覆盖工作区中的文件；
+`git checkout -- <file>`：自上次提交后对文件进行了修改但还没有添加到缓存，则可以通过该命令取消对文件file的修改，也就是用上次提交时的文件覆盖工作区中的文件；
+
+```
+$ git checkout -- CONTRIBUTING.md
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+```
 
 #### 移除文件
 需要从已跟踪文件清单中移除该文件，然后提交，`git rm` 可以完成此项工作并连带从工作目录中删除指定的文件
@@ -284,6 +300,43 @@ $ git log --pretty=format:"%h %s" --graph
 *  11d191e Merge branch 'defunkt' into local
 ```
 
+### 分支管理
+Git 中的分支可以看做是由仓库快照组成的反向链表，每个分支名就是指向对应分支的头指针(HEAD是指向当前分支头指针的指针)，在该分支中的每次提交都会在对应链表头部插入一个快照节点，并将分支的头指针向前移动。
+
+![](https://git-scm.com/book/en/v2/images/branch-and-history.png)
+
+查看分支：
+
+```
+# 查看本地分支
+$ git branch 
+# 查看所有分支
+$ git branch -a
+# 查看远程分支
+$ git branch -r
+```
+
+#### 分支创建
+
+`git branch <branch_name>`：创建一个名为branch_name的新分支，这会在当前所在的提交队形上创建一个指针
+
+```
+$ git branch testing
+```
+
+![](https://git-scm.com/book/en/v2/images/head-to-master.png)
+
+#### 分支切换
+`git checkout <branch_name>`：切换到一个已存在的分支
+
+```
+$ git branch testing
+```
+
+![](https://git-scm.com/book/en/v2/images/head-to-testing.png)
+
+#### 分支合并
+`git merge <branch_name>`：将另一个分支合并到当前分支上来
 
 
 
