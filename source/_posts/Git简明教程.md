@@ -468,7 +468,7 @@ origin	https://github.com/schacon/ticgit (push)
     demo  推送至 demo  (本地已过时)
     files 推送至 files (最新)
     ss    推送至 ss    (最新)
-    tt    推送至 tt    (可快进)
+    tt    推送至 tt    (可快进)py
 ```
 
 ### 添加远程仓库
