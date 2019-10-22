@@ -485,6 +485,31 @@ pb	https://github.com/paulboone/ticgit (fetch)
 pb	https://github.com/paulboone/ticgit (push)
 ```
 
+### 修改远程仓库
+有三种方法来修改远程仓库：
+
+- 直接修改本地仓库下的.git/config文件:
+
+```
+url = http://xxx.com/Name/project.git
+改为
+url = git@xxx.com/Name/project.git
+```
+
+- 修改命令:
+
+```
+git remote set-url origin [url]
+例如：git remote set-url origin gitlab@gitlab.chumob.com:php/hasoffer.git
+```
+
+- 先删后加
+
+```
+git remote rm origin
+git remote add origin [url]
+```
+
 ### 配置SSH 公钥
 许多 Git 服务器都使用 SSH 公钥进行认证，需要在本地生成SSH 公钥，然后将公钥发送给 Git 服务器管理员（配置到github中）。
 
