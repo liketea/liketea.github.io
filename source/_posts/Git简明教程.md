@@ -18,8 +18,8 @@ Mac 安装 Xcode Command Line Tools 时会自带 git，也可以通过 homebrew 
 $ brew install git
 # 查看版本
 $ git version
-# 查看帮助
 git version 2.20.1 (Apple Git-117)
+# 查看帮助
 $ git help
 ```
 
@@ -543,8 +543,13 @@ NrRFi9wrf+M7Q== schacon@mylaptop.local
 1. 本地分支(local branch)：本地仓库中的普通分支；
 2. 远程分支(remote branch)：远程仓库中的普通分支；
 3. 远程跟踪分支(remote-tracking branch)：本地仓库中自动记录远程分支状态的分支(远程主机名/远程分支名，如origin/master)，其指向只会在用户使用git fetch等指令时移动到对应远程仓库最新位置，用户无法直接改变其指向；
-4. 跟踪分支(tracking branch)：与远程分支建立了映射关系的普通本地分支，对应的远程分支称为该分支的上游(upstream)分支，用户可以改变跟踪分支的指向，当使用git pull时会按照对应远程分支的指向移动跟踪分支
+4. 跟踪分支(tracking branch)：如果在某个本地分支 L 与某个远程分支 R 之间建立了映射关系，则称 L 为 R的跟踪分支，称 R 为 L 的上游分支(upstream)，当使用git pull时会按照对应远程分支的指向移动跟踪分支;
 
+在 L 和 R 之间建立映射关系：
+
+```
+git branch --set-upstream-to=origin/R L
+```
 
 ### 本地仓库推送到远程仓库
 
@@ -685,7 +690,14 @@ fatal: 当前分支 tt 没有对应的上游分支。
  * [新分支]          files      -> xyz
 ```
 
+默认情况下，git合并命令拒绝合并没有共同祖先的历史。当两个项目的历史独立地开始时，这个选项可以被用来覆盖这个安全。由于这是一个非常少见的情况，因此没有默认存在的配置变量，也不会添加。如果要拉取没有共同祖先的分支，直接拉取会出错，可以使用如下命令来合并：
 
+```
+$ git pull
+fatal: 拒绝合并无关的历史
+
+$ git pull origin master --allow-unrelated-histories 
+```
 
 
 

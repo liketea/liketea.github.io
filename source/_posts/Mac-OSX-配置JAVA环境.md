@@ -1,5 +1,5 @@
 ---
-title: Mac OSX 配置JAVA环境.md
+title: Mac OSX 配置JAVA环境
 date: 2019-10-22 22:27:53
 tags:
 categories:
@@ -88,11 +88,14 @@ export PATH=$PATH:$M2_HOME/bin
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022221727.png)
 
 ## 导入maven项目
-如果已经打开了一个项目，可以选择File->Close Project关闭当前项目，回到主界面：
+如果已经打开了一个项目，可以选择File->Close Project关闭当前项目，回到主界面，点击Import Project，或者点击 `File->New->Project From Existing Sources...`：
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022221752.png)
 
-点击Import Project ，选择主pom文件，然后确定：
+![](/media/15718138187400.jpg)
+
+
+ 选择主pom文件，然后确定：
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022221812.png)
 
