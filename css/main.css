@@ -2097,7 +2097,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f0f691;
+  background: #2aeeff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3209,6 +3209,7 @@ table {
   margin: 15px auto; /*外边距*/
   border-collapse: collapse; /*使用单一线条的边框*/
   empty-cells: show; /*单元格无内容依旧绘制边框*/
+  table-layout: auto;
 }
 table th,
 table td {
