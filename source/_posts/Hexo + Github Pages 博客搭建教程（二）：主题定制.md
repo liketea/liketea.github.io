@@ -618,6 +618,12 @@ canvas_nest: true
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/aa.gif)
 
+### Next 的其他样式设置
+
+- [去除 Next 主题图片的灰色边框](https://realneo.me/remove-next-gray-border/)
+- [Hexo下表格的美化和优化](https://hexo.imydl.tech/archives/6742.html)
+
+
 ## 第三方插件使用
 静态站点拥有一定的局限性，因此我们需要借助于第三方服务来扩展站点的功能。 以下是 NexT 目前支持的第三方服务，你可以根据你的需求集成一些功能进来。
 

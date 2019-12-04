@@ -103,3 +103,6 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+
+highlight_theme: night eighties

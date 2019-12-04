@@ -1,1 +1,98 @@
 // Custom styles.
+// 基本样式
+table {
+    width: 100%; /*表格宽度*/
+    max-width: 65em; /*表格最大宽度，避免表格过宽*/
+    border: 1px solid #dedede; /*表格外边框设置*/
+    margin: 15px auto; /*外边距*/
+    border-collapse: collapse; /*使用单一线条的边框*/
+    empty-cells: show; /*单元格无内容依旧绘制边框*/
+}
+table th,
+table td {
+  height: 35px; /*统一每一行的默认高度*/
+  border: 1px solid #dedede; /*内部边框样式*/
+  padding: 0 10px; /*内边距*/
+}
+
+// 表头样式
+table th {
+    font-weight: bold; /*加粗*/
+    text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+    background: rgba(158,188,226,0.2); /*背景色*/
+}
+
+// 隔行变色:使用选择器选取复数行设置背景色。一般 Markdown 表格编译后都有 包裹内容，那下面就相当于从表格第二行开始计数
+
+table tbody tr:nth-child(2n) {
+    background: rgba(158,188,226,0.12); 
+}
+
+// 悬浮变色:鼠标悬浮时该行改变背景色
+table tr:hover {
+    background: #efefef; 
+}
+
+// 表头不换行:设置表头单元格内容不换行，这样可以通过表头控制该列的最小宽度，避免浏览器窗口缩小时内容被压缩得太紧
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+}
+
+// 首列不换行:表格第一列单元格内容不换行，多数情况下表格首列不应该被压缩换行
+table td:nth-child(1) {
+    white-space: nowrap; 
+}
+
+// 代码块
+.highlight-wrap[data-rel] {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
+  margin: 35px 0;
+  ::-webkit-scrollbar {
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  &::before {
+    color: white;
+    content: attr(data-rel);
+    height: 38px;
+    line-height: 38px;
+    background: #21252b;
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    padding: 0px 80px;
+    text-indent: 15px;
+    float: left;
+  }
+  &::after {
+    content: ' ';
+    position: absolute;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #fc625d;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    left: 20px;
+    margin-top: 13px;
+    -webkit-box-shadow: 20px 0px #fdbc40, 40px 0px #35cd4b;
+    box-shadow: 20px 0px #fdbc40, 40px 0px #35cd4b;
+    z-index: 3;
+  }
+}
