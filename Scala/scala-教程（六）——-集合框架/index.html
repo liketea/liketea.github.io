@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="教程,Scala,">
 
 
 
@@ -125,16 +125,16 @@
 
 
 
-<meta name="description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数">
+<meta name="description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数错误；">
+<meta name="keywords" content="教程,Scala">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scala 教程（六）—— 集合框架">
-<meta property="og:url" content="https://liketea.xyz/uncategorized/scala-教程（六）——-集合框架/index.html">
+<meta property="og:url" content="https://liketea.xyz/Scala/scala-教程（六）——-集合框架/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数">
+<meta property="og:description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数错误；">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214821.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214915.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215018.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204214642.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215029.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215045.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215057.png">
@@ -145,10 +145,10 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215353.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215409.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204180608.png">
-<meta property="og:updated_time" content="2019-12-04T12:28:43.626Z">
+<meta property="og:updated_time" content="2019-12-04T13:57:45.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scala 教程（六）—— 集合框架">
-<meta name="twitter:description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数">
+<meta name="twitter:description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数错误；">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214821.png">
 
 
@@ -179,7 +179,7 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/uncategorized/scala-教程（六）——-集合框架/">
+  <link rel="canonical" href="https://liketea.xyz/Scala/scala-教程（六）——-集合框架/">
 
 
 
@@ -354,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/uncategorized/scala-教程（六）——-集合框架/">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/Scala/scala-教程（六）——-集合框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like Wong">
@@ -399,13 +399,35 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-04T20:28:43+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-04T21:57:45+08:00">
                 2019-12-04
               </time>
             
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Scala/" itemprop="url" rel="index">
+                    <span itemprop="name">Scala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -413,7 +435,7 @@
 
           
           
-             <span id="/uncategorized/scala-教程（六）——-集合框架/" class="leancloud_visitors" data-flag-title="scala 教程（六）—— 集合框架">
+             <span id="/Scala/scala-教程（六）——-集合框架/" class="leancloud_visitors" data-flag-title="scala 教程（六）—— 集合框架">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -476,7 +498,7 @@
 
       
         <blockquote>
-<p>两个维度（可变、不可变）-&gt; 三种容器（序列、集合、映射）-&gt; 多种实现<br>集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce</p>
+<p>两个维度（可变、不可变）-&gt; 三种容器（序列、集合、映射）-&gt; 多种实现<br>常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce</p>
 </blockquote>
 <p>Scala 2.8 的集合框架有以下特点：</p>
 <ol>
@@ -489,21 +511,19 @@
 <h2 id="可变-不可变类型（Mutable-Immutable）"><a href="#可变-不可变类型（Mutable-Immutable）" class="headerlink" title="可变/不可变类型（Mutable/Immutable）"></a>可变/不可变类型（Mutable/Immutable）</h2><p>Scala 集合框架系统地区分了可变的(mutable)和不可变的(immutable)集合，并且可以很方便地在两者之间进行转换。你可以对可变集合中的元素进行增、删、改操作，你也可以对不可变类型模拟这些操作，但每个操作都会返回一个新的集合，原来的集合不会发生改变。</p>
 <h3 id="集合类的继承树"><a href="#集合类的继承树" class="headerlink" title="集合类的继承树"></a>集合类的继承树</h3><p>Scala 所有集合类都可以在以下包中找到：</p>
 <ul>
-<li><code>scala.collection</code>：包中的集合既可以是可变的也可以是不可变的。下图展示了这个包中所有的集合类，这些都是高级抽象类或特质，它们通常有可变和不可变两种实现方式</li>
+<li><code>scala.collection</code>：包中的集合既可以是可变的也可以是不可变的，下图展示了这个包中所有的集合类，这些都是高级抽象类或特质，它们通常有可变和不可变两种实现方式</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214821.png" alt="-c"></p>
 <ul>
-<li><code>scala.collection.immutable</code> ：包中的集合类是不可变的，Scala会默认导入这个包，这意味着Scala默认使用不可变集合类，当你写下 Set 而没有加任何前缀，你会得到一个不可变的 Set。下图展示了这个包中所有的集合类</li>
+<li><code>scala.collection.immutable</code> ：包中的集合类是不可变的，Scala会默认导入这个包，这意味着Scala默认使用不可变集合类，当你写下 Set 而没有加任何前缀，你会得到一个不可变的 Set，下图展示了这个包中所有的集合类</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214915.png" alt="-c"></p>
-<p>其中虚线代表隐式转换、粗实线代表默认实现、细实线代表实现：</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215018.png" alt="-c"></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204214642.png" alt="-c"></p>
 <ul>
-<li><code>scala.collection.mutable</code>包中的集合类是可变的，如果你想要使用可变的集合类，通用的做法是导入<code>scala.collection.mutable</code>包即可，当你使用没有前缀的 Set 时仍然指的是一个不可变集合，当你使用 <code>mutable.Set</code>时指的是可变的集合类。下图展示了这个包中所有的集合类</li>
+<li><code>scala.collection.mutable</code>：包中的集合类是可变的，如果你想要使用可变的集合类，通用的做法是导入<code>scala.collection.mutable</code>包即可，当你使用没有前缀的 Set 时仍然指的是一个不可变集合，当你使用 <code>mutable.Set</code>时指的是可变的集合类，下图展示了这个包中所有的集合类</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215029.png" alt="-c"></p>
 <ul>
-<li><code>scala.collection.generic</code>包包含了集合的构建块，集合类延迟了<code>collection.generic</code> 类中的部分操作实现；</li>
+<li><code>scala.collection.generic</code>：包含了集合的构建块，集合类延迟了<code>collection.generic</code> 类中的部分操作实现</li>
 </ul>
 <h3 id="集合类的通用方法"><a href="#集合类的通用方法" class="headerlink" title="集合类的通用方法"></a>集合类的通用方法</h3><p>Scala 中的集合类有以下通用方法：</p>
 <ul>
@@ -511,15 +531,12 @@
 </ul>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Traversable</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="type">Iterable</span>(<span class="string">"x"</span>, <span class="string">"y"</span>, <span class="string">"z"</span>)</span><br><span class="line"><span class="type">Map</span>(<span class="string">"x"</span> -&gt; <span class="number">24</span>, <span class="string">"y"</span> -&gt; <span class="number">25</span>, <span class="string">"z"</span> -&gt; <span class="number">26</span>)</span><br><span class="line"><span class="type">Set</span>(<span class="type">Color</span>.red, <span class="type">Color</span>.green, <span class="type">Color</span>.blue)</span><br><span class="line"><span class="type">SortedSet</span>(<span class="string">"hello"</span>, <span class="string">"world"</span>)</span><br><span class="line"><span class="type">Buffer</span>(x, y, z)</span><br><span class="line"><span class="type">IndexedSeq</span>(<span class="number">1.0</span>, <span class="number">2.0</span>)</span><br><span class="line"><span class="type">LinearSeq</span>(a, b, c)</span><br><span class="line"><span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="type">HashMap</span>(<span class="string">"x"</span> -&gt; <span class="number">24</span>, <span class="string">"y"</span> -&gt; <span class="number">25</span>, <span class="string">"z"</span> -&gt; <span class="number">26</span>)</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li><p>toString：所有集合类都可以用toString的方式进行打印</p>
-</li>
-<li><p>返回类型一致原则：所有集合类的map方法都会返回相同类型的集合类，例如，在一个List上调用map会又生成一个List，在Set上调用会再生成一个Set，以此类推</p>
-</li>
-<li><p>大多数类在集合树种都存在三种变体：root、mutable、immutable</p>
-</li>
+<li>toString：所有集合类都可以用toString的方式进行打印；</li>
+<li>返回类型一致原则：所有集合类的map方法都会返回相同类型的集合类，例如，在一个List上调用map会又生成一个List，在Set上调用会再生成一个Set，以此类推；</li>
+<li>大多数类在集合树种都存在三种变体：root、mutable、immutable；</li>
 </ul>
-<h2 id="可遍历特质（Trait-Traversable）"><a href="#可遍历特质（Trait-Traversable）" class="headerlink" title="可遍历特质（Trait Traversable）"></a>可遍历特质（Trait Traversable）</h2><p>可遍历（Traversable） 是容器（collection）类的最高级别特质，它唯一的抽样操作是<code>foreach</code>，<code>foreach</code> 是 <code>Traversable</code> 所有操作的基础。foreach 方法用于遍历容器中所有元素，并对每个元素进行指定的操作，Elem 是容器中元素的类型，U是一个任意的返回值类型，对f的调用仅仅是容器遍历的副作用，实际上所有计算结果都被foreach跑起来（没有返回值）：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f:<span class="type">Elem</span> =&gt; <span class="type">U</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="可遍历特质（Trait-Traversable）"><a href="#可遍历特质（Trait-Traversable）" class="headerlink" title="可遍历特质（Trait Traversable）"></a>可遍历特质（Trait Traversable）</h2><p>可遍历（Traversable）是容器（collection）类的最高级别特质，它唯一的抽象操作是<code>foreach</code>。<code>foreach</code> 是 <code>Traversable</code> 所有操作的基础，用于遍历容器中所有元素，并对每个元素进行指定的操作：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Elem 是容器中元素的类型，U是一个任意的返回值类型，对f的调用仅仅是容器遍历的副作用，实际上所有计算结果都被foreach抛弃（没有返回值）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f: <span class="type">Elem</span> =&gt; <span class="type">U</span>)</span><br></pre></td></tr></table></figure></div>
 <p>要实现 Traversable 的容器类仅需要定义与之相关的方法，其他所有方法都可以从 Traversable 中继承，Traversable 定义了许多方法：</p>
 <ol>
 <li><strong>相加操作++（addition）</strong>表示把两个traversable对象附加在一起或者把一个迭代器的所有元素添加到traversable对象的尾部</li>
@@ -538,7 +555,7 @@
 </ol>
 <p>Traversable对象的操作：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215045.png" alt="-c"></p>
-<h2 id="可迭代特质（Trait-Iterable）"><a href="#可迭代特质（Trait-Iterable）" class="headerlink" title="可迭代特质（Trait Iterable）"></a>可迭代特质（Trait Iterable）</h2><p>可迭代是容器类的另一个特质，这个特质里所有方法的定义都基于一个抽象方法<code>iterator</code>，从<code>Traversable Trait</code>中继承来的foreach方法在这里也是利用iterator来实现的：</p>
+<h2 id="可迭代特质（Trait-Iterable）"><a href="#可迭代特质（Trait-Iterable）" class="headerlink" title="可迭代特质（Trait Iterable）"></a>可迭代特质（Trait Iterable）</h2><p>可迭代是容器类的另一个特质，这个特质里所有方法的定义都基于一个抽象方法<code>iterator</code>，从<code>Traversable Trait</code>中继承来的foreach方法在这里也是利用 <code>iterator</code> 来实现的：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f: <span class="type">Elem</span> =&gt; <span class="type">U</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">  <span class="keyword">val</span> it = iterator</span><br><span class="line">  <span class="keyword">while</span> (it.hasNext) f(it.next())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>Iterator 有两个方法返回迭代器：grouped和sliding，这些迭代器返回的不是单个元素，而是原容器元素的全部子序列，grouped方法返回元素的增量分块，sliding方法生成一个滑动元素的窗口：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> xs = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; <span class="keyword">val</span> git = xs grouped <span class="number">3</span></span><br><span class="line">git: <span class="type">Iterator</span>[<span class="type">List</span>[<span class="type">Int</span>]] = non-empty iterator</span><br><span class="line">scala&gt; git.next()</span><br><span class="line">res3: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">scala&gt; git.next()</span><br><span class="line">res4: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; <span class="keyword">val</span> sit = xs sliding <span class="number">3</span></span><br><span class="line">sit: <span class="type">Iterator</span>[<span class="type">List</span>[<span class="type">Int</span>]] = non-empty iterator</span><br><span class="line">scala&gt; sit.next()</span><br><span class="line">res5: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">scala&gt; sit.next()</span><br><span class="line">res6: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">scala&gt; sit.next()</span><br><span class="line">res7: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
@@ -557,11 +574,11 @@
 </ol>
 <p>Seq 在 Iterator 的基础上添加了其他一些操作 ：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215120.png" alt="-c"></p>
-<p>Seq trait 具有三个子特征（subtrait）：线性序列<code>LinearSeq</code> 和 索引序列<code>IndexedSeq</code>不添加任何新的操作，但提供不同的性能特点；缓冲器 <code>Buffer</code> 是可变序列的一个重要种类</p>
+<p><code>Seq trait</code> 具有三个子特征（subtrait）：</p>
 <ul>
-<li>线性序列（LinearSeq）：不添加新的操作，具有高效的 head 和 tail 操作，常用线性序列有 <code>scala.collection.immutable.List</code> 和 <code>scala.collection.immutable.Stream</code></li>
-<li>索引序列（IndexedSeq）：不添加新的操作，具有高效的apply, length, 和 (如果可变) update操作，常用索引序列有 <code>scala.collection.mutable.ArrayBuffer</code> 和 <code>scala.collection.immutable.Vector</code></li>
-<li>缓冲器（Buffer）：缓冲器允许对现有元素进行增、删、改操作，常用的Buffer序列有 <code>ListBuffer</code> 和 <code>ArrayBuffer</code>，Buffer 在 Seq 的基础上增加了一些添加和删除的操作</li>
+<li>线性序列（LinearSeq）：不添加新的操作，具有高效的 head 和 tail 操作，常用线性序列有 <code>scala.collection.immutable.List</code> 和 <code>scala.collection.immutable.Stream</code>；</li>
+<li>索引序列（IndexedSeq）：不添加新的操作，具有高效的apply, length, 和 (如果可变) update操作，常用索引序列有 <code>scala.collection.mutable.ArrayBuffer</code> 和 <code>scala.collection.immutable.Vector</code>；</li>
+<li>缓冲器（Buffer）：缓冲器允许对现有元素进行增、删、改操作，常用的Buffer序列有 <code>ListBuffer</code> 和 <code>ArrayBuffer</code>，Buffer 在 Seq 的基础上增加了一些添加和删除的操作；</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215318.png" alt="-c"></p>
 <h2 id="集合（Set）"><a href="#集合（Set）" class="headerlink" title="集合（Set）"></a>集合（Set）</h2><p>集合是不包含重复元素的可迭代对象。</p>
@@ -611,7 +628,7 @@
 <p>元组解构也可用于模式匹配：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> planetDistanceFromSun = <span class="type">List</span>((<span class="string">"Mercury"</span>, <span class="number">57.9</span>), (<span class="string">"Venus"</span>, <span class="number">108.2</span>), (<span class="string">"Earth"</span>, <span class="number">149.6</span> ), (<span class="string">"Mars"</span>, <span class="number">227.9</span>), (<span class="string">"Jupiter"</span>, <span class="number">778.3</span>))</span><br><span class="line">planetDistanceFromSun.foreach&#123; tuple =&gt; &#123;</span><br><span class="line">  tuple <span class="keyword">match</span> &#123;</span><br><span class="line">      <span class="keyword">case</span> (<span class="string">"Mercury"</span>, distance) =&gt; println(<span class="string">s"Mercury is <span class="subst">$distance</span> millions km far from Sun"</span>)</span><br><span class="line">      <span class="keyword">case</span> p <span class="keyword">if</span>(p._1 == <span class="string">"Venus"</span>) =&gt; println(<span class="string">s"Venus is <span class="subst">$&#123;p._2&#125;</span> millions km far from Sun"</span>)</span><br><span class="line">      <span class="keyword">case</span> p <span class="keyword">if</span>(p._1 == <span class="string">"Earth"</span>) =&gt; println(<span class="string">s"Blue planet is <span class="subst">$&#123;p._2&#125;</span> millions km far from Sun"</span>)</span><br><span class="line">      <span class="keyword">case</span> _ =&gt; println(<span class="string">"Too far...."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Mercury</span> is <span class="number">57.9</span> millions km far from <span class="type">Sun</span></span><br><span class="line"><span class="type">Venus</span> is <span class="number">108.2</span> millions km far from <span class="type">Sun</span></span><br><span class="line"><span class="type">Blue</span> planet is <span class="number">149.6</span> millions km far from <span class="type">Sun</span></span><br><span class="line"><span class="type">Too</span> far....</span><br><span class="line"><span class="type">Too</span> far....</span><br></pre></td></tr></table></figure></div>
 <h3 id="迭代元组"><a href="#迭代元组" class="headerlink" title="迭代元组"></a>迭代元组</h3><p>元组无法直接进行迭代，但可以通过Tuple.productIterator() 方法来迭代：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; t3.productIterator.foreach&#123; i =&gt;println(<span class="string">"Value = "</span> + i )&#125;</span><br><span class="line"><span class="type">Value</span> = <span class="number">1</span></span><br><span class="line"><span class="type">Value</span> = <span class="number">1.2</span></span><br><span class="line"><span class="type">Value</span> = hello</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; t3.productIterator.foreach&#123; i =&gt; println(<span class="string">"Value = "</span> + i )&#125;</span><br><span class="line"><span class="type">Value</span> = <span class="number">1</span></span><br><span class="line"><span class="type">Value</span> = <span class="number">1.2</span></span><br><span class="line"><span class="type">Value</span> = hello</span><br></pre></td></tr></table></figure></div>
 <h2 id="选项（Option）"><a href="#选项（Option）" class="headerlink" title="选项（Option）"></a>选项（Option）</h2><p>值 <code>null</code> 通常被滥用来表征一个可能会缺失的值，Java 开发者一般都知道 <code>NullPointerException</code>， 通常这是由于某个方法返回了 <code>null</code> ，但这并不是开发者所希望发生的，代码也不好去处理这种异常。</p>
 <p>在Scala中，<code>Option</code> 是 <code>null</code> 值的安全替代：<code>Option[A]</code> 是一个类型为 <code>A</code> 的可选值的容器，如果值存在，Option[A] 返回一个 Some[A] ，如果不存在， Option[A] 返回对象 <code>None</code>。在类型层面上指出一个值是否存在，使用你的代码的开发者（也包括你自己）就会被编译器强制去处理这种可能性， 而不能依赖值存在的偶然性。</p>
 <h3 id="创建Option"><a href="#创建Option" class="headerlink" title="创建Option"></a>创建Option</h3><ul>
@@ -682,37 +699,37 @@
 <td>Queue</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">✓</td>
-<td><div>A first-in, first-out data structure.</div></td>
+<td>A first-in, first-out data structure.</td>
 </tr>
 <tr>
 <td>Range</td>
 <td style="text-align:center">✓</td>
 <td style="text-align:center"></td>
-<td><div>A range of integer values.</div></td>
+<td>A range of integer values.</td>
 </tr>
 <tr>
 <td>Stack</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">✓</td>
-<td><div>A last-in, first-out data structure.</div></td>
+<td>A last-in, first-out data structure.</td>
 </tr>
 <tr>
 <td>Stream</td>
 <td style="text-align:center"></td>
 <td style="text-align:center">✓</td>
-<td><div>Similar to List, but it’s lazy and persistent. Good for a large or infinite sequence, similar to a Haskell List.</div></td>
+<td>Similar to List, but it’s lazy and persistent. Good for a large or infinite sequence, similar to a Haskell List.</td>
 </tr>
 <tr>
 <td>String</td>
 <td style="text-align:center">✓</td>
 <td style="text-align:center"></td>
-<td><div>Can be treated as an immutable, indexed sequence of characters.</div></td>
+<td>Can be treated as an immutable, indexed sequence of characters.</td>
 </tr>
 <tr>
 <td>Vector</td>
 <td style="text-align:center">✓</td>
 <td style="text-align:center"></td>
-<td><div>The “go to” immutable, indexed sequence. The Scaladoc describes it as, “Implemented as a set of nested arrays that’s efficient at splitting and joining.”</div></td>
+<td>The “go to” immutable, indexed sequence. The Scaladoc describes it as, “Implemented as a set of nested arrays that’s efficient at splitting and joining.”</td>
 </tr>
 </tbody>
 </table>
@@ -939,6 +956,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+        </div>
       
 
       
@@ -1175,7 +1200,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">36.9k</span>
+    <span title="Site words total count">36.8k</span>
   
 </div>
 
