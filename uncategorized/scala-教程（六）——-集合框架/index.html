@@ -99,12 +99,12 @@
 
 
 
-<meta name="description" content="Scala 有单独的可变（mutable）和不可变（immutable）的集合类型层次体系，并且可以很方便地在不可变数据（为保持稳定性）和可变数据（必要时）之间转换集合的常用操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个">
+<meta name="description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scala 教程（六）—— 集合框架">
 <meta property="og:url" content="https://liketea.xyz/uncategorized/scala-教程（六）——-集合框架/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="Scala 有单独的可变（mutable）和不可变（immutable）的集合类型层次体系，并且可以很方便地在不可变数据（为保持稳定性）和可变数据（必要时）之间转换集合的常用操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个">
+<meta property="og:description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214821.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214915.png">
@@ -118,11 +118,11 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215341.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215353.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215409.png">
-<meta property="og:image" content="https://liketea.xyz/uncategorized/scala-教程（六）——-集合框架/media/15748722902692/15754380861441.jpg">
-<meta property="og:updated_time" content="2019-12-04T10:02:02.313Z">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204180608.png">
+<meta property="og:updated_time" content="2019-12-04T12:28:43.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scala 教程（六）—— 集合框架">
-<meta name="twitter:description" content="Scala 有单独的可变（mutable）和不可变（immutable）的集合类型层次体系，并且可以很方便地在不可变数据（为保持稳定性）和可变数据（必要时）之间转换集合的常用操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个">
+<meta name="twitter:description" content="两个维度（可变、不可变）-&amp;gt; 三种容器（序列、集合、映射）-&amp;gt; 多种实现集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce  Scala 2.8 的集合框架有以下特点：  易用：使用20~50个方法的词汇量就足以解决大部分的集合问题； 简洁：可以通过单独的一个词来执行一个或多个循环； 安全：Scala集合的静态类型和函数性质意味着在编译时就可以捕获绝大多数">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214821.png">
 
 
@@ -373,7 +373,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-04T18:02:02+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-04T20:28:43+08:00">
                 2019-12-04
               </time>
             
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.1k
+                  5k
                 </span>
               
 
@@ -450,7 +450,7 @@
 
       
         <blockquote>
-<p>Scala 有单独的可变（mutable）和不可变（immutable）的集合类型层次体系，并且可以很方便地在不可变数据（为保持稳定性）和可变数据（必要时）之间转换<br>集合的常用操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce<br>两个维度（可变、不可变）-&gt; 三种容器（序列、集合、映射）-&gt; 多种实现</p>
+<p>两个维度（可变、不可变）-&gt; 三种容器（序列、集合、映射）-&gt; 多种实现<br>集合的常见操作：创建、增删改查、拆分合并、测试、转换、迭代、mapreduce</p>
 </blockquote>
 <p>Scala 2.8 的集合框架有以下特点：</p>
 <ol>
@@ -460,7 +460,7 @@
 <li>快速：集合操作已经在类库中优化过；</li>
 <li>通用：集合类提供了在一些类型上的相同操作；</li>
 </ol>
-<h2 id="可变-不可变类型（Mutable-Immutable）"><a href="#可变-不可变类型（Mutable-Immutable）" class="headerlink" title="可变/不可变类型（Mutable/Immutable）"></a>可变/不可变类型（Mutable/Immutable）</h2><p>Scala 集合框架系统地区分了可变的(mutable)和不可变的(immutable)集合，你可以对可变集合中的元素进行增、删、改操作，你也可以对不可变类型模拟这些操作，但每个操作都会返回一个新的集合，原来的集合不会发生改变。</p>
+<h2 id="可变-不可变类型（Mutable-Immutable）"><a href="#可变-不可变类型（Mutable-Immutable）" class="headerlink" title="可变/不可变类型（Mutable/Immutable）"></a>可变/不可变类型（Mutable/Immutable）</h2><p>Scala 集合框架系统地区分了可变的(mutable)和不可变的(immutable)集合，并且可以很方便地在两者之间进行转换。你可以对可变集合中的元素进行增、删、改操作，你也可以对不可变类型模拟这些操作，但每个操作都会返回一个新的集合，原来的集合不会发生改变。</p>
 <h3 id="集合类的继承树"><a href="#集合类的继承树" class="headerlink" title="集合类的继承树"></a>集合类的继承树</h3><p>Scala 所有集合类都可以在以下包中找到：</p>
 <ul>
 <li><code>scala.collection</code>：包中的集合既可以是可变的也可以是不可变的。下图展示了这个包中所有的集合类，这些都是高级抽象类或特质，它们通常有可变和不可变两种实现方式</li>
@@ -598,7 +598,7 @@
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> c: <span class="type">Option</span>[<span class="type">String</span>] = <span class="type">Option</span>(<span class="literal">null</span>)</span><br><span class="line">c: <span class="type">Option</span>[<span class="type">String</span>] = <span class="type">None</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> d: <span class="type">Option</span>[<span class="type">String</span>] = <span class="type">Option</span>(<span class="string">"hello"</span>)</span><br><span class="line">d: <span class="type">Option</span>[<span class="type">String</span>] = <span class="type">Some</span>(hello)</span><br></pre></td></tr></table></figure>
 <h3 id="Option-的模式匹配"><a href="#Option-的模式匹配" class="headerlink" title="Option 的模式匹配"></a>Option 的模式匹配</h3><p>用模式匹配处理 Option 实例是非常啰嗦的，这也是它非惯用法的原因。 所以，即使你很喜欢模式匹配，也尽量用其他方法吧：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> x: <span class="type">Option</span>[<span class="type">String</span>] = <span class="type">Option</span>(<span class="literal">null</span>)</span><br><span class="line">x: <span class="type">Option</span>[<span class="type">String</span>] = <span class="type">None</span></span><br><span class="line"></span><br><span class="line">scala&gt; x <span class="keyword">match</span> &#123;</span><br><span class="line">     | <span class="keyword">case</span> <span class="type">Some</span>(xx) =&gt; xx</span><br><span class="line">     | <span class="keyword">case</span> <span class="type">None</span> =&gt; <span class="string">"Nothing"</span></span><br><span class="line">     | &#125;</span><br><span class="line">res12: <span class="type">String</span> = <span class="type">Nothing</span></span><br></pre></td></tr></table></figure>
-<h3 id="Option-的常用方法"><a href="#Option-的常用方法" class="headerlink" title="Option 的常用方法"></a>Option 的常用方法</h3><p><img src="media/15748722902692/15754380861441.jpg" alt></p>
+<h3 id="Option-的常用方法"><a href="#Option-的常用方法" class="headerlink" title="Option 的常用方法"></a>Option 的常用方法</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204180608.png" alt></p>
 <p>虽然在类型层次上， Option 并不是 Scala 的集合类型， 但，凡是你觉得 Scala 集合好用的方法， Option 也有， 你甚至可以将其转换成一个集合，比如说 List。</p>
 <h3 id="for-语句"><a href="#for-语句" class="headerlink" title="for 语句"></a>for 语句</h3><p>用 for 语句来处理 Option 是可读性最好的方式，尤其是当你有多个 map 、flatMap 、filter 调用的时候。 如果只是一个简单的 map 调用，那 for 语句可能有点繁琐。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> x: <span class="type">Option</span>[<span class="type">Int</span>] = <span class="type">Some</span>(<span class="number">1</span>)</span><br><span class="line">x: <span class="type">Option</span>[<span class="type">Int</span>] = <span class="type">Some</span>(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">for</span> (t &lt;- x) println(t)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> y: <span class="type">Option</span>[<span class="type">Int</span>] = <span class="type">None</span></span><br><span class="line">y: <span class="type">Option</span>[<span class="type">Int</span>] = <span class="type">None</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">for</span> (t &lt;- y) println(t)</span><br></pre></td></tr></table></figure>
