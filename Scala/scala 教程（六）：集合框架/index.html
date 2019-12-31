@@ -658,6 +658,7 @@
 <li>选择可变序列还是不可变序列：可变序列方便原地修改、不可变序列安全无副作用；</li>
 </ol>
 <p>Scala 中对于 Seq，针对数组／链表，可变／不可变的组合，推荐使用以下四种通用容器类：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -679,7 +680,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>主要的不可变序列：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -734,7 +737,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>主要的可变序列：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -807,7 +812,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>序列类型常用操作的性能特点：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1001,7 +1008,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>其中，时间复杂度符号解释如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1036,7 +1045,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>序列操作说明：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1075,7 +1086,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="选择合适的-Set"><a href="#选择合适的-Set" class="headerlink" title="选择合适的 Set"></a>选择合适的 Set</h3><p>选择一个 Set 比选择一个Seq要简单多，可以直接使用可变与不可变的Set。SoredSet是按内容排序存储；LinkedHashSet是按插入顺序存储；ListSet可以想使用List一样使用，按插入顺序反序存储。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1130,7 +1143,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>集合和映射类型常用操作的性能特点：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1209,7 +1224,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>操作说明：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1236,7 +1253,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="选择合适的-Map"><a href="#选择合适的-Map" class="headerlink" title="选择合适的 Map"></a>选择合适的 Map</h3><p>Map 像 Set 一样，可以直接使用可变的和不可变的Map。SortedMap不可变但是其内容是按key值排序的；LinkedHashMap是可变的，其内容按插入的顺序存储；ListMap则是按插入顺序反序存储；TreeMap是使用红黑树存储。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1291,6 +1310,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.scala-lang.org/zh-cn/overviews/collections/introduction.html" target="_blank" rel="noopener">Mutable和Immutable集合</a></p>
 <p><a href="https://windor.gitbooks.io/beginners-guide-to-scala/content/chp5-the-option-type.html" target="_blank" rel="noopener">类型 Option</a></p>
 
@@ -1358,10 +1378,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/机器学习/机器学习理论基础（二）：决策论 /" rel="prev" title="机器学习理论基础（二）：决策论">
-                机器学习理论基础（二）：决策论 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1445,7 +1461,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1456,7 +1472,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1467,7 +1483,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1579,7 +1595,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.4k</span>
+    <span title="Site words total count">37.6k</span>
   
 </div>
 
@@ -2251,26 +2267,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

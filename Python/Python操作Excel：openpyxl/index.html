@@ -502,7 +502,7 @@ Sheet
 Sheet1
 sheet2
 </code></pre><h3 id="获取Worksheet对象的属性"><a href="#获取Worksheet对象的属性" class="headerlink" title="获取Worksheet对象的属性"></a>获取Worksheet对象的属性</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回所有worksheets的名字</span></span><br><span class="line"><span class="keyword">print</span> wb.sheetnames</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取Worksheet的名字</span></span><br><span class="line"><span class="keyword">print</span> ws.title</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取Worksheet最大行和最大列，初始时只有一行一列</span></span><br><span class="line"><span class="keyword">print</span> ws.max_column,ws.max_row</span><br></pre></td></tr></table></figure></div>
-<pre><code>[u&apos;Sheet0&apos;, u&apos;Sheet1&apos;, u&apos;sheet2&apos;, u&apos;Sheet0 Copy&apos;]
+<pre><code>[u&#39;Sheet0&#39;, u&#39;Sheet1&#39;, u&#39;sheet2&#39;, u&#39;Sheet0 Copy&#39;]
 Sheet0
 1 1
 </code></pre><h3 id="操作Worksheet"><a href="#操作Worksheet" class="headerlink" title="操作Worksheet"></a>操作Worksheet</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更改Worksheet的表名</span></span><br><span class="line">ws.title = <span class="string">'Sheet0'</span></span><br><span class="line"><span class="keyword">print</span> ws.title</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改表名背景颜色</span></span><br><span class="line">ws.sheet_properties.tabColor = <span class="string">"1072BA"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制worksheet</span></span><br><span class="line">ws_copy = wb.copy_worksheet(ws)</span><br><span class="line"><span class="keyword">print</span> ws_copy</span><br></pre></td></tr></table></figure></div>
@@ -517,37 +517,37 @@ Sheet0
 </code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ws.delete_rows(idx=<span class="number">3</span>,amount=<span class="number">1</span>)</span><br><span class="line">tuple(ws.values)</span><br></pre></td></tr></table></figure></div>
 <pre><code>((None, None, None), (1, 2, None))
 </code></pre><h2 id="Cell级操作"><a href="#Cell级操作" class="headerlink" title="Cell级操作"></a>Cell级操作</h2><h3 id="获取Cell对象"><a href="#获取Cell对象" class="headerlink" title="获取Cell对象"></a>获取Cell对象</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取单个Cell</span></span><br><span class="line">cell_a1 = ws[<span class="string">'A1'</span>]</span><br><span class="line">cell_a1 = ws.cell(row=<span class="number">1</span>, column=<span class="number">1</span>)</span><br><span class="line"><span class="keyword">print</span> cell_a1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当一个worksheet在内存中被创建时，它不包含任何Cell，只有当Cell被首次访问时才被创建</span></span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        ws.cell(row=r+<span class="number">1</span>, column=c+<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取单行Cell、获取单列Cell，返回一个单元格对象组成的元组</span></span><br><span class="line"><span class="keyword">print</span> ws[<span class="number">1</span>], len(ws[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">print</span> ws[<span class="string">'A'</span>], len(ws[<span class="string">'A'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取多行多列</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'前三列'</span>, ws[<span class="string">'A'</span>:<span class="string">'C'</span>]</span><br><span class="line"><span class="keyword">print</span> <span class="string">'前两行：'</span>, ws[<span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个区域</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'A1:C2：'</span>,ws[<span class="string">'A1'</span>:<span class="string">'C2'</span>]</span><br></pre></td></tr></table></figure></div>
-<pre><code>&lt;Cell u&apos;Sheet0&apos;.A1&gt;
-(&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.B1&gt;, &lt;Cell u&apos;Sheet0&apos;.C1&gt;) 3
-(&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.A2&gt;, &lt;Cell u&apos;Sheet0&apos;.A3&gt;) 3
-前三列 ((&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.A2&gt;, &lt;Cell u&apos;Sheet0&apos;.A3&gt;), (&lt;Cell u&apos;Sheet0&apos;.B1&gt;, &lt;Cell u&apos;Sheet0&apos;.B2&gt;, &lt;Cell u&apos;Sheet0&apos;.B3&gt;), (&lt;Cell u&apos;Sheet0&apos;.C1&gt;, &lt;Cell u&apos;Sheet0&apos;.C2&gt;, &lt;Cell u&apos;Sheet0&apos;.C3&gt;))
-前两行： ((&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.B1&gt;, &lt;Cell u&apos;Sheet0&apos;.C1&gt;), (&lt;Cell u&apos;Sheet0&apos;.A2&gt;, &lt;Cell u&apos;Sheet0&apos;.B2&gt;, &lt;Cell u&apos;Sheet0&apos;.C2&gt;))
-A1:C2： ((&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.B1&gt;, &lt;Cell u&apos;Sheet0&apos;.C1&gt;), (&lt;Cell u&apos;Sheet0&apos;.A2&gt;, &lt;Cell u&apos;Sheet0&apos;.B2&gt;, &lt;Cell u&apos;Sheet0&apos;.C2&gt;))
+<pre><code>&lt;Cell u&#39;Sheet0&#39;.A1&gt;
+(&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.B1&gt;, &lt;Cell u&#39;Sheet0&#39;.C1&gt;) 3
+(&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.A2&gt;, &lt;Cell u&#39;Sheet0&#39;.A3&gt;) 3
+前三列 ((&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.A2&gt;, &lt;Cell u&#39;Sheet0&#39;.A3&gt;), (&lt;Cell u&#39;Sheet0&#39;.B1&gt;, &lt;Cell u&#39;Sheet0&#39;.B2&gt;, &lt;Cell u&#39;Sheet0&#39;.B3&gt;), (&lt;Cell u&#39;Sheet0&#39;.C1&gt;, &lt;Cell u&#39;Sheet0&#39;.C2&gt;, &lt;Cell u&#39;Sheet0&#39;.C3&gt;))
+前两行： ((&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.B1&gt;, &lt;Cell u&#39;Sheet0&#39;.C1&gt;), (&lt;Cell u&#39;Sheet0&#39;.A2&gt;, &lt;Cell u&#39;Sheet0&#39;.B2&gt;, &lt;Cell u&#39;Sheet0&#39;.C2&gt;))
+A1:C2： ((&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.B1&gt;, &lt;Cell u&#39;Sheet0&#39;.C1&gt;), (&lt;Cell u&#39;Sheet0&#39;.A2&gt;, &lt;Cell u&#39;Sheet0&#39;.B2&gt;, &lt;Cell u&#39;Sheet0&#39;.C2&gt;))
 </code></pre><h3 id="遍历行-列-单元格对象"><a href="#遍历行-列-单元格对象" class="headerlink" title="遍历行/列/单元格对象"></a>遍历行/列/单元格对象</h3><p>遍历用 <code>ws.iter_rows</code> 和 <code>ws.iter_cols</code> 就够了！！</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按行列号遍历每一行，带min max参数时不受已激活范围的影响</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows(min_row=<span class="number">1</span>,max_row=<span class="number">2</span>,min_col=<span class="number">1</span>,max_col=<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">print</span> row</span><br></pre></td></tr></table></figure></div>
-<pre><code>(&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.B1&gt;, &lt;Cell u&apos;Sheet0&apos;.C1&gt;)
-(&lt;Cell u&apos;Sheet0&apos;.A2&gt;, &lt;Cell u&apos;Sheet0&apos;.B2&gt;, &lt;Cell u&apos;Sheet0&apos;.C2&gt;)
+<pre><code>(&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.B1&gt;, &lt;Cell u&#39;Sheet0&#39;.C1&gt;)
+(&lt;Cell u&#39;Sheet0&#39;.A2&gt;, &lt;Cell u&#39;Sheet0&#39;.B2&gt;, &lt;Cell u&#39;Sheet0&#39;.C2&gt;)
 </code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 遍历每一列，不带min max参数时，只返回激活范围内的单元格</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> ws.iter_cols():</span><br><span class="line">    <span class="keyword">print</span> col</span><br></pre></td></tr></table></figure></div>
-<pre><code>(&lt;Cell u&apos;Sheet0&apos;.A1&gt;, &lt;Cell u&apos;Sheet0&apos;.A2&gt;, &lt;Cell u&apos;Sheet0&apos;.A3&gt;)
-(&lt;Cell u&apos;Sheet0&apos;.B1&gt;, &lt;Cell u&apos;Sheet0&apos;.B2&gt;, &lt;Cell u&apos;Sheet0&apos;.B3&gt;)
-(&lt;Cell u&apos;Sheet0&apos;.C1&gt;, &lt;Cell u&apos;Sheet0&apos;.C2&gt;, &lt;Cell u&apos;Sheet0&apos;.C3&gt;)
+<pre><code>(&lt;Cell u&#39;Sheet0&#39;.A1&gt;, &lt;Cell u&#39;Sheet0&#39;.A2&gt;, &lt;Cell u&#39;Sheet0&#39;.A3&gt;)
+(&lt;Cell u&#39;Sheet0&#39;.B1&gt;, &lt;Cell u&#39;Sheet0&#39;.B2&gt;, &lt;Cell u&#39;Sheet0&#39;.B3&gt;)
+(&lt;Cell u&#39;Sheet0&#39;.C1&gt;, &lt;Cell u&#39;Sheet0&#39;.C2&gt;, &lt;Cell u&#39;Sheet0&#39;.C3&gt;)
 </code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 行优先遍历每个单元格，ws.iter_rows()和ws.rows效果相同，但前者可自定义参数</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows():</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">        <span class="keyword">print</span> cell</span><br></pre></td></tr></table></figure></div>
-<pre><code>&lt;Cell u&apos;Sheet0&apos;.A1&gt;
-&lt;Cell u&apos;Sheet0&apos;.B1&gt;
-&lt;Cell u&apos;Sheet0&apos;.C1&gt;
-&lt;Cell u&apos;Sheet0&apos;.A2&gt;
-&lt;Cell u&apos;Sheet0&apos;.B2&gt;
-&lt;Cell u&apos;Sheet0&apos;.C2&gt;
-&lt;Cell u&apos;Sheet0&apos;.A3&gt;
-&lt;Cell u&apos;Sheet0&apos;.B3&gt;
-&lt;Cell u&apos;Sheet0&apos;.C3&gt;
+<pre><code>&lt;Cell u&#39;Sheet0&#39;.A1&gt;
+&lt;Cell u&#39;Sheet0&#39;.B1&gt;
+&lt;Cell u&#39;Sheet0&#39;.C1&gt;
+&lt;Cell u&#39;Sheet0&#39;.A2&gt;
+&lt;Cell u&#39;Sheet0&#39;.B2&gt;
+&lt;Cell u&#39;Sheet0&#39;.C2&gt;
+&lt;Cell u&#39;Sheet0&#39;.A3&gt;
+&lt;Cell u&#39;Sheet0&#39;.B3&gt;
+&lt;Cell u&#39;Sheet0&#39;.C3&gt;
 </code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 遍历区域</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws[<span class="string">'a1:c2'</span>]:</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">        <span class="keyword">print</span> cell</span><br></pre></td></tr></table></figure></div>
-<pre><code>&lt;Cell u&apos;Sheet0&apos;.A1&gt;
-&lt;Cell u&apos;Sheet0&apos;.B1&gt;
-&lt;Cell u&apos;Sheet0&apos;.C1&gt;
-&lt;Cell u&apos;Sheet0&apos;.A2&gt;
-&lt;Cell u&apos;Sheet0&apos;.B2&gt;
-&lt;Cell u&apos;Sheet0&apos;.C2&gt;
+<pre><code>&lt;Cell u&#39;Sheet0&#39;.A1&gt;
+&lt;Cell u&#39;Sheet0&#39;.B1&gt;
+&lt;Cell u&#39;Sheet0&#39;.C1&gt;
+&lt;Cell u&#39;Sheet0&#39;.A2&gt;
+&lt;Cell u&#39;Sheet0&#39;.B2&gt;
+&lt;Cell u&#39;Sheet0&#39;.C2&gt;
 </code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 遍历值</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws.iter_rows(min_row=<span class="number">1</span>,max_col=<span class="number">2</span>,values_only=<span class="literal">True</span>):</span><br><span class="line">    <span class="keyword">print</span> row</span><br></pre></td></tr></table></figure></div>
 <pre><code>(None, None)
 (1, 2)
@@ -595,7 +595,7 @@ AttributeError                            Traceback (most recent call last)
 ----&gt; 2 ws_write.cell
 
 
-AttributeError: &apos;WriteOnlyWorksheet&apos; object has no attribute &apos;cell&apos;
+AttributeError: &#39;WriteOnlyWorksheet&#39; object has no attribute &#39;cell&#39;
 </code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ws_write.append([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure></div>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果希望为单元格添加格式或注释，可以使用WriteOnlyCell</span></span><br><span class="line"><span class="keyword">from</span> openpyxl.cell <span class="keyword">import</span> WriteOnlyCell</span><br><span class="line"><span class="keyword">from</span> openpyxl.comments <span class="keyword">import</span> Comment</span><br><span class="line"><span class="keyword">from</span> openpyxl.styles <span class="keyword">import</span> Font</span><br><span class="line"></span><br><span class="line">cell = WriteOnlyCell(ws, value=<span class="string">"hello world"</span>)</span><br><span class="line">cell.font = Font(name=<span class="string">'Courier'</span>, size=<span class="number">36</span>)</span><br><span class="line">cell.comment = Comment(text=<span class="string">"A comment"</span>, author=<span class="string">"Author's Name"</span>)</span><br><span class="line">ws.append([cell, <span class="number">3.14</span>, <span class="literal">None</span>])</span><br></pre></td></tr></table></figure></div>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb_write.save(<span class="string">'./write_only.xlsx'</span>)</span><br></pre></td></tr></table></figure></div>
@@ -751,7 +751,7 @@ AttributeError: &apos;WriteOnlyWorksheet&apos; object has no attribute &apos;cel
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -762,7 +762,7 @@ AttributeError: &apos;WriteOnlyWorksheet&apos; object has no attribute &apos;cel
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -773,7 +773,7 @@ AttributeError: &apos;WriteOnlyWorksheet&apos; object has no attribute &apos;cel
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -885,7 +885,7 @@ AttributeError: &apos;WriteOnlyWorksheet&apos; object has no attribute &apos;cel
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.4k</span>
+    <span title="Site words total count">37.6k</span>
   
 </div>
 
@@ -1557,26 +1557,6 @@ AttributeError: &apos;WriteOnlyWorksheet&apos; object has no attribute &apos;cel
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

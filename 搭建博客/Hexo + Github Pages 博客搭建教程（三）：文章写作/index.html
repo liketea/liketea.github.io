@@ -503,6 +503,7 @@
 <h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>你可以通过下列命令来创建一篇新文章：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></div>
 <h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><p><code>Hexo</code> 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>，它们分别对应不同的路径，而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -529,6 +530,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h4 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h4><p>草稿（<code>draft</code>）默认不会显示在页面中，但你可以通过以下三种方式中的任意一种来预览草稿：</p>
 <ol>
 <li>发布草稿：执行 <code>hexo publish [layout] &lt;title&gt;</code> 可以将草稿从<code>source/_drafts</code> 文件夹移动到 <code>source/_posts</code> 文件夹；</li>
@@ -538,6 +540,7 @@
 <h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><p>在新建文章时，<code>Hexo</code> 会根据 <code>scaffolds</code> 文件夹内相对应的文件来建立文件，例如：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new photo &quot;My Gallery&quot;</span><br></pre></td></tr></table></figure></div>
 <p>在执行这行指令时，<code>Hexo</code> 会尝试在 <code>scaffolds</code> 文件夹中寻找 <code>photo.md</code>，并根据其内容建立文章，以下是您可以在模版中使用的变量：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -560,7 +563,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h4 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h4><p><code>Hexo</code> 默认以标题做为文件名称，但您可编辑站点配置文件中的 <code>new_post_name</code> 参数来改变默认的文件名称，举例来说，设为 <code>:year-:month-:day-:title.md</code> 可让您更方便的通过日期来管理文章：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -595,8 +600,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="编辑文章"><a href="#编辑文章" class="headerlink" title="编辑文章"></a>编辑文章</h3><p>HEXO 文章编写采用 <a href="https://coding.net/help/doc/project/markdown.html" target="_blank" rel="noopener">Markdown 语法</a>进行写作，一级标题太大，建议从二级标题开始。</p>
 <h4 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h4><p><code>Front-matter</code> 是指文章头部以 <code>---</code> 分隔的区域，用于指定个别文件的变量。以下是预先定义的参数，您可在模板中使用这些参数值并加以利用：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -648,6 +655,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>只有文章支持分类和标签，分类具有顺序性和层次性，以下是文章分类和标签的一个例子：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 文章在Diary/Life下</span><br><span class="line">categories:</span><br><span class="line">    - Diary</span><br><span class="line">    - Life</span><br><span class="line"># 文章有两个标签PS3、Games</span><br><span class="line">tags:</span><br><span class="line">    - PS3</span><br><span class="line">    - Games</span><br></pre></td></tr></table></figure></div>
 <p>一个文章可以有多个标签，多个分类，用中括号就可以达到并列效果:</p>
@@ -869,7 +877,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -880,7 +888,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -891,7 +899,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1003,7 +1011,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.4k</span>
+    <span title="Site words total count">37.6k</span>
   
 </div>
 
@@ -1675,26 +1683,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
