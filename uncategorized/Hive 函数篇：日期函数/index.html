@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Scala,教程,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -125,25 +125,19 @@
 
 
 
-<meta name="description" content="操作符即方法：操作符和方法只不过是操作的两种语法形式  一切操作符都只不过是方法调用的漂亮语法 一切方法都可以写作操作符表示法   操作符Scala中的操作符 算术操作符: A 为 10，B 为 20    关系操作符: A 为 10，B 为 20，==的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法">
-<meta name="keywords" content="Scala,教程">
+<meta name="description" content="Hive日期函数主要是在时间戳&amp;amp;字符串&amp;amp;日期之间进行转换：  from_unixtime——时间戳转换为字符串 一般格式：from_unixtime(bigint unix_time [,string format]) -&amp;gt; string功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串  12345678hiv">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scala 教程（三）—— 操作符&amp;表达式">
-<meta property="og:url" content="https://liketea.xyz/Scala/Scala学习（三）——-操作符-表达式/index.html">
+<meta property="og:title" content="Hive 函数篇：日期函数">
+<meta property="og:url" content="https://liketea.xyz/uncategorized/Hive 函数篇：日期函数/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="操作符即方法：操作符和方法只不过是操作的两种语法形式  一切操作符都只不过是方法调用的漂亮语法 一切方法都可以写作操作符表示法   操作符Scala中的操作符 算术操作符: A 为 10，B 为 20    关系操作符: A 为 10，B 为 20，==的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法">
+<meta property="og:description" content="Hive日期函数主要是在时间戳&amp;amp;字符串&amp;amp;日期之间进行转换：  from_unixtime——时间戳转换为字符串 一般格式：from_unixtime(bigint unix_time [,string format]) -&amp;gt; string功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串  12345678hiv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153816.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153829.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153844.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153906.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153923.png">
-<meta property="og:updated_time" content="2019-12-04T10:05:47.088Z">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022191911.png">
+<meta property="og:updated_time" content="2019-12-31T02:41:33.099Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scala 教程（三）—— 操作符&amp;表达式">
-<meta name="twitter:description" content="操作符即方法：操作符和方法只不过是操作的两种语法形式  一切操作符都只不过是方法调用的漂亮语法 一切方法都可以写作操作符表示法   操作符Scala中的操作符 算术操作符: A 为 10，B 为 20    关系操作符: A 为 10，B 为 20，==的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法">
-<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png">
+<meta name="twitter:title" content="Hive 函数篇：日期函数">
+<meta name="twitter:description" content="Hive日期函数主要是在时间戳&amp;amp;字符串&amp;amp;日期之间进行转换：  from_unixtime——时间戳转换为字符串 一般格式：from_unixtime(bigint unix_time [,string format]) -&amp;gt; string功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串  12345678hiv">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022191911.png">
 
 
 
@@ -173,13 +167,13 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/Scala/Scala学习（三）——-操作符-表达式/">
+  <link rel="canonical" href="https://liketea.xyz/uncategorized/Hive 函数篇：日期函数/">
 
 
 
 
 
-  <title>Scala 教程（三）—— 操作符&表达式 | Like</title>
+  <title>Hive 函数篇：日期函数 | Like</title>
   
 
 
@@ -348,7 +342,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/Scala/Scala学习（三）——-操作符-表达式/">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/uncategorized/Hive 函数篇：日期函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like Wong">
@@ -365,7 +359,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Scala 教程（三）—— 操作符&表达式</h1>
+          <h1 class="post-title" itemprop="name headline">Hive 函数篇：日期函数</h1>
         
 
         <div class="post-meta">
@@ -377,8 +371,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-27T15:34:44+08:00">
-                2019-11-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:29:09+08:00">
+                2019-10-22
               </time>
             
 
@@ -393,35 +387,13 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-04T18:05:47+08:00">
-                2019-12-04
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-31T10:41:33+08:00">
+                2019-12-31
               </time>
             
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Scala/" itemprop="url" rel="index">
-                    <span itemprop="name">Scala</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -429,7 +401,7 @@
 
           
           
-             <span id="/Scala/Scala学习（三）——-操作符-表达式/" class="leancloud_visitors" data-flag-title="Scala 教程（三）—— 操作符&表达式">
+             <span id="/uncategorized/Hive 函数篇：日期函数/" class="leancloud_visitors" data-flag-title="Hive 函数篇：日期函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -454,7 +426,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  1.3k
                 </span>
               
 
@@ -470,7 +442,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -491,78 +463,52 @@
       
 
       
-        <blockquote>
-<p>操作符即方法：操作符和方法只不过是操作的两种语法形式</p>
-<ul>
-<li>一切操作符都只不过是方法调用的漂亮语法</li>
-<li>一切方法都可以写作操作符表示法</li>
-</ul>
+        <p>Hive日期函数主要是在时间戳&amp;字符串&amp;日期之间进行转换：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022191911.png" alt></p>
+<h3 id="from-unixtime——时间戳转换为字符串"><a href="#from-unixtime——时间戳转换为字符串" class="headerlink" title="from_unixtime——时间戳转换为字符串"></a>from_unixtime——时间戳转换为字符串</h3><blockquote>
+<p>一般格式：from_unixtime(bigint unix_time [,string format]) -&gt; string<br>功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串</p>
 </blockquote>
-<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><h3 id="Scala中的操作符"><a href="#Scala中的操作符" class="headerlink" title="Scala中的操作符"></a>Scala中的操作符</h3><ul>
-<li>算术操作符: A 为 10，B 为 20</li>
-</ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png" alt></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;   select from_unixtime(1323308943,&apos;yyyy-MM-dd HH:mm:ss&apos;);</span><br><span class="line">2011-12-08 09:49:03</span><br><span class="line">hive&gt;   select from_unixtime(1323308943,&apos;yyyyMMdd&apos;);</span><br><span class="line">20111208</span><br><span class="line">hive&gt;   select from_unixtime(1323308943,&apos;yyyy-MM-dd&apos;);</span><br><span class="line">2011-12-08</span><br><span class="line">hive&gt; select from_unixtime(1323308943,&apos;yyyy-MM&apos;);</span><br><span class="line">2011-12</span><br></pre></td></tr></table></figure></div>
+<h3 id="unix-timestamp——字符串转换为时间戳"><a href="#unix-timestamp——字符串转换为时间戳" class="headerlink" title="unix_timestamp——字符串转换为时间戳"></a>unix_timestamp——字符串转换为时间戳</h3><blockquote>
+<p>一般格式：unix_timestamp([string date][,string pattern]) -&gt; bigint<br>功能：获取当前时区的UNIX时间戳，或者将指定格式的字符串日期转换为对应的UNIX时间戳；</p>
+</blockquote>
+<p>具体来说，有三种用法：</p>
 <ul>
-<li>关系操作符: A 为 10，B 为 20，<code>==</code>的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法</li>
+<li>unix_timestamp()：获取当前时区的UNIX时间戳</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153816.png" alt></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select unix_timestamp();</span><br><span class="line">unix_timestamp(current_timestamp(), yyyy-MM-dd HH:mm:ss)</span><br><span class="line">1571729830</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>逻辑操作符：A 为 true，B 为 false；&amp;&amp; 和 || 遵循短路原则，对应的非短路版本为 &amp; 和 |；</li>
+<li>unix_timestamp(string date)：转换格式为”yyyy-MM-dd HH:mm:ss“的日期到UNIX时间戳，如果转化失败，则返回NULL</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153829.png" alt></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select unix_timestamp(&apos;2019-10-20&apos;);</span><br><span class="line">unix_timestamp(2019-10-20, yyyy-MM-dd HH:mm:ss)</span><br><span class="line">NULL</span><br><span class="line">Time taken: 0.232 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;2019-10-20 10:30&apos;);</span><br><span class="line">unix_timestamp(2019-10-20 10:30, yyyy-MM-dd HH:mm:ss)</span><br><span class="line">NULL</span><br><span class="line">Time taken: 0.22 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;2019-10-20 10:30:00&apos;);</span><br><span class="line">unix_timestamp(2019-10-20 10:30:00, yyyy-MM-dd HH:mm:ss)</span><br><span class="line">1571538600</span><br><span class="line">Time taken: 0.23 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>位操作符：A = 60; 及 B = 13;</li>
+<li>unix_timestamp(string date, string pattern)：转换pattern格式的日期到UNIX时间戳。如果转化失败，则返回NULL</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153844.png" alt></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select unix_timestamp(&apos;2011-12-07 13:05&apos;,&apos;yyyy-MM-dd HH:mm&apos;);</span><br><span class="line">unix_timestamp(2011-12-07 13:05, yyyy-MM-dd HH:mm)</span><br><span class="line">1323234300</span><br><span class="line">Time taken: 0.235 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;2011-12&apos;,&apos;yyyy-MM&apos;);</span><br><span class="line">unix_timestamp(2011-12, yyyy-MM)</span><br><span class="line">1322668800</span><br><span class="line">Time taken: 0.239 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;201112&apos;,&apos;yyyyMM&apos;);</span><br><span class="line">unix_timestamp(201112, yyyyMM)</span><br><span class="line">1322668800</span><br><span class="line">Time taken: 0.218 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
+<h3 id="to-date——字符串转化为日期"><a href="#to-date——字符串转化为日期" class="headerlink" title="to_date——字符串转化为日期"></a>to_date——字符串转化为日期</h3><blockquote>
+<p>一般格式：to_date(date_str[, fmt]) -&gt; string<br>功能：Parses the <code>date_str</code> expression with the <code>fmt</code> expression to a date. Returns null with invalid input. By default, it follows casting rules to a date if the <code>fmt</code> is omitted.</p>
+</blockquote>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select to_date(&apos;2019&apos;);</span><br><span class="line">to_date(&apos;2019&apos;)</span><br><span class="line">2019-01-01</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10&apos;);</span><br><span class="line">to_date(&apos;2019-10&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.251 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01&apos;);</span><br><span class="line">to_date(&apos;2019-10-01&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.225 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01 10&apos;);</span><br><span class="line">to_date(&apos;2019-10-01 10&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.23 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01 10:00&apos;);</span><br><span class="line">to_date(&apos;2019-10-01 10:00&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.233 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01 10:00:00&apos;);</span><br><span class="line">to_date(&apos;2019-10-01 10:00:00&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.23 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;20101201&apos;,&apos;yyyyMMdd&apos;);</span><br><span class="line">to_date(&apos;20101201&apos;, &apos;yyyyMMdd&apos;)</span><br><span class="line">2010-12-01</span><br><span class="line">Time taken: 0.236 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
+<h3 id="date-format——将时间戳-字符串-日期转换为指定格式的字符串"><a href="#date-format——将时间戳-字符串-日期转换为指定格式的字符串" class="headerlink" title="date_format——将时间戳/字符串/日期转换为指定格式的字符串"></a>date_format——将时间戳/字符串/日期转换为指定格式的字符串</h3><blockquote>
+<p>一般格式：date_format(timestamp, fmt) -&gt; string<br>功能：将给定时间戳(或是可以通过cast转化为时间戳的类型)转化为相应格式的字符串</p>
+</blockquote>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select date_format(&apos;2019&apos;, &apos;yyyy&apos;);</span><br><span class="line">date_format(CAST(2019 AS TIMESTAMP), yyyy)</span><br><span class="line">2019</span><br><span class="line">Time taken: 0.229 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_format(&apos;2019-10&apos;, &apos;yyyy&apos;);</span><br><span class="line">date_format(CAST(2019-10 AS TIMESTAMP), yyyy)</span><br><span class="line">2019</span><br><span class="line">Time taken: 0.22 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_format(&apos;2019-10&apos;, &apos;MM&apos;);</span><br><span class="line">date_format(CAST(2019-10 AS TIMESTAMP), MM)</span><br><span class="line">10</span><br><span class="line">Time taken: 0.225 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_format(date_add(to_date(from_unixtime(UNIX_TIMESTAMP(cast(20191010 as string),&apos;yyyyMMdd&apos;))),6),&apos;yyyyMMdd&apos;);</span><br><span class="line">date_format(CAST(date_add(to_date(from_unixtime(unix_timestamp(CAST(20191010 AS STRING), &apos;yyyyMMdd&apos;), &apos;yyyy-MM-dd HH:mm:ss&apos;)), 6) AS TIMESTAMP), yyyyMMdd)</span><br><span class="line">20191016</span><br><span class="line">Time taken: 0.484 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
+<h3 id="日期相关函数"><a href="#日期相关函数" class="headerlink" title="日期相关函数"></a>日期相关函数</h3><ul>
+<li>获取日期中的年月日：</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select year(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">year(CAST(2011-12-08 10:03:01 AS DATE))</span><br><span class="line">2011</span><br><span class="line">Time taken: 0.242 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select month(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">month(CAST(2011-12-08 10:03:01 AS DATE))</span><br><span class="line">12</span><br><span class="line">Time taken: 0.235 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select day(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">dayofmonth(CAST(2011-12-08 10:03:01 AS DATE))</span><br><span class="line">8</span><br><span class="line">Time taken: 0.247 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select hour(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">hour(CAST(2011-12-08 10:03:01 AS TIMESTAMP))</span><br><span class="line">10</span><br><span class="line">Time taken: 0.268 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select minute(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">minute(CAST(2011-12-08 10:03:01 AS TIMESTAMP))</span><br><span class="line">3</span><br><span class="line">Time taken: 0.233 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select second(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">second(CAST(2011-12-08 10:03:01 AS TIMESTAMP))</span><br><span class="line">1</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>赋值运算符：注意，在Java中赋值语句的返回值是被赋上的值，而在Scala中赋值语句的返回值永远是 Unit类型的单元值<code>()</code></li>
+<li>日期加/减：date_add(start_date, num_days)-&gt;date，date_sub(start_date, num_days)-&gt;date，</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153906.png" alt></p>
-<h3 id="操作符的优先级和结合性"><a href="#操作符的优先级和结合性" class="headerlink" title="操作符的优先级和结合性"></a>操作符的优先级和结合性</h3><p>由于Scala并不是真的有操作符，操作符仅仅是用操作符表示法使用方法的一种方式，Scala通过操作符的首字符来决定操作符的优先级，通过操作符的尾字符决定操作符的结合性。</p>
-<p>尽管你能够记住这些操作符的优先级，为了使得代码更加易于理解，你只应该在算术操作符合赋值操作符上利用操作符的优先级，其他情形还是老老实实加上括号吧。</p>
-<h4 id="操作符的优先级"><a href="#操作符的优先级" class="headerlink" title="操作符的优先级"></a>操作符的优先级</h4><p>Scala中操作符的优先级由操作符的<strong>首字符</strong>决定：举例来说，以*开始的操作符优先级比以+开始的操作符优先级更高，下图列出了Scala中不同首字母的操作度的优先级（自上而下，依次递减；同一行具有相同优先级）：</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153923.png" alt></p>
-<p>上面红框分类不是很严谨，只是为了方便记忆，比较两个操作符的优先级的时候这样做：</p>
-<ol>
-<li>得到两个操作符的首字符A和B;</li>
-<li>看看首字母是属于<strong>算术-&gt;关系-&gt;逻辑</strong>-&gt;字母-&gt;赋值中的哪一类；</li>
-<li>在以上顺序中，位于前面的优先级高；</li>
-<li>记住两个特例：<code>:</code>在算术和关系之间，<code>^</code>在 <code>&amp;</code> 和 <code>|</code> 之间；</li>
-</ol>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// + 的优先级在 &lt; 之上，因而 + 先执行</span></span><br><span class="line">scala&gt; <span class="number">2</span> &lt;&lt; <span class="number">2</span> + <span class="number">2</span></span><br><span class="line">res107: <span class="type">Int</span> = <span class="number">32</span></span><br><span class="line"><span class="comment">// + 的优先级在赋值操作之上，因而 + 先执行</span></span><br><span class="line">x *= y + <span class="number">1</span> 等价于 x *= (y+<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
-<h4 id="操作符的结合性"><a href="#操作符的结合性" class="headerlink" title="操作符的结合性"></a>操作符的结合性</h4><p>当多个同等优先级的操作符并排在一起的时候，操作符的结合性由操作符的尾字符决定：任何以 <code>:</code> 结尾的操作符都是在它右侧的操作元调用，传入左侧操作元，以任何其他字符结尾的方法则相反。</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a ::: b ::: c 等价于 a ::: (b:::c)</span><br></pre></td></tr></table></figure></div>
-<h3 id="任何操作符都是方法调用"><a href="#任何操作符都是方法调用" class="headerlink" title="任何操作符都是方法调用"></a>任何操作符都是方法调用</h3><p>Scala中的操作符只是方法调用的漂亮语法，换句话说Scala中所有操作符都可以写作方法调用的形式。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select date_add(&apos;2012-12-08&apos;,10);</span><br><span class="line">date_add(CAST(2012-12-08 AS DATE), 10)</span><br><span class="line">2012-12-18</span><br><span class="line">Time taken: 0.224 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_sub(&apos;2012-12-08&apos;,10);</span><br><span class="line">date_sub(CAST(2012-12-08 AS DATE), 10)</span><br><span class="line">2012-11-28</span><br><span class="line">Time taken: 0.227 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>中缀操作符：<code>&lt;operator1&gt; &lt;operate&gt; &lt;operator2&gt;</code> ，如果是左结合性可以写作 <code>&lt;operator1&gt;.&lt;operate&gt;(&lt;operator2)</code>，如果是右结合性可以写作<code>&lt;operator2&gt;.&lt;operate&gt;(&lt;operator1)</code>；</li>
+<li>日期间隔：datediff(endDate, startDate) - Returns the number of days from <code>startDate</code> to <code>endDate</code></li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 + 2</span></span><br><span class="line">scala&gt; <span class="number">1.</span>+(<span class="number">2</span>)</span><br><span class="line">res108: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">// 2 &lt;&lt; 1</span></span><br><span class="line">scala&gt; <span class="number">2.</span>&lt;&lt;(<span class="number">1</span>)</span><br><span class="line">res113: <span class="type">Int</span> = <span class="number">4</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select datediff(&apos;2012-12-08&apos;,&apos;2012-05-09&apos;);</span><br><span class="line">datediff(CAST(2012-12-08 AS DATE), CAST(2012-05-09 AS DATE))</span><br><span class="line">213</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>前缀操作符：只有一元操作符(unary)<code>+</code>、<code>-</code>、<code>!</code>、<code>~</code>可以被用作前缀操作符，<code>&lt;operate&gt; &lt;operator1&gt;</code> 可以写作 <code>&lt;operator1&gt;.unary_&lt;operate&gt;</code></li>
+<li>日期转周：weekofyear(date) - Returns the week of the year of the given date. A week is considered to start on a Monday and week 1 is the first week with &gt;3 days.将日期转化我当年的周次</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// -2.0</span></span><br><span class="line">scala&gt; (<span class="number">2.0</span>).unary_-</span><br><span class="line">res111: <span class="type">Double</span> = <span class="number">-2.0</span></span><br><span class="line"><span class="comment">//  ! true</span></span><br><span class="line">scala&gt; <span class="literal">true</span>.unary_!</span><br><span class="line">res115: <span class="type">Boolean</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
-<h3 id="任何方法都可以是操作符"><a href="#任何方法都可以是操作符" class="headerlink" title="任何方法都可以是操作符"></a>任何方法都可以是操作符</h3><p>Scala中操作符并不是特殊的语法，任何方法都可以是操作符。</p>
-<ul>
-<li>中缀操作符表示法：<code>&lt;operator1&gt;.&lt;operate&gt;(&lt;operator2&gt;)</code> 可以写作 <code>&lt;operator1&gt; &lt;operate&gt; &lt;operator2&gt;</code> </li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="string">"hello world"</span>.indexOf(<span class="string">"w"</span>)</span><br><span class="line">res122: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"hello world"</span> indexOf <span class="string">"w"</span></span><br><span class="line">res123: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"hello world"</span> indexOf (<span class="string">"o"</span>,<span class="number">5</span>)</span><br><span class="line">res125: <span class="type">Int</span> = <span class="number">7</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"hello world"</span>.indexOf(<span class="string">"o"</span>,<span class="number">5</span>)</span><br><span class="line">res126: <span class="type">Int</span> = <span class="number">7</span></span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>后缀操作符表示法：后缀操作符是那些不接受任何参数的方法，在Scala中可以在方法调用时省略空的圆括号，除非方法有副作用，比如println()</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">import</span> scala.language.postfixOps</span><br><span class="line"><span class="keyword">import</span> scala.language.postfixOps</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"Hello WOrld"</span> toLowerCase</span><br><span class="line">res130: <span class="type">String</span> = hello world</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"Hello WOrld"</span>.toLowerCase</span><br><span class="line">res131: <span class="type">String</span> = hello world</span><br></pre></td></tr></table></figure></div>
-<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><ul>
-<li>表达式：表达式是执行后会返回一个值的代码单元</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个最简单的表达式</span></span><br><span class="line">scala&gt; <span class="number">1</span></span><br><span class="line">res132: <span class="type">Int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>表达式块：可以用大括号结合多个表达式创建一个表达式块，块中最后一个表达式将作为整个表达式块的返回值，表达式块可以进行嵌套，每个表达式块拥有自己的变量和作用域</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表达式块</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> amount = &#123;</span><br><span class="line">     | <span class="keyword">val</span> x = <span class="number">5</span> * <span class="number">20</span></span><br><span class="line">     | x + <span class="number">10</span></span><br><span class="line">     | &#125;</span><br><span class="line">amount: <span class="type">Int</span> = <span class="number">110</span></span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>语句：语句就是不返回值的表达式，语句的返回类型为Unit；由于不返回值，语句通常用来修改现有的数据或者完成应用之外的修改；Scala中常见的语句包括 println()调用、变量声明语句、while控制语句</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; println(<span class="string">"hello world"</span>)</span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="number">1</span></span><br><span class="line">a: <span class="type">Int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
-<p>表达式为函数式编程提供了基础：表达式可以返回数据而不修改现有数据，这就允许使用不可变数据，函数也可以用来返回新的数据，在某种意义上这种函数是另一种类型的表达式。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select weekofyear(&apos;2019-01-01&apos;);</span><br><span class="line">weekofyear(CAST(2019-01-01 AS DATE))</span><br><span class="line">1</span><br></pre></td></tr></table></figure></div>
 
       
     </div>
@@ -602,14 +548,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Scala/" rel="tag"># Scala</a>
-          
-            <a href="/tags/教程/" rel="tag"># 教程</a>
-          
-        </div>
-      
 
       
       
@@ -619,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/uncategorized/Hive-函数篇——日期函数/" rel="next" title="Hive 函数篇——日期函数">
-                <i class="fa fa-chevron-left"></i> Hive 函数篇——日期函数
+              <a href="/uncategorized/Mac-OSX-配置JAVA环境/" rel="next" title="Mac OSX 配置JAVA环境">
+                <i class="fa fa-chevron-left"></i> Mac OSX 配置JAVA环境
               </a>
             
           </div>
@@ -629,8 +567,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Scala/scala-教程（六）——-集合框架/" rel="prev" title="scala 教程（六）—— 集合框架">
-                scala 教程（六）—— 集合框架 <i class="fa fa-chevron-right"></i>
+              <a href="/Scala/Scala 教程（三）：操作符&表达式/" rel="prev" title="Scala 教程（三）：操作符&表达式">
+                Scala 教程（三）：操作符&表达式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -811,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符"><span class="nav-number">1.</span> <span class="nav-text">操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala中的操作符"><span class="nav-number">1.1.</span> <span class="nav-text">Scala中的操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符的优先级和结合性"><span class="nav-number">1.2.</span> <span class="nav-text">操作符的优先级和结合性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作符的优先级"><span class="nav-number">1.2.1.</span> <span class="nav-text">操作符的优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作符的结合性"><span class="nav-number">1.2.2.</span> <span class="nav-text">操作符的结合性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任何操作符都是方法调用"><span class="nav-number">1.3.</span> <span class="nav-text">任何操作符都是方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任何方法都可以是操作符"><span class="nav-number">1.4.</span> <span class="nav-text">任何方法都可以是操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">2.</span> <span class="nav-text">表达式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#from-unixtime——时间戳转换为字符串"><span class="nav-number">1.</span> <span class="nav-text">from_unixtime——时间戳转换为字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unix-timestamp——字符串转换为时间戳"><span class="nav-number">2.</span> <span class="nav-text">unix_timestamp——字符串转换为时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#to-date——字符串转化为日期"><span class="nav-number">3.</span> <span class="nav-text">to_date——字符串转化为日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#date-format——将时间戳-字符串-日期转换为指定格式的字符串"><span class="nav-number">4.</span> <span class="nav-text">date_format——将时间戳/字符串/日期转换为指定格式的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期相关函数"><span class="nav-number">5.</span> <span class="nav-text">日期相关函数</span></a></li></ol></div>
             
 
           </div>
@@ -849,7 +787,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.6k</span>
+    <span title="Site words total count">39.4k</span>
   
 </div>
 

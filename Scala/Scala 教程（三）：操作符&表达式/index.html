@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="机器学习,">
+  <meta name="keywords" content="Scala,教程,">
 
 
 
@@ -125,22 +125,25 @@
 
 
 
-<meta name="description" content="概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策。 决策论研究的问题一般可分为两个阶段：  推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的； 决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策">
-<meta name="keywords" content="机器学习">
+<meta name="description" content="操作符即方法：操作符和方法只不过是操作的两种语法形式  一切操作符都只不过是方法调用的漂亮语法 一切方法都可以写作操作符表示法   操作符Scala中的操作符 算术操作符: A 为 10，B 为 20    关系操作符: A 为 10，B 为 20，==的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法">
+<meta name="keywords" content="Scala,教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习理论基础（一）—— 决策论">
-<meta property="og:url" content="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/index.html">
+<meta property="og:title" content="Scala 教程（三）：操作符&amp;表达式">
+<meta property="og:url" content="https://liketea.xyz/Scala/Scala 教程（三）：操作符&表达式/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策。 决策论研究的问题一般可分为两个阶段：  推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的； 决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策">
+<meta property="og:description" content="操作符即方法：操作符和方法只不过是操作的两种语法形式  一切操作符都只不过是方法调用的漂亮语法 一切方法都可以写作操作符表示法   操作符Scala中的操作符 算术操作符: A 为 10，B 为 20    关系操作符: A 为 10，B 为 20，==的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/~/00-11-15.jpg">
-<meta property="og:image" content="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/~/00-17-53.jpg">
-<meta property="og:image" content="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/~/00-44-03.jpg">
-<meta property="og:updated_time" content="2019-12-31T02:27:02.845Z">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153816.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153829.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153844.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153906.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153923.png">
+<meta property="og:updated_time" content="2019-12-31T02:41:33.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习理论基础（一）—— 决策论">
-<meta name="twitter:description" content="概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策。 决策论研究的问题一般可分为两个阶段：  推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的； 决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策">
-<meta name="twitter:image" content="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/~/00-11-15.jpg">
+<meta name="twitter:title" content="Scala 教程（三）：操作符&amp;表达式">
+<meta name="twitter:description" content="操作符即方法：操作符和方法只不过是操作的两种语法形式  一切操作符都只不过是方法调用的漂亮语法 一切方法都可以写作操作符表示法   操作符Scala中的操作符 算术操作符: A 为 10，B 为 20    关系操作符: A 为 10，B 为 20，==的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png">
 
 
 
@@ -170,13 +173,13 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/">
+  <link rel="canonical" href="https://liketea.xyz/Scala/Scala 教程（三）：操作符&表达式/">
 
 
 
 
 
-  <title>机器学习理论基础（一）—— 决策论 | Like</title>
+  <title>Scala 教程（三）：操作符&表达式 | Like</title>
   
 
 
@@ -345,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/机器学习/机器学习理论基础（一）——-决策论/">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/Scala/Scala 教程（三）：操作符&表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like Wong">
@@ -362,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习理论基础（一）—— 决策论</h1>
+          <h1 class="post-title" itemprop="name headline">Scala 教程（三）：操作符&表达式</h1>
         
 
         <div class="post-meta">
@@ -374,8 +377,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T20:24:53+08:00">
-                2019-12-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-27T15:34:44+08:00">
+                2019-11-27
               </time>
             
 
@@ -390,7 +393,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-31T10:27:02+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-31T10:41:33+08:00">
                 2019-12-31
               </time>
             
@@ -409,8 +412,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/Scala/" itemprop="url" rel="index">
+                    <span itemprop="name">Scala</span>
                   </a>
                 </span>
 
@@ -426,7 +429,7 @@
 
           
           
-             <span id="/机器学习/机器学习理论基础（一）——-决策论/" class="leancloud_visitors" data-flag-title="机器学习理论基础（一）—— 决策论">
+             <span id="/Scala/Scala 教程（三）：操作符&表达式/" class="leancloud_visitors" data-flag-title="Scala 教程（三）：操作符&表达式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -451,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2k
+                  1.4k
                 </span>
               
 
@@ -467,7 +470,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  5
                 </span>
               
             </div>
@@ -488,75 +491,78 @@
       
 
       
-        <p>概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策。</p>
-<p>决策论研究的问题一般可分为两个阶段：</p>
-<ol>
-<li>推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的；</li>
-<li>决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策问题就会变得非常简单，甚至不值一提；</li>
-</ol>
-<p>我们可以通过概率论中的贝叶斯定理进行决策：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125; </span><br><span class="line">p(y\mid x)&amp;=\frac&#123;p(x,y)&#125;&#123;p(x)&#125;\\</span><br><span class="line">&amp;=\frac&#123;p(y)p(x\mid y)&#125;&#123;\int_&#123;y&#125;p(x,y)dy&#125;</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
-<h2 id="1-期望损失最小化"><a href="#1-期望损失最小化" class="headerlink" title="1. 期望损失最小化"></a>1. 期望损失最小化</h2><p>损失函数(loss function)：是对于所有可能的决策可能产生的损失的一种整体的度量，通常又称代价函数(cost function)，记做$L(y,\hat{y})$，其中y是实际值，$\hat{y}$是模型预测值。我们的目标是最小化整体的损失，有些学者不考虑损失函数，而是考虑效用函数(utility function)，目标是最大化效用函数，如果让损失函数等于效用函数的相反数的话，这两个概念是等价的。</p>
-<p>期望损失最小化原则：在进行决策时通常希望决策所带来的期望损失达到最小。</p>
-<h3 id="1-1-分类问题"><a href="#1-1-分类问题" class="headerlink" title="1.1 分类问题"></a>1.1 分类问题</h3><h4 id="1-1-1-损失矩阵"><a href="#1-1-1-损失矩阵" class="headerlink" title="1.1.1 损失矩阵"></a>1.1.1 损失矩阵</h4><p>通常用<strong>损失矩阵</strong>来描述k分类问题的损失函数：</p>
-<p>$$<br>L = [L_{i,j}]_{k\times k}<br>$$</p>
-<p>其中$L_{i,j}$表示将实际为i类的样本预测为j类所带来的损失，对于0-1损失有：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L_&#123;i,j&#125;=\left\&#123;\begin&#123;matrix&#125;</span><br><span class="line">0 &amp;,i = j \\ </span><br><span class="line">1 &amp; ,i\neq j</span><br><span class="line">\end&#123;matrix&#125;\right.</span><br></pre></td></tr></table></figure></div>
-<p>通常我们可以为不同情形赋予不同的损失值，比如在疾病预测时，将正常人预测为病人损失通常较小，而将病人预测为正常损失通常较大。</p>
-<h4 id="1-1-2-分类问题描述"><a href="#1-1-2-分类问题描述" class="headerlink" title="1.1.2 分类问题描述"></a>1.1.2 分类问题描述</h4><p>分类问题的目标就是要找到某种规则，将输入空间切分为不同的决策区域$R_k$，并将决策区域$R_k$中的所有点都划分到类别$c_k$，使得期望损失达到最小。即：</p>
-<p>$$<br>f(x)=\sum_{k}[x\in R_k]c_k<br>$$</p>
-<p>其中：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125; </span><br><span class="line">(R,c) &amp;= arg\ \underset&#123;R_k,c_k,k=1,2,...&#125;&#123;min&#125; \mathbb&#123;E&#125;(L)\\</span><br><span class="line">&amp;=arg\ \underset&#123;R_k,c_k,k=1,2,...&#125;&#123;min&#125;\sum_&#123;k&#125;\sum_&#123;j&#125;\int_&#123;R_j&#125;L_&#123;k,j&#125;p(x,c_k)dx</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
-<p>对于给定的x，目标就变成了：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125; </span><br><span class="line">\hat&#123;y&#125;&amp;= arg\ \underset&#123;c_j&#125;&#123;min&#125; \sum_&#123;k&#125;L_&#123;kj&#125;p(x,c_k)\\</span><br><span class="line">&amp;=arg\ \underset&#123;c_j&#125;&#123;min&#125; \sum_&#123;k&#125;L_&#123;kj&#125;p(c_k\mid x)p(x)\\</span><br><span class="line">&amp;=arg\ \underset&#123;c_j&#125;&#123;min&#125; \sum_&#123;k&#125;L_&#123;kj&#125;p(c_k\mid x)</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
-<p>对于0-1损失函数：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125; </span><br><span class="line">\hat&#123;y&#125;&amp;=arg\ \underset&#123;c_j&#125;&#123;min&#125; \sum_&#123;k&#125;L_&#123;kj&#125;p(c_k\mid x)\\</span><br><span class="line">&amp;=arg\ \underset&#123;c_j&#125;&#123;min&#125; \sum_&#123;k\neq j&#125;p(c_k\mid x)\\</span><br><span class="line">&amp;=arg\ \underset&#123;c_j&#125;&#123;min&#125; (1-p(c_j\mid x))\\</span><br><span class="line">&amp;=arg\ \underset&#123;c_j&#125;&#123;max&#125; \ p(c_j\mid x)</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
-<p>即，0-1损失下的期望风险最小化等价于最大后验概率策略。</p>
-<p><img src="~/00-11-15.jpg" alt></p>
-<h4 id="1-1-3-拒绝选项"><a href="#1-1-3-拒绝选项" class="headerlink" title="1.1.3 拒绝选项"></a>1.1.3 拒绝选项</h4><p>拒绝选项：当不同类别的联合概率相差不大时，类别的归属相对不稳定，在这种情况下避免做出自动化决策，而将决策权留给人类专家，能够降低模型的分类错误率。</p>
-<p>具体地，可以通过引入一个决策阈值$\theta$，拒绝最大后验概率小于$\theta$的那些输入。</p>
-<p><img src="~/00-17-53.jpg" alt></p>
-<h3 id="1-2-回归问题"><a href="#1-2-回归问题" class="headerlink" title="1.2 回归问题"></a>1.2 回归问题</h3><h4 id="1-2-1-闵可夫斯基损失函数"><a href="#1-2-1-闵可夫斯基损失函数" class="headerlink" title="1.2.1 闵可夫斯基损失函数"></a>1.2.1 闵可夫斯基损失函数</h4><p>闵可夫斯基损失函数是平方损失的一种推广：</p>
-<p>$$<br>L_q=\left | y-y(x) \right |^q<br>$$</p>
+        <blockquote>
+<p>操作符即方法：操作符和方法只不过是操作的两种语法形式</p>
 <ul>
-<li>y:输入x对应的真实标签；</li>
-<li>y(x):输入x对应的预测值；</li>
+<li>一切操作符都只不过是方法调用的漂亮语法</li>
+<li>一切方法都可以写作操作符表示法</li>
 </ul>
-<h4 id="1-2-2-问题描述"><a href="#1-2-2-问题描述" class="headerlink" title="1.2.2 问题描述"></a>1.2.2 问题描述</h4><p>回归问题的目标就是对于每个输入x找到一个估计值$y(x)$，使得期望损失最小。</p>
-<p>以平方误差为例：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125; </span><br><span class="line">\mathbb&#123;E&#125;(L)&amp;=\int \int L(y,y(x))p(x,y)dxdy\\</span><br><span class="line">&amp;=\int \int (y-y(x))^2p(x,y)dxdy</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
-<p>两侧对x求导得：</p>
-<p>$$<br>\frac{\partial \mathbb{E}(L)}{\partial y(x)}=2\int (y(x)-y)p(x,y)dy=0<br>$$</p>
-<p>$$<br>y(x)=\frac{\int yp(x,y)dy}{p(x)}=\int yp(y\mid x)dy=\mathbb{E}_t(t\mid x)<br>$$</p>
-<p>即，最小化期望平方损失的回归函数由条件均值给出，值得说明的是当q=1时得到的是条件中位数，当$q\rightarrow 0$时得到的是条件众数。</p>
-<p><img src="~/00-44-03.jpg" alt></p>
-<p>期望平方损失下的<strong>偏差-方差分解</strong>：其中的交叉项对dy积分可消去</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125; </span><br><span class="line">\mathbb&#123;E&#125;(L)&amp;=\int \int (y(x)-y)^2dxdy\\</span><br><span class="line">&amp;=\int \int(y(x)-\mathbb&#123;E&#125;(y\mid x)+\mathbb&#123;E&#125;(y\mid x)-y)^2dxdy\\</span><br><span class="line">&amp;=\int(\int (y(x)-\mathbb&#123;E&#125;(y\mid x)+\mathbb&#123;E&#125;(y\mid x)-y)^2p(y\mid x)dy) p(x)dx\\</span><br><span class="line">&amp;=\int(\int ((y(x)-\mathbb&#123;E&#125;(y\mid x))^2+(\mathbb&#123;E&#125;(y\mid x)-y)^2+2(y(x)-\mathbb&#123;E&#125;(y\mid x))(\mathbb&#123;E&#125;(y\mid x)-y)p(y\mid x)dy) p(x)dx\\</span><br><span class="line">&amp;=\int(\int ((y(x)-\mathbb&#123;E&#125;(y\mid x))^2+(\mathbb&#123;E&#125;(y\mid x)-y)^2)p(y\mid x))p(x)dx\\</span><br><span class="line">&amp;=\int (y(x)-\mathbb&#123;E&#125;(y\mid x))^2p(x)dx+\int var(y\mid x)p(x)dx</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><h3 id="Scala中的操作符"><a href="#Scala中的操作符" class="headerlink" title="Scala中的操作符"></a>Scala中的操作符</h3><ul>
+<li>算术操作符: A 为 10，B 为 20</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png" alt></p>
 <ul>
-<li>第一项表示预测值与条件均值的偏差：当$y(x)=\mathbb{E}(y\mid x)$时，取得最小值；</li>
-<li>第二项表示条件均值的方差：表示目标数据内在的变化性，可以被看做是噪声，因为与y(x)无关，它表示损失函数的不可减少的最小值；</li>
+<li>关系操作符: A 为 10，B 为 20，<code>==</code>的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法</li>
 </ul>
-<h2 id="2-解决决策问题的三种方法"><a href="#2-解决决策问题的三种方法" class="headerlink" title="2. 解决决策问题的三种方法"></a>2. 解决决策问题的三种方法</h2><p>三种方法按照复杂度降低的顺序给出：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153816.png" alt></p>
+<ul>
+<li>逻辑操作符：A 为 true，B 为 false；&amp;&amp; 和 || 遵循短路原则，对应的非短路版本为 &amp; 和 |；</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153829.png" alt></p>
+<ul>
+<li>位操作符：A = 60; 及 B = 13;</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153844.png" alt></p>
+<ul>
+<li>赋值运算符：注意，在Java中赋值语句的返回值是被赋上的值，而在Scala中赋值语句的返回值永远是 Unit类型的单元值<code>()</code></li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153906.png" alt></p>
+<h3 id="操作符的优先级和结合性"><a href="#操作符的优先级和结合性" class="headerlink" title="操作符的优先级和结合性"></a>操作符的优先级和结合性</h3><p>由于Scala并不是真的有操作符，操作符仅仅是用操作符表示法使用方法的一种方式，Scala通过操作符的首字符来决定操作符的优先级，通过操作符的尾字符决定操作符的结合性。</p>
+<p>尽管你能够记住这些操作符的优先级，为了使得代码更加易于理解，你只应该在算术操作符合赋值操作符上利用操作符的优先级，其他情形还是老老实实加上括号吧。</p>
+<h4 id="操作符的优先级"><a href="#操作符的优先级" class="headerlink" title="操作符的优先级"></a>操作符的优先级</h4><p>Scala中操作符的优先级由操作符的<strong>首字符</strong>决定：举例来说，以*开始的操作符优先级比以+开始的操作符优先级更高，下图列出了Scala中不同首字母的操作度的优先级（自上而下，依次递减；同一行具有相同优先级）：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153923.png" alt></p>
+<p>上面红框分类不是很严谨，只是为了方便记忆，比较两个操作符的优先级的时候这样做：</p>
 <ol>
-<li>生成式模型（generative model）:首先解决确定联合概率分布$p(x,y)$的推断问题，然后通过贝叶斯定理求出后验概率分布$p(y\mid x)$，最后基于后验概率分布使用上述方法进行决策；这种方法可以人工生成出输入空间的数据点，故称生成式模型；</li>
-<li>判别式模型（discriminative model）:首先解决确定后验概率分布的推断问题，再基于后验概率分布使用上述方法进行决策；</li>
-<li>判别函数：与上述两种概率模型不同，该方法将推断阶段和决策阶段结合到同一个过程，直接从训练数据中寻找一个分类/回归函数y(x)；</li>
+<li>得到两个操作符的首字符A和B;</li>
+<li>看看首字母是属于<strong>算术-&gt;关系-&gt;逻辑</strong>-&gt;字母-&gt;赋值中的哪一类；</li>
+<li>在以上顺序中，位于前面的优先级高；</li>
+<li>记住两个特例：<code>:</code>在算术和关系之间，<code>^</code>在 <code>&amp;</code> 和 <code>|</code> 之间；</li>
 </ol>
-<p>到某个函数$f(x)$，然后将每个输入x直接映射为标签；</p>
-<p>三种方法对比：</p>
-<ol>
-<li>生成式模型：需要求解的东西最多，能够完整描述概率分布，但需要更多数据，也会浪费计算资源；</li>
-<li>判别式模型：只需求出后验概率，有很多理由需要计算后验概率：<ol>
-<li>最小期望风险：当损失矩阵发生变化时，如果已知后验概率分布，则只需做少量改动即可；</li>
-<li>拒绝选项：方便设置阈值；</li>
-<li>补偿类先验概率：对样本不均衡重采样后得到的后验概率分布不能作为真实数据的分布，需要乘以原始数据中的先验概率再除以平衡后的数据中的先验概率，最后再进行归一化；</li>
-</ol>
-</li>
-<li>判别函数：模型简单，但无法得到后验概率分布；</li>
-</ol>
-<h2 id="3-引用"><a href="#3-引用" class="headerlink" title="3. 引用"></a>3. 引用</h2><ol>
-<li>模式识别与机器学习.Bishop</li>
-</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// + 的优先级在 &lt; 之上，因而 + 先执行</span></span><br><span class="line">scala&gt; <span class="number">2</span> &lt;&lt; <span class="number">2</span> + <span class="number">2</span></span><br><span class="line">res107: <span class="type">Int</span> = <span class="number">32</span></span><br><span class="line"><span class="comment">// + 的优先级在赋值操作之上，因而 + 先执行</span></span><br><span class="line">x *= y + <span class="number">1</span> 等价于 x *= (y+<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="操作符的结合性"><a href="#操作符的结合性" class="headerlink" title="操作符的结合性"></a>操作符的结合性</h4><p>当多个同等优先级的操作符并排在一起的时候，操作符的结合性由操作符的尾字符决定：任何以 <code>:</code> 结尾的操作符都是在它右侧的操作元调用，传入左侧操作元，以任何其他字符结尾的方法则相反。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a ::: b ::: c 等价于 a ::: (b:::c)</span><br></pre></td></tr></table></figure></div>
+<h3 id="任何操作符都是方法调用"><a href="#任何操作符都是方法调用" class="headerlink" title="任何操作符都是方法调用"></a>任何操作符都是方法调用</h3><p>Scala中的操作符只是方法调用的漂亮语法，换句话说Scala中所有操作符都可以写作方法调用的形式。</p>
+<ul>
+<li>中缀操作符：<code>&lt;operator1&gt; &lt;operate&gt; &lt;operator2&gt;</code> ，如果是左结合性可以写作 <code>&lt;operator1&gt;.&lt;operate&gt;(&lt;operator2)</code>，如果是右结合性可以写作<code>&lt;operator2&gt;.&lt;operate&gt;(&lt;operator1)</code>；</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 + 2</span></span><br><span class="line">scala&gt; <span class="number">1.</span>+(<span class="number">2</span>)</span><br><span class="line">res108: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">// 2 &lt;&lt; 1</span></span><br><span class="line">scala&gt; <span class="number">2.</span>&lt;&lt;(<span class="number">1</span>)</span><br><span class="line">res113: <span class="type">Int</span> = <span class="number">4</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>前缀操作符：只有一元操作符(unary)<code>+</code>、<code>-</code>、<code>!</code>、<code>~</code>可以被用作前缀操作符，<code>&lt;operate&gt; &lt;operator1&gt;</code> 可以写作 <code>&lt;operator1&gt;.unary_&lt;operate&gt;</code></li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// -2.0</span></span><br><span class="line">scala&gt; (<span class="number">2.0</span>).unary_-</span><br><span class="line">res111: <span class="type">Double</span> = <span class="number">-2.0</span></span><br><span class="line"><span class="comment">//  ! true</span></span><br><span class="line">scala&gt; <span class="literal">true</span>.unary_!</span><br><span class="line">res115: <span class="type">Boolean</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="任何方法都可以是操作符"><a href="#任何方法都可以是操作符" class="headerlink" title="任何方法都可以是操作符"></a>任何方法都可以是操作符</h3><p>Scala中操作符并不是特殊的语法，任何方法都可以是操作符。</p>
+<ul>
+<li>中缀操作符表示法：<code>&lt;operator1&gt;.&lt;operate&gt;(&lt;operator2&gt;)</code> 可以写作 <code>&lt;operator1&gt; &lt;operate&gt; &lt;operator2&gt;</code> </li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="string">"hello world"</span>.indexOf(<span class="string">"w"</span>)</span><br><span class="line">res122: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"hello world"</span> indexOf <span class="string">"w"</span></span><br><span class="line">res123: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"hello world"</span> indexOf (<span class="string">"o"</span>,<span class="number">5</span>)</span><br><span class="line">res125: <span class="type">Int</span> = <span class="number">7</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"hello world"</span>.indexOf(<span class="string">"o"</span>,<span class="number">5</span>)</span><br><span class="line">res126: <span class="type">Int</span> = <span class="number">7</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>后缀操作符表示法：后缀操作符是那些不接受任何参数的方法，在Scala中可以在方法调用时省略空的圆括号，除非方法有副作用，比如println()</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">import</span> scala.language.postfixOps</span><br><span class="line"><span class="keyword">import</span> scala.language.postfixOps</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"Hello WOrld"</span> toLowerCase</span><br><span class="line">res130: <span class="type">String</span> = hello world</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="string">"Hello WOrld"</span>.toLowerCase</span><br><span class="line">res131: <span class="type">String</span> = hello world</span><br></pre></td></tr></table></figure></div>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><ul>
+<li>表达式：表达式是执行后会返回一个值的代码单元</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个最简单的表达式</span></span><br><span class="line">scala&gt; <span class="number">1</span></span><br><span class="line">res132: <span class="type">Int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>表达式块：可以用大括号结合多个表达式创建一个表达式块，块中最后一个表达式将作为整个表达式块的返回值，表达式块可以进行嵌套，每个表达式块拥有自己的变量和作用域</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表达式块</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> amount = &#123;</span><br><span class="line">     | <span class="keyword">val</span> x = <span class="number">5</span> * <span class="number">20</span></span><br><span class="line">     | x + <span class="number">10</span></span><br><span class="line">     | &#125;</span><br><span class="line">amount: <span class="type">Int</span> = <span class="number">110</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>语句：语句就是不返回值的表达式，语句的返回类型为Unit；由于不返回值，语句通常用来修改现有的数据或者完成应用之外的修改；Scala中常见的语句包括 println()调用、变量声明语句、while控制语句</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; println(<span class="string">"hello world"</span>)</span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="number">1</span></span><br><span class="line">a: <span class="type">Int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<p>表达式为函数式编程提供了基础：表达式可以返回数据而不修改现有数据，这就允许使用不可变数据，函数也可以用来返回新的数据，在某种意义上这种函数是另一种类型的表达式。</p>
 
       
     </div>
@@ -598,7 +604,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
           
         </div>
       
@@ -611,8 +619,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Scala/scala-教程（六）——-集合框架/" rel="next" title="scala 教程（六）—— 集合框架">
-                <i class="fa fa-chevron-left"></i> scala 教程（六）—— 集合框架
+              <a href="/uncategorized/Hive 函数篇：日期函数/" rel="next" title="Hive 函数篇：日期函数">
+                <i class="fa fa-chevron-left"></i> Hive 函数篇：日期函数
               </a>
             
           </div>
@@ -620,6 +628,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Scala/scala 教程（六）：集合框架/" rel="prev" title="scala 教程（六）：集合框架">
+                scala 教程（六）：集合框架 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -799,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-期望损失最小化"><span class="nav-number">1.</span> <span class="nav-text">1. 期望损失最小化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-分类问题"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-损失矩阵"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 损失矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-分类问题描述"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 分类问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-拒绝选项"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 拒绝选项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-回归问题"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 回归问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-闵可夫斯基损失函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 闵可夫斯基损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-问题描述"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 问题描述</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-解决决策问题的三种方法"><span class="nav-number">2.</span> <span class="nav-text">2. 解决决策问题的三种方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-引用"><span class="nav-number">3.</span> <span class="nav-text">3. 引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符"><span class="nav-number">1.</span> <span class="nav-text">操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala中的操作符"><span class="nav-number">1.1.</span> <span class="nav-text">Scala中的操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符的优先级和结合性"><span class="nav-number">1.2.</span> <span class="nav-text">操作符的优先级和结合性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作符的优先级"><span class="nav-number">1.2.1.</span> <span class="nav-text">操作符的优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作符的结合性"><span class="nav-number">1.2.2.</span> <span class="nav-text">操作符的结合性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任何操作符都是方法调用"><span class="nav-number">1.3.</span> <span class="nav-text">任何操作符都是方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任何方法都可以是操作符"><span class="nav-number">1.4.</span> <span class="nav-text">任何方法都可以是操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">2.</span> <span class="nav-text">表达式</span></a></li></ol></div>
             
 
           </div>
@@ -837,7 +849,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.6k</span>
+    <span title="Site words total count">39.4k</span>
   
 </div>
 
