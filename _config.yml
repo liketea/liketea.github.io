@@ -104,5 +104,5 @@ sitemap:
 baidusitemap:
   path: baidusitemap.xml
 
-
-highlight_theme: night eighties
+# 让GitHub Page支持Latex公式
+# markdown: kramdown

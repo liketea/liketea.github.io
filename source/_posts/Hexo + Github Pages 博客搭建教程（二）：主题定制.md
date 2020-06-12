@@ -622,7 +622,8 @@ canvas_nest: true
 
 - [去除 Next 主题图片的灰色边框](https://realneo.me/remove-next-gray-border/)
 - [Hexo下表格的美化和优化](https://hexo.imydl.tech/archives/6742.html)
-
+- [Hexo之NexT主题代码块MacPanel特效配置](http://wiki.johnhao.tech/Hexo%E4%B9%8BNexT%E4%B8%BB%E9%A2%98%E4%BB%A3%E7%A0%81%E5%9D%97MacPanel%E7%89%B9%E6%95%88%E9%85%8D%E7%BD%AE/)
+- 表格宽度根据内容自适应：可以尝试将 source/css/_common/scaffolding/tables.styl 中的 table-layout: fixed; 改为 table-layout: auto;
 
 ## 第三方插件使用
 静态站点拥有一定的局限性，因此我们需要借助于第三方服务来扩展站点的功能。 以下是 NexT 目前支持的第三方服务，你可以根据你的需求集成一些功能进来。

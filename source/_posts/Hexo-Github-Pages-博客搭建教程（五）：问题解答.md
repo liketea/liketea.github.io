@@ -230,6 +230,55 @@ $ git commit -a -m "更新了一篇文章"
 $ git push 
 ```
 
+### hexo next主题解决无法显示数学公式
+https://blog.csdn.net/yexiaohhjk/article/details/82526604
+
+#### 问题
+Hexo 默认使用 hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，比如在 markdown 语法中，下划线`_`代表斜体，会被渲染引擎处理为`<em>`标签。
+
+因为类 Latex 格式书写的数学公式下划线_表示下标，有特殊的含义，如果被强制转换为`<em>`标签，那么 MathJax 引擎在渲染数学公式的时候就会出错，类似的语义冲突的符号还包括`*, {, }, \\`等。
+
+#### 解决
+- 更换 Hexo 的 markdown 渲染引擎：hexo-renderer-kramed 引擎是在默认的渲染引擎 hexo-renderer-marked 的基础上修改了一些 bug ，两者比较接近，也比较轻量级。执行下面的命令即可，先卸载原来的渲染引擎，再安装新的：
+
+```
+npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save
+```
+
+- escape、em 变量修改：引擎后行间公式可以正确渲染了，但是这样还没有完全解决问题，行内公式的渲染还是有问题，因为 hexo-renderer-kramed 引擎也有语义冲突的问题。接下来到博客根目录下，找到node_modules\kramed\lib\rules\inline.js，把第11行的 escape 变量的值以及第20行的em变量做相应的修改
+
+```
+//escape: /^\\([\\`*{}\[\]()#$+\-.!_>])/,
+escape: /^\\([`*\[\]()#$+\-.!_>])/,
+```
+
+- 在 Next 主题中开启 MathJax 开关：如果使用了主题了，别忘了在主题（Theme）中开启 MathJax 开关，下面以 next 主题为例，介绍下如何打开 MathJax 开关。进入到主题目录，找到 _config.yml 配置问题，把 math 默认的 false 修改为true：
+
+```
+# MathJax Support
+mathjax:
+  enable: true
+  per_page: false
+  engine: mathjax
+  cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
+```
+
+- 如果希望只有在用到公式的页面才加载 Mathjax，这样不需要渲染数学公式的页面的访问速度就不会受到影响，可以将per_page设置为true，然后再需要加载mathjax的md文件头部加上`mathjax: true`：
+
+```
+---
+title: index.html
+date: 2018-07-05 12:01:30
+tags:
+mathjax: true
+--
+```
+
+最终效果：
+
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png)
+
 
 ## 参考
 

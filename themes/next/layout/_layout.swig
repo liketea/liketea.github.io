@@ -89,7 +89,7 @@
   {% include '_third-party/scroll-cookie.swig' %}
   {% include '_third-party/exturl.swig' %}
   <!-- 背景动画 -->
-  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
 
 </body>
 </html>

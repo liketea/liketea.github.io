@@ -5,6 +5,7 @@ var attributes = [
   'spellcheck="false"',
   'contenteditable="true"'
 ]
+
 var attributesStr = attributes.join(' ')
 
 hexo.extend.filter.register('after_post_render', function (data) {
