@@ -135,7 +135,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200612153604.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200529114236.png">
-<meta property="og:updated_time" content="2020-06-12T10:53:09.333Z">
+<meta property="og:updated_time" content="2020-06-15T07:57:30.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 科学计算：Numpy">
 <meta name="twitter:description" content="NumPy(Numerical Python) 是 Python 的一个扩展库，主要用于多维数组 (ndarray) 的快速计算，通常与 SciPy 和 Matplotlib 一起使用来代替 MatLab 做科学计算，也有助于我们通过 Python 学习数据科学或者机器学习。 任何笔记都难以穷尽所有细节，笔记的真正意义在于提纲挈领，在需要时能够快速唤醒大部分核心知识，更多的细节请参考官方文档或G">
@@ -389,8 +389,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-06-12T18:53:09+08:00">
-                2020-06-12
+              <time title="更新于" itemprop="dateModified" datetime="2020-06-15T15:57:30+08:00">
+                2020-06-15
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  9.9k
+                  10.1k
                 </span>
               
 
@@ -466,7 +466,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  42
+                  44
                 </span>
               
             </div>
@@ -948,6 +948,7 @@ array([[1, 2, 3],
 </tbody>
 </table>
 </div>
+<p>对 axis 的理解：轴是为超过一维的数组定义的属性，二维数据拥有两个轴，第 0 轴沿着行的垂直往下，第 1 轴沿着列的方向水平延伸。</p>
 <h3 id="项目选择和操作"><a href="#项目选择和操作" class="headerlink" title="项目选择和操作"></a>项目选择和操作</h3><div class="table-container">
 <table>
 <thead>
@@ -1121,6 +1122,23 @@ x+y:
 [[ 0  1  2  3]
  [ 5  6  7  8]
  [10 11 12 13]]
+</code></pre><h3 id="where"><a href="#where" class="headerlink" title="where"></a>where</h3><p><code>where(condition, [x, y])</code>，有两种用法：</p>
+<ul>
+<li><code>where(condition)</code>：等价于 <code>np.asarray(condition).nonzero()</code>，返回 True 对应的各轴索引元组；</li>
+<li><code>where(condition, x, y)</code>：如果 <code>condition</code> 为 True，则从 <code>x</code> 中选取对应元素，否则从 <code>y</code> 中选取元素，<code>x</code>, <code>y</code> 和 <code>condition</code> 必须是可广播的。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure></div>
+<pre><code>array([[ 0,  1,  2,  3],
+   [ 4,  5,  6,  7],
+   [ 8,  9, 10, 11]])
+</code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.where(x &gt; <span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+<pre><code>(array([1, 1, 2, 2, 2, 2]), array([2, 3, 0, 1, 2, 3]))
+</code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.asarray(x &gt; <span class="number">5</span>).nonzero()</span><br></pre></td></tr></table></figure></div>
+<pre><code>(array([1, 1, 2, 2, 2, 2]), array([2, 3, 0, 1, 2, 3]))
+</code></pre><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x, y = np.ogrid[:<span class="number">3</span>, :<span class="number">4</span>]</span><br><span class="line">np.where(x &lt; y, x, <span class="number">10</span> + y)  <span class="comment"># both x and 10+y are broadcast</span></span><br></pre></td></tr></table></figure></div>
+<pre><code>array([[10,  0,  0,  0],
+   [10, 11,  1,  1],
+   [10, 11, 12,  2]])
 </code></pre><h2 id="数组广播"><a href="#数组广播" class="headerlink" title="数组广播"></a>数组广播</h2><p>Numpy 操作通常在数组对之间逐个元素进行，在最简单的情况下，两个数组具有相同形状，对于不同形状的数组，广播（BroadCasting）提供了一种将较小数组扩展至和较大数组具有相同形状的机制。这只是概念上的，Numpy实际上并不会制作副本，以节省内存、提高计算效率。</p>
 <ol>
 <li>广播的条件：数组对按照 shape 尾对齐后，比较对应维度的长度，要么相等要么其中一个是1</li>
@@ -2057,6 +2075,10 @@ NaT
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/Linux/Linux：定时任务/" rel="prev" title="Linux：定时任务">
+                Linux：定时任务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -2139,7 +2161,7 @@ NaT
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2150,7 +2172,7 @@ NaT
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2161,7 +2183,7 @@ NaT
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2235,7 +2257,7 @@ NaT
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">内置数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型对象（dtype）"><span class="nav-number">1.2.</span> <span class="nav-text">数据类型对象（dtype）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组创建"><span class="nav-number">2.</span> <span class="nav-text">数组创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过构造函数创建"><span class="nav-number">2.1.</span> <span class="nav-text">通过构造函数创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-numpy-方法创建"><span class="nav-number">2.2.</span> <span class="nav-text">通过 numpy 方法创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过数值范围创建"><span class="nav-number">2.3.</span> <span class="nav-text">通过数值范围创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过坐标函数创建"><span class="nav-number">2.4.</span> <span class="nav-text">通过坐标函数创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组属性"><span class="nav-number">3.</span> <span class="nav-text">数组属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组方法"><span class="nav-number">4.</span> <span class="nav-text">数组方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组转换"><span class="nav-number">4.1.</span> <span class="nav-text">数组转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形状操作"><span class="nav-number">4.2.</span> <span class="nav-text">形状操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目选择和操作"><span class="nav-number">4.3.</span> <span class="nav-text">项目选择和操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算"><span class="nav-number">4.4.</span> <span class="nav-text">计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算和比较运算"><span class="nav-number">4.5.</span> <span class="nav-text">算术运算和比较运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组广播"><span class="nav-number">5.</span> <span class="nav-text">数组广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引切片"><span class="nav-number">6.</span> <span class="nav-text">索引切片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整数索引"><span class="nav-number">6.1.</span> <span class="nav-text">整数索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切片"><span class="nav-number">6.2.</span> <span class="nav-text">切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数数组索引"><span class="nav-number">6.3.</span> <span class="nav-text">整数数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔数组索引"><span class="nav-number">6.4.</span> <span class="nav-text">布尔数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合索引"><span class="nav-number">6.5.</span> <span class="nav-text">混合索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代数组"><span class="nav-number">7.</span> <span class="nav-text">迭代数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代数组中每个元素"><span class="nav-number">7.1.</span> <span class="nav-text">迭代数组中每个元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代广播数组"><span class="nav-number">7.2.</span> <span class="nav-text">迭代广播数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用函数"><span class="nav-number">8.</span> <span class="nav-text">通用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ufunc-属性"><span class="nav-number">8.1.</span> <span class="nav-text">ufunc 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ufunc-方法"><span class="nav-number">8.2.</span> <span class="nav-text">ufunc 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置-ufunc-方法"><span class="nav-number">8.3.</span> <span class="nav-text">内置 ufunc 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义-ufunc"><span class="nav-number">8.4.</span> <span class="nav-text">自定义 ufunc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沿轴应用函数"><span class="nav-number">9.</span> <span class="nav-text">沿轴应用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">10.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期"><span class="nav-number">11.</span> <span class="nav-text">日期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杂项"><span class="nav-number">12.</span> <span class="nav-text">杂项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置数据类型"><span class="nav-number">1.1.</span> <span class="nav-text">内置数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型对象（dtype）"><span class="nav-number">1.2.</span> <span class="nav-text">数据类型对象（dtype）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组创建"><span class="nav-number">2.</span> <span class="nav-text">数组创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过构造函数创建"><span class="nav-number">2.1.</span> <span class="nav-text">通过构造函数创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-numpy-方法创建"><span class="nav-number">2.2.</span> <span class="nav-text">通过 numpy 方法创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过数值范围创建"><span class="nav-number">2.3.</span> <span class="nav-text">通过数值范围创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过坐标函数创建"><span class="nav-number">2.4.</span> <span class="nav-text">通过坐标函数创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组属性"><span class="nav-number">3.</span> <span class="nav-text">数组属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组方法"><span class="nav-number">4.</span> <span class="nav-text">数组方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组转换"><span class="nav-number">4.1.</span> <span class="nav-text">数组转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形状操作"><span class="nav-number">4.2.</span> <span class="nav-text">形状操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目选择和操作"><span class="nav-number">4.3.</span> <span class="nav-text">项目选择和操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算"><span class="nav-number">4.4.</span> <span class="nav-text">计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算和比较运算"><span class="nav-number">4.5.</span> <span class="nav-text">算术运算和比较运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">4.6.</span> <span class="nav-text">where</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组广播"><span class="nav-number">5.</span> <span class="nav-text">数组广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引切片"><span class="nav-number">6.</span> <span class="nav-text">索引切片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整数索引"><span class="nav-number">6.1.</span> <span class="nav-text">整数索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切片"><span class="nav-number">6.2.</span> <span class="nav-text">切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数数组索引"><span class="nav-number">6.3.</span> <span class="nav-text">整数数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔数组索引"><span class="nav-number">6.4.</span> <span class="nav-text">布尔数组索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合索引"><span class="nav-number">6.5.</span> <span class="nav-text">混合索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代数组"><span class="nav-number">7.</span> <span class="nav-text">迭代数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代数组中每个元素"><span class="nav-number">7.1.</span> <span class="nav-text">迭代数组中每个元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代广播数组"><span class="nav-number">7.2.</span> <span class="nav-text">迭代广播数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用函数"><span class="nav-number">8.</span> <span class="nav-text">通用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ufunc-属性"><span class="nav-number">8.1.</span> <span class="nav-text">ufunc 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ufunc-方法"><span class="nav-number">8.2.</span> <span class="nav-text">ufunc 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置-ufunc-方法"><span class="nav-number">8.3.</span> <span class="nav-text">内置 ufunc 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义-ufunc"><span class="nav-number">8.4.</span> <span class="nav-text">自定义 ufunc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沿轴应用函数"><span class="nav-number">9.</span> <span class="nav-text">沿轴应用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量"><span class="nav-number">10.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日期"><span class="nav-number">11.</span> <span class="nav-text">日期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杂项"><span class="nav-number">12.</span> <span class="nav-text">杂项</span></a></li></ol></div>
             
 
           </div>
@@ -2273,7 +2295,7 @@ NaT
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">60.9k</span>
+    <span title="Site words total count">64.1k</span>
   
 </div>
 
