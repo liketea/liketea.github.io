@@ -136,7 +136,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200616144400.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200616144728.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200616200641.png">
-<meta property="og:updated_time" content="2020-06-16T12:25:54.042Z">
+<meta property="og:updated_time" content="2020-06-16T13:04:21.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux：定时任务">
 <meta name="twitter:description" content="在 Linux 里配置定时任务主要是通过 cron 和 crontab 两个程序来控制:  cron：是定期执行指定命令的守护程序，负责配置的解析和处理； crontab：是用户维护定时任务配置文件的命令；  Cron1234567891011$ man cronNAME       cron - daemon to execute scheduled commandsSYNOPSIS">
@@ -390,7 +390,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-06-16T20:25:54+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-06-16T21:04:21+08:00">
                 2020-06-16
               </time>
             
@@ -495,7 +495,7 @@
 <li><code>crontab</code>：是用户维护定时任务配置文件的命令；</li>
 </ol>
 <h2 id="Cron"><a href="#Cron" class="headerlink" title="Cron"></a>Cron</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SH"><figure class="iseeu highlight /sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ man cron</span><br><span class="line">NAME</span><br><span class="line">       cron - daemon to execute scheduled commands</span><br><span class="line"></span><br><span class="line">SYNOPSIS</span><br><span class="line">       cron [-n | -p | -s | -m&lt;mailcommand&gt;]</span><br><span class="line">       cron -x [ext,sch,proc,pars,load,misc,<span class="built_in">test</span>,bit]</span><br><span class="line"></span><br><span class="line">DESCRIPTION</span><br><span class="line">       Cron should be started from /etc/rc.d/init.d or /etc/init.d</span><br><span class="line">... ...</span><br></pre></td></tr></table></figure></div>
-<h3 id="启动-Cron"><a href="#启动-Cron" class="headerlink" title="启动 Cron"></a>启动 Cron</h3><p><code>Cron</code> 可以通过 <code>/etc/rc.d/init.d</code> 或 <code>`/etc/init.d</code> 路径下的 <code>crond</code> 脚本随系统开机自动启动，也可以通过以下方式手动启动：</p>
+<h3 id="启动-Cron"><a href="#启动-Cron" class="headerlink" title="启动 Cron"></a>启动 Cron</h3><p><code>Cron</code> 可以通过 <code>/etc/rc.d/init.d</code> 或 <code>/etc/init.d</code> 路径下的 <code>crond</code> 脚本随系统开机自动启动，也可以通过以下方式手动启动：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 如果系统有 service 命令</span><br><span class="line">/sbin/service crond start    # 启动服务</span><br><span class="line">/sbin/service crond stop     # 关闭服务</span><br><span class="line">/sbin/service crond restart  # 重启服务</span><br><span class="line">/sbin/service crond reload   # 重新载入配置</span><br><span class="line"></span><br><span class="line"># 如果系统没有 service 命令</span><br><span class="line">$sudo /etc/init.d/cron start</span><br><span class="line">$sudo /etc/init.d/cron stop</span><br><span class="line">$sudo /etc/init.d/cron restart</span><br></pre></td></tr></table></figure></div>
 <p>查看服务是否已经在运行：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SH"><figure class="iseeu highlight /sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ax | grep cron </span><br><span class="line">13651 ?        Ss     5:50 /usr/sbin/crond -n</span><br><span class="line">48218 pts/17   S+     0:00 grep --color=auto cron</span><br></pre></td></tr></table></figure></div>
