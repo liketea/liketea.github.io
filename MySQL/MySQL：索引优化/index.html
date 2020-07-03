@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="Mysql：索引优化 What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在">
+<meta name="description" content="What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在 Relationa">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL：索引优化">
 <meta property="og:url" content="https://liketea.xyz/MySQL/MySQL：索引优化/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="Mysql：索引优化 What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在">
+<meta property="og:description" content="What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在 Relationa">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200630115000.png">
@@ -139,10 +139,10 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200701192758.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200702140345.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200702141105.png">
-<meta property="og:updated_time" content="2020-07-03T06:16:26.311Z">
+<meta property="og:updated_time" content="2020-07-03T06:19:56.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL：索引优化">
-<meta name="twitter:description" content="Mysql：索引优化 What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在">
+<meta name="twitter:description" content="What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在 Relationa">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png">
 
 
@@ -393,7 +393,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-07-03T14:16:26+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-07-03T14:19:56+08:00">
                 2020-07-03
               </time>
             
@@ -491,7 +491,7 @@
       
 
       
-        <h1 id="Mysql：索引优化"><a href="#Mysql：索引优化" class="headerlink" title="Mysql：索引优化"></a>Mysql：索引优化</h1><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png" alt></p>
+        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png" alt></p>
 <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：</p>
 <ol>
 <li>对于小表：全表扫描更高效；</li>
@@ -1006,7 +1006,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql：索引优化"><span class="nav-number">1.</span> <span class="nav-text">Mysql：索引优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">1.1.</span> <span class="nav-text">What</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">索引类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree"><span class="nav-number">1.1.2.</span> <span class="nav-text">B+Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引和二级索引"><span class="nav-number">1.1.3.</span> <span class="nav-text">聚簇索引和二级索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">1.2.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义索引"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建索引"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">创建索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除索引"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">删除索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改索引"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">修改索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看索引"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">查看索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用索引"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#能否命中索引"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">能否命中索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是否使用索引"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">是否使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询优化器"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">查询优化器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#范围索引"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">范围索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#覆盖索引"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">覆盖索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#延迟关联"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">延迟关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#索引提示"><span class="nav-number">1.2.2.2.5.</span> <span class="nav-text">索引提示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助信息"><span class="nav-number">1.2.3.</span> <span class="nav-text">辅助信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看查询耗时"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">查看查询耗时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看索引统计信息"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">查看索引统计信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非持久化统计信息"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">非持久化统计信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#持久化统计信息"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text">持久化统计信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计信息不准确的处理"><span class="nav-number">1.2.3.2.3.</span> <span class="nav-text">统计信息不准确的处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引设计原则"><span class="nav-number">1.2.4.</span> <span class="nav-text">索引设计原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">1.</span> <span class="nav-text">What</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引类型"><span class="nav-number">1.1.</span> <span class="nav-text">索引类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">B+Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引和二级索引"><span class="nav-number">1.3.</span> <span class="nav-text">聚簇索引和二级索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义索引"><span class="nav-number">2.1.</span> <span class="nav-text">定义索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建索引"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除索引"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改索引"><span class="nav-number">2.1.3.</span> <span class="nav-text">修改索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看索引"><span class="nav-number">2.1.4.</span> <span class="nav-text">查看索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用索引"><span class="nav-number">2.2.</span> <span class="nav-text">使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#能否命中索引"><span class="nav-number">2.2.1.</span> <span class="nav-text">能否命中索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是否使用索引"><span class="nav-number">2.2.2.</span> <span class="nav-text">是否使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询优化器"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">查询优化器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#范围索引"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">范围索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#覆盖索引"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">覆盖索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#延迟关联"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">延迟关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#索引提示"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">索引提示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助信息"><span class="nav-number">2.3.</span> <span class="nav-text">辅助信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看查询耗时"><span class="nav-number">2.3.1.</span> <span class="nav-text">查看查询耗时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看索引统计信息"><span class="nav-number">2.3.2.</span> <span class="nav-text">查看索引统计信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#非持久化统计信息"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">非持久化统计信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#持久化统计信息"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">持久化统计信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计信息不准确的处理"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">统计信息不准确的处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引设计原则"><span class="nav-number">2.4.</span> <span class="nav-text">索引设计原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -1044,7 +1044,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">71.2k</span>
+    <span title="Site words total count">71.1k</span>
   
 </div>
 
