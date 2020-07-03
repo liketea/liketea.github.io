@@ -1,14 +1,14 @@
 ---
 title: Python 科学计算：Numpy 
-date: 2019-12-31 20:24:53
+date: 2020-06-12 17:01:09
 tags: 
     - Python
 categories:
     - Python
 ---
 
+<img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200612153604.png" width="50%" height="50%"  style="margin: 0 auto;"/>
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200612153604.png)
 
 NumPy(Numerical Python) 是 Python 的一个扩展库，主要用于多维数组 (ndarray) 的快速计算，通常与 SciPy 和 Matplotlib 一起使用来代替 MatLab 做科学计算，也有助于我们通过 Python 学习数据科学或者机器学习。
 
@@ -18,13 +18,16 @@ NumPy(Numerical Python) 是 Python 的一个扩展库，主要用于多维数组
 - Numpy 中文官网 https://www.numpy.org.cn/
 
 
+
+
+
 ```python
 import numpy as np 
 ```
 
-## 1. 数据类型
+## 数据类型
 
-### 1.1 内置数据类型
+### 内置数据类型
 numpy 支持的数据类型比 Python 内置的类型要多很多，基本上可以和 C 语言的数据类型对应上，其中部分类型对应为 Python 内置的类型。下表列举了常用 NumPy 基本类型：
 
 | 名称         | 描述                                                 |
@@ -49,7 +52,7 @@ numpy 支持的数据类型比 Python 内置的类型要多很多，基本上可
 | complex64  | 复数，表示双 32 位浮点数（实数部分和虚数部分）                          |
 | complex128 | 复数，表示双 64 位浮点数（实数部分和虚数部分）                          |
 
-### 1.2 数据类型对象（dtype）
+### 数据类型对象（dtype）
 数据类型对象描述了数组对应的内存区域如何使用，包括
 
 - 数据的类型：整数，浮点数或者 Python 对象
@@ -88,9 +91,9 @@ print np.dtype('i4')
 print np.dtype('<i4')
 ```
 
-int32
-int32
-int32
+    int32
+    int32
+    int32
 
 
 
@@ -104,18 +107,22 @@ print a['name']
 a
 ```
 
-['abc' 'xyz']
-
-array([('abc', 21, 50.), ('xyz', 18, 75.)],
-  dtype=[('name', 'S20'), ('age', 'i1'), ('marks', '<f4')])
+    ['abc' 'xyz']
 
 
 
-## 2. 数组创建
+
+
+    array([('abc', 21, 50.), ('xyz', 18, 75.)],
+          dtype=[('name', 'S20'), ('age', 'i1'), ('marks', '<f4')])
+
+
+
+## 数组创建
 
 NumPy的主要对象是同构多维数组，可以使用[数组创建API](https://www.numpy.org.cn/reference/routines/array-creation.html#ones-%E5%92%8C-zeros-%E5%A1%AB%E5%85%85%E6%96%B9%E5%BC%8F)中详述的各种方法来创建数组。
 
-### 2.1 通过构造函数创建
+### 通过构造函数创建
 `numpy.array(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)`
 
 | 名称     | 描述                             |
@@ -149,7 +156,7 @@ print 'F列方向：\n{}'.format(af)
      [3 4 5]]
 
 
-### 2.2 通过 numpy 方法创建
+### 通过 numpy 方法创建
 - `numpy.empty(shape, dtype = float, order = 'C')` ：创建指定形状和类型的数组，数组元素以随机值来填充；
 - `numpy.zeros(shape, dtype = float, order = 'C')`：创建指定形状和类型的数组，数组元素以 0 来填充；
 - `numpy.ones(shape, dtype = None, order = 'C')`：创建指定形状和类型的数组，数组元素以 1 来填充；
@@ -160,18 +167,28 @@ print 'F列方向：\n{}'.format(af)
 np.empty([3,2], dtype = int) 
 ```
 
-array([[140719574482952, 140719574514864],
-       [     4531377328,      4517086152],
-       [              6,               0]])
+
+
+
+    array([[140719574482952, 140719574514864],
+           [     4531377328,      4517086152],
+           [              6,               0]])
+
+
 
 
 ```python
 np.zeros([3,2], dtype = float, order = 'C')
 ```
 
-array([[0., 0.],
-       [0., 0.],
-       [0., 0.]])
+
+
+
+    array([[0., 0.],
+           [0., 0.],
+           [0., 0.]])
+
+
 
 
 ```python
@@ -179,21 +196,29 @@ np.ones([3,2], dtype = None, order = 'C')
 ```
 
 
-array([[1., 1.],
-       [1., 1.],
-       [1., 1.]])
+
+
+    array([[1., 1.],
+           [1., 1.],
+           [1., 1.]])
+
+
+
 
 ```python
 np.eye(3,4,1)
 ```
 
-array([[0., 1., 0., 0.],
-       [0., 0., 1., 0.],
-       [0., 0., 0., 1.]])
 
 
 
-### 2.3 通过数值范围创建
+    array([[0., 1., 0., 0.],
+           [0., 0., 1., 0.],
+           [0., 0., 0., 1.]])
+
+
+
+### 通过数值范围创建
 - `numpy.arange(start, stop, step, dtype)`: 根据 start 与 stop 指定的范围以及 step 设定的步长，生成一个 ndarray
 - `np.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None)`: 根据 start 与 stop 指定的数量生成一个等差数列，endpoint 表示是否包含stop的值，retstep代表是否显示步长
 - `np.logspace(start, stop, num=50, endpoint=True, base=10.0, dtype=None)`: 根据 start 与 stop 指定的数量生成一个等比数列，base是对数的时候log的下标
@@ -203,23 +228,38 @@ array([[0., 1., 0., 0.],
 np.arange(5, dtype =  float)  
 ```
 
+
+
+
     array([0., 1., 2., 3., 4.])
+
+
+
 
 ```python
 np.linspace(1, 10, 10, endpoint=False, retstep=True)
 ```
 
+
+
+
     (array([1. , 1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1]), 0.9)
+
+
+
 
 ```python
 np.logspace(1, 6, 6, base=2)
 ```
 
+
+
+
     array([ 2.,  4.,  8., 16., 32., 64.])
 
 
 
-### 2.4 通过坐标函数创建
+### 通过坐标函数创建
 `numpy.fromfunction(function, shape, **kwargs)` 通过作用于坐标上的函数构建数组
 
 - function：function 是一个python函数，参数个数等于shape的维度，例如shape=(2,2)，传给 function 的参数将是 `array([[0, 0], [1, 1]])` 和 `array([[0, 1], [0, 1]])`，分别是 shape=(2,2) 的行标数组和列标数组
@@ -230,13 +270,16 @@ np.logspace(1, 6, 6, base=2)
 np.fromfunction(lambda i, j: i == j, (3, 3), dtype=int)
 ```
 
+
+
+
     array([[ True, False, False],
            [False,  True, False],
            [False, False,  True]])
 
 
 
-## 3. 数组属性
+## 数组属性
 
 | 属性                | 说明                                          |
 |-------------------|---------------------------------------------|
@@ -278,8 +321,13 @@ a
       UPDATEIFCOPY : False
 
 
+
+
+
     array([[1, 2, 3],
            [4, 5, 6]])
+
+
 
 
 ```python
@@ -299,10 +347,10 @@ print '二维数组形状：\n{}'.format(np.arange(3).reshape(3,1))
      [2]]
 
 
-## 4. 数组方法
+## 数组方法
 这里只是对众多数组方法的简单索引，每种方法的详细使用细则参见[数组方法](https://www.numpy.org.cn/reference/arrays/ndarray.html#%E8%AE%A1%E7%AE%97)。
 
-### 4.1 数组转换
+### 数组转换
 
 | 方法                                              | 描述                                                        |
 |-------------------------------------------------|-----------------------------------------------------------|
@@ -323,7 +371,7 @@ print '二维数组形状：\n{}'.format(np.arange(3).reshape(3,1))
 | ndarray\.fill\(value\)                          | 使用标量值填充数组。                                                |                                       |
 
 
-### 4.2 形状操作
+### 形状操作
 
 | 方法                                          | 描述                       |
 |---------------------------------------------|--------------------------|
@@ -336,7 +384,10 @@ print '二维数组形状：\n{}'.format(np.arange(3).reshape(3,1))
 | ndarray\.squeeze\(\[axis\]\)                | 从形状除去单维输入一个。             |
 
 
-### 4.3 项目选择和操作
+对 axis 的理解：轴是为超过一维的数组定义的属性，二维数据拥有两个轴，第 0 轴沿着行的垂直往下，第 1 轴沿着列的方向水平延伸。
+
+
+### 项目选择和操作
 
 | 方法                                                  | 描述                                    |
 |-----------------------------------------------------|:---------------------------------------|
@@ -355,7 +406,7 @@ print '二维数组形状：\n{}'.format(np.arange(3).reshape(3,1))
 
 
 
-### 4.4 计算
+### 计算
 
 
 | 方法                                                     | 描述                        |
@@ -408,7 +459,7 @@ print x.sum(axis=0)
      [45 48 51]]
 
 
-### 4.5 算术运算和比较运算
+### 算术运算和比较运算
 几个关键点：
 
 1. 算术和比较操作 ndarrays 被定义为逐元素操作，并且通常返回 ndarray 对象；
@@ -437,8 +488,44 @@ print 'x+y:\n%s' %(x + y)
      [ 5  6  7  8]
      [10 11 12 13]]
 
+### where 
+`where(condition, [x, y])`，有两种用法：
 
-## 5. 数组广播
+- `where(condition)`：等价于 `np.asarray(condition).nonzero()`，返回 True 对应的各轴索引元组；
+- `where(condition, x, y)`：如果 `condition` 为 True，则从 `x` 中选取对应元素，否则从 `y` 中选取元素，`x`, `y` 和 `condition` 必须是可广播的。
+
+```python
+x = np.arange(12).reshape(3,4)
+x
+```
+
+    array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+       
+```python
+np.where(x > 5)
+```
+
+    (array([1, 1, 2, 2, 2, 2]), array([2, 3, 0, 1, 2, 3]))
+
+```python
+np.asarray(x > 5).nonzero()
+```
+
+    (array([1, 1, 2, 2, 2, 2]), array([2, 3, 0, 1, 2, 3]))
+    
+```python
+x, y = np.ogrid[:3, :4]
+np.where(x < y, x, 10 + y)  # both x and 10+y are broadcast
+
+```
+
+    array([[10,  0,  0,  0],
+       [10, 11,  1,  1],
+       [10, 11, 12,  2]])
+
+## 数组广播
 Numpy 操作通常在数组对之间逐个元素进行，在最简单的情况下，两个数组具有相同形状，对于不同形状的数组，广播（BroadCasting）提供了一种将较小数组扩展至和较大数组具有相同形状的机制。这只是概念上的，Numpy实际上并不会制作副本，以节省内存、提高计算效率。
 
 1. 广播的条件：数组对按照 shape 尾对齐后，比较对应维度的长度，要么相等要么其中一个是1
@@ -475,7 +562,7 @@ a[:,newaxis] + b
 
 
 
-## 6. 索引切片
+## 索引切片
 Numpy 将 Python 的切片概念扩展到了n维，`x[(exp1，exp2，.，EXPN)]` 等同于 `x[exp1，exp2，.，EXPN]`，后者只是前者的语法糖。`exp` 可以有多种形式：
 
 1. 基本索引
@@ -487,7 +574,7 @@ Numpy 将 Python 的切片概念扩展到了n维，`x[(exp1，exp2，.，EXPN)]`
 
 基本索引生成的所有数组始终是原数组的是**视图**，而不是复制，视图是对原始数组中一小部分的引用，对视图中元素的修改同样会反映到原始数组中，如果需要明确使用复制，可以调用数组的copy方法。与基本索引不同，高级索引始终返回数据的副本。
 
-### 6.1 整数索引
+### 整数索引
 - 形式：`x[c1, c2,.,cN]`，第一个元素的索引从0开始，假设某个维度元素个数为n，那么索引的有效取值范围为 `-n ~ n-1`，其中负数`-k`等价于 `n-k`
 - 含义：返回由索引 `(c1, c2, . , cN)` 定位到的元素标量
 
@@ -505,7 +592,7 @@ print x[-1,1]
     6
 
 
-### 6.2 切片
+### 切片
 
 - 形式：`x[i1:j1:k1, ..., i2:j2:k2, :, i3:j3:k3]`
 - 含义：序列切片的标准规则适用于基于每维（假设某维长度为n）的基本切片：
@@ -600,7 +687,7 @@ x[:, 1:-1:2, np.newaxis]
 
 
 
-### 6.3 整数数组索引
+### 整数数组索引
 整数数组索引也叫**花式索引**：
 
 - 形式：`x[index_array1, index_array2, ., index_arrayN]`
@@ -700,7 +787,7 @@ x[np.ix_(rows, columns)]
 
 
 
-### 6.4 布尔数组索引
+### 布尔数组索引
 
 - 形式：`x[obj]`，我中 obj 可以是
     - 与所在维度长度相等的数组；
@@ -757,7 +844,7 @@ x[x % 2 == 0]
 
 
 
-### 6.5 混合索引
+### 混合索引
 
 对于索引切片 `x[(exp1，exp2，.，EXPN)]`，`expk` 可以是以下四种形式：
 
@@ -914,10 +1001,10 @@ x[[0,1], [True, False, True], 4:5]
 
 
 
-## 7. 迭代数组
+## 迭代数组
 
 
-### 7.1 迭代数组中每个元素
+### 迭代数组中每个元素
 
 
 ```python
@@ -957,7 +1044,7 @@ while not it.finished:
     5 (1, 2)
 
 
-### 7.2 迭代广播数组
+### 迭代广播数组
 向 nditer 传递一个数组列表，多个数组先进行广播组合，然后再迭代。
 
 
@@ -976,12 +1063,12 @@ for x, y in np.nditer([a,b]):
     2:5
 
 
-## 8. 通用函数
+## 通用函数
 通用函数（universal function, ufunc）是以逐元素方式作用于 ndarray 上的函数，支持数组广播、类型转换以及其他几种特性。ufunc 是函数的矢量化包装器，接收固定数量的输入，并产生固定数量的输出。
 
 在NumPy中，通用函数是numpy.ufunc类的实例，许多内置函数都是在编译的C代码中实现的，用户可以通过 frompyfunc 工厂函数生成自定义的通用函数示例。
 
-### 8.1 ufunc 属性
+### ufunc 属性
 ufunc 有一些信息属性，这些属性不可以设置：
 
 | 方法               | 描述                        |
@@ -1016,7 +1103,7 @@ print sin_func.signature
     None
 
 
-### 8.2 ufunc 方法
+### ufunc 方法
 所有ufunc都有四种方法。但是，这些方法只对采用两个输入参数并返回一个输出参数的标量ufunc有意义。尝试在其他ufunc上调用这些方法将导致ValueError。reduce-like方法都采用axis关键字、dtype关键字和out关键字，并且数组的维数都必须大于等于1。
 
 1. axis 关键字指定将在其上进行缩减的数组的轴（负值向后计数）。一般来说，它是一个整数，但是对于 ufunc.reduce，它也可以是int的元组，一次减少多个轴、或者不减少、或者减少所有轴
@@ -1072,7 +1159,7 @@ np.add.accumulate(x, axis=1)
 
 
 
-### 8.3 内置 ufunc 方法
+### 内置 ufunc 方法
 目前在numpy中定义的一个或多个类型的通用函数超过60个，涵盖了各种各样的操作。当使用相关的中缀符号时，这些ufunc中的一些在数组上被自动调用（例如，当a+b被写入并且a或b是ndarray时，add（a，b）在内部被调用）。不过，您可能仍然希望使用ufunc调用，以便使用可选的输出参数将输出放置在您选择的一个或多个对象中。
 
 回想一下，每个ufunc都逐个操作元素。因此，每个标量 ufunc 将被描述为作用于一组标量输入以返回一组标量输出。
@@ -1081,137 +1168,121 @@ np.add.accumulate(x, axis=1)
 
 | 方法                                                      | 描述                             |
 |---------------------------------------------------------|--------------------------------|
-| add\(x1, x2, /\[, out, where, cast, order, \.\.\.\]\)   | 按元素添加参数。                       |
-| subtract\(x1, x2, /\[, out, where, cast, \.\.\.\]\)     | 从元素方面减去参数。                     |
-| multiply\(x1, x2, /\[, out, where, cast, \.\.\.\]\)     | 在元素方面乘以论证。                     |
-| divide\(x1, x2, /\[, out, where, cast, \.\.\.\]\)       | 以元素方式返回输入的真正除法。                |
-| logaddexp\(x1, x2, /\[, out, where, cast, \.\.\.\]\)    | 输入的取幂之和的对数。                    |
-| logaddexp2\(x1, x2, /\[, out, where, cast, \.\.\.\]\)   | base\-2中输入的取幂之和的对数。            |
-| true\_divide\(x1, x2, /\[, out, where, \.\.\.\]\)       | 以元素方式返回输入的真正除法。                |
-| floor\_divide\(x1, x2, /\[, out, where, \.\.\.\]\)      | 返回小于或等于输入除法的最大整数。              |
-| negative\(x, /\[, out, where, cast, order, \.\.\.\]\)   | 数字否定, 元素方面。                    |
-| positive\(x, /\[, out, where, cast, order, \.\.\.\]\)   | 数字正面, 元素方面。                    |
-| power\(x1, x2, /\[, out, where, cast, \.\.\.\]\)        | 第一个数组元素从第二个数组提升到幂, 逐个元素。       |
-| remainder\(x1, x2, /\[, out, where, cast, \.\.\.\]\)    | 返回除法元素的余数。                     |
-| mod\(x1, x2, /\[, out, where, cast, order, \.\.\.\]\)   | 返回除法元素的余数。                     |
-| fmod\(x1, x2, /\[, out, where, cast, \.\.\.\]\)         | 返回除法的元素余数。                     |
-| divmod\(x1, x2 \[, out1, out2\], /\[\[, out, \.\.\.\]\) | 同时返回逐元素的商和余数。                  |
-| absolute\(x, /\[, out, where, cast, order, \.\.\.\]\)   | 逐个元素地计算绝对值。                    |
-| fabs\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 以元素方式计算绝对值。                    |
-| rint\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 将数组的元素舍入为最接近的整数。               |
-| sign\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 返回数字符号的元素指示。                   |
-| heaviside\(x1, x2, /\[, out, where, cast, \.\.\.\]\)    | 计算Heaviside阶跃函数。               |
-| conj\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回复共轭。                    |
-| conjugate\(x, /\[, out, where, cast, \.\.\.\]\)         | 以元素方式返回复共轭。                    |
-| exp\(x, /\[, out, where, cast, order, \.\.\.\]\)        | 计算输入数组中所有元素的指数。                |
-| exp2\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 计算输入数组中所有 p 的 2\*\*p。          |
-| log\(x, /\[, out, where, cast, order, \.\.\.\]\)        | 自然对数, 元素方面。                    |
-| log2\(x, /\[, out, where, cast, order, \.\.\.\]\)       | x的基数为2的对数。                     |
-| log10\(x, /\[, out, where, cast, order, \.\.\.\]\)      | 以元素方式返回输入数组的基数10对数。            |
-| expm1\(x, /\[, out, where, cast, order, \.\.\.\]\)      | 计算数组中的所有元素。exp\(x\) \- 1       |
-| log1p\(x, /\[, out, where, cast, order, \.\.\.\]\)      | 返回一个加上输入数组的自然对数, 逐个元素。         |
-| sqrt\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回数组的非负平方根。               |
-| square\(x, /\[, out, where, cast, order, \.\.\.\]\)     | 返回输入的元素方块。                     |
-| cbrt\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回数组的立方根。                 |
-| reciprocal\(x, /\[, out, where, cast, \.\.\.\]\)        | 以元素方式返回参数的倒数。                  |
-| gcd\(x1, x2, /\[, out, where, cast, order, \.\.\.\]\)   | 返回 \| x1 \| 和的最大公约数 \| x2 \| 。 |
-| lcm\(x1, x2, /\[, out, where, cast, order, \.\.\.\]\)   | 返回 \| x1 \| 和的最小公倍数 \| x2 \| 。 |
+| add\(x1, x2, \[, out, where, cast, order, \.\.\.\]\)   | 按元素添加参数。                       |
+| subtract\(x1, x2, \[, out, where, cast, \.\.\.\]\)     | 从元素方面减去参数。                     |
+| multiply\(x1, x2, \[, out, where, cast, \.\.\.\]\)     | 在元素方面乘以论证。                     |
+| divide\(x1, x2, \[, out, where, cast, \.\.\.\]\)       | 以元素方式返回输入的真正除法。                |
+| logaddexp\(x1, x2, \[, out, where, cast, \.\.\.\]\)    | 输入的取幂之和的对数。                    |
+| logaddexp2\(x1, x2, \[, out, where, cast, \.\.\.\]\)   | base\-2中输入的取幂之和的对数。            |
+| true\_divide\(x1, x2, \[, out, where, \.\.\.\]\)       | 以元素方式返回输入的真正除法。                |
+| floor\_divide\(x1, x2, \[, out, where, \.\.\.\]\)      | 返回小于或等于输入除法的最大整数。              |
+| negative\(x, \[, out, where, cast, order, \.\.\.\]\)   | 数字否定, 元素方面。                    |
+| positive\(x, \[, out, where, cast, order, \.\.\.\]\)   | 数字正面, 元素方面。                    |
+| power\(x1, x2, \[, out, where, cast, \.\.\.\]\)        | 第一个数组元素从第二个数组提升到幂, 逐个元素。       |
+| remainder\(x1, x2, \[, out, where, cast, \.\.\.\]\)    | 返回除法元素的余数。                     |
+| mod\(x1, x2, \[, out, where, cast, order, \.\.\.\]\)   | 返回除法元素的余数。                     |
+| fmod\(x1, x2, \[, out, where, cast, \.\.\.\]\)         | 返回除法的元素余数。                     |
+| divmod\(x1, x2 \[, out1, out2\], \[\[, out, \.\.\.\]\) | 同时返回逐元素的商和余数。                  |
+| absolute\(x, \[, out, where, cast, order, \.\.\.\]\)   | 逐个元素地计算绝对值。                    |
+| fabs\(x, \[, out, where, cast, order, \.\.\.\]\)       | 以元素方式计算绝对值。                    |
+| rint\(x, \[, out, where, cast, order, \.\.\.\]\)       | 将数组的元素舍入为最接近的整数。               |
+| sign\(x, \[, out, where, cast, order, \.\.\.\]\)       | 返回数字符号的元素指示。                   |
+| heaviside\(x1, x2, \[, out, where, cast, \.\.\.\]\)    | 计算Heaviside阶跃函数。               |
+| conj\(x, \[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回复共轭。                    |
+| conjugate\(x, \[, out, where, cast, \.\.\.\]\)         | 以元素方式返回复共轭。                    |
+| exp\(x, \[, out, where, cast, order, \.\.\.\]\)        | 计算输入数组中所有元素的指数。                |
+| exp2\(x, \[, out, where, cast, order, \.\.\.\]\)       | 计算输入数组中所有 p 的 2\*\*p。          |
+| log\(x, \[, out, where, cast, order, \.\.\.\]\)        | 自然对数, 元素方面。                    |
+| log2\(x, \[, out, where, cast, order, \.\.\.\]\)       | x的基数为2的对数。                     |
+| log10\(x, \[, out, where, cast, order, \.\.\.\]\)      | 以元素方式返回输入数组的基数10对数。            |
+| expm1\(x, \[, out, where, cast, order, \.\.\.\]\)      | 计算数组中的所有元素。exp\(x\) \- 1       |
+| log1p\(x, \[, out, where, cast, order, \.\.\.\]\)      | 返回一个加上输入数组的自然对数, 逐个元素。         |
+| sqrt\(x, \[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回数组的非负平方根。               |
+| square\(x, \[, out, where, cast, order, \.\.\.\]\)     | 返回输入的元素方块。                     |
+| cbrt\(x, \[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回数组的立方根。                 |
+| reciprocal\(x, \[, out, where, cast, \.\.\.\]\)        | 以元素方式返回参数的倒数。                  |
+| gcd\(x1, x2, \[, out, where, cast, order, \.\.\.\]\)   | 返回 \| x1 \| 和的最大公约数 \| x2 \| 。 |
+| lcm\(x1, x2, \[, out, where, cast, order, \.\.\.\]\)   | 返回 \| x1 \| 和的最小公倍数 \| x2 \| 。 |
 
 - 三角函数：
 
 | 方法                                                   | 描述                  |
 |------------------------------------------------------|---------------------|
-| sin\(x, /\[, out, where, cast, order, \.\.\.\]\)     | 三角正弦, 元素方式。         |
-| cos\(x, /\[, out, where, cast, order, \.\.\.\]\)     | 余弦元素。               |
-| tan\(x, /\[, out, where, cast, order, \.\.\.\]\)     | 计算切线元素。             |
-| arcsin\(x, /\[, out, where, cast, order, \.\.\.\]\)  | 反向正弦, 元素方式。         |
-| arccos\(x, /\[, out, where, cast, order, \.\.\.\]\)  | 三角反余弦, 元素方式。        |
-| arctan\(x, /\[, out, where, cast, order, \.\.\.\]\)  | 三角反正切, 逐元素。         |
-| arctan2\(x1, x2, /\[, out, where, cast, \.\.\.\]\)   | x1/x2正确选择象限的逐元素反正切。 |
-| hypot\(x1, x2, /\[, out, where, cast, \.\.\.\]\)     | 给定直角三角形的“腿”, 返回其斜边。 |
-| sinh\(x, /\[, out, where, cast, order, \.\.\.\]\)    | 双曲正弦, 元素。           |
-| cosh\(x, /\[, out, where, cast, order, \.\.\.\]\)    | 双曲余弦, 元素。           |
-| tanh\(x, /\[, out, where, cast, order, \.\.\.\]\)    | 计算双曲正切元素。           |
-| arcsinh\(x, /\[, out, where, cast, order, \.\.\.\]\) | 逆双曲正弦元素。            |
-| arccosh\(x, /\[, out, where, cast, order, \.\.\.\]\) | 反双曲余弦, 元素。          |
-| arctanh\(x, /\[, out, where, cast, order, \.\.\.\]\) | 逆双曲正切元素。            |
-| deg2rad\(x, /\[, out, where, cast, order, \.\.\.\]\) | 将角度从度数转换为弧度。        |
-| rad2deg\(x, /\[, out, where, cast, order, \.\.\.\]\) | 将角度从弧度转换为度数。        |
+| sin\(x, \[, out, where, cast, order, \.\.\.\]\)     | 三角正弦, 元素方式。         |
+| cos\(x, \[, out, where, cast, order, \.\.\.\]\)     | 余弦元素。               |
+| tan\(x, \[, out, where, cast, order, \.\.\.\]\)     | 计算切线元素。             |
+| arcsin\(x, \[, out, where, cast, order, \.\.\.\]\)  | 反向正弦, 元素方式。         |
+| arccos\(x, \[, out, where, cast, order, \.\.\.\]\)  | 三角反余弦, 元素方式。        |
+| arctan\(x, \[, out, where, cast, order, \.\.\.\]\)  | 三角反正切, 逐元素。         |
+| arctan2\(x1, x2, \[, out, where, cast, \.\.\.\]\)   | x1/x2正确选择象限的逐元素反正切。 |
+| hypot\(x1, x2, \[, out, where, cast, \.\.\.\]\)     | 给定直角三角形的“腿”, 返回其斜边。 |
+| sinh\(x, \[, out, where, cast, order, \.\.\.\]\)    | 双曲正弦, 元素。           |
+| cosh\(x, \[, out, where, cast, order, \.\.\.\]\)    | 双曲余弦, 元素。           |
+| tanh\(x, \[, out, where, cast, order, \.\.\.\]\)    | 计算双曲正切元素。           |
+| arcsinh\(x, \[, out, where, cast, order, \.\.\.\]\) | 逆双曲正弦元素。            |
+| arccosh\(x, \[, out, where, cast, order, \.\.\.\]\) | 反双曲余弦, 元素。          |
+| arctanh\(x, \[, out, where, cast, order, \.\.\.\]\) | 逆双曲正切元素。            |
+| deg2rad\(x, \[, out, where, cast, order, \.\.\.\]\) | 将角度从度数转换为弧度。        |
+| rad2deg\(x, \[, out, where, cast, order, \.\.\.\]\) | 将角度从弧度转换为度数。        |
 
 - 位运算函数：
 
 | 方法                                                     | 描述                     |
 |--------------------------------------------------------|------------------------|
-| bitwise\_and\(x1, x2, /\[, out, where, \.\.\.\]\)      | 逐个元素地计算两个数组的逐位AND。     |
-| bitwise\_or\(x1, x2, /\[, out, where, cast, \.\.\.\]\) | 逐个元素地计算两个数组的逐位OR。      |
-| bitwise\_xor\(x1, x2, /\[, out, where, \.\.\.\]\)      | 逐个元素地计算两个数组的逐位XOR。     |
-| invert\(x, /\[, out, where, cast, order, \.\.\.\]\)    | 计算逐位反转, 或逐位NOT, 逐元素计算。 |
-| left\_shift\(x1, x2, /\[, out, where, cast, \.\.\.\]\) | 将整数位移到左侧。              |
-| right\_shift\(x1, x2, /\[, out, where, \.\.\.\]\)      | 将整数位移到右侧。              |
+| bitwise\_and\(x1, x2, \[, out, where, \.\.\.\]\)      | 逐个元素地计算两个数组的逐位AND。     |
+| bitwise\_or\(x1, x2, \[, out, where, cast, \.\.\.\]\) | 逐个元素地计算两个数组的逐位OR。      |
+| bitwise\_xor\(x1, x2, \[, out, where, \.\.\.\]\)      | 逐个元素地计算两个数组的逐位XOR。     |
+| invert\(x, \[, out, where, cast, order, \.\.\.\]\)    | 计算逐位反转, 或逐位NOT, 逐元素计算。 |
+| left\_shift\(x1, x2, \[, out, where, cast, \.\.\.\]\) | 将整数位移到左侧。              |
+| right\_shift\(x1, x2, \[, out, where, \.\.\.\]\)      | 将整数位移到右侧。              |
 
 - 比较函数：
 
 | 方法                                                     | 描述                      |
 |--------------------------------------------------------|-------------------------|
-| greater\(x1, x2, /\[, out, where, cast, \.\.\.\]\)     | 以元素方式返回\(x1 > x2\)的真值。  |
-| greater\_equal\(x1, x2, /\[, out, where, \.\.\.\]\)    | 以元素方式返回\(x1 >= x2\)的真值。 |
-| less\(x1, x2, /\[, out, where, cast, \.\.\.\]\)        | 返回\(x1 < x2\)元素的真值。     |
-| less\_equal\(x1, x2, /\[, out, where, cast, \.\.\.\]\) | 以元素方式返回\(x1 =< x2\)的真值。 |
-| not\_equal\(x1, x2, /\[, out, where, cast, \.\.\.\]\)  | 以元素方式返回\(x1 \!= x2\)。   |
-| equal\(x1, x2, /\[, out, where, cast, \.\.\.\]\)       | 以元素方式返回\(x1 == x2\)。    |
+| greater\(x1, x2, \[, out, where, cast, \.\.\.\]\)     | 以元素方式返回\(x1 > x2\)的真值。  |
+| greater\_equal\(x1, x2, \[, out, where, \.\.\.\]\)    | 以元素方式返回\(x1 >= x2\)的真值。 |
+| less\(x1, x2, \[, out, where, cast, \.\.\.\]\)        | 返回\(x1 < x2\)元素的真值。     |
+| less\_equal\(x1, x2, \[, out, where, cast, \.\.\.\]\) | 以元素方式返回\(x1 =< x2\)的真值。 |
+| not\_equal\(x1, x2, \[, out, where, cast, \.\.\.\]\)  | 以元素方式返回\(x1 \!= x2\)。   |
+| equal\(x1, x2, \[, out, where, cast, \.\.\.\]\)       | 以元素方式返回\(x1 == x2\)。    |
 
 - 逻辑函数：不要使用Python关键字and并or组合逻辑数组表达式。这些关键字将测试整个数组的真值(不是你想象的逐个元素)。使用按位运算符＆和| 代替
 
 | 方法                                                     | 描述                   |
 |--------------------------------------------------------|----------------------|
-| logical\_and\(x1, x2, /\[, out, where, \.\.\.\]\)      | 计算x1和x2元素的真值。        |
-| logical\_or\(x1, x2, /\[, out, where, cast, \.\.\.\]\) | 计算x1 OR x2元素的真值。     |
-| logical\_xor\(x1, x2, /\[, out, where, \.\.\.\]\)      | 以元素方式计算x1 XOR x2的真值。 |
-| logical\_not\(x, /\[, out, where, cast, \.\.\.\]\)     | 计算NOT x元素的真值。        |
+| logical\_and\(x1, x2, \[, out, where, \.\.\.\]\)      | 计算x1和x2元素的真值。        |
+| logical\_or\(x1, x2, \[, out, where, cast, \.\.\.\]\) | 计算x1 OR x2元素的真值。     |
+| logical\_xor\(x1, x2, \[, out, where, \.\.\.\]\)      | 以元素方式计算x1 XOR x2的真值。 |
+| logical\_not\(x, \[, out, where, cast, \.\.\.\]\)     | 计算NOT x元素的真值。        |
 
 - 浮点函数：
 
 | 方法                                                       | 描述                              |
 |----------------------------------------------------------|---------------------------------|
-| isfinite\(x, /\[, out, where, cast, order, \.\.\.\]\)    | 测试元素的有限性\(不是无穷大或不是数字\)。         |
-| isinf\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 正面或负面无穷大的元素测试。                  |
-| isnan\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 测试NaN的元素, 并将结果作为布尔数组返回。         |
-| isnat\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 为NaT\(不是时间\)测试元素, 并将结果作为布尔数组返回。 |
-| fabs\(x, /\[, out, where, cast, order, \.\.\.\]\)        | 以元素方式计算绝对值。                     |
-| signbit\(x, /\[, out, where, cast, order, \.\.\.\]\)     | 返回元素为True设置signbit\(小于零\)。      |
-| copysign\(x1, x2, /\[, out, where, cast, \.\.\.\]\)      | 将元素x1的符号更改为x2的符号。               |
-| nextafter\(x1, x2, /\[, out, where, cast, \.\.\.\]\)     | 将x1之后的下一个浮点值返回x2\(元素方向\)。       |
-| spacing\(x, /\[, out, where, cast, order, \.\.\.\]\)     | 返回x与最近的相邻数字之间的距离。               |
-| modf\(x \[, out1, out2\], /\[\[, out, where, \.\.\.\]\)  | 以元素方式返回数组的小数和整数部分。              |
-| ldexp\(x1, x2, /\[, out, where, cast, \.\.\.\]\)         | 以元素方式返回x1 \* 2 \*\* x2。         |
-| frexp\(x \[, out1, out2\], /\[\[, out, where, \.\.\.\]\) | 将x的元素分解为尾数和二进制指数。               |
-| fmod\(x1, x2, /\[, out, where, cast, \.\.\.\]\)          | 返回除法的元素余数。                      |
-| floor\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回输入的底限。                   |
-| ceil\(x, /\[, out, where, cast, order, \.\.\.\]\)        | 以元素方式返回输入的上限。                   |
-| trunc\(x, /\[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回输入的截断值。                  |
+| isfinite\(x, \[, out, where, cast, order, \.\.\.\]\)    | 测试元素的有限性\(不是无穷大或不是数字\)。         |
+| isinf\(x, \[, out, where, cast, order, \.\.\.\]\)       | 正面或负面无穷大的元素测试。                  |
+| isnan\(x, \[, out, where, cast, order, \.\.\.\]\)       | 测试NaN的元素, 并将结果作为布尔数组返回。         |
+| isnat\(x, \[, out, where, cast, order, \.\.\.\]\)       | 为NaT\(不是时间\)测试元素, 并将结果作为布尔数组返回。 |
+| fabs\(x, \[, out, where, cast, order, \.\.\.\]\)        | 以元素方式计算绝对值。                     |
+| signbit\(x, \[, out, where, cast, order, \.\.\.\]\)     | 返回元素为True设置signbit\(小于零\)。      |
+| copysign\(x1, x2, \[, out, where, cast, \.\.\.\]\)      | 将元素x1的符号更改为x2的符号。               |
+| nextafter\(x1, x2, \[, out, where, cast, \.\.\.\]\)     | 将x1之后的下一个浮点值返回x2\(元素方向\)。       |
+| spacing\(x, \[, out, where, cast, order, \.\.\.\]\)     | 返回x与最近的相邻数字之间的距离。               |
+| modf\(x \[, out1, out2\], \[\[, out, where, \.\.\.\]\)  | 以元素方式返回数组的小数和整数部分。              |
+| ldexp\(x1, x2, \[, out, where, cast, \.\.\.\]\)         | 以元素方式返回x1 \* 2 \*\* x2。         |
+| frexp\(x \[, out1, out2\], \[\[, out, where, \.\.\.\]\) | 将x的元素分解为尾数和二进制指数。               |
+| fmod\(x1, x2, \[, out, where, cast, \.\.\.\]\)          | 返回除法的元素余数。                      |
+| floor\(x, \[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回输入的底限。                   |
+| ceil\(x, \[, out, where, cast, order, \.\.\.\]\)        | 以元素方式返回输入的上限。                   |
+| trunc\(x, \[, out, where, cast, order, \.\.\.\]\)       | 以元素方式返回输入的截断值。                  |
 
 - 其他函数：
 
 | 方法                                                 | 描述         |
 |----------------------------------------------------|------------|
-| maximum\(x1, x2, /\[, out, where, cast, \.\.\.\]\) | 元素最大的数组元素。 |
-| minimum\(x1, x2, /\[, out, where, cast, \.\.\.\]\) | 元素最小的数组元素。 |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| maximum\(x1, x2, \[, out, where, cast, \.\.\.\]\) | 元素最大的数组元素。 |
+| minimum\(x1, x2, \[, out, where, cast, \.\.\.\]\) | 元素最小的数组元素。 |
 
 
 ```python
@@ -1228,7 +1299,7 @@ np.maximum(x,y)
 
 
 
-### 8.4 自定义 ufunc
+### 自定义 ufunc
 
 `numpy.frompyfunc(func, nin, nout)` 接收一个python函数，返回一个Numpy函数
 
@@ -1259,7 +1330,7 @@ result, result.astype(int)
 
 
 
-## 9. 沿轴应用函数
+## 沿轴应用函数
 
 `numpy.apply_along_axis(func, axis, arr, *args, **kwargs)`
 
@@ -1288,7 +1359,7 @@ print np.apply_along_axis(my_func, 1, b)
     [ 2.5  6.5 10.5]
 
 
-## 10. 常量
+## 常量
 
 
 ```python
@@ -1306,7 +1377,7 @@ print '圆周率:{}'.format(np.pi)
     圆周率:3.14159265359
 
 
-## 11. 日期
+## 日期
 numpy 中的日期数据类型称为 “datetime64”。
 
 
@@ -1359,7 +1430,8 @@ x, d
 
 
 
-## 12. 杂项
+## 杂项
 numpy 提供了丰富的科学计算 API，用到时可以查看 API 文档，不再赘述，以上以上涵盖了 numpy 的核心框架。
+
 
 

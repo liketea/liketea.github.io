@@ -280,6 +280,10 @@ mathjax: true
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png)
 
 
+### 网易云音乐外链加载失败
+可能是代理问题，切换一下网络试一下
+
+
 ## 参考
 
 1. [Hexo博客提交百度和Google收录](https://www.jianshu.com/p/f8ec422ebd52)
