@@ -1,5 +1,5 @@
 ---
-title: Scala 教程（三）：操作符&表达式
+title: Scala 教程：Basics（三）—— 操作符&表达式
 date: 2019-11-27 15:34:44
 tags:
     - Scala
@@ -9,33 +9,34 @@ categories:
 ---
 
 > 操作符即方法：操作符和方法只不过是操作的两种语法形式
-> - 一切操作符都只不过是方法调用的漂亮语法
-> - 一切方法都可以写作操作符表示法
+> >一切操作符都只不过是方法调用的漂亮语法
+> >一切方法都可以写作操作符表示法
 
 ## 操作符
 ### Scala中的操作符
 
 - 算术操作符: A 为 10，B 为 20
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153751.png)
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203101215.png)
+
 
 - 关系操作符: A 为 10，B 为 20，`==`的实现很用心，大部分场合都能返回给你需要的相等性比较的结果，其背后的规则是：首先检查左侧是否为null，如果不为Null，调用equals方法
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153816.png)
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203101255.png)
 
 
 - 逻辑操作符：A 为 true，B 为 false；&& 和 || 遵循短路原则，对应的非短路版本为 & 和 |；
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153829.png)
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203101319.png)
 
 
 - 位操作符：A = 60; 及 B = 13;
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153844.png)
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203101351.png)
 
 - 赋值运算符：注意，在Java中赋值语句的返回值是被赋上的值，而在Scala中赋值语句的返回值永远是 Unit类型的单元值`()`
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153906.png)
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203101416.png)
 
 ### 操作符的优先级和结合性
 由于Scala并不是真的有操作符，操作符仅仅是用操作符表示法使用方法的一种方式，Scala通过操作符的首字符来决定操作符的优先级，通过操作符的尾字符决定操作符的结合性。
@@ -45,7 +46,7 @@ categories:
 #### 操作符的优先级
 Scala中操作符的优先级由操作符的**首字符**决定：举例来说，以*开始的操作符优先级比以+开始的操作符优先级更高，下图列出了Scala中不同首字母的操作度的优先级（自上而下，依次递减；同一行具有相同优先级）：
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191127153923.png)
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203101638.png)
 
 
 上面红框分类不是很严谨，只是为了方便记忆，比较两个操作符的优先级的时候这样做：
@@ -157,4 +158,3 @@ a: Int = 1
 ```
 
 表达式为函数式编程提供了基础：表达式可以返回数据而不修改现有数据，这就允许使用不可变数据，函数也可以用来返回新的数据，在某种意义上这种函数是另一种类型的表达式。
-
