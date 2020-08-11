@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://liketea.xyz/uncategorized/%E8%B4%B9%E6%9B%BC%E6%8A%80%E5%B7%A7/</loc>
-    <lastmod>2020-08-11</lastmod>
-  </url>  <url>
     <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20Option/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
     <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20Tuple/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
-    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Seq/</loc>
+    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20Map/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
     <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20Set/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
-    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20Map/</loc>
+    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Seq/</loc>
+    <lastmod>2020-08-11</lastmod>
+  </url>  <url>
+    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
     <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
-    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%9E%8B/</loc>
-    <lastmod>2020-08-11</lastmod>
-  </url>  <url>
     <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2020-08-11</lastmod>
-  </url>  <url>
-    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
     <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20%E6%93%8D%E4%BD%9C%E7%AC%A6&%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
-    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/</loc>
+    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2020-08-11</lastmod>
+  </url>  <url>
+    <loc>https://liketea.xyz/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/</loc>
+    <lastmod>2020-08-11</lastmod>
+  </url>  <url>
+    <loc>https://liketea.xyz/uncategorized/%E8%B4%B9%E6%9B%BC%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2020-08-11</lastmod>
   </url>  <url>
     <loc>https://liketea.xyz/MySQL/MySQL%EF%BC%9A%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</loc>
