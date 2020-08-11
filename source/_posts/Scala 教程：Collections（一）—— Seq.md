@@ -1,6 +1,6 @@
 ---
 title: Scala 教程：Collections（一）—— Seq
-date: 2019-12-04 18:01:33
+date: 2020-08-11 16:00:06
 tags:
     - Scala
     - 教程
