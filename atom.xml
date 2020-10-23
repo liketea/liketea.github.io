@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liketea.xyz/"/>
-  <updated>2020-10-23T11:52:09.165Z</updated>
+  <updated>2020-10-23T11:54:24.155Z</updated>
   <id>https://liketea.xyz/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>机器学习：理论基础（一）—— 概率论</title>
+    <link href="https://liketea.xyz/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E7%8E%87%E8%AE%BA/"/>
+    <id>https://liketea.xyz/机器学习/机器学习：理论基础（一）—— 概率论/</id>
+    <published>2020-10-23T12:24:53.000Z</published>
+    <updated>2020-10-23T11:54:24.155Z</updated>
+    
+    <content type="html"><![CDATA[<p>待补充…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;待补充…&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://liketea.xyz/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://liketea.xyz/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>机器学习：理论基础（二）—— 信息论</title>
@@ -66,28 +92,6 @@
     
     
       <category term="机器学习" scheme="https://liketea.xyz/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://liketea.xyz/uncategorized/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E7%8E%87%E8%AE%BA/"/>
-    <id>https://liketea.xyz/uncategorized/机器学习：理论基础（一）—— 概率论/</id>
-    <published>2020-10-23T11:37:38.534Z</published>
-    <updated>2020-10-23T11:40:32.237Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="机器学习：理论基础（一）——-概率论"><a href="#机器学习：理论基础（一）——-概率论" class="headerlink" title="机器学习：理论基础（一）—— 概率论"></a>机器学习：理论基础（一）—— 概率论</h1><hr><p>title: 机器学习理论基础（二）：决策论<br>date: 2020-10-23 20:24:53<br>tags: </p><pre><code>- 机器学习</code></pre><p>categories:</p><pre><code>- 机器学习</code></pre><hr><p>待补充…</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;机器学习：理论基础（一）——-概率论&quot;&gt;&lt;a href=&quot;#机器学习：理论基础（一）——-概率论&quot; class=&quot;headerlink&quot; title=&quot;机器学习：理论基础（一）—— 概率论&quot;&gt;&lt;/a&gt;机器学习：理论基础（一）—— 概率论&lt;/h1&gt;&lt;hr&gt;
-&lt;p&gt;t
-      
-    
-    </summary>
-    
     
   </entry>
   
