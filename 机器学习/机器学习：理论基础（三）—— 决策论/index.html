@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="机器学习,">
 
 
 
@@ -125,16 +125,22 @@
 
 
 
-<meta name="description" content="点击积累，分享快乐！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Like">
-<meta property="og:url" content="https://liketea.xyz/archives/2020/10/index.html">
+<meta name="description" content="概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策，决策论研究的问题一般可分为两个阶段：  推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的； 决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策问">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习：理论基础（三）—— 决策论">
+<meta property="og:url" content="https://liketea.xyz/机器学习/机器学习：理论基础（三）—— 决策论/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="点击积累，分享快乐！">
+<meta property="og:description" content="概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策，决策论研究的问题一般可分为两个阶段：  推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的； 决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策问">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-11-15.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-17-53.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-44-03.jpg">
+<meta property="og:updated_time" content="2020-10-23T11:41:10.251Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Like">
-<meta name="twitter:description" content="点击积累，分享快乐！">
+<meta name="twitter:title" content="机器学习：理论基础（三）—— 决策论">
+<meta name="twitter:description" content="概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策，决策论研究的问题一般可分为两个阶段：  推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的； 决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策问">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-11-15.jpg">
 
 
 
@@ -164,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/archives/2020/10/">
+  <link rel="canonical" href="https://liketea.xyz/机器学习/机器学习：理论基础（三）—— 决策论/">
 
 
 
 
 
-  <title>归档 | Like</title>
+  <title>机器学习：理论基础（三）—— 决策论 | Like</title>
   
 
 
@@ -189,7 +195,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -325,176 +331,346 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 36 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/机器学习/机器学习：理论基础（三）—— 决策论/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Like Wong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">机器学习：理论基础（三）—— 决策论</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-23T20:22:53+08:00">
+                2020-10-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-23T19:41:10+08:00">
+                2020-10-23
+              </time>
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/机器学习/机器学习：理论基础（二）—— 信息论/" itemprop="url">
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">机器学习：理论基础（二）—— 信息论</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-23T20:23:53+08:00" content="2020-10-23">
-          10-23
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+          
 
+          
+          
+             <span id="/机器学习/机器学习：理论基础（三）—— 决策论/" class="leancloud_visitors" data-flag-title="机器学习：理论基础（三）—— 决策论">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/机器学习/机器学习：理论基础（三）—— 决策论/" itemprop="url">
-              
-                <span itemprop="name">机器学习：理论基础（三）—— 决策论</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-23T20:22:53+08:00" content="2020-10-23">
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/uncategorized/机器学习：理论基础（一）—— 概率论/" itemprop="url">
-              
-                <span itemprop="name">未命名</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-23T19:37:38+08:00" content="2020-10-23">
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>概率论研究如何量化和计算不确定性，而决策论则研究如何在不确定性中做出最优决策，决策论研究的问题一般可分为两个阶段：</p>
+<ol>
+<li>推断阶段(inference stage)：确定联合概率分布$p(x,y)$或后验概率分布$p(y\mid x)$；虽然联合概率分布能够给出问题完整的概率描述，但并不是必要的；</li>
+<li>决策阶段(decision stage)：在给定概率分布的前提下，进行最优决策；一旦推断问题解决了决策问题就会变得非常简单，甚至不值一提；</li>
+</ol>
+<p>我们可以通过概率论中的贝叶斯定理进行决策：</p>
+<script type="math/tex; mode=display">
+\begin{align*} 
+p(y\mid x)&=\frac{p(x,y)}{p(x)}\\
+&=\frac{p(y)p(x\mid y)}{\int_{y}p(x,y)dy}
+\end{align*}</script><h2 id="期望损失最小化"><a href="#期望损失最小化" class="headerlink" title="期望损失最小化"></a>期望损失最小化</h2><p>损失函数(loss function)：是对于所有可能的决策可能产生的损失的一种整体的度量，通常又称代价函数(cost function)，记做$L(y,\hat{y})$，其中y是实际值，$\hat{y}$是模型预测值。我们的目标是最小化整体的损失，有些学者不考虑损失函数，而是考虑效用函数(utility function)，目标是最大化效用函数，如果让损失函数等于效用函数的相反数的话，这两个概念是等价的。</p>
+<p>期望损失最小化原则：在进行决策时通常希望决策所带来的期望损失达到最小。</p>
+<h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><h4 id="损失矩阵"><a href="#损失矩阵" class="headerlink" title="损失矩阵"></a>损失矩阵</h4><p>通常用<strong>损失矩阵</strong>来描述k分类问题的损失函数：</p>
+<script type="math/tex; mode=display">
+L = [L_{i,j}]_{k\times k}</script><p>其中$L_{i,j}$表示将实际为i类的样本预测为j类所带来的损失，对于0-1损失有：</p>
+<script type="math/tex; mode=display">
+L_{i,j}=\left\{\begin{matrix}
+0 &,i = j \\ 
+1 & ,i\neq j
+\end{matrix}\right.</script><p>通常我们可以为不同情形赋予不同的损失值，比如在疾病预测时，将正常人预测为病人损失通常较小，而将病人预测为正常损失通常较大。</p>
+<h4 id="分类问题描述"><a href="#分类问题描述" class="headerlink" title="分类问题描述"></a>分类问题描述</h4><p>分类问题的目标就是要找到某种规则，将输入空间切分为不同的决策区域$R_k$，并将决策区域$R_k$中的所有点都划分到类别$c_k$，使得期望损失达到最小。即：</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{k}[x\in R_k]c_k</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\begin{align*} 
+(R,c) &= arg\ \underset{R_k,c_k,k=1,2,...}{min} \mathbb{E}(L)\\
+&=arg\ \underset{R_k,c_k,k=1,2,...}{min}\sum_{k}\sum_{j}\int_{R_j}L_{k,j}p(x,c_k)dx
+\end{align*}</script><p>对于给定的x，目标就变成了：</p>
+<script type="math/tex; mode=display">
+\begin{align*} 
+\hat{y}&= arg\ \underset{c_j}{min} \sum_{k}L_{kj}p(x,c_k)\\
+&=arg\ \underset{c_j}{min} \sum_{k}L_{kj}p(c_k\mid x)p(x)\\
+&=arg\ \underset{c_j}{min} \sum_{k}L_{kj}p(c_k\mid x)
+\end{align*}</script><p>对于0-1损失函数：</p>
+<script type="math/tex; mode=display">
+\begin{align*} 
+\hat{y}&=arg\ \underset{c_j}{min} \sum_{k}L_{kj}p(c_k\mid x)\\
+&=arg\ \underset{c_j}{min} \sum_{k\neq j}p(c_k\mid x)\\
+&=arg\ \underset{c_j}{min} (1-p(c_j\mid x))\\
+&=arg\ \underset{c_j}{max} \ p(c_j\mid x)
+\end{align*}</script><p>即，0-1损失下的期望风险最小化等价于最大后验概率策略。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-11-15.jpg" alt></p>
+<h4 id="拒绝选项"><a href="#拒绝选项" class="headerlink" title="拒绝选项"></a>拒绝选项</h4><p>拒绝选项：当不同类别的联合概率相差不大时，类别的归属相对不稳定，在这种情况下避免做出自动化决策，而将决策权留给人类专家，能够降低模型的分类错误率。</p>
+<p>具体地，可以通过引入一个决策阈值$\theta$，拒绝最大后验概率小于$\theta$的那些输入。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-17-53.jpg" alt></p>
+<h3 id="回归问题"><a href="#回归问题" class="headerlink" title="回归问题"></a>回归问题</h3><h4 id="闵可夫斯基损失函数"><a href="#闵可夫斯基损失函数" class="headerlink" title="闵可夫斯基损失函数"></a>闵可夫斯基损失函数</h4><p>闵可夫斯基损失函数是平方损失的一种推广：</p>
+<script type="math/tex; mode=display">
+L_q=\left | y-y(x) \right |^q</script><ul>
+<li>y:输入x对应的真实标签；</li>
+<li>y(x):输入x对应的预测值；</li>
+</ul>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>回归问题的目标就是对于每个输入x找到一个估计值$y(x)$，使得期望损失最小。</p>
+<p>以平方误差为例：</p>
+<script type="math/tex; mode=display">
+\begin{align*} 
+\mathbb{E}(L)&=\int \int L(y,y(x))p(x,y)dxdy\\
+&=\int \int (y-y(x))^2p(x,y)dxdy
+\end{align*}</script><p>两侧对x求导得：</p>
+<script type="math/tex; mode=display">
+\frac{\partial \mathbb{E}(L)}{\partial y(x)}=2\int (y(x)-y)p(x,y)dy=0</script><script type="math/tex; mode=display">
+y(x)=\frac{\int yp(x,y)dy}{p(x)}=\int yp(y\mid x)dy=\mathbb{E}_t(t\mid x)</script><p>即，最小化期望平方损失的回归函数由条件均值给出，值得说明的是当q=1时得到的是条件中位数，当$q\rightarrow 0$时得到的是条件众数。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/00-44-03.jpg" alt></p>
+<p>期望平方损失下的<strong>偏差-方差分解</strong>：其中的交叉项对dy积分可消去</p>
+<script type="math/tex; mode=display">
+\begin{align*} 
+\mathbb{E}(L)&=\int \int (y(x)-y)^2dxdy\\
+&=\int \int(y(x)-\mathbb{E}(y\mid x)+\mathbb{E}(y\mid x)-y)^2dxdy\\
+&=\int(\int (y(x)-\mathbb{E}(y\mid x)+\mathbb{E}(y\mid x)-y)^2p(y\mid x)dy) p(x)dx\\
+&=\int(\int ((y(x)-\mathbb{E}(y\mid x))^2+(\mathbb{E}(y\mid x)-y)^2+2(y(x)-\mathbb{E}(y\mid x))(\mathbb{E}(y\mid x)-y)p(y\mid x)dy) p(x)dx\\
+&=\int(\int ((y(x)-\mathbb{E}(y\mid x))^2+(\mathbb{E}(y\mid x)-y)^2)p(y\mid x))p(x)dx\\
+&=\int (y(x)-\mathbb{E}(y\mid x))^2p(x)dx+\int var(y\mid x)p(x)dx
+\end{align*}</script><ul>
+<li>第一项表示预测值与条件均值的偏差：当$y(x)=\mathbb{E}(y\mid x)$时，取得最小值；</li>
+<li>第二项表示条件均值的方差：表示目标数据内在的变化性，可以被看做是噪声，因为与y(x)无关，它表示损失函数的不可减少的最小值；</li>
+</ul>
+<h2 id="解决决策问题的三种方法"><a href="#解决决策问题的三种方法" class="headerlink" title="解决决策问题的三种方法"></a>解决决策问题的三种方法</h2><p>三种方法按照复杂度降低的顺序给出：</p>
+<ol>
+<li>生成式模型（generative model）:首先解决确定联合概率分布$p(x,y)$的推断问题，然后通过贝叶斯定理求出后验概率分布$p(y\mid x)$，最后基于后验概率分布使用上述方法进行决策；这种方法可以人工生成出输入空间的数据点，故称生成式模型；</li>
+<li>判别式模型（discriminative model）:首先解决确定后验概率分布的推断问题，再基于后验概率分布使用上述方法进行决策；</li>
+<li>判别函数：与上述两种概率模型不同，该方法将推断阶段和决策阶段结合到同一个过程，直接从训练数据中寻找一个分类/回归函数y(x)；</li>
+</ol>
+<p>到某个函数$f(x)$，然后将每个输入x直接映射为标签；</p>
+<p>三种方法对比：</p>
+<ol>
+<li>生成式模型：需要求解的东西最多，能够完整描述概率分布，但需要更多数据，也会浪费计算资源；</li>
+<li>判别式模型：只需求出后验概率，有很多理由需要计算后验概率：<ol>
+<li>最小期望风险：当损失矩阵发生变化时，如果已知后验概率分布，则只需做少量改动即可；</li>
+<li>拒绝选项：方便设置阈值；</li>
+<li>补偿类先验概率：对样本不均衡重采样后得到的后验概率分布不能作为真实数据的分布，需要乘以原始数据中的先验概率再除以平衡后的数据中的先验概率，最后再进行归一化；</li>
+</ol>
+</li>
+<li>判别函数：模型简单，但无法得到后验概率分布；</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>模式识别与机器学习.Bishop</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/数据挖掘/教程/数据挖掘：工具篇（一）—— Jupyter Lab 配置环境/" itemprop="url">
-              
-                <span itemprop="name">数据挖掘：工具篇（一）—— Jupyter Lab 配置环境</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-23T14:16:46+08:00" content="2020-10-23">
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt="Like Wong 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/uncategorized/机器学习：理论基础（一）—— 概率论/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/机器学习/机器学习：理论基础（二）—— 信息论/" rel="prev" title="机器学习：理论基础（二）—— 信息论">
+                机器学习：理论基础（二）—— 信息论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -502,6 +678,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -522,8 +707,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -626,6 +820,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#期望损失最小化"><span class="nav-number">1.</span> <span class="nav-text">期望损失最小化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类问题"><span class="nav-number">1.1.</span> <span class="nav-text">分类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#损失矩阵"><span class="nav-number">1.1.1.</span> <span class="nav-text">损失矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类问题描述"><span class="nav-number">1.1.2.</span> <span class="nav-text">分类问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拒绝选项"><span class="nav-number">1.1.3.</span> <span class="nav-text">拒绝选项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回归问题"><span class="nav-number">1.2.</span> <span class="nav-text">回归问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#闵可夫斯基损失函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">闵可夫斯基损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">1.2.2.</span> <span class="nav-text">问题描述</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决决策问题的三种方法"><span class="nav-number">2.</span> <span class="nav-text">解决决策问题的三种方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -794,6 +1004,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -822,6 +1036,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
