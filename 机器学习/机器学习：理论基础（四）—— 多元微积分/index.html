@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="机器学习,">
 
 
 
@@ -125,19 +125,21 @@
 
 
 
-<meta name="description" content="Hive日期函数主要是在时间戳&amp;amp;字符串&amp;amp;日期之间进行转换：  from_unixtime——时间戳转换为字符串 一般格式：from_unixtime(bigint unix_time [,string format]) -&amp;gt; string功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串  12345678hiv">
+<meta name="description" content="实际应用中的函数普遍包含多个变量，当进入高维时，微积分的普遍法则本质上保持原样，虽然必须引入一些新的记号，但幸运的是并不需要彻底改造原有理论，多变量微积分无非是同时在各个方向运用单变量微积分。 向量和矩阵表示法将大大简化多元微积分，并能保持与低维形式上的一致性，本文使用小写字母$x$表示标量，粗体小写字母$\boldsymbol{x}$表示向量，大写字母$X$表示矩阵。 1. 梯度（Gradie">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hive 函数篇：日期函数">
-<meta property="og:url" content="https://liketea.xyz/uncategorized/Hive 函数篇：日期函数/index.html">
+<meta property="og:title" content="机器学习：理论基础（四）—— 多元微积分">
+<meta property="og:url" content="https://liketea.xyz/机器学习/机器学习：理论基础（四）—— 多元微积分/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="Hive日期函数主要是在时间戳&amp;amp;字符串&amp;amp;日期之间进行转换：  from_unixtime——时间戳转换为字符串 一般格式：from_unixtime(bigint unix_time [,string format]) -&amp;gt; string功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串  12345678hiv">
+<meta property="og:description" content="实际应用中的函数普遍包含多个变量，当进入高维时，微积分的普遍法则本质上保持原样，虽然必须引入一些新的记号，但幸运的是并不需要彻底改造原有理论，多变量微积分无非是同时在各个方向运用单变量微积分。 向量和矩阵表示法将大大简化多元微积分，并能保持与低维形式上的一致性，本文使用小写字母$x$表示标量，粗体小写字母$\boldsymbol{x}$表示向量，大写字母$X$表示矩阵。 1. 梯度（Gradie">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022191911.png">
-<meta property="og:updated_time" content="2019-12-31T02:41:33.099Z">
+<meta property="og:image" content="https://liketea.xyz/机器学习/机器学习：理论基础（四）——%20多元微积分/~/14-07-49.jpg">
+<meta property="og:image" content="https://liketea.xyz/机器学习/机器学习：理论基础（四）——%20多元微积分/~/18-15-35.png">
+<meta property="og:updated_time" content="2020-10-23T12:02:16.413Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hive 函数篇：日期函数">
-<meta name="twitter:description" content="Hive日期函数主要是在时间戳&amp;amp;字符串&amp;amp;日期之间进行转换：  from_unixtime——时间戳转换为字符串 一般格式：from_unixtime(bigint unix_time [,string format]) -&amp;gt; string功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串  12345678hiv">
-<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022191911.png">
+<meta name="twitter:title" content="机器学习：理论基础（四）—— 多元微积分">
+<meta name="twitter:description" content="实际应用中的函数普遍包含多个变量，当进入高维时，微积分的普遍法则本质上保持原样，虽然必须引入一些新的记号，但幸运的是并不需要彻底改造原有理论，多变量微积分无非是同时在各个方向运用单变量微积分。 向量和矩阵表示法将大大简化多元微积分，并能保持与低维形式上的一致性，本文使用小写字母$x$表示标量，粗体小写字母$\boldsymbol{x}$表示向量，大写字母$X$表示矩阵。 1. 梯度（Gradie">
+<meta name="twitter:image" content="https://liketea.xyz/机器学习/机器学习：理论基础（四）——%20多元微积分/~/14-07-49.jpg">
 
 
 
@@ -167,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/uncategorized/Hive 函数篇：日期函数/">
+  <link rel="canonical" href="https://liketea.xyz/机器学习/机器学习：理论基础（四）—— 多元微积分/">
 
 
 
 
 
-  <title>Hive 函数篇：日期函数 | Like</title>
+  <title>机器学习：理论基础（四）—— 多元微积分 | Like</title>
   
 
 
@@ -342,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/uncategorized/Hive 函数篇：日期函数/">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/机器学习/机器学习：理论基础（四）—— 多元微积分/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like Wong">
@@ -359,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hive 函数篇：日期函数</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习：理论基础（四）—— 多元微积分</h1>
         
 
         <div class="post-meta">
@@ -371,8 +373,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T22:29:09+08:00">
-                2019-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-23T20:19:53+08:00">
+                2020-10-23
               </time>
             
 
@@ -387,13 +389,35 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-31T10:41:33+08:00">
-                2019-12-31
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-23T20:02:16+08:00">
+                2020-10-23
               </time>
             
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -401,7 +425,7 @@
 
           
           
-             <span id="/uncategorized/Hive 函数篇：日期函数/" class="leancloud_visitors" data-flag-title="Hive 函数篇：日期函数">
+             <span id="/机器学习/机器学习：理论基础（四）—— 多元微积分/" class="leancloud_visitors" data-flag-title="机器学习：理论基础（四）—— 多元微积分">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -426,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  2.8k
                 </span>
               
 
@@ -442,7 +466,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  12
                 </span>
               
             </div>
@@ -463,52 +487,142 @@
       
 
       
-        <p>Hive日期函数主要是在时间戳&amp;字符串&amp;日期之间进行转换：</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191022191911.png" alt></p>
-<h3 id="from-unixtime——时间戳转换为字符串"><a href="#from-unixtime——时间戳转换为字符串" class="headerlink" title="from_unixtime——时间戳转换为字符串"></a>from_unixtime——时间戳转换为字符串</h3><blockquote>
-<p>一般格式：from_unixtime(bigint unix_time [,string format]) -&gt; string<br>功能：将UNIX时间戳（从1970-01-01 00:00:00 UTC到指定时间的秒数）转化为指定格式时间字符串</p>
+        <p><img src="~/14-07-49.jpg" alt></p>
+<p>实际应用中的函数普遍包含多个变量，当进入高维时，微积分的普遍法则本质上保持原样，虽然必须引入一些新的记号，但幸运的是并不需要彻底改造原有理论，多变量微积分无非是同时在各个方向运用单变量微积分。</p>
+<p>向量和矩阵表示法将大大简化多元微积分，并能保持与低维形式上的一致性，本文使用小写字母$x$表示标量，粗体小写字母$\boldsymbol{x}$表示向量，大写字母$X$表示矩阵。</p>
+<h2 id="1-梯度（Gradient）"><a href="#1-梯度（Gradient）" class="headerlink" title="1. 梯度（Gradient）"></a>1. 梯度（Gradient）</h2><h3 id="1-1-多元函数"><a href="#1-1-多元函数" class="headerlink" title="1.1 多元函数"></a>1.1 多元函数</h3><p>定义：$f:\boldsymbol{x}\rightarrow y$，其中$\boldsymbol{x}=(x_{1},x_{2},…,x_{n})\in \mathbb{R}^{n}$，$y\in \mathbb{R}$，多元函数是从n维空间（n维向量）到一维空间（标量）的映射。</p>
+<h3 id="1-2-等高线图"><a href="#1-2-等高线图" class="headerlink" title="1.2 等高线图"></a>1.2 等高线图</h3><p>定义：对于二元函数$f(x,y)$，曲线$f(x,y)=z_{0}$称为函数f在平面$z=z_{0}$中的等高线。如果所有等高线$z=z_{0}$都被投射到$x-y$平面上，则得到这个曲面的等高线图。</p>
+<h3 id="1-3-梯度（向量）"><a href="#1-3-梯度（向量）" class="headerlink" title="1.3 梯度（向量）"></a>1.3 梯度（向量）</h3><p>定义：$f$在点$\boldsymbol{x}$处的梯度是由对应维度的偏导构成向量，记作$\bigtriangledown f(\boldsymbol{x})$，读作grad f或del f。</p>
+<script type="math/tex; mode=display">
+\triangledown f(\boldsymbol{x}) = \begin{bmatrix}
+\frac{\partial f}{\partial x_{i}}
+\end{bmatrix}_{n\times 1}</script><p>性质：</p>
+<ul>
+<li>梯度是标量对向量的导数；</li>
+<li>梯度是输入空间中的一个偏导向量；</li>
+<li>梯度的方向是在输入空间中使函数增长最快的方向；</li>
+<li>梯度的大小是函数关于输入向量的最大变化率；</li>
+<li>梯度也称为<strong>全导数</strong>，记做$f^{‘}(\boldsymbol{x})$</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f^&#123;&apos;&#125;(\boldsymbol&#123;x&#125;)=\triangledown f(\boldsymbol&#123;x&#125;) = \begin&#123;bmatrix&#125;</span><br><span class="line">\frac&#123;\partial f&#125;&#123;\partial x_&#123;i&#125;&#125;</span><br><span class="line">\end&#123;bmatrix&#125;_&#123;n\times 1&#125;\\</span><br><span class="line">f(\boldsymbol&#123;x&#125;) \approx f(\boldsymbol&#123;x_&#123;0&#125;&#125;)+f^&#123;&apos;&#125;(\boldsymbol&#123;x_&#123;0&#125;&#125;)^&#123;T&#125;(\boldsymbol&#123;x&#125;-\boldsymbol&#123;x_&#123;0&#125;&#125;)</span><br></pre></td></tr></table></figure></div>
+<h3 id="1-4-全微分"><a href="#1-4-全微分" class="headerlink" title="1.4 全微分"></a>1.4 全微分</h3><p>定义：多元函数全增量$\triangle f$的线性主部，记做$df$。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125;</span><br><span class="line">\triangle f&amp;=\sum_&#123;i=1&#125;^&#123;n&#125;a_&#123;i&#125;\triangle x_&#123;i&#125;+o(\rho )\\</span><br><span class="line">df&amp;=\sum_&#123;i=1&#125;^&#123;n&#125;\frac&#123;\partial f&#125;&#123;\partial x_&#123;i&#125;&#125;dx_&#123;i&#125; =\triangledown f(\boldsymbol&#123;x&#125;)\cdot d\boldsymbol&#123;x&#125;</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
+<p>梯度-全导数-全微分-偏导之间的关系如下：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\triangledown f(\boldsymbol&#123;x&#125;)=f^&#123;&apos;&#125;(\boldsymbol&#123;x&#125;)=\frac&#123;\mathrm&#123;d&#125; f&#125;&#123;\mathrm&#123;d&#125; \boldsymbol&#123;x&#125;&#125;=\begin&#123;bmatrix&#125;</span><br><span class="line">\frac&#123;\partial f&#125;&#123;\partial x_&#123;i&#125;&#125;</span><br><span class="line">\end&#123;bmatrix&#125;_&#123;n\times 1&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="1-5-方向导数"><a href="#1-5-方向导数" class="headerlink" title="1.5 方向导数"></a>1.5 方向导数</h3><p>定义：设$\mathbf{\mathit{u}}$为单位向量，$f$在该方向上的方向导数（变化率）记做$\frac{\partial f}{\partial \mathbf{\mathit{u}}}$。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125;</span><br><span class="line">\frac&#123;\partial f(\boldsymbol&#123;x&#125;)&#125;&#123;\partial \boldsymbol&#123;u&#125;&#125;&amp;=\lim_&#123;h\rightarrow 0&#125;\frac&#123;f(\boldsymbol&#123;x&#125;+h\boldsymbol&#123;u&#125;)-f(\boldsymbol&#123;x&#125;)&#125;&#123;h&#125;\\</span><br><span class="line">&amp;=\triangledown f(\boldsymbol&#123;x&#125;)\cdot \boldsymbol&#123;u&#125;\\</span><br><span class="line">&amp;=|\triangledown f(\boldsymbol&#123;x&#125;)|cos\theta</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
+<p>性质：</p>
+<ul>
+<li>方向导数是梯度向量在该方向上的投影；</li>
+<li>梯度方向的方向导数最大，即函数在梯度方向上增长最快；</li>
+<li>在负梯度方向上，函数下降最快；</li>
+</ul>
+<h2 id="2-海塞矩阵（Hessian-Matrix）"><a href="#2-海塞矩阵（Hessian-Matrix）" class="headerlink" title="2. 海塞矩阵（Hessian Matrix）"></a>2. 海塞矩阵（Hessian Matrix）</h2><p>定义：海塞矩阵是一个多元函数的二阶偏导数构成的对称方阵，描述了函数的局部曲率。</p>
+<script type="math/tex; mode=display">
+H(f)=\begin{bmatrix}
+\frac{\partial f}{\partial x_{i} \partial x_{j}}
+\end{bmatrix}_{n\times n}</script><p>完整写作：</p>
+<p><img src="~/18-15-35.png" alt></p>
+<h3 id="2-1-多元泰勒展开"><a href="#2-1-多元泰勒展开" class="headerlink" title="2.1 多元泰勒展开"></a>2.1 多元泰勒展开</h3><p>在工程实际问题的优化设计中，所列的目标函数往往很复杂，为了使问题简化，常常将目标函数在某点邻域展开成泰勒多项式来逼近原函数。</p>
+<script type="math/tex; mode=display">
+f(\boldsymbol{x})=f(\boldsymbol{x_{0}})+\triangledown f(\boldsymbol{x_{0}})^{T}(\boldsymbol{x}-\boldsymbol{x_{0}})+\frac{1}{2}(\boldsymbol{x}-\boldsymbol{x_{0}})^{T}H(\boldsymbol{x_{0}})(\boldsymbol{x}-\boldsymbol{x_{0}})+...</script><ul>
+<li>$\triangledown f(\boldsymbol{x_{0}})$是$f$在$\boldsymbol{x_{0}}$处的梯度</li>
+<li>$H(\boldsymbol{x_{0}})$是$f$在$\boldsymbol{x_{0}}$处的海塞矩阵</li>
+</ul>
+<h3 id="2-2-海赛矩阵判定多元函数极值"><a href="#2-2-海赛矩阵判定多元函数极值" class="headerlink" title="2.2 海赛矩阵判定多元函数极值"></a>2.2 海赛矩阵判定多元函数极值</h3><p>定理：设n元函数$f(x_{1},x_{2},…,x_{n})$在点 $M_{0}(a_{1},a_{2},…,a_{n})$的邻域内有二阶连续偏导，如果f在该点梯度为0，则可以通过该点的二阶偏导即海塞矩阵H判断函数在该点是否取得极值。</p>
+<ol>
+<li>如果H为正定矩阵，函数在该点取得极小值；</li>
+<li>如果H为负正定矩阵，函数在该点取得极大值；</li>
+<li>如果H是半正定或半负定，该点是可疑极值点，需更通过其他方法来判定；</li>
+<li>如果H是不定矩阵，该点不是极值点；</li>
+</ol>
+<h2 id="3-矩阵求导"><a href="#3-矩阵求导" class="headerlink" title="3. 矩阵求导"></a>3. 矩阵求导</h2><blockquote>
+<p>矩阵求导的技术，在统计学、控制论、机器学习等领域有广泛的应用。鉴于看过的一些资料或言之不详、或繁乱无绪，本文来做个科普，以下内容参考：</p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/24709748" target="_blank" rel="noopener">矩阵求导术（上）</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/24863977" target="_blank" rel="noopener">矩阵求导术（下）</a></li>
+</ol>
 </blockquote>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;   select from_unixtime(1323308943,&apos;yyyy-MM-dd HH:mm:ss&apos;);</span><br><span class="line">2011-12-08 09:49:03</span><br><span class="line">hive&gt;   select from_unixtime(1323308943,&apos;yyyyMMdd&apos;);</span><br><span class="line">20111208</span><br><span class="line">hive&gt;   select from_unixtime(1323308943,&apos;yyyy-MM-dd&apos;);</span><br><span class="line">2011-12-08</span><br><span class="line">hive&gt; select from_unixtime(1323308943,&apos;yyyy-MM&apos;);</span><br><span class="line">2011-12</span><br></pre></td></tr></table></figure></div>
-<h3 id="unix-timestamp——字符串转换为时间戳"><a href="#unix-timestamp——字符串转换为时间戳" class="headerlink" title="unix_timestamp——字符串转换为时间戳"></a>unix_timestamp——字符串转换为时间戳</h3><blockquote>
-<p>一般格式：unix_timestamp([string date][,string pattern]) -&gt; bigint<br>功能：获取当前时区的UNIX时间戳，或者将指定格式的字符串日期转换为对应的UNIX时间戳；</p>
-</blockquote>
-<p>具体来说，有三种用法：</p>
+<h3 id="3-1-全导数与全微分"><a href="#3-1-全导数与全微分" class="headerlink" title="3.1 全导数与全微分"></a>3.1 全导数与全微分</h3><p>全导数：标量f对矩阵X的导数为f对X逐元素求导排成与X尺寸相同的矩阵</p>
+<script type="math/tex; mode=display">
+f^{'}(X)=\begin{bmatrix}
+\frac{\partial f}{\partial X_{ij}}
+\end{bmatrix}</script><ul>
+<li>对于标量：$f^{‘}(x)=\begin{bmatrix}<br>\frac{\partial f}{\partial x}<br>\end{bmatrix}=\frac{\mathrm{d} f}{\mathrm{d} x}$</li>
+<li>对于向量：$f^{‘}(\boldsymbol{x})=\begin{bmatrix}<br>\frac{\partial f}{\partial x_{i}}<br>\end{bmatrix}=\triangledown f(\boldsymbol{x})$</li>
+</ul>
+<p>全微分：全增量△f的线性主部</p>
+<script type="math/tex; mode=display">
+df = \sum_{i,j} \frac{\partial f}{\partial X_{ij}}dX_{ij}</script><ul>
+<li>对于标量：$df = \frac{\partial f}{\partial x}dx$</li>
+<li>对于向量：$df = \sum_{i} \frac{\partial f}{\partial x_{i}}dx_{i}$</li>
+</ul>
+<p>对于规模相同的矩阵A和B，有：</p>
+<script type="math/tex; mode=display">
+\text{tr}(A^TB) = \sum_{i,j}A_{ij}B_{ij}</script><p>因此，<strong>全微分等于矩阵导数与$dX$内积的迹（trace）</strong></p>
+<script type="math/tex; mode=display">
+df = \sum_{i,j} \frac{\partial f}{\partial X_{ij}}dX_{ij} = \text{tr}\left(f^{'}(X)^T dX\right)</script><ul>
+<li>对于标量：$df = \frac{\partial f}{\partial x}dx=tr(f^{‘}(x)^Tdx)=f^{‘}(x)dx$</li>
+<li>对于向量：$df = \sum_{i} \frac{\partial f}{\partial x_{i}}dx_{i}=tr(f^{‘}(\boldsymbol{x})^Td\boldsymbol{x})=tr(\triangledown f(\boldsymbol{x})^Td\boldsymbol{x})$</li>
+</ul>
+<h3 id="3-2-标量对矩阵的求导规则"><a href="#3-2-标量对矩阵的求导规则" class="headerlink" title="3.2 标量对矩阵的求导规则"></a>3.2 标量对矩阵的求导规则</h3><h4 id="3-2-1-一般思路"><a href="#3-2-1-一般思路" class="headerlink" title="3.2.1 一般思路"></a>3.2.1 一般思路</h4><p>最重要的一点要记住：微积分中对标量求导的结论不适用于对矩阵求导！比如认为AX对X的导数为A，这是没有根据的。我们需要重新建立对矩阵求导的规则，全导数的定义在计算中并不好用，因为它需要将矩阵拆做单个元素，而使用矩阵表示函数的意义正在于矩阵运算更加简洁，因此我们希望找到一种从整体出发的算法。回想一元函数的求导，通常不是从定义出发来求极限，而是先建立初等函数求导、四则运算和复合求导的链式法则，我们也将按照这样的思路来建立对矩阵求导的运算法则。</p>
+<p>由：</p>
+<script type="math/tex; mode=display">
+df = \text{tr}(df) = \text{tr}\left(f^{'}(X)^T dX\right)</script><p>可将矩阵求导分解为两个步骤：</p>
+<ol>
+<li>微分化简：通过微分化简提出$dX$</li>
+<li>迹化简：通过迹化简将$dX$移至微分右侧，则微分中$dX$左侧部分既是矩阵导数</li>
+</ol>
+<h4 id="3-2-2-矩阵微分运算法则"><a href="#3-2-2-矩阵微分运算法则" class="headerlink" title="3.2.2 矩阵微分运算法则"></a>3.2.2 矩阵微分运算法则</h4><ol>
+<li>常矩阵：$dC=\boldsymbol{0}$，0矩阵</li>
+<li>加减：$d(X \pm Y )=dX \pm dY$，线性$d(aX \pm C )=adX$</li>
+<li><strong>乘法</strong>：$d(XY) = dX Y + X dY $</li>
+<li>转置：$d(X^T) = (dX)^T$</li>
+<li><strong>逆</strong>：$dX^{-1} = -X^{-1}dX X^{-1}$。此式可在$XX^{-1}=I$两侧求微分来证明</li>
+<li>迹：$d\text{tr}(X) = \text{tr}(dX)$</li>
+<li><strong>行列式</strong>： $d|X| = \text{tr}(X^{*} dX)$ ，其中 $X^{*}$表示X的伴随矩阵，在X可逆时又可以写作$d|X|= |X|\text{tr}(X^{-1}dX)$</li>
+<li>逐元素乘法：$d(X\odot Y) = dX\odot Y + X\odot dY，\odot$表示尺寸相同的矩阵X,Y逐元素相乘</li>
+<li>逐元素函数：$d\sigma(X) = \sigma’(X)\odot dX ，\sigma(X) = \left[\sigma(X_{ij})\right]$是逐元素运算的标量函数</li>
+</ol>
+<h4 id="3-2-3-矩阵微分复合法则"><a href="#3-2-3-矩阵微分复合法则" class="headerlink" title="3.2.3 矩阵微分复合法则"></a>3.2.3 矩阵微分复合法则</h4><p>对符合函数求导$f^{‘}(U(X))$，其中$U$和$X$均为矩阵，有以下微分复合法则：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125;</span><br><span class="line">df=tr(df)&amp;=tr(f^&#123;&apos;&#125;(U)^TdU)\\</span><br><span class="line">&amp;=tr(f^&#123;&apos;&#125;(U)^Ttr(U^&#123;&apos;&#125;(X)^TdX))</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
+<p>同样不能将对标量求导的复合法则搬到这里，以下公式对矩阵求导不成立：</p>
+<script type="math/tex; mode=display">
+f^{'}(U(X))=f^{'}(U)U^{'}(X)</script><h4 id="3-2-4-矩阵迹运算法则"><a href="#3-2-4-矩阵迹运算法则" class="headerlink" title="3.2.4 矩阵迹运算法则"></a>3.2.4 矩阵迹运算法则</h4><ol>
+<li>标量：$a = \text{tr}(a)$</li>
+<li>转置：$\mathrm{tr}(A^T) = \mathrm{tr}(A)$</li>
+<li>线性：$\text{tr}(A\pm B) = \text{tr}(A)\pm \text{tr}(B)$</li>
+<li><strong>矩阵乘法交换</strong>：$\text{tr}(AB) = \text{tr}(BA)$，A B规模相反，两侧都等于$\sum_{i,j}A_{ij}B_{ji}$，乘法交换迹不变!</li>
+<li><strong>矩阵乘法/逐元素乘法交换</strong>：$\text{tr}(A^T(B\odot C)) = \text{tr}((A\odot B)^TC)$，A B C规模相同，两侧都等于$\sum_{i,j}A_{ij}B_{ij}C_{ij}$</li>
+</ol>
+<p>记忆：前三个通过迹的定义可直观得到，最重要的是矩阵乘法交换：</p>
+<h3 id="3-3-重要实例"><a href="#3-3-重要实例" class="headerlink" title="3.3 重要实例"></a>3.3 重要实例</h3><p>有些资料在计算矩阵导数时，会略过求微分这一步，这是逻辑上解释不通的。</p>
 <ul>
-<li>unix_timestamp()：获取当前时区的UNIX时间戳</li>
+<li><p>例1：【线性函数】 $f=w^TX$，求$f^{‘}(X)$</p>
+<p>  解：$df=d(w^TX)=d(w^T)X+w^TdX=w^TdX=tr(w^TdX)$，因此$f^{‘}(X)=w$</p>
+</li>
+<li><p>例2：$f=X^THX$</p>
+<p>  解：</p>
+  <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align*&#125;</span><br><span class="line">df=d(X^THX)&amp;=d(X^T)HX+X^Td(HX)\\</span><br><span class="line">&amp;=d^T(X)HX+X^T(dHX+HdX)\\</span><br><span class="line">&amp;=tr(d^T(X)HX)+tr(X^THdX)\\</span><br><span class="line">&amp;=tr(X^TH^TdX+X^THdX)\\</span><br><span class="line">&amp;=tr((X^TH^T+X^TH)dX)</span><br><span class="line">\end&#123;align*&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select unix_timestamp();</span><br><span class="line">unix_timestamp(current_timestamp(), yyyy-MM-dd HH:mm:ss)</span><br><span class="line">1571729830</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>unix_timestamp(string date)：转换格式为”yyyy-MM-dd HH:mm:ss“的日期到UNIX时间戳，如果转化失败，则返回NULL</li>
+<pre><code>因此，$f^{&#39;}(X)=(X^TH^T+X^TH)^T=(H+H^T)X$
+
+特殊地，当H为对称矩阵，$f^{&#39;}(X)=2HX$
+</code></pre><ul>
+<li><p>例3：【线性回归】：$l = |X\boldsymbol{w}- \boldsymbol{y}|^2$，求$l^{‘}(w)$</p>
+<p>  解：$l = (X\boldsymbol{w}- \boldsymbol{y})^T(X\boldsymbol{w}- \boldsymbol{y})$，求微分，使用矩阵乘法、转置等法则：$dl = (Xd\boldsymbol{w})^T(X\boldsymbol{w}-\boldsymbol{y})+(X\boldsymbol{w}-\boldsymbol{y})^T(Xd\boldsymbol{w}) = 2(X\boldsymbol{w}-\boldsymbol{y})^TXd\boldsymbol{w}$。对照导数与微分的联系，得到$l^{‘}(w)= 2X^T(X\boldsymbol{w}-\boldsymbol{y})$</p>
+</li>
+<li><p>例4【多元logistic回归】：$l = -\boldsymbol{y}^T\log\text{softmax}(W\boldsymbol{x})，求\frac{\partial l}{\partial W}$。</p>
+</li>
+<li><p>例5【方差的最大似然估计】：已知样本 $ \boldsymbol{x}_1,\dots, \boldsymbol{x}_n \sim N(\boldsymbol{\mu}, \sigma) $ ，</p>
+<p>  其中 $\sigma $是对称正定矩阵，求方差 $\sigma$ 的最大似然估计。写成数学式是：$l = \log|\sigma|+\frac{1}{n}\sum_{i=1}^n(\boldsymbol{x}_i-\boldsymbol{\bar{x}})^T\sigma^{-1}(\boldsymbol{x}_i-\boldsymbol{\bar{x}})$， 求$\frac{\partial l }{\partial \sigma}$的零点。</p>
+</li>
+<li><p>例6【二层神经网络】$l = -\boldsymbol{y}^T\log\text{softmax}(W_2\sigma(W_1\boldsymbol{x}))$，求$\frac{\partial l}{\partial W_1}$和$\frac{\partial l}{\partial W_2}$。其中$\boldsymbol{y}$是除一个元素为1外其它元素为0的向量，$\text{softmax}(\boldsymbol{a}) = \frac{\exp(\boldsymbol{a})}{\boldsymbol{1}^T\exp(\boldsymbol{a})}$同例3，$\sigma(\cdot)$是逐元素sigmoid函数$\sigma(a) = \frac{1}{1+\exp(-a)}$</p>
+</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select unix_timestamp(&apos;2019-10-20&apos;);</span><br><span class="line">unix_timestamp(2019-10-20, yyyy-MM-dd HH:mm:ss)</span><br><span class="line">NULL</span><br><span class="line">Time taken: 0.232 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;2019-10-20 10:30&apos;);</span><br><span class="line">unix_timestamp(2019-10-20 10:30, yyyy-MM-dd HH:mm:ss)</span><br><span class="line">NULL</span><br><span class="line">Time taken: 0.22 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;2019-10-20 10:30:00&apos;);</span><br><span class="line">unix_timestamp(2019-10-20 10:30:00, yyyy-MM-dd HH:mm:ss)</span><br><span class="line">1571538600</span><br><span class="line">Time taken: 0.23 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>unix_timestamp(string date, string pattern)：转换pattern格式的日期到UNIX时间戳。如果转化失败，则返回NULL</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select unix_timestamp(&apos;2011-12-07 13:05&apos;,&apos;yyyy-MM-dd HH:mm&apos;);</span><br><span class="line">unix_timestamp(2011-12-07 13:05, yyyy-MM-dd HH:mm)</span><br><span class="line">1323234300</span><br><span class="line">Time taken: 0.235 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;2011-12&apos;,&apos;yyyy-MM&apos;);</span><br><span class="line">unix_timestamp(2011-12, yyyy-MM)</span><br><span class="line">1322668800</span><br><span class="line">Time taken: 0.239 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select unix_timestamp(&apos;201112&apos;,&apos;yyyyMM&apos;);</span><br><span class="line">unix_timestamp(201112, yyyyMM)</span><br><span class="line">1322668800</span><br><span class="line">Time taken: 0.218 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
-<h3 id="to-date——字符串转化为日期"><a href="#to-date——字符串转化为日期" class="headerlink" title="to_date——字符串转化为日期"></a>to_date——字符串转化为日期</h3><blockquote>
-<p>一般格式：to_date(date_str[, fmt]) -&gt; string<br>功能：Parses the <code>date_str</code> expression with the <code>fmt</code> expression to a date. Returns null with invalid input. By default, it follows casting rules to a date if the <code>fmt</code> is omitted.</p>
-</blockquote>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select to_date(&apos;2019&apos;);</span><br><span class="line">to_date(&apos;2019&apos;)</span><br><span class="line">2019-01-01</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10&apos;);</span><br><span class="line">to_date(&apos;2019-10&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.251 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01&apos;);</span><br><span class="line">to_date(&apos;2019-10-01&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.225 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01 10&apos;);</span><br><span class="line">to_date(&apos;2019-10-01 10&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.23 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01 10:00&apos;);</span><br><span class="line">to_date(&apos;2019-10-01 10:00&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.233 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;2019-10-01 10:00:00&apos;);</span><br><span class="line">to_date(&apos;2019-10-01 10:00:00&apos;)</span><br><span class="line">2019-10-01</span><br><span class="line">Time taken: 0.23 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select to_date(&apos;20101201&apos;,&apos;yyyyMMdd&apos;);</span><br><span class="line">to_date(&apos;20101201&apos;, &apos;yyyyMMdd&apos;)</span><br><span class="line">2010-12-01</span><br><span class="line">Time taken: 0.236 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
-<h3 id="date-format——将时间戳-字符串-日期转换为指定格式的字符串"><a href="#date-format——将时间戳-字符串-日期转换为指定格式的字符串" class="headerlink" title="date_format——将时间戳/字符串/日期转换为指定格式的字符串"></a>date_format——将时间戳/字符串/日期转换为指定格式的字符串</h3><blockquote>
-<p>一般格式：date_format(timestamp, fmt) -&gt; string<br>功能：将给定时间戳(或是可以通过cast转化为时间戳的类型)转化为相应格式的字符串</p>
-</blockquote>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select date_format(&apos;2019&apos;, &apos;yyyy&apos;);</span><br><span class="line">date_format(CAST(2019 AS TIMESTAMP), yyyy)</span><br><span class="line">2019</span><br><span class="line">Time taken: 0.229 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_format(&apos;2019-10&apos;, &apos;yyyy&apos;);</span><br><span class="line">date_format(CAST(2019-10 AS TIMESTAMP), yyyy)</span><br><span class="line">2019</span><br><span class="line">Time taken: 0.22 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_format(&apos;2019-10&apos;, &apos;MM&apos;);</span><br><span class="line">date_format(CAST(2019-10 AS TIMESTAMP), MM)</span><br><span class="line">10</span><br><span class="line">Time taken: 0.225 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_format(date_add(to_date(from_unixtime(UNIX_TIMESTAMP(cast(20191010 as string),&apos;yyyyMMdd&apos;))),6),&apos;yyyyMMdd&apos;);</span><br><span class="line">date_format(CAST(date_add(to_date(from_unixtime(unix_timestamp(CAST(20191010 AS STRING), &apos;yyyyMMdd&apos;), &apos;yyyy-MM-dd HH:mm:ss&apos;)), 6) AS TIMESTAMP), yyyyMMdd)</span><br><span class="line">20191016</span><br><span class="line">Time taken: 0.484 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
-<h3 id="日期相关函数"><a href="#日期相关函数" class="headerlink" title="日期相关函数"></a>日期相关函数</h3><ul>
-<li>获取日期中的年月日：</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select year(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">year(CAST(2011-12-08 10:03:01 AS DATE))</span><br><span class="line">2011</span><br><span class="line">Time taken: 0.242 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select month(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">month(CAST(2011-12-08 10:03:01 AS DATE))</span><br><span class="line">12</span><br><span class="line">Time taken: 0.235 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select day(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">dayofmonth(CAST(2011-12-08 10:03:01 AS DATE))</span><br><span class="line">8</span><br><span class="line">Time taken: 0.247 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select hour(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">hour(CAST(2011-12-08 10:03:01 AS TIMESTAMP))</span><br><span class="line">10</span><br><span class="line">Time taken: 0.268 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select minute(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">minute(CAST(2011-12-08 10:03:01 AS TIMESTAMP))</span><br><span class="line">3</span><br><span class="line">Time taken: 0.233 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select second(&apos;2011-12-08 10:03:01&apos;);</span><br><span class="line">second(CAST(2011-12-08 10:03:01 AS TIMESTAMP))</span><br><span class="line">1</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>日期加/减：date_add(start_date, num_days)-&gt;date，date_sub(start_date, num_days)-&gt;date，</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select date_add(&apos;2012-12-08&apos;,10);</span><br><span class="line">date_add(CAST(2012-12-08 AS DATE), 10)</span><br><span class="line">2012-12-18</span><br><span class="line">Time taken: 0.224 seconds, Fetched 1 row(s)</span><br><span class="line">spark-sql&gt; select date_sub(&apos;2012-12-08&apos;,10);</span><br><span class="line">date_sub(CAST(2012-12-08 AS DATE), 10)</span><br><span class="line">2012-11-28</span><br><span class="line">Time taken: 0.227 seconds, Fetched 1 row(s)</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>日期间隔：datediff(endDate, startDate) - Returns the number of days from <code>startDate</code> to <code>endDate</code></li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select datediff(&apos;2012-12-08&apos;,&apos;2012-05-09&apos;);</span><br><span class="line">datediff(CAST(2012-12-08 AS DATE), CAST(2012-05-09 AS DATE))</span><br><span class="line">213</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>日期转周：weekofyear(date) - Returns the week of the year of the given date. A week is considered to start on a Monday and week 1 is the first week with &gt;3 days.将日期转化我当年的周次</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark-sql&gt; select weekofyear(&apos;2019-01-01&apos;);</span><br><span class="line">weekofyear(CAST(2019-01-01 AS DATE))</span><br><span class="line">1</span><br></pre></td></tr></table></figure></div>
+<p>神经网络的求导术是学术史上的重要成果，还有个专门的名字叫做BP算法，我相信如今很多人在初次推导BP算法时也会颇费一番脑筋，事实上使用矩阵求导术来推导并不复杂。为简化起见，我们推导二层神经网络的BP算法</p>
+<p>略…</p>
 
       
     </div>
@@ -548,6 +662,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
 
       
       
@@ -557,8 +677,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/uncategorized/Mac-OSX-配置JAVA环境/" rel="next" title="Mac OSX 配置JAVA环境">
-                <i class="fa fa-chevron-left"></i> Mac OSX 配置JAVA环境
+              <a href="/数据挖掘/教程/数据挖掘：工具篇（一）—— Jupyter Lab 配置环境/" rel="next" title="数据挖掘：工具篇（一）—— Jupyter Lab 配置环境">
+                <i class="fa fa-chevron-left"></i> 数据挖掘：工具篇（一）—— Jupyter Lab 配置环境
               </a>
             
           </div>
@@ -567,8 +687,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/时间序列/时间序列：ETS 预估 DAU/" rel="prev" title="时间序列：ETS 预估 DAU">
-                时间序列：ETS 预估 DAU <i class="fa fa-chevron-right"></i>
+              <a href="/机器学习/机器学习：理论基础（三）—— 决策论/" rel="prev" title="机器学习：理论基础（三）—— 决策论">
+                机器学习：理论基础（三）—— 决策论 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -749,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#from-unixtime——时间戳转换为字符串"><span class="nav-number">1.</span> <span class="nav-text">from_unixtime——时间戳转换为字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unix-timestamp——字符串转换为时间戳"><span class="nav-number">2.</span> <span class="nav-text">unix_timestamp——字符串转换为时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#to-date——字符串转化为日期"><span class="nav-number">3.</span> <span class="nav-text">to_date——字符串转化为日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#date-format——将时间戳-字符串-日期转换为指定格式的字符串"><span class="nav-number">4.</span> <span class="nav-text">date_format——将时间戳/字符串/日期转换为指定格式的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期相关函数"><span class="nav-number">5.</span> <span class="nav-text">日期相关函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-梯度（Gradient）"><span class="nav-number">1.</span> <span class="nav-text">1. 梯度（Gradient）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-多元函数"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 多元函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-等高线图"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 等高线图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-梯度（向量）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 梯度（向量）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-全微分"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 全微分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-方向导数"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 方向导数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-海塞矩阵（Hessian-Matrix）"><span class="nav-number">2.</span> <span class="nav-text">2. 海塞矩阵（Hessian Matrix）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-多元泰勒展开"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 多元泰勒展开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-海赛矩阵判定多元函数极值"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 海赛矩阵判定多元函数极值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-矩阵求导"><span class="nav-number">3.</span> <span class="nav-text">3. 矩阵求导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-全导数与全微分"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 全导数与全微分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-标量对矩阵的求导规则"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 标量对矩阵的求导规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-一般思路"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 一般思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-矩阵微分运算法则"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 矩阵微分运算法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-矩阵微分复合法则"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3 矩阵微分复合法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-矩阵迹运算法则"><span class="nav-number">3.2.4.</span> <span class="nav-text">3.2.4 矩阵迹运算法则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-重要实例"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 重要实例</span></a></li></ol></li></ol></div>
             
 
           </div>
