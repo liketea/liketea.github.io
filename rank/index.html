@@ -125,18 +125,18 @@
 
 
 
-<meta name="description" content="AV.initialize(&quot;q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz&quot;, &quot;CtoawzwWheAQhgeEYEa1nDYn&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.d">
+<meta name="description" content="AV.initialize (&quot;q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz&quot;, &quot;CtoawzwWheAQhgeEYEa1nDYn&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query (&apos;Counter&apos;);   query.notEqualTo (&apos;id&apos;,0);   quer">
 <meta name="keywords" content="top,文章阅读量排行榜">
 <meta property="og:type" content="website">
 <meta property="og:title" content="排行榜">
 <meta property="og:url" content="https://liketea.xyz/rank/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="AV.initialize(&quot;q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz&quot;, &quot;CtoawzwWheAQhgeEYEa1nDYn&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.d">
+<meta property="og:description" content="AV.initialize (&quot;q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz&quot;, &quot;CtoawzwWheAQhgeEYEa1nDYn&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query (&apos;Counter&apos;);   query.notEqualTo (&apos;id&apos;,0);   quer">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-09-13T09:00:15.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排行榜">
-<meta name="twitter:description" content="AV.initialize(&quot;q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz&quot;, &quot;CtoawzwWheAQhgeEYEa1nDYn&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.d">
+<meta name="twitter:description" content="AV.initialize (&quot;q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz&quot;, &quot;CtoawzwWheAQhgeEYEa1nDYn&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query (&apos;Counter&apos;);   query.notEqualTo (&apos;id&apos;,0);   quer">
 
 
 
@@ -348,26 +348,26 @@
         
           <p><div id="hot"></div></p>
 <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+<script>AV.initialize ("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
 <script type="text/javascript">
   var time=0
   var title=""
   var url=""
-  var query = new AV.Query('Counter');
-  query.notEqualTo('id',0);
-  query.descending('time');
-  query.limit(1000);
-  query.find().then(function (todo) {
+  var query = new AV.Query ('Counter');
+  query.notEqualTo ('id',0);
+  query.descending ('time');
+  query.limit (1000);
+  query.find ().then (function (todo) {
     for (var i=0;i<1000;i++){
-      var result=todo[i].attributes;
+      var result=todo [i].attributes;
       time=result.time;
       title=result.title;
       url=result.url;
       var content="<p>"+"<font color='#1C1C1C'>"+"【文章热度:"+time+"℃】"+"</font>"+"<a href='"+"https://liketea.github.io/"+url+"'>"+title+"</a>"+"</p>";
-      document.getElementById("hot").innerHTML+=content
+      document.getElementById ("hot").innerHTML+=content
     }
   }, function (error) {
-    console.log("error");
+    console.log ("error");
   });
 </script>
 
@@ -427,7 +427,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -438,7 +438,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -545,7 +545,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">137.3k</span>
+    <span title="Site words total count">146.7k</span>
   
 </div>
 

@@ -499,22 +499,22 @@
 <li>通用：集合类提供了在一些类型上的相同操作；</li>
 </ol>
 <p>Seq、Map、Set 是 Scala 最重要的三种集合类（容器），此外还有 Tuple、Option 等，这些会在后面小节逐一讲解，本节将按照自顶向下的层级结构来学习不同集合类的通用特性。</p>
-<h2 id="可变-不可变类型（Mutable-Immutable）"><a href="#可变-不可变类型（Mutable-Immutable）" class="headerlink" title="可变/不可变类型（Mutable/Immutable）"></a>可变/不可变类型（Mutable/Immutable）</h2><p>Scala 集合框架系统地区分了可变的(mutable)和不可变的(immutable)集合，并且可以很方便地在两者之间进行转换。你可以对可变集合中的元素进行增、删、改操作，你也可以对不可变类型模拟这些操作，但每个操作都会返回一个新的集合，原来的集合不会发生改变。</p>
+<h2 id="可变-不可变类型（Mutable-Immutable）"><a href="#可变-不可变类型（Mutable-Immutable）" class="headerlink" title="可变 / 不可变类型（Mutable/Immutable）"></a>可变 / 不可变类型（Mutable/Immutable）</h2><p>Scala 集合框架系统地区分了可变的 (mutable) 和不可变的 (immutable) 集合，并且可以很方便地在两者之间进行转换。你可以对可变集合中的元素进行增、删、改操作，你也可以对不可变类型模拟这些操作，但每个操作都会返回一个新的集合，原来的集合不会发生改变。</p>
 <h3 id="集合类的继承树"><a href="#集合类的继承树" class="headerlink" title="集合类的继承树"></a>集合类的继承树</h3><p>Scala 所有集合类都可以在以下包中找到：</p>
 <ul>
 <li><code>scala.collection</code>：包中的集合既可以是可变的也可以是不可变的，下图展示了这个包中所有的集合类，这些都是高级抽象类或特质，它们通常有可变和不可变两种实现方式</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203214821.png" alt="-c"></p>
 <ul>
-<li><code>scala.collection.immutable</code> ：包中的集合类是不可变的，Scala会默认导入这个包，这意味着Scala默认使用不可变集合类，当你写下 Set 而没有加任何前缀，你会得到一个不可变的 Set，下图展示了这个包中所有的集合类</li>
+<li><code>scala.collection.immutable</code> ：包中的集合类是不可变的，Scala 会默认导入这个包，这意味着 Scala 默认使用不可变集合类，当你写下 Set 而没有加任何前缀，你会得到一个不可变的 Set，下图展示了这个包中所有的集合类</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204221225.png" alt="-c"></p>
 <ul>
-<li><code>scala.collection.mutable</code>：包中的集合类是可变的，如果你想要使用可变的集合类，通用的做法是导入<code>scala.collection.mutable</code>包即可，当你使用没有前缀的 Set 时仍然指的是一个不可变集合，当你使用 <code>mutable.Set</code>时指的是可变的集合类，下图展示了这个包中所有的集合类</li>
+<li><code>scala.collection.mutable</code>：包中的集合类是可变的，如果你想要使用可变的集合类，通用的做法是导入 <code>scala.collection.mutable</code> 包即可，当你使用没有前缀的 Set 时仍然指的是一个不可变集合，当你使用 <code>mutable.Set</code> 时指的是可变的集合类，下图展示了这个包中所有的集合类</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215029.png" alt="-c"></p>
 <ul>
-<li><code>scala.collection.generic</code>：包含了集合的构建块，集合类延迟了<code>collection.generic</code> 类中的部分操作实现</li>
+<li><code>scala.collection.generic</code>：包含了集合的构建块，集合类延迟了 <code>collection.generic</code> 类中的部分操作实现</li>
 </ul>
 <h3 id="集合类的通用方法"><a href="#集合类的通用方法" class="headerlink" title="集合类的通用方法"></a>集合类的通用方法</h3><p>Scala 中的集合类有以下通用方法：</p>
 <ul>
@@ -522,38 +522,38 @@
 </ul>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Traversable</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="type">Iterable</span>(<span class="string">"x"</span>, <span class="string">"y"</span>, <span class="string">"z"</span>)</span><br><span class="line"><span class="type">Map</span>(<span class="string">"x"</span> -&gt; <span class="number">24</span>, <span class="string">"y"</span> -&gt; <span class="number">25</span>, <span class="string">"z"</span> -&gt; <span class="number">26</span>)</span><br><span class="line"><span class="type">Set</span>(<span class="type">Color</span>.red, <span class="type">Color</span>.green, <span class="type">Color</span>.blue)</span><br><span class="line"><span class="type">SortedSet</span>(<span class="string">"hello"</span>, <span class="string">"world"</span>)</span><br><span class="line"><span class="type">Buffer</span>(x, y, z)</span><br><span class="line"><span class="type">IndexedSeq</span>(<span class="number">1.0</span>, <span class="number">2.0</span>)</span><br><span class="line"><span class="type">LinearSeq</span>(a, b, c)</span><br><span class="line"><span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="type">HashMap</span>(<span class="string">"x"</span> -&gt; <span class="number">24</span>, <span class="string">"y"</span> -&gt; <span class="number">25</span>, <span class="string">"z"</span> -&gt; <span class="number">26</span>)</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>toString：所有集合类都可以用toString的方式进行打印；</li>
-<li>返回类型一致原则：所有集合类的map方法都会返回相同类型的集合类，例如，在一个List上调用map会又生成一个List，在Set上调用会再生成一个Set，以此类推；</li>
+<li>toString：所有集合类都可以用 toString 的方式进行打印；</li>
+<li>返回类型一致原则：所有集合类的 map 方法都会返回相同类型的集合类，例如，在一个 List 上调用 map 会又生成一个 List，在 Set 上调用会再生成一个 Set，以此类推；</li>
 <li>大多数类在集合树种都存在三种变体：root、mutable、immutable；</li>
 </ul>
-<h2 id="可遍历特质（Trait-Traversable）"><a href="#可遍历特质（Trait-Traversable）" class="headerlink" title="可遍历特质（Trait Traversable）"></a>可遍历特质（Trait Traversable）</h2><p>可遍历（Traversable）是容器（collection）类的最高级别特质，它唯一的抽象操作是<code>foreach</code>。<code>foreach</code> 是 <code>Traversable</code> 所有操作的基础，用于遍历容器中所有元素，并对每个元素进行指定的操作：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Elem 是容器中元素的类型，U是一个任意的返回值类型，对f的调用仅仅是容器遍历的副作用，实际上所有计算结果都被foreach抛弃（没有返回值）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f: <span class="type">Elem</span> =&gt; <span class="type">U</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="可遍历特质（Trait-Traversable）"><a href="#可遍历特质（Trait-Traversable）" class="headerlink" title="可遍历特质（Trait Traversable）"></a>可遍历特质（Trait Traversable）</h2><p>可遍历（Traversable）是容器（collection）类的最高级别特质，它唯一的抽象操作是 <code>foreach</code>。<code>foreach</code> 是 <code>Traversable</code> 所有操作的基础，用于遍历容器中所有元素，并对每个元素进行指定的操作：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Elem 是容器中元素的类型，U 是一个任意的返回值类型，对 f 的调用仅仅是容器遍历的副作用，实际上所有计算结果都被 foreach 抛弃（没有返回值）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f: <span class="type">Elem</span> =&gt; <span class="type">U</span>)</span><br></pre></td></tr></table></figure></div>
 <p>要实现 Traversable 的容器类仅需要定义与之相关的方法，其他所有方法都可以从 Traversable 中继承，Traversable 定义了许多方法：</p>
 <ol>
-<li><strong>相加操作++（addition）</strong>表示把两个traversable对象附加在一起或者把一个迭代器的所有元素添加到traversable对象的尾部</li>
-<li><strong>Map操作</strong>有map，flatMap和collect，它们可以通过对容器中的元素进行某些运算来生成一个新的容器</li>
-<li><strong>转换器（Conversion）操作</strong>包括toArray，toList，toIterable，toSeq，toIndexedSeq，toStream，toSet，和toMap，它们可以按照某种特定的方法对一个Traversable 容器进行转换</li>
-<li><strong>拷贝（Copying）操作</strong>有copyToBuffer和copyToArray。从字面意思就可以知道，它们分别用于把容器中的元素元素拷贝到一个缓冲区或者数组里</li>
-<li><strong>Size info</strong>操作包括有isEmpty，nonEmpty，size和hasDefiniteSize</li>
-<li><strong>元素检索（Element Retrieval）操作</strong>有head，last，headOption，lastOption和find。这些操作可以查找容器的第一个元素或者最后一个元素，或者第一个符合某种条件的元素。注意，尽管如此，但也不是所有的容器都明确定义了什么是“第一个”或”最后一个“。例如，通过哈希值储存元素的哈希集合（hashSet），每次运行哈希值都会发生改变。在这种情况下，程序每次运行都可能会导致哈希集合的”第一个“元素发生变化。如果一个容器总是以相同的规则排列元素，那这个容器是有序的。大多数容器都是有序的，但有些不是（例如哈希集合）– 排序会造成一些额外消耗。排序对于重复性测试和辅助调试是不可或缺的。这就是为什么Scala容器中的所有容器类型都把有序作为可选项。例如，带有序性的HashSet就是LinkedHashSet</li>
-<li><strong>子容器检索（sub-collection Retrieval）操作</strong>有tail，init，slice，take，drop，takeWhilte，dropWhile，filter，filteNot和withFilter。它们都可以通过范围索引或一些论断的判断返回某些子容器</li>
-<li><strong>拆分（Subdivision）操作</strong>有splitAt，span，partition和groupBy，它们用于把一个容器（collection）里的元素分割成多个子容器</li>
-<li><strong>元素测试（Element test）</strong>包括有exists，forall和count，它们可以用一个给定论断来对容器中的元素进行判断</li>
-<li><strong>折叠（Folds）操作</strong>有foldLeft，foldRight，/:，:\，reduceLeft和reduceRight，用于对连续性元素的二进制操作</li>
-<li><strong>特殊折叠（Specific folds）</strong>包括sum, product, min, max。它们主要用于特定类型的容器（数值或比较）</li>
-<li><strong>字符串（String）操作</strong>有mkString，addString和stringPrefix，可以将一个容器通过可选的方式转换为字符串</li>
-<li><strong>视图（View）操作</strong>包含两个view方法的重载体。一个view对象可以当作是一个容器客观地展示</li>
+<li><strong> 相加操作 ++（addition）</strong> 表示把两个 traversable 对象附加在一起或者把一个迭代器的所有元素添加到 traversable 对象的尾部</li>
+<li><strong>Map 操作 </strong> 有 map，flatMap 和 collect，它们可以通过对容器中的元素进行某些运算来生成一个新的容器</li>
+<li><strong> 转换器（Conversion）操作 </strong> 包括 toArray，toList，toIterable，toSeq，toIndexedSeq，toStream，toSet，和 toMap，它们可以按照某种特定的方法对一个 Traversable 容器进行转换</li>
+<li><strong> 拷贝（Copying）操作 </strong> 有 copyToBuffer 和 copyToArray。从字面意思就可以知道，它们分别用于把容器中的元素元素拷贝到一个缓冲区或者数组里</li>
+<li><strong>Size info</strong> 操作包括有 isEmpty，nonEmpty，size 和 hasDefiniteSize</li>
+<li><strong> 元素检索（Element Retrieval）操作 </strong> 有 head，last，headOption，lastOption 和 find。这些操作可以查找容器的第一个元素或者最后一个元素，或者第一个符合某种条件的元素。注意，尽管如此，但也不是所有的容器都明确定义了什么是 “第一个” 或” 最后一个 “。例如，通过哈希值储存元素的哈希集合（hashSet），每次运行哈希值都会发生改变。在这种情况下，程序每次运行都可能会导致哈希集合的” 第一个 “元素发生变化。如果一个容器总是以相同的规则排列元素，那这个容器是有序的。大多数容器都是有序的，但有些不是（例如哈希集合）– 排序会造成一些额外消耗。排序对于重复性测试和辅助调试是不可或缺的。这就是为什么 Scala 容器中的所有容器类型都把有序作为可选项。例如，带有序性的 HashSet 就是 LinkedHashSet</li>
+<li><strong> 子容器检索（sub-collection Retrieval）操作 </strong> 有 tail，init，slice，take，drop，takeWhilte，dropWhile，filter，filteNot 和 withFilter。它们都可以通过范围索引或一些论断的判断返回某些子容器</li>
+<li><strong> 拆分（Subdivision）操作 </strong> 有 splitAt，span，partition 和 groupBy，它们用于把一个容器（collection）里的元素分割成多个子容器</li>
+<li><strong> 元素测试（Element test）</strong> 包括有 exists，forall 和 count，它们可以用一个给定论断来对容器中的元素进行判断</li>
+<li><strong> 折叠（Folds）操作 </strong> 有 foldLeft，foldRight，/:，:\，reduceLeft 和 reduceRight，用于对连续性元素的二进制操作</li>
+<li><strong> 特殊折叠（Specific folds）</strong> 包括 sum, product, min, max。它们主要用于特定类型的容器（数值或比较）</li>
+<li><strong> 字符串（String）操作 </strong> 有 mkString，addString 和 stringPrefix，可以将一个容器通过可选的方式转换为字符串</li>
+<li><strong> 视图（View）操作 </strong> 包含两个 view 方法的重载体。一个 view 对象可以当作是一个容器客观地展示</li>
 </ol>
-<p>Traversable对象的操作：</p>
+<p>Traversable 对象的操作：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215045.png" alt="-c"></p>
 <p>可以选择使用操作符记法，也可以选择点记法，这取决于个人喜好，但是没有参数的方法除外，这时必须使用点记法，为了一致性推荐使用点记法。</p>
-<h2 id="可迭代特质（Trait-Iterable）"><a href="#可迭代特质（Trait-Iterable）" class="headerlink" title="可迭代特质（Trait Iterable）"></a>可迭代特质（Trait Iterable）</h2><p>可迭代是容器类的另一个特质，这个特质里所有方法的定义都基于一个抽象方法<code>iterator</code>，从<code>Traversable Trait</code>中继承来的foreach方法在这里也是利用 <code>iterator</code> 来实现的：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f: <span class="type">Elem</span> =&gt; <span class="type">U</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">  <span class="keyword">val</span> it = iterator</span><br><span class="line">  <span class="keyword">while</span> (it.hasNext) f(it.next())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>Iterator 有两个方法返回迭代器：grouped和sliding，这些迭代器返回的不是单个元素，而是原容器元素的全部子序列，grouped方法返回元素的增量分块，sliding方法生成一个滑动元素的窗口：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> xs = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; <span class="keyword">val</span> git = xs grouped <span class="number">3</span></span><br><span class="line">git: <span class="type">Iterator</span>[<span class="type">List</span>[<span class="type">Int</span>]] = non-empty iterator</span><br><span class="line">scala&gt; git.next()</span><br><span class="line">res3: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">scala&gt; git.next()</span><br><span class="line">res4: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; <span class="keyword">val</span> sit = xs sliding <span class="number">3</span></span><br><span class="line">sit: <span class="type">Iterator</span>[<span class="type">List</span>[<span class="type">Int</span>]] = non-empty iterator</span><br><span class="line">scala&gt; sit.next()</span><br><span class="line">res5: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">scala&gt; sit.next()</span><br><span class="line">res6: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">scala&gt; sit.next()</span><br><span class="line">res7: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="可迭代特质（Trait-Iterable）"><a href="#可迭代特质（Trait-Iterable）" class="headerlink" title="可迭代特质（Trait Iterable）"></a>可迭代特质（Trait Iterable）</h2><p>可迭代是容器类的另一个特质，这个特质里所有方法的定义都基于一个抽象方法 <code>iterator</code>，从 <code>Traversable Trait</code> 中继承来的 foreach 方法在这里也是利用 <code>iterator</code> 来实现的：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foreach</span></span>[<span class="type">U</span>](f: <span class="type">Elem</span> =&gt; <span class="type">U</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">  <span class="keyword">val</span> it = iterator</span><br><span class="line">  <span class="keyword">while</span> (it.hasNext) f (it.next ())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>Iterator 有两个方法返回迭代器：grouped 和 sliding，这些迭代器返回的不是单个元素，而是原容器元素的全部子序列，grouped 方法返回元素的增量分块，sliding 方法生成一个滑动元素的窗口：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> xs = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; <span class="keyword">val</span> git = xs grouped <span class="number">3</span></span><br><span class="line">git: <span class="type">Iterator</span>[<span class="type">List</span>[<span class="type">Int</span>]] = non-empty iterator</span><br><span class="line">scala&gt; git.next ()</span><br><span class="line">res3: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">scala&gt; git.next ()</span><br><span class="line">res4: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; <span class="keyword">val</span> sit = xs sliding <span class="number">3</span></span><br><span class="line">sit: <span class="type">Iterator</span>[<span class="type">List</span>[<span class="type">Int</span>]] = non-empty iterator</span><br><span class="line">scala&gt; sit.next ()</span><br><span class="line">res5: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">scala&gt; sit.next ()</span><br><span class="line">res6: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">scala&gt; sit.next ()</span><br><span class="line">res7: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
 <p>Iterator 在 Traversable 的基础上添加了一些其他方法：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215057.png" alt="-c"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.scala-lang.org/zh-cn/overviews/collections/introduction.html" target="_blank" rel="noopener">Mutable和Immutable集合</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://docs.scala-lang.org/zh-cn/overviews/collections/introduction.html" target="_blank" rel="noopener">Mutable 和 Immutable 集合</a></p>
 <p><a href="https://windor.gitbooks.io/beginners-guide-to-scala/content/chp5-the-option-type.html" target="_blank" rel="noopener">类型 Option</a></p>
 
       
@@ -707,7 +707,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -718,7 +718,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -803,7 +803,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可变-不可变类型（Mutable-Immutable）"><span class="nav-number">1.</span> <span class="nav-text">可变/不可变类型（Mutable/Immutable）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类的继承树"><span class="nav-number">1.1.</span> <span class="nav-text">集合类的继承树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类的通用方法"><span class="nav-number">1.2.</span> <span class="nav-text">集合类的通用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可遍历特质（Trait-Traversable）"><span class="nav-number">2.</span> <span class="nav-text">可遍历特质（Trait Traversable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可迭代特质（Trait-Iterable）"><span class="nav-number">3.</span> <span class="nav-text">可迭代特质（Trait Iterable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可变-不可变类型（Mutable-Immutable）"><span class="nav-number">1.</span> <span class="nav-text">可变 / 不可变类型（Mutable/Immutable）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类的继承树"><span class="nav-number">1.1.</span> <span class="nav-text">集合类的继承树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合类的通用方法"><span class="nav-number">1.2.</span> <span class="nav-text">集合类的通用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可遍历特质（Trait-Traversable）"><span class="nav-number">2.</span> <span class="nav-text">可遍历特质（Trait Traversable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可迭代特质（Trait-Iterable）"><span class="nav-number">3.</span> <span class="nav-text">可迭代特质（Trait Iterable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -841,7 +841,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">137.3k</span>
+    <span title="Site words total count">146.7k</span>
   
 </div>
 

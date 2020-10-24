@@ -125,30 +125,30 @@
 
 
 
-<meta name="description" content="排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：  插入排序(Insertion Sort)基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。 直接插入排序 思路：从1到n-1依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达到首部则插">
+<meta name="description" content="排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：  插入排序 (Insertion Sort)基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。 直接插入排序 思路：从 1 到 n-1 依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法：线性表 —— 排序">
 <meta property="og:url" content="https://liketea.xyz/数据结构与算法/数据结构与算法：线性表 —— 排序/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：  插入排序(Insertion Sort)基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。 直接插入排序 思路：从1到n-1依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达到首部则插">
+<meta property="og:description" content="排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：  插入排序 (Insertion Sort)基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。 直接插入排序 思路：从 1 到 n-1 依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/排序.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/插入排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/希尔排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/冒泡排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/快速排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/选择排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/堆排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/归并排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/基数排序.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/桶排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 排序.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 插入排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 希尔排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 冒泡排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 快速排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 选择排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 堆排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 归并排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 基数排序.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 桶排序.gif">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-26-2e9.jpg">
 <meta property="og:updated_time" content="2020-08-11T09:38:58.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法：线性表 —— 排序">
-<meta name="twitter:description" content="排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：  插入排序(Insertion Sort)基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。 直接插入排序 思路：从1到n-1依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达到首部则插">
-<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/排序.png">
+<meta name="twitter:description" content="排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：  插入排序 (Insertion Sort)基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。 直接插入排序 思路：从 1 到 n-1 依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 排序.png">
 
 
 
@@ -497,24 +497,24 @@
 
       
         <p>排序就是使列表元素按照关键字递增或递减排列的过程，排序算法的时间复杂度一般是由比较和移动的次数决定的。下图展示了常见的排序算法：</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/排序.png" alt></p>
-<h2 id="插入排序-Insertion-Sort"><a href="#插入排序-Insertion-Sort" class="headerlink" title="插入排序(Insertion Sort)"></a>插入排序(Insertion Sort)</h2><p>基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 排序.png" alt></p>
+<h2 id="插入排序-Insertion-Sort"><a href="#插入排序-Insertion-Sort" class="headerlink" title="插入排序 (Insertion Sort)"></a>插入排序 (Insertion Sort)</h2><p>基本思想：每次将一个待排元素插入到前面已排序列中，直至全部插入。</p>
 <h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><ul>
-<li>思路：从1到n-1依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达到首部则插入待排元素。</li>
+<li>思路：从 1 到 n-1 依次将待排元素插入到前面已排序列中，每次插入时，从后向前遍历已排序列，如果大于待排元素则后移一位，如果不大于待排元素或达到首部则插入待排元素。</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/插入排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 插入排序.gif" alt></p>
 <ul>
 <li>实现：</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>,len(A)):</span><br><span class="line">        cur,j = A[i],i<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> A[j]&gt;cur:</span><br><span class="line">            A[j+<span class="number">1</span>] = A[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        A[j+<span class="number">1</span>] = cur</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (<span class="number">1</span>,len (A)):</span><br><span class="line">        cur,j = A [i],i<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> A [j]&gt;cur:</span><br><span class="line">            A [j+<span class="number">1</span>] = A [j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        A [j+<span class="number">1</span>] = cur</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析：<ul>
 <li>时间复杂度：<ul>
-<li>最好情况，元素已有序，仅需比较n次，无需移动，O(n);</li>
-<li>最坏情况，元素反序，O(n ^ 2)</li>
+<li>最好情况，元素已有序，仅需比较 n 次，无需移动，O (n);</li>
+<li>最坏情况，元素反序，O (n ^ 2)</li>
 </ul>
 </li>
-<li>空间复杂度：O(1)</li>
+<li>空间复杂度：O (1)</li>
 <li>稳定性：每次只会交换相邻元素，稳定</li>
 <li>适用：顺序表和链表</li>
 </ul>
@@ -526,51 +526,51 @@
 <li><p>实现：</p>
 </li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binsert_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>,len(A)):</span><br><span class="line">        l,r = <span class="number">0</span>,i<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = (l+r)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[i] &lt; A[mid]: r = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>: l = mid + <span class="number">1</span></span><br><span class="line">        A[r+<span class="number">2</span>:i+<span class="number">1</span>],A[r+<span class="number">1</span>] = A[r+<span class="number">1</span>:i],A[i]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binsert_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (<span class="number">1</span>,len (A)):</span><br><span class="line">        l,r = <span class="number">0</span>,i<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = (l+r)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A [i] &lt; A [mid]: r = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>: l = mid + <span class="number">1</span></span><br><span class="line">        A [r+<span class="number">2</span>:i+<span class="number">1</span>],A [r+<span class="number">1</span>] = A [r+<span class="number">1</span>:i],A [i]</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析：<ul>
-<li>时间复杂度：只减少了比较次数O(lgn)但并没有改变移动次数，仍为O(n^2)</li>
-<li>空间复杂度：O(1)</li>
+<li>时间复杂度：只减少了比较次数 O (lgn) 但并没有改变移动次数，仍为 O (n^2)</li>
+<li>空间复杂度：O (1)</li>
 <li>稳定性：不改变相等元素的原始相对位置，稳定</li>
 <li>适用：顺序表</li>
 </ul>
 </li>
 </ul>
-<h3 id="希尔-插入-排序-shell-sort"><a href="#希尔-插入-排序-shell-sort" class="headerlink" title="希尔(插入)排序(shell sort)"></a>希尔(插入)排序(shell sort)</h3><p>直接插入排序在规模较小或序列基本有序时效率较高，希尔排序正是先将序列减小规模，基本有序来提高直接插入排序的效率。</p>
+<h3 id="希尔-插入-排序-shell-sort"><a href="#希尔-插入-排序-shell-sort" class="headerlink" title="希尔 (插入) 排序 (shell sort)"></a>希尔 (插入) 排序 (shell sort)</h3><p>直接插入排序在规模较小或序列基本有序时效率较高，希尔排序正是先将序列减小规模，基本有序来提高直接插入排序的效率。</p>
 <ul>
-<li>思想：按步长从n/2到1，反复进行直接插入排序。</li>
+<li>思想：按步长从 n/2 到 1，反复进行直接插入排序。</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/希尔排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 希尔排序.gif" alt></p>
 <ul>
 <li>实现：</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    n = len(A)</span><br><span class="line">    d = n/<span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> d:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(d,n):</span><br><span class="line">            cur,j = A[i],i-d</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> A[j]&gt;cur:</span><br><span class="line">                A[j+d] = A[j]</span><br><span class="line">                j -= d</span><br><span class="line">                A[j+d] = cur</span><br><span class="line">        d = d/<span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    n = len (A)</span><br><span class="line">    d = n/<span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> d:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange (d,n):</span><br><span class="line">            cur,j = A [i],i-d</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> A [j]&gt;cur:</span><br><span class="line">                A [j+d] = A [j]</span><br><span class="line">                j -= d</span><br><span class="line">                A [j+d] = cur</span><br><span class="line">        d = d/<span class="number">2</span></span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析：<ul>
-<li>时间复杂度：平均O(n^1.3)，最坏O(n ^ 2)</li>
-<li>空间复杂度：O(1)</li>
+<li>时间复杂度：平均 O (n^1.3)，最坏 O (n ^ 2)</li>
+<li>空间复杂度：O (1)</li>
 <li>稳定性：当两个相同的元素被分到不同子组时顺序可能改变，不稳定</li>
 <li>适用：顺序表</li>
 </ul>
 </li>
 </ul>
 <h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><p>思想：根据序列中两个元素的比较结果来交换它们的位置。</p>
-<h3 id="冒泡排序-bubble-sort"><a href="#冒泡排序-bubble-sort" class="headerlink" title="冒泡排序(bubble sort)"></a>冒泡排序(bubble sort)</h3><ul>
-<li>思想：从前向后两两比较相邻元素，若逆序则交换；每轮冒泡都将当前最大元素排到最终位置（该元素不再参与下一轮排序），某轮冒泡不再发生交换或n轮冒泡后则排序成功。</li>
+<h3 id="冒泡排序-bubble-sort"><a href="#冒泡排序-bubble-sort" class="headerlink" title="冒泡排序 (bubble sort)"></a>冒泡排序 (bubble sort)</h3><ul>
+<li>思想：从前向后两两比较相邻元素，若逆序则交换；每轮冒泡都将当前最大元素排到最终位置（该元素不再参与下一轮排序），某轮冒泡不再发生交换或 n 轮冒泡后则排序成功。</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/冒泡排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 冒泡排序.gif" alt></p>
 <ul>
 <li><p>实现：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    n = len(A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i):</span><br><span class="line">            <span class="keyword">if</span> A[j] &gt; A[j+<span class="number">1</span>]:</span><br><span class="line">                A[j],A[j+<span class="number">1</span>] = A[j+<span class="number">1</span>],A[j]</span><br><span class="line">                flag = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> flag:<span class="keyword">return</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    n = len (A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (n<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange (i):</span><br><span class="line">            <span class="keyword">if</span> A [j] &gt; A [j+<span class="number">1</span>]:</span><br><span class="line">                A [j],A [j+<span class="number">1</span>] = A [j+<span class="number">1</span>],A [j]</span><br><span class="line">                flag = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> flag:<span class="keyword">return</span></span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p>分析</p>
 <ul>
 <li>时间复杂度：<ul>
-<li>最好情况下，初始有序，只比较n-1次，交换0次，O(n)；</li>
-<li>最坏情况下，初始逆序，O(n^2)；</li>
+<li>最好情况下，初始有序，只比较 n-1 次，交换 0 次，O (n)；</li>
+<li>最坏情况下，初始逆序，O (n^2)；</li>
 </ul>
 </li>
-<li>空间复杂度：O(1)</li>
+<li>空间复杂度：O (1)</li>
 <li>稳定性：相等两元素不进行交换，稳定</li>
 </ul>
 </li>
@@ -578,102 +578,102 @@
 <h3 id="快速排序（quick-sort）"><a href="#快速排序（quick-sort）" class="headerlink" title="快速排序（quick sort）"></a>快速排序（quick sort）</h3><ul>
 <li>思想：基于分治和递归的思想，任选一个元素作为枢轴点，将所有小于等于它的元素都放在它前面，所有大于它的元素都放在后面，将枢轴点放在其最终位置，然后再递归排序枢轴点左右两侧子序列。</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/快速排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 快速排序.gif" alt></p>
 <ul>
 <li>基本实现思路：首元素作为枢轴点<ul>
 <li>① 分解：<ul>
-<li>选取A[0]作为枢轴值，将小于(等于)它的元素放在1~k，然后交换A[0]与A[k]，k是枢轴值最终位置</li>
-<li>过程使用口袋双指针法，j指针指向当前遍历位置(1~n-1)，i指针指向已存储的小于等于枢轴值的最后一个元素位置(1 ~ k)，如果A[j] &lt;= A[0]就把A[j]与A[i+1]交换</li>
+<li>选取 A [0] 作为枢轴值，将小于 (等于) 它的元素放在 1~k，然后交换 A [0] 与 A [k]，k 是枢轴值最终位置</li>
+<li>过程使用口袋双指针法，j 指针指向当前遍历位置 (1~n-1)，i 指针指向已存储的小于等于枢轴值的最后一个元素位置 (1 ~ k)，如果 A [j] &lt;= A [0] 就把 A [j] 与 A [i+1] 交换</li>
 </ul>
 </li>
-<li>② 求解：递归求解0 ~ k-1，和k+1 ~ n-1子问题</li>
+<li>② 求解：递归求解 0 ~ k-1，和 k+1 ~ n-1 子问题</li>
 </ul>
 </li>
-<li>改进思路：随机快排，事实证明如果每次选取首元素作为枢轴点，很容易达到最坏情形，时间复杂度变为O(n^2)，改进思路也很简单，只需要在每次数组划分时随机选择一个元素与首元素进行交换，其余代码即可保持不变。实际使用的都是随机快排，因为首元素快排性能实在是太差了!!！以LeetCode 215题为例，是40ms与1000ms的差距。</li>
+<li>改进思路：随机快排，事实证明如果每次选取首元素作为枢轴点，很容易达到最坏情形，时间复杂度变为 O (n^2)，改进思路也很简单，只需要在每次数组划分时随机选择一个元素与首元素进行交换，其余代码即可保持不变。实际使用的都是随机快排，因为首元素快排性能实在是太差了！！！以 LeetCode 215 题为例，是 40ms 与 1000ms 的差距。</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition1</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    选取A[low:high+1]的首元素A[low]作为枢轴，通过口袋指针法对数组进行划分</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    bag = low                    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(low+<span class="number">1</span>,high+<span class="number">1</span>): </span><br><span class="line">        <span class="keyword">if</span> A[j] &lt;= A[low]:</span><br><span class="line">            bag += <span class="number">1</span></span><br><span class="line">            A[bag],A[j] = A[j],A[bag]</span><br><span class="line">    A[bag],A[low] = A[low],A[bag]</span><br><span class="line">    <span class="keyword">return</span> bag</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition2</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    随机选取A[low:high+1]中的元素，与A[low]交换，再进行划分</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    rand = random.randint(low,high)</span><br><span class="line">    A[rand],A[low] = A[low],A[rand]</span><br><span class="line">    </span><br><span class="line">    bag = low                    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(low+<span class="number">1</span>,high+<span class="number">1</span>): </span><br><span class="line">        <span class="keyword">if</span> A[j] &lt;= A[low]:</span><br><span class="line">            bag += <span class="number">1</span></span><br><span class="line">            A[bag],A[j] = A[j],A[bag]</span><br><span class="line">    A[bag],A[low] = A[low],A[bag]</span><br><span class="line">    <span class="keyword">return</span> bag</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort1</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    原地+递归实现</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition(A,low,high)</span><br><span class="line">        quiksort(A,low,pivot<span class="number">-1</span>) </span><br><span class="line">        quiksort(A,pivot+<span class="number">1</span>,high)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort2</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    原地+非递归实现：使用栈模拟递归过程</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> low &gt;= high:<span class="keyword">return</span> </span><br><span class="line">    s = [[low,high]]</span><br><span class="line">    <span class="keyword">while</span> s:</span><br><span class="line">        l,h = s.pop()</span><br><span class="line">        pivot = partition(A,l,h) <span class="comment"># 分解</span></span><br><span class="line">        <span class="keyword">if</span> pivot + <span class="number">1</span> &lt; h:s.append([pivot+<span class="number">1</span>,h])</span><br><span class="line">        <span class="keyword">if</span> pivot - <span class="number">1</span> &gt; l:s.append([l,pivot<span class="number">-1</span>])</span><br><span class="line">                    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    非原地实现</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    n = len(A)</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> A</span><br><span class="line">    rand = random.randint(<span class="number">0</span>,n<span class="number">-1</span>)</span><br><span class="line">    A[<span class="number">0</span>],A[rand] = A[rand], A[<span class="number">0</span>]</span><br><span class="line">    l = [x <span class="keyword">for</span> x <span class="keyword">in</span> A[<span class="number">1</span>:] <span class="keyword">if</span> x &lt;= A[<span class="number">0</span>]]</span><br><span class="line">    r = [x <span class="keyword">for</span> x <span class="keyword">in</span> A[<span class="number">1</span>:] <span class="keyword">if</span> x &gt; A[<span class="number">0</span>]]</span><br><span class="line"><span class="keyword">return</span> quiksort(l) + [A[<span class="number">0</span>]] + quiksort(r)</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition1</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    选取 A [low:high+1] 的首元素 A [low] 作为枢轴，通过口袋指针法对数组进行划分 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">    bag = low                    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange (low+<span class="number">1</span>,high+<span class="number">1</span>): </span><br><span class="line">        <span class="keyword">if</span> A [j] &lt;= A [low]:</span><br><span class="line">            bag += <span class="number">1</span></span><br><span class="line">            A [bag],A [j] = A [j],A [bag]</span><br><span class="line">    A [bag],A [low] = A [low],A [bag]</span><br><span class="line">    <span class="keyword">return</span> bag</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition2</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    随机选取 A [low:high+1] 中的元素，与 A [low] 交换，再进行划分 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">    rand = random.randint (low,high)</span><br><span class="line">    A [rand],A [low] = A [low],A [rand]</span><br><span class="line">    </span><br><span class="line">    bag = low                    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange (low+<span class="number">1</span>,high+<span class="number">1</span>): </span><br><span class="line">        <span class="keyword">if</span> A [j] &lt;= A [low]:</span><br><span class="line">            bag += <span class="number">1</span></span><br><span class="line">            A [bag],A [j] = A [j],A [bag]</span><br><span class="line">    A [bag],A [low] = A [low],A [bag]</span><br><span class="line">    <span class="keyword">return</span> bag</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort1</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    原地 + 递归实现 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition (A,low,high)</span><br><span class="line">        quiksort (A,low,pivot<span class="number">-1</span>) </span><br><span class="line">        quiksort (A,pivot+<span class="number">1</span>,high)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort2</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    原地 + 非递归实现：使用栈模拟递归过程 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">    <span class="keyword">if</span> low &gt;= high:<span class="keyword">return</span> </span><br><span class="line">    s = [[low,high]]</span><br><span class="line">    <span class="keyword">while</span> s:</span><br><span class="line">        l,h = s.pop ()</span><br><span class="line">        pivot = partition (A,l,h) <span class="comment"># 分解 </span></span><br><span class="line">        <span class="keyword">if</span> pivot + <span class="number">1</span> &lt; h:s.append ([pivot+<span class="number">1</span>,h])</span><br><span class="line">        <span class="keyword">if</span> pivot - <span class="number">1</span> &gt; l:s.append ([l,pivot<span class="number">-1</span>])</span><br><span class="line">                    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    非原地实现 </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">    n = len (A)</span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> A</span><br><span class="line">    rand = random.randint (<span class="number">0</span>,n<span class="number">-1</span>)</span><br><span class="line">    A [<span class="number">0</span>],A [rand] = A [rand], A [<span class="number">0</span>]</span><br><span class="line">    l = [x <span class="keyword">for</span> x <span class="keyword">in</span> A [<span class="number">1</span>:] <span class="keyword">if</span> x &lt;= A [<span class="number">0</span>]]</span><br><span class="line">    r = [x <span class="keyword">for</span> x <span class="keyword">in</span> A [<span class="number">1</span>:] <span class="keyword">if</span> x &gt; A [<span class="number">0</span>]]</span><br><span class="line"><span class="keyword">return</span> quiksort (l) + [A [<span class="number">0</span>]] + quiksort (r)</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li><p>分析：使用递归树来分析</p>
 <ul>
-<li>时间复杂度：递归深度×O(n)。递归深度和每次划分是否对称有关，最坏情况下初始有序或逆序，递归深度为n，时间复杂度为O(n^2)；最好情况下每次都进行均分，递归深度为lgn，时间复杂度为O(nlgn)；平均情况下，快排接近于最佳情况，为O(nlgn)。快速排序是内部排序中平均性能最好的排序算法。</li>
-<li>空间复杂度：递归深度,最坏O(n),最好O(lgn),平均O(lgn)</li>
+<li>时间复杂度：递归深度 ×O (n)。递归深度和每次划分是否对称有关，最坏情况下初始有序或逆序，递归深度为 n，时间复杂度为 O (n^2)；最好情况下每次都进行均分，递归深度为 lgn，时间复杂度为 O (nlgn)；平均情况下，快排接近于最佳情况，为 O (nlgn)。快速排序是内部排序中平均性能最好的排序算法。</li>
+<li>空间复杂度：递归深度，最坏 O (n), 最好 O (lgn), 平均 O (lgn)</li>
 <li>稳定性：存在跨距交换，不稳定</li>
 </ul>
 </li>
 <li><p>改进：</p>
 <ul>
 <li>规模较小时不再继续递归调用，采取直接插入排序</li>
-<li>合理选取枢轴点：每次随机选取枢轴点或取头、尾、中间的中间值(将其与首元素交换，这样就不用修改以上代码)，这样最坏情况在实际中就几乎不会发生了。</li>
+<li>合理选取枢轴点：每次随机选取枢轴点或取头、尾、中间的中间值 (将其与首元素交换，这样就不用修改以上代码)，这样最坏情况在实际中就几乎不会发生了。</li>
 </ul>
 </li>
 </ul>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>每次从当前待排序列中选择最小元素将其交换到首位，n-1轮完成排序。</p>
-<h3 id="简单选择排序-selection-sort"><a href="#简单选择排序-selection-sort" class="headerlink" title="简单选择排序(selection sort)"></a>简单选择排序(selection sort)</h3><ul>
-<li>思路：每轮从A[i:]中选出最小元素与A[i]交换，i= 0…n-2</li>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>每次从当前待排序列中选择最小元素将其交换到首位，n-1 轮完成排序。</p>
+<h3 id="简单选择排序-selection-sort"><a href="#简单选择排序-selection-sort" class="headerlink" title="简单选择排序 (selection sort)"></a>简单选择排序 (selection sort)</h3><ul>
+<li>思路：每轮从 A [i:] 中选出最小元素与 A [i] 交换，i= 0…n-2</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/选择排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 选择排序.gif" alt></p>
 <ul>
 <li>实现：</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SelectSort</span><span class="params">(A)</span>:</span></span><br><span class="line">    n = len(A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n<span class="number">-1</span>):</span><br><span class="line">        min = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i+<span class="number">1</span>,n):</span><br><span class="line">            <span class="keyword">if</span> A[j] &lt; A[i]:min = j</span><br><span class="line">        A[i],A[min] = A[min],A[i]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SelectSort</span><span class="params">(A)</span>:</span></span><br><span class="line">    n = len (A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (n<span class="number">-1</span>):</span><br><span class="line">        min = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange (i+<span class="number">1</span>,n):</span><br><span class="line">            <span class="keyword">if</span> A [j] &lt; A [i]:min = j</span><br><span class="line">        A [i],A [min] = A [min],A [i]</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析<ul>
-<li>时间复杂度：元素移动次数最好情况是0，最坏情况是O(n)，元素比较次数和序列初始状态无关为n(n-1)/2;所以时间复杂度最好最坏都是O(n^2)</li>
-<li>空间复杂度：O(1)</li>
+<li>时间复杂度：元素移动次数最好情况是 0，最坏情况是 O (n)，元素比较次数和序列初始状态无关为 n (n-1)/2; 所以时间复杂度最好最坏都是 O (n^2)</li>
+<li>空间复杂度：O (1)</li>
 <li>稳定性：存在跨距交换，不稳定</li>
 </ul>
 </li>
 </ul>
-<h3 id="堆排序-heap-sort"><a href="#堆排序-heap-sort" class="headerlink" title="堆排序(heap sort)"></a>堆排序(heap sort)</h3><ul>
-<li><p>堆的定义：序列A[1,2…n]被称为堆，当且仅当该序列满足</p>
+<h3 id="堆排序-heap-sort"><a href="#堆排序-heap-sort" class="headerlink" title="堆排序 (heap sort)"></a>堆排序 (heap sort)</h3><ul>
+<li><p>堆的定义：序列 A [1,2…n] 被称为堆，当且仅当该序列满足</p>
 <ul>
-<li>① $A[i] &lt;= A[2i]$ 且 $A[i] &lt;= A[2i+1]，i\in [1,n//2]$,小根堆</li>
-<li>② $A[i] &gt;= A[2i]$ 且 $A[i] &gt;= A[2i+1]，i\in [1,n//2]$,大根堆</li>
+<li>① $A [i] &lt;= A [2i]$ 且 $A [i] &lt;= A [2i+1]，i\in [1,n//2]$, 小根堆</li>
+<li>② $A [i] &gt;= A [2i]$ 且 $A [i] &gt;= A [2i+1]，i\in [1,n//2]$, 大根堆</li>
 </ul>
 </li>
-<li><p>堆与完全二叉树：将序列A看做是一颗完全二叉树，树的根节点是A[1]，给定一个节点的下标i，A[i/2]是它的父亲节点，A[2i]是它的左孩子，A[2i+1]是它的右孩子</p>
+<li><p>堆与完全二叉树：将序列 A 看做是一颗完全二叉树，树的根节点是 A [1]，给定一个节点的下标 i，A [i/2] 是它的父亲节点，A [2i] 是它的左孩子，A [2i+1] 是它的右孩子</p>
 </li>
 </ul>
-<h4 id="向下调整算法"><a href="#向下调整算法" class="headerlink" title="向下调整算法"></a>向下调整算法</h4><p>向下调整算法:假设节点i的左右子树已是大根堆，向下调整i节点以使以i为根的子树也成为大根堆</p>
+<h4 id="向下调整算法"><a href="#向下调整算法" class="headerlink" title="向下调整算法"></a>向下调整算法</h4><p>向下调整算法：假设节点 i 的左右子树已是大根堆，向下调整 i 节点以使以 i 为根的子树也成为大根堆</p>
 <ol>
 <li>找到左右孩子中最大的，与父亲比较</li>
 <li>如果大于父亲，则父亲与孩子中较大的交换，然后递归向下调整较大子节点</li>
-<li>如果不大于父亲，则说明以i为根的子树已经是大根堆了</li>
+<li>如果不大于父亲，则说明以 i 为根的子树已经是大根堆了</li>
 </ol>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 堆以下标1开始，0分量可用于存储当前堆长度heap-size</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(A,i,n)</span>:</span></span><br><span class="line">    <span class="comment"># i:将元素i向下调整</span></span><br><span class="line">    <span class="comment"># n:当前堆中元素个数</span></span><br><span class="line">    l,r = <span class="number">2</span>*i,<span class="number">2</span>*i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> l &lt;= n:</span><br><span class="line">        largest = r <span class="keyword">if</span> l&lt;n <span class="keyword">and</span> A[r] &gt; A[l] <span class="keyword">else</span> l</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        largest = i</span><br><span class="line">    <span class="keyword">if</span> A[i] != A[largest]:</span><br><span class="line">        A[i],A[largest] = A[largest],A[i]</span><br><span class="line">        heapify(A,largest,n)</span><br></pre></td></tr></table></figure></div>
-<p>分析：时间复杂度：O(h),h为堆的高度</p>
-<h4 id="建堆"><a href="#建堆" class="headerlink" title="建堆"></a>建堆</h4><p>从n/2到1，依次向下调整节点</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Build_max_heap</span><span class="params">(A)</span>:</span></span><br><span class="line">    A[<span class="number">0</span>] = len(A)<span class="number">-1</span> <span class="comment"># 使用A[0]存储当前堆容量</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(A[<span class="number">0</span>]//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heapify(A,i,A[<span class="number">0</span>])</span><br></pre></td></tr></table></figure></div>
-<p>分析：建堆的时间复杂度为O(n)</p>
-<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>堆排序:每轮交换堆顶和堆底元素，将堆长度减1，堆顶向下调整，n-1轮后堆中只剩一个元素，排序完成。</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/堆排序.gif" alt></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapsort</span><span class="params">(A)</span>:</span></span><br><span class="line">    build_max_heap(A) <span class="comment"># 构建堆</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(A)<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>): <span class="comment"># 堆排序：交换堆顶和堆底，堆长度-1，向下调整堆顶</span></span><br><span class="line">        A[<span class="number">1</span>],A[i] = A[i],A[<span class="number">1</span>]</span><br><span class="line">        heapify(A,<span class="number">1</span>,i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 堆以下标 1 开始，0 分量可用于存储当前堆长度 heap-size</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(A,i,n)</span>:</span></span><br><span class="line">    <span class="comment"># i: 将元素 i 向下调整 </span></span><br><span class="line">    <span class="comment"># n: 当前堆中元素个数 </span></span><br><span class="line">    l,r = <span class="number">2</span>*i,<span class="number">2</span>*i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> l &lt;= n:</span><br><span class="line">        largest = r <span class="keyword">if</span> l&lt;n <span class="keyword">and</span> A [r] &gt; A [l] <span class="keyword">else</span> l</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        largest = i</span><br><span class="line">    <span class="keyword">if</span> A [i] != A [largest]:</span><br><span class="line">        A [i],A [largest] = A [largest],A [i]</span><br><span class="line">        heapify (A,largest,n)</span><br></pre></td></tr></table></figure></div>
+<p>分析：时间复杂度：O (h),h 为堆的高度</p>
+<h4 id="建堆"><a href="#建堆" class="headerlink" title="建堆"></a>建堆</h4><p>从 n/2 到 1，依次向下调整节点</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Build_max_heap</span><span class="params">(A)</span>:</span></span><br><span class="line">    A [<span class="number">0</span>] = len (A)<span class="number">-1</span> <span class="comment"># 使用 A [0] 存储当前堆容量 </span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (A [<span class="number">0</span>]//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heapify (A,i,A [<span class="number">0</span>])</span><br></pre></td></tr></table></figure></div>
+<p>分析：建堆的时间复杂度为 O (n)</p>
+<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>堆排序：每轮交换堆顶和堆底元素，将堆长度减 1，堆顶向下调整，n-1 轮后堆中只剩一个元素，排序完成。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 堆排序.gif" alt></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapsort</span><span class="params">(A)</span>:</span></span><br><span class="line">    build_max_heap (A) <span class="comment"># 构建堆 </span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (len (A)<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>): <span class="comment"># 堆排序：交换堆顶和堆底，堆长度 - 1，向下调整堆顶 </span></span><br><span class="line">        A [<span class="number">1</span>],A [i] = A [i],A [<span class="number">1</span>]</span><br><span class="line">        heapify (A,<span class="number">1</span>,i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析：<ul>
-<li>时间复杂度：建堆过程花费O(n)，每次向下调整花费O(lgn)，排序过程需要交换、调整n-1次，所以堆排序时间复杂度为O(nlgn)</li>
-<li>空间复杂度：O(1)</li>
+<li>时间复杂度：建堆过程花费 O (n)，每次向下调整花费 O (lgn)，排序过程需要交换、调整 n-1 次，所以堆排序时间复杂度为 O (nlgn)</li>
+<li>空间复杂度：O (1)</li>
 <li>稳定性：不稳定</li>
 </ul>
 </li>
 </ul>
-<h2 id="归并排序-merge-sort"><a href="#归并排序-merge-sort" class="headerlink" title="归并排序(merge sort)"></a>归并排序(merge sort)</h2><ul>
+<h2 id="归并排序-merge-sort"><a href="#归并排序-merge-sort" class="headerlink" title="归并排序 (merge sort)"></a>归并排序 (merge sort)</h2><ul>
 <li>思路：二路归并排序基于分治和递归的思想，首先将序列分解为左右两个子序列，分别对左右子序列进行归并排序，再归并左右两个已排序序列</li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/归并排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 归并排序.gif" alt></p>
 <ul>
 <li>实现：</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        mid = (low+high)/<span class="number">2</span> <span class="comment"># 分解</span></span><br><span class="line">        merge_sort(A,low,mid) <span class="comment"># 解决</span></span><br><span class="line">        merge_sort(A,mid+<span class="number">1</span>,high)</span><br><span class="line">        merge(A,low,mid,high) <span class="comment"># 合并</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(A,low,mid,high)</span>:</span></span><br><span class="line">    i,j,k=low,mid+<span class="number">1</span>,low</span><br><span class="line">    B = A[:] <span class="comment"># 使用辅助数组B对A进行备份</span></span><br><span class="line">    <span class="keyword">while</span> i&lt;=mid <span class="keyword">and</span> j&lt;=high:</span><br><span class="line">        <span class="keyword">if</span> B[i] &lt; B[j]: <span class="comment"># 比较左右序列，将小的放入B</span></span><br><span class="line">            A[k] = B[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            A[k] = B[j]</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i &lt;= mid:A[k:high+<span class="number">1</span>]=B[i:mid+<span class="number">1</span>] <span class="comment"># 前半段还有剩余，则直接添加到k后面</span></span><br><span class="line">    <span class="keyword">if</span> j &lt;= high:A[k:high+<span class="number">1</span>]=B[j:high+<span class="number">1</span>]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(A,low,high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        mid = (low+high)/<span class="number">2</span> <span class="comment"># 分解 </span></span><br><span class="line">        merge_sort (A,low,mid) <span class="comment"># 解决 </span></span><br><span class="line">        merge_sort (A,mid+<span class="number">1</span>,high)</span><br><span class="line">        merge (A,low,mid,high) <span class="comment"># 合并 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(A,low,mid,high)</span>:</span></span><br><span class="line">    i,j,k=low,mid+<span class="number">1</span>,low</span><br><span class="line">    B = A [:] <span class="comment"># 使用辅助数组 B 对 A 进行备份 </span></span><br><span class="line">    <span class="keyword">while</span> i&lt;=mid <span class="keyword">and</span> j&lt;=high:</span><br><span class="line">        <span class="keyword">if</span> B [i] &lt; B [j]: <span class="comment"># 比较左右序列，将小的放入 B</span></span><br><span class="line">            A [k] = B [i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            A [k] = B [j]</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i &lt;= mid:A [k:high+<span class="number">1</span>]=B [i:mid+<span class="number">1</span>] <span class="comment"># 前半段还有剩余，则直接添加到 k 后面 </span></span><br><span class="line">    <span class="keyword">if</span> j &lt;= high:A [k:high+<span class="number">1</span>]=B [j:high+<span class="number">1</span>]</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析<ul>
-<li>时间复杂度：一趟归并需要O(n)，总共需要lgn趟归并，所以算法时间复杂度为O(nlgn)</li>
-<li>空间复杂度：merge操作中，辅助空间刚好占用n个单元，O(n)</li>
-<li>稳定性：merge操作不会改变相同关键字的顺序，稳定</li>
+<li>时间复杂度：一趟归并需要 O (n)，总共需要 lgn 趟归并，所以算法时间复杂度为 O (nlgn)</li>
+<li>空间复杂度：merge 操作中，辅助空间刚好占用 n 个单元，O (n)</li>
+<li>稳定性：merge 操作不会改变相同关键字的顺序，稳定</li>
 </ul>
 </li>
 </ul>
-<h2 id="基数排序-Radix-sort"><a href="#基数排序-Radix-sort" class="headerlink" title="基数排序(Radix sort)"></a>基数排序(Radix sort)</h2><ul>
-<li>概念：三围n、d、r<ul>
+<h2 id="基数排序-Radix-sort"><a href="#基数排序-Radix-sort" class="headerlink" title="基数排序 (Radix sort)"></a>基数排序 (Radix sort)</h2><ul>
+<li>概念：三围 n、d、r<ul>
 <li>n：待排序序列中节点个数（有多少个待排序数字）</li>
 <li>d：每个节点所包含的关键字个数（每个数最大位数）</li>
 <li>r：基数，每个关键字有多少种取值（桶个数）</li>
@@ -681,39 +681,39 @@
 <li>高位优先排序（马上到！）：从高位开始排序</li>
 </ul>
 </li>
-<li>思路：低位优先排序，从低位到高位需进行d轮排序，每轮排序包括了分配和收集两个过程：<ul>
+<li>思路：低位优先排序，从低位到高位需进行 d 轮排序，每轮排序包括了分配和收集两个过程：<ul>
 <li>分配：按照各节点在该位上的关键字值将其分配到对应的队列中去</li>
 <li>收集：将各队列中的节点依次首尾相连，得到新的节点序列</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/基数排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 基数排序.gif" alt></p>
 <ul>
 <li>实现：</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">radix_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="string">"""A为正整数序列"""</span></span><br><span class="line">    r = <span class="number">10</span> <span class="comment"># 基数为10</span></span><br><span class="line">    d = len(str(max(A))) <span class="comment"># 整数最大位数</span></span><br><span class="line">    bucket = [[] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(r)] <span class="comment"># 初始化十个队列</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(d): <span class="comment"># 需要d轮分配、组合</span></span><br><span class="line">        <span class="comment"># 分配：如果整数这一位是i，则将其分配到bucket[i]</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> A:bucket[num%(r**(i+<span class="number">1</span>))/(r**i)].append(num)</span><br><span class="line">        <span class="comment"># 收集：</span></span><br><span class="line">        <span class="keyword">del</span> A[:]</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> bucket:</span><br><span class="line">            A.extend(q)</span><br><span class="line">        bucket = [[] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(r)]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">radix_sort</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="string">"""A 为正整数序列"""</span></span><br><span class="line">    r = <span class="number">10</span> <span class="comment"># 基数为 10</span></span><br><span class="line">    d = len (str (max (A))) <span class="comment"># 整数最大位数 </span></span><br><span class="line">    bucket = [[] <span class="keyword">for</span> i <span class="keyword">in</span> xrange (r)] <span class="comment"># 初始化十个队列 </span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange (d): <span class="comment"># 需要 d 轮分配、组合 </span></span><br><span class="line">        <span class="comment"># 分配：如果整数这一位是 i，则将其分配到 bucket [i]</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> A:bucket [num%(r**(i+<span class="number">1</span>))/(r**i)].append (num)</span><br><span class="line">        <span class="comment"># 收集：</span></span><br><span class="line">        <span class="keyword">del</span> A [:]</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> bucket:</span><br><span class="line">            A.extend (q)</span><br><span class="line">        bucket = [[] <span class="keyword">for</span> i <span class="keyword">in</span> xrange (r)]</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>分析：<ul>
-<li>时间复杂度： 总共需d轮分配收集，每趟分配需O(n)，收集需O(r)，O(d(n+r))</li>
-<li>空间复杂度：需要r个队列，O(r)</li>
+<li>时间复杂度： 总共需 d 轮分配收集，每趟分配需 O (n)，收集需 O (r)，O (d (n+r))</li>
+<li>空间复杂度：需要 r 个队列，O (r)</li>
 <li>稳定性：对基数排序而言很重要一点就是按位排序时必须是稳定的</li>
 </ul>
 </li>
 </ul>
 <h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><ul>
-<li>思路：分桶-桶内排序-收集<ol>
-<li>假设待排序的一组数统一的分布在一个范围中，并将这一范围划分成几个子范围，也就是桶;</li>
-<li>将待排序的一组数，分档规入这些子桶，并将桶中的数据进行排序;</li>
-<li>将各个桶中的数据有序的合并起来;</li>
+<li>思路：分桶 - 桶内排序 - 收集<ol>
+<li>假设待排序的一组数统一的分布在一个范围中，并将这一范围划分成几个子范围，也就是桶；</li>
+<li>将待排序的一组数，分档规入这些子桶，并将桶中的数据进行排序；</li>
+<li>将各个桶中的数据有序的合并起来；</li>
 </ol>
 </li>
 </ul>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/桶排序.gif" alt></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 桶排序.gif" alt></p>
 <ul>
-<li>分析：桶排序的平均时间复杂度为线性的O(N+C)，其中C=N*(logN-logM)。如果相对于同样的N，桶数量M越大，其效率越高，最好的时间复杂度达到O(N)。 当然桶排序的空间复杂度 为O(N+M)，如果输入数据非常庞大，而桶的数量也非常多，则空间代价无疑是昂贵的</li>
+<li>分析：桶排序的平均时间复杂度为线性的 O (N+C)，其中 C=N*(logN-logM)。如果相对于同样的 N，桶数量 M 越大，其效率越高，最好的时间复杂度达到 O (N)。 当然桶排序的空间复杂度 为 O (N+M)，如果输入数据非常庞大，而桶的数量也非常多，则空间代价无疑是昂贵的</li>
 </ul>
 <h2 id="常见排序算法比较"><a href="#常见排序算法比较" class="headerlink" title="常见排序算法比较"></a>常见排序算法比较</h2><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-26-2e9.jpg" alt></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="http://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html" target="_blank" rel="noopener">排序算法可视化</a><br>[2] <a href="http://www.yduba.com/biancheng-9902519493.html" target="_blank" rel="noopener">十大经典排序算法PHP实现教程</a><br>[3]<a href="https://zhuanlan.zhihu.com/p/34894768" target="_blank" rel="noopener">十大经典排序算法最强总结（含Java代码实现)</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="http://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html" target="_blank" rel="noopener">排序算法可视化</a><br>[2] <a href="http://www.yduba.com/biancheng-9902519493.html" target="_blank" rel="noopener">十大经典排序算法 PHP 实现教程</a><br>[3]<a href="https://zhuanlan.zhihu.com/p/34894768" target="_blank" rel="noopener">十大经典排序算法最强总结（含 Java 代码实现)</a></p>
 
       
     </div>
@@ -864,7 +864,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -875,7 +875,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -960,7 +960,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序-Insertion-Sort"><span class="nav-number">1.</span> <span class="nav-text">插入排序(Insertion Sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接插入排序"><span class="nav-number">1.1.</span> <span class="nav-text">直接插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折半插入排序"><span class="nav-number">1.2.</span> <span class="nav-text">折半插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔-插入-排序-shell-sort"><span class="nav-number">1.3.</span> <span class="nav-text">希尔(插入)排序(shell sort)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换排序"><span class="nav-number">2.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序-bubble-sort"><span class="nav-number">2.1.</span> <span class="nav-text">冒泡排序(bubble sort)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序（quick-sort）"><span class="nav-number">2.2.</span> <span class="nav-text">快速排序（quick sort）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">3.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单选择排序-selection-sort"><span class="nav-number">3.1.</span> <span class="nav-text">简单选择排序(selection sort)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序-heap-sort"><span class="nav-number">3.2.</span> <span class="nav-text">堆排序(heap sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#向下调整算法"><span class="nav-number">3.2.1.</span> <span class="nav-text">向下调整算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建堆"><span class="nav-number">3.2.2.</span> <span class="nav-text">建堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆排序"><span class="nav-number">3.2.3.</span> <span class="nav-text">堆排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序-merge-sort"><span class="nav-number">4.</span> <span class="nav-text">归并排序(merge sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基数排序-Radix-sort"><span class="nav-number">5.</span> <span class="nav-text">基数排序(Radix sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序"><span class="nav-number">6.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见排序算法比较"><span class="nav-number">7.</span> <span class="nav-text">常见排序算法比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序-Insertion-Sort"><span class="nav-number">1.</span> <span class="nav-text">插入排序 (Insertion Sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接插入排序"><span class="nav-number">1.1.</span> <span class="nav-text">直接插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折半插入排序"><span class="nav-number">1.2.</span> <span class="nav-text">折半插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔-插入-排序-shell-sort"><span class="nav-number">1.3.</span> <span class="nav-text">希尔 (插入) 排序 (shell sort)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换排序"><span class="nav-number">2.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序-bubble-sort"><span class="nav-number">2.1.</span> <span class="nav-text">冒泡排序 (bubble sort)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序（quick-sort）"><span class="nav-number">2.2.</span> <span class="nav-text">快速排序（quick sort）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">3.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单选择排序-selection-sort"><span class="nav-number">3.1.</span> <span class="nav-text">简单选择排序 (selection sort)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序-heap-sort"><span class="nav-number">3.2.</span> <span class="nav-text">堆排序 (heap sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#向下调整算法"><span class="nav-number">3.2.1.</span> <span class="nav-text">向下调整算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建堆"><span class="nav-number">3.2.2.</span> <span class="nav-text">建堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆排序"><span class="nav-number">3.2.3.</span> <span class="nav-text">堆排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序-merge-sort"><span class="nav-number">4.</span> <span class="nav-text">归并排序 (merge sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基数排序-Radix-sort"><span class="nav-number">5.</span> <span class="nav-text">基数排序 (Radix sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序"><span class="nav-number">6.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见排序算法比较"><span class="nav-number">7.</span> <span class="nav-text">常见排序算法比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -998,7 +998,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">137.3k</span>
+    <span title="Site words total count">146.7k</span>
   
 </div>
 
