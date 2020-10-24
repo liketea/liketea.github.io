@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="机器学习,">
 
 
 
@@ -125,16 +125,22 @@
 
 
 
-<meta name="description" content="点击积累，分享快乐！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Like">
-<meta property="og:url" content="https://liketea.xyz/archives/2019/08/index.html">
+<meta name="description" content="EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 1. EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习：基础算法（九）—— EM">
+<meta property="og:url" content="https://liketea.xyz/机器学习/机器学习：基础算法（九）—— EM/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="点击积累，分享快乐！">
+<meta property="og:description" content="EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 1. EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-21-54.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-31-56.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-40-24.jpg">
+<meta property="og:updated_time" content="2020-10-24T09:30:22.562Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Like">
-<meta name="twitter:description" content="点击积累，分享快乐！">
+<meta name="twitter:title" content="机器学习：基础算法（九）—— EM">
+<meta name="twitter:description" content="EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 1. EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-21-54.jpg">
 
 
 
@@ -164,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/archives/2019/08/">
+  <link rel="canonical" href="https://liketea.xyz/机器学习/机器学习：基础算法（九）—— EM/">
 
 
 
 
 
-  <title>归档 | Like</title>
+  <title>机器学习：基础算法（九）—— EM | Like</title>
   
 
 
@@ -189,7 +195,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -325,106 +331,343 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        好! 目前共计 51 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/机器学习/机器学习：基础算法（九）—— EM/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Like Wong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/Life/曾广贤文：上集/" itemprop="url">
-              
-                <span itemprop="name">曾广贤文：上集</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">机器学习：基础算法（九）—— EM</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T21:10:05+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-20T20:15:53+08:00">
+                2020-10-20
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-24T17:30:22+08:00">
+                2020-10-24
+              </time>
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/机器学习/机器学习：基础算法（九）—— EM/" class="leancloud_visitors" data-flag-title="机器学习：基础算法（九）—— EM">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Life/曾广贤文：下集/" itemprop="url">
-              
-                <span itemprop="name">曾广贤文：下集</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-31T21:10:05+08:00" content="2019-08-31">
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。</p>
+<h2 id="1-EM-算法的推导"><a href="#1-EM-算法的推导" class="headerlink" title="1. EM 算法的推导"></a>1. EM 算法的推导</h2><p>考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*$</p>
+<script type="math/tex; mode=display">
+\theta^*=\underset {\theta}{max}\ log\ p (X\mid\theta)=\underset {\theta}{max}\ log\ \sum_{Z} p (X,Z\mid\theta)</script><p>因为对数中包含了联合概率分布的和 (或积分)，直接最优化 $log\ p (X\mid\theta)$ 比较困难，通过引入隐变量分布 $q (Z)$，可以将观测变量的对数似然分解为一个下界加上 $q (z)$ 与 $p (Z|X,\theta)$ 的 KL 散度 (代入可证)：</p>
+<script type="math/tex; mode=display">
+L (\theta)=logp (X|\theta)=B (q,\theta)+KL (q||p)</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\left\{\begin {matrix}
+&B (q,\theta)=\sum_{Z} q (Z) log\frac {p (X,Z|\theta)}{q (Z)}\\ 
+&KL (q||p)=-\sum_{Z} q (Z) log\frac {p (Z|X,\theta)}{q (Z)}
+\end {matrix}\right.</script><p>KL 散度总是大于等于 0，故 $B (q,\theta)$ 是 $L (\theta)$ 的一个下界：</p>
+<script type="math/tex; mode=display">
+L (\theta)\geqslant B (q,\theta)</script><p>EM 算法是一个两阶段的迭代算法，通过不断提升对数似然函数的下界来搜索对数似然函数的极大值。假设参数当前值为 $\theta_k$，可以用以上似然分解来定义这两个阶段：</p>
+<p>1、 E 步：固定当前参数 $\theta_k$，关于隐变量分布 $q (Z)$ 最大化下界函数 $B (q,\theta_k)$，逼近当前的对数似然函数值。很明显下界函数的最大值出现在 $q (z)$ 与 $p (Z|X,\theta)$ 的 KL 散度为 0 的时候，即 $p (Z|X,\theta_k)=q (Z)$。</p>
+<p>此时下界函数可表示为：</p>
+<script type="math/tex; mode=display">
+\begin {align*} 
+B (q,\theta)&=\sum_{Z} p (Z|X,\theta_k) logp (X,Z|\theta)-\sum_{Z} p (Z|X,\theta_k) logp (Z|X,\theta_k)\\
+&=Q (\theta,\theta_k) + H_{X,\theta_k}(Z)
+\end {align*}</script><ul>
+<li>$H_{X,\theta_k}(Z)$：分布 q (Z) 的熵，为常数，与 $\theta$ 无关；</li>
+<li>$Q (\theta,\theta_k)$：Q 函数，完全数据的对数似然关于隐变量分布的期望；</li>
+</ul>
+<p>此时下界函数值等于对数似然函数值：</p>
+<script type="math/tex; mode=display">
+\begin {align*} 
+B (q,\theta_k)&=\sum_{Z} p (Z|X,\theta_k) logp (X,Z|\theta_k)-\sum_{Z} p (Z|X,\theta_k) logp (Z|X,\theta_k)\\
+&=\sum_{Z} p (Z|X,\theta_k) logp (X|\theta_k)\\
+&=logp (X|\theta_k)\\
+&=L (\theta_k)
+\end {align*}</script><p>E 步的几何解释：q 分布被置为当前参数下的后验概率分布，使得 KL 散度为 0，下界函数上移到与观测数据对数似然相等的位置。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-21-54.jpg" alt></p>
+<p>2、M 步：固定当前隐变量分布，关于参数 $\theta$ 最大化下界函数 $B (q,\theta_k)$，得到某个新的 $\theta_{k+1}$。这会增大 $B (q,\theta_k)$(除非已经到达极大值)，同时因为概率分布 q 由 $\theta_k$ 确定，并在 M 步保持不变，因此它不会等于新的后验概率分布 $p (Z|X,\theta_{k+1})$，从而 KL 散度不为 0，所以对数似然的增加量大于下界函数的增加量。</p>
+<script type="math/tex; mode=display">
+\theta_{k+1}= arg\ \underset {\theta}{max}\ B (q,\theta)=arg\ \underset {\theta}{max}\ Q (\theta,\theta_k)</script><script type="math/tex; mode=display">
+L (\theta_k)>B (q,\theta_k)</script><p>M 步几何解释：下界函数关于参数最大化，得到修正的 $\theta$，因为 KL 散度非负，使得对数似然函数增量至少与下界函数增量相等。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-31-56.jpg" alt></p>
+<p>EM 算法也可以看做是参数空间中的迭代：红色曲线表示观测数据对数似然函数，我们希望搜索它的极大值，首先选取某个初始参数值 $\theta^{old}$，通过 E 步计算隐变量上的后验概率分布，关于隐变量上的后验概率分布最大化下界函数 (蓝色曲线表示)，使得在 $\theta^{old}$ 处下界函数值等于对数似然值；在 M 步，关于参数 $\theta$ 最大化下界函数，得到新的 $\theta^{new}$，在新参数值下对数似然值增长量大于下界函数增长量；接下来的 E 步又构建了一个新的下界函数 (绿色)，直至对数似然函数达到极值 (EM 之只能达到局部最优)。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-40-24.jpg" alt></p>
+<p><strong>EM 算法的基本框架 </strong>：</p>
+<p>输入：观测变量数据 X，隐变量数据 Z，完全数据联合分布 $p (X,Z|\theta)$，条件分布 $p (Z|Y,\theta)$，精度 $\epsilon$<br>输出：模型参数 $\theta$<br>（1）选择参数初值 $\theta_0$，置 k=0<br>（2）如果 $\left | \theta_{k+1}-\theta_k \right |&lt;\epsilon $</p>
+<ul>
+<li>E 步：记 $\theta_k$ 为第 k 次迭代参数的估计值，计算 Q 函数：</li>
+</ul>
+<script type="math/tex; mode=display">
+Q (\theta,\theta_k)=\mathbb {E}_Z [logp (X,Z|\theta)\mid X,\theta_k]=\sum_{Z} p (Z|X,\theta_k) logp (X,Z|\theta)</script><ul>
+<li>M 步：极大化 Q 函数，更新参数</li>
+</ul>
+<script type="math/tex; mode=display">
+\theta_{k+1}=arg\ \underset {\theta}{max}\ Q (\theta,\theta_k)</script><h2 id="2-EM-算法的收敛性"><a href="#2-EM-算法的收敛性" class="headerlink" title="2. EM 算法的收敛性"></a>2. EM 算法的收敛性</h2><p>定理 1：假设 $\theta_k,k=1,2…$ 是 EM 算法得到的参数估计序列，则对应的对数似然函数序列是递增的。</p>
+<script type="math/tex; mode=display">
+L (\theta_{k+1})\geqslant B (q,\theta_{k+1})\geqslant B (q,\theta_k)= L (\theta_k)</script><p>定理 2：如果 EM 的对数似然函数有上界，则 EM 算法得到的对数似然函数序列会收敛到某个值。</p>
+<p>定理 3：在 Q 函数和对数似然满足一定条件下，EM 算法得到的参数估计序列会收敛到对数似然函数序列的稳定点，但不能保证收敛到全局 / 局部极大值点。</p>
+<p>EM 算法对初值比较敏感，在实际应用中通常选取几个不同的初值进行迭代，然后对各个估计值加以比较，从中选择最好的</p>
+<h2 id="3-EM-算法用于极大后验概率估计"><a href="#3-EM-算法用于极大后验概率估计" class="headerlink" title="3. EM 算法用于极大后验概率估计"></a>3. EM 算法用于极大后验概率估计</h2><p>我们也可以使用 EM 算法来最大化模型的后验概率分布 $p (\theta\mid X)$，其中我们已经引入了参数上的先验概率分布 $p (\theta)$，我们的目标是极大化以下对数后验概率：</p>
+<script type="math/tex; mode=display">
+\begin {align*}
+log\ p (\theta\mid X)&=log\ \frac {p (\theta) p (X\mid \theta)}{p (X)}\\
+&=log\ p (X\mid \theta) + log\ p (\theta)-log\ p (X)\\
+&=B (q,\theta)+KL (q||p)+ log\ p (\theta)-log\ p (X)\\
+&\geqslant B (q,\theta)+ log\ p (\theta)-log\ p (X)
+ \end {align*}</script><p>其中 $log\ p (X)$ 是一个常数，与之前一样，我们可以交替地关于 q 和 $\theta$ 对右侧进行优化：</p>
+<ol>
+<li>E 步：因为 q 只出现在下界函数中，与标准 EM 中的 E 步完全相同</li>
+<li>M 步：通过引入先验分布 $p (\theta)$ 进行修改，通常只需要做很小改动即可</li>
+</ol>
+<h2 id="4-GEM-算法"><a href="#4-GEM-算法" class="headerlink" title="4. GEM 算法"></a>4. GEM 算法</h2><p>EM 算法将最大化似然函数这一困难问题分解为两个阶段，每个步骤一般都很容易解决，但对于复杂的模型来说，E 步或 M 步仍然无法计算。推广的 EM 算法 (generalized EM,GEM) 解决的是 M 步骤无法计算的问题。</p>
+<h3 id="4-1-F-函数的极大极大算法"><a href="#4-1-F-函数的极大极大算法" class="headerlink" title="4.1 F 函数的极大极大算法"></a>4.1 F 函数的极大极大算法</h3><p>EM 算法还可以解释为 F 函数的极大极大算法：</p>
+<p>F 函数：</p>
+<script type="math/tex; mode=display">
+F (\tilde {P},\theta)=E_P [log\ P (X,Z\mid \theta)]+H (\tilde {P})</script><ul>
+<li>$\tilde {P}(Z)$：隐变量数据的概率分布</li>
+<li>$H (\tilde {P}$：分布 $\tilde {P}$ 的熵</li>
+</ul>
+<p>E 步：对固定的 $\theta^i$，求 $\tilde {P}^{i+1}$ 使 $F (\tilde {P},\theta^i)$ 极大化</p>
+<p>M 步：对固定的 $\tilde {P}^{i+1}$，求 $\theta^{i+1}$ 使 $F (\tilde {P}^{i+1},\theta)$</p>
+<p>由 EM 算法和 F 函数的极大极大算法得到的参数估计序列是一致的。</p>
+<h3 id="4-2-GEM-算法框架"><a href="#4-2-GEM-算法框架" class="headerlink" title="4.2 GEM 算法框架"></a>4.2 GEM 算法框架</h3><p>当参数个数 d 大于等于 2 时，可采用一种特殊的 GEM 算法，它将 EM 算法的 M 步分解为 d 次条件极大化，每次只改变参数向量中的一个分量，其余分量不变。</p>
+<h2 id="5-EM-评价和应用"><a href="#5-EM-评价和应用" class="headerlink" title="5. EM 评价和应用"></a>5. EM 评价和应用</h2><p>EM 算法的优缺点:</p>
+<ol>
+<li>优点：简单、普适</li>
+<li>缺点：收敛速度慢，只能收敛到稳定点，不能保证收敛到全局 / 局部最优解</li>
+</ol>
+<p>EM 算法的应用:</p>
+<ol>
+<li>EM 用于生成模型的非监督学习：可以认为非监督学习训练数据是联合概率分布 $p (X,Y)$ 生成的数据，X 为观测变量数据，Y 为隐变量数据。<ol>
+<li>K-means 聚类</li>
+<li>GMM 混合高斯</li>
+<li>HMM 隐马尔科夫</li>
+</ol>
+</li>
+<li>填充缺失值</li>
+</ol>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt="Like Wong 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/机器学习/机器学习：基础算法（十）—— GMM/" rel="next" title="机器学习：基础算法（十）—— GMM">
+                <i class="fa fa-chevron-left"></i> 机器学习：基础算法（十）—— GMM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/机器学习/机器学习：基础算法（八）—— PCA/" rel="prev" title="机器学习：基础算法（八）—— PCA">
+                机器学习：基础算法（八）—— PCA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -432,6 +675,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -452,8 +704,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -556,6 +817,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-EM-算法的推导"><span class="nav-number">1.</span> <span class="nav-text">1. EM 算法的推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-EM-算法的收敛性"><span class="nav-number">2.</span> <span class="nav-text">2. EM 算法的收敛性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-EM-算法用于极大后验概率估计"><span class="nav-number">3.</span> <span class="nav-text">3. EM 算法用于极大后验概率估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-GEM-算法"><span class="nav-number">4.</span> <span class="nav-text">4. GEM 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-F-函数的极大极大算法"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 F 函数的极大极大算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-GEM-算法框架"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 GEM 算法框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-EM-评价和应用"><span class="nav-number">5.</span> <span class="nav-text">5. EM 评价和应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -724,6 +1001,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -752,6 +1033,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

@@ -141,7 +141,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-31.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-38.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-44.jpg">
-<meta property="og:updated_time" content="2020-10-24T07:53:12.883Z">
+<meta property="og:updated_time" content="2020-10-24T09:12:09.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：理论基础（八）—— 性能评估">
 <meta name="twitter:description" content="误差和过拟合误差分类 误差（error）：样本的预测输出与真实输出之间的差异。 训练误差（training error）：也叫经验误差，是指在训练集中样本的预测输出与真实输出之间的差异。 验证误差（validation error）：是指在验证集中样本的预测输出与真实输出之间的差异 泛化误差（generalization error）：是指在预测集中样本的预测输出与真实输出之间的差异在进行模型选择">
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-22T20:23:53+08:00">
-                2020-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-23T20:22:53+08:00">
+                2020-10-23
               </time>
             
 
@@ -395,7 +395,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-10-24T15:53:12+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-24T17:12:09+08:00">
                 2020-10-24
               </time>
             
@@ -509,24 +509,24 @@
 </div>
 
 <p>过拟合是机器学习面临的关键障碍，它只能被缓解而无法彻底避免。</p>
-<h2 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h2><p>在实验中，我们通常以模型的验证误差作为其泛化误差的近似，来对模型的泛化能力进行评估。假设现在我们有一个包含m个样本的数据集<script type="math/tex">D=\{(x_{1},y_{1}),(x_{2},y_{2}),...,(x_{m},y_{m})\}</script>，既要训练又要验证，该怎么做呢？答案是：通过对数据集进行合理划分来产生所需要的训练集S和验证集T，然后用训练集来训练我们的模型，用验证集来评估模型的性能。</p>
-<p>验证集的<strong>划分准则</strong>：</p>
+<h2 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h2><p>在实验中，我们通常以模型的验证误差作为其泛化误差的近似，来对模型的泛化能力进行评估。假设现在我们有一个包含 m 个样本的数据集 <script type="math/tex">D=\{(x_{1},y_{1}),(x_{2},y_{2}),...,(x_{m},y_{m})\}</script>，既要训练又要验证，该怎么做呢？答案是：通过对数据集进行合理划分来产生所需要的训练集 S 和验证集 T，然后用训练集来训练我们的模型，用验证集来评估模型的性能。</p>
+<p>验证集的 <strong> 划分准则 </strong>：</p>
 <ol>
-<li>分布一致：尽可能保持验证集和训练集数据分布的一致性，否则评估结果将由于训练/验证集分布的差异而产生较大偏差；</li>
-<li>互斥：尽可能保持验证集和训练集互斥，否则就“泄题”了，评估结果会过于“乐观”；</li>
-<li>较大规模的训练集：尽可能使训练集的规模接近数据集D的规模，这时的评估结果最为准确；</li>
+<li>分布一致：尽可能保持验证集和训练集数据分布的一致性，否则评估结果将由于训练 / 验证集分布的差异而产生较大偏差；</li>
+<li>互斥：尽可能保持验证集和训练集互斥，否则就 “泄题” 了，评估结果会过于 “乐观”；</li>
+<li>较大规模的训练集：尽可能使训练集的规模接近数据集 D 的规模，这时的评估结果最为准确；</li>
 </ol>
 <p>我们可以按照这三条准则来对数据集进行划分，常用的划分方法有留出法和交叉验证法。</p>
 <h3 id="留出法（hold-out）"><a href="#留出法（hold-out）" class="headerlink" title="留出法（hold-out）"></a>留出法（hold-out）</h3><ul>
-<li><p>原理：把数据集D划分为两个互斥子集，分别作为训练集S和验证集T。单次留出法的评估结果往往不够稳定可靠，通常取多次评估结果的平均值作为最终评估结果。</p>
+<li><p>原理：把数据集 D 划分为两个互斥子集，分别作为训练集 S 和验证集 T。单次留出法的评估结果往往不够稳定可靠，通常取多次评估结果的平均值作为最终评估结果。</p>
 </li>
 <li><p>抽样方法：通常采用随机抽样或分层抽样</p>
 </li>
-<li><p>抽样比例：二八分，训练集8，验证集2</p>
+<li><p>抽样比例：二八分，训练集 8，验证集 2</p>
 </li>
 </ul>
 <h3 id="交叉验证法（cross-validation）"><a href="#交叉验证法（cross-validation）" class="headerlink" title="交叉验证法（cross-validation）"></a>交叉验证法（cross-validation）</h3><ul>
-<li>原理：先把数据集D划分为k个大小相近的互斥子集，然后每次取其中的k-1个子集的并集作为训练集S，取剩下的那个子集作为验证集T，经过k次训练和验证，取k次评估结果的平均值作为最终的评估结果。</li>
+<li>原理：先把数据集 D 划分为 k 个大小相近的互斥子集，然后每次取其中的 k-1 个子集的并集作为训练集 S，取剩下的那个子集作为验证集 T，经过 k 次训练和验证，取 k 次评估结果的平均值作为最终的评估结果。</li>
 </ul>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201024153653.png" width="55%" heigh="55%">
@@ -535,56 +535,56 @@
 <ul>
 <li><p>抽样方式：分层采样</p>
 </li>
-<li><p>k折交叉验证（k-fold cross-validation）：k值越大，训练集规模就越接近D的规模，评估结果也越准确，但开销也更大。k最常用的取值是10，称10折交叉验证</p>
+<li><p>k 折交叉验证（k-fold cross-validation）：k 值越大，训练集规模就越接近 D 的规模，评估结果也越准确，但开销也更大。k 最常用的取值是 10，称 10 折交叉验证</p>
 </li>
-<li><p>留一法：当k=m时，称为留一法。训练集和D接近，评估结果最准确，但开销大。</p>
+<li><p>留一法：当 k=m 时，称为留一法。训练集和 D 接近，评估结果最准确，但开销大。</p>
 </li>
 </ul>
-<h2 id="模型性能指标"><a href="#模型性能指标" class="headerlink" title="模型性能指标"></a>模型性能指标</h2><p>性能指标（performance measure）:衡量模型泛化能力的评价标准。</p>
+<h2 id="模型性能指标"><a href="#模型性能指标" class="headerlink" title="模型性能指标"></a>模型性能指标</h2><p>性能指标（performance measure）: 衡量模型泛化能力的评价标准。</p>
 <h3 id="回归任务"><a href="#回归任务" class="headerlink" title="回归任务"></a>回归任务</h3><p>回归（regression）用于预测结果为数值型的模型，与分类模型相比，回归并没有简单的指标说明预测是否正确，但可以说接近或远离真实值。</p>
 <p>残差（residuals）：预测值和真实值之间的距离。</p>
-<h4 id="均方误差"><a href="#均方误差" class="headerlink" title="均方误差"></a>均方误差</h4><p>回归任务中最常用的性能指标是“均方误差”（Mean squared Error,MSE）：预测值与真实值之差的平方和的平均值。</p>
+<h4 id="均方误差"><a href="#均方误差" class="headerlink" title="均方误差"></a>均方误差</h4><p>回归任务中最常用的性能指标是 “均方误差”（Mean squared Error,MSE）：预测值与真实值之差的平方和的平均值。</p>
 <ul>
 <li>对于离散分布：</li>
 </ul>
 <script type="math/tex; mode=display">
-MSE = \frac{1}{m}\sum_{i=1}^{m}(f(x_{i})-y_{i})^{2}</script><ul>
+MSE = \frac {1}{m}\sum_{i=1}^{m}(f (x_{i})-y_{i})^{2}</script><ul>
 <li>对于连续分布：</li>
 </ul>
 <script type="math/tex; mode=display">
-MSE=\int_{(x,y)\in D}(f(x)-y)^{2}p(x)dx</script><h4 id="均方根误差"><a href="#均方根误差" class="headerlink" title="均方根误差"></a>均方根误差</h4><p>均方根误差（root-mean-square error,RMSE）：</p>
+MSE=\int_{(x,y)\in D}(f (x)-y)^{2} p (x) dx</script><h4 id="均方根误差"><a href="#均方根误差" class="headerlink" title="均方根误差"></a>均方根误差</h4><p>均方根误差（root-mean-square error,RMSE）：</p>
 <script type="math/tex; mode=display">
-RMSE = \sqrt{MSE}</script><ul>
-<li>RMES的优势：结果与参与运算的值有相同单位</li>
-<li>RMES的劣势：RMES的值和问题规模有关，不易于在不同数据集上比较，只限于在同一个项目中进行模型比较</li>
+RMSE = \sqrt {MSE}</script><ul>
+<li>RMES 的优势：结果与参与运算的值有相同单位</li>
+<li>RMES 的劣势：RMES 的值和问题规模有关，不易于在不同数据集上比较，只限于在同一个项目中进行模型比较</li>
 </ul>
 <h4 id="拟合优度"><a href="#拟合优度" class="headerlink" title="拟合优度"></a>拟合优度</h4><ul>
 <li>拟合优度（Goodness of Fit）是指回归直线对观测值的拟合程度。</li>
-<li>可决系数$R^{2}$：也称确定系数，是度量拟合优度的统计量</li>
+<li>可决系数 $R^{2}$：也称确定系数，是度量拟合优度的统计量</li>
 </ul>
 <script type="math/tex; mode=display">
-R^{2} = 1 - \frac{\sum_{i=1}^{n}(f(x_{i})-y_{i})^{2}}{\sum_{i=1}^{n}(f(x_{i})-\overline{y})^{2}}</script><p>说明：</p>
+R^{2} = 1 - \frac {\sum_{i=1}^{n}(f (x_{i})-y_{i})^{2}}{\sum_{i=1}^{n}(f (x_{i})-\overline {y})^{2}}</script><p>说明：</p>
 <ul>
-<li>SST(total sum of squares):总平方和</li>
-<li>SSE(error sum of squares):残差平方和</li>
-<li>SSR(regression sum of squares):回归平方和</li>
+<li>SST (total sum of squares): 总平方和</li>
+<li>SSE (error sum of squares): 残差平方和</li>
+<li>SSR (regression sum of squares): 回归平方和</li>
 </ul>
 <script type="math/tex; mode=display">
-R^{2} = \frac{SSR}{SST}=\frac{SST-SSE}{SST}=1-\frac{SSE}{SST}</script><div align="center">
+R^{2} = \frac {SSR}{SST}=\frac {SST-SSE}{SST}=1-\frac {SSE}{SST}</script><div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/18-08-56.jpg" width="80%" heigh="80%">
 </div>
 
-<h3 id="分类任务"><a href="#分类任务" class="headerlink" title="分类任务"></a>分类任务</h3><h4 id="错误率和精度"><a href="#错误率和精度" class="headerlink" title="错误率和精度"></a>错误率和精度</h4><p>错误率和精度是分类任务中最常用的两种性能度量。对于数据集D，</p>
+<h3 id="分类任务"><a href="#分类任务" class="headerlink" title="分类任务"></a>分类任务</h3><h4 id="错误率和精度"><a href="#错误率和精度" class="headerlink" title="错误率和精度"></a>错误率和精度</h4><p>错误率和精度是分类任务中最常用的两种性能度量。对于数据集 D，</p>
 <ul>
-<li>错误率(error rate)：错误分类的样本数a与样容量m的比值</li>
-<li>精度(accuracy)：精度=1- 错误率</li>
+<li>错误率 (error rate)：错误分类的样本数 a 与样容量 m 的比值</li>
+<li>精度 (accuracy)：精度 = 1- 错误率</li>
 </ul>
-<h4 id="混淆矩阵（confusion-matrix）"><a href="#混淆矩阵（confusion-matrix）" class="headerlink" title="混淆矩阵（confusion matrix）"></a>混淆矩阵（confusion matrix）</h4><p>有时相对于预测精度，我们更关心查准率和查全率。对二分类问题，根据样本的真实类别和预测类别的不同组合可以定义出真正例（TP）、假正例（FP）、真负例（TN）、假负例（FN），组合结果的“混淆矩阵”如下：</p>
+<h4 id="混淆矩阵（confusion-matrix）"><a href="#混淆矩阵（confusion-matrix）" class="headerlink" title="混淆矩阵（confusion matrix）"></a>混淆矩阵（confusion matrix）</h4><p>有时相对于预测精度，我们更关心查准率和查全率。对二分类问题，根据样本的真实类别和预测类别的不同组合可以定义出真正例（TP）、假正例（FP）、真负例（TN）、假负例（FN），组合结果的 “混淆矩阵” 如下：</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">真实\预测</th>
+<th style="text-align:center">真实 \ 预测</th>
 <th style="text-align:center">正</th>
 <th style="text-align:right">负</th>
 </tr>
@@ -603,57 +603,57 @@ R^{2} = \frac{SSR}{SST}=\frac{SST-SSE}{SST}=1-\frac{SSE}{SST}</script><div align
 </tbody>
 </table>
 </div>
-<p>说明：通常混淆矩阵中的元素可以是对应类别的样本数/比例</p>
+<p>说明：通常混淆矩阵中的元素可以是对应类别的样本数 / 比例</p>
 <ul>
 <li><p>查准率（precision）：预测为正的样本中有多少真实为正。</p>
 <script type="math/tex; mode=display">
-P = \frac{TP}{TP+FP}</script></li>
+P = \frac {TP}{TP+FP}</script></li>
 <li><p>查全率（recall）：真实为正的样本中有多少预测为正。</p>
 <script type="math/tex; mode=display">
-R = \frac{TP}{TP+FN}</script></li>
+R = \frac {TP}{TP+FN}</script></li>
 </ul>
 <p>说明：对于多分类问题，也可以使用混淆矩阵，行列依然表示各个真实类别和预测类别</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-11.jpg" width="80%" heigh="80%">
 </div>
 
-<h4 id="P-R曲线和F1度量"><a href="#P-R曲线和F1度量" class="headerlink" title="P-R曲线和F1度量"></a>P-R曲线和F1度量</h4><p><strong>分类阈值</strong>：很多学习器会为每个测试样本产生一个预测值，将其与分类阈值比较，大于阈值则为正类，否则为负类。（魔法旋钮）</p>
-<p>查准率和查全率是一对矛盾，如果把阈值设置的较高则查准率较高但查全率较低，反之查准率较低但查全率较高。我们可以通过P-R曲线来直观反映这种关系。</p>
-<p>绘制 P-R 曲线：按照预测结果是正例的可能性大小对样本进行排序，然后通过调整阈值（从大到小）逐个将样本作为正例并计算当前的查准率P和查全率R，就得到了P-R曲线。</p>
+<h4 id="P-R-曲线和-F1-度量"><a href="#P-R-曲线和-F1-度量" class="headerlink" title="P-R 曲线和 F1 度量"></a>P-R 曲线和 F1 度量</h4><p><strong> 分类阈值 </strong>：很多学习器会为每个测试样本产生一个预测值，将其与分类阈值比较，大于阈值则为正类，否则为负类。（魔法旋钮）</p>
+<p>查准率和查全率是一对矛盾，如果把阈值设置的较高则查准率较高但查全率较低，反之查准率较低但查全率较高。我们可以通过 P-R 曲线来直观反映这种关系。</p>
+<p>绘制 P-R 曲线：按照预测结果是正例的可能性大小对样本进行排序，然后通过调整阈值（从大到小）逐个将样本作为正例并计算当前的查准率 P 和查全率 R，就得到了 P-R 曲线。</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-23.jpg" width="60%" heigh="60%">
 </div>
 
 <ul>
-<li>平衡点（Break-Even Point，BEP）:P = R 时的取值,BEP较大的模型较优</li>
-<li>F1度量：P和R的调和平均值，越大性能越好</li>
+<li>平衡点（Break-Even Point，BEP）:P = R 时的取值，BEP 较大的模型较优</li>
+<li>F1 度量：P 和 R 的调和平均值，越大性能越好</li>
 </ul>
 <script type="math/tex; mode=display">
-\frac{1}{F_{1}}=\frac{1}{2}(\frac{1}{P}+\frac{1}{R})</script><p>说明：对于多分类问题，我们依然可以对每一种类别分别绘制ROC曲线，将此分类作为正例，将其他分类作为负例来处理。</p>
+\frac {1}{F_{1}}=\frac {1}{2}(\frac {1}{P}+\frac {1}{R})</script><p>说明：对于多分类问题，我们依然可以对每一种类别分别绘制 ROC 曲线，将此分类作为正例，将其他分类作为负例来处理。</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-31.jpg" width="60%" heigh="60%">
 </div>
 
-<h4 id="ROC-曲线和-AUC"><a href="#ROC-曲线和-AUC" class="headerlink" title="ROC 曲线和 AUC"></a>ROC 曲线和 AUC</h4><p>受试者工作特性（Receiver Operating Characteristic, ROC）与P-R类似，只不过ROC是使用“假正例率”（FPR）和“真正例率”（TPR）来作为曲线的横纵坐标。</p>
+<h4 id="ROC-曲线和-AUC"><a href="#ROC-曲线和-AUC" class="headerlink" title="ROC 曲线和 AUC"></a>ROC 曲线和 AUC</h4><p>受试者工作特性（Receiver Operating Characteristic, ROC）与 P-R 类似，只不过 ROC 是使用 “假正例率”（FPR）和 “真正例率”（TPR）来作为曲线的横纵坐标。</p>
 <ul>
 <li>TPR：真实为正的样例中有多少预测为正（同查全率）。</li>
 </ul>
 <script type="math/tex; mode=display">
-TPR = \frac{TP}{TP+FN}</script><ul>
+TPR = \frac {TP}{TP+FN}</script><ul>
 <li>FPR：真实为假的样例中有多少预测为正</li>
 </ul>
 <script type="math/tex; mode=display">
-FPR = \frac{FP}{TN+FP}</script><ul>
-<li>ROC曲线: 先将样本按预测值进行排序（同P-R曲线），先将阈值设为最大，则所有样本都被预测为负例，TPR = FPR = 0，然后依次减小阈值并重新计算TPR和FPR，当所有样本都被预测为正例时，TPR = FPR = 1。</li>
+FPR = \frac {FP}{TN+FP}</script><ul>
+<li>ROC 曲线：先将样本按预测值进行排序（同 P-R 曲线），先将阈值设为最大，则所有样本都被预测为负例，TPR = FPR = 0，然后依次减小阈值并重新计算 TPR 和 FPR，当所有样本都被预测为正例时，TPR = FPR = 1。</li>
 </ul>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-38.png" width="60%" heigh="60%">
 </div>
 
 <ul>
-<li>泛化能力比较：我们期望较高的真正率和较低的假正率。从图像上看，若一个学习器的ROC曲线被另一个学习器的ROC曲线包裹，则后者性能更好。如果两者交叉，则一般通过ROC曲线下面积AUC（Area Under ROC Curve）来比较，AUC越大性能越好。</li>
+<li>泛化能力比较：我们期望较高的真正率和较低的假正率。从图像上看，若一个学习器的 ROC 曲线被另一个学习器的 ROC 曲线包裹，则后者性能更好。如果两者交叉，则一般通过 ROC 曲线下面积 AUC（Area Under ROC Curve）来比较，AUC 越大性能越好。</li>
 </ul>
-<p>说明：对于多分类问题，我们依然可以对每一种类别分别绘制ROC曲线，将此分类作为正例，将其他分类作为负例来处理。</p>
+<p>说明：对于多分类问题，我们依然可以对每一种类别分别绘制 ROC 曲线，将此分类作为正例，将其他分类作为负例来处理。</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-44.jpg" width="60%" heigh="60%">
 </div>
@@ -711,8 +711,8 @@ FPR = \frac{FP}{TN+FP}</script><ul>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/机器学习/机器学习：基础算法（一）——MR/" rel="next" title="机器学习：基础算法（一）—— MR">
-                <i class="fa fa-chevron-left"></i> 机器学习：基础算法（一）—— MR
+              <a href="/数据挖掘/数据挖掘：工具篇（一）—— Jupyter Lab 配置环境/" rel="next" title="数据挖掘：工具篇（一）—— Jupyter Lab 配置环境">
+                <i class="fa fa-chevron-left"></i> 数据挖掘：工具篇（一）—— Jupyter Lab 配置环境
               </a>
             
           </div>
@@ -721,8 +721,8 @@ FPR = \frac{FP}{TN+FP}</script><ul>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/机器学习/机器学习：基础算法（六）—— LR/" rel="prev" title="机器学习：基础算法（六）—— LR">
-                机器学习：基础算法（六）—— LR <i class="fa fa-chevron-right"></i>
+              <a href="/机器学习/机器学习：理论基础（七）—— 泛化理论/" rel="prev" title="机器学习：理论基础（七）—— 泛化理论">
+                机器学习：理论基础（七）—— 泛化理论 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -807,7 +807,7 @@ FPR = \frac{FP}{TN+FP}</script><ul>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -903,7 +903,7 @@ FPR = \frac{FP}{TN+FP}</script><ul>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#误差和过拟合"><span class="nav-number">1.</span> <span class="nav-text">误差和过拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#误差分类"><span class="nav-number">1.1.</span> <span class="nav-text">误差分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合"><span class="nav-number">1.2.</span> <span class="nav-text">过拟合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型评估方法"><span class="nav-number">2.</span> <span class="nav-text">模型评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#留出法（hold-out）"><span class="nav-number">2.1.</span> <span class="nav-text">留出法（hold-out）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉验证法（cross-validation）"><span class="nav-number">2.2.</span> <span class="nav-text">交叉验证法（cross-validation）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型性能指标"><span class="nav-number">3.</span> <span class="nav-text">模型性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归任务"><span class="nav-number">3.1.</span> <span class="nav-text">回归任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#均方误差"><span class="nav-number">3.1.1.</span> <span class="nav-text">均方误差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均方根误差"><span class="nav-number">3.1.2.</span> <span class="nav-text">均方根误差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拟合优度"><span class="nav-number">3.1.3.</span> <span class="nav-text">拟合优度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类任务"><span class="nav-number">3.2.</span> <span class="nav-text">分类任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误率和精度"><span class="nav-number">3.2.1.</span> <span class="nav-text">错误率和精度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混淆矩阵（confusion-matrix）"><span class="nav-number">3.2.2.</span> <span class="nav-text">混淆矩阵（confusion matrix）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P-R曲线和F1度量"><span class="nav-number">3.2.3.</span> <span class="nav-text">P-R曲线和F1度量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROC-曲线和-AUC"><span class="nav-number">3.2.4.</span> <span class="nav-text">ROC 曲线和 AUC</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#误差和过拟合"><span class="nav-number">1.</span> <span class="nav-text">误差和过拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#误差分类"><span class="nav-number">1.1.</span> <span class="nav-text">误差分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合"><span class="nav-number">1.2.</span> <span class="nav-text">过拟合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型评估方法"><span class="nav-number">2.</span> <span class="nav-text">模型评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#留出法（hold-out）"><span class="nav-number">2.1.</span> <span class="nav-text">留出法（hold-out）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉验证法（cross-validation）"><span class="nav-number">2.2.</span> <span class="nav-text">交叉验证法（cross-validation）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型性能指标"><span class="nav-number">3.</span> <span class="nav-text">模型性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归任务"><span class="nav-number">3.1.</span> <span class="nav-text">回归任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#均方误差"><span class="nav-number">3.1.1.</span> <span class="nav-text">均方误差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均方根误差"><span class="nav-number">3.1.2.</span> <span class="nav-text">均方根误差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拟合优度"><span class="nav-number">3.1.3.</span> <span class="nav-text">拟合优度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类任务"><span class="nav-number">3.2.</span> <span class="nav-text">分类任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误率和精度"><span class="nav-number">3.2.1.</span> <span class="nav-text">错误率和精度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混淆矩阵（confusion-matrix）"><span class="nav-number">3.2.2.</span> <span class="nav-text">混淆矩阵（confusion matrix）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P-R-曲线和-F1-度量"><span class="nav-number">3.2.3.</span> <span class="nav-text">P-R 曲线和 F1 度量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROC-曲线和-AUC"><span class="nav-number">3.2.4.</span> <span class="nav-text">ROC 曲线和 AUC</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -941,7 +941,7 @@ FPR = \frac{FP}{TN+FP}</script><ul>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">132.3k</span>
+    <span title="Site words total count">137.3k</span>
   
 </div>
 
