@@ -125,20 +125,20 @@
 
 
 
-<meta name="description" content="1. 惊奇度惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。 我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&amp;lt;p&amp;lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定 $S">
+<meta name="description" content="惊奇度惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。 我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&amp;lt;p&amp;lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：理论基础（二）—— 信息论">
 <meta property="og:url" content="https://liketea.xyz/机器学习/机器学习：理论基础（二）—— 信息论/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="1. 惊奇度惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。 我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&amp;lt;p&amp;lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定 $S">
+<meta property="og:description" content="惊奇度惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。 我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&amp;lt;p&amp;lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/21-48-50.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/18-39-27.png">
-<meta property="og:updated_time" content="2020-10-24T06:46:34.413Z">
+<meta property="og:updated_time" content="2020-10-25T06:49:27.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：理论基础（二）—— 信息论">
-<meta name="twitter:description" content="1. 惊奇度惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。 我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&amp;lt;p&amp;lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定 $S">
+<meta name="twitter:description" content="惊奇度惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。 我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&amp;lt;p&amp;lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/21-48-50.jpg">
 
 
@@ -389,8 +389,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-10-24T14:46:34+08:00">
-                2020-10-24
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-25T14:49:27+08:00">
+                2020-10-25
               </time>
             
           </span>
@@ -487,8 +487,11 @@
       
 
       
-        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/21-48-50.jpg" alt></p>
-<h2 id="1-惊奇度"><a href="#1-惊奇度" class="headerlink" title="1. 惊奇度"></a>1. 惊奇度</h2><p>惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。</p>
+        <div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/21-48-50.jpg" width="80%" heigh="80%">
+</div>
+
+<h2 id="惊奇度"><a href="#惊奇度" class="headerlink" title="惊奇度"></a>惊奇度</h2><p>惊奇度：某事件所携带的信息量可以被看做该事件发生时所给我们带来的惊讶程度。</p>
 <p>我们希望能够将这种惊奇度 / 信息量进行量化，一个合理的假设是：事件的惊奇度 / 信息量只取决于事件发生的概率。用 $S (p)$ 表示由概率为 $p$ 的事件发生以后所产生的惊奇程度，假定 $S (p)$ 对一切 $0&lt;p&lt;=1$ 有定义。下面我们从 $S (p)$ 应满足的条件出发确定 $S (p)$ 的形式：</p>
 <ul>
 <li>公理 1：$S (1)=0$，当听到一个必然事件发生时，不会感到任何惊奇</li>
@@ -498,7 +501,7 @@
 <p>容易验证，对数函数可同时满足这四个条件：</p>
 <script type="math/tex; mode=display">
 S (p) = -log p</script><p>当底数取 2 时，惊奇度 / 信息量的单位可用比特表示。</p>
-<h2 id="2-信息熵"><a href="#2-信息熵" class="headerlink" title="2. 信息熵"></a>2. 信息熵</h2><p>信息熵：某随机变量 x 所带来的平均惊奇度 (所携带的平均信息量)</p>
+<h2 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h2><p>信息熵：某随机变量 x 所带来的平均惊奇度 (所携带的平均信息量)</p>
 <p>离散随机变量的熵：</p>
 <script type="math/tex; mode=display">
 H (x)=-\sum_{x} p (x) logp (x)</script><ul>
@@ -514,14 +517,17 @@ H (x)=-\int p (x) lnp (x) dx</script><ul>
 <li>微分熵可取负值；</li>
 </ul>
 <p>我们可以从不同的视角来理解随机变量的熵:</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/18-39-27.png" alt></p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/18-39-27.png" width="50%" heigh="50%">
+</div>
+
 <ol>
 <li>平均惊奇度：观察 x 时的平均惊讶程度；</li>
 <li>平均信息量：发送 x 时传输的平均信息量；</li>
 <li>不确定度：对 x 取值的不确定程度；</li>
 <li>最短编码长度：假设我们要对随机变量 x 的各种取值进行前缀编码，则随机变量 x 的熵等于最短平均编码长度；</li>
 </ol>
-<h2 id="3-联合熵与条件熵"><a href="#3-联合熵与条件熵" class="headerlink" title="3. 联合熵与条件熵"></a>3. 联合熵与条件熵</h2><p>随机变量 $X,Y$ 的 <strong> 联合熵 </strong>$H (X,Y)$ 描述了随机变量 $X,Y$ 联合分布的 <strong> 不确定度 </strong>：</p>
+<h2 id="联合熵与条件熵"><a href="#联合熵与条件熵" class="headerlink" title="联合熵与条件熵"></a>联合熵与条件熵</h2><p>随机变量 $X,Y$ 的 <strong> 联合熵 </strong>$H (X,Y)$ 描述了随机变量 $X,Y$ 联合分布的 <strong> 不确定度 </strong>：</p>
 <script type="math/tex; mode=display">
 H (X,Y)=-\sum_{x}\sum_{y} p (x,y) logp (x,y)</script><p>给定 X 的条件下，Y 的 <strong> 条件熵 (conditional entropy)</strong> 为：</p>
 <script type="math/tex; mode=display">
@@ -540,7 +546,7 @@ H (X,Y)&=-\sum_{i}\sum_{j} p (x_{i},y_{j}) logp (x_{i},y_{j}) \\
 & =H (Y)+H (X\mid Y)
 \end {aligned}</script><p>定理 2：当另一个随机变量 $X$ 被观测到后，$Y$ 的不确定度在平均意义下减少，当二者独立时等号成立：</p>
 <script type="math/tex; mode=display">
-H (Y\mid X) \leqslant H (Y)</script><h2 id="4-交叉熵-相对熵-互信息"><a href="#4-交叉熵-相对熵-互信息" class="headerlink" title="4. 交叉熵 - 相对熵 - 互信息"></a>4. 交叉熵 - 相对熵 - 互信息</h2><p>交叉熵 (Cross-Entropy)：度量两个概率分布间的差异性信息。交叉熵等于我们用近似的分布 $q (x)$ 来表示真实分布 $p (x)$ 的平均编码长度，则：</p>
+H (Y\mid X) \leqslant H (Y)</script><h2 id="交叉熵-相对熵-互信息"><a href="#交叉熵-相对熵-互信息" class="headerlink" title="交叉熵 - 相对熵 - 互信息"></a>交叉熵 - 相对熵 - 互信息</h2><p>交叉熵 (Cross-Entropy)：度量两个概率分布间的差异性信息。交叉熵等于我们用近似的分布 $q (x)$ 来表示真实分布 $p (x)$ 的平均编码长度，则：</p>
 <script type="math/tex; mode=display">
 C (p,q)=-\sum p (x) logq (x)</script><ul>
 <li>$C (p,q)\geqslant H (p)$：交叉熵以真实熵为下界，熵代表了最短编码长度；</li>
@@ -582,7 +588,7 @@ I (X,Y)&=KL (p (x,y)\parallel p (x) p (y))\\
 &H (Y\mid X)=H (Y)-I (X,Y)\\
 &H (X,Y)=H (X)+H (Y)-I (X,Y)
 \end {align*}
-\end {matrix}\right.</script><h2 id="5-编码定理"><a href="#5-编码定理" class="headerlink" title="5. 编码定理"></a>5. 编码定理</h2><p>通信中的编码问题（最小期望码长）：假设一个离散型随机变量 X 取值于<br>$\lbrace x_{1},  \cdot \cdot \cdot ,x_{N}\rbrace$，其相应概率为 $\lbrace p (x_{1}),  \cdot \cdot \cdot ,p (x_{N})\rbrace$，设计一个编码系统，将 $x_{i}$ 编成 $n_{i}$ 位的二进制序列，通过一个通信网络将从 A 处传送到 B 处，为避免混乱，要求编码后的序列不能出现一个序列是另一个序列的延伸。如何设计编码系统使得最终的期望码长最小。</p>
+\end {matrix}\right.</script><h2 id="编码定理"><a href="#编码定理" class="headerlink" title="编码定理"></a>编码定理</h2><p>通信中的编码问题（最小期望码长）：假设一个离散型随机变量 X 取值于<br>$\lbrace x_{1},  \cdot \cdot \cdot ,x_{N}\rbrace$，其相应概率为 $\lbrace p (x_{1}),  \cdot \cdot \cdot ,p (x_{N})\rbrace$，设计一个编码系统，将 $x_{i}$ 编成 $n_{i}$ 位的二进制序列，通过一个通信网络将从 A 处传送到 B 处，为避免混乱，要求编码后的序列不能出现一个序列是另一个序列的延伸。如何设计编码系统使得最终的期望码长最小。</p>
 <p>引理 1: 为了将 $X$ 的可能取值编码成 0-1 序列，且任何一个序列都不能是另一序列的延伸，其充要条件为：</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^{N}\left ( \frac {1}{2} \right )^{n_{i}}\leqslant 1</script><p><strong> 证明 </strong>:</p>
@@ -590,7 +596,7 @@ I (X,Y)&=KL (p (x,y)\parallel p (x) p (y))\\
 <script type="math/tex; mode=display">
 w_{1} 2^{n-1}+w_{2} 2^{n-2}+\cdot \cdot \cdot +w_{n-1} 2+w_{n}\leqslant 2^{n}</script><p>两边同除以 $2^{n}$ 得：</p>
 <script type="math/tex; mode=display">
-\sum_{j=1}^{n} w_{j}\left (  \frac {1}{2}\right )^{j}=\sum_{i=1}^{N}\left ( \frac {1}{2} \right )^{n_{i}}\leqslant 1</script><h3 id="5-1-无噪通道编码定理"><a href="#5-1-无噪通道编码定理" class="headerlink" title="5.1 无噪通道编码定理"></a>5.1 无噪通道编码定理</h3><p>无噪通道编码定理：假设每个信号单位从位置 A 到位置 B 的过程没有发生错误，则编码的期望码长不小于随机变量的信息熵:</p>
+\sum_{j=1}^{n} w_{j}\left (  \frac {1}{2}\right )^{j}=\sum_{i=1}^{N}\left ( \frac {1}{2} \right )^{n_{i}}\leqslant 1</script><h3 id="无噪通道编码定理"><a href="#无噪通道编码定理" class="headerlink" title="无噪通道编码定理"></a>无噪通道编码定理</h3><p>无噪通道编码定理：假设每个信号单位从位置 A 到位置 B 的过程没有发生错误，则编码的期望码长不小于随机变量的信息熵:</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^{N} n_{i} p\left ( x_{i} \right )\geqslant H (X)=-\sum_{i=1}^{N} p\left ( x_{i} \right )\log p\left ( x_{i} \right )</script><p><strong> 证明：</strong><br>记 $p_{i}=p (x_{i})$，$q_{i}=2^{-n_{i}}/\sum_{j=1}^{N} 2^{-n_{j}}$，则有 $\sum_{i=1}^{N} p_{i}=\sum_{i=1}^{N} q_{i}=1$</p>
 <script type="math/tex; mode=display">
@@ -611,14 +617,14 @@ w_{1} 2^{n-1}+w_{2} 2^{n-2}+\cdot \cdot \cdot +w_{n-1} 2+w_{n}\leqslant 2^{n}</s
 -\log p (x_{i}) \leqslant n_{i}\leqslant -\log p (x_{i}) +1</script><p>代入期望码长公式 $L=\sum_{i=1}^{N} n_{i} p (x_{i})$ 得：</p>
 <script type="math/tex; mode=display">
 -\sum_{i=1}^{N} p\left ( x_{i} \right )\log p\left ( x_{i} \right )\leqslant L\leqslant -\sum_{i=1}^{N} p\left ( x_{i} \right )\log p\left ( x_{i} \right )+1
-H (X)\leqslant L< H (X)+1</script><h3 id="5-2-有噪通道编码定理"><a href="#5-2-有噪通道编码定理" class="headerlink" title="5.2 有噪通道编码定理"></a>5.2 有噪通道编码定理</h3><p>假设每个信号单位的传送是独立的，且以概率 p 正确地从 A 处传送到 B 处，这样的通信系统称为 <strong> 二进制对称通道 </strong>。若不经过处理直接传送便会发生误传，一种减少误传信号的方法是将信号重复多次，在译码时按多数原则进行翻译。</p>
+H (X)\leqslant L< H (X)+1</script><h3 id="有噪通道编码定理"><a href="#有噪通道编码定理" class="headerlink" title="有噪通道编码定理"></a>有噪通道编码定理</h3><p>假设每个信号单位的传送是独立的，且以概率 p 正确地从 A 处传送到 B 处，这样的通信系统称为 <strong> 二进制对称通道 </strong>。若不经过处理直接传送便会发生误传，一种减少误传信号的方法是将信号重复多次，在译码时按多数原则进行翻译。</p>
 <p>假设 p=0.8，通过将信号重复 3 次进行编码译码。如 000、001、010、100 都代表 0，111，110，101，011 代表 1。此时，传输一位错误的概率为：</p>
 <script type="math/tex; mode=display">
 0.2^{3}+3\times 0.2^{2}\times 0.8=0.104</script><p>错误率由 0.2 减小到 0.104，事实上，只要重复足够多次可以将误传概率变得任意小，但是这种方法是以牺牲传输效率为代价的（降低到 1/3）。但值得庆幸的是将传输错误概率减小到 0 的同时，传输效率并不会减小到 0，这正是香农在信息论中提出的含噪声编码定理。</p>
 <p>有噪通道编码定理:<br>:   只要信息传输效率小于通道容量，必存在一类编码使信息传输错误概率可以任意小。通道容量可由以下公式计算：</p>
 <script type="math/tex; mode=display">
 C^{*}=1+p\log p+(1-p)\log (1-p)</script><p>$C^{*}\leqslant 1$, 当 $p=1$ 或 $p=0$ 时等号成立。有噪声编码定理又称香农第二定理，是编码存在定理。</p>
-<h2 id="6-最大熵原理"><a href="#6-最大熵原理" class="headerlink" title="6. 最大熵原理"></a>6. 最大熵原理</h2><p>最大熵原理认为，学习概率模型时，在所有可能的概率模型 (分布) 中，熵最大的模型是最好的模型。直观地，最大熵原理认为要选择的概率模型首先必须满足已有的事实，即约束条件。在没有更多信息的情况下，那些不确定的部分都是等可能的。最大熵原理通过熵的最大化来表示等可能性。等可能不容易操作，而熵则是一个可优化的数值指标。</p>
+<h2 id="最大熵原理"><a href="#最大熵原理" class="headerlink" title="最大熵原理"></a>最大熵原理</h2><p>最大熵原理认为，学习概率模型时，在所有可能的概率模型 (分布) 中，熵最大的模型是最好的模型。直观地，最大熵原理认为要选择的概率模型首先必须满足已有的事实，即约束条件。在没有更多信息的情况下，那些不确定的部分都是等可能的。最大熵原理通过熵的最大化来表示等可能性。等可能不容易操作，而熵则是一个可优化的数值指标。</p>
 <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ol>
 <li>概率论基础</li>
 <li>PRML</li>
@@ -869,7 +875,7 @@ C^{*}=1+p\log p+(1-p)\log (1-p)</script><p>$C^{*}\leqslant 1$, 当 $p=1$ 或 $p=
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-惊奇度"><span class="nav-number">1.</span> <span class="nav-text">1. 惊奇度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-信息熵"><span class="nav-number">2.</span> <span class="nav-text">2. 信息熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-联合熵与条件熵"><span class="nav-number">3.</span> <span class="nav-text">3. 联合熵与条件熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-交叉熵-相对熵-互信息"><span class="nav-number">4.</span> <span class="nav-text">4. 交叉熵 - 相对熵 - 互信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-编码定理"><span class="nav-number">5.</span> <span class="nav-text">5. 编码定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-无噪通道编码定理"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 无噪通道编码定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-有噪通道编码定理"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 有噪通道编码定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-最大熵原理"><span class="nav-number">6.</span> <span class="nav-text">6. 最大熵原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">7.</span> <span class="nav-text">引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#惊奇度"><span class="nav-number">1.</span> <span class="nav-text">惊奇度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息熵"><span class="nav-number">2.</span> <span class="nav-text">信息熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合熵与条件熵"><span class="nav-number">3.</span> <span class="nav-text">联合熵与条件熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉熵-相对熵-互信息"><span class="nav-number">4.</span> <span class="nav-text">交叉熵 - 相对熵 - 互信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码定理"><span class="nav-number">5.</span> <span class="nav-text">编码定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无噪通道编码定理"><span class="nav-number">5.1.</span> <span class="nav-text">无噪通道编码定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有噪通道编码定理"><span class="nav-number">5.2.</span> <span class="nav-text">有噪通道编码定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大熵原理"><span class="nav-number">6.</span> <span class="nav-text">最大熵原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">7.</span> <span class="nav-text">引用</span></a></li></ol></div>
             
 
           </div>
