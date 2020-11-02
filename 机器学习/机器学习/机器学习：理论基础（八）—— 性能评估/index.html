@@ -141,7 +141,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-31.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-38.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-44.jpg">
-<meta property="og:updated_time" content="2020-10-24T09:12:09.060Z">
+<meta property="og:updated_time" content="2020-11-02T02:13:57.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：理论基础（八）—— 性能评估">
 <meta name="twitter:description" content="误差和过拟合误差分类 误差（error）：样本的预测输出与真实输出之间的差异。 训练误差（training error）：也叫经验误差，是指在训练集中样本的预测输出与真实输出之间的差异。 验证误差（validation error）：是指在验证集中样本的预测输出与真实输出之间的差异 泛化误差（generalization error）：是指在预测集中样本的预测输出与真实输出之间的差异在进行模型选择">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-10-24T17:12:09+08:00">
-                2020-10-24
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-02T10:13:57+08:00">
+                2020-11-02
               </time>
             
           </span>
@@ -456,7 +456,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  2.5k
                 </span>
               
 
@@ -472,7 +472,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  9
                 </span>
               
             </div>
@@ -651,7 +651,7 @@ FPR = \frac {FP}{TN+FP}</script><ul>
 </div>
 
 <ul>
-<li>泛化能力比较：我们期望较高的真正率和较低的假正率。从图像上看，若一个学习器的 ROC 曲线被另一个学习器的 ROC 曲线包裹，则后者性能更好。如果两者交叉，则一般通过 ROC 曲线下面积 AUC（Area Under ROC Curve）来比较，AUC 越大性能越好。</li>
+<li>AUC（Area Under ROC Curve）：我们期望较高的真正率和较低的假正率。从图像上看，若一个学习器的 ROC 曲线被另一个学习器的 ROC 曲线包裹，则后者性能更好。如果两者交叉，则一般通过 ROC 曲线下面积 AUC 来比较，AUC 越大性能越好。<a href="http://vividfree.github.io/% E6%9C% BA% E5%99% A8% E5% AD% A6% E4% B9% A0/2015/11/20/understanding-ROC-and-AUC" target="_blank" rel="noopener">那么 AUC 值的含义是什么呢</a>？在论文 Breiman, L., Friedman, J., Olshen, R., Stone, C., Classification and Regression Trees. Wadsworth International Group. 1984. 中有这样一段话：”The AUC value is equivalent to the probability that a randomly chosen positive example is ranked higher than a randomly chosen negative example. This is equivalent to the Wilcoxon test of ranks (Hanley and McNeil, 1982). The AUC is also closely related to the Gini coefficient (Breiman et al., 1984), which is twice the area between the diagonal and the ROC curve. Hand and Till (2001) point out that Gini + 1 = 2 <em> AUC.”。简单翻译下：首先 AUC 值是一个概率值，当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的 Score 值将这个正样本排在负样本前面的概率就是 AUC 值。AUC 值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。另外，AUC 与 Gini 分数有联系，Gini + 1 = 2</em>AUC。AUC 体现出容忍样本倾斜的能力，只反应模型对正负样本排序能力的强弱，而其直观含以上是任意取一个正样本和负样本，正样本的得分大于负样本的概率。</li>
 </ul>
 <p>说明：对于多分类问题，我们依然可以对每一种类别分别绘制 ROC 曲线，将此分类作为正例，将其他分类作为负例来处理。</p>
 <div align="center">
@@ -807,7 +807,7 @@ FPR = \frac {FP}{TN+FP}</script><ul>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -818,7 +818,7 @@ FPR = \frac {FP}{TN+FP}</script><ul>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -829,7 +829,7 @@ FPR = \frac {FP}{TN+FP}</script><ul>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -941,7 +941,7 @@ FPR = \frac {FP}{TN+FP}</script><ul>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">225.7k</span>
+    <span title="Site words total count">234.5k</span>
   
 </div>
 
