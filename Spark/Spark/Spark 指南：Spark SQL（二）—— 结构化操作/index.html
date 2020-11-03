@@ -129,11 +129,11 @@
 <meta name="keywords" content="Spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark 指南：Spark SQL（二）—— 结构化操作">
-<meta property="og:url" content="https://liketea.xyz/Spark/Spark/2020-11-03/index.html">
+<meta property="og:url" content="https://liketea.xyz/Spark/Spark/Spark 指南：Spark SQL（二）—— 结构化操作/index.html">
 <meta property="og:site_name" content="Like">
 <meta property="og:description" content="从定义上讲，DataFrame 由一系列行和列组成，行的类型为 Row，列可以表示成每个单独行的计算表达式。Schema 定义了每个列的名称和类型，Partition 定义了整个集群中 DataFrame 的物理分布。 SchemaSchema 定义了 DataFrame 的列名和类型，我们可以让数据源定义 Schema（schema-on-read），也可以自己明确地进行定义。对于临时分析，sc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-02T17:11:39.092Z">
+<meta property="og:updated_time" content="2020-11-03T02:14:47.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark 指南：Spark SQL（二）—— 结构化操作">
 <meta name="twitter:description" content="从定义上讲，DataFrame 由一系列行和列组成，行的类型为 Row，列可以表示成每个单独行的计算表达式。Schema 定义了每个列的名称和类型，Partition 定义了整个集群中 DataFrame 的物理分布。 SchemaSchema 定义了 DataFrame 的列名和类型，我们可以让数据源定义 Schema（schema-on-read），也可以自己明确地进行定义。对于临时分析，sc">
@@ -166,7 +166,7 @@
 
 
 
-  <link rel="canonical" href="https://liketea.xyz/Spark/Spark/2020-11-03/">
+  <link rel="canonical" href="https://liketea.xyz/Spark/Spark/Spark 指南：Spark SQL（二）—— 结构化操作/">
 
 
 
@@ -341,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/Spark/Spark/2020-11-03/">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/Spark/Spark/Spark 指南：Spark SQL（二）—— 结构化操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like Wong">
@@ -386,7 +386,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-03T01:11:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-03T10:14:47+08:00">
                 2020-11-03
               </time>
             
@@ -422,7 +422,7 @@
 
           
           
-             <span id="/Spark/Spark/2020-11-03/" class="leancloud_visitors" data-flag-title="Spark 指南：Spark SQL（二）—— 结构化操作">
+             <span id="/Spark/Spark/Spark 指南：Spark SQL（二）—— 结构化操作/" class="leancloud_visitors" data-flag-title="Spark 指南：Spark SQL（二）—— 结构化操作">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -590,8 +590,7 @@
 <li>示例：</li>
 </ul>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">df.show ()</span><br><span class="line">+-------------+----------+------+</span><br><span class="line">|employee_name|department|salary|</span><br><span class="line">+-------------+----------+------+</span><br><span class="line">|        <span class="type">James</span>|     <span class="type">Sales</span>|  <span class="number">3000</span>|</span><br><span class="line">|      <span class="type">Michael</span>|     <span class="type">Sales</span>|  <span class="number">4600</span>|</span><br><span class="line">|       <span class="type">Robert</span>|     <span class="type">Sales</span>|  <span class="number">4100</span>|</span><br><span class="line">|        <span class="type">Maria</span>|   <span class="type">Finance</span>|  <span class="number">3000</span>|</span><br><span class="line">|        <span class="type">James</span>|     <span class="type">Sales</span>|  <span class="number">3000</span>|</span><br><span class="line">|        <span class="type">Scott</span>|   <span class="type">Finance</span>|  <span class="number">3300</span>|</span><br><span class="line">|          <span class="type">Jen</span>|   <span class="type">Finance</span>|  <span class="number">3900</span>|</span><br><span class="line">|         <span class="type">Jeff</span>| <span class="type">Marketing</span>|  <span class="number">3000</span>|</span><br><span class="line">|        <span class="type">Kumar</span>| <span class="type">Marketing</span>|  <span class="number">2000</span>|</span><br><span class="line">|         <span class="type">Saif</span>|     <span class="type">Sales</span>|  <span class="number">4100</span>|</span><br><span class="line">+-------------+----------+------+</span><br><span class="line"></span><br><span class="line"><span class="comment">// Distinct all columns</span></span><br><span class="line"><span class="keyword">val</span> distinctDF = df.distinct ()</span><br><span class="line">println (<span class="string">"Distinct count:"</span>+distinctDF.count ())</span><br><span class="line">distinctDF.show (<span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">Distinct</span> count: <span class="number">9</span></span><br><span class="line">+-------------+----------+------+</span><br><span class="line">|employee_name|department|salary|</span><br><span class="line">+-------------+----------+------+</span><br><span class="line">|<span class="type">James</span>        |<span class="type">Sales</span>     |<span class="number">3000</span>  |</span><br><span class="line">|<span class="type">Michael</span>      |<span class="type">Sales</span>     |<span class="number">4600</span>  |</span><br><span class="line">|<span class="type">Maria</span>        |<span class="type">Finance</span>   |<span class="number">3000</span>  |</span><br><span class="line">|<span class="type">Robert</span>       |<span class="type">Sales</span>     |<span class="number">4100</span>  |</span><br><span class="line">|<span class="type">Saif</span>         |<span class="type">Sales</span>     |<span class="number">4100</span>  |</span><br><span class="line">|<span class="type">Scott</span>        |<span class="type">Finance</span>   |<span class="number">3300</span>  |</span><br><span class="line">|<span class="type">Jeff</span>         |<span class="type">Marketing</span> |<span class="number">3000</span>  |</span><br><span class="line">|<span class="type">Jen</span>          |<span class="type">Finance</span>   |<span class="number">3900</span>  |</span><br><span class="line">|<span class="type">Kumar</span>        |<span class="type">Marketing</span> |<span class="number">2000</span>  |</span><br><span class="line">+-------------+----------+------+</span><br><span class="line"></span><br><span class="line"><span class="comment">// Distinct using dropDuplicates</span></span><br><span class="line"><span class="keyword">val</span> dropDisDF = df.dropDuplicates (<span class="string">"department"</span>,<span class="string">"salary"</span>)</span><br><span class="line">println (<span class="string">"Distinct count of department &amp; salary :"</span>+dropDisDF.count ())</span><br><span class="line">dropDisDF.show (<span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">Distinct</span> count of department &amp; salary : <span class="number">8</span></span><br><span class="line">+-------------+----------+------+</span><br><span class="line">|employee_name|department|salary|</span><br><span class="line">+-------------+----------+------+</span><br><span class="line">|<span class="type">Jen</span>          |<span class="type">Finance</span>   |<span class="number">3900</span>  |</span><br><span class="line">|<span class="type">Maria</span>        |<span class="type">Finance</span>   |<span class="number">3000</span>  |</span><br><span class="line">|<span class="type">Scott</span>        |<span class="type">Finance</span>   |<span class="number">3300</span>  |</span><br><span class="line">|<span class="type">Michael</span>      |<span class="type">Sales</span>     |<span class="number">4600</span>  |</span><br><span class="line">|<span class="type">Kumar</span>        |<span class="type">Marketing</span> |<span class="number">2000</span>  |</span><br><span class="line">|<span class="type">Robert</span>       |<span class="type">Sales</span>     |<span class="number">4100</span>  |</span><br><span class="line">|<span class="type">James</span>        |<span class="type">Sales</span>     |<span class="number">3000</span>  |</span><br><span class="line">|<span class="type">Jeff</span>         |<span class="type">Marketing</span> |<span class="number">3000</span>  |</span><br><span class="line">+-------------+----------+------+</span><br></pre></td></tr></table></figure></div>
-<h4 id="groupBy-——-行分组"><a href="#groupBy-——-行分组" class="headerlink" title="groupBy —— 行分组"></a>groupBy —— 行分组</h4><p><a href="https://my.oschina.net/u/4381798/blog/3651547" target="_blank" rel="noopener">https://my.oschina.net/u/4381798/blog/3651547</a></p>
-<ul>
+<h4 id="groupBy-——-行分组"><a href="#groupBy-——-行分组" class="headerlink" title="groupBy —— 行分组"></a>groupBy —— 行分组</h4><ul>
 <li>功能：和 SQL 中的 group by 语句类似，<code>groupBy ()</code> 函数用于将 <code>DataFrame/Dataset</code> 按照指定字段分组，返回一个 <code>RelationalGroupedDataset</code> 对象</li>
 <li><p>语法：<code>RelationalGroupedDataset</code> 对象包含以下几种聚合方法：</p>
 <ul>
