@@ -125,18 +125,18 @@
 
 
 
-<meta name="description" content="SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持。用于统一原来的 HiveContext 和 SQLContext，为了兼容两者，仍然保留这两个入口。通过一个 SparkSession 入口，提高了 Spark 的易用性。下面的代码展示了如何创建一个 SparkSession： 1234567import org.apache">
+<meta name="description" content="SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持，用于统一原来的 HiveContext 和 SQLContext，统一入口提高了 Spark 的易用性，但为了兼容向后兼容，新版本仍然保留了这两个入口。下面的代码展示了如何创建一个 SparkSession： 1234567import org.apache.spark.sql">
 <meta name="keywords" content="Spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark 指南：Spark SQL（一）—— 结构化对象">
 <meta property="og:url" content="https://liketea.xyz/Spark/Spark/Spark 指南：Spark SQL（一）—— 结构化对象/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持。用于统一原来的 HiveContext 和 SQLContext，为了兼容两者，仍然保留这两个入口。通过一个 SparkSession 入口，提高了 Spark 的易用性。下面的代码展示了如何创建一个 SparkSession： 1234567import org.apache">
+<meta property="og:description" content="SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持，用于统一原来的 HiveContext 和 SQLContext，统一入口提高了 Spark 的易用性，但为了兼容向后兼容，新版本仍然保留了这两个入口。下面的代码展示了如何创建一个 SparkSession： 1234567import org.apache.spark.sql">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-09T09:40:51.035Z">
+<meta property="og:updated_time" content="2020-11-09T09:51:49.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark 指南：Spark SQL（一）—— 结构化对象">
-<meta name="twitter:description" content="SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持。用于统一原来的 HiveContext 和 SQLContext，为了兼容两者，仍然保留这两个入口。通过一个 SparkSession 入口，提高了 Spark 的易用性。下面的代码展示了如何创建一个 SparkSession： 1234567import org.apache">
+<meta name="twitter:description" content="SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持，用于统一原来的 HiveContext 和 SQLContext，统一入口提高了 Spark 的易用性，但为了兼容向后兼容，新版本仍然保留了这两个入口。下面的代码展示了如何创建一个 SparkSession： 1234567import org.apache.spark.sql">
 
 
 
@@ -386,7 +386,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-09T17:40:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-09T17:51:49+08:00">
                 2020-11-09
               </time>
             
@@ -484,7 +484,7 @@
       
 
       
-        <p>SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持。用于统一原来的 HiveContext 和 SQLContext，为了兼容两者，仍然保留这两个入口。通过一个 SparkSession 入口，提高了 Spark 的易用性。下面的代码展示了如何创建一个 SparkSession：</p>
+        <p>SparkSession 是 Dataset 与 DataFrame API 的编程入口，从 Spark2.0 开始支持，用于统一原来的 HiveContext 和 SQLContext，统一入口提高了 Spark 的易用性，但为了兼容向后兼容，新版本仍然保留了这两个入口。下面的代码展示了如何创建一个 SparkSession：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.<span class="type">SparkSession</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> spark = <span class="type">SparkSession</span></span><br><span class="line">  .builder ()</span><br><span class="line">  .appName (<span class="string">"Spark SQL basic example"</span>)</span><br><span class="line">  .config (<span class="string">"spark.some.config.option"</span>, <span class="string">"some-value"</span>)</span><br><span class="line">  .getOrCreate ()</span><br></pre></td></tr></table></figure></div>
 <p>DataFrame 仅仅只是 <strong>Dataset [Row]</strong> 的一个类型别名，创建 Dataset 的方式和创建 DataFrame 基本相同。</p>
 <h2 id="从内置方法创建"><a href="#从内置方法创建" class="headerlink" title="从内置方法创建"></a>从内置方法创建</h2><p><code>spark.range</code> 方法可以创建一个单列 DataFrame，其中列名为 id，列的类型为 LongType 类型，列中的值取 range 生成的值。</p>
@@ -760,9 +760,6 @@
 <td>FALSE</td>
 <td>解析可能跨越多行的一条记录</td>
 </tr>
-<tr>
-<td></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -774,16 +771,16 @@
 <li>写入 JSON 示例：同样每个分区将写入一个文件，而整个 DataFrame 将作为一个文件夹写入，每行将有一个 JSON 对象</li>
 </ul>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.write.format (<span class="string">"json"</span>).mode (<span class="string">"overwrite"</span>).save (path)</span><br></pre></td></tr></table></figure></div>
-<h3 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h3><p>Parquet 是 Spark 的默认文件格式（默认数据源可以通过 <code>spark.sql.sources.default</code> 进行设置），Parquet 是面向列的开源数据存储，可提供各种存储优化。它提供了列压缩，从而节省了存储空间，并允许读取单个列而不是整个文件。Parquet 支持复杂类型，如果你的列是 struct、array、map，你仍然可以正常读写该文件。</p>
+<h3 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h3><p>Parquet 是 Spark 的默认文件格式（默认数据源可以通过 <code>spark.sql.sources.default</code> 进行设置），Parquet 是面向列的开源数据存储，可提供各种存储优化。它提供了列压缩，从而节省了存储空间，并允许读取单个列而不是整个文件。Parquet 支持复杂类型，如果你的列是 <code>struct</code>、<code>array</code>、<code>map</code> 类型，仍然可以正常读写该文件。</p>
 <ul>
-<li>读取 Parquet 文件：Parquet 选项很少，因为它在存储数据时会强制执行自己的 Schema，你只需要设置格式就行了。</li>
+<li>读取 Parquet 文件：Parquet 选项很少，因为它在存储数据时会强制执行自己的 Schema，你只需要设置格式就行了</li>
 </ul>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.read.format (<span class="string">"parquet"</span>).load (path)</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>写入 Parquet 文件：只需要指定文件位置即可</li>
 </ul>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df.write.format (<span class="string">"parquet"</span>)</span><br><span class="line">    .mode (<span class="string">"overwrite"</span>)</span><br><span class="line">    .save (path)</span><br></pre></td></tr></table></figure></div>
-<h3 id="ORC"><a href="#ORC" class="headerlink" title="ORC"></a>ORC</h3><p>ORC 是一种专为 Hadoop workloads 设计的自我描述、有类型的列式文件格式。它针对大型数据流进行了优化，但是集成了对快速查找所需行的支持。ORC 实际上没有读取数据的选项，因为 Spark 非常了解文件格式，一个经常问到的问题是：ORC 和 Parquet 有什么区别？在大多数情况下，他们非常相似，根本的区别在于 Parquet 专门为 Spark 做了优化，而 ORC 专门为 Hive 做了优化。</p>
+<h3 id="ORC"><a href="#ORC" class="headerlink" title="ORC"></a>ORC</h3><p>ORC 是一种专为 Hadoop workloads 设计的自我描述、有类型的列式文件格式。它针对大型数据流进行了优化，但是集成了对快速查找所需行的支持。ORC 实际上没有读取数据的选项，因为 Spark 非常了解这种文件格式，一个经常会被问到的问题是：ORC 和 Parquet 有什么区别？在大多数情况下，他们非常相似，根本的区别在于 Parquet 专门为 Spark 做了优化，而 ORC 专门为 Hive 做了优化。</p>
 <ul>
 <li>读取 ORC 示例：</li>
 </ul>
@@ -861,7 +858,7 @@
 </tr>
 <tr>
 <td>createTableOptions</td>
-<td>此选项允许在创建表时设置特定于数据库的表和分区选项 &lt; br&gt;（例如，CREATE TABLE t (name string) ENGINE=InnoDB）。<br> 此选项仅适用于写。</td>
+<td>此选项允许在创建表时设置特定于数据库的表和分区选项 &lt; br&gt;（例如，CREATE TABLE t (name string) ENGINE=InnoDB）。此选项仅适用于写。</td>
 </tr>
 <tr>
 <td>createTableColumnTypes</td>
@@ -1166,7 +1163,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">251.9k</span>
+    <span title="Site words total count">252k</span>
   
 </div>
 
