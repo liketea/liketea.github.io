@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API">
+<meta name="description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以">
 <meta name="keywords" content="Spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark 指南：Spark SQL（〇）—— 结构化 API">
 <meta property="og:url" content="https://liketea.xyz/Spark/Spark/Spark 指南：Spark SQL（〇）—— 结构化 API/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API">
+<meta property="og:description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="
 https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16041255796022.jpg">
@@ -139,8 +139,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/160412557
 https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201103184649.png">
 <meta property="og:image" content="
 https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/rdd.jpg">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/dataframe.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201113110151.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201031144631.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507143337.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Spark-SQL.png">
@@ -152,10 +151,10 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203422.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203837.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203845.png">
-<meta property="og:updated_time" content="2020-11-11T04:07:18.627Z">
+<meta property="og:updated_time" content="2020-11-17T03:34:05.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark 指南：Spark SQL（〇）—— 结构化 API">
-<meta name="twitter:description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API">
+<meta name="twitter:description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以">
 <meta name="twitter:image" content="
 https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16041255796022.jpg">
 
@@ -407,8 +406,8 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/160412557
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-11T12:07:18+08:00">
-                2020-11-11
+              <time title="更新于" itemprop="dateModified" datetime="2020-11-17T11:34:05+08:00">
+                2020-11-17
               </time>
             
           </span>
@@ -468,7 +467,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/160412557
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k
+                  2.9k
                 </span>
               
 
@@ -505,12 +504,12 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/160412557
       
 
       
-        <div align="center">
+        <p>Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以更自然地来表达给定的变换。</p>
+<div align="center">
     <img src="
 https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16041255796022.jpg" width="80%" heigh="80%">
 </div>
 
-<p>Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以更自然地来表达给定的变换。</p>
 <h2 id="结构化-API"><a href="#结构化-API" class="headerlink" title="结构化 API"></a>结构化 API</h2><p>Spark SQL API 可以在模块 <a href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/expressions/index.html" target="_blank" rel="noopener"><code>org.apache.spark.sql</code></a> 下查看：</p>
 <div align="center">
     <img src="
@@ -527,7 +526,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202011031
 <li>Spark SQL Window：<a href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/expressions/Window.html" target="_blank" rel="noopener">org.apache.spark.sql.Window</a><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3>Spark SQL 的用法之一是执行 SQL 查询，它也可以从现有的 Hive 中读取数据，如果从其它编程语言内部运行 SQL，查询结果将作为一个 Dataset/DataFrame 返回。</li>
 </ol>
 <p>表和视图与 DataFrame 基本相同，为我们只是针对它们执行 SQL 而不是 DataFrame 代码。</p>
-<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><p>Spark 结构化 API 可以细分为两个 API：有类型的 Dataset 和无类型的 DataFrame。说 DataFrame 是无类型的并不准确，它们具有类型，但是 Spark 会完全维护它们，并且仅在运行时检查那些类型是否与模式中指定的类型一致。而 DataSet 在编译时检查类型是否符合规范，DataSet 仅适用于基于 Java 虚拟机（JVM）的语言（Scala 和 Java）。</p>
+<h3 id="DataSet"><a href="#DataSet" class="headerlink" title="DataSet"></a>DataSet</h3><p>Spark 结构化 API 可以细分为两个 API：有类型的 Dataset 和无类型的 DataFrame。说 DataFrame 是无类型的并不准确，它们具有类型，但是 Spark 会完全维护它们，并且仅在运行时检查那些类型是否与模式中指定的类型一致。而 DataSet 在编译时检查类型是否符合规范，DataSet 仅适用于基于 Java 虚拟机（JVM）的语言（Scala 和 Java）。</p>
 <ul>
 <li><p>Dataset 是一个分布式数据集，它是 Spark 1.6 版本中新增的一个接口，它结合了 RDD（强类型，可以使用强大的 lambda 表达式函数） 和 Spark SQL 的优化执行引擎的好处。Dataset 可以从 JVM 对象构造得到，随后可以使用函数式的变换（map，flatMap，filter 等）进行操作。Dataset API 目前支持 Scala 和 Java 语言，还不支持 Python, 不过由于 Python 语言的动态性，Dataset API 的许多好处早就已经可用了，例如，你可以使用 row.columnName 来访问数据行的某个字段。</p>
 </li>
@@ -547,14 +546,9 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
 
 <p>在大多数情况下，您可能会使用 DataFrame。对于 Scala-Spark，DataFrame 只是类型为 Row 的数据集，Row 类型是 Spark 内部优化表示的内部表示形式，这种格式可以进行高度专业化和高效的计算，而不是使用 JVM（可能导致高昂的垃圾处理和对象实例化成本）。对于 PySpark，一切都是 DataFrame。</p>
 <h3 id="DataFrame-VS-RDD"><a href="#DataFrame-VS-RDD" class="headerlink" title="DataFrame VS RDD"></a>DataFrame VS RDD</h3><p>DataFrame 和 RDD 都是可以并行处理的集合，但 DataFrame 更像是一个传统数据库里的表，除了数据之外还可以知道更多信息，比如列名、值、类型。从 API 角度来看 DataFrame 提供了更高级的 API，比 RDD 编程要方便很多，由于 R 语言和 Pandas 也有 DataFrame，这就降低了 Spark 的学习门槛，在编写 Spark 程序时根本不需要关心最后是运行在单机上还是分布式集群上，因为代码都是一样的。</p>
-<p>我们先来看 RDD，假设 RDD 里面支持的是一个 Person 类型，那么每一条记录都相当于一个 Person，但是 Person 里面到底有什么我们并不知道：</p>
+<p>假设 RDD 里面支持的是一个 Person 类型，那么每一条记录都相当于一个 Person，但是 Person 里面到底有什么我们并不知道。DataFrame 存储了各字段的列名、数据类型以及值，有了这些信息，Spark SQL 的查询优化器（Catalyst）在编译的时候就能够做更多的优化。</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/rdd.jpg" width="40%" heigh="80%">
-</div>
-
-<p>DataFrame 存储了各字段的列名、数据类型以及值，有了这些信息，Spark SQL 的查询优化器（Catalyst）在编译的时候就能够做更多的优化。</p>
-<div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/dataframe.jpg" width="40%" heigh="80%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201113110151.png" width="60%" heigh="60%">
 </div>
 
 <p>SQL、DataFrame 和 RDD 运行时 <a href="https://www.youtube.com/watch?v=GDeePbbCz2g&amp;feature=youtu.be" target="_blank" rel="noopener">性能对比</a>：在大多数情况下 SQL 和 DataFrame 性能要好于 RDD</p>
@@ -819,7 +813,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -830,7 +824,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -904,7 +898,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构化-API"><span class="nav-number">1.</span> <span class="nav-text">结构化 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">1.1.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame"><span class="nav-number">1.2.</span> <span class="nav-text">DataFrame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame-VS-RDD"><span class="nav-number">1.3.</span> <span class="nav-text">DataFrame VS RDD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化器-Catalyst"><span class="nav-number">2.</span> <span class="nav-text">优化器 Catalyst</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst-优化策略"><span class="nav-number">2.1.</span> <span class="nav-text">Catalyst 优化策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst-工作流程"><span class="nav-number">2.2.</span> <span class="nav-text">Catalyst 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Parser-阶段"><span class="nav-number">2.2.1.</span> <span class="nav-text">Parser 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Analyzer-阶段"><span class="nav-number">2.2.2.</span> <span class="nav-text">Analyzer 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RBO-阶段"><span class="nav-number">2.2.3.</span> <span class="nav-text">RBO 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Planner-阶段"><span class="nav-number">2.2.4.</span> <span class="nav-text">Planner 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CBO-阶段"><span class="nav-number">2.2.5.</span> <span class="nav-text">CBO 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-Generation-阶段"><span class="nav-number">2.2.6.</span> <span class="nav-text">Code Generation 阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构化-API"><span class="nav-number">1.</span> <span class="nav-text">结构化 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">1.1.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataSet"><span class="nav-number">1.2.</span> <span class="nav-text">DataSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame-VS-RDD"><span class="nav-number">1.3.</span> <span class="nav-text">DataFrame VS RDD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化器-Catalyst"><span class="nav-number">2.</span> <span class="nav-text">优化器 Catalyst</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst-优化策略"><span class="nav-number">2.1.</span> <span class="nav-text">Catalyst 优化策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst-工作流程"><span class="nav-number">2.2.</span> <span class="nav-text">Catalyst 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Parser-阶段"><span class="nav-number">2.2.1.</span> <span class="nav-text">Parser 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Analyzer-阶段"><span class="nav-number">2.2.2.</span> <span class="nav-text">Analyzer 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RBO-阶段"><span class="nav-number">2.2.3.</span> <span class="nav-text">RBO 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Planner-阶段"><span class="nav-number">2.2.4.</span> <span class="nav-text">Planner 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CBO-阶段"><span class="nav-number">2.2.5.</span> <span class="nav-text">CBO 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-Generation-阶段"><span class="nav-number">2.2.6.</span> <span class="nav-text">Code Generation 阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -942,7 +936,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">263.7k</span>
+    <span title="Site words total count">265.2k</span>
   
 </div>
 
