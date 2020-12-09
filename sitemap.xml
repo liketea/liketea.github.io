@@ -844,14 +844,14 @@
   </url>
   
   <url>
-    <loc>http://liketea.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://liketea.xyz/tags/MySQL/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://liketea.xyz/tags/MySQL/</loc>
+    <loc>http://liketea.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -930,6 +930,13 @@
   </url>
   
   <url>
+    <loc>http://liketea.xyz/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2020-12-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://liketea.xyz/categories/Linux/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
@@ -951,7 +958,7 @@
   </url>
   
   <url>
-    <loc>http://liketea.xyz/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>http://liketea.xyz/categories/MySQL/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -959,13 +966,6 @@
   
   <url>
     <loc>http://liketea.xyz/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-12-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://liketea.xyz/categories/MySQL/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
