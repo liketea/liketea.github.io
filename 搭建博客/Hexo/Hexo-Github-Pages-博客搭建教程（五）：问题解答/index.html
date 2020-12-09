@@ -144,7 +144,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201125111005.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190913213734.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png">
-<meta property="og:updated_time" content="2020-11-25T03:10:35.936Z">
+<meta property="og:updated_time" content="2020-12-09T07:04:53.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github Pages 博客搭建教程（五）：问题解答">
 <meta name="twitter:description" content="百度和 Google 收录使用 GitHub + Hexo 搭建的博客，默认只能你自己能看到，别人是无法通过百度、谷歌等搜索引擎搜索到的:  可以手动将自己的博客站点提交给百度、谷歌的搜索引擎，这样就可以通过百度或谷歌搜索到自己的博客内容了：  百度收录百度无法搜索到博客信息，是因为 Github Pages 屏蔽了百度爬虫。 验证站点登录 百度搜索资源平台&amp;gt; 用户中心 &amp;gt; 站点管理">
@@ -408,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-25T11:10:35+08:00">
-                2020-11-25
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-09T15:04:53+08:00">
+                2020-12-09
               </time>
             
           </span>
@@ -607,7 +607,15 @@
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2018-07-05 12:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">--</span><br></pre></td></tr></table></figure></div>
 <p>最终效果：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png" alt></p>
-<h3 id="网易云音乐外链加载失败"><a href="#网易云音乐外链加载失败" class="headerlink" title="网易云音乐外链加载失败"></a>网易云音乐外链加载失败</h3><p>可能是代理问题，切换一下网络试一下</p>
+<h3 id="在手机无法打开博客"><a href="#在手机无法打开博客" class="headerlink" title="在手机无法打开博客"></a>在手机无法打开博客</h3><p>尝试了以下方法得到解决：</p>
+<ul>
+<li>在站点配置文件 <code>_config.yml</code> 将 url 中 https 修改为 http；</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://liketea.xyz</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>修改主题配置文件 <code>_config.yml</code> 中 menu 字段 <code>about: /about</code> 改为 <code>about: /about/</code>(末尾添加”/“ )</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  # schedule: /schedule/ || calendar</span><br><span class="line">  rank: /rank/ || signal</span><br></pre></td></tr></table></figure></div>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://www.jianshu.com/p/f8ec422ebd52" target="_blank" rel="noopener">Hexo 博客提交百度和 Google 收录</a></li>
 <li><a href="https://ziyuan.baidu.com" target="_blank" rel="noopener">百度资源平台</a></li>
@@ -861,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度和-Google-收录"><span class="nav-number">1.</span> <span class="nav-text">百度和 Google 收录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#百度收录"><span class="nav-number">1.1.</span> <span class="nav-text">百度收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点"><span class="nav-number">1.1.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图"><span class="nav-number">1.1.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谷歌收录"><span class="nav-number">1.2.</span> <span class="nav-text">谷歌收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-托管博客原始文件"><span class="nav-number">2.</span> <span class="nav-text">github 托管博客原始文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将博客原始文件同步到-github"><span class="nav-number">2.1.</span> <span class="nav-text">将博客原始文件同步到 github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在新电脑上部署博客"><span class="nav-number">2.2.</span> <span class="nav-text">在新电脑上部署博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的工作流"><span class="nav-number">2.3.</span> <span class="nav-text">新的工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-next-主题解决无法显示数学公式"><span class="nav-number">2.4.</span> <span class="nav-text">hexo next 主题解决无法显示数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.4.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决"><span class="nav-number">2.4.2.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网易云音乐外链加载失败"><span class="nav-number">2.5.</span> <span class="nav-text">网易云音乐外链加载失败</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度和-Google-收录"><span class="nav-number">1.</span> <span class="nav-text">百度和 Google 收录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#百度收录"><span class="nav-number">1.1.</span> <span class="nav-text">百度收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点"><span class="nav-number">1.1.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图"><span class="nav-number">1.1.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谷歌收录"><span class="nav-number">1.2.</span> <span class="nav-text">谷歌收录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验证站点-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加站点地图-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">添加站点地图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-托管博客原始文件"><span class="nav-number">2.</span> <span class="nav-text">github 托管博客原始文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将博客原始文件同步到-github"><span class="nav-number">2.1.</span> <span class="nav-text">将博客原始文件同步到 github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在新电脑上部署博客"><span class="nav-number">2.2.</span> <span class="nav-text">在新电脑上部署博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的工作流"><span class="nav-number">2.3.</span> <span class="nav-text">新的工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-next-主题解决无法显示数学公式"><span class="nav-number">2.4.</span> <span class="nav-text">hexo next 主题解决无法显示数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.4.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决"><span class="nav-number">2.4.2.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在手机无法打开博客"><span class="nav-number">2.5.</span> <span class="nav-text">在手机无法打开博客</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -899,7 +907,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">295.6k</span>
+    <span title="Site words total count">295.7k</span>
   
 </div>
 
