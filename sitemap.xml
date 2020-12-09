@@ -809,14 +809,14 @@
   </url>
   
   <url>
-    <loc>http://liketea.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>http://liketea.xyz/tags/Scala/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://liketea.xyz/tags/Scala/</loc>
+    <loc>http://liketea.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2020-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
