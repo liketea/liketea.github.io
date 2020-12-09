@@ -129,7 +129,7 @@
 <meta name="keywords" content="搭建博客,教程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + Github Pages 博客搭建教程（五）：问题解答">
-<meta property="og:url" content="http://liketea.xyz/搭建博客/Hexo/Hexo-Github-Pages-博客搭建教程（五）：问题解答/index.html">
+<meta property="og:url" content="https://liketea.xyz/搭建博客/Hexo/Hexo-Github-Pages-博客搭建教程（五）：问题解答/index.html">
 <meta property="og:site_name" content="Like">
 <meta property="og:description" content="百度和 Google 收录使用 GitHub + Hexo 搭建的博客，默认只能你自己能看到，别人是无法通过百度、谷歌等搜索引擎搜索到的:  可以手动将自己的博客站点提交给百度、谷歌的搜索引擎，这样就可以通过百度或谷歌搜索到自己的博客内容了：  百度收录百度无法搜索到博客信息，是因为 Github Pages 屏蔽了百度爬虫。 验证站点登录 百度搜索资源平台&amp;gt; 用户中心 &amp;gt; 站点管理">
 <meta property="og:locale" content="zh-Hans">
@@ -144,7 +144,8 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201125111005.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190913213734.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png">
-<meta property="og:updated_time" content="2020-12-09T07:04:53.650Z">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201209153226.png">
+<meta property="og:updated_time" content="2020-12-09T07:33:26.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github Pages 博客搭建教程（五）：问题解答">
 <meta name="twitter:description" content="百度和 Google 收录使用 GitHub + Hexo 搭建的博客，默认只能你自己能看到，别人是无法通过百度、谷歌等搜索引擎搜索到的:  可以手动将自己的博客站点提交给百度、谷歌的搜索引擎，这样就可以通过百度或谷歌搜索到自己的博客内容了：  百度收录百度无法搜索到博客信息，是因为 Github Pages 屏蔽了百度爬虫。 验证站点登录 百度搜索资源平台&amp;gt; 用户中心 &amp;gt; 站点管理">
@@ -178,7 +179,7 @@
 
 
 
-  <link rel="canonical" href="http://liketea.xyz/搭建博客/Hexo/Hexo-Github-Pages-博客搭建教程（五）：问题解答/">
+  <link rel="canonical" href="https://liketea.xyz/搭建博客/Hexo/Hexo-Github-Pages-博客搭建教程（五）：问题解答/">
 
 
 
@@ -363,7 +364,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/搭建博客/Hexo/Hexo-Github-Pages-博客搭建教程（五）：问题解答/">
+    <link itemprop="mainEntityOfPage" href="https://liketea.xyz/搭建博客/Hexo/Hexo-Github-Pages-博客搭建教程（五）：问题解答/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like">
@@ -408,7 +409,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-09T15:04:53+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-09T15:33:26+08:00">
                 2020-12-09
               </time>
             
@@ -607,15 +608,8 @@
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2018-07-05 12:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">--</span><br></pre></td></tr></table></figure></div>
 <p>最终效果：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png" alt></p>
-<h3 id="在手机无法打开博客"><a href="#在手机无法打开博客" class="headerlink" title="在手机无法打开博客"></a>在手机无法打开博客</h3><p>尝试了以下方法得到解决：</p>
-<ul>
-<li>在站点配置文件 <code>_config.yml</code> 将 url 中 https 修改为 http；</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://liketea.xyz</span><br></pre></td></tr></table></figure></div>
-<ul>
-<li>修改主题配置文件 <code>_config.yml</code> 中 menu 字段 <code>about: /about</code> 改为 <code>about: /about/</code>(末尾添加”/“ )</li>
-</ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  about: /about/ || user</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  # schedule: /schedule/ || calendar</span><br><span class="line">  rank: /rank/ || signal</span><br></pre></td></tr></table></figure></div>
+<h3 id="在手机无法打开博客"><a href="#在手机无法打开博客" class="headerlink" title="在手机无法打开博客"></a>在手机无法打开博客</h3><p>可能的原因是 github 仓库设置了强制 <code>https</code>，取消勾选即可：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201209153226.png" alt></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://www.jianshu.com/p/f8ec422ebd52" target="_blank" rel="noopener">Hexo 博客提交百度和 Google 收录</a></li>
 <li><a href="https://ziyuan.baidu.com" target="_blank" rel="noopener">百度资源平台</a></li>
