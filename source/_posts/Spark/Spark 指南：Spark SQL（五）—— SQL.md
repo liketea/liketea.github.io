@@ -6,6 +6,7 @@ tags:
 categories: 
    - Spark
 ---
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/sparksql_iteblog.png)
 
 SQL（Structured Query Language） 是一种领域特定语言，用于表达对数据的关系型操作。SQL 无处不在，即使技术专家预言了它的消亡，它还是许多企业所依赖的及其灵活的数据工具。Spark 实现了 ANSI SQL:2003 的一个子集，该标准是大多数 SQL 数据库中可用的标准。Spark SQL 旨在用作联机分析处理（OLAP）数据库，而不是联机事务处理（OLTP）数据库，这意味着它不打算执行极低延迟的查询，即使将来肯定会支持原地修改，但是目前还不支持。
 

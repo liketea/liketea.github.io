@@ -19,6 +19,9 @@ categories:
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553086521591.jpg)
 
 ### 百度收录
+
+百度无法搜索到博客信息，是因为 Github Pages 屏蔽了百度爬虫。
+
 #### 验证站点
 登录[百度搜索资源平台](https://ziyuan.baidu.com)>用户中心>站点管理>添加网站，输入网站域名，选择站点属性，到第三步“验证网站”：
 
@@ -98,7 +101,9 @@ $ hexo g -d
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553085912959.jpg)
 
-即可完成谷歌收录网站，只需要等待谷歌收录，这个过程会比较久。
+即可完成谷歌收录网站，只需要等待谷歌收录，这个过程会比较久，成功收录后的效果如下：
+
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201125111005.png)
 
 
 ## github 托管博客原始文件
@@ -279,10 +284,10 @@ mathjax: true
 
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png)
 
+### 在手机无法打开博客
+可能的原因是 github 仓库设置了强制 `https`，取消勾选即可：
 
-### 网易云音乐外链加载失败
-可能是代理问题，切换一下网络试一下
-
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201209153226.png)
 
 ## 参考
 

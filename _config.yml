@@ -5,15 +5,15 @@
 # Site
 title: Like
 subtitle: 哈哈哈
-description: 点击积累，分享快乐！
+description: 点滴积累，分享快乐！
 keywords:
-author: Like Wong
+author: Like
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://liketea.xyz/
+url: http://liketea.xyz
 root: /
 permalink: :category/:title/
 permalink_defaults:
@@ -98,7 +98,7 @@ search:
     format: html
     limit: 10000
 
-# 自动生成sitemap
+# 自动生成 sitemap
 sitemap:
   path: sitemap.xml
 baidusitemap:
