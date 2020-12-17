@@ -138,10 +138,10 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/18-08-56.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-11.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-23.jpg">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-31.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201217105439.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-38.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-44.jpg">
-<meta property="og:updated_time" content="2020-11-27T04:13:25.659Z">
+<meta property="og:updated_time" content="2020-12-17T02:56:00.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：理论基础（八）—— 性能评估">
 <meta name="twitter:description" content="误差和过拟合误差分类 误差（error）：样本的预测输出与真实输出之间的差异。 训练误差（training error）：也叫经验误差，是指在训练集中样本的预测输出与真实输出之间的差异。 验证误差（validation error）：是指在验证集中样本的预测输出与真实输出之间的差异 泛化误差（generalization error）：是指在预测集中样本的预测输出与真实输出之间的差异在进行模型选择">
@@ -405,8 +405,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-27T12:13:25+08:00">
-                2020-11-27
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-17T10:56:00+08:00">
+                2020-12-17
               </time>
             
           </span>
@@ -589,7 +589,7 @@ R^{2} = \frac {SSR}{SST}=\frac {SST-SSE}{SST}=1-\frac {SSE}{SST}</script><div al
 <li>错误率 (error rate)：错误分类的样本数 a 与样容量 m 的比值</li>
 <li>精度 (accuracy)：精度 = 1- 错误率</li>
 </ul>
-<h4 id="混淆矩阵（confusion-matrix）"><a href="#混淆矩阵（confusion-matrix）" class="headerlink" title="混淆矩阵（confusion matrix）"></a>混淆矩阵（confusion matrix）</h4><p>有时相对于预测精度，我们更关心查准率和查全率。对二分类问题，根据样本的真实类别和预测类别的不同组合可以定义出真正例（TP）、假正例（FP）、真负例（TN）、假负例（FN），组合结果的 “混淆矩阵” 如下：</p>
+<h4 id="混淆矩阵（confusion-matrix）"><a href="#混淆矩阵（confusion-matrix）" class="headerlink" title="混淆矩阵（confusion matrix）"></a>混淆矩阵（confusion matrix）</h4><p>有时相对于预测精度，我们更关心查准率和查全率（召回率）。对二分类问题，根据样本的真实类别和预测类别的不同组合可以定义出真正例（TP）、假正例（FP）、真负例（TN）、假负例（FN），组合结果的 “混淆矩阵” 如下：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -641,7 +641,7 @@ R = \frac {TP}{TP+FN}</script></li>
 <script type="math/tex; mode=display">
 \frac {1}{F_{1}}=\frac {1}{2}(\frac {1}{P}+\frac {1}{R})</script><p>说明：对于多分类问题，我们依然可以对每一种类别分别绘制 ROC 曲线，将此分类作为正例，将其他分类作为负例来处理。</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-49-31.jpg" width="60%" heigh="60%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201217105439.png" width="60%" heigh="60%">
 </div>
 
 <h4 id="ROC-曲线和-AUC"><a href="#ROC-曲线和-AUC" class="headerlink" title="ROC 曲线和 AUC"></a>ROC 曲线和 AUC</h4><p>受试者工作特性（Receiver Operating Characteristic, ROC）与 P-R 类似，只不过 ROC 是使用 “假正例率”（FPR）和 “真正例率”（TPR）来作为曲线的横纵坐标。</p>
