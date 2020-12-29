@@ -135,15 +135,15 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113413.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201228173241.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 辛普森逆转.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 因果图.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Simpson.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ygt.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229111149.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 因果推断 - 药物 B.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ywb.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113552.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115501.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115441.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115652.png">
-<meta property="og:updated_time" content="2020-12-29T06:19:49.804Z">
+<meta property="og:updated_time" content="2020-12-29T06:50:43.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据科学：因果推断（一）—— 辛普森悖论">
 <meta name="twitter:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论 —— 描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相">
@@ -407,7 +407,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T14:19:49+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T14:50:43+08:00">
                 2020-12-29
               </time>
             
@@ -533,7 +533,7 @@
 <h3 id="辛普森逆转"><a href="#辛普森逆转" class="headerlink" title="辛普森逆转"></a>辛普森逆转</h3><p>“辛普森逆转” 是指在合并样本时，两个或多个不同样本关于某一特定事件的相对频率出现反转的现象。在上面的例子中，我们可以看到两组相对频率：<code>3/40 &gt; 1/20</code>，<code>8/20 &gt; 12/40</code>，然而 <code>(3 + 8)/(40 + 20) &lt; (1 + 12)/(20 + 40)</code>。</p>
 <p>为了直观理解辛普森逆转机制，我们通过混合不同浓度的溶液来类比混合不同性别心脏发病率的场景，其中容器的形状代表性别，女性用圆形容器来表示，男性则用方形容器来表示，患者发病率用黑色阴影来表示，混合前圆形容器和方形容器干预组液体浓度都要大于对照组，混合后干预组液体浓度却高于对照组：</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 辛普森逆转.png" width="40%" heigh="55%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Simpson.png" width="40%" heigh="55%">
 </div>
 
 <p>辛普森逆转通常满足两个前提：</p>
@@ -553,7 +553,7 @@
 </ol>
 <p>因为药物改变病人性别的事不太可能发生，所以前两句陈述中一定有一句为假。那么，哪句陈述是假的？要回答这个问题，我们必须在数据之外探寻数据生成的过程。我们可以通过以下因果图对 BBG 药物数据的产生过程建模，这张图对性别对心脏病发作风险的影响（男性患者的风险更大），以及性别对患者是否选择服用药物 D 的影响（女性更倾向于服用药物 D）进行了编码，性别因素构成了是否服用药物和心脏病发作的 <strong> 混淆因子 </strong>：</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 因果图.png" width="40%" heigh="55%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ygt.png" width="40%" heigh="55%">
 </div>
 
 <p>为了客观估计药物对心脏病的影响，我们必须对混淆因子进行控制，或按照一般总体中性别分布对不同性别下药物效果进行加权：</p>
@@ -578,7 +578,7 @@
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229111149.png" alt></p>
 <p>这些数据看起来非常熟悉，其中的数字和 BBG 药物的统计数据是完全一致的。我们可以通过以下因果图对服用药物 B、血压、心脏病发作三者建模，与 BBG 因果图不同的是，血压不再是药物服用和心脏病发作的混淆因子，而是二者之间的中介物：</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 因果推断 - 药物 B.png" width="40%" heigh="55%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ywb.png" width="40%" heigh="55%">
 </div>
 
 <p>“服用药物 B -&gt; 心脏病发作” 这一因果关系中没有混杂因子，所以数据分层是不必要的。事实上，如果控制血压会使其中一条因果路径失效（而且可能是最重要的那条因果路径），导致药物无法通过这条路径发挥作用。鉴于此，我们得出的结论与在 BBG 药物的例子中得到的结论完全相反：药物 B 能有效预防心脏病发作。</p>
