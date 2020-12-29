@@ -143,7 +143,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115501.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115441.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115652.png">
-<meta property="og:updated_time" content="2020-12-29T06:52:19.836Z">
+<meta property="og:updated_time" content="2020-12-29T07:17:27.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据科学：因果推断（一）—— 辛普森悖论">
 <meta name="twitter:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论 —— 描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相">
@@ -407,7 +407,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T14:52:19+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T15:17:27+08:00">
                 2020-12-29
               </time>
             
@@ -506,7 +506,7 @@
 
       
         <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113413.png" width="80%" heigh="55%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113413.png" width="60%" heigh="55%">
 </div>
 
 <blockquote>
@@ -530,7 +530,7 @@
 <li>确定悖论出现的场景类别；</li>
 <li>挖掘悖论掩盖的正确结论；</li>
 </ol>
-<h3 id="辛普森逆转"><a href="#辛普森逆转" class="headerlink" title="辛普森逆转"></a>辛普森逆转</h3><p>“辛普森逆转” 是指在合并样本时，两个或多个不同样本关于某一特定事件的相对频率出现反转的现象。在上面的例子中，我们可以看到两组相对频率：<code>3/40 &gt; 1/20</code>，<code>8/20 &gt; 12/40</code>，然而 <code>(3 + 8)/(40 + 20) &lt; (1 + 12)/(20 + 40)</code>。</p>
+<h3 id="辛普森逆转"><a href="#辛普森逆转" class="headerlink" title="辛普森逆转"></a>辛普森逆转</h3><p>“辛普森逆转” 是指在合并样本时，两个或多个不同样本关于某一特定事件的相对频率出现反转的现象。在上面的例子中，我们可以看到两组相对频率：<code>1/20 &lt; 3/40</code>，<code>12/40 &lt; 8/20</code>，然而 <code>(1 + 12)/(20 + 40) &gt; (3 + 8)/(40 + 20)</code>。</p>
 <p>为了直观理解辛普森逆转机制，我们通过混合不同浓度的溶液来类比混合不同性别心脏发病率的场景，其中容器的形状代表性别，女性用圆形容器来表示，男性则用方形容器来表示，患者发病率用黑色阴影来表示，混合前圆形容器和方形容器干预组液体浓度都要大于对照组，混合后干预组液体浓度却高于对照组：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Simpson.png" width="40%" heigh="55%">
@@ -538,8 +538,8 @@
 
 <p>辛普森逆转通常满足两个前提：</p>
 <ol>
-<li>不同 Z 分层对应的 Y 值相差很大：在 BBG 实例中，男性患者的发病率（约为 33.3%）远高于女性患者的发病率（约为 6.7%）；</li>
-<li>Z 在干预组和对照组的分布有明显差异：在 BBG 实例中，男性在对照组占比（约为 66.7%）远高于在干预组占比（约为 33.3%）；</li>
+<li>不同 Z 分层对应的 Y 值相差很大：男性患者的发病率（约为 33.3%）远高于女性患者的发病率（约为 6.7%）；</li>
+<li>Z 在干预组和对照组的分布有明显差异：男性在对照组占比（约为 66.7%）远高于在干预组占比（约为 33.3%）；</li>
 </ol>
 <h3 id="辛普森悖论"><a href="#辛普森悖论" class="headerlink" title="辛普森悖论"></a>辛普森悖论</h3><p>辛普森逆转只是一个纯粹的数字事实，本身并无新奇之处，它最多只是纠正了人们对 “平均表现” 的错误概念。而悖论的含义不止于此，它应该能够引起两种为绝大部分人深信不疑的信念之间的冲突。在 BBG 药物悖论中，当 “对男性有害”“对女性有害”“对人类有益” 这三个陈述被简单理解为比例增减时，它们在数学上并不矛盾，但是你可能认为这种情况在现实世界中不可能存在，因为一种药物不可能既导致心脏病发作又防止心脏病发作。幸运的是，你的直觉是对的，BBG 药物确实不存在！</p>
 <blockquote>
@@ -549,7 +549,7 @@
 <ol>
 <li>药物 D 增加了男性患者和女性患者的心脏病发作的概率；</li>
 <li>药物 D 降低了整个总体的心脏病发作的概率；</li>
-<li>这种药物不会改变男性和女性的数量；</li>
+<li>药物 D 不会改变男性和女性的数量；</li>
 </ol>
 <p>因为药物改变病人性别的事不太可能发生，所以前两句陈述中一定有一句为假。那么，哪句陈述是假的？要回答这个问题，我们必须在数据之外探寻数据生成的过程。我们可以通过以下因果图对 BBG 药物数据的产生过程建模，这张图对性别对心脏病发作风险的影响（男性患者的风险更大），以及性别对患者是否选择服用药物 D 的影响（女性更倾向于服用药物 D）进行了编码，性别因素构成了是否服用药物和心脏病发作的 <strong> 混淆因子 </strong>：</p>
 <div align="center">
@@ -560,7 +560,7 @@
 <ol>
 <li>对于女性患者：未服药组的心脏病发病率 5%  &lt; 服药组的心脏病发病率 8%；</li>
 <li>对于男性患者：未服药组的心脏病发病率 30% &lt; 服药组的心脏病发病率 40%；</li>
-<li>对于所有患者：未服药组的心脏病发病率 5% <em> 0.5 + 30% </em> 0.5 = 17.5% &lt; 服药组的心脏病发病率  8% <em> 0.5 + 40% </em> 0.5 = 24%；</li>
+<li>对于所有患者：未服药组的心脏病发病率 <code>5% × 0.5 + 30% × 0.5 = 17.5%</code> &lt; 服药组的心脏病发病率  <code>8% × 0.5 + 40% × 0.5 = 24%</code>；</li>
 </ol>
 <p>至此，我们找到了关于 BBG 药物最清晰、明确的答案：药物 D 不是 BBG 药物，而是 BBB 药物，对女性有害、对男性有害、对人类有害。</p>
 <p>至此，我们回答了 BBG 药物悖论中的基本问题：</p>
@@ -886,7 +886,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.8k</span>
+    <span title="Site words total count">301.7k</span>
   
 </div>
 
