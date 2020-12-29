@@ -143,7 +143,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115501.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115441.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115652.png">
-<meta property="og:updated_time" content="2020-12-29T07:17:27.329Z">
+<meta property="og:updated_time" content="2020-12-29T07:22:23.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据科学：因果推断（一）—— 辛普森悖论">
 <meta name="twitter:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论 —— 描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相">
@@ -407,7 +407,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T15:17:27+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-29T15:22:23+08:00">
                 2020-12-29
               </time>
             
@@ -538,8 +538,8 @@
 
 <p>辛普森逆转通常满足两个前提：</p>
 <ol>
-<li>不同 Z 分层对应的 Y 值相差很大：男性患者的发病率（约为 33.3%）远高于女性患者的发病率（约为 6.7%）；</li>
-<li>Z 在干预组和对照组的分布有明显差异：男性在对照组占比（约为 66.7%）远高于在干预组占比（约为 33.3%）；</li>
+<li>不同 Z 分层对应的 Y 值相差很大：男性患者的发病率 (33.3%) 远高于女性患者的发病率 (6.7%)；</li>
+<li>Z 在干预组和对照组的分布有明显差异：男性在对照组占比 (66.7%) 远高于在干预组占比 (33.3%)；</li>
 </ol>
 <h3 id="辛普森悖论"><a href="#辛普森悖论" class="headerlink" title="辛普森悖论"></a>辛普森悖论</h3><p>辛普森逆转只是一个纯粹的数字事实，本身并无新奇之处，它最多只是纠正了人们对 “平均表现” 的错误概念。而悖论的含义不止于此，它应该能够引起两种为绝大部分人深信不疑的信念之间的冲突。在 BBG 药物悖论中，当 “对男性有害”“对女性有害”“对人类有益” 这三个陈述被简单理解为比例增减时，它们在数学上并不矛盾，但是你可能认为这种情况在现实世界中不可能存在，因为一种药物不可能既导致心脏病发作又防止心脏病发作。幸运的是，你的直觉是对的，BBG 药物确实不存在！</p>
 <blockquote>
@@ -571,8 +571,8 @@
 </ol>
 <h3 id="分合取决于因果而非数据"><a href="#分合取决于因果而非数据" class="headerlink" title="分合取决于因果而非数据"></a>分合取决于因果而非数据</h3><p>关于辛普森悖论，还应明确：</p>
 <ol>
-<li>辛普森悖论的存在并不意味着聚合数据总是错的：是分是合具体取决于数据的生成过程，而非数据本身；</li>
-<li>辛普森悖论没有出现也不意味着混淆因子不存在：潜在的混淆因子仍然会干扰统计推断，只是尚没有达到辛普森悖论的极端表现；</li>
+<li>辛普森悖论的存在并不意味着聚合数据总是错的：是分是合取决于数据的生成过程，而非数据本身；</li>
+<li>辛普森悖论没有出现也不意味着混淆因子不存在：潜在的混淆因子仍然会干扰统计推断，只是没有达到辛普森悖论的极端表现；</li>
 </ol>
 <p>假设高血压是心脏病发作的可能原因，而药物 B 能降低血压，研究人员向看看这种药物是否也能降低心脏病发作的风险，因此他们在病人服药后测量了病人的血压，并观察病人是否会出现心脏病发作的情况：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229111149.png" alt></p>
