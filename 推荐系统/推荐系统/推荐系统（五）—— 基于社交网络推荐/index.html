@@ -460,7 +460,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1k
                 </span>
               
 
@@ -506,32 +506,32 @@
 <p>实验表明，综合考虑用户的社会兴趣和个人兴趣对于提高用户满意度是有帮助的。</p>
 <h3 id="基于邻域的社会化推荐算法"><a href="#基于邻域的社会化推荐算法" class="headerlink" title="基于邻域的社会化推荐算法"></a>基于邻域的社会化推荐算法</h3><p>基本的思路是给用户推荐好友喜欢的物品集合：</p>
 <script type="math/tex; mode=display">
-p (u,i)=\sum_{v \in out (u)} w_{uv} r_{vi}</script><ul>
-<li>$w_{uv}$：用户 u 和好友 v 的熟悉度及兴趣相似度</li>
-<li>$r_{vi}$：用户 v 是否喜欢物品 i</li>
+p(u,i)=\sum_{v \in out(u)}w_{uv}r_{vi}</script><ul>
+<li>$w_{uv}$：用户u和好友v的熟悉度及兴趣相似度</li>
+<li>$r_{vi}$：用户v是否喜欢物品i</li>
 </ul>
 <p>用户熟悉度：可以通过两个用户共同好友比例来衡量它们的熟悉度</p>
 <script type="math/tex; mode=display">
-familiarity (u,v)=\frac {\left | out (u)\bigcap out (v) \right |}{\left | out (u)\bigcup out (v) \right |}</script><ul>
-<li>$out (u)$：用户的好友集合</li>
+familiarity(u,v)=\frac{\left | out(u)\bigcap out(v) \right |}{\left | out(u)\bigcup out(v) \right |}</script><ul>
+<li>$out(u)$：用户的好友集合</li>
 </ul>
 <p>用户相似度：可以通过两个用户共同喜欢的物品比例来衡量它们的兴趣相似度</p>
 <script type="math/tex; mode=display">
-familiarity (u,v)=\frac {\left | N (u)\bigcap N (v) \right |}{\left | N (u)\bigcup N (v) \right |}</script><ul>
-<li>$N (u)$：用户喜欢的物品集合</li>
+familiarity(u,v)=\frac{\left | N(u)\bigcap N(v) \right |}{\left | N(u)\bigcup N(v) \right |}</script><ul>
+<li>$N(u)$：用户喜欢的物品集合</li>
 </ul>
-<h3 id="基于图的推荐"><a href="#基于图的推荐" class="headerlink" title="基于图的推荐"></a>基于图的推荐</h3><p>图的定义：将用户社交网络图与用户 - 物品二分图结合成一张图</p>
+<h3 id="基于图的推荐"><a href="#基于图的推荐" class="headerlink" title="基于图的推荐"></a>基于图的推荐</h3><p>图的定义：将用户社交网络图与用户-物品二分图结合成一张图</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/23-48-16.jpg" width="30%" heigh="30%">
 </div>
 
-<p>通过调整 α 和 β，可以调节好友行为和用户历史行为所占的不同权重：</p>
+<p>通过调整α和β，可以调节好友行为和用户历史行为所占的不同权重：</p>
 <ul>
-<li>用户和用户之间边的权值：用户和用户之间的相似度的 α 倍 (熟悉度和兴趣相似度)</li>
-<li>用户和物品之间边的权值：用户和物品之间的兴趣度的 β 倍</li>
+<li>用户和用户之间边的权值：用户和用户之间的相似度的α倍(熟悉度和兴趣相似度)</li>
+<li>用户和物品之间边的权值：用户和物品之间的兴趣度的β倍</li>
 </ul>
 <p>随机游走算法：PersonalRank</p>
-<p>在社交网络中，除了用户之间直接的社交网络关系 (friendship) 之外，还存在一种社群网络 (membership)，加入社群节点后的图：</p>
+<p>在社交网络中，除了用户之间直接的社交网络关系(friendship)之外，还存在一种社群网络(membership)，加入社群节点后的图：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/23-54-33.jpg" width="40%" heigh="40%">
 </div>
@@ -541,19 +541,19 @@ familiarity (u,v)=\frac {\left | N (u)\bigcap N (v) \right |}{\left | N (u)\bigc
 <ol>
 <li>用户人口统计学属性，包括年龄、性别、职业、毕业学校和工作单位等。</li>
 <li>用户的兴趣，包括用户喜欢的物品和发布过的言论等。</li>
-<li>用户的位置信息，包括用户的住址、IP 地址和邮编等。</li>
+<li>用户的位置信息，包括用户的住址、IP地址和邮编等。</li>
 </ol>
 <p>计算方式和前面介绍过的计算物品相似度类似。</p>
 <h3 id="基于社交网络的好友推荐"><a href="#基于社交网络的好友推荐" class="headerlink" title="基于社交网络的好友推荐"></a>基于社交网络的好友推荐</h3><p>基于社交网络进行好友推荐，最简单的思路就是给用户推荐好友的好友。</p>
 <p>用户熟悉度：基于用户共同好友比例计算用户间的数系度：</p>
 <script type="math/tex; mode=display">
-w_{out}(u,v)=\frac {\left | out (u)\bigcap out (v) \right |}{\left | out (u)\bigcup out (v) \right |}</script><p>out (u) 代表 u 指向的好友集合，在无向社交网络 (如 QQ 好友) 中，out (u)=in (u)，但在有向社交网络 (如微博关注) 中，它们是不同的集合，可以定义另一种相似度。在有向社交网络中 $w_{out}(u,v)$ 代表关注相似度，$w_{in}(u,v)$ 代表被关注相似度。</p>
+w_{out}(u,v)=\frac{\left | out(u)\bigcap out(v) \right |}{\left | out(u)\bigcup out(v) \right |}</script><p>out(u)代表u指向的好友集合，在无向社交网络(如QQ好友)中，out(u)=in(u)，但在有向社交网络(如微博关注)中，它们是不同的集合，可以定义另一种相似度。在有向社交网络中$w_{out}(u,v)$代表关注相似度，$w_{in}(u,v)$代表被关注相似度。</p>
 <script type="math/tex; mode=display">
-w_{in}(u,v)=\frac {\left | in (u)\bigcap in (v) \right |}{\sqrt {\left | in (u) \right |\left | in (v) \right |}}</script><p>另一种有向图中的相似度定义：u 关注的人中有多少关注了 v</p>
+w_{in}(u,v)=\frac{\left | in(u)\bigcap in(v) \right |}{\sqrt{\left | in(u) \right |\left | in(v) \right |}}</script><p>另一种有向图中的相似度定义：u关注的人中有多少关注了v</p>
 <script type="math/tex; mode=display">
-w_{out,in}(u,v)=\frac {\left | out (u)\bigcap in (v) \right |}{\left | out (u) \right |}</script><p>如果 v 是名人的话，几乎所有用户都和名人有较高相似度，因此可以用以下公式改进：</p>
+w_{out,in}(u,v)=\frac{\left | out(u)\bigcap in(v) \right |}{\left | out(u) \right |}</script><p>如果v是名人的话，几乎所有用户都和名人有较高相似度，因此可以用以下公式改进：</p>
 <script type="math/tex; mode=display">
-w_{in}(u,v)=\frac {\left | out (u)\bigcap in (v) \right |}{\sqrt {\left | out (u) \right |\left | in (v) \right |}}</script>
+w_{in}(u,v)=\frac{\left | out(u)\bigcap in(v) \right |}{\sqrt{\left | out(u) \right |\left | in(v) \right |}}</script>
       
     </div>
     
@@ -607,8 +607,8 @@ w_{in}(u,v)=\frac {\left | out (u)\bigcap in (v) \right |}{\sqrt {\left | out (u
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/推荐系统/推荐系统/推荐系统（六）—— 评分预测/" rel="next" title="推荐系统（六）—— 评分预测">
-                <i class="fa fa-chevron-left"></i> 推荐系统（六）—— 评分预测
+              <a href="/推荐系统/推荐系统/推荐系统（四）—— 基于上下文推荐/" rel="next" title="推荐系统（四）—— 基于上下文推荐">
+                <i class="fa fa-chevron-left"></i> 推荐系统（四）—— 基于上下文推荐
               </a>
             
           </div>
@@ -725,7 +725,7 @@ w_{in}(u,v)=\frac {\left | out (u)\bigcap in (v) \right |}{\sqrt {\left | out (u
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -837,7 +837,7 @@ w_{in}(u,v)=\frac {\left | out (u)\bigcap in (v) \right |}{\sqrt {\left | out (u
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*$">
+<meta name="description" content="EM(expectation maximization)算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 EM算法的推导考虑一个概率模型，将所有观测变量记做X，将所有隐变量记做Z，完全变量的联合概率分布$p(X,Z\mid\theta)$由一组参数控制，记做$\theta$。我们的目标是通过观测变量的极大似然来估计最优参数$\theta^*$  \theta^*=\">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：基础算法（九）—— EM">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：基础算法（九）—— EM/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*$">
+<meta property="og:description" content="EM(expectation maximization)算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 EM算法的推导考虑一个概率模型，将所有观测变量记做X，将所有隐变量记做Z，完全变量的联合概率分布$p(X,Z\mid\theta)$由一组参数控制，记做$\theta$。我们的目标是通过观测变量的极大似然来估计最优参数$\theta^*$  \theta^*=\">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-21-54.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-31-56.jpg">
@@ -139,7 +139,7 @@
 <meta property="og:updated_time" content="2020-10-24T09:36:10.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：基础算法（九）—— EM">
-<meta name="twitter:description" content="EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*$">
+<meta name="twitter:description" content="EM(expectation maximization)算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。 EM算法的推导考虑一个概率模型，将所有观测变量记做X，将所有隐变量记做Z，完全变量的联合概率分布$p(X,Z\mid\theta)$由一组参数控制，记做$\theta$。我们的目标是通过观测变量的极大似然来估计最优参数$\theta^*$  \theta^*=\">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-21-54.jpg">
 
 
@@ -498,95 +498,95 @@
       
 
       
-        <p>EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。</p>
-<h2 id="EM-算法的推导"><a href="#EM-算法的推导" class="headerlink" title="EM 算法的推导"></a>EM 算法的推导</h2><p>考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制，记做 $\theta$。我们的目标是通过观测变量的极大似然来估计最优参数 $\theta^*$</p>
+        <p>EM(expectation maximization)算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。</p>
+<h2 id="EM算法的推导"><a href="#EM算法的推导" class="headerlink" title="EM算法的推导"></a>EM算法的推导</h2><p>考虑一个概率模型，将所有观测变量记做X，将所有隐变量记做Z，完全变量的联合概率分布$p(X,Z\mid\theta)$由一组参数控制，记做$\theta$。我们的目标是通过观测变量的极大似然来估计最优参数$\theta^*$</p>
 <script type="math/tex; mode=display">
-\theta^*=\underset {\theta}{max}\ log\ p (X\mid\theta)=\underset {\theta}{max}\ log\ \sum_{Z} p (X,Z\mid\theta)</script><p>因为对数中包含了联合概率分布的和 (或积分)，直接最优化 $log\ p (X\mid\theta)$ 比较困难，通过引入隐变量分布 $q (Z)$，可以将观测变量的对数似然分解为一个下界加上 $q (z)$ 与 $p (Z|X,\theta)$ 的 KL 散度 (代入可证)：</p>
+\theta^*=\underset{\theta}{max}\ log\ p(X\mid\theta)=\underset{\theta}{max}\ log\ \sum_{Z}p(X,Z\mid\theta)</script><p>因为对数中包含了联合概率分布的和(或积分)，直接最优化$log\ p(X\mid\theta)$比较困难，通过引入隐变量分布$q(Z)$，可以将观测变量的对数似然分解为一个下界加上$q(z)$与$p(Z|X,\theta)$的KL散度(代入可证)：</p>
 <script type="math/tex; mode=display">
-L (\theta)=logp (X|\theta)=B (q,\theta)+KL (q||p)</script><p>其中：</p>
+L(\theta)=logp(X|\theta)=B(q,\theta)+KL(q||p)</script><p>其中：</p>
 <script type="math/tex; mode=display">
-\left\{\begin {matrix}
-&B (q,\theta)=\sum_{Z} q (Z) log\frac {p (X,Z|\theta)}{q (Z)}\\ 
-&KL (q||p)=-\sum_{Z} q (Z) log\frac {p (Z|X,\theta)}{q (Z)}
-\end {matrix}\right.</script><p>KL 散度总是大于等于 0，故 $B (q,\theta)$ 是 $L (\theta)$ 的一个下界：</p>
+\left\{\begin{matrix}
+&B(q,\theta)=\sum_{Z}q(Z)log\frac{p(X,Z|\theta)}{q(Z)}\\ 
+&KL(q||p)=-\sum_{Z}q(Z)log\frac{p(Z|X,\theta)}{q(Z)}
+\end{matrix}\right.</script><p>KL散度总是大于等于0，故$B(q,\theta)$是$L(\theta)$的一个下界：</p>
 <script type="math/tex; mode=display">
-L (\theta)\geqslant B (q,\theta)</script><p>EM 算法是一个两阶段的迭代算法，通过不断提升对数似然函数的下界来搜索对数似然函数的极大值。假设参数当前值为 $\theta_k$，可以用以上似然分解来定义这两个阶段：</p>
-<p>1、 E 步：固定当前参数 $\theta_k$，关于隐变量分布 $q (Z)$ 最大化下界函数 $B (q,\theta_k)$，逼近当前的对数似然函数值。很明显下界函数的最大值出现在 $q (z)$ 与 $p (Z|X,\theta)$ 的 KL 散度为 0 的时候，即 $p (Z|X,\theta_k)=q (Z)$。</p>
+L(\theta)\geqslant B(q,\theta)</script><p>EM算法是一个两阶段的迭代算法，通过不断提升对数似然函数的下界来搜索对数似然函数的极大值。假设参数当前值为$\theta_k$，可以用以上似然分解来定义这两个阶段：</p>
+<p>1、 E步：固定当前参数$\theta_k$，关于隐变量分布$q(Z)$最大化下界函数$B(q,\theta_k)$，逼近当前的对数似然函数值。很明显下界函数的最大值出现在$q(z)$与$p(Z|X,\theta)$的KL散度为0的时候，即$p(Z|X,\theta_k)=q(Z)$。</p>
 <p>此时下界函数可表示为：</p>
 <script type="math/tex; mode=display">
-\begin {align*} 
-B (q,\theta)&=\sum_{Z} p (Z|X,\theta_k) logp (X,Z|\theta)-\sum_{Z} p (Z|X,\theta_k) logp (Z|X,\theta_k)\\
-&=Q (\theta,\theta_k) + H_{X,\theta_k}(Z)
-\end {align*}</script><ul>
-<li>$H_{X,\theta_k}(Z)$：分布 q (Z) 的熵，为常数，与 $\theta$ 无关；</li>
-<li>$Q (\theta,\theta_k)$：Q 函数，完全数据的对数似然关于隐变量分布的期望；</li>
+\begin{align*} 
+B(q,\theta)&=\sum_{Z}p(Z|X,\theta_k)logp(X,Z|\theta)-\sum_{Z}p(Z|X,\theta_k)logp(Z|X,\theta_k)\\
+&=Q(\theta,\theta_k) + H_{X,\theta_k}(Z)
+\end{align*}</script><ul>
+<li>$H_{X,\theta_k}(Z)$：分布q(Z)的熵，为常数，与$\theta$无关；</li>
+<li>$Q(\theta,\theta_k)$：Q函数，完全数据的对数似然关于隐变量分布的期望；</li>
 </ul>
 <p>此时下界函数值等于对数似然函数值：</p>
 <script type="math/tex; mode=display">
-\begin {align*} 
-B (q,\theta_k)&=\sum_{Z} p (Z|X,\theta_k) logp (X,Z|\theta_k)-\sum_{Z} p (Z|X,\theta_k) logp (Z|X,\theta_k)\\
-&=\sum_{Z} p (Z|X,\theta_k) logp (X|\theta_k)\\
-&=logp (X|\theta_k)\\
-&=L (\theta_k)
-\end {align*}</script><p>E 步的几何解释：q 分布被置为当前参数下的后验概率分布，使得 KL 散度为 0，下界函数上移到与观测数据对数似然相等的位置。</p>
+\begin{align*} 
+B(q,\theta_k)&=\sum_{Z}p(Z|X,\theta_k)logp(X,Z|\theta_k)-\sum_{Z}p(Z|X,\theta_k)logp(Z|X,\theta_k)\\
+&=\sum_{Z}p(Z|X,\theta_k)logp(X|\theta_k)\\
+&=logp(X|\theta_k)\\
+&=L(\theta_k)
+\end{align*}</script><p>E步的几何解释：q分布被置为当前参数下的后验概率分布，使得KL散度为0，下界函数上移到与观测数据对数似然相等的位置。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-21-54.jpg" alt></p>
-<p>2、M 步：固定当前隐变量分布，关于参数 $\theta$ 最大化下界函数 $B (q,\theta_k)$，得到某个新的 $\theta_{k+1}$。这会增大 $B (q,\theta_k)$(除非已经到达极大值)，同时因为概率分布 q 由 $\theta_k$ 确定，并在 M 步保持不变，因此它不会等于新的后验概率分布 $p (Z|X,\theta_{k+1})$，从而 KL 散度不为 0，所以对数似然的增加量大于下界函数的增加量。</p>
+<p>2、M步：固定当前隐变量分布，关于参数$\theta$最大化下界函数$B(q,\theta_k)$，得到某个新的$\theta_{k+1}$。这会增大$B(q,\theta_k)$(除非已经到达极大值)，同时因为概率分布q由$\theta_k$确定，并在M步保持不变，因此它不会等于新的后验概率分布$p(Z|X,\theta_{k+1})$，从而KL散度不为0，所以对数似然的增加量大于下界函数的增加量。</p>
 <script type="math/tex; mode=display">
-\theta_{k+1}= arg\ \underset {\theta}{max}\ B (q,\theta)=arg\ \underset {\theta}{max}\ Q (\theta,\theta_k)</script><script type="math/tex; mode=display">
-L (\theta_k)>B (q,\theta_k)</script><p>M 步几何解释：下界函数关于参数最大化，得到修正的 $\theta$，因为 KL 散度非负，使得对数似然函数增量至少与下界函数增量相等。</p>
+\theta_{k+1}= arg\ \underset{\theta}{max}\ B(q,\theta)=arg\ \underset{\theta}{max}\ Q(\theta,\theta_k)</script><script type="math/tex; mode=display">
+L(\theta_k)>B(q,\theta_k)</script><p>M步几何解释：下界函数关于参数最大化，得到修正的$\theta$，因为KL散度非负，使得对数似然函数增量至少与下界函数增量相等。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-31-56.jpg" alt></p>
-<p>EM 算法也可以看做是参数空间中的迭代：红色曲线表示观测数据对数似然函数，我们希望搜索它的极大值，首先选取某个初始参数值 $\theta^{old}$，通过 E 步计算隐变量上的后验概率分布，关于隐变量上的后验概率分布最大化下界函数 (蓝色曲线表示)，使得在 $\theta^{old}$ 处下界函数值等于对数似然值；在 M 步，关于参数 $\theta$ 最大化下界函数，得到新的 $\theta^{new}$，在新参数值下对数似然值增长量大于下界函数增长量；接下来的 E 步又构建了一个新的下界函数 (绿色)，直至对数似然函数达到极值 (EM 之只能达到局部最优)。</p>
+<p>EM算法也可以看做是参数空间中的迭代：红色曲线表示观测数据对数似然函数，我们希望搜索它的极大值，首先选取某个初始参数值$\theta^{old}$，通过E步计算隐变量上的后验概率分布，关于隐变量上的后验概率分布最大化下界函数(蓝色曲线表示)，使得在$\theta^{old}$处下界函数值等于对数似然值；在M步，关于参数$\theta$最大化下界函数，得到新的$\theta^{new}$，在新参数值下对数似然值增长量大于下界函数增长量；接下来的E步又构建了一个新的下界函数(绿色)，直至对数似然函数达到极值(EM之只能达到局部最优)。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-40-24.jpg" alt></p>
-<p><strong>EM 算法的基本框架 </strong>：</p>
-<p>输入：观测变量数据 X，隐变量数据 Z，完全数据联合分布 $p (X,Z|\theta)$，条件分布 $p (Z|Y,\theta)$，精度 $\epsilon$<br>输出：模型参数 $\theta$<br>（1）选择参数初值 $\theta_0$，置 k=0<br>（2）如果 $\left | \theta_{k+1}-\theta_k \right |&lt;\epsilon $</p>
+<p><strong>EM算法的基本框架</strong>：</p>
+<p>输入：观测变量数据X，隐变量数据Z，完全数据联合分布$p(X,Z|\theta)$，条件分布$p(Z|Y,\theta)$，精度$\epsilon$<br>输出：模型参数$\theta$<br>（1）选择参数初值$\theta_0$，置k=0<br>（2）如果$\left | \theta_{k+1}-\theta_k \right |&lt;\epsilon $</p>
 <ul>
-<li>E 步：记 $\theta_k$ 为第 k 次迭代参数的估计值，计算 Q 函数：</li>
+<li>E步：记$\theta_k$为第k次迭代参数的估计值，计算Q函数：</li>
 </ul>
 <script type="math/tex; mode=display">
-Q (\theta,\theta_k)=\mathbb {E}_Z [logp (X,Z|\theta)\mid X,\theta_k]=\sum_{Z} p (Z|X,\theta_k) logp (X,Z|\theta)</script><ul>
-<li>M 步：极大化 Q 函数，更新参数</li>
+Q(\theta,\theta_k)=\mathbb{E}_Z[logp(X,Z|\theta)\mid X,\theta_k]=\sum_{Z}p(Z|X,\theta_k)logp(X,Z|\theta)</script><ul>
+<li>M步：极大化Q函数，更新参数</li>
 </ul>
 <script type="math/tex; mode=display">
-\theta_{k+1}=arg\ \underset {\theta}{max}\ Q (\theta,\theta_k)</script><h2 id="EM-算法的收敛性"><a href="#EM-算法的收敛性" class="headerlink" title="EM 算法的收敛性"></a>EM 算法的收敛性</h2><p>定理 1：假设 $\theta_k,k=1,2…$ 是 EM 算法得到的参数估计序列，则对应的对数似然函数序列是递增的。</p>
+\theta_{k+1}=arg\ \underset{\theta}{max}\ Q(\theta,\theta_k)</script><h2 id="EM算法的收敛性"><a href="#EM算法的收敛性" class="headerlink" title="EM算法的收敛性"></a>EM算法的收敛性</h2><p>定理1：假设$\theta_k,k=1,2…$是EM算法得到的参数估计序列，则对应的对数似然函数序列是递增的。</p>
 <script type="math/tex; mode=display">
-L (\theta_{k+1})\geqslant B (q,\theta_{k+1})\geqslant B (q,\theta_k)= L (\theta_k)</script><p>定理 2：如果 EM 的对数似然函数有上界，则 EM 算法得到的对数似然函数序列会收敛到某个值。</p>
-<p>定理 3：在 Q 函数和对数似然满足一定条件下，EM 算法得到的参数估计序列会收敛到对数似然函数序列的稳定点，但不能保证收敛到全局 / 局部极大值点。</p>
-<p>EM 算法对初值比较敏感，在实际应用中通常选取几个不同的初值进行迭代，然后对各个估计值加以比较，从中选择最好的</p>
-<h2 id="EM-算法用于极大后验概率估计"><a href="#EM-算法用于极大后验概率估计" class="headerlink" title="EM 算法用于极大后验概率估计"></a>EM 算法用于极大后验概率估计</h2><p>我们也可以使用 EM 算法来最大化模型的后验概率分布 $p (\theta\mid X)$，其中我们已经引入了参数上的先验概率分布 $p (\theta)$，我们的目标是极大化以下对数后验概率：</p>
+L(\theta_{k+1})\geqslant B(q,\theta_{k+1})\geqslant B(q,\theta_k)= L(\theta_k)</script><p>定理2：如果EM的对数似然函数有上界，则EM算法得到的对数似然函数序列会收敛到某个值。</p>
+<p>定理3：在Q函数和对数似然满足一定条件下，EM算法得到的参数估计序列会收敛到对数似然函数序列的稳定点，但不能保证收敛到全局/局部极大值点。</p>
+<p>EM算法对初值比较敏感，在实际应用中通常选取几个不同的初值进行迭代，然后对各个估计值加以比较，从中选择最好的</p>
+<h2 id="EM算法用于极大后验概率估计"><a href="#EM算法用于极大后验概率估计" class="headerlink" title="EM算法用于极大后验概率估计"></a>EM算法用于极大后验概率估计</h2><p>我们也可以使用EM算法来最大化模型的后验概率分布$p(\theta\mid X)$，其中我们已经引入了参数上的先验概率分布$p(\theta)$，我们的目标是极大化以下对数后验概率：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-log\ p (\theta\mid X)&=log\ \frac {p (\theta) p (X\mid \theta)}{p (X)}\\
-&=log\ p (X\mid \theta) + log\ p (\theta)-log\ p (X)\\
-&=B (q,\theta)+KL (q||p)+ log\ p (\theta)-log\ p (X)\\
-&\geqslant B (q,\theta)+ log\ p (\theta)-log\ p (X)
- \end {align*}</script><p>其中 $log\ p (X)$ 是一个常数，与之前一样，我们可以交替地关于 q 和 $\theta$ 对右侧进行优化：</p>
+\begin{align*}
+log\ p(\theta\mid X)&=log\ \frac{p(\theta)p(X\mid \theta)}{p(X)}\\
+&=log\ p(X\mid \theta) + log\ p(\theta)-log\ p(X)\\
+&=B(q,\theta)+KL(q||p)+ log\ p(\theta)-log\ p(X)\\
+&\geqslant B(q,\theta)+ log\ p(\theta)-log\ p(X)
+ \end{align*}</script><p>其中$log\ p(X)$是一个常数，与之前一样，我们可以交替地关于q和$\theta$对右侧进行优化：</p>
 <ol>
-<li>E 步：因为 q 只出现在下界函数中，与标准 EM 中的 E 步完全相同</li>
-<li>M 步：通过引入先验分布 $p (\theta)$ 进行修改，通常只需要做很小改动即可</li>
+<li>E步：因为q只出现在下界函数中，与标准EM中的E步完全相同</li>
+<li>M步：通过引入先验分布$p(\theta)$进行修改，通常只需要做很小改动即可</li>
 </ol>
-<h2 id="GEM-算法"><a href="#GEM-算法" class="headerlink" title="GEM 算法"></a>GEM 算法</h2><p>EM 算法将最大化似然函数这一困难问题分解为两个阶段，每个步骤一般都很容易解决，但对于复杂的模型来说，E 步或 M 步仍然无法计算。推广的 EM 算法 (generalized EM,GEM) 解决的是 M 步骤无法计算的问题。</p>
-<h3 id="F-函数的极大极大算法"><a href="#F-函数的极大极大算法" class="headerlink" title="F 函数的极大极大算法"></a>F 函数的极大极大算法</h3><p>EM 算法还可以解释为 F 函数的极大极大算法：</p>
-<p>F 函数：</p>
+<h2 id="GEM算法"><a href="#GEM算法" class="headerlink" title="GEM算法"></a>GEM算法</h2><p>EM算法将最大化似然函数这一困难问题分解为两个阶段，每个步骤一般都很容易解决，但对于复杂的模型来说，E步或M步仍然无法计算。推广的EM算法(generalized EM,GEM)解决的是M步骤无法计算的问题。</p>
+<h3 id="F函数的极大极大算法"><a href="#F函数的极大极大算法" class="headerlink" title="F函数的极大极大算法"></a>F函数的极大极大算法</h3><p>EM算法还可以解释为F函数的极大极大算法：</p>
+<p>F函数：</p>
 <script type="math/tex; mode=display">
-F (\tilde {P},\theta)=E_P [log\ P (X,Z\mid \theta)]+H (\tilde {P})</script><ul>
-<li>$\tilde {P}(Z)$：隐变量数据的概率分布</li>
-<li>$H (\tilde {P}$：分布 $\tilde {P}$ 的熵</li>
+F(\tilde{P},\theta)=E_P[log\ P(X,Z\mid \theta)]+H(\tilde{P})</script><ul>
+<li>$\tilde{P}(Z)$：隐变量数据的概率分布</li>
+<li>$H(\tilde{P}$：分布$\tilde{P}$的熵</li>
 </ul>
-<p>E 步：对固定的 $\theta^i$，求 $\tilde {P}^{i+1}$ 使 $F (\tilde {P},\theta^i)$ 极大化</p>
-<p>M 步：对固定的 $\tilde {P}^{i+1}$，求 $\theta^{i+1}$ 使 $F (\tilde {P}^{i+1},\theta)$</p>
-<p>由 EM 算法和 F 函数的极大极大算法得到的参数估计序列是一致的。</p>
-<h3 id="GEM-算法框架"><a href="#GEM-算法框架" class="headerlink" title="GEM 算法框架"></a>GEM 算法框架</h3><p>当参数个数 d 大于等于 2 时，可采用一种特殊的 GEM 算法，它将 EM 算法的 M 步分解为 d 次条件极大化，每次只改变参数向量中的一个分量，其余分量不变。</p>
-<h2 id="EM-评价和应用"><a href="#EM-评价和应用" class="headerlink" title="EM 评价和应用"></a>EM 评价和应用</h2><p>EM 算法的优缺点:</p>
+<p>E步：对固定的$\theta^i$，求$\tilde{P}^{i+1}$使$F(\tilde{P},\theta^i)$极大化</p>
+<p>M步：对固定的$\tilde{P}^{i+1}$，求$\theta^{i+1}$使$F(\tilde{P}^{i+1},\theta)$</p>
+<p>由EM算法和F函数的极大极大算法得到的参数估计序列是一致的。</p>
+<h3 id="GEM算法框架"><a href="#GEM算法框架" class="headerlink" title="GEM算法框架"></a>GEM算法框架</h3><p>当参数个数d大于等于2时，可采用一种特殊的GEM算法，它将EM算法的M步分解为d次条件极大化，每次只改变参数向量中的一个分量，其余分量不变。</p>
+<h2 id="EM评价和应用"><a href="#EM评价和应用" class="headerlink" title="EM评价和应用"></a>EM评价和应用</h2><p>EM算法的优缺点:</p>
 <ol>
-<li>优点：简单、普适</li>
-<li>缺点：收敛速度慢，只能收敛到稳定点，不能保证收敛到全局 / 局部最优解</li>
+<li>优点:简单、普适</li>
+<li>缺点:收敛速度慢，只能收敛到稳定点，不能保证收敛到全局/局部最优解</li>
 </ol>
-<p>EM 算法的应用:</p>
+<p>EM算法的应用:</p>
 <ol>
-<li>EM 用于生成模型的非监督学习：可以认为非监督学习训练数据是联合概率分布 $p (X,Y)$ 生成的数据，X 为观测变量数据，Y 为隐变量数据。<ol>
-<li>K-means 聚类</li>
-<li>GMM 混合高斯</li>
-<li>HMM 隐马尔科夫</li>
+<li>EM用于生成模型的非监督学习：可以认为非监督学习训练数据是联合概率分布$p(X,Y)$生成的数据，X为观测变量数据，Y为隐变量数据。<ol>
+<li>K-means聚类</li>
+<li>GMM混合高斯</li>
+<li>HMM隐马尔科夫</li>
 </ol>
 </li>
 <li>填充缺失值</li>
@@ -763,7 +763,7 @@ F (\tilde {P},\theta)=E_P [log\ P (X,Z\mid \theta)]+H (\tilde {P})</script><ul>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -837,7 +837,7 @@ F (\tilde {P},\theta)=E_P [log\ P (X,Z\mid \theta)]+H (\tilde {P})</script><ul>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#EM-算法的推导"><span class="nav-number">1.</span> <span class="nav-text">EM 算法的推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM-算法的收敛性"><span class="nav-number">2.</span> <span class="nav-text">EM 算法的收敛性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM-算法用于极大后验概率估计"><span class="nav-number">3.</span> <span class="nav-text">EM 算法用于极大后验概率估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEM-算法"><span class="nav-number">4.</span> <span class="nav-text">GEM 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#F-函数的极大极大算法"><span class="nav-number">4.1.</span> <span class="nav-text">F 函数的极大极大算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GEM-算法框架"><span class="nav-number">4.2.</span> <span class="nav-text">GEM 算法框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM-评价和应用"><span class="nav-number">5.</span> <span class="nav-text">EM 评价和应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#EM算法的推导"><span class="nav-number">1.</span> <span class="nav-text">EM算法的推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM算法的收敛性"><span class="nav-number">2.</span> <span class="nav-text">EM算法的收敛性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM算法用于极大后验概率估计"><span class="nav-number">3.</span> <span class="nav-text">EM算法用于极大后验概率估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEM算法"><span class="nav-number">4.</span> <span class="nav-text">GEM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#F函数的极大极大算法"><span class="nav-number">4.1.</span> <span class="nav-text">F函数的极大极大算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GEM算法框架"><span class="nav-number">4.2.</span> <span class="nav-text">GEM算法框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM评价和应用"><span class="nav-number">5.</span> <span class="nav-text">EM评价和应用</span></a></li></ol></div>
             
 
           </div>
@@ -875,7 +875,7 @@ F (\tilde {P},\theta)=E_P [log\ P (X,Z\mid \theta)]+H (\tilde {P})</script><ul>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

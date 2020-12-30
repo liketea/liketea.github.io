@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。 集成学习的一般步骤：  产生一组 “基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类">
+<meta name="description" content="集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。 集成学习的一般步骤：  产生一组“基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类：">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：集成学习（〇）—— 概述">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：集成学习（〇）—— 概述/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。 集成学习的一般步骤：  产生一组 “基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类">
+<meta property="og:description" content="集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。 集成学习的一般步骤：  产生一组“基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-55-10.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-55-00.jpg">
@@ -139,7 +139,7 @@
 <meta property="og:updated_time" content="2020-11-27T03:58:50.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：集成学习（〇）—— 概述">
-<meta name="twitter:description" content="集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。 集成学习的一般步骤：  产生一组 “基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类">
+<meta name="twitter:description" content="集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。 集成学习的一般步骤：  产生一组“基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类：">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-55-10.jpg">
 
 
@@ -501,69 +501,69 @@
         <p>集成学习（ensemble learning）通过构建并结合多个基学习器来完成学习任务，通常可获得比单一学习器显著优越的泛化性能。</p>
 <p>集成学习的一般步骤：</p>
 <ol>
-<li>产生一组 “基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类：<ol>
-<li>串行化方法：基学习器间存在强依赖关系，通过串行的方式生成，主要代表是 boosting 方法；</li>
-<li>并行化方法：基学习器之间不存在强依赖关系，可同时生成，主要代表是 bagging 方法；</li>
+<li>产生一组“基学习器”：基学习器有时也被称为弱学习器，通常指泛化性能略优于随机猜测的学习器；虽然从理论上说使用弱学习器集成就足以获得很好的性能，但在实践中出于种种考虑，往往会使用比较强的学习器；根据基学习器生成方式的不同，集成学习大致可分为两类：<ol>
+<li>串行化方法：基学习器间存在强依赖关系，通过串行的方式生成，主要代表是boosting方法；</li>
+<li>并行化方法：基学习器之间不存在强依赖关系，可同时生成，主要代表是bagging方法；</li>
 </ol>
 </li>
 <li>采用某种策略将它们结合起来；</li>
 </ol>
 <p>为什么集成学习能够获得比单一学习器更好的性能？</p>
-<p>如果做个简化的分析，考虑二分类问题 $y \in {-1,+1}$ 和真实函数 $f$，假设基分类器的错误率为 $\epsilon $，即对于每个基分类器 $h_i$ 有：</p>
+<p>如果做个简化的分析，考虑二分类问题$y \in {-1,+1}$和真实函数$f$，假设基分类器的错误率为$\epsilon $，即对于每个基分类器$h_i$有：</p>
 <script type="math/tex; mode=display">
-P (h_i (x)\neq f (x)) = \epsilon</script><p>假设通过简单投票法组合 T 个基分类器，若有超过半数的基分类器分类正确，则集成分类就正确，假设各个基分类器错误率相互独立，则由 Hoeffding 不等式可知，集成的错误率为：</p>
+P(h_i(x)\neq f(x)) = \epsilon</script><p>假设通过简单投票法组合T个基分类器，若有超过半数的基分类器分类正确，则集成分类就正确，假设各个基分类器错误率相互独立，则由Hoeffding不等式可知，集成的错误率为：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-P (H (x)\neq f (x))&=\sum_{k=1}^{\frac {T}{2}}\binom {T}{k}(1-\epsilon )^k\epsilon ^{(T-k)}\\
-&\leqslant exp (-\frac {1}{2} T (1-2\epsilon )^2)
-\end {align*}</script><p>上式显示出，随着基学习器的增加，集成错误率将指数级下降，最终趋向于零。同时，上述结论基于基学习器的误差独立的假设，且 $\epsilon &lt; 0.5$，即基学习器比随机乱猜要好。要获得好的集成，个体学习器应 “好而不同”，即基学习器一方面要有一定的 “准确性”，并且要有 “多样性”，事实上这两点本身是相互冲突的，一般准确性很高之后，要想增加多样性就需要牺牲准确性，如何产生 “好而不同” 的学习器恰恰是集成学习研究的核心。</p>
-<h2 id="基学习器生成方式"><a href="#基学习器生成方式" class="headerlink" title="基学习器生成方式"></a>基学习器生成方式</h2><p>常见的基学习器生成方式有 boosting 和 bagging，前者主要关注降低偏差，后者主要关注降低方差。</p>
-<h3 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h3><p>提升 (Boosting) 方法的工作机制：先从初始训练集中训练出一个基学习器，再根据基学习器的表现对训练样本的分布进行调整，然后基于调整后的样本分布训练下一个基学习器，如此重复直至达到事先指定的个数 T，最终将这 T 个学习器进行加权组合。</p>
+\begin{align*}
+P(H(x)\neq f(x))&=\sum_{k=1}^{\frac{T}{2}}\binom{T}{k}(1-\epsilon )^k\epsilon ^{(T-k)}\\
+&\leqslant exp(-\frac{1}{2}T(1-2\epsilon )^2)
+\end{align*}</script><p>上式显示出，随着基学习器的增加，集成错误率将指数级下降，最终趋向于零。同时，上述结论基于基学习器的误差独立的假设，且$\epsilon &lt; 0.5$，即基学习器比随机乱猜要好。要获得好的集成，个体学习器应“好而不同”，即基学习器一方面要有一定的“准确性”，并且要有“多样性”，事实上这两点本身是相互冲突的，一般准确性很高之后，要想增加多样性就需要牺牲准确性，如何产生“好而不同”的学习器恰恰是集成学习研究的核心。</p>
+<h2 id="基学习器生成方式"><a href="#基学习器生成方式" class="headerlink" title="基学习器生成方式"></a>基学习器生成方式</h2><p>常见的基学习器生成方式有boosting和bagging，前者主要关注降低偏差，后者主要关注降低方差。</p>
+<h3 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h3><p>提升(Boosting)方法的工作机制：先从初始训练集中训练出一个基学习器，再根据基学习器的表现对训练样本的分布进行调整，然后基于调整后的样本分布训练下一个基学习器，如此重复直至达到事先指定的个数T，最终将这T个学习器进行加权组合。</p>
 <p>代表：</p>
 <ol>
-<li>Adaboost：根据前一个基学习器的错误率来调整训练样本的权重并得到基学习器的权重，加大误判样本权重减小正确判断样本权重，然后再在新的训练集上训练新的基学习器，迭代以上过程得到 T 个基学习器，最终对所有基学习器进行加权结合；</li>
-<li>XgBoost：每次训练一棵决策树来拟合当前模型和真实值之间的残差，更新当前模型，迭代得到 T 棵决策树，最终对所有决策树进行加和；</li>
+<li>Adaboost：根据前一个基学习器的错误率来调整训练样本的权重并得到基学习器的权重，加大误判样本权重减小正确判断样本权重，然后再在新的训练集上训练新的基学习器，迭代以上过程得到T个基学习器，最终对所有基学习器进行加权结合；</li>
+<li>XgBoost：每次训练一棵决策树来拟合当前模型和真实值之间的残差，更新当前模型，迭代得到T棵决策树，最终对所有决策树进行加和；</li>
 </ol>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-55-10.jpg" width="80%" height="80%"></p>
-<h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p>Bagging 方法的工作机制：基于自助采样法（bootstrap sampling）/ 有放回抽样产生 T 个训练集，基于每个采样集训练一个基学习器，再将这些基学习器进行结合。</p>
+<h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p>Bagging方法的工作机制：基于自助采样法（bootstrap sampling）/有放回抽样产生T个训练集，基于每个采样集训练一个基学习器，再将这些基学习器进行结合。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-55-00.jpg" width="80%" height="80%"></p>
-<h2 id="基学习器结合方式"><a href="#基学习器结合方式" class="headerlink" title="基学习器结合方式"></a>基学习器结合方式</h2><p>假设集成包含 T 个基学习器 $(h_1,h_2,…,h_T)$</p>
-<h3 id="平均法-averaging"><a href="#平均法-averaging" class="headerlink" title="平均法 (averaging)"></a>平均法 (averaging)</h3><p>回归问题最常见的结合策略是平均法：</p>
+<h2 id="基学习器结合方式"><a href="#基学习器结合方式" class="headerlink" title="基学习器结合方式"></a>基学习器结合方式</h2><p>假设集成包含T个基学习器 $(h_1,h_2,…,h_T)$</p>
+<h3 id="平均法-averaging"><a href="#平均法-averaging" class="headerlink" title="平均法(averaging)"></a>平均法(averaging)</h3><p>回归问题最常见的结合策略是平均法：</p>
 <ul>
-<li>简单平均：$H (x)=\frac {1}{T}\sum_{i=1}^{T} h_i (x)$，在基学习器性能差别不大时宜用简单平均法；</li>
-<li>加权平均：$H (x)=\sum_{i=1}^{T} w_ih_i (x),\ \sum_{i=1}^{T} w_i=1$，在基学习器性能差别较大时宜用加权平均，通常权值从训练数据中学习而得；</li>
+<li>简单平均：$H(x)=\frac{1}{T}\sum_{i=1}^{T}h_i(x)$，在基学习器性能差别不大时宜用简单平均法；</li>
+<li>加权平均：$H(x)=\sum_{i=1}^{T}w_ih_i(x),\ \sum_{i=1}^{T}w_i=1$，在基学习器性能差别较大时宜用加权平均，通常权值从训练数据中学习而得；</li>
 </ul>
-<h3 id="投票法-voting"><a href="#投票法-voting" class="headerlink" title="投票法 (voting)"></a>投票法 (voting)</h3><p>分类任务最常见的集合策略是投票法：</p>
+<h3 id="投票法-voting"><a href="#投票法-voting" class="headerlink" title="投票法(voting)"></a>投票法(voting)</h3><p>分类任务最常见的集合策略是投票法：</p>
 <ul>
 <li>绝对多数投票：若某标记得票过半数，则预测为该标记，否则拒绝预测；</li>
 <li>相对多数投票：预测为得票最多的标记；</li>
 <li>加权投票：某些基学习器一票顶多票；</li>
 </ul>
-<p>不同基学习器可能产生不同类型的 $h_i (x)$：</p>
+<p>不同基学习器可能产生不同类型的 $h_i(x)$：</p>
 <ul>
-<li>硬投票 (hard voting)：$h_i (x)$ 为类标记；</li>
-<li>软投票 (soft voting)：$h_i (x)$ 为类后验概率，若基学习器类型相同，基于类概率进行结合往往比基于类标记进行结合性能更好；若基学习器类型不同，则类概率不能直接进行比较，在此情形下同行可将类概率转化为类标记输出后再投票；</li>
+<li>硬投票(hard voting)：$h_i(x)$为类标记；</li>
+<li>软投票(soft voting)：$h_i(x)$为类后验概率，若基学习器类型相同，基于类概率进行结合往往比基于类标记进行结合性能更好；若基学习器类型不同，则类概率不能直接进行比较，在此情形下同行可将类概率转化为类标记输出后再投票；</li>
 </ul>
-<h3 id="学习法"><a href="#学习法" class="headerlink" title="学习法"></a>学习法</h3><p>学习法工作机制：首先训练多个初级学习器，然后基于初级学习器的预测结果训练另一个次级学习器用于将初级学习器结合起来。Stacking 是学习法典型的代表。</p>
+<h3 id="学习法"><a href="#学习法" class="headerlink" title="学习法"></a>学习法</h3><p>学习法工作机制：首先训练多个初级学习器，然后基于初级学习器的预测结果训练另一个次级学习器用于将初级学习器结合起来。Stacking是学习法典型的代表。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-46-08.jpg" width="80%" height="80%"></p>
 <p>Stacking 算法：</p>
-<p>输入：训练集 D<br>输出：Stacking 集成模型 $h^{‘}$<br>过程：</p>
+<p>输入：训练集D<br>输出：Stacking 集成模型$h^{‘}$<br>过程：</p>
 <ol>
-<li>选取 T 个基本模型</li>
-<li>由基本模型的预测值产生次级训练集 $D’$：<ol>
-<li>对每个模型 $t=1,2,…,T$，通过 k 折交叉验证的方法，每次在 k-1 折中训练基学习器 $h_t$，并在余下的一折上得到预测输出，最后收集每折上的预测输出，得到该模型在所有训练集上的预测输出 $z_t$</li>
+<li>选取T个基本模型</li>
+<li>由基本模型的预测值产生次级训练集$D’$：<ol>
+<li>对每个模型 $t=1,2,…,T$，通过k折交叉验证的方法，每次在k-1折中训练基学习器 $h_t$，并在余下的一折上得到预测输出，最后收集每折上的预测输出，得到该模型在所有训练集上的预测输出$z_t$</li>
 <li>所有基学习器的预测值作为次级训练集中新的特征，加上原始训练集的标记得到次级训练集；</li>
 </ol>
 </li>
-<li>在次级训练集上训练次级学习器 $h’$</li>
+<li>在次级训练集上训练次级学习器$h’$</li>
 </ol>
-<p>有研究表明，将初级学习器的输出类概率作为次级学习器的输入属性，用多响应线性回归 (MLR) 作为次级学习器效果较好。</p>
+<p>有研究表明，将初级学习器的输出类概率作为次级学习器的输入属性，用多响应线性回归(MLR)作为次级学习器效果较好。</p>
 <p>集成学习已被广泛应用于几乎所有的学习任务，数据挖掘竞赛的历年冠军几乎都使用了集成学习。但由于集成学习包含了多个学习器，即使每个学习器有较好的解释性，集成仍是黑箱模型。</p>
-<p>更多关于集成学习的内容请参考引用文章，需要注意的是对于集成学习概念上似乎没有统一界定，不同的人在使用 blending、stacking 这些术语时所指不同。</p>
+<p>更多关于集成学习的内容请参考引用文章，需要注意的是对于集成学习概念上似乎没有统一界定，不同的人在使用blending、stacking这些术语时所指不同。</p>
 <ol>
-<li>有些人认为这两个术语含义相同，都指的是这里的 stacking 方法；</li>
-<li>有些人认为 blending 是范围更广的概念，泛指 aggregate after getting gt，因此包含了 uniform、non-uniform、stacking（林轩田）；</li>
-<li>有些人认为 blending 是在验证集上做第二层训练，如 <a href="https://mlwave.com/kaggle-ensembling-guide/" target="_blank" rel="noopener">KAGGLE ENSEMBLING GUIDE</a>；</li>
+<li>有些人认为这两个术语含义相同，都指的是这里的stacking方法；</li>
+<li>有些人认为blending是范围更广的概念，泛指aggregate after getting gt，因此包含了uniform、non-uniform、stacking（林轩田）；</li>
+<li>有些人认为blending是在验证集上做第二层训练，如<a href="https://mlwave.com/kaggle-ensembling-guide/" target="_blank" rel="noopener">KAGGLE ENSEMBLING GUIDE</a>；</li>
 </ol>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li>西瓜书 </li>
@@ -624,8 +624,8 @@ P (H (x)\neq f (x))&=\sum_{k=1}^{\frac {T}{2}}\binom {T}{k}(1-\epsilon )^k\epsil
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：集成学习（三）—— GBDT/" rel="next" title="机器学习：集成学习（三）—— GBDT">
-                <i class="fa fa-chevron-left"></i> 机器学习：集成学习（三）—— GBDT
+              <a href="/机器学习/机器学习/机器学习：集成学习（六）—— CatBoost/" rel="next" title="机器学习：集成学习（六）—— CatBoost">
+                <i class="fa fa-chevron-left"></i> 机器学习：集成学习（六）—— CatBoost
               </a>
             
           </div>
@@ -742,7 +742,7 @@ P (H (x)\neq f (x))&=\sum_{k=1}^{\frac {T}{2}}\binom {T}{k}(1-\epsilon )^k\epsil
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -816,7 +816,7 @@ P (H (x)\neq f (x))&=\sum_{k=1}^{\frac {T}{2}}\binom {T}{k}(1-\epsilon )^k\epsil
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基学习器生成方式"><span class="nav-number">1.</span> <span class="nav-text">基学习器生成方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boosting"><span class="nav-number">1.1.</span> <span class="nav-text">Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">1.2.</span> <span class="nav-text">Bagging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基学习器结合方式"><span class="nav-number">2.</span> <span class="nav-text">基学习器结合方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平均法-averaging"><span class="nav-number">2.1.</span> <span class="nav-text">平均法 (averaging)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#投票法-voting"><span class="nav-number">2.2.</span> <span class="nav-text">投票法 (voting)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习法"><span class="nav-number">2.3.</span> <span class="nav-text">学习法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基学习器生成方式"><span class="nav-number">1.</span> <span class="nav-text">基学习器生成方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boosting"><span class="nav-number">1.1.</span> <span class="nav-text">Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">1.2.</span> <span class="nav-text">Bagging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基学习器结合方式"><span class="nav-number">2.</span> <span class="nav-text">基学习器结合方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平均法-averaging"><span class="nav-number">2.1.</span> <span class="nav-text">平均法(averaging)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#投票法-voting"><span class="nav-number">2.2.</span> <span class="nav-text">投票法(voting)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习法"><span class="nav-number">2.3.</span> <span class="nav-text">学习法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -854,7 +854,7 @@ P (H (x)\neq f (x))&=\sum_{k=1}^{\frac {T}{2}}\binom {T}{k}(1-\epsilon )^k\epsil
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

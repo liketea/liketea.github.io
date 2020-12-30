@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论 —— 描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相">
+<meta name="description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论——描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相关性">
 <meta name="keywords" content="数据科学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据科学：因果推断（一）—— 辛普森悖论">
 <meta property="og:url" content="http://liketea.xyz/数据科学/数据科学/数据科学：因果推断（一）—— 辛普森悖论/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论 —— 描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相">
+<meta property="og:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论——描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相关性">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113413.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201228173241.png">
@@ -146,7 +146,7 @@
 <meta property="og:updated_time" content="2020-12-29T07:22:23.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据科学：因果推断（一）—— 辛普森悖论">
-<meta name="twitter:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论 —— 描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相">
+<meta name="twitter:description" content="There are three kinds of lies: lies, damned lies, and statistics. ——Mark Twain   辛普森悖论——描述辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相关性">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113413.png">
 
 
@@ -514,7 +514,7 @@
 <p align="right">——Mark Twain</p>
 
 </blockquote>
-<h2 id="辛普森悖论-——-描述"><a href="#辛普森悖论-——-描述" class="headerlink" title="辛普森悖论 —— 描述"></a>辛普森悖论 —— 描述</h2><p>辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相关性。该现象于 20 世纪初就有人讨论，但一直到 1951 年 E.H. 辛普森在他发表的论文中阐述此一现象后，该现象才算正式地被描述解释，辛普森悖论这个名字是由柯林・布莱斯（Colin R. Blyth）在 1972 年提出的。</p>
+<h2 id="辛普森悖论——描述"><a href="#辛普森悖论——描述" class="headerlink" title="辛普森悖论——描述"></a>辛普森悖论——描述</h2><p>辛普森悖论（Simpson’s paradox）是概率统计中的一种现象：在变量 Z 的每一个分层上，变量 X 和变量 Y 都表现出一致的相关性，但是在 Z 的整体上，X 和 Y 却呈现出与之相反的相关性。该现象于 20 世纪初就有人讨论，但一直到 1951 年 E.H.辛普森在他发表的论文中阐述此一现象后，该现象才算正式地被描述解释，辛普森悖论这个名字是由柯林·布莱斯（Colin R. Blyth）在 1972 年提出的。</p>
 <p>以 BBG 药物（Bad/Bad/Good Drug）之谜为例，假设有一种新药 D，这种新药似乎可以降低心脏病发作的风险，我们通过临床观测收集到了如下数据（数据来自观测实验而非随机化实验）：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201228173241.png" alt></p>
 <p>整体来看，服药组和未服药组各有 60 人，男性和女性各有 60 人，不同人群的心脏发病率表现如下：</p>
@@ -524,13 +524,13 @@
 <li>对于所有患者：未服药组的心脏病发病率 22% &gt; 服药组的心脏病发病率 18%；</li>
 </ol>
 <p>这种药物似乎对女性有害，对男性也有害，但却对整个人类有益！一个表面的解决方案是，当我们知道病人的性别是男性或者是女性时，我们不采用这种药物疗法，但如果病人的性别是未知的，我们就应该采用这种疗法！但显然，这个结论是荒谬的。这三句话中一定有一句是错的，但错的是哪一句？为什么？这种令人迷惑不解的情况究竟是如何发生的呢？</p>
-<h2 id="辛普森悖论-——-解决"><a href="#辛普森悖论-——-解决" class="headerlink" title="辛普森悖论 —— 解决"></a>辛普森悖论 —— 解决</h2><p>任何声称能够解决悖论的方法都应该能够回答一些关于悖论的基本问题：</p>
+<h2 id="辛普森悖论——解决"><a href="#辛普森悖论——解决" class="headerlink" title="辛普森悖论——解决"></a>辛普森悖论——解决</h2><p>任何声称能够解决悖论的方法都应该能够回答一些关于悖论的基本问题：</p>
 <ol>
 <li>解释悖论让人困惑的原因；</li>
 <li>确定悖论出现的场景类别；</li>
 <li>挖掘悖论掩盖的正确结论；</li>
 </ol>
-<h3 id="辛普森逆转"><a href="#辛普森逆转" class="headerlink" title="辛普森逆转"></a>辛普森逆转</h3><p>“辛普森逆转” 是指在合并样本时，两个或多个不同样本关于某一特定事件的相对频率出现反转的现象。在上面的例子中，我们可以看到两组相对频率：<code>1/20 &lt; 3/40</code>，<code>12/40 &lt; 8/20</code>，然而 <code>(1 + 12)/(20 + 40) &gt; (3 + 8)/(40 + 20)</code>。</p>
+<h3 id="辛普森逆转"><a href="#辛普森逆转" class="headerlink" title="辛普森逆转"></a>辛普森逆转</h3><p>“辛普森逆转”是指在合并样本时，两个或多个不同样本关于某一特定事件的相对频率出现反转的现象。在上面的例子中，我们可以看到两组相对频率：<code>1/20 &lt; 3/40</code>，<code>12/40 &lt; 8/20</code>，然而 <code>(1 + 12)/(20 + 40) &gt; (3 + 8)/(40 + 20)</code>。</p>
 <p>为了直观理解辛普森逆转机制，我们通过混合不同浓度的溶液来类比混合不同性别心脏发病率的场景，其中容器的形状代表性别，女性用圆形容器来表示，男性则用方形容器来表示，患者发病率用黑色阴影来表示，混合前圆形容器和方形容器干预组液体浓度都要大于对照组，混合后干预组液体浓度却高于对照组：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Simpson.png" width="40%" heigh="55%">
@@ -538,10 +538,10 @@
 
 <p>辛普森逆转通常满足两个前提：</p>
 <ol>
-<li>不同 Z 分层对应的 Y 值相差很大：男性患者的发病率 (33.3%) 远高于女性患者的发病率 (6.7%)；</li>
-<li>Z 在干预组和对照组的分布有明显差异：男性在对照组占比 (66.7%) 远高于在干预组占比 (33.3%)；</li>
+<li>不同 Z 分层对应的 Y 值相差很大：男性患者的发病率(33.3%)远高于女性患者的发病率(6.7%)；</li>
+<li>Z 在干预组和对照组的分布有明显差异：男性在对照组占比(66.7%)远高于在干预组占比(33.3%)；</li>
 </ol>
-<h3 id="辛普森悖论"><a href="#辛普森悖论" class="headerlink" title="辛普森悖论"></a>辛普森悖论</h3><p>辛普森逆转只是一个纯粹的数字事实，本身并无新奇之处，它最多只是纠正了人们对 “平均表现” 的错误概念。而悖论的含义不止于此，它应该能够引起两种为绝大部分人深信不疑的信念之间的冲突。在 BBG 药物悖论中，当 “对男性有害”“对女性有害”“对人类有益” 这三个陈述被简单理解为比例增减时，它们在数学上并不矛盾，但是你可能认为这种情况在现实世界中不可能存在，因为一种药物不可能既导致心脏病发作又防止心脏病发作。幸运的是，你的直觉是对的，BBG 药物确实不存在！</p>
+<h3 id="辛普森悖论"><a href="#辛普森悖论" class="headerlink" title="辛普森悖论"></a>辛普森悖论</h3><p>辛普森逆转只是一个纯粹的数字事实，本身并无新奇之处，它最多只是纠正了人们对“平均表现”的错误概念。而悖论的含义不止于此，它应该能够引起两种为绝大部分人深信不疑的信念之间的冲突。在 BBG 药物悖论中，当“对男性有害”“对女性有害”“对人类有益”这三个陈述被简单理解为比例增减时，它们在数学上并不矛盾，但是你可能认为这种情况在现实世界中不可能存在，因为一种药物不可能既导致心脏病发作又防止心脏病发作。幸运的是，你的直觉是对的，BBG 药物确实不存在！</p>
 <blockquote>
 <p>确凿性原则：假如无论事件 C 是否发生，某个行动都会增加某一结果的可能性，则该行动也将在我们不知道事件 C 是否发生的情况下增加这个结果的可能性，前提是该行动不会改变 C 的概率。</p>
 </blockquote>
@@ -551,7 +551,7 @@
 <li>药物 D 降低了整个总体的心脏病发作的概率；</li>
 <li>药物 D 不会改变男性和女性的数量；</li>
 </ol>
-<p>因为药物改变病人性别的事不太可能发生，所以前两句陈述中一定有一句为假。那么，哪句陈述是假的？要回答这个问题，我们必须在数据之外探寻数据生成的过程。我们可以通过以下因果图对 BBG 药物数据的产生过程建模，这张图对性别对心脏病发作风险的影响（男性患者的风险更大），以及性别对患者是否选择服用药物 D 的影响（女性更倾向于服用药物 D）进行了编码，性别因素构成了是否服用药物和心脏病发作的 <strong> 混淆因子 </strong>：</p>
+<p>因为药物改变病人性别的事不太可能发生，所以前两句陈述中一定有一句为假。那么，哪句陈述是假的？要回答这个问题，我们必须在数据之外探寻数据生成的过程。我们可以通过以下因果图对 BBG 药物数据的产生过程建模，这张图对性别对心脏病发作风险的影响（男性患者的风险更大），以及性别对患者是否选择服用药物 D 的影响（女性更倾向于服用药物 D）进行了编码，性别因素构成了是否服用药物和心脏病发作的<strong>混淆因子</strong>：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ygt.png" width="40%" heigh="55%">
 </div>
@@ -581,8 +581,8 @@
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ywb.png" width="40%" heigh="55%">
 </div>
 
-<p>“服用药物 B -&gt; 心脏病发作” 这一因果关系中没有混杂因子，所以数据分层是不必要的。事实上，如果控制血压会使其中一条因果路径失效（而且可能是最重要的那条因果路径），导致药物无法通过这条路径发挥作用。鉴于此，我们得出的结论与在 BBG 药物的例子中得到的结论完全相反：药物 B 能有效预防心脏病发作。</p>
-<h2 id="辛普森悖论-——-实例"><a href="#辛普森悖论-——-实例" class="headerlink" title="辛普森悖论 —— 实例"></a>辛普森悖论 —— 实例</h2><h3 id="肾结石疗法"><a href="#肾结石疗法" class="headerlink" title="肾结石疗法"></a>肾结石疗法</h3><p>1996 年发表的一篇观察性研究报告表明，对于摘除小型肾结石而言，开腹手术比内窥镜手术的恢复率高，对于摘除较大的肾结石而言，开腹手术也有更高的恢复率。然而就总体而言，开腹手术的恢复率反而较低。</p>
+<p>“服用药物 B -&gt; 心脏病发作”这一因果关系中没有混杂因子，所以数据分层是不必要的。事实上，如果控制血压会使其中一条因果路径失效（而且可能是最重要的那条因果路径），导致药物无法通过这条路径发挥作用。鉴于此，我们得出的结论与在 BBG 药物的例子中得到的结论完全相反：药物 B 能有效预防心脏病发作。</p>
+<h2 id="辛普森悖论——实例"><a href="#辛普森悖论——实例" class="headerlink" title="辛普森悖论——实例"></a>辛普森悖论——实例</h2><h3 id="肾结石疗法"><a href="#肾结石疗法" class="headerlink" title="肾结石疗法"></a>肾结石疗法</h3><p>1996 年发表的一篇观察性研究报告表明，对于摘除小型肾结石而言，开腹手术比内窥镜手术的恢复率高，对于摘除较大的肾结石而言，开腹手术也有更高的恢复率。然而就总体而言，开腹手术的恢复率反而较低。</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229113552.png" width="40%" heigh="55%">
 </div>
@@ -592,7 +592,7 @@
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115501.png" width="40%" heigh="55%">
 </div>
 
-<h3 id="吸烟者存活率更高？"><a href="#吸烟者存活率更高？" class="headerlink" title="吸烟者存活率更高？"></a>吸烟者存活率更高？</h3><p>在 1995 年发表的一份关于甲状腺疾病的研究报告中，数据显示吸烟者的存活率（76%）比不吸烟者的存活率（69%）更高，寿命平均多出 20 年。然而，在样本的 7 个年龄组中，有 6 个年龄组中不吸烟者的存活率更高，而第 7 个年龄组中二者的差异微乎其微。年龄显然是吸烟和存活率的混杂因子：吸烟者的平均年龄比不吸烟者小（很可能是因为年老的吸烟者已经死了）。根据年龄来分割数据，我们就可以得出正确的结论：吸烟对存活率有负面影响。</p>
+<h3 id="吸烟者存活率更高？"><a href="#吸烟者存活率更高？" class="headerlink" title="吸烟者存活率更高？"></a>吸烟者存活率更高？</h3><p>在 1995 年发表的一份关于甲状腺疾病的研究报告中，数据显示吸烟者的存活率（76%）比不吸烟者的存活率（69%）更高，寿命平均多出20年。然而，在样本的7个年龄组中，有6个年龄组中不吸烟者的存活率更高，而第7个年龄组中二者的差异微乎其微。年龄显然是吸烟和存活率的混杂因子：吸烟者的平均年龄比不吸烟者小（很可能是因为年老的吸烟者已经死了）。根据年龄来分割数据，我们就可以得出正确的结论：吸烟对存活率有负面影响。</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115441.png" width="40%" heigh="55%">
 </div>
@@ -601,8 +601,8 @@
 <p>像往常一样，要决定运动是有益的还是有害的，我们需要考察数据背后的故事。数据显示，总体中年龄越大的人运动得越多。因为更可能发生的是年龄影响运动，而不是反过来。同时，年龄可能对胆固醇水平也有因果效应。因此我们得出结论，年龄可能是运动时间和胆固醇水平的混杂因子，我们应该对年龄进行变量控制。换言之，我们应该看的是按照年龄组别进行分层后的数据，并据其得出结论：无论年龄大小，运动都是有益的。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201229115652.png" alt></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li>为什么（美）朱迪亚・珀尔，（美）达纳・麦肯齐著；江生，于华译。北京：中信出版社，2019.7</li>
-<li><a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox" target="_blank" rel="noopener">辛普森悖论・维基百科</a></li>
+<li>为什么（美）朱迪亚·珀尔，（美）达纳·麦肯齐著；江生，于华译.北京：中信出版社，2019.7</li>
+<li><a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox" target="_blank" rel="noopener">辛普森悖论·维基百科</a></li>
 <li><a href="http://bayes.cs.ucla.edu/PRIMER/" target="_blank" rel="noopener">JUDEA PEARL, MADELYN GLYMOUR, NICHOLAS P. JEWELL CAUSAL INFERENCE IN STATISTICS: A PRIMER</a></li>
 <li><a href="https://cosx.org/2012/03/causality1-simpson-paradox/" target="_blank" rel="noopener">因果推断简介之一：从 Yule-Simpson’s Paradox 讲起</a></li>
 </ul>
@@ -774,7 +774,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -848,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#辛普森悖论-——-描述"><span class="nav-number">1.</span> <span class="nav-text">辛普森悖论 —— 描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辛普森悖论-——-解决"><span class="nav-number">2.</span> <span class="nav-text">辛普森悖论 —— 解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#辛普森逆转"><span class="nav-number">2.1.</span> <span class="nav-text">辛普森逆转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辛普森悖论"><span class="nav-number">2.2.</span> <span class="nav-text">辛普森悖论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分合取决于因果而非数据"><span class="nav-number">2.3.</span> <span class="nav-text">分合取决于因果而非数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辛普森悖论-——-实例"><span class="nav-number">3.</span> <span class="nav-text">辛普森悖论 —— 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#肾结石疗法"><span class="nav-number">3.1.</span> <span class="nav-text">肾结石疗法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吸烟者存活率更高？"><span class="nav-number">3.2.</span> <span class="nav-text">吸烟者存活率更高？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运动水平与体内胆固醇水平"><span class="nav-number">3.3.</span> <span class="nav-text">运动水平与体内胆固醇水平</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#辛普森悖论——描述"><span class="nav-number">1.</span> <span class="nav-text">辛普森悖论——描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辛普森悖论——解决"><span class="nav-number">2.</span> <span class="nav-text">辛普森悖论——解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#辛普森逆转"><span class="nav-number">2.1.</span> <span class="nav-text">辛普森逆转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辛普森悖论"><span class="nav-number">2.2.</span> <span class="nav-text">辛普森悖论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分合取决于因果而非数据"><span class="nav-number">2.3.</span> <span class="nav-text">分合取决于因果而非数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辛普森悖论——实例"><span class="nav-number">3.</span> <span class="nav-text">辛普森悖论——实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#肾结石疗法"><span class="nav-number">3.1.</span> <span class="nav-text">肾结石疗法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吸烟者存活率更高？"><span class="nav-number">3.2.</span> <span class="nav-text">吸烟者存活率更高？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运动水平与体内胆固醇水平"><span class="nav-number">3.3.</span> <span class="nav-text">运动水平与体内胆固醇水平</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -886,7 +886,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

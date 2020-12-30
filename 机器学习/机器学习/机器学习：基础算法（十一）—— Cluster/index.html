@@ -125,18 +125,18 @@
 
 
 
-<meta name="description" content="无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类 (clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为 “簇”，每个簇对应于一些潜在的 “类别”，这些类别事先未知，需要由使用者把握和命名。 聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。 聚类的性能度量一般原则：簇内相似度尽可能高，簇间相似度尽可能低 聚类性能指标一般">
+<meta name="description" content="无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类(clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为“簇”，每个簇对应于一些潜在的“类别”，这些类别事先未知，需要由使用者把握和命名。 聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。 聚类的性能度量一般原则：簇内相似度尽可能高，簇间相似度尽可能低 聚类性能指标一般有两大">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：基础算法（十一）—— 聚类">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：基础算法（十一）—— Cluster/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类 (clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为 “簇”，每个簇对应于一些潜在的 “类别”，这些类别事先未知，需要由使用者把握和命名。 聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。 聚类的性能度量一般原则：簇内相似度尽可能高，簇间相似度尽可能低 聚类性能指标一般">
+<meta property="og:description" content="无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类(clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为“簇”，每个簇对应于一些潜在的“类别”，这些类别事先未知，需要由使用者把握和命名。 聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。 聚类的性能度量一般原则：簇内相似度尽可能高，簇间相似度尽可能低 聚类性能指标一般有两大">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-11-07T10:46:34.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：基础算法（十一）—— 聚类">
-<meta name="twitter:description" content="无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类 (clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为 “簇”，每个簇对应于一些潜在的 “类别”，这些类别事先未知，需要由使用者把握和命名。 聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。 聚类的性能度量一般原则：簇内相似度尽可能高，簇间相似度尽可能低 聚类性能指标一般">
+<meta name="twitter:description" content="无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类(clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为“簇”，每个簇对应于一些潜在的“类别”，这些类别事先未知，需要由使用者把握和命名。 聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。 聚类的性能度量一般原则：簇内相似度尽可能高，簇间相似度尽可能低 聚类性能指标一般有两大">
 
 
 
@@ -494,91 +494,91 @@
       
 
       
-        <p>无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类 (clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为 “簇”，每个簇对应于一些潜在的 “类别”，这些类别事先未知，需要由使用者把握和命名。</p>
+        <p>无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类(clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为“簇”，每个簇对应于一些潜在的“类别”，这些类别事先未知，需要由使用者把握和命名。</p>
 <p>聚类既能作为一个单独的过程，也可以作为其他学校任务的前驱过程。</p>
 <h2 id="聚类的性能度量"><a href="#聚类的性能度量" class="headerlink" title="聚类的性能度量"></a>聚类的性能度量</h2><p>一般原则：簇内相似度尽可能高，簇间相似度尽可能低</p>
 <p>聚类性能指标一般有两大类：</p>
-<p>1、 外部指标：将聚类结果与某个参考模型进行对比，如 Rand 指数 (越大越好)：</p>
+<p>1、 外部指标：将聚类结果与某个参考模型进行对比，如Rand指数(越大越好)：</p>
 <script type="math/tex; mode=display">
-RI=\frac {a+d}{\binom {n}{2}}</script><ul>
-<li>a: 在聚类模型和参考模型中都属于同一簇的样本二元组数</li>
-<li>b: 在聚类模型和参考模型中都属于不同簇的样本二元组数</li>
-<li>n: 样本数</li>
+RI=\frac{a+d}{\binom{n}{2}}</script><ul>
+<li>a:在聚类模型和参考模型中都属于同一簇的样本二元组数</li>
+<li>b:在聚类模型和参考模型中都属于不同簇的样本二元组数</li>
+<li>n:样本数</li>
 </ul>
-<p>2、 内部指标：直接考察聚类结果，不参考任何外部模型，如 DB 指数 (越小越好)：</p>
+<p>2、 内部指标：直接考察聚类结果，不参考任何外部模型，如DB指数(越小越好)：</p>
 <script type="math/tex; mode=display">
-DBI=\frac {1}{k}\sum_{i=1}^{k}\underset {i\neq j}{max}\frac {avg (C_i)+avg (C_j)}{d (\mu_i,\mu_j)}</script><ul>
+DBI=\frac{1}{k}\sum_{i=1}^{k}\underset{i\neq j}{max}\frac{avg(C_i)+avg(C_j)}{d(\mu_i,\mu_j)}</script><ul>
 <li>k：簇的个数</li>
-<li>$avg (C_i)$：簇 $C_i$ 中两两样本的平均距离</li>
-<li>$d (\mu_i,\mu_j)$：簇 $C_i$ 与 $C_j$ 中心的距离</li>
+<li>$avg(C_i)$：簇$C_i$中两两样本的平均距离</li>
+<li>$d(\mu_i,\mu_j)$：簇$C_i$与$C_j$中心的距离</li>
 </ul>
-<h2 id="距离度量"><a href="#距离度量" class="headerlink" title="距离度量"></a>距离度量</h2><p>对 $(x_i,x_j)$ 的距离度量需满足以下基本性质：</p>
+<h2 id="距离度量"><a href="#距离度量" class="headerlink" title="距离度量"></a>距离度量</h2><p>对$(x_i,x_j)$的距离度量需满足以下基本性质：</p>
 <ol>
-<li>非负性：$d (x_i,x_j)\geqslant 0$</li>
-<li>同一性：$d (x_i,x_i)=0$</li>
-<li>对称性：$d (x_i,x_j)=d (x_j,x_i)$</li>
-<li>直递性：$d (x_i,x_j)\leqslant d (x_i,x_k)+d (x_k,x_j)$</li>
+<li>非负性：$d(x_i,x_j)\geqslant 0$</li>
+<li>同一性：$d(x_i,x_i)=0$</li>
+<li>对称性：$d(x_i,x_j)=d(x_j,x_i)$</li>
+<li>直递性：$d(x_i,x_j)\leqslant d(x_i,x_k)+d(x_k,x_j)$</li>
 </ol>
 <p>对有序特征，通常采用闵可夫斯基距离：</p>
 <script type="math/tex; mode=display">
-d_p (x_i,x_j)=(\sum_{k=1}^{d}\left | x_{ik} - x_{jk}\right |^p)^{\frac {1}{p}}</script><ol>
+d_p(x_i,x_j)=(\sum_{k=1}^{d}\left | x_{ik} - x_{jk}\right |^p)^{\frac{1}{p}}</script><ol>
 <li>p=1：曼哈顿距离，街道距离</li>
 <li>p=2：欧氏距离，直线距离</li>
 <li>$p=\infty $：切比雪夫距离，最大分量差</li>
 </ol>
-<p>对无序特征，常采用 CDM 距离：衡量同一无序属性上两个属性值之间的距离，同一属性上的两个值，在相同簇中样本数比例差别越大，属性值之间的距离越大</p>
+<p>对无序特征，常采用CDM距离：衡量同一无序属性上两个属性值之间的距离，同一属性上的两个值，在相同簇中样本数比例差别越大，属性值之间的距离越大</p>
 <script type="math/tex; mode=display">
-VDM_p (a,b)=\sum_{i=1}^{k}\left | \frac {m_{uai}}{m_{ua}} - \frac {m_{ubi}}{m_{ub}}\right |</script><ul>
-<li>$m_{uai}$：第 i 个样本簇中属性 u 上取值为 a 的样本数</li>
-<li>$m_{ua}$：属性 u 上取值为 a 的样本数</li>
+VDM_p(a,b)=\sum_{i=1}^{k}\left | \frac{m_{uai}}{m_{ua}} - \frac{m_{ubi}}{m_{ub}}\right |</script><ul>
+<li>$m_{uai}$：第i个样本簇中属性u上取值为a的样本数</li>
+<li>$m_{ua}$：属性u上取值为a的样本数</li>
 </ul>
-<p>如果特征中混合了有序特征和无序特征，则可以混合闵可夫斯基距离和 VDM 距离，假设前 k 个属性为有序特征，后 d-k 个属性为无序特征，则：</p>
+<p>如果特征中混合了有序特征和无序特征，则可以混合闵可夫斯基距离和VDM距离，假设前k个属性为有序特征，后d-k个属性为无序特征，则：</p>
 <script type="math/tex; mode=display">
-d_p (x_i,x_j)=(\sum_{u=1}^{k} \left | x_{iu}-x_{ju} \right |^p+\sum_{u=k+1}^{d} VDM_p (x_{iu},x_{ju}))^{\frac {1}{p}}</script><h2 id="原型聚类"><a href="#原型聚类" class="headerlink" title="原型聚类"></a>原型聚类</h2><p>所谓” 原型 “指的是聚类中心，将所有样本按照某组聚类中心进行划分，最常见的原型聚类是 K-Means 算法。</p>
-<p>原型聚类问题描述：假设有一个数据集 {$x_1,x_2,…,x_N$}，我们的目标是将数据集划分为 K 类，并找到聚类类别和聚类中心。聚类类别可以用”1-of-K“表示法来表示，K 维向量 $z_i$ 中有且只有一个元素为 1，其余元素为 0，$z_{ik}=1$ 表示第 i 个样本属于第 k 个类别；第 k 个类别的聚类中心可以用 $\mu_k$ 表示</p>
-<h3 id="K-Means-算法"><a href="#K-Means-算法" class="headerlink" title="K-Means 算法"></a>K-Means 算法</h3><p>为了极大化簇内相似度，极小化簇间相似度，K-Means 算法的目标函数被定义为以下” 失真度 “：</p>
+d_p(x_i,x_j)=(\sum_{u=1}^{k} \left | x_{iu}-x_{ju} \right |^p+\sum_{u=k+1}^{d} VDM_p(x_{iu},x_{ju}))^{\frac{1}{p}}</script><h2 id="原型聚类"><a href="#原型聚类" class="headerlink" title="原型聚类"></a>原型聚类</h2><p>所谓”原型“指的是聚类中心，将所有样本按照某组聚类中心进行划分，最常见的原型聚类是K-Means算法。</p>
+<p>原型聚类问题描述：假设有一个数据集{$x_1,x_2,…,x_N$}，我们的目标是将数据集划分为K类，并找到聚类类别和聚类中心。聚类类别可以用”1-of-K“表示法来表示，K维向量$z_i$中有且只有一个元素为1，其余元素为0，$z_{ik}=1$表示第i个样本属于第k个类别；第k个类别的聚类中心可以用$\mu_k$表示</p>
+<h3 id="K-Means算法"><a href="#K-Means算法" class="headerlink" title="K-Means算法"></a>K-Means算法</h3><p>为了极大化簇内相似度，极小化簇间相似度，K-Means算法的目标函数被定义为以下”失真度“：</p>
 <script type="math/tex; mode=display">
-L (\theta)=\sum_{i=1}^{N}\sum_{k=1}^{K} z_{ik}\left \| x_i-\mu_k \right \|^2</script><p>为找到目标函数的极小值需考察数据集中所有可能的簇划分，这是一个 NP 难问题，K-means 采用了 EM 算法来求解：</p>
+L(\theta)=\sum_{i=1}^{N}\sum_{k=1}^{K}z_{ik}\left \| x_i-\mu_k \right \|^2</script><p>为找到目标函数的极小值需考察数据集中所有可能的簇划分，这是一个NP难问题，K-means采用了EM算法来求解：</p>
 <p>1、 明确变量和参数：</p>
 <p>（1）观测变量：$X=[x_1,x_2,…,x_N]$<br>（2）隐变量：$Z=[z_ik]_{n \times K}$<br>（3）参数：$\mu=[\mu_1,\mu_2,…,\mu_K]$</p>
-<p>2、初始化参数：$\mu^0$，置 j=0</p>
-<p>3、EM 迭代：迭代 E 步和 M 步直至前后两次聚类中心不变，$\mu^j$ 即为最终的近似最优解</p>
-<p>（1）E 步：样本分配，基于当前的聚类中心，关于类别隐变量分布，最小化目标函数，只需将样本分配到距其最近的聚类中心所在类别中即可</p>
+<p>2、初始化参数：$\mu^0$，置j=0</p>
+<p>3、EM迭代：迭代E步和M步直至前后两次聚类中心不变，$\mu^j$即为最终的近似最优解</p>
+<p>（1）E步：样本分配，基于当前的聚类中心，关于类别隐变量分布，最小化目标函数，只需将样本分配到距其最近的聚类中心所在类别中即可</p>
 <script type="math/tex; mode=display">
-z_{ik}=\left\{\begin {matrix}
-1 & if\ k=arg\ \underset {j}{min}\left \| x_i-\mu_j \right \|^2\\ 
+z_{ik}=\left\{\begin{matrix}
+1 & if\ k=arg\ \underset{j}{min}\left \| x_i-\mu_j \right \|^2\\ 
 0 & else
-\end {matrix}\right.</script><p>（2）M 步：更新聚类中心。基于当前类别隐变量分布，关于聚类中心参数，最小化目标函数，只需取当前类别内所有样本的均值作为新的聚类中心即可</p>
-<p>目标函数对聚类中心偏导为 0：</p>
+\end{matrix}\right.</script><p>（2）M步：更新聚类中心。基于当前类别隐变量分布，关于聚类中心参数，最小化目标函数，只需取当前类别内所有样本的均值作为新的聚类中心即可</p>
+<p>目标函数对聚类中心偏导为0：</p>
 <script type="math/tex; mode=display">
-2\sum_{i=1}^{N} z_{ik}(x_i-\mu_k)=0</script><p>解出新的聚类中心：$n_k$ 为第 k 个簇中样本数</p>
+2\sum_{i=1}^{N}z_{ik}(x_i-\mu_k)=0</script><p>解出新的聚类中心：$n_k$为第k个簇中样本数</p>
 <script type="math/tex; mode=display">
-\mu_k^{j+1}=\frac {\sum_{i=1}^{n_k} z_{ik} x_i}{n_k}</script><p>直接实现 K-Means 算法非常慢，因为在每个 E 步必须计算每个聚类中心和每个数据点的距离，常用的加速方法：</p>
+\mu_k^{j+1}=\frac{\sum_{i=1}^{n_k}z_{ik}x_i}{n_k}</script><p>直接实现K-Means算法非常慢，因为在每个E步必须计算每个聚类中心和每个数据点的距离，常用的加速方法：</p>
 <ol>
-<li>建立 K-D 树：详见 <a href="https://zhuanlan.zhihu.com/p/26920648" target="_blank" rel="noopener">kd-tree 加速 K-means</a></li>
-<li>利用距离的三角不等式，避免不必要的计算：如果 $2d (x,\mu_i)\leqslant d (\mu_i,\mu_j)$，则 $d (x,\mu_i)\leqslant d (x,\mu_j)$，详见 <a href="http://www.cnblogs.com/bradleon/p/6842549.html?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">运用三角不等式加速 Kmeans 聚类算法</a></li>
+<li>建立K-D树：详见<a href="https://zhuanlan.zhihu.com/p/26920648" target="_blank" rel="noopener">kd-tree加速K-means</a></li>
+<li>利用距离的三角不等式，避免不必要的计算：如果$2d(x,\mu_i)\leqslant d(\mu_i,\mu_j)$，则$d(x,\mu_i)\leqslant d(x,\mu_j)$，详见<a href="http://www.cnblogs.com/bradleon/p/6842549.html?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">运用三角不等式加速Kmeans聚类算法</a></li>
 </ol>
-<h3 id="高斯混合聚类"><a href="#高斯混合聚类" class="headerlink" title="高斯混合聚类"></a>高斯混合聚类</h3><p>高斯混合模型的 EM 算法和 K-means 算法有很强的相似性，K-means 算法对样本数据点的聚类进行了” 硬 “分配，每个数据点只属于唯一的聚类，而 EM 算法基于后验概率分布，进行了一个” 软 “分配。事实上可以将 K-means 算法看做是高斯混合模型 EM 算法在方差趋于 0 的极限情况下的特例。</p>
-<p>对于一个特定的数据点 x，后验概率（分量贡献度）为：</p>
+<h3 id="高斯混合聚类"><a href="#高斯混合聚类" class="headerlink" title="高斯混合聚类"></a>高斯混合聚类</h3><p>高斯混合模型的EM算法和K-means算法有很强的相似性，K-means算法对样本数据点的聚类进行了”硬“分配，每个数据点只属于唯一的聚类，而EM算法基于后验概率分布，进行了一个”软“分配。事实上可以将K-means算法看做是高斯混合模型EM算法在方差趋于0的极限情况下的特例。</p>
+<p>对于一个特定的数据点x，后验概率（分量贡献度）为：</p>
 <script type="math/tex; mode=display">
-\gamma (z_k)=\frac {\pi_k e^{-\frac {\left \| x-\mu_k \right \|^2}{2\sigma }}}{\sum_{j=1}^{K}\pi_j e^{-\frac {\left \| x-\mu_j \right \|^2}{2\sigma }}}</script><p>当 $\sigma \rightarrow 0$ 时，$\left | x-\mu_j \right |^2$ 较大的项，$\gamma (z_{j})$ 会趋于 0，只有 $\left | x-\mu_j \right |^2$ 最小的项 $\gamma (z_{j})$ 会趋近于 1，在这种极限情况下，可以得到对数据点的一个硬分解。</p>
-<p>从另外一个角度来看，当高斯混合分布已知时，高斯混合聚类会将样本集划分为 k 个簇，每个样本会被归入贡献度最高的分量：</p>
+\gamma (z_k)=\frac{\pi_k e^{-\frac{\left \| x-\mu_k \right \|^2}{2\sigma }}}{\sum_{j=1}^{K}\pi_j e^{-\frac{\left \| x-\mu_j \right \|^2}{2\sigma }}}</script><p>当$\sigma \rightarrow 0$时，$\left | x-\mu_j \right |^2$较大的项，$\gamma(z_{j})$会趋于0，只有$\left | x-\mu_j \right |^2$最小的项$\gamma(z_{j})$会趋近于1，在这种极限情况下，可以得到对数据点的一个硬分解。</p>
+<p>从另外一个角度来看，当高斯混合分布已知时，高斯混合聚类会将样本集划分为k个簇，每个样本会被归入贡献度最高的分量：</p>
 <script type="math/tex; mode=display">
-z_k=arg\ \underset {j \in {1,2,...,K}}{max}\gamma (z_{j})</script><h3 id="学习向量量化"><a href="#学习向量量化" class="headerlink" title="学习向量量化"></a>学习向量量化</h3><p>学习向量量化 (Learning Vector Quantization,LVQ) 假设数据样本带有类别标记，学习过程利用这些监督信息来辅助聚类。</p>
-<p>LVQ 算法：</p>
-<p>输入：样本集 D={$(x_1,y_1),(x_2,y_2),…,(x_m,y_m)$}，原型向量个数 K，各原型向量预设的类别标签 {$c_1,c_2,…,c_K$}（可能含有重复），学习率 $\eta $<br>输出：原型向量 {$p_1,p_2,…,p_K$}</p>
+z_k=arg\ \underset{j \in {1,2,...,K}}{max}\gamma (z_{j})</script><h3 id="学习向量量化"><a href="#学习向量量化" class="headerlink" title="学习向量量化"></a>学习向量量化</h3><p>学习向量量化(Learning Vector Quantization,LVQ)假设数据样本带有类别标记，学习过程利用这些监督信息来辅助聚类。</p>
+<p>LVQ算法：</p>
+<p>输入:样本集D={$(x_1,y_1),(x_2,y_2),…,(x_m,y_m)$}，原型向量个数K，各原型向量预设的类别标签{$c_1,c_2,…,c_K$}（可能含有重复），学习率$\eta $<br>输出：原型向量{$p_1,p_2,…,p_K$}</p>
 <ol>
-<li>初始化一组原型向量 {$p_1^0,p_2^0,…,p_K^0$}，置 s=0</li>
+<li>初始化一组原型向量{$p_1^0,p_2^0,…,p_K^0$}，置s=0</li>
 <li>迭代以下过程，直至相邻两次原型向量更新很小或者到达最大迭代次数<ol>
-<li>从样本中随机选取样本 $(x_i,y_i)$</li>
-<li>找出与样本 $x_i$ 距离最近的原型向量 $p_j^s$，判断样本标签 $y_i$ 与该原型向量的标签 $c_j$ 是否相同</li>
-<li>如果相同，将原型向量 $p_j^s$ 朝着样本 $x_i$ 方向靠拢：$p_j^{s+1}=p_j^s+\eta (x_i-p_j^s)$</li>
-<li>否则，将原型向量 $p_j^s$ 朝着远离 $x_i$ 的方向移动：$p_j^{s+1}=p_j^s-\eta (x_i-p_j^s)$</li>
+<li>从样本中随机选取样本$(x_i,y_i)$</li>
+<li>找出与样本$x_i$距离最近的原型向量$p_j^s$，判断样本标签$y_i$与该原型向量的标签$c_j$是否相同</li>
+<li>如果相同，将原型向量$p_j^s$朝着样本$x_i$方向靠拢：$p_j^{s+1}=p_j^s+\eta(x_i-p_j^s)$</li>
+<li>否则，将原型向量$p_j^s$朝着远离$x_i$的方向移动：$p_j^{s+1}=p_j^s-\eta(x_i-p_j^s)$</li>
 </ol>
 </li>
 </ol>
-<h2 id="层次聚类"><a href="#层次聚类" class="headerlink" title="层次聚类"></a>层次聚类</h2><p>层次聚类视图在不同层次上对数据进行划分，形成树形的聚类结构，数据集划分通常可采用” 自底向上 “的聚合策略，也可采用” 自顶向下 “的分拆策略。</p>
-<p>” 自底向上 “的层次聚类算法：先将数据集中每个样本看做一个初始聚类簇，然后在每次迭代时将两个距离最近的聚类簇合并，直至达到预设的聚类簇个数。</p>
+<h2 id="层次聚类"><a href="#层次聚类" class="headerlink" title="层次聚类"></a>层次聚类</h2><p>层次聚类视图在不同层次上对数据进行划分，形成树形的聚类结构，数据集划分通常可采用”自底向上“的聚合策略，也可采用”自顶向下“的分拆策略。</p>
+<p>”自底向上“的层次聚类算法：先将数据集中每个样本看做一个初始聚类簇，然后在每次迭代时将两个距离最近的聚类簇合并，直至达到预设的聚类簇个数。</p>
 <p>衡量聚类簇间距离的指标:</p>
 <ul>
 <li>最小距离：两个簇间元素间的最短距离</li>
@@ -757,7 +757,7 @@ z_k=arg\ \underset {j \in {1,2,...,K}}{max}\gamma (z_{j})</script><h3 id="学习
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -831,7 +831,7 @@ z_k=arg\ \underset {j \in {1,2,...,K}}{max}\gamma (z_{j})</script><h3 id="学习
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#聚类的性能度量"><span class="nav-number">1.</span> <span class="nav-text">聚类的性能度量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#距离度量"><span class="nav-number">2.</span> <span class="nav-text">距离度量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型聚类"><span class="nav-number">3.</span> <span class="nav-text">原型聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-Means-算法"><span class="nav-number">3.1.</span> <span class="nav-text">K-Means 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯混合聚类"><span class="nav-number">3.2.</span> <span class="nav-text">高斯混合聚类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习向量量化"><span class="nav-number">3.3.</span> <span class="nav-text">学习向量量化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次聚类"><span class="nav-number">4.</span> <span class="nav-text">层次聚类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#聚类的性能度量"><span class="nav-number">1.</span> <span class="nav-text">聚类的性能度量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#距离度量"><span class="nav-number">2.</span> <span class="nav-text">距离度量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型聚类"><span class="nav-number">3.</span> <span class="nav-text">原型聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-Means算法"><span class="nav-number">3.1.</span> <span class="nav-text">K-Means算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯混合聚类"><span class="nav-number">3.2.</span> <span class="nav-text">高斯混合聚类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习向量量化"><span class="nav-number">3.3.</span> <span class="nav-text">学习向量量化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次聚类"><span class="nav-number">4.</span> <span class="nav-text">层次聚类</span></a></li></ol></div>
             
 
           </div>
@@ -869,7 +869,7 @@ z_k=arg\ \underset {j \in {1,2,...,K}}{max}\gamma (z_{j})</script><h3 id="学习
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

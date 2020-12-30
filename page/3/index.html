@@ -501,8 +501,8 @@
     
 
 
-朴素贝叶斯（naive Bayes，NB）是基于贝叶斯定理与特征条件独立性假设的分类方法。其模型是通过学习先验概率和类条件概率来得到后验概率的生成式模型。其策略为后验概率最大，等价于 0-1 损失下的期望风险最小化策略。其算法为通过极大似然估计来求解各项概率。
-模型贝叶斯通过训练数据
+朴素贝叶斯（naive Bayes，NB）是基于贝叶斯定理与特征条件独立性假设的分类方法。其模型是通过学习先验概率和类条件概率来得到后验概率的生成式模型。其策略为后验概率最大，等价于0-1损失下的期望风险最小化策略。其算法为通过极大似然估计来求解各项概率。
+模型贝叶斯通过训练数据学习
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -910,7 +910,7 @@
     
 
 
-逻辑回归（Logistic Regression, LR）是统计学习中经典的分类方法，被广泛应用于计算广告学、社会学、生物统计学、临床、数量心理学、计量经济学、市场营销等众多领域。逻辑回归模型是在线性模型的基础上加上 sigmoid 激活函数的广义线性模型，它以对数似然（等价于交叉熵
+逻辑回归（Logistic Regression, LR）是统计学习中经典的分类方法，被广泛应用于计算广告学、社会学、生物统计学、临床、数量心理学、计量经济学、市场营销等众多领域。逻辑回归模型是在线性模型的基础上加上sigmoid激活函数的广义线性模型，它以对数似然（等价于交叉熵）为
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1116,10 +1116,10 @@
     
 
 
-支持向量机（support vector machines,SVM）是一种二分类模型，其模型为分离超平面 $wx+b=0$ 及决策函数 $f (x)=sign (wx+b)$，其学习策略为间隔最大化，其学习算法为凸二次规划。
+支持向量机（support vector machines,SVM）是一种二分类模型，其模型为分离超平面 $wx+b=0$ 及决策函数 $f(x)=sign(wx+b)$，其学习策略为间隔最大化，其学习算法为凸二次规划。
 在二分类问题上，SVM 包含以下几种由简到繁的模型：
 
-线
+线性可
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1325,10 +1325,10 @@
     
 
 
-主成分分析（principal components analysis，PCA）是一种常用的  降维  方法，它将原始高维特征空间中的样本通过线性变换 “投影” 到低维特征空间，每个新的特征都是原始特征的线性组合且相互  独立 。
+主成分分析（principal components analysis，PCA）是一种常用的降维方法，它将原始高维特征空间中的样本通过线性变换“投影”到低维特征空间，每个新的特征都是原始特征的线性组合且相互独立。
 求解投影矩阵：
 
-数据样本中心化 $\sum_{i=
+数据样本中心化$\sum_{i=1}^{n} x_i
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1530,8 +1530,8 @@
       
         
           
-          EM (expectation maximization) 算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。
-EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将所有隐变量记做 Z，完全变量的联合概率分布 $p (X,Z\mid\theta)$ 由一组参数控制
+          EM(expectation maximization)算法是一种迭代算法，用于含隐变量的概率模型参数的极大似然估计或极大后验概率估计。
+EM算法的推导考虑一个概率模型，将所有观测变量记做X，将所有隐变量记做Z，完全变量的联合概率分布$p(X,Z\mid\theta)$由一组参数控制，记做$\the
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1733,10 +1733,10 @@ EM 算法的推导考虑一个概率模型，将所有观测变量记做 X，将
       
         
           
-          混合模型通过将基本的概率分布进行线性组合所得到的概率模型称为混合模型 (mixture distributions)。混合模型可以用观测数据的边缘概率来描述：
+          混合模型通过将基本的概率分布进行线性组合所得到的概率模型称为混合模型(mixture distributions)。混合模型可以用观测数据的边缘概率来描述：
 
-p (x)=\sum_{k=1}^{K} p (z_k=1) p (x\mid z_k=1)
-$p (z_k=1)$：z 为 K 维的二值
+p(x)=\sum_{k=1}^{K}p(z_k=1)p(x\mid z_k=1)
+$p(z_k=1)$：z为K维的二值随机变量，采用“1-
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1938,8 +1938,8 @@ $p (z_k=1)$：z 为 K 维的二值
       
         
           
-          无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类 (clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为 “簇”，每个簇对应于一些潜在的 “类别”，这些类别事先未知，需要由使用者把握和命名。
-聚类既能作为一个单独的过程，也可以作为其他学
+          无监督学习的目标是通过对无标记训练样本的学习来揭示数据的内在规律，应用最广的是聚类(clustering)。聚类的目标是将数据集划分为若干互不相交的子集，每个子集称为“簇”，每个簇对应于一些潜在的“类别”，这些类别事先未知，需要由使用者把握和命名。
+聚类既能作为一个单独的过程，也可以作为其他学校任务
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2305,7 +2305,7 @@ A computer program is said to learn from experience E with respect to some class
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  682
+                  673
                 </span>
               
 
@@ -2344,9 +2344,9 @@ A computer program is said to learn from experience E with respect to some class
       
         
           
-          UGC (User Generated Content, 用户生成的内容) 标签：当一个用户对一个物品打上一个标签，这个标签一方面描述了用户的兴趣，另一方面表示了物品的语义，从而将用户和物品联系起来。下图为豆瓣读书中《推荐系统实践》一书的常用标签。
+          UGC(User Generated Content, 用户生成的内容)标签：当一个用户对一个物品打上一个标签，这个标签一方面描述了用户的兴趣，另一方面表示了物品的语义，从而将用户和物品联系起来。下图为豆瓣读书中《推荐系统实践》一书的常用标签。
 
-本文主要探讨如何利用用户打标签的行为为其推荐物品
+本文主要探讨如何利用用户打标签的行为为其推荐物品。一
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2462,7 +2462,7 @@ A computer program is said to learn from experience E with respect to some class
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2558,7 +2558,7 @@ A computer program is said to learn from experience E with respect to some class
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

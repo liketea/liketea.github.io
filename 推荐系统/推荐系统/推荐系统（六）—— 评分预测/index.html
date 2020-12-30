@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="以上所讲皆为 TopK 推荐，因为 TopK 更加接近于满足实际系统的需求，本文再来讲讲评分预测。 评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标 RMSE 进行评测：  RMSE=\frac {\sqrt {\sum_{(u,i) \in T}(r_{ui}-\hat {r}_{ui})^2}}{Test} $">
+<meta name="description" content="以上所讲皆为TopK推荐，因为TopK更加接近于满足实际系统的需求，本文再来讲讲评分预测。 评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标RMSE进行评测：  RMSE=\frac{\sqrt{\sum_{(u,i) \in T}(r_{ui}-\hat{r}_{ui})^2}}{Test} $r_{ui}$：用">
 <meta name="keywords" content="推荐系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="推荐系统（六）—— 评分预测">
 <meta property="og:url" content="http://liketea.xyz/推荐系统/推荐系统/推荐系统（六）—— 评分预测/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="以上所讲皆为 TopK 推荐，因为 TopK 更加接近于满足实际系统的需求，本文再来讲讲评分预测。 评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标 RMSE 进行评测：  RMSE=\frac {\sqrt {\sum_{(u,i) \in T}(r_{ui}-\hat {r}_{ui})^2}}{Test} $">
+<meta property="og:description" content="以上所讲皆为TopK推荐，因为TopK更加接近于满足实际系统的需求，本文再来讲讲评分预测。 评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标RMSE进行评测：  RMSE=\frac{\sqrt{\sum_{(u,i) \in T}(r_{ui}-\hat{r}_{ui})^2}}{Test} $r_{ui}$：用">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-23-18.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-23-21.jpg">
@@ -140,7 +140,7 @@
 <meta property="og:updated_time" content="2020-10-25T12:54:14.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统（六）—— 评分预测">
-<meta name="twitter:description" content="以上所讲皆为 TopK 推荐，因为 TopK 更加接近于满足实际系统的需求，本文再来讲讲评分预测。 评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标 RMSE 进行评测：  RMSE=\frac {\sqrt {\sum_{(u,i) \in T}(r_{ui}-\hat {r}_{ui})^2}}{Test} $">
+<meta name="twitter:description" content="以上所讲皆为TopK推荐，因为TopK更加接近于满足实际系统的需求，本文再来讲讲评分预测。 评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标RMSE进行评测：  RMSE=\frac{\sqrt{\sum_{(u,i) \in T}(r_{ui}-\hat{r}_{ui})^2}}{Test} $r_{ui}$：用">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-23-18.jpg">
 
 
@@ -499,43 +499,43 @@
       
 
       
-        <p>以上所讲皆为 TopK 推荐，因为 TopK 更加接近于满足实际系统的需求，本文再来讲讲评分预测。</p>
-<p>评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标 RMSE 进行评测：</p>
+        <p>以上所讲皆为TopK推荐，因为TopK更加接近于满足实际系统的需求，本文再来讲讲评分预测。</p>
+<p>评分预测问题就是如何通过已知的用户历史评分记录预测未知的用户评分，如何提高分数的预测精度是要解决的主要问题。评分预测一般使用离线指标RMSE进行评测：</p>
 <script type="math/tex; mode=display">
-RMSE=\frac {\sqrt {\sum_{(u,i) \in T}(r_{ui}-\hat {r}_{ui})^2}}{Test}</script><ul>
-<li>$r_{ui}$：用户 u 对物品 i 的真实评分</li>
-<li>$\hat {r}_{ui}$：用户 u 对物品 i 的预测评分</li>
+RMSE=\frac{\sqrt{\sum_{(u,i) \in T}(r_{ui}-\hat{r}_{ui})^2}}{Test}</script><ul>
+<li>$r_{ui}$：用户u对物品i的真实评分</li>
+<li>$\hat{r}_{ui}$：用户u对物品i的预测评分</li>
 </ul>
-<p>评分预测的目的就是找到最好的模型最小化测试集的 RMSE。</p>
+<p>评分预测的目的就是找到最好的模型最小化测试集的RMSE。</p>
 <h2 id="平均值"><a href="#平均值" class="headerlink" title="平均值"></a>平均值</h2><p>最简单的评分预测算法是利用平均值预测用户对物品的评分</p>
 <h3 id="全局平均值"><a href="#全局平均值" class="headerlink" title="全局平均值"></a>全局平均值</h3><p>训练集中所有评分记录的评分平均值：</p>
 <script type="math/tex; mode=display">
-\mu = \frac {\sum_{(u,i) \in Train} r_{ui}}{\sum_{(u,i) \in Train} 1}</script><h3 id="用户评分平均值"><a href="#用户评分平均值" class="headerlink" title="用户评分平均值"></a>用户评分平均值</h3><p>用户 u 在训练集中所有评分的平均值：</p>
+\mu = \frac{\sum_{(u,i) \in Train}r_{ui}}{\sum_{(u,i) \in Train}1}</script><h3 id="用户评分平均值"><a href="#用户评分平均值" class="headerlink" title="用户评分平均值"></a>用户评分平均值</h3><p>用户u在训练集中所有评分的平均值：</p>
 <script type="math/tex; mode=display">
-\overline {r_u}=\frac {\sum_{i \in N (u)} r_{ui}}{\sum_{i \in N (u)} 1}</script><h3 id="物品评分平均值"><a href="#物品评分平均值" class="headerlink" title="物品评分平均值"></a>物品评分平均值</h3><p>物品 i 在训练集中接受的所有评分的平均值：</p>
+\overline{r_u}=\frac{\sum_{i \in N(u)}r_{ui}}{\sum_{i \in N(u)}1}</script><h3 id="物品评分平均值"><a href="#物品评分平均值" class="headerlink" title="物品评分平均值"></a>物品评分平均值</h3><p>物品i在训练集中接受的所有评分的平均值：</p>
 <script type="math/tex; mode=display">
-\overline {r_i}=\frac {\sum_{i \in N (i)} r_{ui}}{\sum_{i \in N (i)} 1}</script><h3 id="同类用户对同类物品的平均值"><a href="#同类用户对同类物品的平均值" class="headerlink" title="同类用户对同类物品的平均值"></a>同类用户对同类物品的平均值</h3><p>训练集中同类用户对同类物品评分的平均值：</p>
+\overline{r_i}=\frac{\sum_{i \in N(i)}r_{ui}}{\sum_{i \in N(i)}1}</script><h3 id="同类用户对同类物品的平均值"><a href="#同类用户对同类物品的平均值" class="headerlink" title="同类用户对同类物品的平均值"></a>同类用户对同类物品的平均值</h3><p>训练集中同类用户对同类物品评分的平均值：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\frac {\sum_{(v,j) \in Train,\phi (u)=\phi (v),\varphi (i)=\varphi (j)} r_{vj}}{\sum_{(v,j) \in Train,\phi (u)=\phi (v),\varphi (i)=\varphi (j)} 1}</script><ul>
-<li>$\phi (u)$: 表示用户 u 所属的类</li>
-<li>$\varphi (i)$: 表示物品 i 所属的类</li>
+\hat{r_{ui}}=\frac{\sum_{(v,j) \in Train,\phi (u)=\phi(v),\varphi (i)=\varphi (j)}r_{vj}}{\sum_{(v,j) \in Train,\phi (u)=\phi(v),\varphi (i)=\varphi (j)}1}</script><ul>
+<li>$\phi (u)$:表示用户u所属的类</li>
+<li>$\varphi (i)$:表示物品i所属的类</li>
 </ul>
 <p>值得说明的是，前面的各种求平均评分的方法都可以看做是同类用户对同类物品的平均值的特殊情况。</p>
 <h2 id="基于邻域的方法"><a href="#基于邻域的方法" class="headerlink" title="基于邻域的方法"></a>基于邻域的方法</h2><h3 id="基于用户的邻域算法"><a href="#基于用户的邻域算法" class="headerlink" title="基于用户的邻域算法"></a>基于用户的邻域算法</h3><p>基于用户的邻域算法认为，预测一个用户对一个物品的评分，需要参考和这个用户兴趣相似的用户对该物品的评分：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\hat {r_u}+\frac {\sum_{v \in S (u,K)\bigcap N (i)} w_{uv}(r_{vi}-\overline {r_v})}{\sum_{v \in S (u,K)\bigcap N (i)}\left | w_{uv} \right |}</script><ul>
-<li>$S (u,K)$：与用户 u 兴趣最相似的 K 个用户集合</li>
-<li>$\hat {r_u}$：用户 u 对他评过分的物品的平均评分</li>
+\hat{r_{ui}}=\hat{r_u}+\frac{\sum_{v \in S(u,K)\bigcap N(i)}w_{uv}(r_{vi}-\overline{r_v})}{\sum_{v \in S(u,K)\bigcap N(i)}\left | w_{uv} \right |}</script><ul>
+<li>$S(u,K)$：与用户u兴趣最相似的K个用户集合</li>
+<li>$\hat{r_u}$：用户u对他评过分的物品的平均评分</li>
 </ul>
 <p>用户之间的相似度可以通过皮尔逊系数计算：</p>
 <script type="math/tex; mode=display">
-w_{uv}=\frac {\sum_{i \in I} r_{ui}-\overline {r_u} r_{vi}-\overline {r_v}}{\sqrt {\sum_{i \in I}(r_{ui}-\overline {r_u})^2}\sum_{i \in I}(r_{vi}-\overline {r_v})^2}</script><h3 id="基于物品的邻域算法"><a href="#基于物品的邻域算法" class="headerlink" title="基于物品的邻域算法"></a>基于物品的邻域算法</h3><p>基于物品的邻域算法在预测用户 u 对物品 i 的评分时，会参考用户 u 对和物品 i 相似的其他物品的评分：</p>
+w_{uv}=\frac{\sum_{i \in I}r_{ui}-\overline{r_u}r_{vi}-\overline{r_v}}{\sqrt{\sum_{i \in I}(r_{ui}-\overline{r_u})^2}\sum_{i \in I}(r_{vi}-\overline{r_v})^2}</script><h3 id="基于物品的邻域算法"><a href="#基于物品的邻域算法" class="headerlink" title="基于物品的邻域算法"></a>基于物品的邻域算法</h3><p>基于物品的邻域算法在预测用户u对物品i的评分时，会参考用户u对和物品i相似的其他物品的评分：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\hat {r_i}+\frac {\sum_{j \in S (i,K)\bigcap N (u)} w_{ij}(r_{uj}-\overline {r_i})}{\sum_{j \in S (i,K)\bigcap N (u)}\left | w_{ij} \right |}</script><ul>
-<li>$S (i,K)$：和物品 i 最相似的 K 个物品的集合</li>
-<li>$\hat {r_i}$: 物品 i 的平均评分</li>
+\hat{r_{ui}}=\hat{r_i}+\frac{\sum_{j \in S(i,K)\bigcap N(u)}w_{ij}(r_{uj}-\overline{r_i})}{\sum_{j \in S(i,K)\bigcap N(u)}\left | w_{ij} \right |}</script><ul>
+<li>$S(i,K)$：和物品i最相似的K个物品的集合</li>
+<li>$\hat{r_i}$:物品i的平均评分</li>
 </ul>
-<p>关于如何计算物品的相似度，Badrul Sarwar 等在论文里做了详细的研究，文章比较了 3 种主要的相似度：</p>
+<p>关于如何计算物品的相似度，Badrul Sarwar等在论文里做了详细的研究，文章比较了3种主要的相似度：</p>
 <ul>
 <li>普通余弦相似度：</li>
 </ul>
@@ -557,69 +557,69 @@ w_{uv}=\frac {\sum_{i \in I} r_{ui}-\overline {r_u} r_{vi}-\overline {r_v}}{\sqr
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-23-28.jpg" width="30%" heigh="30%">
 </div>
 
-<p>Sarwar 利用 MovieLens 最小的数据集对 3 种相似度进行了对比，并将 MAE 作为评测指标。实验结果表明利用修正后的余弦相似度进行评分预测可以获得最优的 MAE。不过需要说明的是，在一个数据集上的实验并不意味着在其他数据集上也能获得相同的结果。</p>
-<h2 id="隐语义模型与矩阵分解模型"><a href="#隐语义模型与矩阵分解模型" class="headerlink" title="隐语义模型与矩阵分解模型"></a>隐语义模型与矩阵分解模型</h2><p>用户的评分行为可以表示成一个评分矩阵 R，其中 R [u][i] 就是用户 u 对物品 i 的评分，但是用户不会对所有物品都评分，所以矩阵中很多元素都是空的，评分预测在某种意义上说就是填空。</p>
+<p>Sarwar利用MovieLens最小的数据集对3种相似度进行了对比，并将MAE作为评测指标。实验结果表明利用修正后的余弦相似度进行评分预测可以获得最优的MAE。不过需要说明的是，在一个数据集上的实验并不意味着在其他数据集上也能获得相同的结果。</p>
+<h2 id="隐语义模型与矩阵分解模型"><a href="#隐语义模型与矩阵分解模型" class="headerlink" title="隐语义模型与矩阵分解模型"></a>隐语义模型与矩阵分解模型</h2><p>用户的评分行为可以表示成一个评分矩阵R，其中R[u][i]就是用户u对物品i的评分，但是用户不会对所有物品都评分，所以矩阵中很多元素都是空的，评分预测在某种意义上说就是填空。</p>
 <h3 id="SVD"><a href="#SVD" class="headerlink" title="SVD"></a>SVD</h3><p>补全一个矩阵的方法有很多，而我们要找的是一种对矩阵扰动最小的补全方法，一般认为如果补全后矩阵的特征值和补全之前矩阵的特征值相差不大，就算是扰动比较小。</p>
-<p>给定 m 个用户和 n 个物品，和用户对物品的评分矩阵 R，SVD 方法的步骤：</p>
+<p>给定m个用户和n个物品，和用户对物品的评分矩阵R，SVD方法的步骤：</p>
 <ol>
-<li>补全缺失值：通过简单方式补全，如用全局平均值或用户 / 物品平均值</li>
-<li>SVD 分解：计算补全后的评分矩阵的奇异值和左右奇异向量</li>
+<li>补全缺失值：通过简单方式补全，如用全局平均值或用户/物品平均值</li>
+<li>SVD分解：计算补全后的评分矩阵的奇异值和左右奇异向量</li>
 </ol>
 <script type="math/tex; mode=display">
 R_f=U_f^TS_fV_f</script><ul>
-<li>$S_f$：取最大的 f 个奇异值组成的 “对角矩阵”</li>
+<li>$S_f$：取最大的f个奇异值组成的“对角矩阵”</li>
 </ul>
-<p>SVD 分解是早起推荐系统研究中常用的矩阵分解方法，不过该方法具有以下缺点，因此很难在实际系统中应用：</p>
+<p>SVD分解是早起推荐系统研究中常用的矩阵分解方法，不过该方法具有以下缺点，因此很难在实际系统中应用：</p>
 <ol>
-<li>巨大的空间需求：推荐系统中的评分矩阵是非常稀疏的，一旦补全，评分矩阵会变成一个稠密矩阵，从而使评分矩阵的存储需要非常大的空间，这种空间的需求在实际系统中是不可能接受的。</li>
-<li>SVD 分解计算复杂度很高：特别是在稠密的大规模矩阵上更慢</li>
+<li>巨大的空间需求:推荐系统中的评分矩阵是非常稀疏的，一旦补全，评分矩阵会变成一个稠密矩阵，从而使评分矩阵的存储需要非常大的空间，这种空间的需求在实际系统中是不可能接受的。</li>
+<li>SVD分解计算复杂度很高：特别是在稠密的大规模矩阵上更慢</li>
 </ol>
-<h3 id="LFM"><a href="#LFM" class="headerlink" title="LFM"></a>LFM</h3><p>2006 年 Netflix Prize 开始后，Simon Funk 在博客上公布了一个算法（称为 Funk-SVD），一下子引爆了学术界对矩阵分解类方法的关注。而且，Simon Funk 的博客也成为了很多学术论文经常引用的对象。Simon Funk 提出的矩阵分解方法后来被 Netflix Prize 的冠军 Koren 称为 Latent Factor Model（简称为 LFM）。</p>
-<p>LFM 在之前介绍过，从矩阵分解的角度说，如果将评分矩阵分解为两个低维矩阵相乘：</p>
+<h3 id="LFM"><a href="#LFM" class="headerlink" title="LFM"></a>LFM</h3><p>2006年Netflix Prize开始后，Simon Funk在博客上公布了一个算法（称为Funk-SVD），一下子引爆了学术界对矩阵分解类方法的关注。而且，Simon Funk的博客也成为了很多学术论文经常引用的对象。Simon Funk提出的矩阵分解方法后来被Netflix Prize的冠军Koren称为Latent Factor Model（简称为LFM）。</p>
+<p>LFM在之前介绍过，从矩阵分解的角度说，如果将评分矩阵分解为两个低维矩阵相乘：</p>
 <script type="math/tex; mode=display">
 R = P^TQ</script><ul>
-<li>$R$：m×n，R [u][i] 表示用户 u 对物品 i 的评分</li>
-<li>$P$：k×m，P [k][u] 表示用户 u 对隐类 k 的兴趣度</li>
-<li>$Q$：k×n，Q [k][i] 表示物品 i 对隐类 k 的关联度</li>
+<li>$R$：m×n，R[u][i]表示用户u对物品i的评分</li>
+<li>$P$：k×m，P[k][u]表示用户u对隐类k的兴趣度</li>
+<li>$Q$：k×n，Q[k][i]表示物品i对隐类k的关联度</li>
 </ul>
-<p>用户 u 对物品 i 的评分预测值，可以表示为：</p>
+<p>用户u对物品i的评分预测值，可以表示为：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\sum_{f} p_{uf} q_{if}</script><p>以上公式通过隐类将用户和物品联系在了一起，但是在实际情况下，系统中包含了某些和用户物品无关的因素，用户中也包含了某些和物品无关的因素，物品也包含了某些和用户无关的因素，因此可以通过三者的偏置来修正以上预测函数：</p>
+\hat{r_{ui}}=\sum_{f}p_{uf}q_{if}</script><p>以上公式通过隐类将用户和物品联系在了一起，但是在实际情况下，系统中包含了某些和用户物品无关的因素，用户中也包含了某些和物品无关的因素，物品也包含了某些和用户无关的因素，因此可以通过三者的偏置来修正以上预测函数：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\mu +b_u+b_i+p_u^Tq_i</script><ul>
+\hat{r_{ui}}=\mu +b_u+b_i+p_u^Tq_i</script><ul>
 <li>$\mu$：训练集中所有记录的评分的全局平均值，不同网站定位不同，网站的整体评分分布也会有所差异</li>
-<li>$b_u$：用户偏置，代表了用户的评分习惯中和物品没有关系的那种因素，初始化为 0</li>
-<li>$b_i$：物品偏置，代表了物品接收的评分中和物品没有关系的那种因素，初始化为 0</li>
+<li>$b_u$：用户偏置，代表了用户的评分习惯中和物品没有关系的那种因素，初始化为0</li>
+<li>$b_i$：物品偏置，代表了物品接收的评分中和物品没有关系的那种因素，初始化为0</li>
 </ul>
 <p>损失函数：</p>
 <script type="math/tex; mode=display">
-L = \sum_{(u,i) \in K}(r_{ui}- \hat {r}_{ui})^2=\sum_{(u,i) \in K}(r_{ui}-\sum_{f=1}^{F} p_{uk} q_{ik})^2+\lambda \left \| p_u \right \|^2+\lambda \left \| q_i \right \|^2</script><p>然后用机器学习的方法求解。</p>
-<h3 id="SVD-1"><a href="#SVD-1" class="headerlink" title="SVD++"></a>SVD++</h3><p>Koren 在 Netflix Prize 比赛中提出了一个模型，将用户历史评分的物品加入到了 LFM 模型中，Koren 将该模型称为 SVD++。</p>
-<p>首先将 ItemCF 设计成一个像 LFM 那样可以学习的模型：</p>
+L = \sum_{(u,i) \in K}(r_{ui}- \hat{r}_{ui})^2=\sum_{(u,i) \in K}(r_{ui}-\sum_{f=1}^{F}p_{uk}q_{ik})^2+\lambda \left \| p_u \right \|^2+\lambda \left \| q_i \right \|^2</script><p>然后用机器学习的方法求解。</p>
+<h3 id="SVD-1"><a href="#SVD-1" class="headerlink" title="SVD++"></a>SVD++</h3><p>Koren在Netflix Prize比赛中提出了一个模型，将用户历史评分的物品加入到了LFM模型中，Koren将该模型称为SVD++。</p>
+<p>首先将ItemCF设计成一个像LFM那样可以学习的模型：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\frac {1}{\sqrt {\left | N (u) \right |}}\sum_{j \in N (u)} w_{ij}</script><p>损失函数：</p>
+\hat{r_{ui}}=\frac{1}{\sqrt{\left | N(u) \right |}}\sum_{j \in N(u)}w_{ij}</script><p>损失函数：</p>
 <script type="math/tex; mode=display">
-C (w)=\sum_{(u,i) \in Train}(r_{ui}-\sum_{j \in N (u)} w_{ij} r_{uj})^2+\lambda w_{ij}^2</script><p>该模型参数过多，容易造成过拟合，Koren 提出应该对 w 矩阵也进行分解，将参数个数降低到 2<em>n</em>F 个，模型如下：</p>
+C(w)=\sum_{(u,i) \in Train}(r_{ui}-\sum_{j \in N(u)}w_{ij}r_{uj})^2+\lambda w_{ij}^2</script><p>该模型参数过多，容易造成过拟合，Koren提出应该对w矩阵也进行分解，将参数个数降低到2<em>n</em>F个，模型如下：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\frac {1}{\sqrt {\left | N (u) \right |}}\sum_{j \in N (u)} x_i^Ty_j</script><p>进一步，可以将该模型与前面 LFM 模型相加，同时为了进一步减少参数，可以令 x=q：</p>
+\hat{r_{ui}}=\frac{1}{\sqrt{\left | N(u) \right |}}\sum_{j \in N(u)}x_i^Ty_j</script><p>进一步，可以将该模型与前面LFM模型相加，同时为了进一步减少参数，可以令x=q：</p>
 <script type="math/tex; mode=display">
-\hat {r_{ui}}=\mu +b_u+b_i+q_i^T (p_u+\frac {1}{\sqrt {\left | N (u) \right |}}\sum_{j \in N (u)} y_j)</script><p>通过梯度下降法训练以上参数。</p>
-<h3 id="加入时间信息"><a href="#加入时间信息" class="headerlink" title="加入时间信息"></a>加入时间信息</h3><h4 id="将时间信息应用到基于邻域的模型"><a href="#将时间信息应用到基于邻域的模型" class="headerlink" title="将时间信息应用到基于邻域的模型"></a>将时间信息应用到基于邻域的模型</h4><p>Netflix Prize 的参赛队伍 BigChaos 在技术报告中提到了一种融入时间信息的基于邻域的模型，本节将这个模型称为 TItemCF。</p>
+\hat{r_{ui}}=\mu +b_u+b_i+q_i^T(p_u+\frac{1}{\sqrt{\left | N(u) \right |}}\sum_{j \in N(u)}y_j)</script><p>通过梯度下降法训练以上参数。</p>
+<h3 id="加入时间信息"><a href="#加入时间信息" class="headerlink" title="加入时间信息"></a>加入时间信息</h3><h4 id="将时间信息应用到基于邻域的模型"><a href="#将时间信息应用到基于邻域的模型" class="headerlink" title="将时间信息应用到基于邻域的模型"></a>将时间信息应用到基于邻域的模型</h4><p>Netflix Prize的参赛队伍BigChaos在技术报告中提到了一种融入时间信息的基于邻域的模型，本节将这个模型称为TItemCF。</p>
 <script type="math/tex; mode=display">
-\hat {r_{uit}}=\frac {\sum_{j \in N (u)\bigcap S (i,k)} f (w_{ij},\Delta t) r_{uj}}{\sum_{j \in N (u)\bigcap S (i,k)} f (w_{ij},\Delta t)}</script><ul>
-<li>$\Delta t=t_{ui}-t {uj}$：用户 u 对物品 i 和物品 j 评分的时间差</li>
-<li>$f (w_{ij},\Delta t)$：考虑了时间衰减后的相似度函数，随着 \Delta t 的绝对值增大，f 减小，也就是说用户很久以前的行为对预测用户当前评分的影响越来越小</li>
+\hat{r_{uit}}=\frac{\sum_{j \in N(u)\bigcap S(i,k)}f(w_{ij},\Delta t)r_{uj}}{\sum_{j \in N(u)\bigcap S(i,k)}f(w_{ij},\Delta t)}</script><ul>
+<li>$\Delta t=t_{ui}-t{uj}$：用户u对物品i和物品 j评分的时间差</li>
+<li>$f(w_{ij},\Delta t)$：考虑了时间衰减后的相似度函数，随着\Delta t的绝对值增大，f减小，也就是说用户很久以前的行为对预测用户当前评分的影响越来越小</li>
 </ul>
 <script type="math/tex; mode=display">
-f (w_{ij},\Delta t)=\sigma (\delta w_{ij} exp (\frac {-\left | \Delta t \right |}{\beta })+\gamma )</script><ul>
-<li>$\sigma (x)$：sigmoid 函数，目的是将相似度压缩到 (0,1) 区间</li>
+f(w_{ij},\Delta t)=\sigma (\delta w_{ij}exp(\frac{-\left | \Delta t \right |}{\beta })+\gamma )</script><ul>
+<li>$\sigma(x)$：sigmoid函数，目的是将相似度压缩到(0,1)区间</li>
 </ul>
-<h4 id="将时间信息应用到矩阵分解模型"><a href="#将时间信息应用到矩阵分解模型" class="headerlink" title="将时间信息应用到矩阵分解模型"></a>将时间信息应用到矩阵分解模型</h4><p>在 SVD++ 的基础上融入时间信息：</p>
+<h4 id="将时间信息应用到矩阵分解模型"><a href="#将时间信息应用到矩阵分解模型" class="headerlink" title="将时间信息应用到矩阵分解模型"></a>将时间信息应用到矩阵分解模型</h4><p>在SVD++的基础上融入时间信息：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16-35-59.jpg" width="60%" heigh="60%">
 </div>
 
-<p>这里，$t_u$ 是用户所有评分的平均时间。period（t）考虑了季节效应，可以定义为时刻 t 所在的月份。该模型同样可以通过随机梯度下降法进行优化。</p>
+<p>这里，$t_u$ 是用户所有评分的平均时间。period（t）考虑了季节效应，可以定义为时刻t所在的月份。该模型同样可以通过随机梯度下降法进行优化。</p>
 
       
     </div>
@@ -674,8 +674,8 @@ f (w_{ij},\Delta t)=\sigma (\delta w_{ij} exp (\frac {-\left | \Delta t \right |
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/推荐系统/推荐系统/推荐系统（四）—— 基于上下文推荐/" rel="next" title="推荐系统（四）—— 基于上下文推荐">
-                <i class="fa fa-chevron-left"></i> 推荐系统（四）—— 基于上下文推荐
+              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：Trie 树/" rel="next" title="数据结构与算法：Trie 树">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：Trie 树
               </a>
             
           </div>
@@ -684,8 +684,8 @@ f (w_{ij},\Delta t)=\sigma (\delta w_{ij} exp (\frac {-\left | \Delta t \right |
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/推荐系统/推荐系统/推荐系统（五）—— 基于社交网络推荐/" rel="prev" title="推荐系统（五）—— 基于社交网络推荐">
-                推荐系统（五）—— 基于社交网络推荐 <i class="fa fa-chevron-right"></i>
+              <a href="/推荐系统/推荐系统/推荐系统（四）—— 基于上下文推荐/" rel="prev" title="推荐系统（四）—— 基于上下文推荐">
+                推荐系统（四）—— 基于上下文推荐 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -792,7 +792,7 @@ f (w_{ij},\Delta t)=\sigma (\delta w_{ij} exp (\frac {-\left | \Delta t \right |
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -904,7 +904,7 @@ f (w_{ij},\Delta t)=\sigma (\delta w_{ij} exp (\frac {-\left | \Delta t \right |
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

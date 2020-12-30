@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="分配的目标基于对 “公平” 的理解，微信红包分配算法基于以下三个目标：  先后抽到的红包金额期望尽量相等 (机会相等)； 所有人抽到金额的基尼系数尽量小 (差距较小)； 每个人至少有 1 分钱；  分配算法算法思路：假设要将金额为 m 元的红包发给 n 个人。当第 k 个人点开红包时，按照以下规则为其分配金额 (假设当前红包剩余金额为 x，剩余人数为 y)  为剩余的 y-1 个人预留 1 分钱，">
+<meta name="description" content="分配的目标基于对“公平”的理解，微信红包分配算法基于以下三个目标：  先后抽到的红包金额期望尽量相等(机会相等)； 所有人抽到金额的基尼系数尽量小(差距较小)； 每个人至少有1分钱；  分配算法算法思路：假设要将金额为m元的红包发给n个人。当第k个人点开红包时，按照以下规则为其分配金额(假设当前红包剩余金额为x，剩余人数为y)  为剩余的y-1个人预留1分钱，将余下的钱平分为y份，每份金额为py">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法：趣味算法 —— 红包分配">
 <meta property="og:url" content="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：趣味算法 —— 红包分配/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="分配的目标基于对 “公平” 的理解，微信红包分配算法基于以下三个目标：  先后抽到的红包金额期望尽量相等 (机会相等)； 所有人抽到金额的基尼系数尽量小 (差距较小)； 每个人至少有 1 分钱；  分配算法算法思路：假设要将金额为 m 元的红包发给 n 个人。当第 k 个人点开红包时，按照以下规则为其分配金额 (假设当前红包剩余金额为 x，剩余人数为 y)  为剩余的 y-1 个人预留 1 分钱，">
+<meta property="og:description" content="分配的目标基于对“公平”的理解，微信红包分配算法基于以下三个目标：  先后抽到的红包金额期望尽量相等(机会相等)； 所有人抽到金额的基尼系数尽量小(差距较小)； 每个人至少有1分钱；  分配算法算法思路：假设要将金额为m元的红包发给n个人。当第k个人点开红包时，按照以下规则为其分配金额(假设当前红包剩余金额为x，剩余人数为y)  为剩余的y-1个人预留1分钱，将余下的钱平分为y份，每份金额为py">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-26-39.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-59-19.jpg">
@@ -142,7 +142,7 @@
 <meta property="og:updated_time" content="2020-10-25T08:54:14.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法：趣味算法 —— 红包分配">
-<meta name="twitter:description" content="分配的目标基于对 “公平” 的理解，微信红包分配算法基于以下三个目标：  先后抽到的红包金额期望尽量相等 (机会相等)； 所有人抽到金额的基尼系数尽量小 (差距较小)； 每个人至少有 1 分钱；  分配算法算法思路：假设要将金额为 m 元的红包发给 n 个人。当第 k 个人点开红包时，按照以下规则为其分配金额 (假设当前红包剩余金额为 x，剩余人数为 y)  为剩余的 y-1 个人预留 1 分钱，">
+<meta name="twitter:description" content="分配的目标基于对“公平”的理解，微信红包分配算法基于以下三个目标：  先后抽到的红包金额期望尽量相等(机会相等)； 所有人抽到金额的基尼系数尽量小(差距较小)； 每个人至少有1分钱；  分配算法算法思路：假设要将金额为m元的红包发给n个人。当第k个人点开红包时，按照以下规则为其分配金额(假设当前红包剩余金额为x，剩余人数为y)  为剩余的y-1个人预留1分钱，将余下的钱平分为y份，每份金额为py">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-26-39.jpg">
 
 
@@ -464,7 +464,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  492
+                  486
                 </span>
               
 
@@ -501,25 +501,25 @@
       
 
       
-        <h2 id="分配的目标"><a href="#分配的目标" class="headerlink" title="分配的目标"></a>分配的目标</h2><p>基于对 “公平” 的理解，微信红包分配算法基于以下三个目标：</p>
+        <h2 id="分配的目标"><a href="#分配的目标" class="headerlink" title="分配的目标"></a>分配的目标</h2><p>基于对“公平”的理解，微信红包分配算法基于以下三个目标：</p>
 <ol>
-<li>先后抽到的红包金额期望尽量相等 (机会相等)；</li>
-<li>所有人抽到金额的基尼系数尽量小 (差距较小)；</li>
-<li>每个人至少有 1 分钱；</li>
+<li>先后抽到的红包金额期望尽量相等(机会相等)；</li>
+<li>所有人抽到金额的基尼系数尽量小(差距较小)；</li>
+<li>每个人至少有1分钱；</li>
 </ol>
-<h2 id="分配算法"><a href="#分配算法" class="headerlink" title="分配算法"></a>分配算法</h2><p>算法思路：假设要将金额为 m 元的红包发给 n 个人。当第 k 个人点开红包时，按照以下规则为其分配金额 (假设当前红包剩余金额为 x，剩余人数为 y)</p>
+<h2 id="分配算法"><a href="#分配算法" class="headerlink" title="分配算法"></a>分配算法</h2><p>算法思路：假设要将金额为m元的红包发给n个人。当第k个人点开红包时，按照以下规则为其分配金额(假设当前红包剩余金额为x，剩余人数为y)</p>
 <ol>
-<li>为剩余的 y-1 个人预留 1 分钱，将余下的钱平分为 y 份，每份金额为 py = (x - 0.01 * (y-1))/y;</li>
-<li>从 [0,2*py] 的均匀分布中随机选取一个金额 xk 分配给第 k 个人；如果金额不足 0.01 则取 0.01，如果金额不是 0.01 的整数倍，则在百分位向下取整；</li>
-<li>更新剩余金额 x = x -xk 和剩余人数 y=y-1；</li>
+<li>为剩余的y-1个人预留1分钱，将余下的钱平分为y份，每份金额为py = (x - 0.01 * (y-1))/y;</li>
+<li>从[0,2*py]的均匀分布中随机选取一个金额xk分配给第k个人；如果金额不足0.01则取0.01，如果金额不是0.01的整数倍，则在百分位向下取整；</li>
+<li>更新剩余金额x = x -xk和剩余人数y=y-1；</li>
 </ol>
-<h2 id="分配效果"><a href="#分配效果" class="headerlink" title="分配效果"></a>分配效果</h2><p>1、不同人抽到金额的期望相等 (m/n)，和抢红包顺序无关：</p>
+<h2 id="分配效果"><a href="#分配效果" class="headerlink" title="分配效果"></a>分配效果</h2><p>1、不同人抽到金额的期望相等(m/n)，和抢红包顺序无关：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-26-39.jpg" width="60%" heigh="60%">
 </div>
 
-<p>2、先抽的人金额方差小，后抽的人金额方差大 (后抽的人更有可能获得非常小或非常大的红包)</p>
-<p>第一个人抽到金额从小到大排序 (1000 次试验)：</p>
+<p>2、先抽的人金额方差小，后抽的人金额方差大(后抽的人更有可能获得非常小或非常大的红包)</p>
+<p>第一个人抽到金额从小到大排序(1000次试验)：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-59-19.jpg" width="60%" heigh="60%">
 </div>
@@ -529,7 +529,7 @@
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-59-01.jpg" width="60%" heigh="60%">
 </div>
 
-<p>3、所有人抽到的金额基尼系数近似为 0 (1000 个人)</p>
+<p>3、所有人抽到的金额基尼系数近似为0(1000个人)</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-28-47.jpg" width="60%" heigh="60%">
 </div>
@@ -538,8 +538,8 @@
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-01-44.jpg" width="60%" heigh="60%">
 </div>
 
-<h2 id="为什么不用简单隔板法"><a href="#为什么不用简单隔板法" class="headerlink" title="为什么不用简单隔板法"></a>为什么不用简单隔板法</h2><p>如果只是为了使每个人的期望金额相同，完全可以用另外一种简单算法，生成 n-1 个 0~1 之间的随机数，排序后得到一个序列 $A=[0,x_1,x_2,…x_{n-1},1]$，将 m*(A [i]-A [i-1]) 分配给第 i 个人。</p>
-<p>适用这种算法会产生较大的 “贫富差距”，这一点从洛伦兹曲线上可以看到：</p>
+<h2 id="为什么不用简单隔板法"><a href="#为什么不用简单隔板法" class="headerlink" title="为什么不用简单隔板法"></a>为什么不用简单隔板法</h2><p>如果只是为了使每个人的期望金额相同，完全可以用另外一种简单算法，生成n-1个0~1之间的随机数，排序后得到一个序列 $A=[0,x_1,x_2,…x_{n-1},1]$，将 m*(A[i]-A[i-1])分配给第i个人。</p>
+<p>适用这种算法会产生较大的“贫富差距”，这一点从洛伦兹曲线上可以看到：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-13-05.jpg" width="60%" heigh="60%">
 </div>
@@ -597,8 +597,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：线性表（三）—— 双指针/" rel="next" title="数据结构与算法：线性表（三）—— 双指针">
-                <i class="fa fa-chevron-left"></i> 数据结构与算法：线性表（三）—— 双指针
+              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：趣味算法 —— 小球称重/" rel="next" title="数据结构与算法：趣味算法 —— 小球称重">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：趣味算法 —— 小球称重
               </a>
             
           </div>
@@ -607,8 +607,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：趣味算法 —— Nim 游戏/" rel="prev" title="数据结构与算法：趣味算法 —— Nim 游戏">
-                数据结构与算法：趣味算法 —— Nim 游戏 <i class="fa fa-chevron-right"></i>
+              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：数论/" rel="prev" title="数据结构与算法：数论">
+                数据结构与算法：数论 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -715,7 +715,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -827,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

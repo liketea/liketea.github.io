@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="问题类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到 1：100000。 精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学">
+<meta name="description" content="问题类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到1：100000。 精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学习">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：其它话题（一）—— 类别不平衡问题">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：其它话题（一）—— 类别不平衡问题/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="问题类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到 1：100000。 精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学">
+<meta property="og:description" content="问题类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到1：100000。 精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-59-11.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-59-15.jpg">
@@ -142,7 +142,7 @@
 <meta property="og:updated_time" content="2020-12-16T09:06:22.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：其它话题（一）—— 类别不平衡问题">
-<meta name="twitter:description" content="问题类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到 1：100000。 精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学">
+<meta name="twitter:description" content="问题类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到1：100000。 精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学习">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-59-11.jpg">
 
 
@@ -501,24 +501,24 @@
       
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到 1：100000。</p>
-<p>精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学习模型只需要返回一个永远将样本预测为反例的学习器，就能达到 99% 的精度，然而这样的学习器往往没有价值，这个精度并不能反映学习器的性能，只是反映了类别的分布。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>以线性分类器为例，在我们使用 $y=w^Tx+b$ 对新样本 x 进行分类时，事实上是用预测值与一个阈值进行比较，例如通常在 y&gt;0.5 时盼为正例，否则为反例。y 实际表达了是正例的可能性，决策器的分类规则为：</p>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>类别不平衡（class-imbalance）是指在分类任务中不同类别的训练样本数差别很大的情况。类别不平衡问题在实际数据中是很常见的，比如在癌症检查中可能只有极少部分病人患上了癌症，而其余大多数样本都是健康的个体；又比如欺诈识别，欺诈样本与正常样本的比例可能会达到1：100000。</p>
+<p>精度是在评估分类模型性能时最常用的一个指标，如果不同类别的训练样例数目差别很大（正例：负例 = 1:99），学习模型只需要返回一个永远将样本预测为反例的学习器，就能达到99%的精度，然而这样的学习器往往没有价值，这个精度并不能反映学习器的性能，只是反映了类别的分布。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>以线性分类器为例，在我们使用$y=w^Tx+b$对新样本x进行分类时，事实上是用预测值与一个阈值进行比较，例如通常在y&gt;0.5时盼为正例，否则为反例。y实际表达了是正例的可能性，决策器的分类规则为：</p>
 <script type="math/tex; mode=display">
-\frac {y}{1-y} > 1 \Rightarrow positive</script><p>当正负样例不同时，令 $m^+$ 表示正例数目，$m^-$ 表示负例数目，则观测几率为 $\frac {m^+}{m^-}$，通常我们假设观测几率代表了真实几率，因此只要分类器的预测几率高于观测几率，就判为正例：</p>
+\frac{y}{1-y} > 1 \Rightarrow positive</script><p>当正负样例不同时，令$m^+$表示正例数目，$m^-$表示负例数目，则观测几率为$\frac{m^+}{m^-}$，通常我们假设观测几率代表了真实几率，因此只要分类器的预测几率高于观测几率，就判为正例：</p>
 <script type="math/tex; mode=display">
-\frac {y}{1-y} > \frac {m^+}{m^-} \Rightarrow positive</script><p>但是我们的分类器是基于第一个式子来进行决策的，因此需要对其观测值进行调整，使得在基于第一个式子来决策时实际是在执行第二个式子：</p>
+\frac{y}{1-y} > \frac{m^+}{m^-} \Rightarrow positive</script><p>但是我们的分类器是基于第一个式子来进行决策的，因此需要对其观测值进行调整，使得在基于第一个式子来决策时实际是在执行第二个式子：</p>
 <script type="math/tex; mode=display">
-\frac {\hat {y}}{1-\hat {y}} = \frac {y}{1-y} \times \frac {m^-}{m^+}</script><p>这就是类别不平衡学习的一个基本策略 ——<strong> 再缩放 </strong>，虽然思路简单，但是实际操作却并不平凡，现有技术大体上有三种做法：过采样、欠采样、移动阈值。</p>
-<p>再缩放也是代价敏感学习的基础，只需将式中 $\frac {m^-}{m^-}$ 用 $\frac {cost^+}{cost^-}$ 替代即可，其中 $cost^+$ 是将正例判为负例的代价。</p>
-<p>接下来简单对常用的过采样和欠采样算法做一说明，学习不均衡学习最好的方式就是学习 <a href="http://contrib.scikit-learn.org/imbalanced-learn/stable/under_sampling.html" target="_blank" rel="noopener">imbalanced-learn 的 API</a>。</p>
+\frac{\hat{y}}{1-\hat{y}} = \frac{y}{1-y} \times \frac{m^-}{m^+}</script><p>这就是类别不平衡学习的一个基本策略——<strong>再缩放</strong>，虽然思路简单，但是实际操作却并不平凡，现有技术大体上有三种做法：过采样、欠采样、移动阈值。</p>
+<p>再缩放也是代价敏感学习的基础，只需将式中$\frac{m^-}{m^-}$用$\frac{cost^+}{cost^-}$替代即可，其中$cost^+$是将正例判为负例的代价。</p>
+<p>接下来简单对常用的过采样和欠采样算法做一说明，学习不均衡学习最好的方式就是学习<a href="http://contrib.scikit-learn.org/imbalanced-learn/stable/under_sampling.html" target="_blank" rel="noopener">imbalanced-learn的API</a>。</p>
 <h2 id="过采样（oversampling）"><a href="#过采样（oversampling）" class="headerlink" title="过采样（oversampling）"></a>过采样（oversampling）</h2><ul>
 <li>原理：增加训练集中少数类样本，以使各类别样本数相对均衡；</li>
 <li>实现：简单复制、设置权重、插值产生；</li>
-<li>评价：简单对少数派样本重复抽样，容易造成过拟合；</li>
-<li>代表算法：SMOTE，通过对训练集中的正例进行插值产生额外的正例；</li>
+<li>评价：简单对少数派样本重复抽样，容易造成过拟合;</li>
+<li>代表算法：SMOTE，通过对训练集中的正例进行插值产生额外的正例;</li>
 </ul>
-<h3 id="过采样和交叉验证"><a href="#过采样和交叉验证" class="headerlink" title="过采样和交叉验证"></a>过采样和交叉验证</h3><p>过采样只能应用于训练集，也就是说，当我们同时需要进行过采样和交叉验证时，应该在划分出训练集和验证集之后，针对新的训练集进行过采样，这样就可以避免将验证集信息 “泄露给” 训练集，造成过拟合，见下图：</p>
+<h3 id="过采样和交叉验证"><a href="#过采样和交叉验证" class="headerlink" title="过采样和交叉验证"></a>过采样和交叉验证</h3><p>过采样只能应用于训练集，也就是说，当我们同时需要进行过采样和交叉验证时，应该在划分出训练集和验证集之后，针对新的训练集进行过采样，这样就可以避免将验证集信息“泄露给”训练集，造成过拟合，见下图：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-59-11.jpg" width="50%" heigh="80%">
 </div>
@@ -528,29 +528,29 @@
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-59-15.jpg" width="50%" heigh="80%">
 </div>
 
-<p>也就是说我们每次迭代做交叉验证之前先将验证样本从训练样本中分离出来，然后再对训练样本中少数类样本进行过采样（橙色那块图所示）。在这个示例中少数类样本只有两个，所以我拷贝了三份副本。这种做法与之前最大的不同就是训练样本和验证样本是没有交集的，因而我们获得一个比之前好的结果。即使我们使用其他的交叉验证方法（譬如 k-flod）或其他的过采样方法（如 SMOTE），做法也是一样的。</p>
+<p>也就是说我们每次迭代做交叉验证之前先将验证样本从训练样本中分离出来，然后再对训练样本中少数类样本进行过采样（橙色那块图所示）。在这个示例中少数类样本只有两个，所以我拷贝了三份副本。这种做法与之前最大的不同就是训练样本和验证样本是没有交集的，因而我们获得一个比之前好的结果。即使我们使用其他的交叉验证方法（譬如 k-flod）或其他的过采样方法（如SMOTE），做法也是一样的。</p>
 <h3 id="随机上采样"><a href="#随机上采样" class="headerlink" title="随机上采样"></a>随机上采样</h3><h4 id="随机上采样原理"><a href="#随机上采样原理" class="headerlink" title="随机上采样原理"></a>随机上采样原理</h4><p>随机过采样是随机在少数样本中抽样生成新副本，与原始数据共同构成新的均衡数据集的方法：</p>
 <ol>
 <li>在训练集的少数类集合中随机选中一些样本；</li>
-<li>复制这些样本生成样本集 E；</li>
-<li>将新样本集 E 添加到原始训练集集中，得到新的训练集；</li>
+<li>复制这些样本生成样本集E；</li>
+<li>将新样本集E添加到原始训练集集中，得到新的训练集；</li>
 </ol>
-<h4 id="随机上采样代码示例"><a href="#随机上采样代码示例" class="headerlink" title="随机上采样代码示例"></a>随机上采样代码示例</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_classification</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X, y = make_classification (n_samples=<span class="number">5000</span>, n_features=<span class="number">2</span>, n_informative=<span class="number">2</span>,</span><br><span class="line"><span class="meta">... </span>                           n_redundant=<span class="number">0</span>, n_repeated=<span class="number">0</span>, n_classes=<span class="number">3</span>,</span><br><span class="line"><span class="meta">... </span>                           n_clusters_per_class=<span class="number">1</span>,</span><br><span class="line"><span class="meta">... </span>                           weights=[<span class="number">0.01</span>, <span class="number">0.05</span>, <span class="number">0.94</span>],</span><br><span class="line"><span class="meta">... </span>                           class_sep=<span class="number">0.8</span>, random_state=<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> imblearn.over_sampling <span class="keyword">import</span> RandomOverSampler</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ros = RandomOverSampler (random_state=<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X_resampled, y_resampled = ros.fit_sample (X, y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print (sorted (Counter (y_resampled).items ()))</span><br><span class="line">[(<span class="number">0</span>, <span class="number">4674</span>), (<span class="number">1</span>, <span class="number">4674</span>), (<span class="number">2</span>, <span class="number">4674</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> LinearSVC</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf = LinearSVC ()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf.fit (X_resampled, y_resampled) <span class="comment"># doctest : +ELLIPSIS</span></span><br><span class="line">LinearSVC (...)</span><br></pre></td></tr></table></figure></div>
+<h4 id="随机上采样代码示例"><a href="#随机上采样代码示例" class="headerlink" title="随机上采样代码示例"></a>随机上采样代码示例</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_classification</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X, y = make_classification(n_samples=<span class="number">5000</span>, n_features=<span class="number">2</span>, n_informative=<span class="number">2</span>,</span><br><span class="line"><span class="meta">... </span>                           n_redundant=<span class="number">0</span>, n_repeated=<span class="number">0</span>, n_classes=<span class="number">3</span>,</span><br><span class="line"><span class="meta">... </span>                           n_clusters_per_class=<span class="number">1</span>,</span><br><span class="line"><span class="meta">... </span>                           weights=[<span class="number">0.01</span>, <span class="number">0.05</span>, <span class="number">0.94</span>],</span><br><span class="line"><span class="meta">... </span>                           class_sep=<span class="number">0.8</span>, random_state=<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> imblearn.over_sampling <span class="keyword">import</span> RandomOverSampler</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ros = RandomOverSampler(random_state=<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X_resampled, y_resampled = ros.fit_sample(X, y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(sorted(Counter(y_resampled).items()))</span><br><span class="line">[(<span class="number">0</span>, <span class="number">4674</span>), (<span class="number">1</span>, <span class="number">4674</span>), (<span class="number">2</span>, <span class="number">4674</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> LinearSVC</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf = LinearSVC()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf.fit(X_resampled, y_resampled) <span class="comment"># doctest : +ELLIPSIS</span></span><br><span class="line">LinearSVC(...)</span><br></pre></td></tr></table></figure></div>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-45-10.jpg" width="50%" heigh="80%">
 </div>
 
-<h3 id="SMOTE"><a href="#SMOTE" class="headerlink" title="SMOTE"></a>SMOTE</h3><p>SMOTE (Synthetic Minority Over-sampling Technique, 合成少数上采样) 方法并不是采取简单复制样本的策略来增加少数类样本， 而是通过分析少数类样本来创建新的样本的同时对多数类样本进行欠采样。正常来说当我们简单复制样本的时候，训练出来的分类器在预测这些复制样本时会很有信心的将他们识别出来，你为他知道这些复制样本的所有边界和特点，而不是以概括的角度来刻画这些少数类样本。但是，SMOTE 可以有效的强制让分类的边界更加的泛化，一定程度上解决了不够泛化而导致的过拟合问题。在 <a href="https://www.jair.org/media/953/live-953-2037-jair.pdf" target="_blank" rel="noopener">SMOTE</a> 的论文中用了很多图来进行解释这个问题的原理和解决方案，所以我建议大家可以去看看。</p>
+<h3 id="SMOTE"><a href="#SMOTE" class="headerlink" title="SMOTE"></a>SMOTE</h3><p>SMOTE(Synthetic Minority Over-sampling Technique,合成少数上采样) 方法并不是采取简单复制样本的策略来增加少数类样本， 而是通过分析少数类样本来创建新的样本的同时对多数类样本进行欠采样。正常来说当我们简单复制样本的时候，训练出来的分类器在预测这些复制样本时会很有信心的将他们识别出来，你为他知道这些复制样本的所有边界和特点，而不是以概括的角度来刻画这些少数类样本。但是，SMOTE 可以有效的强制让分类的边界更加的泛化，一定程度上解决了不够泛化而导致的过拟合问题。在 <a href="https://www.jair.org/media/953/live-953-2037-jair.pdf" target="_blank" rel="noopener">SMOTE</a> 的论文中用了很多图来进行解释这个问题的原理和解决方案，所以我建议大家可以去看看。</p>
 <p>但是，我们有一定必须要清楚的是 使用 SMOTE 过采样的确会提升决策边界，但是却并没有解决前面所提到的交叉验证所面临的问题。 如果我们使用相同的样本来训练和验证模型，模型的技术指标肯定会比采样了合理交叉验证方法所训练出来的模型效果好。</p>
-<h4 id="SMOTE-样本生成的原理"><a href="#SMOTE-样本生成的原理" class="headerlink" title="SMOTE 样本生成的原理"></a>SMOTE 样本生成的原理</h4><p><a href="http://contrib.scikit-learn.org/imbalanced-learn/stable/over_sampling.html#smote-adasyn" target="_blank" rel="noopener">SMOTE</a> 和 ADASYN 采用相同的算法来生成新的样本：对于一个样本 $x_i$，从它的 k 邻近样本点中随机选择一个邻居 $x_{zi}$，随机在它们连线上生成一个新的样本:</p>
+<h4 id="SMOTE样本生成的原理"><a href="#SMOTE样本生成的原理" class="headerlink" title="SMOTE样本生成的原理"></a>SMOTE样本生成的原理</h4><p><a href="http://contrib.scikit-learn.org/imbalanced-learn/stable/over_sampling.html#smote-adasyn" target="_blank" rel="noopener">SMOTE</a>和ADASYN采用相同的算法来生成新的样本：对于一个样本$x_i$，从它的k邻近样本点中随机选择一个邻居$x_{zi}$，随机在它们连线上生成一个新的样本:</p>
 <script type="math/tex; mode=display">
 x_{new} = x_i + \lambda (x_{zi}- x_i)\\
-\lambda \in [0,1]</script><p>SMOTE 原理如下图：</p>
+\lambda \in [0,1]</script><p>SMOTE原理如下图：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-36-03.jpg" width="50%" heigh="80%">
 </div>
 
-<h4 id="SMOTE-代码样例"><a href="#SMOTE-代码样例" class="headerlink" title="SMOTE 代码样例"></a>SMOTE 代码样例</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> imblearn.over_sampling <span class="keyword">import</span> SMOTE, ADASYN</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X_resampled, y_resampled = SMOTE ().fit_sample (X, y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print (sorted (Counter (y_resampled).items ()))</span><br><span class="line">[(<span class="number">0</span>, <span class="number">4674</span>), (<span class="number">1</span>, <span class="number">4674</span>), (<span class="number">2</span>, <span class="number">4674</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf_smote = LinearSVC ().fit (X_resampled, y_resampled)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X_resampled, y_resampled = ADASYN ().fit_sample (X, y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print (sorted (Counter (y_resampled).items ()))</span><br><span class="line">[(<span class="number">0</span>, <span class="number">4673</span>), (<span class="number">1</span>, <span class="number">4662</span>), (<span class="number">2</span>, <span class="number">4674</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf_adasyn = LinearSVC ().fit (X_resampled, y_resampled)</span><br></pre></td></tr></table></figure></div>
+<h4 id="SMOTE代码样例"><a href="#SMOTE代码样例" class="headerlink" title="SMOTE代码样例"></a>SMOTE代码样例</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> imblearn.over_sampling <span class="keyword">import</span> SMOTE, ADASYN</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X_resampled, y_resampled = SMOTE().fit_sample(X, y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(sorted(Counter(y_resampled).items()))</span><br><span class="line">[(<span class="number">0</span>, <span class="number">4674</span>), (<span class="number">1</span>, <span class="number">4674</span>), (<span class="number">2</span>, <span class="number">4674</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf_smote = LinearSVC().fit(X_resampled, y_resampled)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X_resampled, y_resampled = ADASYN().fit_sample(X, y)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(sorted(Counter(y_resampled).items()))</span><br><span class="line">[(<span class="number">0</span>, <span class="number">4673</span>), (<span class="number">1</span>, <span class="number">4662</span>), (<span class="number">2</span>, <span class="number">4674</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>clf_adasyn = LinearSVC().fit(X_resampled, y_resampled)</span><br></pre></td></tr></table></figure></div>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-46-30.jpg" width="50%" heigh="80%">
 </div>
@@ -558,15 +558,15 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
 <h2 id="欠采样（undersampling）"><a href="#欠采样（undersampling）" class="headerlink" title="欠采样（undersampling）"></a>欠采样（undersampling）</h2><ul>
 <li>原理：减少训练集中多数类的样本，以使各类别样本数相对均衡；</li>
 <li>实现：直接丢弃、设置权重、ENN、集成方法；</li>
-<li>评价：随机丢弃多数类样本，可能丢失一些重要信息造成欠拟合；</li>
+<li>评价：随机丢弃多数类样本，可能丢失一些重要信息造成欠拟合;</li>
 <li>代表算法：<ul>
 <li>ENN：删除那些类别与其最近的三个近邻样本中的两个或两个以上的样本类别不同的样本；</li>
-<li>easyEnsemble：利用集成学习机制，将负例划分为若干集合供不同学习器使用，这样对每个学习器来说都进行了欠采样，但在全局看来却不会丢失重要信息；</li>
+<li>easyEnsemble：利用集成学习机制，将负例划分为若干集合供不同学习器使用，这样对每个学习器来说都进行了欠采样，但在全局看来却不会丢失重要信息;</li>
 </ul>
 </li>
 </ul>
 <h3 id="随机欠采样"><a href="#随机欠采样" class="headerlink" title="随机欠采样"></a>随机欠采样</h3><p>随机从原始数据集中的多数类中删除一些样本。</p>
-<h3 id="ENN"><a href="#ENN" class="headerlink" title="ENN"></a>ENN</h3><p>随机欠抽样方法未考虑样本的分布情况，采样具有很大的随机性，可能会删除重要的多数类样本信息。针对以上的不足，Wilson 等人提出了一种最近邻规则 (edited nearest neighbor: ENN)：</p>
+<h3 id="ENN"><a href="#ENN" class="headerlink" title="ENN"></a>ENN</h3><p>随机欠抽样方法未考虑样本的分布情况，采样具有很大的随机性，可能会删除重要的多数类样本信息。针对以上的不足，Wilson 等人提出了一种最近邻规则(edited nearest neighbor: ENN)：</p>
 <ul>
 <li>基本思想：删除那些类别与其最近的三个近邻样本中的两个或两个以上的样本类别不同的样本</li>
 <li>缺点：因为大多数的多数类样本的样本附近都是多数类，所以该方法所能删除的多数类样本十分有限</li>
@@ -586,7 +586,7 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
 </div>
 
 <h2 id="移动阈值（threshold-moving）"><a href="#移动阈值（threshold-moving）" class="headerlink" title="移动阈值（threshold-moving）"></a>移动阈值（threshold-moving）</h2><ul>
-<li>原理：不改变训练集，但将 $\frac {\hat {y}}{1-\hat {y}} = \frac {y}{1-y} \times \frac {m^-}{m^+}$ 嵌入到决策过程中；</li>
+<li>原理：不改变训练集，但将$\frac{\hat{y}}{1-\hat{y}} = \frac{y}{1-y} \times \frac{m^-}{m^+}$嵌入到决策过程中；</li>
 </ul>
 <h2 id="重采样后如何预测概率"><a href="#重采样后如何预测概率" class="headerlink" title="重采样后如何预测概率"></a>重采样后如何预测概率</h2><h2 id="不均衡学习和代价敏感学习"><a href="#不均衡学习和代价敏感学习" class="headerlink" title="不均衡学习和代价敏感学习"></a>不均衡学习和代价敏感学习</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/dealing-with-imbalanced-data-undersampling-oversampling-and-proper-cross-validation.md" target="_blank" rel="noopener">处理不均衡数据：下采样、上采样及正确的交叉验证</a></li>
@@ -647,8 +647,8 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：工作流（一）—— 数据预处理/" rel="next" title="机器学习：工作流（一）—— 数据预处理">
-                <i class="fa fa-chevron-left"></i> 机器学习：工作流（一）—— 数据预处理
+              <a href="/机器学习/机器学习/机器学习：工作流（三）—— 模型优化和融合/" rel="next" title="机器学习：工作流（三）—— 模型优化和融合">
+                <i class="fa fa-chevron-left"></i> 机器学习：工作流（三）—— 模型优化和融合
               </a>
             
           </div>
@@ -657,8 +657,8 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：优化算法（一）—— 梯度下降/" rel="prev" title="机器学习：优化算法（一）—— 梯度下降">
-                机器学习：优化算法（一）—— 梯度下降 <i class="fa fa-chevron-right"></i>
+              <a href="/机器学习/机器学习/机器学习：优化算法（四）—— 遗传算法/" rel="prev" title="机器学习：优化算法（四）—— 遗传算法">
+                机器学习：优化算法（四）—— 遗传算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -765,7 +765,7 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -839,7 +839,7 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过采样（oversampling）"><span class="nav-number">3.</span> <span class="nav-text">过采样（oversampling）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过采样和交叉验证"><span class="nav-number">3.1.</span> <span class="nav-text">过采样和交叉验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机上采样"><span class="nav-number">3.2.</span> <span class="nav-text">随机上采样</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#随机上采样原理"><span class="nav-number">3.2.1.</span> <span class="nav-text">随机上采样原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随机上采样代码示例"><span class="nav-number">3.2.2.</span> <span class="nav-text">随机上采样代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMOTE"><span class="nav-number">3.3.</span> <span class="nav-text">SMOTE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOTE-样本生成的原理"><span class="nav-number">3.3.1.</span> <span class="nav-text">SMOTE 样本生成的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOTE-代码样例"><span class="nav-number">3.3.2.</span> <span class="nav-text">SMOTE 代码样例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欠采样（undersampling）"><span class="nav-number">4.</span> <span class="nav-text">欠采样（undersampling）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机欠采样"><span class="nav-number">4.1.</span> <span class="nav-text">随机欠采样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENN"><span class="nav-number">4.2.</span> <span class="nav-text">ENN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#easyEnsemble"><span class="nav-number">4.3.</span> <span class="nav-text">easyEnsemble</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合过采样和欠采样"><span class="nav-number">5.</span> <span class="nav-text">结合过采样和欠采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动阈值（threshold-moving）"><span class="nav-number">6.</span> <span class="nav-text">移动阈值（threshold-moving）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重采样后如何预测概率"><span class="nav-number">7.</span> <span class="nav-text">重采样后如何预测概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不均衡学习和代价敏感学习"><span class="nav-number">8.</span> <span class="nav-text">不均衡学习和代价敏感学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过采样（oversampling）"><span class="nav-number">3.</span> <span class="nav-text">过采样（oversampling）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过采样和交叉验证"><span class="nav-number">3.1.</span> <span class="nav-text">过采样和交叉验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机上采样"><span class="nav-number">3.2.</span> <span class="nav-text">随机上采样</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#随机上采样原理"><span class="nav-number">3.2.1.</span> <span class="nav-text">随机上采样原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随机上采样代码示例"><span class="nav-number">3.2.2.</span> <span class="nav-text">随机上采样代码示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMOTE"><span class="nav-number">3.3.</span> <span class="nav-text">SMOTE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOTE样本生成的原理"><span class="nav-number">3.3.1.</span> <span class="nav-text">SMOTE样本生成的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOTE代码样例"><span class="nav-number">3.3.2.</span> <span class="nav-text">SMOTE代码样例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欠采样（undersampling）"><span class="nav-number">4.</span> <span class="nav-text">欠采样（undersampling）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机欠采样"><span class="nav-number">4.1.</span> <span class="nav-text">随机欠采样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ENN"><span class="nav-number">4.2.</span> <span class="nav-text">ENN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#easyEnsemble"><span class="nav-number">4.3.</span> <span class="nav-text">easyEnsemble</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合过采样和欠采样"><span class="nav-number">5.</span> <span class="nav-text">结合过采样和欠采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动阈值（threshold-moving）"><span class="nav-number">6.</span> <span class="nav-text">移动阈值（threshold-moving）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重采样后如何预测概率"><span class="nav-number">7.</span> <span class="nav-text">重采样后如何预测概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不均衡学习和代价敏感学习"><span class="nav-number">8.</span> <span class="nav-text">不均衡学习和代价敏感学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -877,7 +877,7 @@ x_{new} = x_i + \lambda (x_{zi}- x_i)\\
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

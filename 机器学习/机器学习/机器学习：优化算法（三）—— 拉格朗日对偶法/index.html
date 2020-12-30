@@ -125,18 +125,18 @@
 
 
 
-<meta name="description" content="在有约束的最优化问题中，常常利用拉格朗日对偶法 (Lagrange duality) 将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。 原始问题假设 $f (x),\ c_i (x),\ h_j (x)$ 是定义在 $\mathbb {R}^n$ 上的连续可微函数，考虑带约束的最优化问题：  \begin {align*} \underset {x \in R^n}{min}\ &amp;f">
+<meta name="description" content="在有约束的最优化问题中，常常利用拉格朗日对偶法(Lagrange duality)将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。 原始问题假设$f(x),\ c_i(x),\ h_j(x)$是定义在$\mathbb{R}^n$上的连续可微函数，考虑带约束的最优化问题：  \begin{align*} \underset{x \in R^n}{min}\ &amp;f(x)\\ s.t.\ &amp;">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：优化算法（三）—— 拉格朗日对偶法">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：优化算法（三）—— 拉格朗日对偶法/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="在有约束的最优化问题中，常常利用拉格朗日对偶法 (Lagrange duality) 将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。 原始问题假设 $f (x),\ c_i (x),\ h_j (x)$ 是定义在 $\mathbb {R}^n$ 上的连续可微函数，考虑带约束的最优化问题：  \begin {align*} \underset {x \in R^n}{min}\ &amp;f">
+<meta property="og:description" content="在有约束的最优化问题中，常常利用拉格朗日对偶法(Lagrange duality)将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。 原始问题假设$f(x),\ c_i(x),\ h_j(x)$是定义在$\mathbb{R}^n$上的连续可微函数，考虑带约束的最优化问题：  \begin{align*} \underset{x \in R^n}{min}\ &amp;f(x)\\ s.t.\ &amp;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-11-27T06:36:34.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：优化算法（三）—— 拉格朗日对偶法">
-<meta name="twitter:description" content="在有约束的最优化问题中，常常利用拉格朗日对偶法 (Lagrange duality) 将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。 原始问题假设 $f (x),\ c_i (x),\ h_j (x)$ 是定义在 $\mathbb {R}^n$ 上的连续可微函数，考虑带约束的最优化问题：  \begin {align*} \underset {x \in R^n}{min}\ &amp;f">
+<meta name="twitter:description" content="在有约束的最优化问题中，常常利用拉格朗日对偶法(Lagrange duality)将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。 原始问题假设$f(x),\ c_i(x),\ h_j(x)$是定义在$\mathbb{R}^n$上的连续可微函数，考虑带约束的最优化问题：  \begin{align*} \underset{x \in R^n}{min}\ &amp;f(x)\\ s.t.\ &amp;">
 
 
 
@@ -457,7 +457,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  579
+                  578
                 </span>
               
 
@@ -494,45 +494,45 @@
       
 
       
-        <p>在有约束的最优化问题中，常常利用拉格朗日对偶法 (Lagrange duality) 将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。</p>
-<h2 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h2><p>假设 $f (x),\ c_i (x),\ h_j (x)$ 是定义在 $\mathbb {R}^n$ 上的连续可微函数，考虑带约束的最优化问题：</p>
+        <p>在有约束的最优化问题中，常常利用拉格朗日对偶法(Lagrange duality)将原始问题转化为对偶问题，通过求解对偶问题得到原始问题的解。</p>
+<h2 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h2><p>假设$f(x),\ c_i(x),\ h_j(x)$是定义在$\mathbb{R}^n$上的连续可微函数，考虑带约束的最优化问题：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-\underset {x \in R^n}{min}\ &f (x)\\
-s.t.\ &c_i (x)\leqslant 0,\ i=1,2,...,k\\
-&h_j (x)=0,\ j=1,2,...,l
-\end {align*}</script><h2 id="拉格朗日函数的极小极大问题"><a href="#拉格朗日函数的极小极大问题" class="headerlink" title="拉格朗日函数的极小极大问题"></a>拉格朗日函数的极小极大问题</h2><p><strong> 拉格朗日函数 </strong>：$\alpha_i,\ \beta_j$ 为拉格朗日乘子，其中 $\alpha_i\geqslant 0$</p>
+\begin{align*}
+\underset{x \in R^n}{min}\ &f(x)\\
+s.t.\ &c_i(x)\leqslant 0,\ i=1,2,...,k\\
+&h_j(x)=0,\ j=1,2,...,l
+\end{align*}</script><h2 id="拉格朗日函数的极小极大问题"><a href="#拉格朗日函数的极小极大问题" class="headerlink" title="拉格朗日函数的极小极大问题"></a>拉格朗日函数的极小极大问题</h2><p><strong>拉格朗日函数</strong>：$\alpha_i,\ \beta_j$为拉格朗日乘子，其中 $\alpha_i\geqslant 0$</p>
 <script type="math/tex; mode=display">
-L (x,\alpha ,\beta )=f (x)+\sum_{i=1}^{k}\alpha_ic_i (x)+\sum_{j=1}^{l}\beta_jh_j (x)</script><p>令：</p>
+L(x,\alpha ,\beta )=f(x)+\sum_{i=1}^{k}\alpha_ic_i(x)+\sum_{j=1}^{l}\beta_jh_j(x)</script><p>令：</p>
 <script type="math/tex; mode=display">
-\theta_P (x)=\underset {\alpha ,\beta }{max}\ L (x,\alpha ,\beta )</script><p>有：</p>
+\theta_P(x)=\underset{\alpha ,\beta }{max}\ L(x,\alpha ,\beta )</script><p>有：</p>
 <script type="math/tex; mode=display">
-\theta_P (x)=\left\{\begin {matrix}
-f (x), &x 满足原始问题约束 \\ 
+\theta_P(x)=\left\{\begin{matrix}
+f(x), &x满足原始问题约束 \\ 
 +\infty,  & 其他
-\end {matrix}\right.</script><p>带约束的原始问题可以转化为无约束的拉格朗日函数极小极大问题：</p>
+\end{matrix}\right.</script><p>带约束的原始问题可以转化为无约束的拉格朗日函数极小极大问题：</p>
 <script type="math/tex; mode=display">
-\underset {x}{min}\theta_P (x)=\underset {x}{min}\ \underset {\alpha ,\beta }{max}\ L (x,\alpha ,\beta )</script><h2 id="拉格朗日的极大极小问题-对偶问题"><a href="#拉格朗日的极大极小问题-对偶问题" class="headerlink" title="拉格朗日的极大极小问题 (对偶问题)"></a>拉格朗日的极大极小问题 (对偶问题)</h2><p>令：</p>
+\underset{x}{min}\theta_P(x)=\underset{x}{min}\ \underset{\alpha ,\beta }{max}\ L(x,\alpha ,\beta )</script><h2 id="拉格朗日的极大极小问题-对偶问题"><a href="#拉格朗日的极大极小问题-对偶问题" class="headerlink" title="拉格朗日的极大极小问题(对偶问题)"></a>拉格朗日的极大极小问题(对偶问题)</h2><p>令：</p>
 <script type="math/tex; mode=display">
-\theta_D (x)=\underset {x }{min}\ L (x,\alpha ,\beta )</script><p>拉格朗日的极大极小问题:</p>
+\theta_D(x)=\underset{x }{min}\ L(x,\alpha ,\beta )</script><p>拉格朗日的极大极小问题:</p>
 <script type="math/tex; mode=display">
-\underset {\alpha ,\beta }{max}\theta_D (x)=\underset {\alpha ,\beta }{max}\ \underset {x}{min}\ \ L (x,\alpha ,\beta )</script><h2 id="KKT-条件"><a href="#KKT-条件" class="headerlink" title="KKT 条件"></a>KKT 条件</h2><p>定理 1（弱对偶性）：如果原始问题和对偶问题都有最优解，则对偶问题的最优值是原始问题最优值的一个下界：</p>
+\underset{\alpha ,\beta }{max}\theta_D(x)=\underset{\alpha ,\beta }{max}\ \underset{x}{min}\ \ L(x,\alpha ,\beta )</script><h2 id="KKT-条件"><a href="#KKT-条件" class="headerlink" title="KKT 条件"></a>KKT 条件</h2><p>定理1（弱对偶性）：如果原始问题和对偶问题都有最优解，则对偶问题的最优值是原始问题最优值的一个下界：</p>
 <script type="math/tex; mode=display">
-\underset {\alpha ,\beta }{max}\ \underset {x}{min}\ \ L (x,\alpha ,\beta )\leqslant \underset {x}{min}\ \underset {\alpha ,\beta }{max}\ L (x,\alpha ,\beta )</script><p>证明：强者中最弱的也比弱者中最强的要强</p>
+\underset{\alpha ,\beta }{max}\ \underset{x}{min}\ \ L(x,\alpha ,\beta )\leqslant \underset{x}{min}\ \underset{\alpha ,\beta }{max}\ L(x,\alpha ,\beta )</script><p>证明：强者中最弱的也比弱者中最强的要强</p>
 <script type="math/tex; mode=display">
-\theta_D (x)\leqslant L (x,\alpha ,\beta)\leqslant  \theta_P (x)</script><p>故：</p>
+\theta_D(x)\leqslant L(x,\alpha ,\beta)\leqslant  \theta_P(x)</script><p>故：</p>
 <script type="math/tex; mode=display">
-\underset {\alpha ,\beta }{max}\ \theta_D (x)\leqslant\underset {x}{min}\  \theta_P (x)</script><p>定理 2（强对偶性）：假设 $f (x)$ 和 $c_i (x)$ 是凸函数，$h_j (x)$ 是仿射函数，并且不等式约束 $c_j (x)$ 是严格可行的，即存在 x 对所有 i 都有 $c_i (x)&lt;0$，则 $x^<em>$ 和 $\alpha^</em>, \beta^<em>$ 分别是原始问题和对偶问题的解的充要条件是 $x^</em>,\alpha^<em>, \beta^</em>$ 满足 KKT 条件：</p>
+\underset{\alpha ,\beta }{max}\ \theta_D(x)\leqslant\underset{x}{min}\  \theta_P(x)</script><p>定理2（强对偶性）：假设$f(x)$和$c_i(x)$是凸函数，$h_j(x)$是仿射函数，并且不等式约束$c_j(x)$是严格可行的，即存在x对所有i都有$c_i(x)&lt;0$，则$x^<em>$和$\alpha^</em>, \beta^<em>$分别是原始问题和对偶问题的解的充要条件是$x^</em>,\alpha^<em>, \beta^</em>$满足KKT条件：</p>
 <script type="math/tex; mode=display">
-\left\{\begin {matrix}
-\nabla_xL (x^*,\alpha^*\beta^* )=0 & \\ 
-\nabla_{\alpha } L (x^*,\alpha^*\beta^*)=0 & \\ 
-\nabla_{\beta } L (x^*,\alpha^*\beta^* )=0 & \\ 
-c_i (x^*)\leqslant 0 & i=1,2,...,k\\ 
- h_j (x^*)=0& j=1,2,...,l\\ 
+\left\{\begin{matrix}
+\nabla_xL(x^*,\alpha^*\beta^* )=0 & \\ 
+\nabla_{\alpha }L(x^*,\alpha^*\beta^*)=0 & \\ 
+\nabla_{\beta }L(x^*,\alpha^*\beta^* )=0 & \\ 
+c_i(x^*)\leqslant 0 & i=1,2,...,k\\ 
+ h_j(x^*)=0& j=1,2,...,l\\ 
  \alpha_i *\geqslant 0& i=1,2,...,k \\ 
- \alpha_i *c_i (x^*)=0&  i=1,2,...,k
-\end {matrix}\right.</script><p>$\alpha_i <em>c_i (x^</em>)=0$ 称为 KKT 的对偶互补条件，$\alpha_i ,\ c_i (x^*)$ 必有一个为 0.</p>
+ \alpha_i *c_i(x^*)=0&  i=1,2,...,k
+\end{matrix}\right.</script><p>$\alpha_i <em>c_i(x^</em>)=0$称为KKT的对偶互补条件，$\alpha_i ,\ c_i(x^*)$必有一个为0.</p>
 
       
     </div>
@@ -587,8 +587,8 @@ c_i (x^*)\leqslant 0 & i=1,2,...,k\\
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：优化算法（四）—— 遗传算法/" rel="next" title="机器学习：优化算法（四）—— 遗传算法">
-                <i class="fa fa-chevron-left"></i> 机器学习：优化算法（四）—— 遗传算法
+              <a href="/机器学习/机器学习/机器学习：优化算法（一）—— 梯度下降/" rel="next" title="机器学习：优化算法（一）—— 梯度下降">
+                <i class="fa fa-chevron-left"></i> 机器学习：优化算法（一）—— 梯度下降
               </a>
             
           </div>
@@ -597,8 +597,8 @@ c_i (x^*)\leqslant 0 & i=1,2,...,k\\
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：优化算法（二）—— 拟牛顿法/" rel="prev" title="机器学习：优化算法（二）——（拟）牛顿法">
-                机器学习：优化算法（二）——（拟）牛顿法 <i class="fa fa-chevron-right"></i>
+              <a href="/uncategorized/Life/费曼技巧/" rel="prev" title="费曼技巧：以教促学">
+                费曼技巧：以教促学 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -705,7 +705,7 @@ c_i (x^*)\leqslant 0 & i=1,2,...,k\\
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -779,7 +779,7 @@ c_i (x^*)\leqslant 0 & i=1,2,...,k\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原始问题"><span class="nav-number">1.</span> <span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日函数的极小极大问题"><span class="nav-number">2.</span> <span class="nav-text">拉格朗日函数的极小极大问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日的极大极小问题-对偶问题"><span class="nav-number">3.</span> <span class="nav-text">拉格朗日的极大极小问题 (对偶问题)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KKT-条件"><span class="nav-number">4.</span> <span class="nav-text">KKT 条件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原始问题"><span class="nav-number">1.</span> <span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日函数的极小极大问题"><span class="nav-number">2.</span> <span class="nav-text">拉格朗日函数的极小极大问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日的极大极小问题-对偶问题"><span class="nav-number">3.</span> <span class="nav-text">拉格朗日的极大极小问题(对偶问题)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KKT-条件"><span class="nav-number">4.</span> <span class="nav-text">KKT 条件</span></a></li></ol></div>
             
 
           </div>
@@ -817,7 +817,7 @@ c_i (x^*)\leqslant 0 & i=1,2,...,k\\
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

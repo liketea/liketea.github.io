@@ -125,19 +125,19 @@
 
 
 
-<meta name="description" content="算法背景模拟退火算法最早的思想由 Metropolis（1953）提出，1983 年 Kirkpatrick 等将其应用于组合优化，有以下优点：  解决 NP 问题 克服局部最优 克服初值依赖性  物理退火物理退火过程退火：将固体加热到足够高的温度，使分子呈现随机排列状态，然后缓慢降温，使得分子在每一温度时，能够有足够时间找到稳定状态，最后分子以近似最低能量状态排列，达到某种稳定状态。但如果快速">
+<meta name="description" content="算法背景模拟退火算法最早的思想由Metropolis（1953）提出，1983年Kirkpatrick等将其应用于组合优化，有以下优点：  解决NP问题 克服局部最优 克服初值依赖性  物理退火物理退火过程退火：将固体加热到足够高的温度，使分子呈现随机排列状态，然后缓慢降温，使得分子在每一温度时，能够有足够时间找到稳定状态，最后分子以近似最低能量状态排列，达到某种稳定状态。但如果快速降温（淬火，">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：优化算法（五）—— 模拟退火算法">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：优化算法（五）—— 模拟退火算法/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="算法背景模拟退火算法最早的思想由 Metropolis（1953）提出，1983 年 Kirkpatrick 等将其应用于组合优化，有以下优点：  解决 NP 问题 克服局部最优 克服初值依赖性  物理退火物理退火过程退火：将固体加热到足够高的温度，使分子呈现随机排列状态，然后缓慢降温，使得分子在每一温度时，能够有足够时间找到稳定状态，最后分子以近似最低能量状态排列，达到某种稳定状态。但如果快速">
+<meta property="og:description" content="算法背景模拟退火算法最早的思想由Metropolis（1953）提出，1983年Kirkpatrick等将其应用于组合优化，有以下优点：  解决NP问题 克服局部最优 克服初值依赖性  物理退火物理退火过程退火：将固体加热到足够高的温度，使分子呈现随机排列状态，然后缓慢降温，使得分子在每一温度时，能够有足够时间找到稳定状态，最后分子以近似最低能量状态排列，达到某种稳定状态。但如果快速降温（淬火，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-38-08.jpg">
 <meta property="og:updated_time" content="2020-11-27T06:43:21.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：优化算法（五）—— 模拟退火算法">
-<meta name="twitter:description" content="算法背景模拟退火算法最早的思想由 Metropolis（1953）提出，1983 年 Kirkpatrick 等将其应用于组合优化，有以下优点：  解决 NP 问题 克服局部最优 克服初值依赖性  物理退火物理退火过程退火：将固体加热到足够高的温度，使分子呈现随机排列状态，然后缓慢降温，使得分子在每一温度时，能够有足够时间找到稳定状态，最后分子以近似最低能量状态排列，达到某种稳定状态。但如果快速">
+<meta name="twitter:description" content="算法背景模拟退火算法最早的思想由Metropolis（1953）提出，1983年Kirkpatrick等将其应用于组合优化，有以下优点：  解决NP问题 克服局部最优 克服初值依赖性  物理退火物理退火过程退火：将固体加热到足够高的温度，使分子呈现随机排列状态，然后缓慢降温，使得分子在每一温度时，能够有足够时间找到稳定状态，最后分子以近似最低能量状态排列，达到某种稳定状态。但如果快速降温（淬火，">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-38-08.jpg">
 
 
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  685
+                  682
                 </span>
               
 
@@ -497,9 +497,9 @@
 
       
         <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-38-08.jpg" alt></p>
-<h2 id="算法背景"><a href="#算法背景" class="headerlink" title="算法背景"></a>算法背景</h2><p>模拟退火算法最早的思想由 Metropolis（1953）提出，1983 年 Kirkpatrick 等将其应用于组合优化，有以下优点：</p>
+<h2 id="算法背景"><a href="#算法背景" class="headerlink" title="算法背景"></a>算法背景</h2><p>模拟退火算法最早的思想由Metropolis（1953）提出，1983年Kirkpatrick等将其应用于组合优化，有以下优点：</p>
 <ol>
-<li>解决 NP 问题</li>
+<li>解决NP问题</li>
 <li>克服局部最优</li>
 <li>克服初值依赖性</li>
 </ol>
@@ -509,20 +509,20 @@
 <li>等温过程：对于与环境换热而温度不变的封闭系统，系统自发朝着自由能降低的方向变化，当自由能达到最低时，系统达到平衡态</li>
 <li>冷却过程：粒子热运动减弱并渐趋有序，系统能量逐渐下降，从而得到低能的晶体结构</li>
 </ol>
-<h4 id="Boltzman-概率分布"><a href="#Boltzman-概率分布" class="headerlink" title="Boltzman 概率分布"></a>Boltzman 概率分布</h4><p>在温度 T，分子停留在状态 r 满足 Boltzman 概率分布，其中 $Z (T)$ 为概率分布的标准化因子：</p>
+<h4 id="Boltzman概率分布"><a href="#Boltzman概率分布" class="headerlink" title="Boltzman概率分布"></a>Boltzman概率分布</h4><p>在温度T，分子停留在状态r满足Boltzman概率分布，其中$Z(T)$为概率分布的标准化因子：</p>
 <script type="math/tex; mode=display">
-P (E_r) = \frac {1}{Z (T)} e^{-\frac {E_r}{KT}}</script><p>选定两个状态，分子处于这两个状态的概率差可表示为：</p>
+P(E_r) = \frac{1}{Z(T)}e^{-\frac{E_r}{KT}}</script><p>选定两个状态，分子处于这两个状态的概率差可表示为：</p>
 <script type="math/tex; mode=display">
-P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{KT}}]</script><ol>
+P(E_1) - P(E_2) = \frac{1}{Z(T)}e^{-\frac{E_1}{KT}}[1-e^{-\frac{E_2-E_1}{KT}}]</script><ol>
 <li>同一温度下，能量越小的状态分子处于该状态的概率越大，即分子总是趋向于低能状态；</li>
 <li>温度越高，不同能量状态的概率差异性越小，即分子处于各能量状态的随机性越强；</li>
-<li>随着温度下降，分子处于低能状态的概率越来越大，当温度趋于 0 时，分子停留在最低能量状态的概率趋于 1；</li>
+<li>随着温度下降，分子处于低能状态的概率越来越大，当温度趋于0时，分子停留在最低能量状态的概率趋于1；</li>
 </ol>
-<h3 id="模拟热平衡-——-依概率接受新状态"><a href="#模拟热平衡-——-依概率接受新状态" class="headerlink" title="模拟热平衡 —— 依概率接受新状态"></a>模拟热平衡 —— 依概率接受新状态</h3><p>Metropolis 准则用于模拟固体在恒温下达到热平衡的过程:</p>
+<h3 id="模拟热平衡——依概率接受新状态"><a href="#模拟热平衡——依概率接受新状态" class="headerlink" title="模拟热平衡——依概率接受新状态"></a>模拟热平衡——依概率接受新状态</h3><p>Metropolis准则用于模拟固体在恒温下达到热平衡的过程:</p>
 <ol>
-<li>在温度 T，当前能量状态 i→状态 j</li>
-<li>若 $E_j &lt; E_i$，则直接接收 j 为新的状态</li>
-<li>若 $E_j &gt;= E_i$，以 $p = e^{-\frac {(E_j - E_i)}{KT}}$ 的概率接受 j 为当前状态，以 $1-p$ 的概率保持原始状态</li>
+<li>在温度T，当前能量状态i→状态j</li>
+<li>若$E_j &lt; E_i$，则直接接收j为新的状态</li>
+<li>若$E_j &gt;= E_i$，以$p = e^{-\frac{(E_j - E_i)}{KT}}$的概率接受j为当前状态，以$1-p$的概率保持原始状态</li>
 </ol>
 <h2 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h2><p>组合优化与物理退货的相似性：</p>
 <div class="table-container">
@@ -551,7 +551,7 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
 <td>升温过程</td>
 </tr>
 <tr>
-<td>Metropolis 抽样</td>
+<td>Metropolis抽样</td>
 <td>等温过程</td>
 </tr>
 <tr>
@@ -563,7 +563,7 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
 </div>
 <h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>对于最优化问题：</p>
 <script type="math/tex; mode=display">
-\underset {\boldsymbol { \theta }}{arg} max  f (\boldsymbol { \theta })</script><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h2 id="关键参数"><a href="#关键参数" class="headerlink" title="关键参数"></a>关键参数</h2><h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2>
+\underset{\boldsymbol{ \theta }}{arg}max  f(\boldsymbol{ \theta })</script><h3 id="问题求解"><a href="#问题求解" class="headerlink" title="问题求解"></a>问题求解</h3><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h2 id="关键参数"><a href="#关键参数" class="headerlink" title="关键参数"></a>关键参数</h2><h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2>
       
     </div>
     
@@ -617,8 +617,8 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：优化算法（一）—— 梯度下降/" rel="next" title="机器学习：优化算法（一）—— 梯度下降">
-                <i class="fa fa-chevron-left"></i> 机器学习：优化算法（一）—— 梯度下降
+              <a href="/机器学习/机器学习/机器学习：优化算法（二）—— 拟牛顿法/" rel="next" title="机器学习：优化算法（二）——（拟）牛顿法">
+                <i class="fa fa-chevron-left"></i> 机器学习：优化算法（二）——（拟）牛顿法
               </a>
             
           </div>
@@ -627,8 +627,8 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：优化算法（四）—— 遗传算法/" rel="prev" title="机器学习：优化算法（四）—— 遗传算法">
-                机器学习：优化算法（四）—— 遗传算法 <i class="fa fa-chevron-right"></i>
+              <a href="/机器学习/机器学习/机器学习：优化算法（一）—— 梯度下降/" rel="prev" title="机器学习：优化算法（一）—— 梯度下降">
+                机器学习：优化算法（一）—— 梯度下降 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -735,7 +735,7 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -809,7 +809,7 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法背景"><span class="nav-number">1.</span> <span class="nav-text">算法背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理退火"><span class="nav-number">1.1.</span> <span class="nav-text">物理退火</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#物理退火过程"><span class="nav-number">1.1.1.</span> <span class="nav-text">物理退火过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boltzman-概率分布"><span class="nav-number">1.1.2.</span> <span class="nav-text">Boltzman 概率分布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟热平衡-——-依概率接受新状态"><span class="nav-number">1.2.</span> <span class="nav-text">模拟热平衡 —— 依概率接受新状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">2.</span> <span class="nav-text">模拟退火</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题定义"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题求解"><span class="nav-number">2.2.</span> <span class="nav-text">问题求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键参数"><span class="nav-number">3.</span> <span class="nav-text">关键参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">5.</span> <span class="nav-text">应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法背景"><span class="nav-number">1.</span> <span class="nav-text">算法背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理退火"><span class="nav-number">1.1.</span> <span class="nav-text">物理退火</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#物理退火过程"><span class="nav-number">1.1.1.</span> <span class="nav-text">物理退火过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boltzman概率分布"><span class="nav-number">1.1.2.</span> <span class="nav-text">Boltzman概率分布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟热平衡——依概率接受新状态"><span class="nav-number">1.2.</span> <span class="nav-text">模拟热平衡——依概率接受新状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">2.</span> <span class="nav-text">模拟退火</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题定义"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题求解"><span class="nav-number">2.2.</span> <span class="nav-text">问题求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键参数"><span class="nav-number">3.</span> <span class="nav-text">关键参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">4.</span> <span class="nav-text">改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">5.</span> <span class="nav-text">应用</span></a></li></ol></div>
             
 
           </div>
@@ -847,7 +847,7 @@ P (E_1) - P (E_2) = \frac {1}{Z (T)} e^{-\frac {E_1}{KT}}[1-e^{-\frac {E_2-E_1}{
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

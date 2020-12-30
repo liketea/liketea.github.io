@@ -140,7 +140,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553062205605.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553058253127.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/sdf.gif">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 企业微信截图_30def863-06fd-4cad-8820-77f155dc1e58.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/企业微信截图_30def863-06fd-4cad-8820-77f155dc1e58.png">
 <meta property="og:updated_time" content="2019-09-13T13:36:18.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github Pages 博客搭建教程（三）：文章写作">
@@ -543,7 +543,7 @@
 </div>
 <h4 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h4><p>草稿（<code>draft</code>）默认不会显示在页面中，但你可以通过以下三种方式中的任意一种来预览草稿：</p>
 <ol>
-<li>发布草稿：执行 <code>hexo publish [layout] &lt;title&gt;</code> 可以将草稿从 <code>source/_drafts</code> 文件夹移动到 <code>source/_posts</code> 文件夹；</li>
+<li>发布草稿：执行 <code>hexo publish [layout] &lt;title&gt;</code> 可以将草稿从<code>source/_drafts</code> 文件夹移动到 <code>source/_posts</code> 文件夹；</li>
 <li>在执行时加上 <code>--draft</code> 参数；</li>
 <li>把 <code>render_drafts</code> 参数设为 <code>true</code> ：这将在页面中显示全部草稿，一般不这么用；</li>
 </ol>
@@ -611,7 +611,7 @@
 </tbody>
 </table>
 </div>
-<h3 id="编辑文章"><a href="#编辑文章" class="headerlink" title="编辑文章"></a>编辑文章</h3><p>HEXO 文章编写采用 <a href="https://coding.net/help/doc/project/markdown.html" target="_blank" rel="noopener">Markdown 语法</a> 进行写作，一级标题太大，建议从二级标题开始。</p>
+<h3 id="编辑文章"><a href="#编辑文章" class="headerlink" title="编辑文章"></a>编辑文章</h3><p>HEXO 文章编写采用 <a href="https://coding.net/help/doc/project/markdown.html" target="_blank" rel="noopener">Markdown 语法</a>进行写作，一级标题太大，建议从二级标题开始。</p>
 <h4 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h4><p><code>Front-matter</code> 是指文章头部以 <code>---</code> 分隔的区域，用于指定个别文件的变量。以下是预先定义的参数，您可在模板中使用这些参数值并加以利用：</p>
 <div class="table-container">
 <table>
@@ -667,34 +667,34 @@
 </table>
 </div>
 <p>只有文章支持分类和标签，分类具有顺序性和层次性，以下是文章分类和标签的一个例子：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 文章在 Diary/Life 下 </span><br><span class="line">categories:</span><br><span class="line">    - Diary</span><br><span class="line">    - Life</span><br><span class="line"># 文章有两个标签 PS3、Games</span><br><span class="line">tags:</span><br><span class="line">    - PS3</span><br><span class="line">    - Games</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 文章在Diary/Life下</span><br><span class="line">categories:</span><br><span class="line">    - Diary</span><br><span class="line">    - Life</span><br><span class="line"># 文章有两个标签PS3、Games</span><br><span class="line">tags:</span><br><span class="line">    - PS3</span><br><span class="line">    - Games</span><br></pre></td></tr></table></figure></div>
 <p>一个文章可以有多个标签，多个分类，用中括号就可以达到并列效果:</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 文章同时在 Diary 类别和 Life 类别下 </span><br><span class="line">categories:</span><br><span class="line">    - [Diary]</span><br><span class="line">    - [Life]</span><br></pre></td></tr></table></figure></div>
-<h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p>俗话说 “一图胜千言”，但在博客中插入图片一直是件让人头疼的事，在博客中插入图片大体有两种方式：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 文章同时在Diary类别和Life类别下</span><br><span class="line">categories:</span><br><span class="line">    - [Diary]</span><br><span class="line">    - [Life]</span><br></pre></td></tr></table></figure></div>
+<h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p>俗话说“一图胜千言”，但在博客中插入图片一直是件让人头疼的事，在博客中插入图片大体有两种方式：</p>
 <ol>
 <li>作为本地文件引用：首先将图片同代码文件一起上传至站点服务器，然后以相对路径形式引用；HEXO 提供了三种图片引用方式：<ol>
 <li>将图片放在 <code>source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code> 的方法访问它们；</li>
-<li>将 <code>_config.yml</code> 文件中的 <code>post_asset_folder</code> 选项设为 <code>true</code> ，Hexo 将会在你每一次通过 <code>hexo new [layout] &lt;title&gt;</code> 命令创建新文章时自动创建一个文件夹，这个资源文件夹将会有与这个 <code>markdown</code> 文件一样的名字，将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们；</li>
+<li>将 <code>_config.yml</code> 文件中的 <code>post_asset_folder</code> 选项设为 <code>true</code> ，Hexo将会在你每一次通过 <code>hexo new [layout] &lt;title&gt;</code> 命令创建新文章时自动创建一个文件夹，这个资源文件夹将会有与这个 <code>markdown</code> 文件一样的名字，将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们；</li>
 <li>以上两种方式会导致图片无法在主页或归档页显示的问题，为此， <a href="(https://hexo.io/zh-cn/docs/asset-folders">HEXO</a>) 推出了使用标签插件来引用图片的方式，但这种方式的可移植性不强，也不推荐；</li>
 </ol>
 </li>
 <li>作为外链引用：首先将图片上传至图床（储存图片的服务器）生成外链，然后以外链形式引用；这种方式可大大简化图片管理，节约宝贵的服务器资源，加快图片加载速度，推荐使用；</li>
 </ol>
-<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><p>发布文章很简单，只需要经过 “生成” 和 “部署” 两步就行了：</p>
+<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><p>发布文章很简单，只需要经过“生成”和“部署”两步就行了：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></div>
-<p>你也可以通过以下一行命令来完成 “生成” 和 “部署” 两个过程：</p>
+<p>你也可以通过以下一行命令来完成“生成”和“部署”两个过程：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></div>
-<p>如果你希望在正式发布前，先在本地查看发布后的实际效果并进行调试，也可以在 “生成” 步骤之后，通过以下命令打开本地服务器，您的网站会在 <code>http://localhost:4000</code> 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line"># 或者进入调试模式 </span><br><span class="line">$ hexo s --debug</span><br></pre></td></tr></table></figure></div>
+<p>如果你希望在正式发布前，先在本地查看发布后的实际效果并进行调试，也可以在“生成”步骤之后，通过以下命令打开本地服务器，您的网站会在 <code>http://localhost:4000</code> 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line"># 或者进入调试模式</span><br><span class="line">$ hexo s --debug</span><br></pre></td></tr></table></figure></div>
 <p>如果你的文章符合以下两种情况之一，那么以上过程将不会对你的文章进行处理，你的文章也就不会被发布出去：</p>
 <ol>
 <li>文章存放在草稿文件夹 <code>source/_drafts</code> 中；</li>
 <li>文章名称被添加到站点配置文件中的 <code>skip_render</code>；</li>
 </ol>
 <p>在实际写作中，更常用的写作流程如下：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 1. 创新草稿 </span><br><span class="line">$ hexo n draft &lt;title&gt;</span><br><span class="line"># 2. 编辑文章 </span><br><span class="line"># 3. 发布文章 </span><br><span class="line">$ hexo publish &lt;title&gt;</span><br><span class="line"># 4. 渲染文章 </span><br><span class="line">$ hexo g</span><br><span class="line"># 5. 部署文章 </span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 1. 创新草稿</span><br><span class="line">$ hexo n draft &lt;title&gt;</span><br><span class="line"># 2. 编辑文章</span><br><span class="line"># 3. 发布文章</span><br><span class="line">$ hexo publish &lt;title&gt;</span><br><span class="line"># 4. 渲染文章</span><br><span class="line">$ hexo g</span><br><span class="line"># 5. 部署文章</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></div>
 <h2 id="写作工具"><a href="#写作工具" class="headerlink" title="写作工具"></a>写作工具</h2><p>“工欲善其事，必先利其器”，好的写作工具能够让博客写作变得更简单、更有趣。</p>
-<h3 id="Mweb-编辑器"><a href="#Mweb-编辑器" class="headerlink" title="Mweb 编辑器"></a>Mweb 编辑器</h3><p>Mweb 是 Mac 上一款非常好用的 Markdown 写作、记笔记、静态博客生成软件，<a href="https://sspai.com/post/33855" target="_blank" rel="noopener">极力推荐</a>。</p>
+<h3 id="Mweb-编辑器"><a href="#Mweb-编辑器" class="headerlink" title="Mweb 编辑器"></a>Mweb 编辑器</h3><p>Mweb 是 Mac上一款非常好用的 Markdown 写作、记笔记、静态博客生成软件，<a href="https://sspai.com/post/33855" target="_blank" rel="noopener">极力推荐</a>。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190320125255.png" alt></p>
 <p>Mweb 有以下一些优点:</p>
 <ul>
@@ -704,8 +704,8 @@
 <li>轻松编辑表格；</li>
 <li>图片的快速插入与统一管理；</li>
 <li>图片自动上传图床功能；</li>
-<li>可设置图片居左 / 中 / 右；</li>
-<li>一键生成 / 上传博客；</li>
+<li>可设置图片居左/中/右；</li>
+<li>一键生成/上传博客；</li>
 <li>支持各种导出格式；</li>
 </ul>
 <h3 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h3><p>国内外有众多图床可供选择，图床可分为两种：</p>
@@ -713,8 +713,8 @@
 <li>公共图床：利用公共服务的图片上传接口，来提供图片外链的服务，比如 Imgur 图床、微博图床、SM.MS 图床等等；</li>
 <li>私有图床：利用各大云服务商提供的存储空间或者自己在 VPS 上使用开源软件来搭建图床，如七牛云、又拍云、阿里云 OSS、腾讯云 COS、自建图床工具 Lychee，此外 Github 仓库也可作为少量图片的图床使用，但不推荐这么做；</li>
 </ol>
-<p>关于各种图床的优劣可以参考文章 <a href="https://zhuanlan.zhihu.com/p/35270383" target="_blank" rel="noopener">盘点一下免费好用的图床</a>，公共图床不可控也不安全、私有图床大多需要网站备案，在尝试了多个图床之后，我最后选择了腾讯云 COS 。</p>
-<h4 id="腾讯-COS-配置"><a href="#腾讯-COS-配置" class="headerlink" title="腾讯 COS 配置"></a>腾讯 COS 配置</h4><p>通过腾讯云 &gt; 控制台 &gt; 对象存储 &gt; 存储同列表 &gt; 创建存储桶，如下：</p>
+<p>关于各种图床的优劣可以参考文章<a href="https://zhuanlan.zhihu.com/p/35270383" target="_blank" rel="noopener">盘点一下免费好用的图床</a>，公共图床不可控也不安全、私有图床大多需要网站备案，在尝试了多个图床之后，我最后选择了腾讯云 COS 。</p>
+<h4 id="腾讯-COS-配置"><a href="#腾讯-COS-配置" class="headerlink" title="腾讯 COS 配置"></a>腾讯 COS 配置</h4><p>通过腾讯云&gt;控制台&gt;对象存储&gt;存储同列表&gt;创建存储桶，如下：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553061767678.jpg" alt></p>
 <p>有两个关键的配置不能忽略：</p>
 <ul>
@@ -725,15 +725,15 @@
 <li>设置防盗链：开启之后即使其他人获取到链接也无法访问相应图片；</li>
 </ul>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553062205605.jpg" alt></p>
-<h4 id="PicGo-图片上传工具"><a href="#PicGo-图片上传工具" class="headerlink" title="PicGo 图片上传工具"></a>PicGo 图片上传工具</h4><p><a href="https://picgo.github.io/PicGo-Doc/zh/" target="_blank" rel="noopener">PicGo</a> 是一款开源跨平台的免费图片上传工具以及图床相册管理软件，它能帮你快速地将图片上传到微博、又拍云、阿里云 OSS、腾讯云 COS、七牛、GitHub、sm.ms、Imgur 等常见的免费图床网站或云存储服务上，并自动复制图片的链接到剪贴板里，使用上非常高效便捷。</p>
+<h4 id="PicGo图片上传工具"><a href="#PicGo图片上传工具" class="headerlink" title="PicGo图片上传工具"></a>PicGo图片上传工具</h4><p><a href="https://picgo.github.io/PicGo-Doc/zh/" target="_blank" rel="noopener">PicGo</a> 是一款开源跨平台的免费图片上传工具以及图床相册管理软件，它能帮你快速地将图片上传到微博、又拍云、阿里云 OSS、腾讯云 COS、七牛、GitHub、sm.ms、Imgur 等常见的免费图床网站或云存储服务上，并自动复制图片的链接到剪贴板里，使用上非常高效便捷。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1553058253127.jpg" alt></p>
-<p>关于 PicGo 的下载安装和配置使用的详细过程请参照 <a href="https://picgo.github.io/PicGo-Doc/zh/" target="_blank" rel="noopener">PicGo 指南</a>。PicGo 支持剪切板上传和拖拽上传两种方式：</p>
+<p>关于 PicGo 的下载安装和配置使用的详细过程请参照<a href="https://picgo.github.io/PicGo-Doc/zh/" target="_blank" rel="noopener">PicGo指南</a>。PicGo 支持剪切板上传和拖拽上传两种方式：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/sdf.gif" alt></p>
-<p>以 PicGo 配置腾讯 COS 为例：</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/ 企业微信截图_30def863-06fd-4cad-8820-77f155dc1e58.png" alt></p>
+<p>以PicGo配置腾讯COS为例：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/企业微信截图_30def863-06fd-4cad-8820-77f155dc1e58.png" alt></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://cloud.tencent.com/document/product/436/16871" target="_blank" rel="noopener">腾讯对象存储</a></li>
-<li><a href="https://picgo.github.io/PicGo-Doc/zh/" target="_blank" rel="noopener">PicGo 指南</a></li>
+<li><a href="https://picgo.github.io/PicGo-Doc/zh/" target="_blank" rel="noopener">PicGo指南</a></li>
 </ol>
 
       
@@ -909,7 +909,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -983,7 +983,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作流程"><span class="nav-number">1.</span> <span class="nav-text">写作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建文章"><span class="nav-number">1.1.</span> <span class="nav-text">创建文章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局"><span class="nav-number">1.1.1.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#草稿"><span class="nav-number">1.1.2.</span> <span class="nav-text">草稿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板"><span class="nav-number">1.1.3.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件名"><span class="nav-number">1.1.4.</span> <span class="nav-text">文件名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑文章"><span class="nav-number">1.2.</span> <span class="nav-text">编辑文章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-matter"><span class="nav-number">1.2.1.</span> <span class="nav-text">Front-matter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入图片"><span class="nav-number">1.2.2.</span> <span class="nav-text">插入图片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布文章"><span class="nav-number">1.3.</span> <span class="nav-text">发布文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作工具"><span class="nav-number">2.</span> <span class="nav-text">写作工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mweb-编辑器"><span class="nav-number">2.1.</span> <span class="nav-text">Mweb 编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图床"><span class="nav-number">2.2.</span> <span class="nav-text">图床</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#腾讯-COS-配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">腾讯 COS 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PicGo-图片上传工具"><span class="nav-number">2.2.2.</span> <span class="nav-text">PicGo 图片上传工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作流程"><span class="nav-number">1.</span> <span class="nav-text">写作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建文章"><span class="nav-number">1.1.</span> <span class="nav-text">创建文章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#布局"><span class="nav-number">1.1.1.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#草稿"><span class="nav-number">1.1.2.</span> <span class="nav-text">草稿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板"><span class="nav-number">1.1.3.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件名"><span class="nav-number">1.1.4.</span> <span class="nav-text">文件名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑文章"><span class="nav-number">1.2.</span> <span class="nav-text">编辑文章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-matter"><span class="nav-number">1.2.1.</span> <span class="nav-text">Front-matter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入图片"><span class="nav-number">1.2.2.</span> <span class="nav-text">插入图片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布文章"><span class="nav-number">1.3.</span> <span class="nav-text">发布文章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作工具"><span class="nav-number">2.</span> <span class="nav-text">写作工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mweb-编辑器"><span class="nav-number">2.1.</span> <span class="nav-text">Mweb 编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图床"><span class="nav-number">2.2.</span> <span class="nav-text">图床</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#腾讯-COS-配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">腾讯 COS 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PicGo图片上传工具"><span class="nav-number">2.2.2.</span> <span class="nav-text">PicGo图片上传工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -1021,7 +1021,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

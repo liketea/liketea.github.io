@@ -125,19 +125,19 @@
 
 
 
-<meta name="description" content="术语 欧拉路径 (Eulerian trail)：图中恰好将所有边都访问一次的路径； 欧拉回路 (Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环； 欧拉图：具有欧拉回路的图； 半欧拉图：有欧拉路径但没有欧拉环的图；  存在性定理（度判定）对于无向图：奇度个数为 0 或 2！！  欧拉图的充要条件：奇度节点个数为 0； 半欧拉图的充要条件：奇度节点个数为 2； 存在欧拉">
+<meta name="description" content="术语 欧拉路径(Eulerian trail)：图中恰好将所有边都访问一次的路径； 欧拉回路(Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环； 欧拉图：具有欧拉回路的图； 半欧拉图：有欧拉路径但没有欧拉环的图；  存在性定理（度判定）对于无向图：奇度个数为0或2！！  欧拉图的充要条件：奇度节点个数为0； 半欧拉图的充要条件：奇度节点个数为2； 存在欧拉路径的充要条件">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法：图（五）—— 欧拉路径">
 <meta property="og:url" content="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：图（五）—— 欧拉路径/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="术语 欧拉路径 (Eulerian trail)：图中恰好将所有边都访问一次的路径； 欧拉回路 (Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环； 欧拉图：具有欧拉回路的图； 半欧拉图：有欧拉路径但没有欧拉环的图；  存在性定理（度判定）对于无向图：奇度个数为 0 或 2！！  欧拉图的充要条件：奇度节点个数为 0； 半欧拉图的充要条件：奇度节点个数为 2； 存在欧拉">
+<meta property="og:description" content="术语 欧拉路径(Eulerian trail)：图中恰好将所有边都访问一次的路径； 欧拉回路(Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环； 欧拉图：具有欧拉回路的图； 半欧拉图：有欧拉路径但没有欧拉环的图；  存在性定理（度判定）对于无向图：奇度个数为0或2！！  欧拉图的充要条件：奇度节点个数为0； 半欧拉图的充要条件：奇度节点个数为2； 存在欧拉路径的充要条件">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-57-23.jpg">
 <meta property="og:updated_time" content="2020-10-25T12:18:33.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法：图（五）—— 欧拉路径">
-<meta name="twitter:description" content="术语 欧拉路径 (Eulerian trail)：图中恰好将所有边都访问一次的路径； 欧拉回路 (Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环； 欧拉图：具有欧拉回路的图； 半欧拉图：有欧拉路径但没有欧拉环的图；  存在性定理（度判定）对于无向图：奇度个数为 0 或 2！！  欧拉图的充要条件：奇度节点个数为 0； 半欧拉图的充要条件：奇度节点个数为 2； 存在欧拉">
+<meta name="twitter:description" content="术语 欧拉路径(Eulerian trail)：图中恰好将所有边都访问一次的路径； 欧拉回路(Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环； 欧拉图：具有欧拉回路的图； 半欧拉图：有欧拉路径但没有欧拉环的图；  存在性定理（度判定）对于无向图：奇度个数为0或2！！  欧拉图的充要条件：奇度节点个数为0； 半欧拉图的充要条件：奇度节点个数为2； 存在欧拉路径的充要条件">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-57-23.jpg">
 
 
@@ -497,22 +497,22 @@
 
       
         <h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><ul>
-<li>欧拉路径 (Eulerian trail)：图中恰好将所有边都访问一次的路径；</li>
-<li>欧拉回路 (Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环；</li>
+<li>欧拉路径(Eulerian trail)：图中恰好将所有边都访问一次的路径；</li>
+<li>欧拉回路(Eulerian cycle)：开始节点和结束节点相同的欧拉路径，也称欧拉环；</li>
 <li>欧拉图：具有欧拉回路的图；</li>
 <li>半欧拉图：有欧拉路径但没有欧拉环的图；</li>
 </ul>
-<h2 id="存在性定理（度判定）"><a href="#存在性定理（度判定）" class="headerlink" title="存在性定理（度判定）"></a>存在性定理（度判定）</h2><p>对于无向图：奇度个数为 0 或 2！！</p>
+<h2 id="存在性定理（度判定）"><a href="#存在性定理（度判定）" class="headerlink" title="存在性定理（度判定）"></a>存在性定理（度判定）</h2><p>对于无向图：奇度个数为0或2！！</p>
 <ol>
-<li>欧拉图的充要条件：奇度节点个数为 0；</li>
-<li>半欧拉图的充要条件：奇度节点个数为 2；</li>
-<li>存在欧拉路径的充要条件：奇度节点个数为 0 或 2；</li>
+<li>欧拉图的充要条件：奇度节点个数为0；</li>
+<li>半欧拉图的充要条件：奇度节点个数为2；</li>
+<li>存在欧拉路径的充要条件：奇度节点个数为0或2；</li>
 </ol>
-<p>对于有向图：出入度相等或各有一个为 + 1 和 - 1！！(假设出度记为正，入度记为负，出度入度和记做节点的度)</p>
+<p>对于有向图：出入度相等或各有一个为+1和-1！！(假设出度记为正，入度记为负，出度入度和记做节点的度)</p>
 <ol>
-<li>欧拉图的充要条件：所有节点出度等于入度，即所有节点度为 0；</li>
-<li>半欧拉图的充要条件：存在一个节点度为 1，另一个节点度为 - 1，其余节点度为 0；</li>
-<li>存在欧拉路径的充要条件：所有节点度为 0，或者只有两个节点不为 0，且其中一个节点度为 1 另一个节点度为 - 1；</li>
+<li>欧拉图的充要条件：所有节点出度等于入度，即所有节点度为0；</li>
+<li>半欧拉图的充要条件：存在一个节点度为1，另一个节点度为-1，其余节点度为0；</li>
+<li>存在欧拉路径的充要条件：所有节点度为0，或者只有两个节点不为0，且其中一个节点度为1另一个节点度为-1；</li>
 </ol>
 <h2 id="获取欧拉路径"><a href="#获取欧拉路径" class="headerlink" title="获取欧拉路径"></a>获取欧拉路径</h2><ul>
 <li>问题：判断给定图中是否存在欧拉路径，如果存在则返回其中一条欧拉路径</li>
@@ -532,27 +532,27 @@
 </li>
 <li>调用以下算法，返回欧拉路径</li>
 </ol>
-<h3 id="Fleury-算法："><a href="#Fleury-算法：" class="headerlink" title="Fleury 算法："></a>Fleury 算法：</h3><p>算法思想：$v_0$ 为遍历起点，令 $P_0=v_0$；设 $P_i=v_0e_1v_1e_2…e_i$ $v_i$ 已经访问，按下面方法从中选取 $e_{i+1}$：</p>
-<p>1）$e_{i+1}$ 与 $v_i$ 相关联；<br>2）只有当无别的边可供访问时，才可以选择 Gi=G-{e1,e2, …, ei} 中的桥（所谓桥是一条删除后使连通图不再连通的边）作为 $e_{i+1}$；<br>3）当（2）不能再进行时，算法停止；</p>
-<p>解释：我们使用栈来存储当前行走中的路径，假设当前栈顶为 […,u,v]，如果栈顶节点 v 还有未访问的边，我们就选择其中一条边的顶点 w 进行深度遍历并将遍历到的顶点压入栈中，同时删除经过的边，如果栈顶节点 v 所有边都已被访问，说明 v 的后续分量中的边都已被访问，边 (u,v) 就变成了连接 v 的后续分量的桥（没办法回来了），直接将 v 出栈输出，此时还要查看顶点 u 是否有别的未访问的边，只有当 u 其余未访问的边都被输出之后（必然会再次回到 u，因为 v 后续分量必然含有奇度节点，初始节点也是奇度节点，如果不回到 u，说明 u 后还有其他奇度节点，矛盾），才能输出 (u,v) 边，这样最后输出的顶点逆序就是一个欧拉路径（欧拉回路的证明更简单，略）。</p>
+<h3 id="Fleury算法："><a href="#Fleury算法：" class="headerlink" title="Fleury算法："></a>Fleury算法：</h3><p>算法思想：$v_0$为遍历起点，令$P_0=v_0$；设$P_i=v_0e_1v_1e_2…e_i$ $v_i$已经访问，按下面方法从中选取$e_{i+1}$：</p>
+<p>1）$e_{i+1}$与$v_i$相关联；<br>2）只有当无别的边可供访问时，才可以选择Gi=G-{e1,e2, …, ei}中的桥（所谓桥是一条删除后使连通图不再连通的边）作为$e_{i+1}$；<br>3）当（2）不能再进行时，算法停止；</p>
+<p>解释：我们使用栈来存储当前行走中的路径，假设当前栈顶为[…,u,v]，如果栈顶节点v还有未访问的边，我们就选择其中一条边的顶点w进行深度遍历并将遍历到的顶点压入栈中，同时删除经过的边，如果栈顶节点v所有边都已被访问，说明v的后续分量中的边都已被访问，边(u,v)就变成了连接v的后续分量的桥（没办法回来了），直接将v出栈输出，此时还要查看顶点u是否有别的未访问的边，只有当u其余未访问的边都被输出之后（必然会再次回到u，因为v后续分量必然含有奇度节点，初始节点也是奇度节点，如果不回到u，说明u后还有其他奇度节点，矛盾），才能输出(u,v)边，这样最后输出的顶点逆序就是一个欧拉路径（欧拉回路的证明更简单，略）。</p>
 <p>算法实现：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fleury</span><span class="params">(graph)</span>:</span></span><br><span class="line">    start = <span class="literal">None</span></span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">if</span> len (graph (k))&amp;<span class="number">1</span>:</span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            start = k</span><br><span class="line">    <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(v)</span>:</span></span><br><span class="line">        S.append (v)</span><br><span class="line">        <span class="keyword">while</span> graph [v]:</span><br><span class="line">            <span class="comment"># 如果有边，过河拆桥，继续扩展 </span></span><br><span class="line">            u = graph [v].pop ()</span><br><span class="line">            graph [u].remove (v)</span><br><span class="line">            dfs (u)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">    S = [start]</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">while</span> S:</span><br><span class="line">        top = S.pop ()</span><br><span class="line">        <span class="keyword">if</span> graph [top]:</span><br><span class="line">            <span class="comment"># 如果栈顶有边，则继续扩展下去 </span></span><br><span class="line">            dfs (top)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 如果栈顶无边，说明栈顶与次栈顶之间的边是桥 </span></span><br><span class="line">            res.append (top)</span><br><span class="line">    <span class="keyword">return</span> res [::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fleury</span><span class="params">(graph)</span>:</span></span><br><span class="line">    start = <span class="literal">None</span></span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">if</span> len(graph(k))&amp;<span class="number">1</span>:</span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            start = k</span><br><span class="line">    <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(v)</span>:</span></span><br><span class="line">        S.append(v)</span><br><span class="line">        <span class="keyword">while</span> graph[v]:</span><br><span class="line">            <span class="comment"># 如果有边，过河拆桥，继续扩展</span></span><br><span class="line">            u = graph[v].pop()</span><br><span class="line">            graph[u].remove(v)</span><br><span class="line">            dfs(u)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">    S = [start]</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">while</span> S:</span><br><span class="line">        top = S.pop()</span><br><span class="line">        <span class="keyword">if</span> graph[top]:</span><br><span class="line">            <span class="comment"># 如果栈顶有边，则继续扩展下去</span></span><br><span class="line">            dfs(top)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 如果栈顶无边，说明栈顶与次栈顶之间的边是桥</span></span><br><span class="line">            res.append(top)</span><br><span class="line">    <span class="keyword">return</span> res[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>算法分析：由于算法要经过每条边，所以时间必然是 Ω(E)。在最坏情况下，在每个节点处进行一次 DFS，节点会重复走所以以边计算，算法复杂度应该是 O (E (E+V))</li>
+<li>算法分析：由于算法要经过每条边，所以时间必然是Ω(E)。在最坏情况下，在每个节点处进行一次 DFS，节点会重复走所以以边计算，算法复杂度应该是 O(E(E+V))</li>
 </ul>
-<h3 id="Hierholzer-算法"><a href="#Hierholzer-算法" class="headerlink" title="Hierholzer 算法"></a>Hierholzer 算法</h3><ul>
-<li><p>算法思想（以半欧拉图为例）：以一个奇度节点出发进行深度遍历，遍历的同时将经过的边删除（过河拆桥），如果某个节点不能继续遍历，则输出该节点。当遍历到 u 节点时，从该节点出发的深度遍历有两种结果：</p>
+<h3 id="Hierholzer算法"><a href="#Hierholzer算法" class="headerlink" title="Hierholzer算法"></a>Hierholzer算法</h3><ul>
+<li><p>算法思想（以半欧拉图为例）：以一个奇度节点出发进行深度遍历，遍历的同时将经过的边删除（过河拆桥），如果某个节点不能继续遍历，则输出该节点。当遍历到u节点时，从该节点出发的深度遍历有两种结果：</p>
 <ul>
 <li>1）要么重新返回该节点（子环），如果该节点还有其他未访问的边，继续沿着该边深度遍历，仍有两种遍历结果，如果该顶点没有其他未访问的边，则可将环中的顶点输出</li>
-<li>2）要么在某个节点 w 处无法继续遍历，此时其所有邻接边都已访问，假设到达 w 的边为 (v,w), 此时 (v-w) 必然是 w 后分量的桥，因为 u 到 w 遍历过程必然包含了奇度节点，所以其他的遍历过程必然回到出发点，这就允许我们先从 v 开始得到在其他环中的欧拉路径后，再回到 v，输出 (v,w) 边，输出 w，最终得到的序列逆序即为一条欧拉路径。</li>
+<li>2）要么在某个节点w处无法继续遍历，此时其所有邻接边都已访问，假设到达w的边为(v,w),此时(v-w)必然是w后分量的桥，因为u到w遍历过程必然包含了奇度节点，所以其他的遍历过程必然回到出发点，这就允许我们先从v开始得到在其他环中的欧拉路径后，再回到v，输出(v,w)边，输出w，最终得到的序列逆序即为一条欧拉路径。</li>
 </ul>
 </li>
-<li><p>算法实现：<strong> 有边过河拆桥，无边输出 </strong></p>
+<li><p>算法实现：<strong>有边过河拆桥，无边输出</strong></p>
 </li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hierholzer</span><span class="params">(graph)</span>:</span></span><br><span class="line">    start = <span class="number">0</span></span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">if</span> len (graph (k))&amp;<span class="number">1</span>:</span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            start = k</span><br><span class="line">    <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">    route = []</span><br><span class="line">    <span class="comment"># Hierholzer 算法的核心只有三行代码：有边就过河拆桥，无边就输出 </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(u)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> graph [u]:</span><br><span class="line">            dfs (graph [u].pop ())</span><br><span class="line">        route.append (u)</span><br><span class="line">    </span><br><span class="line">    dfs (start)</span><br><span class="line">    <span class="keyword">return</span> route [::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hierholzer</span><span class="params">(graph)</span>:</span></span><br><span class="line">    start = <span class="number">0</span></span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">if</span> len(graph(k))&amp;<span class="number">1</span>:</span><br><span class="line">            num += <span class="number">1</span></span><br><span class="line">            start = k</span><br><span class="line">    <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">    route = []</span><br><span class="line">    <span class="comment"># Hierholzer算法的核心只有三行代码：有边就过河拆桥，无边就输出</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(u)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> graph[u]:</span><br><span class="line">            dfs(graph[u].pop())</span><br><span class="line">        route.append(u)</span><br><span class="line">    </span><br><span class="line">    dfs(start)</span><br><span class="line">    <span class="keyword">return</span> route[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure></div>
 <ul>
-<li>算法分析：时间复杂度是 O (E)，其在 DFS 的过程中不用恢复边，靠出栈记录轨。代码简洁，效率又高！！</li>
+<li>算法分析：时间复杂度是 O(E)，其在 DFS 的过程中不用恢复边，靠出栈记录轨。代码简洁，效率又高！！</li>
 </ul>
 
       
@@ -608,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：图（三）—— DFS/" rel="next" title="数据结构与算法：图（三）—— DFS">
-                <i class="fa fa-chevron-left"></i> 数据结构与算法：图（三）—— DFS
+              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：图（二）—— BFS/" rel="next" title="数据结构与算法：图（二）—— BFS">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：图（二）—— BFS
               </a>
             
           </div>
@@ -618,8 +618,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：二分查找/" rel="prev" title="数据结构与算法：二分查找">
-                数据结构与算法：二分查找 <i class="fa fa-chevron-right"></i>
+              <a href="/数据结构与算法/数据结构与算法/数据结构与算法：图（一）—— 概念/" rel="prev" title="数据结构与算法：图（一）—— 概念">
+                数据结构与算法：图（一）—— 概念 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -726,7 +726,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -800,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存在性定理（度判定）"><span class="nav-number">2.</span> <span class="nav-text">存在性定理（度判定）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取欧拉路径"><span class="nav-number">3.</span> <span class="nav-text">获取欧拉路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fleury-算法："><span class="nav-number">3.1.</span> <span class="nav-text">Fleury 算法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierholzer-算法"><span class="nav-number">3.2.</span> <span class="nav-text">Hierholzer 算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存在性定理（度判定）"><span class="nav-number">2.</span> <span class="nav-text">存在性定理（度判定）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取欧拉路径"><span class="nav-number">3.</span> <span class="nav-text">获取欧拉路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fleury算法："><span class="nav-number">3.1.</span> <span class="nav-text">Fleury算法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierholzer算法"><span class="nav-number">3.2.</span> <span class="nav-text">Hierholzer算法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -838,7 +838,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

@@ -125,19 +125,19 @@
 
 
 
-<meta name="description" content="牛顿法 (Newton method) 和拟牛顿法 (quasi Newton method) 也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。 假设 $f (x)$ 具有二阶连续偏导，考虑无约束最优化问题：  x^*=\underset {x \in \mathbb {R}^n}{min}\ f (x)牛顿">
+<meta name="description" content="牛顿法(Newton method)和拟牛顿法(quasi Newton method)也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。 假设 $f(x)$ 具有二阶连续偏导，考虑无约束最优化问题：  x^*=\underset{x \in \mathbb{R}^n}{min}\ f(x)牛顿法牛顿法原理将$">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：优化算法（二）——（拟）牛顿法">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：优化算法（二）—— 拟牛顿法/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="牛顿法 (Newton method) 和拟牛顿法 (quasi Newton method) 也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。 假设 $f (x)$ 具有二阶连续偏导，考虑无约束最优化问题：  x^*=\underset {x \in \mathbb {R}^n}{min}\ f (x)牛顿">
+<meta property="og:description" content="牛顿法(Newton method)和拟牛顿法(quasi Newton method)也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。 假设 $f(x)$ 具有二阶连续偏导，考虑无约束最优化问题：  x^*=\underset{x \in \mathbb{R}^n}{min}\ f(x)牛顿法牛顿法原理将$">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1512805360_693.gif">
 <meta property="og:updated_time" content="2020-12-23T09:48:53.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：优化算法（二）——（拟）牛顿法">
-<meta name="twitter:description" content="牛顿法 (Newton method) 和拟牛顿法 (quasi Newton method) 也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。 假设 $f (x)$ 具有二阶连续偏导，考虑无约束最优化问题：  x^*=\underset {x \in \mathbb {R}^n}{min}\ f (x)牛顿">
+<meta name="twitter:description" content="牛顿法(Newton method)和拟牛顿法(quasi Newton method)也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。 假设 $f(x)$ 具有二阶连续偏导，考虑无约束最优化问题：  x^*=\underset{x \in \mathbb{R}^n}{min}\ f(x)牛顿法牛顿法原理将$">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1512805360_693.gif">
 
 
@@ -496,29 +496,29 @@
       
 
       
-        <p>牛顿法 (Newton method) 和拟牛顿法 (quasi Newton method) 也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。</p>
-<p>假设 $f (x)$ 具有二阶连续偏导，考虑无约束最优化问题：</p>
+        <p>牛顿法(Newton method)和拟牛顿法(quasi Newton method)也是求解最优化问题的常用迭代方法。当目标函数是凸函数时，可以得到全局最优解，否则不能保证得到全局最优解，但是其收敛速度相比梯度下降法要快。</p>
+<p>假设 $f(x)$ 具有二阶连续偏导，考虑无约束最优化问题：</p>
 <script type="math/tex; mode=display">
-x^*=\underset {x \in \mathbb {R}^n}{min}\ f (x)</script><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><h3 id="牛顿法原理"><a href="#牛顿法原理" class="headerlink" title="牛顿法原理"></a>牛顿法原理</h3><p>将 $f (x)$ 在 $x_k$ 附近进行二阶 <strong> 泰勒展开 </strong>：</p>
+x^*=\underset{x \in \mathbb{R}^n}{min}\ f(x)</script><h2 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h2><h3 id="牛顿法原理"><a href="#牛顿法原理" class="headerlink" title="牛顿法原理"></a>牛顿法原理</h3><p>将$f(x)$在$x_k$附近进行二阶<strong>泰勒展开</strong>：</p>
 <script type="math/tex; mode=display">
-f (x)=f (x_k)+g_k^T (x-x_k)+\frac {1}{2}(x-x_k)^TH (x_k)(x-x_k)</script><ul>
-<li>$g (x)$：$f (x)$ 在 x 处的一阶偏导</li>
-<li>$H (x)$：$f (x)$ 在 x 处的二阶偏导矩阵 (海赛矩阵)</li>
+f(x)=f(x_k)+g_k^T(x-x_k)+\frac{1}{2}(x-x_k)^TH(x_k)(x-x_k)</script><ul>
+<li>$g(x)$：$f(x)$在x处的一阶偏导</li>
+<li>$H(x)$：$f(x)$在x处的二阶偏导矩阵(海赛矩阵)</li>
 </ul>
-<p>两边同时取导，得到过点 $(x_k,g_k)$ 的 <strong> 切线方程 </strong>：</p>
+<p>两边同时取导，得到过点$(x_k,g_k)$的<strong>切线方程</strong>：</p>
 <script type="math/tex; mode=display">
-g=g_k+H_k (x-x_k)</script><p>$f (x)$ 取极值的必要条件是在极值处偏数为 0，即求 $g (x)=0$，该问题可以用牛顿法求解：</p>
-<p>1、选取合适的初值 $x_0$，置 k=0<br>2、计算 $g_k$，若 $\left | g_k \right | &lt; \varepsilon $，则停止计算，得到 $x^<em>=x_k$，否则用 $g (x)$ 在当前位置的切线与 x 轴的交点 <em>* 更新 </em></em>$x_k$（因此，牛顿法也被称为 “切线法”）</p>
+g=g_k+H_k(x-x_k)</script><p>$f(x)$ 取极值的必要条件是在极值处偏数为0，即求$g(x)=0$，该问题可以用牛顿法求解：</p>
+<p>1、选取合适的初值$x_0$，置k=0<br>2、计算$g_k$，若$\left | g_k \right | &lt; \varepsilon $，则停止计算，得到$x^<em>=x_k$，否则用$g(x)$在当前位置的切线与x轴的交点<em>*更新</em></em>$x_k$（因此，牛顿法也被称为“切线法”）</p>
 <script type="math/tex; mode=display">
-x_{k+1}=x_k-H_k^{-1} g_k</script><div align="center">
+x_{k+1}=x_k-H_k^{-1}g_k</script><div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1512805360_693.gif" width="45%" heigh="45%">
 </div>
 
-<h3 id="牛顿法有效性证明"><a href="#牛顿法有效性证明" class="headerlink" title="牛顿法有效性证明"></a>牛顿法有效性证明</h3><p>因为 $f (x)$ 是凸函数，那么 $H_k$ 为正定矩阵 ($H_k^{-1}$ 也是正定矩阵)，即：</p>
+<h3 id="牛顿法有效性证明"><a href="#牛顿法有效性证明" class="headerlink" title="牛顿法有效性证明"></a>牛顿法有效性证明</h3><p>因为 $f(x)$ 是凸函数，那么$H_k$为正定矩阵($H_k^{-1}$也是正定矩阵)，即：</p>
 <script type="math/tex; mode=display">
-H_k^{-1} g_k=\lambda g_k,\ \lambda > 0</script><p>可以保证 x 更新方向总是沿着 $f (x)$ 的负梯度方向：</p>
+H_k^{-1}g_k=\lambda g_k,\ \lambda > 0</script><p>可以保证x更新方向总是沿着$f(x)$的负梯度方向：</p>
 <script type="math/tex; mode=display">
-x_{k+1}=x_k-H_k^{-1} g_k=x_k-\lambda g_k</script><h3 id="牛顿法优缺点"><a href="#牛顿法优缺点" class="headerlink" title="牛顿法优缺点"></a>牛顿法优缺点</h3><p>优点：</p>
+x_{k+1}=x_k-H_k^{-1}g_k=x_k-\lambda g_k</script><h3 id="牛顿法优缺点"><a href="#牛顿法优缺点" class="headerlink" title="牛顿法优缺点"></a>牛顿法优缺点</h3><p>优点：</p>
 <ol>
 <li>更快：相比一阶收敛的梯度下降法，牛顿法二阶收敛，收敛速度更快，牛顿法不但考虑了搜索的方向，还用二阶逼近来估计步长</li>
 <li>更准：从几何上看，牛顿法是用一个二次曲面来拟合当前位置的局部曲面，而梯度下降则是用一个平面拟合当前局部曲面，所以牛顿法选择的下降路径会更符合真实的最优下降路径</li>
@@ -529,35 +529,35 @@ x_{k+1}=x_k-H_k^{-1} g_k=x_k-\lambda g_k</script><h3 id="牛顿法优缺点"><a 
 <li>每次迭代需要求解目标函数的海赛矩阵的逆矩阵，计算复杂度高；</li>
 </ol>
 <h2 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h2><p>拟牛顿法对牛顿法改进的基本思路是：使用某个矩阵作为海赛矩阵或海赛矩阵的逆矩阵的近似，从而避免求解海赛矩阵。</p>
-<p><strong> 拟牛顿条件 </strong>：在切线方程中取 $x=x_{k+1}$</p>
+<p><strong>拟牛顿条件</strong>：在切线方程中取$x=x_{k+1}$</p>
 <script type="math/tex; mode=display">
-g_{k+1}-g_k=H_k (x_{k+1}-x_{k})</script><p>记 $y_k=g_{k+1}-g_k,\ \delta_k=x_{k+1}-x_k$，则：</p>
+g_{k+1}-g_k=H_k(x_{k+1}-x_{k})</script><p>记$y_k=g_{k+1}-g_k,\ \delta_k=x_{k+1}-x_k$，则：</p>
 <script type="math/tex; mode=display">
-y_k=H_k\delta_k</script><h3 id="DFP-Davidon-Fletcher-Powell-算法"><a href="#DFP-Davidon-Fletcher-Powell-算法" class="headerlink" title="DFP (Davidon-Fletcher-Powell) 算法"></a>DFP (Davidon-Fletcher-Powell) 算法</h3><p>DFP 使用 $G_k$ 作为 $H_k^{-1}$ 的近似，在每次迭代时通过如下公式更新 $G_k$：</p>
+y_k=H_k\delta_k</script><h3 id="DFP-Davidon-Fletcher-Powell-算法"><a href="#DFP-Davidon-Fletcher-Powell-算法" class="headerlink" title="DFP(Davidon-Fletcher-Powell)算法"></a>DFP(Davidon-Fletcher-Powell)算法</h3><p>DFP使用$G_k$作为$H_k^{-1}$的近似，在每次迭代时通过如下公式更新$G_k$：</p>
 <script type="math/tex; mode=display">
 G_{k+1}=G_{k}+P_k+Q_k</script><script type="math/tex; mode=display">
-G_{k+1} y_k=G_{k} y_k+P_ky_k+Q_ky_k</script><p>为使 $G_{k+1}$ 满足拟牛顿条件，可使：</p>
+G_{k+1}y_k=G_{k}y_k+P_ky_k+Q_ky_k</script><p>为使$G_{k+1}$满足拟牛顿条件，可使：</p>
 <script type="math/tex; mode=display">
 p_ky_k=\delta_k</script><script type="math/tex; mode=display">
-G_{k} y_k=-Q_ky_k</script><p>容易找到这样的 $P_k,\ Q_k$，得到：</p>
+G_{k}y_k=-Q_ky_k</script><p>容易找到这样的$P_k,\ Q_k$，得到：</p>
 <script type="math/tex; mode=display">
-G_{k+1}=G_k+\frac {\delta_k \delta_k^T}{ \delta_k^T\delta_k}-\frac {G_ky_ky_k^TG_k}{y_k^TG_ky_k}</script><p>可以证明，如果初始矩阵 $G_0$ 是正定的，则迭代过程中的每个矩阵 $G_k$ 都是正定的。</p>
-<p>1、选取初始点 $x_0$，取 $G_0$ 为正定对称矩阵<br>2、计算 $g_k$，若 $\left | g_k \right | &lt; \varepsilon $，则停止计算，得到 $x^*=x_k$，否则:<br>（1）计算 $p_k=-G_kg_k$<br>（2）一维搜索 $\lambda_k$，满足：</p>
+G_{k+1}=G_k+\frac{\delta_k \delta_k^T}{ \delta_k^T\delta_k}-\frac{G_ky_ky_k^TG_k}{y_k^TG_ky_k}</script><p>可以证明，如果初始矩阵$G_0$是正定的，则迭代过程中的每个矩阵$G_k$都是正定的。</p>
+<p>1、选取初始点$x_0$，取$G_0$为正定对称矩阵<br>2、计算$g_k$，若$\left | g_k \right | &lt; \varepsilon $，则停止计算，得到$x^*=x_k$，否则:<br>（1）计算$p_k=-G_kg_k$<br>（2）一维搜索$\lambda_k$，满足：</p>
 <script type="math/tex; mode=display">
-f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</script><p>（3）置 $x_{k+1}=x_k+\lambda p_k$<br>（4）计算 $g_{k+1}$，更新 $G_{k+1}$</p>
-<h3 id="BFGS-Davidon-Fletcher-Powell-算法"><a href="#BFGS-Davidon-Fletcher-Powell-算法" class="headerlink" title="BFGS (Davidon-Fletcher-Powell) 算法"></a>BFGS (Davidon-Fletcher-Powell) 算法</h3><p>BFGS 用 $B_k$ 作为 $H_k$ 的近似，在每次迭代时通过如下公式更新 $B_k$：</p>
+f(x_k+\lambda_kp_k)=\underset{\lambda\geqslant 0}{min}f(x_k+\lambda p_k)</script><p>（3）置$x_{k+1}=x_k+\lambda p_k$<br>（4）计算$g_{k+1}$，更新$G_{k+1}$</p>
+<h3 id="BFGS-Davidon-Fletcher-Powell-算法"><a href="#BFGS-Davidon-Fletcher-Powell-算法" class="headerlink" title="BFGS(Davidon-Fletcher-Powell)算法"></a>BFGS(Davidon-Fletcher-Powell)算法</h3><p>BFGS用$B_k$作为$H_k$的近似，在每次迭代时通过如下公式更新$B_k$：</p>
 <script type="math/tex; mode=display">
 B_{k+1}=B_{k}+P_k+Q_k</script><script type="math/tex; mode=display">
-B_{k+1}\delta_k=B_{k}\delta_k+P_k\delta_k+Q_k\delta_k</script><p>为使 $G_{k+1}$ 满足拟牛顿条件，可使：</p>
+B_{k+1}\delta_k=B_{k}\delta_k+P_k\delta_k+Q_k\delta_k</script><p>为使$G_{k+1}$满足拟牛顿条件，可使：</p>
 <script type="math/tex; mode=display">
 p_k\delta_k=y_k</script><script type="math/tex; mode=display">
-B_{k}\delta_k=-Q_k\delta_k</script><p>容易找到这样的 $P_k,\ Q_k$，得到：</p>
+B_{k}\delta_k=-Q_k\delta_k</script><p>容易找到这样的$P_k,\ Q_k$，得到：</p>
 <script type="math/tex; mode=display">
-B_{k+1}=B_k+\frac {y_k y_k^T}{ y_k^T\delta_k}-\frac {B_k\delta_k\delta_k^TB_k}{\delta_k^TB_k\delta_k}</script><p>可以证明，如果初始矩阵 $B_0$ 是正定的，则迭代过程中的每个矩阵 $B_k$ 都是正定的。</p>
-<p>1、选取初始点 $x_0$，取 $B_0$ 为正定对称矩阵<br>2、计算 $g_k$，若 $\left | g_k \right | &lt; \varepsilon $，则停止计算，得到 $x^*=x_k$，否则:</p>
-<p>（1）由 $B_kp_k=-g_k$ 计算 $p_k$<br>（2）一维搜索 $\lambda_k$，满足：</p>
+B_{k+1}=B_k+\frac{y_k y_k^T}{ y_k^T\delta_k}-\frac{B_k\delta_k\delta_k^TB_k}{\delta_k^TB_k\delta_k}</script><p>可以证明，如果初始矩阵$B_0$是正定的，则迭代过程中的每个矩阵$B_k$都是正定的。</p>
+<p>1、选取初始点 $x_0$，取 $B_0$ 为正定对称矩阵<br>2、计算$g_k$，若$\left | g_k \right | &lt; \varepsilon $，则停止计算，得到$x^*=x_k$，否则:</p>
+<p>（1）由$B_kp_k=-g_k$计算$p_k$<br>（2）一维搜索$\lambda_k$，满足：</p>
 <script type="math/tex; mode=display">
-f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</script><p>（3）置 $x_{k+1}=x_k+\lambda p_k$<br>（4）计算 $g_{k+1}$，更新 $B_{k+1}$</p>
+f(x_k+\lambda_kp_k)=\underset{\lambda\geqslant 0}{min}f(x_k+\lambda p_k)</script><p>（3）置$x_{k+1}=x_k+\lambda p_k$<br>（4）计算$g_{k+1}$，更新$B_{k+1}$</p>
 <h2 id="对比梯度下降和牛顿法"><a href="#对比梯度下降和牛顿法" class="headerlink" title="对比梯度下降和牛顿法"></a>对比梯度下降和牛顿法</h2><div class="table-container">
 <table>
 <thead>
@@ -571,13 +571,13 @@ f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</sc
 <tbody>
 <tr>
 <td style="text-align:left"> 梯度下降</td>
-<td style="text-align:left">$x_{k+1}=x_k-\eta \nabla_xf (x)$</td>
+<td style="text-align:left">$x_{k+1}=x_k-\eta \nabla_xf(x)$</td>
 <td style="text-align:left">简单</td>
 <td style="text-align:left">局部最优、速度慢</td>
 </tr>
 <tr>
 <td style="text-align:left"> 牛顿法</td>
-<td style="text-align:left">$x_{k+1}=x_k-H_k^{-1} g_k$</td>
+<td style="text-align:left">$x_{k+1}=x_k-H_k^{-1}g_k$</td>
 <td style="text-align:left">更快更准</td>
 <td style="text-align:left">局部最优、复杂度高</td>
 </tr>
@@ -650,8 +650,8 @@ f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</sc
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：优化算法（三）—— 拉格朗日对偶法/" rel="next" title="机器学习：优化算法（三）—— 拉格朗日对偶法">
-                <i class="fa fa-chevron-left"></i> 机器学习：优化算法（三）—— 拉格朗日对偶法
+              <a href="/机器学习/机器学习/机器学习：优化算法（四）—— 遗传算法/" rel="next" title="机器学习：优化算法（四）—— 遗传算法">
+                <i class="fa fa-chevron-left"></i> 机器学习：优化算法（四）—— 遗传算法
               </a>
             
           </div>
@@ -660,8 +660,8 @@ f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</sc
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/uncategorized/Life/费曼技巧/" rel="prev" title="费曼技巧：以教促学">
-                费曼技巧：以教促学 <i class="fa fa-chevron-right"></i>
+              <a href="/机器学习/机器学习/机器学习：优化算法（五）—— 模拟退火算法/" rel="prev" title="机器学习：优化算法（五）—— 模拟退火算法">
+                机器学习：优化算法（五）—— 模拟退火算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -768,7 +768,7 @@ f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</sc
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -842,7 +842,7 @@ f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</sc
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#牛顿法"><span class="nav-number">1.</span> <span class="nav-text">牛顿法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法原理"><span class="nav-number">1.1.</span> <span class="nav-text">牛顿法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法有效性证明"><span class="nav-number">1.2.</span> <span class="nav-text">牛顿法有效性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">牛顿法优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拟牛顿法"><span class="nav-number">2.</span> <span class="nav-text">拟牛顿法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFP-Davidon-Fletcher-Powell-算法"><span class="nav-number">2.1.</span> <span class="nav-text">DFP (Davidon-Fletcher-Powell) 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFGS-Davidon-Fletcher-Powell-算法"><span class="nav-number">2.2.</span> <span class="nav-text">BFGS (Davidon-Fletcher-Powell) 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比梯度下降和牛顿法"><span class="nav-number">3.</span> <span class="nav-text">对比梯度下降和牛顿法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#牛顿法"><span class="nav-number">1.</span> <span class="nav-text">牛顿法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法原理"><span class="nav-number">1.1.</span> <span class="nav-text">牛顿法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法有效性证明"><span class="nav-number">1.2.</span> <span class="nav-text">牛顿法有效性证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#牛顿法优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">牛顿法优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拟牛顿法"><span class="nav-number">2.</span> <span class="nav-text">拟牛顿法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFP-Davidon-Fletcher-Powell-算法"><span class="nav-number">2.1.</span> <span class="nav-text">DFP(Davidon-Fletcher-Powell)算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFGS-Davidon-Fletcher-Powell-算法"><span class="nav-number">2.2.</span> <span class="nav-text">BFGS(Davidon-Fletcher-Powell)算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比梯度下降和牛顿法"><span class="nav-number">3.</span> <span class="nav-text">对比梯度下降和牛顿法</span></a></li></ol></div>
             
 
           </div>
@@ -880,7 +880,7 @@ f (x_k+\lambda_kp_k)=\underset {\lambda\geqslant 0}{min} f (x_k+\lambda p_k)</sc
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 

@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="xgboost 自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对 xgboost 的完美代言：         xgboost（eXtreme Gradient Boosting）是 GBDT 的一个 C++ 实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建 xgboost 项目。在陈天奇的论文中提到">
+<meta name="description" content="xgboost自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对xgboost的完美代言：         xgboost（eXtreme Gradient Boosting）是GBDT的一个C++实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建xgboost项目。在陈天奇的论文中提到了xgboost的">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习：集成学习（四）—— XGBoost">
 <meta property="og:url" content="http://liketea.xyz/机器学习/机器学习/机器学习：集成学习（四）—— XGBoost/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="xgboost 自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对 xgboost 的完美代言：         xgboost（eXtreme Gradient Boosting）是 GBDT 的一个 C++ 实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建 xgboost 项目。在陈天奇的论文中提到">
+<meta property="og:description" content="xgboost自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对xgboost的完美代言：         xgboost（eXtreme Gradient Boosting）是GBDT的一个C++实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建xgboost项目。在陈天奇的论文中提到了xgboost的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-17-42.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/3.png">
@@ -142,7 +142,7 @@
 <meta property="og:updated_time" content="2020-11-27T06:25:37.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习：集成学习（四）—— XGBoost">
-<meta name="twitter:description" content="xgboost 自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对 xgboost 的完美代言：         xgboost（eXtreme Gradient Boosting）是 GBDT 的一个 C++ 实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建 xgboost 项目。在陈天奇的论文中提到">
+<meta name="twitter:description" content="xgboost自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对xgboost的完美代言：         xgboost（eXtreme Gradient Boosting）是GBDT的一个C++实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建xgboost项目。在陈天奇的论文中提到了xgboost的">
 <meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-17-42.jpg">
 
 
@@ -501,118 +501,118 @@
       
 
       
-        <p>xgboost 自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对 xgboost 的完美代言：</p>
+        <p>xgboost自从被提出来后就因其出众的效率和较高的准确度而被广泛关注，在各种比赛中大放异彩，下图即是对xgboost的完美代言：</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-17-42.jpg" width="55%" heigh="55%">
 </div>
 
-<p>xgboost（eXtreme Gradient Boosting）是 GBDT 的一个 C++ 实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建 xgboost 项目。在陈天奇的论文中提到了 xgboost 的几个主要特点：</p>
+<p>xgboost（eXtreme Gradient Boosting）是GBDT的一个C++实现，作者为华盛顿大学研究机器学习的大牛陈天奇，他在研究中深感受制于现有库的计算速度和精度，因此着手搭建xgboost项目。在陈天奇的论文中提到了xgboost的几个主要特点：</p>
 <ol>
-<li>加入了正则化项的结构化损失函数 (叶节点数作为 L1 正则，叶节点输出值的平方和作为 L2 范数)；</li>
+<li>加入了正则化项的结构化损失函数(叶节点数作为L1正则，叶节点输出值的平方和作为L2范数)；</li>
 <li>使用损失函数的二阶泰勒展开作为近似；</li>
 <li>能够自动处理稀疏数据；</li>
 <li>采用加权分位数算法搜索近似最优分裂点；</li>
 <li>加入了列抽样；</li>
-<li>加入了 Shrinkage，相当于学习率缩减；</li>
-<li>基于分块技术的大量数据高效处理 ()；</li>
+<li>加入了Shrinkage，相当于学习率缩减；</li>
+<li>基于分块技术的大量数据高效处理()；</li>
 <li>并行和分布式计算；</li>
 </ol>
-<h2 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h2><p>提升树、GBDT 和 xgboost 的关系如下：</p>
+<h2 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h2><p>提升树、GBDT和xgboost的关系如下：</p>
 <ul>
 <li>提升树 = 决策树加法模型 + 经验风险最小化 + 前向分布算法</li>
 <li>GBDT  = 决策树加法模型 + 经验风险最小化 + 前向分布算法 + 梯度提升算法</li>
-<li>xgboost = 决策树加法模型 + <strong> 结构风险最小化 </strong> + 前向分布算法 + <strong> 损失函数二阶泰勒展开 </strong></li>
+<li>xgboost = 决策树加法模型 + <strong>结构风险最小化</strong> + 前向分布算法 + <strong>损失函数二阶泰勒展开</strong></li>
 </ul>
 <h3 id="模型（additive-model）"><a href="#模型（additive-model）" class="headerlink" title="模型（additive model）"></a>模型（additive model）</h3><div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/3.png" width="55%" heigh="55%">
 </div>
 
-<p>xgboost 与 GBDT 同为 <strong> 决策树加法模型 </strong>：</p>
+<p>xgboost与GBDT同为<strong>决策树加法模型</strong>：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-f_M (x) &= \sum_{m=1}^{M} T (x;\gamma _m)\\
-T (x;\gamma)&= \sum_{j=1}^{J} c_j [x \in R_j]
-\end {align*}</script><ul>
-<li>$f_M (x)$: 第 M 次迭代后的 <strong> 集成模型 </strong>；</li>
-<li>$T (x;\gamma_m)$：第 m 次迭代的 <strong> 基模型 </strong>（决策树），对分类问题是二叉分类树，对回归问题是二叉回归树，以下以回归树为例；</li>
-<li>$\gamma$：<strong> 参数 </strong>，{$(R_1,c_1),(R_2,c_2),…,(R_J,c_J)$} 表示树的区域划分和各区域上的预测值，J 是回归树的复杂度即叶子节点数；</li>
+\begin{align*}
+f_M(x) &= \sum_{m=1}^{M}T(x;\gamma _m)\\
+T(x;\gamma)&= \sum_{j=1}^{J}c_j[x \in R_j]
+\end{align*}</script><ul>
+<li>$f_M(x)$: 第M次迭代后的<strong>集成模型</strong>；</li>
+<li>$T(x;\gamma_m)$：第m次迭代的<strong>基模型</strong>（决策树），对分类问题是二叉分类树，对回归问题是二叉回归树，以下以回归树为例;</li>
+<li>$\gamma$：<strong>参数</strong>，{$(R_1,c_1),(R_2,c_2),…,(R_J,c_J)$}表示树的区域划分和各区域上的预测值，J是回归树的复杂度即叶子节点数；</li>
 </ul>
-<h3 id="结构风险最小化（SRM）"><a href="#结构风险最小化（SRM）" class="headerlink" title="结构风险最小化（SRM）"></a>结构风险最小化（SRM）</h3><p>xgboost 在其优化的损失函数中引入了正则化项：</p>
+<h3 id="结构风险最小化（SRM）"><a href="#结构风险最小化（SRM）" class="headerlink" title="结构风险最小化（SRM）"></a>结构风险最小化（SRM）</h3><p>xgboost在其优化的损失函数中引入了正则化项：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-\gamma_1,...,\gamma_m &= arg \underset {\gamma_1,...,\gamma_m}{min} \sum_{i=1}^{N}  L (y_i; f_M (x_i)) + \sum_{m=1}^{M} \Omega (T (x;\gamma_m))\\
-&=arg \underset {\gamma_1,...,\gamma_m}{min} \sum_{i=1}^{N}  L (y_i; \sum_{m=1}^{M} T (x;\gamma_m)) + \sum_{m=1}^{M} (\alpha J_m+ \frac {1}{2}\beta \left \| c_m \right \|^2)
-\end {align*}</script><ul>
-<li>$J_m$：第 m 棵树叶子节点个数；</li>
-<li>$c_m$：($c_{m1},c_{m2},…,c_{mJ_m}$)，第 m 棵树中各叶子节点的输出值；</li>
+\begin{align*}
+\gamma_1,...,\gamma_m &= arg \underset{\gamma_1,...,\gamma_m}{min} \sum_{i=1}^{N}  L(y_i; f_M(x_i)) + \sum_{m=1}^{M} \Omega (T(x;\gamma_m))\\
+&=arg \underset{\gamma_1,...,\gamma_m}{min} \sum_{i=1}^{N}  L(y_i; \sum_{m=1}^{M} T(x;\gamma_m)) + \sum_{m=1}^{M} (\alpha J_m+ \frac{1}{2}\beta \left \| c_m \right \|^2)
+\end{align*}</script><ul>
+<li>$J_m$：第m棵树叶子节点个数；</li>
+<li>$c_m$：($c_{m1},c_{m2},…,c_{mJ_m}$)，第m棵树中各叶子节点的输出值；</li>
 <li>$\alpha$：一阶正则项系数；</li>
 <li>$\beta$：二阶正则项系数；</li>
 </ul>
-<p>直观上通过决策树的叶子个数和叶子输出值可以对模型进行很强的控制，引入正则项后，算法会选择简单而性能优良的模型，防止过拟合。xgboost 要求其损失函数至少是 <strong> 二阶连续可导的凸函数 </strong>。</p>
-<h3 id="前向分步算法"><a href="#前向分步算法" class="headerlink" title="前向分步算法"></a>前向分步算法</h3><p>xgboost 与 GBDT 类似，采用前向分步算法来简化上述优化问题：每一步通过一个决策树来拟合当前模型预测值与真实值的残差，并将其累加至当前模型得到最新模型。</p>
+<p>直观上通过决策树的叶子个数和叶子输出值可以对模型进行很强的控制，引入正则项后，算法会选择简单而性能优良的模型，防止过拟合。xgboost要求其损失函数至少是<strong>二阶连续可导的凸函数</strong>。</p>
+<h3 id="前向分步算法"><a href="#前向分步算法" class="headerlink" title="前向分步算法"></a>前向分步算法</h3><p>xgboost与GBDT类似，采用前向分步算法来简化上述优化问题：每一步通过一个决策树来拟合当前模型预测值与真实值的残差，并将其累加至当前模型得到最新模型。</p>
 <p>1、初始化模型：</p>
 <script type="math/tex; mode=display">
-f_0 (x)=0</script><p>2、对 $m=1,2,…,M$</p>
+f_0(x)=0</script><p>2、对 $m=1,2,…,M$</p>
 <p>（1）拟合决策树：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-\gamma_m&= arg \underset {\gamma_m}{min} \sum_{i=1}^{N}  L (y_i;f_{m-1}(x_i)+T (x;\gamma_m)) +  \Omega (T (x;\gamma_m))\\
-&=arg \underset {\gamma_m}{min} \sum_{i=1}^{N}  L (y_i;f_{m-1}(x_i)+T (x;\gamma_m)) +  \alpha J_m+ \frac {1}{2}\beta \left \| c_m \right \|^2
-\end {align*}</script><p>（2）更新模型：</p>
+\begin{align*}
+\gamma_m&= arg \underset{\gamma_m}{min} \sum_{i=1}^{N}  L(y_i;f_{m-1}(x_i)+T(x;\gamma_m)) +  \Omega (T(x;\gamma_m))\\
+&=arg \underset{\gamma_m}{min} \sum_{i=1}^{N}  L(y_i;f_{m-1}(x_i)+T(x;\gamma_m)) +  \alpha J_m+ \frac{1}{2}\beta \left \| c_m \right \|^2
+\end{align*}</script><p>（2）更新模型：</p>
 <script type="math/tex; mode=display">
-f_m (x)=f_{m-1}(x) + T (x;\gamma_m)</script><p>3、最终模型：</p>
+f_m(x)=f_{m-1}(x) + T(x;\gamma_m)</script><p>3、最终模型：</p>
 <script type="math/tex; mode=display">
-f_M (x) = \sum_{m=1}^{M} T (x;\gamma _m)</script><h3 id="损失函数的二阶泰勒展开"><a href="#损失函数的二阶泰勒展开" class="headerlink" title="损失函数的二阶泰勒展开"></a>损失函数的二阶泰勒展开</h3><p>与 GBDT<strong> 将损失函数在当前模型下的负梯度值作为残差的近似值 </strong> 来拟合决策树的梯度提升方法不同，xgboost<strong> 将损失函数在当前模型下的二阶泰勒展开作为近似损失函数 </strong> 来训练决策树：</p>
+f_M(x) = \sum_{m=1}^{M}T(x;\gamma _m)</script><h3 id="损失函数的二阶泰勒展开"><a href="#损失函数的二阶泰勒展开" class="headerlink" title="损失函数的二阶泰勒展开"></a>损失函数的二阶泰勒展开</h3><p>与GBDT<strong>将损失函数在当前模型下的负梯度值作为残差的近似值</strong>来拟合决策树的梯度提升方法不同，xgboost<strong>将损失函数在当前模型下的二阶泰勒展开作为近似损失函数</strong>来训练决策树：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-\gamma_m &= arg \underset {\gamma_m}{min} \sum_{i=1}^{N}  L (y_i;f_{m-1}(x_i)+T (x;\gamma_m)) +  \Omega (T (x;\gamma_m))\\
-&\approx arg \underset {\gamma_m}{min} \sum_{i=1}^{N} [L (y_i;f_{m-1}(x_i))+g_i T (x;\gamma_m)+\frac {1}{2} h_i T^2 (x;\gamma_m)] + \Omega (T (x;\gamma_m))\\
-&=arg \underset {\gamma_m}{min} \sum_{i=1}^{N} L (y_i;f_{m-1}(x_i))+  \sum_{i=1}^{N} [g_i T (x;\gamma_m)+\frac {1}{2} h_i T^2 (x;\gamma_m)] + \Omega (T (x;\gamma_m))\\
-&=C + arg \underset {\gamma_m}{min} \sum_{i=1}^{N} [g_i T (x;\gamma_m)+\frac {1}{2} h_i T^2 (x;\gamma_m)] + \Omega (T (x;\gamma_m))
-\end {align*}</script><ul>
-<li>$g_i = \frac {\partial L (y_i,f_{m-1} (x_i))}{\partial f_{m-1}(x_i)}$: 为损失函数在当前模型 $f_{m-1}(x_i)$ 处的一阶偏导；</li>
-<li>$h_i = \frac {\partial^2 L (y_i,f_{m-1}(x_i))}{\partial f_{m-1}(x_i)^2}$: 为损失函数在当前模型 $f_{m-1}(x_i)$ 处的二阶偏导；</li>
+\begin{align*}
+\gamma_m &= arg \underset{\gamma_m}{min} \sum_{i=1}^{N}  L(y_i;f_{m-1}(x_i)+T(x;\gamma_m)) +  \Omega (T(x;\gamma_m))\\
+&\approx arg \underset{\gamma_m}{min} \sum_{i=1}^{N} [L(y_i;f_{m-1}(x_i))+g_i T(x;\gamma_m)+\frac{1}{2} h_i T^2(x;\gamma_m)] + \Omega (T(x;\gamma_m))\\
+&=arg \underset{\gamma_m}{min} \sum_{i=1}^{N} L(y_i;f_{m-1}(x_i))+  \sum_{i=1}^{N} [g_i T(x;\gamma_m)+\frac{1}{2} h_i T^2(x;\gamma_m)] + \Omega (T(x;\gamma_m))\\
+&=C + arg \underset{\gamma_m}{min} \sum_{i=1}^{N} [g_i T(x;\gamma_m)+\frac{1}{2} h_i T^2(x;\gamma_m)] + \Omega (T(x;\gamma_m))
+\end{align*}</script><ul>
+<li>$g_i = \frac{\partial L(y_i,f_{m-1} (x_i))}{\partial f_{m-1}(x_i)}$:为损失函数在当前模型$f_{m-1}(x_i)$处的一阶偏导；</li>
+<li>$h_i = \frac{\partial^2 L(y_i,f_{m-1}(x_i))}{\partial f_{m-1}(x_i)^2}$: 为损失函数在当前模型$f_{m-1}(x_i)$处的二阶偏导；</li>
 </ul>
-<p>去掉常数项 C 不会影响优化结果，因此损失函数变成如下形式：</p>
+<p>去掉常数项C不会影响优化结果，因此损失函数变成如下形式：</p>
 <script type="math/tex; mode=display">
-\gamma_m = arg \underset {\gamma_m}{min} \sum_{i=1}^{N} [g_i T (x;\gamma_m)+\frac {1}{2} h_i T^2 (x;\gamma_m)] + \Omega (T (x;\gamma_m))</script><p>使用泰勒二阶展开的优点：</p>
-<p>xgboost 使用了一阶和二阶偏导，二阶导数有利于梯度下降的更快更准。使用泰勒展开取得函数做自变量的二阶导数形式，可以在不选定损失函数具体形式的情况下，仅仅依靠输入数据的值就可以进行叶子分裂优化计算，本质上也就把损失函数的选取和模型算法优化 / 参数选择分开了。这种去耦合增加了 xgboost 的适用性，使得它按需选取损失函数，可以用于分类，也可以用于回归。<br>引用自：@AntZ</p>
-<h3 id="xgboost-决策树生成"><a href="#xgboost-决策树生成" class="headerlink" title="xgboost 决策树生成"></a>xgboost 决策树生成</h3><h4 id="确定叶子节点的最优输出值"><a href="#确定叶子节点的最优输出值" class="headerlink" title="确定叶子节点的最优输出值"></a>确定叶子节点的最优输出值</h4><p>进一步化简我们的损失函数：</p>
+\gamma_m = arg \underset{\gamma_m}{min} \sum_{i=1}^{N} [g_i T(x;\gamma_m)+\frac{1}{2} h_i T^2(x;\gamma_m)] + \Omega (T(x;\gamma_m))</script><p>使用泰勒二阶展开的优点：</p>
+<p>xgboost使用了一阶和二阶偏导, 二阶导数有利于梯度下降的更快更准. 使用泰勒展开取得函数做自变量的二阶导数形式, 可以在不选定损失函数具体形式的情况下, 仅仅依靠输入数据的值就可以进行叶子分裂优化计算, 本质上也就把损失函数的选取和模型算法优化/参数选择分开了. 这种去耦合增加了xgboost的适用性, 使得它按需选取损失函数, 可以用于分类, 也可以用于回归。<br>引用自：@AntZ</p>
+<h3 id="xgboost决策树生成"><a href="#xgboost决策树生成" class="headerlink" title="xgboost决策树生成"></a>xgboost决策树生成</h3><h4 id="确定叶子节点的最优输出值"><a href="#确定叶子节点的最优输出值" class="headerlink" title="确定叶子节点的最优输出值"></a>确定叶子节点的最优输出值</h4><p>进一步化简我们的损失函数：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-\gamma_m &= arg \underset {\gamma_m}{min} \sum_{i=1}^{N} [g_i T (x;\gamma_m)+\frac {1}{2} h_i T^2 (x;\gamma_m)] + \Omega (T (x;\gamma_m))\\
-&= arg \underset {\gamma_m}{min} \sum_{j=1}^{J_m} [c_{mj} (\sum_{i \in R_{mj}} g_i) + \frac {1}{2} c_{mj}^2 (\beta +\sum_{i \in R_{mj}} h_i )] + \alpha J_m\\
-&=arg \underset {\gamma_m}{min} \sum_{j=1}^{J_m} q (c_{mj}) + \alpha J_m
-\end {align*}</script><p>其中：</p>
+\begin{align*}
+\gamma_m &= arg \underset{\gamma_m}{min} \sum_{i=1}^{N} [g_i T(x;\gamma_m)+\frac{1}{2} h_i T^2(x;\gamma_m)] + \Omega (T(x;\gamma_m))\\
+&= arg \underset{\gamma_m}{min} \sum_{j=1}^{J_m} [c_{mj} (\sum_{i \in R_{mj}}g_i) + \frac{1}{2}c_{mj}^2 (\beta +\sum_{i \in R_{mj}}h_i )] + \alpha J_m\\
+&=arg \underset{\gamma_m}{min} \sum_{j=1}^{J_m}q(c_{mj}) + \alpha J_m
+\end{align*}</script><p>其中：</p>
 <script type="math/tex; mode=display">
-q (c_{mj}) = c_{mj} (\sum_{i \in R_{mj}} g_i) + \frac {1}{2} c_{mj}^2 (\beta +\sum_{i \in R_{mj}} h_i )</script><p>因为 $\alpha J_m$ 为常数，因此最小化损失函数就可以通过分别极小化每个叶子节点中损失值 $q (c_{mj})$ 实现。$q (c_{mj})$ 为凸函数，这是一个无约束的凸优化问题，求导令其等于 0，得到每个叶子节点的最优输出值以及该决策树所带来的损失函数值的减少：</p>
+q(c_{mj}) = c_{mj} (\sum_{i \in R_{mj}}g_i) + \frac{1}{2}c_{mj}^2 (\beta +\sum_{i \in R_{mj}}h_i )</script><p>因为$\alpha J_m$为常数，因此最小化损失函数就可以通过分别极小化每个叶子节点中损失值$q(c_{mj})$实现。$q(c_{mj})$为凸函数，这是一个无约束的凸优化问题，求导令其等于0，得到每个叶子节点的最优输出值以及该决策树所带来的损失函数值的减少：</p>
 <script type="math/tex; mode=display">
-\begin {align*}
-&c_{mj} = -\frac {\sum_{i \in R_{mj}} g_j}{\beta + \sum_{i \in R_{mj}} h_j}\\
-&L_{mj} = -\frac {1}{2} \sum_{j=1}^{J_m}\frac {(\sum_{i \in R_{mj}} g_j)^2}{\beta + \sum_{i \in R_{mj}} h_j} + \alpha J_m
-\end {align*}</script><p>xgboost 中每棵决策树中各叶子节点的输出值只由损失函数在当前模型的一阶、二阶导数决定，在第 m 次迭代时，只要我们预先计算出 g 和 h，在训练生成一棵树模型后就可以直接计算出每个叶子节点的最优输出值。那么现在的问题就是：xgboost 是根据什么条件来生成一棵合适的决策树呢？</p>
+\begin{align*}
+&c_{mj} = -\frac{\sum_{i \in R_{mj}} g_j}{\beta + \sum_{i \in R_{mj}}h_j}\\
+&L_{mj} = -\frac{1}{2} \sum_{j=1}^{J_m}\frac{(\sum_{i \in R_{mj}} g_j)^2}{\beta + \sum_{i \in R_{mj}}h_j} + \alpha J_m
+\end{align*}</script><p>xgboost中每棵决策树中各叶子节点的输出值只由损失函数在当前模型的一阶、二阶导数决定，在第m次迭代时，只要我们预先计算出g和h，在训练生成一棵树模型后就可以直接计算出每个叶子节点的最优输出值。那么现在的问题就是：xgboost是根据什么条件来生成一棵合适的决策树呢？</p>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/4.png" width="55%" heigh="55%">
 </div>
 
-<h4 id="分裂条件"><a href="#分裂条件" class="headerlink" title="分裂条件"></a>分裂条件</h4><p>与一般决策树选取 <strong> 最大信息增益 (ID3)、最大信息增益率 (C4.5)、最小基尼系数 (CART) 或最小方差 (CART)</strong> 类似，xgboost 按照 “<strong> 最大损失减小值 </strong>” 的原则来选择最优切分特征和切分点。</p>
-<p>假设我们要对某个节点进行分裂，设 $R$ 表示该节点上所有样本的集合，$R_L,R_R$ 表示分裂后左右子节点中样本集，则根据损失函数一阶二阶导数可以计算出分裂前后第 m 棵树的损失函数减小量为：</p>
+<h4 id="分裂条件"><a href="#分裂条件" class="headerlink" title="分裂条件"></a>分裂条件</h4><p>与一般决策树选取<strong>最大信息增益(ID3)、最大信息增益率(C4.5)、最小基尼系数(CART)或最小方差(CART)</strong>类似，xgboost按照“<strong>最大损失减小值</strong>”的原则来选择最优切分特征和切分点。</p>
+<p>假设我们要对某个节点进行分裂，设$R$表示该节点上所有样本的集合，$R_L,R_R$表示分裂后左右子节点中样本集，则根据损失函数一阶二阶导数可以计算出分裂前后第m棵树的损失函数减小量为：</p>
 <script type="math/tex; mode=display">
-\Delta L = \frac {1}{2} (\sum_{j=1}^{J_m}\frac {(\sum_{i \in R_{L}} g_j)^2}{\beta + \sum_{i \in R_{L}} h_j}- \sum_{j=1}^{J_m}\frac {(\sum_{i \in R_{R}} g_j)^2}{\beta + \sum_{i \in R_{R}} h_j}-\sum_{j=1}^{J_m}\frac {(\sum_{i \in R} g_j)^2}{\beta + \sum_{i \in R} h_j}) - \alpha J_m</script><h3 id="决策树集成"><a href="#决策树集成" class="headerlink" title="决策树集成"></a>决策树集成</h3><h4 id="shrinkage-方法"><a href="#shrinkage-方法" class="headerlink" title="shrinkage 方法"></a>shrinkage 方法</h4><p>在对各个基决策树进行加和集成时，xgboost 采用了 shrinkage (缩减) 的方法来降低过拟合的风险，模型集成形式如下：</p>
+\Delta L = \frac{1}{2} (\sum_{j=1}^{J_m}\frac{(\sum_{i \in R_{L}} g_j)^2}{\beta + \sum_{i \in R_{L}}h_j}- \sum_{j=1}^{J_m}\frac{(\sum_{i \in R_{R}} g_j)^2}{\beta + \sum_{i \in R_{R}}h_j}-\sum_{j=1}^{J_m}\frac{(\sum_{i \in R} g_j)^2}{\beta + \sum_{i \in R}h_j}) - \alpha J_m</script><h3 id="决策树集成"><a href="#决策树集成" class="headerlink" title="决策树集成"></a>决策树集成</h3><h4 id="shrinkage方法"><a href="#shrinkage方法" class="headerlink" title="shrinkage方法"></a>shrinkage方法</h4><p>在对各个基决策树进行加和集成时，xgboost采用了shrinkage(缩减)的方法来降低过拟合的风险，模型集成形式如下：</p>
 <script type="math/tex; mode=display">
-f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方法最早由 Friedman 于 1999 年在《Greedy Function Approximation:A Gradient Boosting Machine》中提出。$\eta$ 取较小的值时会使得模型的泛化能力较强，该值与迭代次数具有高度的负相关，在调参时通常需要将两者一起联调。</p>
+f_m(x)=f_{m-1}(x) + \eta  T(x;\gamma_m),0<\eta \leq 1</script><p>shrinkage方法最早由Friedman于1999年在《Greedy Function Approximation:A Gradient Boosting Machine》中提出。$\eta$ 取较小的值时会使得模型的泛化能力较强，该值与迭代次数具有高度的负相关，在调参时通常需要将两者一起联调。</p>
 <p>为什么要乘一个 $\eta$ 呢，有以下三个原因：</p>
 <ol>
 <li>训练数据由于样本量有限，存在一定的信息丢失；</li>
 <li>训练数据中存在一些噪声；</li>
 <li>我们的算法是把训练数据中的每一个样本都当做一个不同的维度，这必然会导致训练误差和泛化误差存在偏差；</li>
 </ol>
-<p>因此，如果我们依然在每一次都取最优的 $T (x;\gamma_m)$，就极有可能导致各个基学习器过拟合，通过乘以一个小于 1 的系数，让该模型尽量只学习到有用的信息，抑制过拟合。</p>
-<h4 id="特征抽样"><a href="#特征抽样" class="headerlink" title="特征抽样"></a>特征抽样</h4><p>xgboost 在构造树模型时也借用了随机森林中随机选择一定量的特征子集来确定最优分裂点的做法，以防止过拟合（增加基学习器的多样性）。特征子集越大则每个基学习器的偏差就越小，但方差就越大。</p>
-<h3 id="xgboost-性能优化"><a href="#xgboost-性能优化" class="headerlink" title="xgboost 性能优化"></a>xgboost 性能优化</h3><p>这里主要介绍 xgboost 对计算性能和预测结果的优化方法</p>
+<p>因此，如果我们依然在每一次都取最优的$T(x;\gamma_m)$，就极有可能导致各个基学习器过拟合，通过乘以一个小于1的系数，让该模型尽量只学习到有用的信息，抑制过拟合。</p>
+<h4 id="特征抽样"><a href="#特征抽样" class="headerlink" title="特征抽样"></a>特征抽样</h4><p>xgboost在构造树模型时也借用了随机森林中随机选择一定量的特征子集来确定最优分裂点的做法，以防止过拟合（增加基学习器的多样性）。特征子集越大则每个基学习器的偏差就越小，但方差就越大。</p>
+<h3 id="xgboost性能优化"><a href="#xgboost性能优化" class="headerlink" title="xgboost性能优化"></a>xgboost性能优化</h3><p>这里主要介绍xgboost对计算性能和预测结果的优化方法</p>
 <h4 id="分裂点搜索算法优化"><a href="#分裂点搜索算法优化" class="headerlink" title="分裂点搜索算法优化"></a>分裂点搜索算法优化</h4><ol>
-<li>完全式搜索：和大多数基于树的算法一样，xgboost 也实现了一种完全搜索式的算法，这种搜索算法会遍历一个特征上所有可能的分裂点，分别计算其损失减少量，选择最优的分裂点。其优点是能够搜索到最优的分裂点，但缺点是当数据量很大时比较浪费计算资源，当我们的训练数据很大，以至于无法一次性加载完或者在分布式计算环境下，该算法就无能为力了。</li>
-<li>分位点搜索：首先根据某个特征 K 的取值分布情况，选取 $l$ 个分位点将特征划分为 $l+1$ 个子区间（把损失函数在各个样本点的二阶偏导作为样本权重求取分位数，详情参见论文）。然后分别在每个子区间中各个样本在当前迭代中的一阶导数和二阶导数求和，得到该区间的一阶和二阶导数的汇总统计量。后面在寻找最优分裂点时就只 <strong> 搜索这 $l$ 个分位点 </strong>，并从这 $l$ 个分位点中找到最好的分裂点作为最优分裂点的近似。</li>
+<li>完全式搜索：和大多数基于树的算法一样，xgboost也实现了一种完全搜索式的算法，这种搜索算法会遍历一个特征上所有可能的分裂点，分别计算其损失减少量，选择最优的分裂点。其优点是能够搜索到最优的分裂点，但缺点是当数据量很大时比较浪费计算资源，当我们的训练数据很大，以至于无法一次性加载完或者在分布式计算环境下，该算法就无能为力了。</li>
+<li>分位点搜索:首先根据某个特征K的取值分布情况，选取$l$个分位点将特征划分为$l+1$个子区间（把损失函数在各个样本点的二阶偏导作为样本权重求取分位数，详情参见论文）。然后分别在每个子区间中各个样本在当前迭代中的一阶导数和二阶导数求和，得到该区间的一阶和二阶导数的汇总统计量。后面在寻找最优分裂点时就只<strong>搜索这$l$个分位点</strong>，并从这$l$个分位点中找到最好的分裂点作为最优分裂点的近似。</li>
 </ol>
 <div align="center">
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/5.png" width="55%" heigh="55%">
@@ -622,39 +622,39 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
 <ol>
 <li>数据中包含大量缺失值；</li>
 <li>统计频率为零；</li>
-<li>one-hot 编码；</li>
+<li>one-hot编码；</li>
 </ol>
-<p>xgboost 实现了一种 <strong> 自动处理稀疏 / 缺失数据 </strong> 的算法：xgboost 为每个节点指定了一个默认方向（通过将当前节点中所有在当前特征非缺失的样本分别全部划分到左右子节点，比较两个模型相比划分前的损失减少值，将减少的多的模型中该节点的划分方向作为该节点的默认方向），当遇到缺失值时，xgbooost 会将该样本划分到默认方向。在处理稀疏数据时，该算法将时间复杂度由线性缩短至与 no-missing 个数成正比，大大提升了计算性能。</p>
+<p>xgboost实现了一种<strong>自动处理稀疏/缺失数据</strong>的算法：xgboost为每个节点指定了一个默认方向（通过将当前节点中所有在当前特征非缺失的样本分别全部划分到左右子节点，比较两个模型相比划分前的损失减少值，将减少的多的模型中该节点的划分方向作为该节点的默认方向），当遇到缺失值时，xgbooost会将该样本划分到默认方向。在处理稀疏数据时，该算法将时间复杂度由线性缩短至与no-missing个数成正比，大大提升了计算性能。</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/1.png" alt></p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/2.png" alt></p>
 <h4 id="其他性能优化"><a href="#其他性能优化" class="headerlink" title="其他性能优化"></a>其他性能优化</h4><ul>
-<li>基于数据块的预排序：为了减小 CART 树构造 过程中的计算开销，XGBoost 在构造 CART 树之前先构造一个经过压缩处理的数 据块，该数据块中存储的是按照各特征值排序后对样本索引的指针。每次寻找最 优分裂点时只需要在这个数据块中依次遍历，然后根据其指针来提取各样本的一 阶导数和二阶导数即可。这样就不必反复地进行排序了，大大提高了计算的速度。</li>
+<li>基于数据块的预排序:为了减小 CART 树构造 过程中的计算开销，XGBoost 在构造 CART 树之前先构造一个经过压缩处理的数 据块，该数据块中存储的是按照各特征值排序后对样本索引的指针。每次寻找最 优分裂点时只需要在这个数据块中依次遍历，然后根据其指针来提取各样本的一 阶导数和二阶导数即可。这样就不必反复地进行排序了，大大提高了计算的速度。</li>
 <li>Cache-aware Access 技术：如果要获取的样本点的导 数值恰好不在当前缓存中，CPU 就必须访问内存，这就延长了处理时间。为了解 决这个问题，XGBoost 采用了 Cache-aware Access 技术来降低处理时间。</li>
-<li>Block Compression 技术：当我们需要处理的训练数据非常大，以至于内存无法一次加载完时，xgboost 将整个训 练数据集切割成多个块（block），并将其存储在外存中。在训练模型时 XGBoost 通过一个单独的线程来将需要处理的某个数据块预加载到主存缓冲区，以实现处 理操作在数据上的无缝衔接。XGBoost 不是简单的将数据分块存放在外存中，而 是采用一种按列压缩的方法对数据进行压缩，并且在读入时利用一个单独的线程 来实时解压。</li>
+<li>Block Compression 技术：当我们需要处理的训练数据非常大，以至于内存无法一次加载完时，xgboost将整个训 练数据集切割成多个块（block），并将其存储在外存中。在训练模型时 XGBoost 通过一个单独的线程来将需要处理的某个数据块预加载到主存缓冲区，以实现处 理操作在数据上的无缝衔接。XGBoost 不是简单的将数据分块存放在外存中，而 是采用一种按列压缩的方法对数据进行压缩，并且在读入时利用一个单独的线程 来实时解压。</li>
 <li>XGBoost 还通过将数据分散到多个可用的磁盘上，并为每一 个磁盘设置一个数据加载线程，这样就能同时从多个磁盘向内存缓冲区加载数据， 模型训练线程就能自由地从每个缓冲区读取数据，这大大增加了数据吞吐量。</li>
 </ul>
-<h2 id="实战篇"><a href="#实战篇" class="headerlink" title="实战篇"></a>实战篇</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装官方 anacanda 发行版 xgboost (windows\mac\linux):<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c anaconda py-xgboost</span><br></pre></td></tr></table></figure></div></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>xgboost 有两种使用方式：标准方式和 sklearn 方式。鉴于 sklearn 提供了更丰富的功能，并且使用广泛，推荐使用。<br><a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html" target="_blank" rel="noopener">官网参考</a></p>
-<h3 id="klearn-方式"><a href="#klearn-方式" class="headerlink" title="klearn 方式"></a>klearn 方式</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 包导入方式 </span></span><br><span class="line"><span class="keyword">from</span> xgboost.sklearn <span class="keyword">import</span> XGBClassifier</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure></div>
-<h4 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h4><p>sklearn 方式对数据要求比较轻松，只要是 array-like 类型的就可以。</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 假设数据已事先完成预处理 </span><br><span class="line">train = pd.read_csv ()</span><br><span class="line">test = pd.read_csv ()</span><br><span class="line"></span><br><span class="line">featrues = [f for f in train.columns if condition]</span><br><span class="line">target = &apos;label&apos;</span><br></pre></td></tr></table></figure></div>
-<h4 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h4><p>先通过 XGBClassifier 构建一个 “生” 模型，参数取初始预估值</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xgb1 = XGBClassifier (learning_rate =<span class="number">0.1</span>,</span><br><span class="line">                    n_estimators=<span class="number">3</span>,</span><br><span class="line">                    max_depth=<span class="number">8</span>,</span><br><span class="line">                    min_child_weight=<span class="number">3</span>,</span><br><span class="line">                    gamma=<span class="number">0</span>,</span><br><span class="line">                    subsample=<span class="number">1</span>,</span><br><span class="line">                    colsample_bytree=<span class="number">0.7</span>,</span><br><span class="line">                    objective= <span class="string">'binary:logistic'</span>,</span><br><span class="line">                    nthread=<span class="number">4</span>,</span><br><span class="line">                    scale_pos_weight=<span class="number">1</span>,</span><br><span class="line">                    seed=<span class="number">27</span>)</span><br></pre></td></tr></table></figure></div>
-<h4 id="参数选择"><a href="#参数选择" class="headerlink" title="参数选择"></a>参数选择</h4><p>运行 XGBoost 之前，必须设置三类参数：</p>
+<h2 id="实战篇"><a href="#实战篇" class="headerlink" title="实战篇"></a>实战篇</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装官方anacanda发行版xgboost(windows\mac\linux):<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c anaconda py-xgboost</span><br></pre></td></tr></table></figure></div></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>xgboost有两种使用方式：标准方式和sklearn方式。鉴于sklearn提供了更丰富的功能，并且使用广泛，推荐使用。<br><a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html" target="_blank" rel="noopener">官网参考</a></p>
+<h3 id="klearn方式"><a href="#klearn方式" class="headerlink" title="klearn方式"></a>klearn方式</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 包导入方式</span></span><br><span class="line"><span class="keyword">from</span> xgboost.sklearn <span class="keyword">import</span> XGBClassifier</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure></div>
+<h4 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h4><p>sklearn方式对数据要求比较轻松，只要是array-like类型的就可以。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 假设数据已事先完成预处理</span><br><span class="line">train = pd.read_csv()</span><br><span class="line">test = pd.read_csv()</span><br><span class="line"></span><br><span class="line">featrues = [f for f in train.columns if condition]</span><br><span class="line">target = &apos;label&apos;</span><br></pre></td></tr></table></figure></div>
+<h4 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h4><p>先通过XGBClassifier构建一个“生”模型，参数取初始预估值</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xgb1 = XGBClassifier(learning_rate =<span class="number">0.1</span>,</span><br><span class="line">                    n_estimators=<span class="number">3</span>,</span><br><span class="line">                    max_depth=<span class="number">8</span>,</span><br><span class="line">                    min_child_weight=<span class="number">3</span>,</span><br><span class="line">                    gamma=<span class="number">0</span>,</span><br><span class="line">                    subsample=<span class="number">1</span>,</span><br><span class="line">                    colsample_bytree=<span class="number">0.7</span>,</span><br><span class="line">                    objective= <span class="string">'binary:logistic'</span>,</span><br><span class="line">                    nthread=<span class="number">4</span>,</span><br><span class="line">                    scale_pos_weight=<span class="number">1</span>,</span><br><span class="line">                    seed=<span class="number">27</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="参数选择"><a href="#参数选择" class="headerlink" title="参数选择"></a>参数选择</h4><p>运行XGBoost之前，必须设置三类参数：</p>
 <ol>
-<li>基本 (General) 参数：设置要使用的基本模型</li>
-<li>提升 (Booster) 参数：在每一步指导每个提升（树或回归）</li>
-<li>学习任务 (Learning Task Parameters) 参数：指导优化模型表现</li>
+<li>基本(General)参数：设置要使用的基本模型</li>
+<li>提升(Booster)参数：在每一步指导每个提升（树或回归）</li>
+<li>学习任务(Learning Task Parameters)参数：指导优化模型表现</li>
 </ol>
 <h5 id="基本参数"><a href="#基本参数" class="headerlink" title="基本参数"></a>基本参数</h5><ol>
-<li>【booster】[默认为 gbtree]：每次迭代的基本模型类型。默认为 gbtree，树模型；也可以是 gblinear，线性模型</li>
-<li>【silent】[默认为 0]：是否为静默模式。默认为 0，运行时不打印 running messages；若为 1，则打印。</li>
+<li>【booster】[默认为gbtree]：每次迭代的基本模型类型。默认为gbtree，树模型；也可以是gblinear，线性模型</li>
+<li>【silent】[默认为0]：是否为静默模式。默认为0，运行时不打印running messages；若为1，则打印。</li>
 <li>【nthread】[默认最大线程]：进程数。默认为最大线程。</li>
 </ol>
-<h5 id="提升参数"><a href="#提升参数" class="headerlink" title="提升参数"></a>提升参数</h5><p>可以把 booster 参数看作是模型的旋钮，当旋钮 “顺时针” 滑动，模型会更复杂、学习能力也更强同时也越容易导致过拟合。</p>
-<p>树模型和线性模型的提升参数有所不同，这里只介绍 tree booster，因为它的表现远远胜过 linear booster，所以 linear booster 很少用到。</p>
+<h5 id="提升参数"><a href="#提升参数" class="headerlink" title="提升参数"></a>提升参数</h5><p>可以把booster参数看作是模型的旋钮，当旋钮”顺时针”滑动，模型会更复杂、学习能力也更强同时也越容易导致过拟合。</p>
+<p>树模型和线性模型的提升参数有所不同，这里只介绍tree booster，因为它的表现远远胜过linear booster，所以linear booster很少用到。</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">from</span> xgboost.sklearn <span class="keyword">import</span> XGBRegressor</span><br></pre></td></tr></table></figure></div>
-<p><code>XGBRegressor (max_depth=3, learning_rate=0.1, n_estimators=100, silent=True, objective=&#39;reg:linear&#39;, nthread=-1, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5, seed=0, missing=None)</code></p>
+<p><code>XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100, silent=True, objective=&#39;reg:linear&#39;, nthread=-1, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5, seed=0, missing=None)</code></p>
 <div class="table-container">
 <table>
 <thead>
@@ -692,9 +692,9 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
 </tr>
 <tr>
 <td style="text-align:left"><code>objective</code></td>
-<td style="text-align:left">损失 / 目标函数</td>
+<td style="text-align:left">损失/目标函数</td>
 <td style="text-align:left">reg:linear</td>
-<td style="text-align:left">reg:linear 线性回归，binary:logistic 二分类逻辑回归，multi:softmax 多分类</td>
+<td style="text-align:left">reg:linear线性回归，binary:logistic 二分类逻辑回归，multi:softmax多分类</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>nthread</code></td>
@@ -740,13 +740,13 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
 </tr>
 <tr>
 <td style="text-align:left"><code>reg_alpha</code></td>
-<td style="text-align:left">L1 正则化项。(和 Lasso regression 类似)</td>
+<td style="text-align:left">L1正则化项。(和Lasso regression类似)</td>
 <td style="text-align:left">1</td>
 <td style="text-align:left">越大，越容易欠拟合</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>reg_lambda</code></td>
-<td style="text-align:left">权重的 L2 正则化项。(和 Ridge regression 类似)</td>
+<td style="text-align:left">权重的L2正则化项。(和Ridge regression类似)</td>
 <td style="text-align:left">1</td>
 <td style="text-align:left">越大，越容易欠拟合，很少用</td>
 </tr>
@@ -772,24 +772,24 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
 <td style="text-align:left"><code>missing</code></td>
 <td style="text-align:left">数据中缺失值的默认值</td>
 <td style="text-align:left">None</td>
-<td style="text-align:left">缺省时，缺失值为 np.nan</td>
+<td style="text-align:left">缺省时，缺失值为np.nan</td>
 </tr>
 </tbody>
 </table>
 </div>
 <h5 id="任务参数"><a href="#任务参数" class="headerlink" title="任务参数"></a>任务参数</h5><ol>
-<li>【objective】[默认为 reg:linear]：可选的学习目标如下：<ul>
+<li>【objective】[默认为reg:linear]：可选的学习目标如下：<ul>
 <li>“reg:linear” –线性回归。</li>
 <li>“reg:logistic” –逻辑回归。</li>
 <li>“binary:logistic” –二分类的逻辑回归问题，输出为概率。</li>
-<li>“binary:logitraw” –二分类的逻辑回归问题，输出的结果为 wTx。</li>
-<li>“count:poisson” –计数问题的 poisson 回归，输出结果为 poisson 分布。在 poisson 回归中，max_delta_step 的缺省值为 0.7。(used to safeguard optimization)</li>
-<li>“multi:softmax” –让 XGBoost 采用 softmax 目标函数处理多分类问题，同时需要设置参数 num_class（类别个数）</li>
-<li>“multi:softprob” –和 softmax 一样，但是输出的是 ndata * nclass 的向量，可以将该向量 reshape 成 ndata 行 nclass 列的矩阵。没行数据表示样本所属于每个类别的概率。</li>
+<li>“binary:logitraw” –二分类的逻辑回归问题，输出的结果为wTx。</li>
+<li>“count:poisson” –计数问题的poisson回归，输出结果为poisson分布。在poisson回归中，max_delta_step的缺省值为0.7。(used to safeguard optimization)</li>
+<li>“multi:softmax” –让XGBoost采用softmax目标函数处理多分类问题，同时需要设置参数num_class（类别个数）</li>
+<li>“multi:softprob” –和softmax一样，但是输出的是ndata * nclass的向量，可以将该向量reshape成ndata行nclass列的矩阵。没行数据表示样本所属于每个类别的概率。</li>
 <li>“rank:pairwise” –set XGBoost to do ranking task by minimizing the pairwise loss</li>
 </ul>
 </li>
-<li>【eval_metric】[默认值根据 objective 参数调整]：性能指标<ul>
+<li>【eval_metric】[默认值根据objective参数调整]：性能指标<ul>
 <li>rmse – root mean square error</li>
 <li>mae – mean absolute error</li>
 <li>logloss – negative log-likelihood</li>
@@ -799,55 +799,55 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
 <li>auc: Area under the curve</li>
 </ul>
 </li>
-<li>【seed】[默认为 0]：随机数种子，置它可以复现随机数据的结果，也可以用于调整参数</li>
+<li>【seed】[默认为0]：随机数种子，置它可以复现随机数据的结果，也可以用于调整参数</li>
 </ol>
-<p>python 的 XGBoost 模块有一个 sklearn 包，XGBClassifier。这个包中的参数是按 sklearn 风格命名的。但会改变的函数名是：</p>
+<p>python的XGBoost模块有一个sklearn包，XGBClassifier。这个包中的参数是按sklearn风格命名的。但会改变的函数名是：</p>
 <ol>
 <li>eta -&gt;learning_rate</li>
 <li>lambda-&gt;reg_lambda</li>
 <li>alpha-&gt;reg_alpha</li>
 <li>num_boosting_rounds-&gt;n_estimators</li>
 </ol>
-<p>关于调节迭代次数的参数，在标准 XGBoost 视线中调用拟合函数时把它作为 <code>num_boost_round</code> 参数传入。在 XGBClassifier 中通过设置参数中的 n_estimators 来实现。</p>
+<p>关于调节迭代次数的参数，在标准XGBoost视线中调用拟合函数时把它作为<code>num_boost_round</code>参数传入。在XGBClassifier中通过设置参数中的n_estimators来实现。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="官网参考"><a href="#官网参考" class="headerlink" title="官网参考"></a>官网参考</h3><ul>
-<li><a href="http://xgboost.readthedocs.io/en/latest/" target="_blank" rel="noopener">xgboost 官网</a> 的一些常用资源：</li>
+<li><a href="http://xgboost.readthedocs.io/en/latest/" target="_blank" rel="noopener">xgboost官网</a>的一些常用资源：</li>
 </ul>
-<h4 id="XGBoost-理论"><a href="#XGBoost-理论" class="headerlink" title="XGBoost 理论"></a>XGBoost 理论</h4><ul>
+<h4 id="XGBoost理论"><a href="#XGBoost理论" class="headerlink" title="XGBoost理论"></a>XGBoost理论</h4><ul>
 <li><a href="http://xgboost.readthedocs.io/en/latest/model.html" target="_blank" rel="noopener">提升树简介</a></li>
 </ul>
-<h4 id="XGBoost-示例"><a href="#XGBoost-示例" class="headerlink" title="XGBoost 示例"></a>XGBoost 示例</h4><ul>
-<li><a href="http://xgboost.readthedocs.io/en/latest/get_started/index.html" target="_blank" rel="noopener">XGBoost python 简单实例</a></li>
-<li><a href="https://github.com/dmlc/xgboost/tree/master/demo" target="_blank" rel="noopener">XGBoost 更多实例</a></li>
+<h4 id="XGBoost示例"><a href="#XGBoost示例" class="headerlink" title="XGBoost示例"></a>XGBoost示例</h4><ul>
+<li><a href="http://xgboost.readthedocs.io/en/latest/get_started/index.html" target="_blank" rel="noopener">XGBoost python简单实例</a></li>
+<li><a href="https://github.com/dmlc/xgboost/tree/master/demo" target="_blank" rel="noopener">XGBoost更多实例</a></li>
 </ul>
-<h4 id="XGBoost-参数"><a href="#XGBoost-参数" class="headerlink" title="XGBoost 参数"></a>XGBoost 参数</h4><ul>
+<h4 id="XGBoost参数"><a href="#XGBoost参数" class="headerlink" title="XGBoost参数"></a>XGBoost参数</h4><ul>
 <li><a href="http://xgboost.readthedocs.io/en/latest/how_to/param_tuning.html" target="_blank" rel="noopener">控制过拟合和不平衡数据的一般方法</a></li>
-<li><a href="http://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">XGBoost 的参数 - 原版</a></li>
-<li><a href="https://jiayi797.github.io/2017/04/28/xgboost% E5%8F%82% E6%95% B0/" target="_blank" rel="noopener">XGBoost 的参数 - 译文</a></li>
+<li><a href="http://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">XGBoost的参数-原版</a></li>
+<li><a href="https://jiayi797.github.io/2017/04/28/xgboost%E5%8F%82%E6%95%B0/" target="_blank" rel="noopener">XGBoost的参数-译文</a></li>
 </ul>
 <h4 id="python-API"><a href="#python-API" class="headerlink" title="python API"></a>python API</h4><ul>
-<li><a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html" target="_blank" rel="noopener">python XGBoost 工作流 - 原版</a></li>
-<li><a href="http://blog.csdn.net/zc02051126/article/details/46771793" target="_blank" rel="noopener">python XGBoost 工作流 - 翻译</a></li>
-<li><a href="https://github.com/tqchen/xgboost/tree/master/demo/guide-python" target="_blank" rel="noopener">python XGBoost 工作流 - 示例</a></li>
+<li><a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html" target="_blank" rel="noopener">python XGBoost工作流-原版</a></li>
+<li><a href="http://blog.csdn.net/zc02051126/article/details/46771793" target="_blank" rel="noopener">python XGBoost工作流-翻译</a></li>
+<li><a href="https://github.com/tqchen/xgboost/tree/master/demo/guide-python" target="_blank" rel="noopener">python XGBoost工作流-示例</a></li>
 <li><a href="http://xgboost.readthedocs.io/en/latest/python/python_api.html" target="_blank" rel="noopener">XGBoost Python API</a></li>
-<li><a href="https://rdrr.io/cran/xgboost/api/" target="_blank" rel="noopener">XGBoost 的源码和详细 API（强力推荐）</a></li>
+<li><a href="https://rdrr.io/cran/xgboost/api/" target="_blank" rel="noopener">XGBoost的源码和详细API（强力推荐）</a></li>
 </ul>
 <h3 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h3><ul>
-<li>《XGBoost 与案例解析》，Drxan</li>
+<li>《XGBoost与案例解析》，Drxan</li>
 <li>《XGBoost: A Scalable Tree Boosting System》,Tianqi Chen</li>
-<li><a href>XGBoost 原理解析.pdf</a></li>
-<li><a href>陈天奇 XGBOOST.pdf</a></li>
-<li><a href>xgboost 实战</a></li>
-<li><a href="http://blog.csdn.net/eddy_zheng/article/details/50496186" target="_blank" rel="noopener">机器学习 xgboost 实战 — 手写数字识别</a></li>
-<li><a href="http://blog.csdn.net/u010657489/article/details/51952785" target="_blank" rel="noopener">XGBoost 参数调优完全指南（附 Python 代码，强力推荐）</a>：有数据有代码有说明</li>
-<li><a href="http://blog.csdn.net/u010414589/article/details/51153310" target="_blank" rel="noopener">xgboost 调参经验 - train 参数说明</a></li>
+<li><a href>XGBoost原理解析.pdf</a></li>
+<li><a href>陈天奇XGBOOST.pdf</a></li>
+<li><a href>xgboost实战</a></li>
+<li><a href="http://blog.csdn.net/eddy_zheng/article/details/50496186" target="_blank" rel="noopener">机器学习xgboost实战—手写数字识别</a></li>
+<li><a href="http://blog.csdn.net/u010657489/article/details/51952785" target="_blank" rel="noopener">XGBoost参数调优完全指南（附Python代码,强力推荐）</a>：有数据有代码有说明</li>
+<li><a href="http://blog.csdn.net/u010414589/article/details/51153310" target="_blank" rel="noopener">xgboost 调参经验-train参数说明</a></li>
 <li><a href="http://blog.csdn.net/u010414589/article/details/51153310" target="_blank" rel="noopener">xgboost 调参经验</a></li>
-<li><a href="http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter" target="_blank" rel="noopener">sklearn-metrics 性能指标分类</a></li>
-<li><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" target="_blank" rel="noopener">sklearn-gridsearch 网格搜索</a>：指定参数范围、模型、性能指标、k-fold 验证、=》输出最佳参数</li>
-<li><a href="http://xgboost.readthedocs.io/en/latest/python/python_api.html" target="_blank" rel="noopener">xgboost-xgbcv 交叉验证 - 迭代参数选择</a></li>
-<li><a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html" target="_blank" rel="noopener">xgboost-DMatrix 带权重数据导入</a></li>
-<li><a href="http://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">XGBoost 的参数 - 原版</a></li>
-<li><a href="https://jiayi797.github.io/2017/04/28/xgboost% E5%8F%82% E6%95% B0/" target="_blank" rel="noopener">XGBoost 的参数 - 译文</a></li>
-<li><a href="http://blog.csdn.net/u010657489/article/details/51952785" target="_blank" rel="noopener">XGBoost 参数调优完全指南（附 Python 代码，强力推荐）</a>：有数据有代码有说明</li>
+<li><a href="http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter" target="_blank" rel="noopener">sklearn-metrics性能指标分类</a></li>
+<li><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" target="_blank" rel="noopener">sklearn-gridsearch网格搜索</a>：指定参数范围、模型、性能指标、k-fold验证、=》输出最佳参数</li>
+<li><a href="http://xgboost.readthedocs.io/en/latest/python/python_api.html" target="_blank" rel="noopener">xgboost-xgbcv交叉验证-迭代参数选择</a></li>
+<li><a href="http://xgboost.readthedocs.io/en/latest/python/python_intro.html" target="_blank" rel="noopener">xgboost-DMatrix带权重数据导入</a></li>
+<li><a href="http://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">XGBoost的参数-原版</a></li>
+<li><a href="https://jiayi797.github.io/2017/04/28/xgboost%E5%8F%82%E6%95%B0/" target="_blank" rel="noopener">XGBoost的参数-译文</a></li>
+<li><a href="http://blog.csdn.net/u010657489/article/details/51952785" target="_blank" rel="noopener">XGBoost参数调优完全指南（附Python代码,强力推荐）</a>：有数据有代码有说明</li>
 </ul>
 
       
@@ -903,14 +903,18 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/机器学习/机器学习/机器学习：集成学习（五）—— LightGBM/" rel="next" title="机器学习：集成学习（五）—— LightGBM">
+                <i class="fa fa-chevron-left"></i> 机器学习：集成学习（五）—— LightGBM
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/机器学习/机器学习/机器学习：集成学习（五）—— LightGBM/" rel="prev" title="机器学习：集成学习（五）—— LightGBM">
-                机器学习：集成学习（五）—— LightGBM <i class="fa fa-chevron-right"></i>
+              <a href="/机器学习/机器学习/机器学习：集成学习（三）—— GBDT/" rel="prev" title="机器学习：集成学习（三）—— GBDT">
+                机器学习：集成学习（三）—— GBDT <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1017,7 +1021,7 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1091,7 +1095,7 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理篇"><span class="nav-number">1.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型（additive-model）"><span class="nav-number">1.1.</span> <span class="nav-text">模型（additive model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构风险最小化（SRM）"><span class="nav-number">1.2.</span> <span class="nav-text">结构风险最小化（SRM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前向分步算法"><span class="nav-number">1.3.</span> <span class="nav-text">前向分步算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#损失函数的二阶泰勒展开"><span class="nav-number">1.4.</span> <span class="nav-text">损失函数的二阶泰勒展开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost-决策树生成"><span class="nav-number">1.5.</span> <span class="nav-text">xgboost 决策树生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#确定叶子节点的最优输出值"><span class="nav-number">1.5.1.</span> <span class="nav-text">确定叶子节点的最优输出值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分裂条件"><span class="nav-number">1.5.2.</span> <span class="nav-text">分裂条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树集成"><span class="nav-number">1.6.</span> <span class="nav-text">决策树集成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shrinkage-方法"><span class="nav-number">1.6.1.</span> <span class="nav-text">shrinkage 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征抽样"><span class="nav-number">1.6.2.</span> <span class="nav-text">特征抽样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost-性能优化"><span class="nav-number">1.7.</span> <span class="nav-text">xgboost 性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分裂点搜索算法优化"><span class="nav-number">1.7.1.</span> <span class="nav-text">分裂点搜索算法优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稀疏数据的自动识别"><span class="nav-number">1.7.2.</span> <span class="nav-text">稀疏数据的自动识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他性能优化"><span class="nav-number">1.7.3.</span> <span class="nav-text">其他性能优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战篇"><span class="nav-number">2.</span> <span class="nav-text">实战篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#klearn-方式"><span class="nav-number">2.3.</span> <span class="nav-text">klearn 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据准备"><span class="nav-number">2.3.1.</span> <span class="nav-text">数据准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型选择"><span class="nav-number">2.3.2.</span> <span class="nav-text">模型选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数选择"><span class="nav-number">2.3.3.</span> <span class="nav-text">参数选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本参数"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">基本参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#提升参数"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">提升参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务参数"><span class="nav-number">2.3.3.3.</span> <span class="nav-text">任务参数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官网参考"><span class="nav-number">3.1.</span> <span class="nav-text">官网参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost-理论"><span class="nav-number">3.1.1.</span> <span class="nav-text">XGBoost 理论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost-示例"><span class="nav-number">3.1.2.</span> <span class="nav-text">XGBoost 示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost-参数"><span class="nav-number">3.1.3.</span> <span class="nav-text">XGBoost 参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-API"><span class="nav-number">3.1.4.</span> <span class="nav-text">python API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他参考"><span class="nav-number">3.2.</span> <span class="nav-text">其他参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理篇"><span class="nav-number">1.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型（additive-model）"><span class="nav-number">1.1.</span> <span class="nav-text">模型（additive model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构风险最小化（SRM）"><span class="nav-number">1.2.</span> <span class="nav-text">结构风险最小化（SRM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前向分步算法"><span class="nav-number">1.3.</span> <span class="nav-text">前向分步算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#损失函数的二阶泰勒展开"><span class="nav-number">1.4.</span> <span class="nav-text">损失函数的二阶泰勒展开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost决策树生成"><span class="nav-number">1.5.</span> <span class="nav-text">xgboost决策树生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#确定叶子节点的最优输出值"><span class="nav-number">1.5.1.</span> <span class="nav-text">确定叶子节点的最优输出值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分裂条件"><span class="nav-number">1.5.2.</span> <span class="nav-text">分裂条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树集成"><span class="nav-number">1.6.</span> <span class="nav-text">决策树集成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shrinkage方法"><span class="nav-number">1.6.1.</span> <span class="nav-text">shrinkage方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征抽样"><span class="nav-number">1.6.2.</span> <span class="nav-text">特征抽样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xgboost性能优化"><span class="nav-number">1.7.</span> <span class="nav-text">xgboost性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分裂点搜索算法优化"><span class="nav-number">1.7.1.</span> <span class="nav-text">分裂点搜索算法优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稀疏数据的自动识别"><span class="nav-number">1.7.2.</span> <span class="nav-text">稀疏数据的自动识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他性能优化"><span class="nav-number">1.7.3.</span> <span class="nav-text">其他性能优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战篇"><span class="nav-number">2.</span> <span class="nav-text">实战篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#klearn方式"><span class="nav-number">2.3.</span> <span class="nav-text">klearn方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据准备"><span class="nav-number">2.3.1.</span> <span class="nav-text">数据准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型选择"><span class="nav-number">2.3.2.</span> <span class="nav-text">模型选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数选择"><span class="nav-number">2.3.3.</span> <span class="nav-text">参数选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本参数"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">基本参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#提升参数"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">提升参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务参数"><span class="nav-number">2.3.3.3.</span> <span class="nav-text">任务参数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官网参考"><span class="nav-number">3.1.</span> <span class="nav-text">官网参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost理论"><span class="nav-number">3.1.1.</span> <span class="nav-text">XGBoost理论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost示例"><span class="nav-number">3.1.2.</span> <span class="nav-text">XGBoost示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XGBoost参数"><span class="nav-number">3.1.3.</span> <span class="nav-text">XGBoost参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-API"><span class="nav-number">3.1.4.</span> <span class="nav-text">python API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他参考"><span class="nav-number">3.2.</span> <span class="nav-text">其他参考</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1129,7 +1133,7 @@ f_m (x)=f_{m-1}(x) + \eta  T (x;\gamma_m),0<\eta \leq 1</script><p>shrinkage 方
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">301.7k</span>
+    <span title="Site words total count">300.6k</span>
   
 </div>
 
