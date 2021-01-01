@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-42-22.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-42-34.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/23-32-03.jpg">
-<meta property="og:updated_time" content="2020-10-25T12:53:18.121Z">
+<meta property="og:updated_time" content="2021-01-01T16:17:08.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统（二）—— 基于用户行为推荐">
 <meta name="twitter:description" content="用户行为不是随机的，而是蕴含着很多模式，这里面最著名的例子就是啤酒和尿布的例子。基于用户行为分析的推荐算法是个性化推荐系统的重要算法，学术界一般将这种类型的算法称为协同过滤算法(Collaborative Filtering, CF)。顾名思义，协同过滤就是指通过用户和网站的不断交互，齐心协力过滤掉用户不感兴趣的物品。 基于邻域的方法(neighborhood-based)基于邻域的推荐方法是最著">
@@ -386,8 +386,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-10T20:13:53+08:00">
-                2020-10-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T20:13:53+08:00">
+                2017-10-09
               </time>
             
 
@@ -402,8 +402,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-10-25T20:53:18+08:00">
-                2020-10-25
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-02T00:17:08+08:00">
+                2021-01-02
               </time>
             
           </span>
@@ -515,11 +515,11 @@
 <h4 id="计算用户间相似度"><a href="#计算用户间相似度" class="headerlink" title="计算用户间相似度"></a>计算用户间相似度</h4><p>常用的计算两个用户的兴趣相似度的方法有以下几种：</p>
 <p>（1）Jaccard公式：</p>
 <script type="math/tex; mode=display">
-w_{ij}=\frac{\left | N(u)\bigcap N(v) \right |}{\left | N(u)\bigcup N(v) \right |}</script><p>（2）余弦相似度：</p>
+w_{uv}=\frac{\left | N(u)\bigcap N(v) \right |}{\left | N(u)\bigcup N(v) \right |}</script><p>（2）余弦相似度：</p>
 <script type="math/tex; mode=display">
-w_{ij}=\frac{\left | N(u)\bigcap N(v) \right |}{\sqrt{\left | N(u) \right |\left |  N(v) \right |}}</script><p>（3）改进后的余弦相似度：两个用户都买过某个热门物品，并不能代表他们兴趣相似，因此需要惩罚热门物品对相似度的影响</p>
+w_{uv}=\frac{\left | N(u)\bigcap N(v) \right |}{\sqrt{\left | N(u) \right |\left |  N(v) \right |}}</script><p>（3）改进后的余弦相似度：两个用户都买过某个热门物品，并不能代表他们兴趣相似，因此需要惩罚热门物品对相似度的影响</p>
 <script type="math/tex; mode=display">
-w_{ij}=\frac{\sum_{i \in N(u)\bigcap N(v)}\frac{1}{log(1+\left | N(i)  \right |)}}{\sqrt{\left | N(u) \right |\left |  N(v) \right |}}</script><ul>
+w_{uv}=\frac{\sum_{i \in N(u)\bigcap N(v)}\frac{1}{log(1+\left | N(i)  \right |)}}{\sqrt{\left | N(u) \right |\left |  N(v) \right |}}</script><ul>
 <li>$N(u)$：用户u曾经有过正反馈的物品集合；</li>
 <li>$N(i)$：对物品i有过正反馈的用户集合；</li>
 </ul>
@@ -731,8 +731,8 @@ r=(1-\alpha )r_0+\alpha M^Tr</script><p>2、计算A,B相似度的一般思路：
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/推荐系统/推荐系统/推荐系统（一）—— 推荐系统概论/" rel="next" title="推荐系统（一）—— 推荐系统概论">
-                <i class="fa fa-chevron-left"></i> 推荐系统（一）—— 推荐系统概论
+              <a href="/推荐系统/推荐系统/推荐系统（三）—— 基于用户标签推荐/" rel="next" title="推荐系统（三）—— 基于用户标签推荐">
+                <i class="fa fa-chevron-left"></i> 推荐系统（三）—— 基于用户标签推荐
               </a>
             
           </div>
@@ -741,8 +741,8 @@ r=(1-\alpha )r_0+\alpha M^Tr</script><p>2、计算A,B相似度的一般思路：
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/推荐系统/推荐系统/推荐系统（三）—— 基于用户标签推荐/" rel="prev" title="推荐系统（三）—— 基于用户标签推荐">
-                推荐系统（三）—— 基于用户标签推荐 <i class="fa fa-chevron-right"></i>
+              <a href="/推荐系统/推荐系统/推荐系统（一）—— 推荐系统概论/" rel="prev" title="推荐系统（一）—— 推荐系统概论">
+                推荐系统（一）—— 推荐系统概论 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -947,7 +947,7 @@ r=(1-\alpha )r_0+\alpha M^Tr</script><p>2、计算A,B相似度的一般思路：
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

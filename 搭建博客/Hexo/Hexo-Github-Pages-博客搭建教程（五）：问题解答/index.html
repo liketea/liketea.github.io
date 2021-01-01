@@ -144,8 +144,8 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201125111005.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190913213734.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201209153226.png">
-<meta property="og:updated_time" content="2020-12-09T07:33:26.670Z">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201230213808.png">
+<meta property="og:updated_time" content="2020-12-30T13:40:16.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github Pages 博客搭建教程（五）：问题解答">
 <meta name="twitter:description" content="百度和Google收录使用 GitHub + Hexo 搭建的博客，默认只能你自己能看到，别人是无法通过百度、谷歌等搜索引擎搜索到的:  可以手动将自己的博客站点提交给百度、谷歌的搜索引擎，这样就可以通过百度或谷歌搜索到自己的博客内容了：  百度收录百度无法搜索到博客信息，是因为 Github Pages 屏蔽了百度爬虫。 验证站点登录百度搜索资源平台&amp;gt;用户中心&amp;gt;站点管理&amp;gt;添加">
@@ -409,8 +409,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-09T15:33:26+08:00">
-                2020-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-30T21:40:16+08:00">
+                2020-12-30
               </time>
             
           </span>
@@ -470,7 +470,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.5k
+                  2.6k
                 </span>
               
 
@@ -608,8 +608,16 @@
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: index.html</span><br><span class="line">date: 2018-07-05 12:01:30</span><br><span class="line">tags:</span><br><span class="line">mathjax: true</span><br><span class="line">--</span><br></pre></td></tr></table></figure></div>
 <p>最终效果：</p>
 <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png" alt></p>
-<h3 id="在手机无法打开博客"><a href="#在手机无法打开博客" class="headerlink" title="在手机无法打开博客"></a>在手机无法打开博客</h3><p>可能的原因是 github 仓库设置了强制 <code>https</code>，取消勾选即可：</p>
-<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201209153226.png" alt></p>
+<h3 id="在手机无法打开博客"><a href="#在手机无法打开博客" class="headerlink" title="在手机无法打开博客"></a>在手机无法打开博客</h3><p>博客在某些网络中无法访问，原因可能是 gitpage 被墙，解决办法：</p>
+<ul>
+<li>在<a href="https://tool.chinaz.com/dns/?type=1&amp;host=liketea.xyz&amp;ip=" target="_blank" rel="noopener">站长工具-DNS查询</a>输入博客网址如<code>liketea.xyz</code>，查询响应 IP</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201230213808.png" alt></p>
+<ul>
+<li>修改电脑 hosts 文件，以 MAC为例：</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="ZSH"><figure class="iseeu highlight /zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  ~ sudo vim /etc/hosts</span><br><span class="line">Password:</span><br><span class="line"><span class="comment"># 将查询到的 IP 和域名写到这里</span></span><br><span class="line">185.199.109.153 liketea.xyz</span><br></pre></td></tr></table></figure></div>
+<p>刷新博客网站即可正常访问。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="https://www.jianshu.com/p/f8ec422ebd52" target="_blank" rel="noopener">Hexo博客提交百度和Google收录</a></li>
 <li><a href="https://ziyuan.baidu.com" target="_blank" rel="noopener">百度资源平台</a></li>
@@ -887,7 +895,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
