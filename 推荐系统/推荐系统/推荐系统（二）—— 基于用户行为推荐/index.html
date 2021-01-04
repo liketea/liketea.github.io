@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-42-22.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-42-34.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/23-32-03.jpg">
-<meta property="og:updated_time" content="2021-01-01T16:23:59.349Z">
+<meta property="og:updated_time" content="2021-01-04T06:19:22.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统（二）—— 基于用户行为推荐">
 <meta name="twitter:description" content="用户行为不是随机的，而是蕴含着很多模式，这里面最著名的例子就是啤酒和尿布的例子。基于用户行为分析的推荐算法是个性化推荐系统的重要算法，学术界一般将这种类型的算法称为协同过滤算法(Collaborative Filtering, CF)。顾名思义，协同过滤就是指通过用户和网站的不断交互，齐心协力过滤掉用户不感兴趣的物品。 基于邻域的方法(neighborhood-based)基于邻域的推荐方法是最著">
@@ -402,8 +402,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-02T00:23:59+08:00">
-                2021-01-02
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-04T14:19:22+08:00">
+                2021-01-04
               </time>
             
           </span>
@@ -552,9 +552,9 @@ w_{ij}=\frac{\left | N(i) \bigcap N(j) \right |}{\sqrt{\left | N(i) \right | \le
 </ul>
 <p>和UserCF类似，我们通过建立用户到物品的倒查表，然后对每个用户，将他物品列表中的物品两两在共现矩阵中加1，python代码如下：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">similarity</span><span class="params">(train)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    返回物品两两间的相似度</span></span><br><span class="line"><span class="string">    @train:&#123;用户:喜欢的物品集合&#125;</span></span><br><span class="line"><span class="string">    @return:&#123;i:&#123;j:w,...&#125;物品作为节点，物品间如果有共同用户，代表有边，共同用户数代表权值</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    W = collections.defaultdict(dict)</span><br><span class="line">    N = &#123;&#125;</span><br><span class="line">    <span class="comment"># 计算共现矩阵(用字典表示稀疏矩阵)</span></span><br><span class="line">    <span class="keyword">for</span> u, items <span class="keyword">in</span> train.items():</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> items:</span><br><span class="line">            N[i] = N.get(i,<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> items:</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    W[i][j] = W[i].get(j,<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算物品间的相似度</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> W:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> W[i]:</span><br><span class="line">            cur = round(W[i][j] / (N(i) * N(j)) ** <span class="number">0.5</span>, <span class="number">3</span>)</span><br><span class="line">            W[i][j] = cur</span><br><span class="line">    <span class="keyword">return</span> W</span><br></pre></td></tr></table></figure></div>
-<h4 id="计算用户对物品的兴趣度"><a href="#计算用户对物品的兴趣度" class="headerlink" title="计算用户对物品的兴趣度"></a>计算用户对物品的兴趣度</h4><p>在得到物品之间的相似度后，将和用户喜欢的每个物品x最相似的前K个物品推荐给用户，其中用户u对物品i的兴趣度可以通过下式计算：</p>
+<h4 id="计算用户对物品的兴趣度"><a href="#计算用户对物品的兴趣度" class="headerlink" title="计算用户对物品的兴趣度"></a>计算用户对物品的兴趣度</h4><p>在得到物品之间的相似度后，ItemCF 通过如下公式计算用户 u 对一个物品 i 的兴趣：</p>
 <script type="math/tex; mode=display">
-p(u,i)=\sum_{j \in S(x,K),x \in N(u)}w_{ji}r_{ui}</script><ul>
+p(u,i)=\sum_{j \in S(i,K)\bigcap N(u)}r_{uj}w_{ji}</script><ul>
 <li>$S(x,K)$:和物品x最相似的K个物品集合</li>
 </ul>
 <p>基于物品相似度为用户生成推荐列表的Python代码：</p>
