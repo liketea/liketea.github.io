@@ -140,7 +140,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-20-41.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-30-49.jpg">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-39-39.jpg">
-<meta property="og:updated_time" content="2021-01-01T17:16:50.339Z">
+<meta property="og:updated_time" content="2021-01-04T07:19:13.417Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统（一）—— 推荐系统概论">
 <meta name="twitter:description" content="什么是推荐系统推荐系统的定义推荐系统是通过对用户的历史行为建模，自动联系用户和信息的一种工具。它能够在信息过载的环境中帮助用户发现他们感兴趣的信息，也能将信息推送给对它们感兴趣的用户。推荐系统已被广泛应用于电子商务、视频、音乐、阅读、社交网络、基于位置的服务、个性化邮件和广告等领域。 推荐系统的主要任务：  联系用户和信息，解决信息过载问题：在信息过载的时代，信息消费者很难从大量信息中找到自己感兴">
@@ -404,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-02T01:16:50+08:00">
-                2021-01-02
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-04T15:19:13+08:00">
+                2021-01-04
               </time>
             
           </span>
@@ -465,7 +465,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  7.1k
+                  7.3k
                 </span>
               
 
@@ -481,7 +481,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  23
+                  24
                 </span>
               
             </div>
@@ -812,10 +812,16 @@
 </ul>
 <h4 id="准确度-precision"><a href="#准确度-precision" class="headerlink" title="准确度(precision)"></a>准确度(precision)</h4><p>准确度反映了系统准确预测用户行为的能力，几乎 99% 的推荐相关的论文都在讨论这个指标，主要是因为该指标可以通过离线实验计算，方便学术界研究人员研究推荐算法，准确度可以通过离线实验在测试集上计算得到；实际使用中，TopK 推荐相比评分预测更符合实际应用需要，因为预测用户是否会看一部电影比预测用户看了电影后会给它评多少分更重要：</p>
 <ul>
-<li>评分预测：如果推荐系统预测的是用户对物品的评分，一般采用均方根（RMSE）和平均绝对误差（MAE）作为评测指标；RMSE更加严格，因为它加大了对预测不准的评分的乘法（平方项）；</li>
-<li>TOPK 推荐：如果推荐系统为每个用户一个个性化推荐列表，一般通过准确率（precision）或召回率（recall）来度量；有时为了全面评测 TopK 的准确率和召回率，一般会选取不同的推荐列表长度 K，计算一组准确率和召回率，然后做出 P-R 曲线；</li>
+<li>评分预测：如果推荐系统预测的是用户对物品的评分，一般采用均方根（RMSE）和平均绝对误差（MAE）作为评测指标；RMSE更加严格，因为它加大了对预测不准的评分的乘法（平方项）；对于测试集中的一个用户 u 和物品 i，令 $r_{ui}$ 是用户 u 对物品 i 的实际评分，而 $\hat{r}_{ui}$ 是推荐算法给出的预测评分；</li>
 </ul>
-<h4 id="覆盖率-coverage"><a href="#覆盖率-coverage" class="headerlink" title="覆盖率(coverage)"></a>覆盖率(coverage)</h4><p>覆盖率描述了系统发掘长尾物品的能力，覆盖率是物品提供者会关心的指标，好的推荐系统不仅要让用户满意还要让商家满意，覆盖率可以通过离线实验获取，覆盖率有以下几种形式：</p>
+<script type="math/tex; mode=display">
+RMSE=\frac{\sqrt{\sum_{u,i \in T}(r_{ui}-\hat{r}_{ui})^2}}{\left | T \right |}</script><script type="math/tex; mode=display">
+MAE=\frac{\sum_{u,i \in T}\left | r_{ui}-\hat{r}_{ui} \right |}{\left | T \right |}</script><ul>
+<li>TOPK 推荐：如果推荐系统为每个用户一个个性化推荐列表，一般通过准确率（precision）或召回率（recall）来度量；有时为了全面评测 TopK 的准确率和召回率，一般会选取不同的推荐列表长度 K，计算一组准确率和召回率，然后画出准确率/召回率曲线（precision/recall curve）；令 $R(u)$ 是根据用户在训练集上的行为给用户作出的推荐列表，而 $T(u)$ 是用户在测试集上的行为列表。那么，推荐结果的准确率和召回率可定义为：<script type="math/tex; mode=display">
+Precision=\frac{\sum_{u \in U}\left | R(u)\bigcap T(u) \right |}{\sum_{u \in U}\left | R(u) \right |}</script></li>
+</ul>
+<script type="math/tex; mode=display">
+Recall=\frac{\sum_{u \in U}\left | R(u)\bigcap T(u) \right |}{\sum_{u \in U}\left | T(u) \right |}</script><h4 id="覆盖率-coverage"><a href="#覆盖率-coverage" class="headerlink" title="覆盖率(coverage)"></a>覆盖率(coverage)</h4><p>覆盖率描述了系统发掘长尾物品的能力，覆盖率是物品提供者会关心的指标，好的推荐系统不仅要让用户满意还要让商家满意，覆盖率可以通过离线实验获取，覆盖率有以下几种形式：</p>
 <ul>
 <li>覆盖比例：推荐系统能够推荐出来的物品占总物品集合的比例，假设系统的用户集合为U，推荐系统给每个用户推荐一个长度为N的物品列表R（u）。那么推荐系统的覆盖率可以通过下面的公式计算：<script type="math/tex; mode=display">
 Coverage=\frac{\left | \bigcup _{u \in U} R(u)\right |}{\left | I \right |}</script></li>
@@ -1182,7 +1188,7 @@ Diversity=\frac{1}{\left | U \right |}\sum_{u \in U}Diversity(R(u))</script><h4 
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">299.5k</span>
+    <span title="Site words total count">299.7k</span>
   
 </div>
 
