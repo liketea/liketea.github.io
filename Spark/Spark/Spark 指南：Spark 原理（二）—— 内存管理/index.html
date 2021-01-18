@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Life,">
+  <meta name="keywords" content="Spark,">
 
 
 
@@ -125,20 +125,26 @@
 
 
 
-<meta name="description" content="第一集：少梁之战秦兵：赳赳老秦，复我河山。血不流干，死不休战。 第二集：秦军撤兵少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。 第三集：献公传位献公召见公子虔 献公：跟公父说实话，你想不想做国君？ 公子虔：公父让我做，我便做，公父不让我做，我便不做。 献公：好，为父没有看错你，铮铮铁骨，定国柱石。 公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。 献公：老大啊，你说实话，为">
-<meta name="keywords" content="Life">
+<meta name="description" content="原文最初由 IBM developerWorks 中国网站发表，本文在此基础上进行了总结梳理，仅作为个人学习使用。  Spark 作为一个基于内存的分布式计算引擎，其内存管理模块至关重要。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和性能调优。本文基于 Spark 2.1 版本，旨在梳理 Spark 内存管理的基本脉络。 在执行 Spark 应用程序时，Spark">
+<meta name="keywords" content="Spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《大秦帝国之裂变》语录">
-<meta property="og:url" content="http://liketea.xyz/Life/Life/大秦帝国之裂变/index.html">
+<meta property="og:title" content="Spark 指南：Spark 原理（二）—— 内存管理">
+<meta property="og:url" content="http://liketea.xyz/Spark/Spark/Spark 指南：Spark 原理（二）—— 内存管理/index.html">
 <meta property="og:site_name" content="Like">
-<meta property="og:description" content="第一集：少梁之战秦兵：赳赳老秦，复我河山。血不流干，死不休战。 第二集：秦军撤兵少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。 第三集：献公传位献公召见公子虔 献公：跟公父说实话，你想不想做国君？ 公子虔：公父让我做，我便做，公父不让我做，我便不做。 献公：好，为父没有看错你，铮铮铁骨，定国柱石。 公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。 献公：老大啊，你说实话，为">
+<meta property="og:description" content="原文最初由 IBM developerWorks 中国网站发表，本文在此基础上进行了总结梳理，仅作为个人学习使用。  Spark 作为一个基于内存的分布式计算引擎，其内存管理模块至关重要。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和性能调优。本文基于 Spark 2.1 版本，旨在梳理 Spark 内存管理的基本脉络。 在执行 Spark 应用程序时，Spark">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190405130157.png">
-<meta property="og:updated_time" content="2020-12-30T07:34:04.386Z">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210112235829.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/memory_0114.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202101151555.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/spark_unroll.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202101152046.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20212051.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/affdssgg.png">
+<meta property="og:updated_time" content="2021-01-18T03:08:39.785Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《大秦帝国之裂变》语录">
-<meta name="twitter:description" content="第一集：少梁之战秦兵：赳赳老秦，复我河山。血不流干，死不休战。 第二集：秦军撤兵少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。 第三集：献公传位献公召见公子虔 献公：跟公父说实话，你想不想做国君？ 公子虔：公父让我做，我便做，公父不让我做，我便不做。 献公：好，为父没有看错你，铮铮铁骨，定国柱石。 公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。 献公：老大啊，你说实话，为">
-<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190405130157.png">
+<meta name="twitter:title" content="Spark 指南：Spark 原理（二）—— 内存管理">
+<meta name="twitter:description" content="原文最初由 IBM developerWorks 中国网站发表，本文在此基础上进行了总结梳理，仅作为个人学习使用。  Spark 作为一个基于内存的分布式计算引擎，其内存管理模块至关重要。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和性能调优。本文基于 Spark 2.1 版本，旨在梳理 Spark 内存管理的基本脉络。 在执行 Spark 应用程序时，Spark">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210112235829.png">
 
 
 
@@ -168,13 +174,13 @@
 
 
 
-  <link rel="canonical" href="http://liketea.xyz/Life/Life/大秦帝国之裂变/">
+  <link rel="canonical" href="http://liketea.xyz/Spark/Spark/Spark 指南：Spark 原理（二）—— 内存管理/">
 
 
 
 
 
-  <title>《大秦帝国之裂变》语录 | Like</title>
+  <title>Spark 指南：Spark 原理（二）—— 内存管理 | Like</title>
   
 
 
@@ -353,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Life/Life/大秦帝国之裂变/">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Spark/Spark/Spark 指南：Spark 原理（二）—— 内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Like">
@@ -370,7 +376,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">《大秦帝国之裂变》语录</h2>
+          <h2 class="post-title" itemprop="name headline">Spark 指南：Spark 原理（二）—— 内存管理</h2>
         
 
         <div class="post-meta">
@@ -382,8 +388,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-05T13:00:21+08:00">
-                2019-04-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-09T14:16:46+08:00">
+                2020-11-09
               </time>
             
 
@@ -398,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-30T15:34:04+08:00">
-                2020-12-30
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-18T11:08:39+08:00">
+                2021-01-18
               </time>
             
           </span>
@@ -417,8 +423,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index">
-                    <span itemprop="name">Life</span>
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
                   </a>
                 </span>
 
@@ -434,7 +440,7 @@
 
           
           
-             <span id="/Life/Life/大秦帝国之裂变/" class="leancloud_visitors" data-flag-title="《大秦帝国之裂变》语录">
+             <span id="/Spark/Spark/Spark 指南：Spark 原理（二）—— 内存管理/" class="leancloud_visitors" data-flag-title="Spark 指南：Spark 原理（二）—— 内存管理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -459,7 +465,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k
+                  5.1k
                 </span>
               
 
@@ -475,7 +481,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  18
                 </span>
               
             </div>
@@ -496,55 +502,192 @@
       
 
       
-        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190405130157.png" alt></p>
-<h2 id="第一集：少梁之战"><a href="#第一集：少梁之战" class="headerlink" title="第一集：少梁之战"></a>第一集：少梁之战</h2><p>秦兵：赳赳老秦，复我河山。血不流干，死不休战。</p>
-<h2 id="第二集：秦军撤兵"><a href="#第二集：秦军撤兵" class="headerlink" title="第二集：秦军撤兵"></a>第二集：秦军撤兵</h2><p>少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。</p>
-<h2 id="第三集：献公传位"><a href="#第三集：献公传位" class="headerlink" title="第三集：献公传位"></a>第三集：献公传位</h2><h3 id="献公召见公子虔"><a href="#献公召见公子虔" class="headerlink" title="献公召见公子虔"></a>献公召见公子虔</h3><ul>
-<li>献公：跟公父说实话，你想不想做国君？</li>
-<li>公子虔：公父让我做，我便做，公父不让我做，我便不做。</li>
-<li>献公：好，为父没有看错你，铮铮铁骨，定国柱石。</li>
-<li>公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。</li>
-<li>献公：老大啊，你说实话，为父有没有把你和渠梁分过嫡庶？</li>
-<li>公子虔：公父何出此言啊，儿臣周岁丧母，国后娘抱儿养儿，历尽了艰辛万苦，爱儿如同亲生，养儿胜于亲娘，此恩是天高地厚，儿臣纵是禽兽也九死不能报万一，儿臣又怎会生出嫡庶异心之分。</li>
-<li>献公：你娘是你娘啊。。。</li>
-<li>公子虔：公父待儿，倚重之心天地可鉴，庶出疏离之感，儿臣从未有过。</li>
-<li>献公：好，好，老大，为父那就放开说话了。老大，你说，假如你是农夫，是工匠，或者是个军士，你看谁做国君更好？</li>
-<li>公子虔：渠梁更合适。儿臣绝无虚言。</li>
-<li>献公：老大，为父还是要你立誓明心啊。</li>
-<li>公子虔：公父是信不过儿臣吗？</li>
-<li>献公：不，老大，不是不信任你，实在是国家公器不能寄予一言，即使是骨肉兄弟，也得是公心为先</li>
-<li>公子虔：（自断手指中。。。）</li>
-<li>献公：老大，老大，我看看，哎呀。。。你呀。。。</li>
-</ul>
-<h3 id="献公召见渠梁"><a href="#献公召见渠梁" class="headerlink" title="献公召见渠梁"></a>献公召见渠梁</h3><ul>
-<li>献公：渠梁啊，公父有话跟你说，不要分心，公父的路要走完了，我决定立你为太子，即刻继国君之位。</li>
-<li>渠梁：公父，这。。。</li>
-<li>献公：听我说完！这是老大的血誓，他若有二心，你就可以公诸朝野，人人得以诛之。</li>
-<li>渠梁：公父，我与大哥素来同心同德，为何让大哥如此折磨自己？</li>
-<li>献公：渠梁啊，千万要记住，同德易，同心难，大德大节，求同就更难，历来公室内乱，哪个不是骨肉相残？赢虔，他是内明之人，你要倚重他，血誓，只防万一。</li>
-<li>渠梁：公父放心，公父教诲渠梁铭记在心，如果食言，死不得入赢氏太庙。</li>
-</ul>
-<h2 id="第四集：秦国释放公孙痤"><a href="#第四集：秦国释放公孙痤" class="headerlink" title="第四集：秦国释放公孙痤"></a>第四集：秦国释放公孙痤</h2><h3 id="渠梁阻止荧玉杀公孙痤"><a href="#渠梁阻止荧玉杀公孙痤" class="headerlink" title="渠梁阻止荧玉杀公孙痤"></a>渠梁阻止荧玉杀公孙痤</h3><ul>
-<li>渠梁：小妹，你可以不认我这个哥哥，但你不能不认我这个国君。</li>
-<li>荧玉：你为何不让我杀公叔老贼？</li>
-<li>渠梁：私仇滥杀，乱国乱局。</li>
-<li>荧玉：君仇国恨自古一体，何谓私仇？</li>
-<li>渠梁：无视国家存亡，惟泄一己怨恨，就是私仇。</li>
-<li>荧玉：得先君之位忘先君之仇，这才是天地难容！</li>
-<li>渠梁：公器不存私念，公父若在，也会如此。左庶长，公叔痤不能杀。</li>
-<li>嬴虔：左庶长？我是你大哥！</li>
-<li>渠梁：事涉国家，没有大哥，只有君臣。</li>
-<li>嬴虔：老秦人同仇敌忾，我看哪个国君敢护仇？</li>
-<li>渠梁：父仇为私，不能公报！娘，大哥，小妹，大臣将士们，渠梁少入军旅，和父老兄弟并肩血战沙场，脚下踩过万千老秦人的尸骨，哪个不是做梦都想着复仇啊，杀一个俘虏，就能证明我们老秦人的血性吗？今日杀了公孙痤，只能解一时之恨，然而必然引起山东六国集体攻秦，到时候邦国灭亡，尸骨成山，谁来复仇啊，复个鸟！说到底，只有保住国家，保住百姓，保住将士，秦国才能复仇，才能翻身，才能雪耻！</li>
-</ul>
-<h3 id="卫鞅救师求见公子虔"><a href="#卫鞅救师求见公子虔" class="headerlink" title="卫鞅救师求见公子虔"></a>卫鞅救师求见公子虔</h3><p>公子虔：什么事那么重要，别绕弯子，说吧。<br>卫鞅：原本申明非秦公不言，念公子虔是秦国栋梁，新君兄长，说也无妨。<br>公子虔：直说，实说。<br>卫鞅：在下入秦，一非官派，二非私托，只为一事，救回老丞相以全师生之交。<br>公子虔：就凭你啊。<br>卫鞅：卫鞅救师，也救秦国。<br>公子虔：哈哈哈。。。魏人救秦？笑话。<br>卫鞅：上将军未免浅见，在下明言，魏国朝野，庞涓力主灭秦，而丞相公叔图谋称霸，二人势同水火。庞涓奇袭骊山，就是要夺回公叔明正典刑，一举剪除政敌，从而全力灭秦，今奇袭未成，庞涓自然退而求其次，希望借秦人之手杀死我师，若秦国当真如此，无异于助了庞涓一臂之力，加重了自己的危机处境。眼下，唯有一策，即可救我师，又可救秦国。<br>公子虔：说下去。<br>卫鞅：这一策便是，秦国放人、割地、求和。使魏国一时无攻秦口实，日后再做图谋，如此，两全，否则秦国危在旦夕。<br>公子虔：卖国求私，还大言侃侃，天下一奇啊。<br>卫鞅：在下并非魏人，更非魏臣，何谈卖国。<br>公子虔：带入大营。。。</p>
-<h3 id="渠梁谈和公孙痤"><a href="#渠梁谈和公孙痤" class="headerlink" title="渠梁谈和公孙痤"></a>渠梁谈和公孙痤</h3><p>公孙痤：你说，老秦公死了？既然如此，老夫的人头归你了，何时开刀？<br>渠梁：老丞相差矣，渠梁不是要杀你，而是来放你。<br>公孙痤：哈哈哈。。。小子，你敢嘲弄老夫，士可杀，不可辱<br>渠梁：渠梁怎敢侮辱前辈，我诚意放老丞相回归安邑，想当时秦魏两国激战多年，生灵涂炭，死伤无数，渠梁新任国君，只图秦国庶民安居耕牧，并不想两国纠缠交恶，素知老丞相深明大义，嬴渠梁欲与老丞相共谋两国休战歇兵，并无它意。<br>公孙痤：秦公不记杀父之仇？<br>渠梁：父仇为私，和战为公。嬴渠梁若非真心，愿受上天惩罚。<br>公孙痤：好，老夫信你。只是这疆界，不知秦公如何打算？<br>渠梁：以石门大战之前为定。<br>公孙痤：河西高原，秦东地带，函谷关都给魏国？<br>渠梁：嗯。<br>公孙痤：两国邦交作何说法？<br>渠梁：秦国承认魏国霸主地位。<br>公孙痤：纳贡，称臣？<br>渠梁：不称臣，不纳贡。<br>公孙痤：再让一步，会更稳妥一些。<br>渠梁：老丞相，凡事都有底线，秦国穷困，无贡可纳，秦人硬骨，不能折腰。<br>公孙痤：秦公大明！<br>渠梁：二十年后我会夺回来的。<br>公孙痤：共有此心，老夫拭目以待，只是这缓兵之计太过明显<br>渠梁：老丞相，秦国虽穷，却是尚武善战之邦，若魏国执意灭秦，老秦人必将拼死血战，魏国纵然灭秦，也将在惨胜之后元气大伤，那时，魏国必成众矢之的，非但保不住霸主地位，反而被五大强国瓜分，如果魏王不明此理，秦国宁肯血战到底。休息三五日之后，渠梁派出特使护送老丞相返回安邑，不言俘获，只当做魏王议和特使对待，行吗？<br>公孙痤：哎，老夫阅人无数，秦公气量胸怀，数年之后必令天下刮目相看。<br>渠梁：渠梁浅陋，哪敢当此褒奖。<br>公孙痤：可惜老夫来日不多，不能与你并世争雄了。</p>
-<h2 id="第五集：说服魏王谈和"><a href="#第五集：说服魏王谈和" class="headerlink" title="第五集：说服魏王谈和"></a>第五集：说服魏王谈和</h2><h3 id="卫鞅支持公孙痤争霸方略"><a href="#卫鞅支持公孙痤争霸方略" class="headerlink" title="卫鞅支持公孙痤争霸方略"></a>卫鞅支持公孙痤争霸方略</h3><p>公孙痤：卫鞅，你到酒肆去了？<br>卫鞅：老师，族人有望解禁。<br>公孙痤：酒肆消息你也信？荒唐<br>卫鞅：哈哈。。。断事不在消息源头，在自家评判。<br>公孙痤：算了，不说在这些了，鞅啊，总算是有惊无险。<br>卫鞅：不，险关还未过，庞涓以一统天下为终身大志，铁了心要拿秦国开刀，魏王未必不为所动。<br>公孙痤：庞涓、公子卬都想杀老夫。<br>卫鞅：公子卬不足为虑，争功夺权罢了，庞涓才是真正的大患。<br>公孙痤：这一统天下也是大魏功业所在，老夫若是为了保住性命而反对，公心何在？<br>卫鞅：老师差矣，一统天下如果可行，卫鞅也不会帮老师与庞涓对峙。<br>公孙痤：你说一统天下不可行？<br>卫鞅：时势未到，眼下不可行。<br>公孙痤：为何?<br>卫鞅：天下无一心，七国无独强，未来之势未见分晓，冒然灭国定会招致灾祸。<br>公孙痤：你是说，还是老夫的争霸方略，适合魏国？<br>卫鞅：正是。<br>卫鞅：备车！</p>
-<h3 id="公孙痤说服魏王谈和"><a href="#公孙痤说服魏王谈和" class="headerlink" title="公孙痤说服魏王谈和"></a>公孙痤说服魏王谈和</h3><p>魏王：那老丞相你说，让本人怎么接受秦国那几块鸡零狗碎？<br>公孙痤：如何对秦，首在长策！<br>魏王：先说办法，再讲长策！<br>公孙痤：老臣的办法分两步走。<br>魏王：第一步。<br>公孙痤：与秦罢兵，接纳割地，河西秦东数十县，再加上函谷关天险，绝非鸡零狗碎。<br>魏王：第二步。<br>公孙痤：待秦地完全划入魏国，等到时机成熟再变灭秦为分秦。<br>魏王：灭秦分秦有何区别？<br>公孙痤：灭秦，魏国独吞；分秦，六国分吞。<br>魏王：那如此一来，我既无后顾之忧，又可稳坐天下霸主了。<br>公孙痤：正是<br>魏王：果然姜是老的辣！</p>
-<h3 id="魏王庞涓密谋分秦策略"><a href="#魏王庞涓密谋分秦策略" class="headerlink" title="魏王庞涓密谋分秦策略"></a>魏王庞涓密谋分秦策略</h3><p>魏王：本王在庙堂上的运筹，上将军明白吗？<br>庞涓：我王一番指点，臣恍然醒悟<br>魏王：这就对了，你今天想谋兵灭秦固然是上策，但是现在到达嘴边的这块肥肉不能让它滑了，一纸休兵盟书，不费一兵一卒，我大魏便可稳稳占了秦国东部最肥美的土地城池，到哪去找这等好事去？实咬一口当然胜过虚啃三日，治国之道尽在此矣！<br>庞涓：不过，我王，臣以为，先食言于秦国，再食言于五国，只怕有失道义。<br>魏王：道义？现在天下大争，谁讲道义，讲道义干什么？我今天就是要咬秦国这块肥肉，然后啃秦国这块骨头，谁敢奈我何？不服，不服就等你先强大了再说；你弱，你就没有说话的资格，就只能等着做别人砧板上的鱼肉，明白吗？什么叫邦交？下刀之前的动作才叫邦交。<br>庞涓：臣以为，还是打出来的地盘更实在。<br>魏王：打归打，谈归谈嘛，两手并用才能得天下，明白吗？六国分秦，即刻交你放手去做，彻底灭秦之日就是你上将军首功之时。<br>庞涓：臣遵命。</p>
-<h3 id="卫鞅推测老师无恙"><a href="#卫鞅推测老师无恙" class="headerlink" title="卫鞅推测老师无恙"></a>卫鞅推测老师无恙</h3><p>公叔痤：庞涓、公子卬都想杀了老夫取而代之，魏王耳根子又软。<br>卫鞅：魏王醉心权谋，喜好均衡朝局，鞅以为，老师无恙。魏王派庞涓为全权特使，正密谋六国分秦。<br>公叔痤：魏王，你的心也太急了，盟约刚立，就谋分秦，你让老夫有何颜立足于天下，让大魏又有何面目立于天下?<br>卫鞅：更重要的，魏国死盯弱小秦国，丧失了中原扩张的最佳时机。</p>
-<h2 id="第六集：六国指地分秦"><a href="#第六集：六国指地分秦" class="headerlink" title="第六集：六国指地分秦"></a>第六集：六国指地分秦</h2><p>楚王：这商於、武关归我大楚了。<br>韩王：那崤函、关中一带就归我大韩。<br>赵王：陇西、北地全部归赵了。<br>燕王：河西、河套归我大燕。<br>齐王：齐秦相隔太远，本王不争秦地，然则我灭他国，列国不得插手。<br>庞涓：哼，如此分秦，盟主国是一无所得了?<br>众王：魏国已吞肥肉，再分居心何在？天下三王，不能只听魏王的。<br>庞涓：五君之意，是不认我魏国盟主了？<br>众王：庞涓，魏王国书原说，公平分秦，今日公平何在？<br>庞涓：公平？以本上将军谋划，根本不需要六国分秦。</p>
-<h2 id="第七集："><a href="#第七集：" class="headerlink" title="第七集："></a>第七集：</h2>
+        <blockquote>
+<p>原文最初由 IBM developerWorks 中国网站发表，本文在此基础上进行了总结梳理，仅作为个人学习使用。</p>
+</blockquote>
+<p>Spark 作为一个基于内存的分布式计算引擎，其内存管理模块至关重要。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和性能调优。本文基于 Spark 2.1 版本，旨在梳理 Spark 内存管理的基本脉络。</p>
+<p>在执行 Spark 应用程序时，Spark 集群会启动 Driver 和 Executor 两种 JVM 进程：</p>
+<ol>
+<li>Driver 为主控进程，主要负责：<ol>
+<li>创建 Spark 上下文；</li>
+<li>提交 Spark 作业（Job）；</li>
+<li>在各 Executor 进程间分配、协调任务（Task）调度；</li>
+</ol>
+</li>
+<li>Executor 主要负责：<ol>
+<li>在工作节点上执行具体的计算任务（Task）；</li>
+<li>将结果返回给 Driver；</li>
+<li>为需要持久化的 RDD 提供存储功能；</li>
+</ol>
+</li>
+</ol>
+<p>由于 Driver 的内存管理相对简单，本文主要对 Executor 的内存管理进行分析，下文中 Spark 内存均指 Executor 内存。</p>
+<h2 id="内存规划"><a href="#内存规划" class="headerlink" title="内存规划"></a>内存规划</h2><p>作为一个 JVM 进程，Executor 的内存管理建立在 JVM 的内存管理之上，Spark 对 JVM 的堆内（On-heap）空间进行了更为详细的分配，以充分利用内存。同时，Spark 引入了堆外（Off-heap）内存，使之可以直接在工作节点的系统内存中开辟空间，进一步优化了内存的使用。</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210112235829.png" width="80%" heigh="80%">
+</div>
+
+<h2 id="堆内内存（On-Heap）"><a href="#堆内内存（On-Heap）" class="headerlink" title="堆内内存（On-Heap）"></a>堆内内存（On-Heap）</h2><p>Executor 内运行的并发任务共享 JVM 堆内内存，堆内内存的大小由 Spark 应用程序启动时的 <code>–executor-memory</code> 或 <code>spark.executor.memory</code> 参数配置（默认 1g），Spark 对堆内内存进行了详细的规划：</p>
+<ol>
+<li>统一内存（Unified）：Spark 1.6 之后引入了统一内存管理机制，存储内存和执行内存共享该块空间，可以动态占用对方的空闲区域，统一内存的大小（占堆内内存比例）可以通过 Spark 参数 <code>spark.memory.fraction</code> 来设置（默认 0.6） <ol>
+<li>存储内存（Storage）：在缓存 RDD 或广播（Broadcast）数据时占用的内存被规划为存储内存，存储内存的大小（占统一内存比例）可以通过 Spark 参数 <code>spark.memory.storagefraction</code> 来设置（默认 0.5）；</li>
+<li>执行内存（Execution）：在执行 Shuffle、Join、Sort、Aggregation 等转换时占用的内存被规划为执行内存；</li>
+</ol>
+</li>
+<li>剩余内存（Other）：Spark 内部的对象实例，或者用户定义的 Spark 应用程序中的对象实例，元数据占用剩余内存，Spark 对剩余内存不做特殊规划；</li>
+<li>预留内存（Reserved）：默认 300M 的系统预留内存，主要用于程序运行，参见SPARK-12081；</li>
+</ol>
+<p>总结堆内内存的规划大小计算公式如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>规划项</th>
+<th>计算公式</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>堆内内存（On-Heap）</td>
+<td><code>spark.executor.memory</code></td>
+<td>1g</td>
+</tr>
+<tr>
+<td>统一内存（Unified）</td>
+<td><code>spark.executor.memory * spark.memory.fraction</code></td>
+<td>1g * 0.6 = 600M</td>
+</tr>
+<tr>
+<td>存储内存（Storage）</td>
+<td><code>spark.executor.memory * spark.memory.fraction * spark.memory.storagefraction</code></td>
+<td>1g <em> 0.6 </em> 0.5 = 300M</td>
+</tr>
+<tr>
+<td>执行内存（Execution）</td>
+<td><code>spark.executor.memory * spark.memory.fraction * (1 - spark.memory.storagefraction)</code></td>
+<td>1g <em> 0.6 </em> (1-0.5) = 300M</td>
+</tr>
+<tr>
+<td>剩余内存（Other）</td>
+<td><code>spark.executor.memory * (1 - spark.memory.fraction)</code></td>
+<td>1g * (1-0.6) = 400M</td>
+</tr>
+<tr>
+<td>预留内存（Reserved）</td>
+<td>300M</td>
+<td>300M</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Spark 对堆内内存的管理只是一种”规划式“的管理，因为对象实例占用内存的申请和释放都由 JVM 完成，Spark 只能在申请和释放前记录这些内存，其具体流程为：</p>
+<ol>
+<li>申请内存：<ol>
+<li>Spark 在代码中创建一个对象实例；</li>
+<li>JVM 从堆内内存分配空间，创建对象并返回对象引用；</li>
+<li>Spark 保存该对象的引用，记录该对象占用的内存；</li>
+</ol>
+</li>
+<li>释放内存：<ol>
+<li>Spark 记录该对象释放的内存，删除该对象的引用；</li>
+<li>等待 JVM 的垃圾回收机制释放该对象占用的堆内内存；</li>
+</ol>
+</li>
+</ol>
+<p>JVM 对象可以以序列化（将对象转化为二进制字节流）的方式存储，本质上可以理解为将非连续的链式存储转化为连续存储，在访问时则需要进行反序列化（将字节流转化为对象），这种方式节省了空间，但是增加了存储和读取的计算开销。对于序列化对象，由于是字节流的形式，其占用的内存大小可以直接计算，而对于非序列化对象，其占用的内存则通过周期采样近似估算，这种方式降低了时间开销但是可能误差较大，导致某一时刻的实际内存有可能远远超出预期。此外，在被 Spark 标记为释放的对象实例，很有可能在实际上并没有被 JVM 回收，导致实际可用的内存小于 Spark 记录的可用内存。所以 Spark 并不能准确记录实际可用的堆内内存，从而也就无法完全避免内存溢出（OOM, Out of Memory）的异常。</p>
+<h3 id="统一内存管理"><a href="#统一内存管理" class="headerlink" title="统一内存管理"></a>统一内存管理</h3><p>Spark 1.6 之后引入了统一内存管理机制，存储内存和执行内存共享同一块空间，可以动态占用对方的空闲区域，如图所示：</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/memory_0114.png" width="80%" heigh="80%">
+</div>
+
+<p>统一内存的动态占用机制：</p>
+<ol>
+<li>当存储内存和执行内存都不足时，则存储到磁盘；当己方空间不足而对方空间空余时，可借用对方空间；</li>
+<li>执行内存被存储占用时，可以让对方将占用的部分转存到硬盘，归还借用的空间；</li>
+<li>存储内存被执行占用时，无法让对方归还，因为考虑 Shuffle 过程的很多因素，不好实现；</li>
+</ol>
+<p>凭借统一内存管理机制，Spark 在一定程度上提高了堆内和堆外内存资源的利用率，降低了开发者维护 Spark 内存的难度，但并不意味着开发者可以高枕无忧。譬如，所以如果存储内存的空间太大或者说缓存的数据过多，反而会导致频繁的全量垃圾回收，降低任务执行时的性能，因为缓存的 RDD 数据通常都是长期驻留内存的。所以要想充分发挥 Spark 的性能，需要开发者进一步了解存储内存和执行内存各自的管理方式和实现原理。</p>
+<h3 id="存储内存管理"><a href="#存储内存管理" class="headerlink" title="存储内存管理"></a>存储内存管理</h3><h4 id="RDD-持久化机制"><a href="#RDD-持久化机制" class="headerlink" title="RDD 持久化机制"></a>RDD 持久化机制</h4><p>弹性分布式数据集（RDD）作为 Spark 最根本的数据抽象，是只读的分区记录（Partition）的集合，只能基于在稳定物理存储中的数据集上创建，或者在其他已有的 RDD 上执行转换（Transformation）操作产生一个新的 RDD。转换后的 RDD 与原始的 RDD 之间产生的依赖关系，构成了血统（Lineage）。凭借血统，Spark 保证了每一个 RDD 都可以被重新恢复。但 RDD 的所有转换都是惰性的，即只有当一个返回结果给 Driver 的行动（Action）发生时，Spark 才会创建任务读取 RDD，然后真正触发转换的执行。</p>
+<p>Task 在启动之初读取一个分区时，会先判断这个分区是否已经被持久化，如果没有则需要检查 Checkpoint 或按照血统重新计算。所以如果一个 RDD 上要执行多次 Action，可以在第一次 Action 中使用 persist 或 cache 方法，在内存或磁盘中持久化或缓存这个 RDD，从而在后面的行动时提升计算速度。事实上，cache 方法是使用默认的 MEMORY_ONLY 的存储级别将 RDD 持久化到内存，故缓存是一种特殊的持久化。 堆内和堆外存储内存的设计，便可以对缓存 RDD 时使用的内存做统一的规划和管理。</p>
+<p>RDD 的持久化由 Spark 的 Storage 模块负责，实现了 RDD 与物理存储的解耦合。Storage 模块负责管理 Spark 在计算过程中产生的数据，将那些在内存或磁盘、在本地或远程存取数据的功能封装了起来。在具体实现时 Driver 端和 Executor 端的 Storage 模块构成了主从式的架构，即 Driver 端的 BlockManager 为 Master，Executor 端的 BlockManager 为 Slave。Storage 模块在逻辑上以 Block 为基本存储单位，RDD 的每个 Partition 经过处理后唯一对应一个 Block（BlockId 的格式为 rdd_RDD-ID_PARTITION-ID ）。Master 负责整个 Spark 应用程序的 Block 的元数据信息的管理和维护，而 Slave 需要将 Block 的更新等状态上报到 Master，同时接收 Master 的命令，例如新增或删除一个 RDD。</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202101151555.png" width="60%" heigh="80%">
+</div>
+
+<p>在对 RDD 持久化时，Spark 规定了 MEMORY_ONLY、MEMORY_AND_DISK 等 7 种不同的 <a href="http://spark.apache.org/docs/latest/rdd-programming-guide.html" target="_blank" rel="noopener">存储级别</a> ，而存储级别是以下 5 个变量的组合：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StorageLevel</span> <span class="title">private</span>(</span></span><br><span class="line">    private var _useDisk: Boolean,      // 磁盘</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _useMemory: Boolean,    <span class="comment">// 堆内内存</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _useOffHeap: Boolean,   <span class="comment">// 堆外内存</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _deserialized: Boolean, <span class="comment">// 是否为非序列化</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _replication: Int = <span class="number">1</span>   <span class="comment">// 副本个数</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></div>
+<p>通过对数据结构的分析，可以看出存储级别从三个维度定义了 RDD 的 Partition（同时也就是 Block）的存储方式：</p>
+<ol>
+<li>存储位置：磁盘／堆内内存／堆外内存。如 MEMORY_AND_DISK 是同时在磁盘和堆内内存上存储，实现了冗余备份。OFF_HEAP 则是只在堆外内存存储，目前选择堆外内存时不能同时存储到其他位置；</li>
+<li>存储形式：Block 缓存到存储内存后，是否为非序列化的形式。如 MEMORY_ONLY 是非序列化方式存储，OFF_HEAP 是序列化方式存储；</li>
+<li>副本数量：大于 1 时需要远程冗余备份到其他节点。如 DISK_ONLY_2 需要远程备份 1 个副本；</li>
+</ol>
+<h4 id="RDD-缓存过程"><a href="#RDD-缓存过程" class="headerlink" title="RDD 缓存过程"></a>RDD 缓存过程</h4><p>RDD 缓存的过程是将对象从 other 内存区迁移至 Storage 区或 Disk 的过程：</p>
+<ol>
+<li>RDD 在缓存到存储内存之前：Partition 中的数据一般以迭代器（Iterator）的数据结构来访问，这是 Scala 语言中一种遍历数据集合的方法。通过 Iterator 可以获取分区中每一条序列化或者非序列化的数据项(Record)，这些 Record 的对象实例在逻辑上占用了 JVM 堆内内存的 other 部分的空间，同一 Partition 的不同 Record 的空间并不连续；</li>
+<li>RDD 在缓存到存储内存之后：Partition 被转换成 Block，Record 在堆内或堆外存储内存中占用一块连续的空间，当存储空间不足时会根据动态占用机制进行处理。将 Partition 由不连续的存储空间转换为连续存储空间的过程，Spark 称之为”展开”（Unroll）。Block 有序列化和非序列化两种存储格式，具体以哪种方式取决于该 RDD 的存储级别<ol>
+<li>非序列化的 Block 以一种 DeserializedMemoryEntry 的数据结构定义，用一个数组存储所有的对象实例；</li>
+<li>序列化的 Block 则以 SerializedMemoryEntry的数据结构定义，用字节缓冲区（ByteBuffer）来存储二进制数据。每个 Executor 的 Storage 模块用一个链式 Map 结构（LinkedHashMap）来管理堆内和堆外存储内存中所有的 Block 对象的实例[6]，对这个 LinkedHashMap 新增和删除间接记录了内存的申请和释放；</li>
+</ol>
+</li>
+</ol>
+<p>因为不能保证存储空间可以一次容纳 Iterator 中的所有数据，当前的计算任务在 Unroll 时要向 MemoryManager 申请足够的 Unroll 空间来临时占位，空间不足则 Unroll 失败，空间足够时可以继续进行。对于序列化的 Partition，其所需的 Unroll 空间可以直接累加计算，一次申请。而非序列化的 Partition 则要在遍历 Record 的过程中依次申请，即每读取一条 Record，采样估算其所需的 Unroll 空间并进行申请，空间不足时可以中断，释放已占用的 Unroll 空间。如果最终 Unroll 成功，当前 Partition 所占用的 Unroll 空间被转换为正常的缓存 RDD 的存储空间，如下图所示：</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/spark_unroll.png" width="80%" heigh="80%">
+</div>
+
+<h4 id="淘汰和落盘"><a href="#淘汰和落盘" class="headerlink" title="淘汰和落盘"></a>淘汰和落盘</h4><p>由于同一个 Executor 的所有的计算任务共享有限的存储内存空间，当有新的 Block 需要缓存但是剩余内存空间不足且无法动态占用时，就要对 LinkedHashMap 中的旧 Block 进行淘汰（Eviction），而被淘汰的 Block 如果其存储级别中同时包含存储到磁盘的要求，则要对其进行落盘（Drop），否则直接删除该 Block。</p>
+<p>存储内存的淘汰规则为：</p>
+<ol>
+<li>被淘汰的旧 Block 要与新 Block 的 MemoryMode 相同，即同属于堆外或堆内内存；</li>
+<li>新旧 Block 不能属于同一个 RDD，避免循环淘汰；</li>
+<li>旧 Block 所属 RDD 不能处于被读状态，避免引发一致性问题；</li>
+<li>遍历 LinkedHashMap 中 Block，按照最近最少使用（LRU）的顺序淘汰，直到满足新 Block 所需的空间。其中 LRU 是 LinkedHashMap 的特性；</li>
+</ol>
+<p>存储内存的落盘规则为：如果其存储级别符合 <code>_useDisk</code> 为 true 的条件，再根据其<code>_deserialized</code> 判断是否是非序列化的形式，若是则对其进行序列化，最后将数据存储到磁盘，在 Storage 模块中更新其信息。</p>
+<h3 id="执行内存管理"><a href="#执行内存管理" class="headerlink" title="执行内存管理"></a>执行内存管理</h3><h4 id="多任务间内存分配"><a href="#多任务间内存分配" class="headerlink" title="多任务间内存分配"></a>多任务间内存分配</h4><p>Executor 内运行的任务同样共享执行内存，Spark 用一个 HashMap 结构保存了任务到内存耗费的映射。每个任务可占用的执行内存大小的范围为 1/2N ~ 1/N，其中 N 为当前 Executor 内正在运行的任务的个数。每个任务在启动之时，要向 MemoryManager 请求申请最少为 1/2N 的执行内存，如果不能被满足要求则该任务被<strong>阻塞</strong>，直到有其他任务释放了足够的执行内存，该任务才可以被唤醒。</p>
+<h4 id="Shuffle-内存占用"><a href="#Shuffle-内存占用" class="headerlink" title="Shuffle 内存占用"></a>Shuffle 内存占用</h4><p>执行内存主要用来存储任务在执行 Shuffle 时占用的内存，Shuffle 是按照一定规则对 RDD 数据重新分区的过程，我们来看 Shuffle 的 Write 和 Read 两阶段对执行内存的使用：</p>
+<ol>
+<li>Shuffle Write<ol>
+<li>若在 map 端选择普通的排序方式，会采用 ExternalSorter 进行外排，在内存中存储数据时主要占用堆内执行空间；</li>
+<li>若在 map 端选择 Tungsten 的排序方式，则采用 ShuffleExternalSorter 直接对以序列化形式存储的数据排序，在内存中存储数据时可以占用堆外或堆内执行空间，取决于用户是否开启了堆外内存以及堆外执行内存是否足够；</li>
+</ol>
+</li>
+<li>Shuffle Read<ol>
+<li>在对 reduce 端的数据进行聚合时，要将数据交给 Aggregator 处理，在内存中存储数据时占用堆内执行空间；</li>
+<li>如果需要进行最终结果排序，则要再次将数据交给 ExternalSorter 处理，占用堆内执行空间；</li>
+</ol>
+</li>
+</ol>
+<p>在 ExternalSorter 和 Aggregator 中，Spark 会使用一种叫 AppendOnlyMap 的哈希表在堆内执行内存中存储数据，但在 Shuffle 过程中所有数据并不能都保存到该哈希表中，当这个哈希表占用的内存会进行周期性地采样估算，当其大到一定程度，无法再从 MemoryManager 申请到新的执行内存时，Spark 就会将其全部内容存储到磁盘文件中，这个过程被称为溢存(Spill)，溢存到磁盘的文件最后会被归并(Merge)。</p>
+<p>Shuffle Write 阶段中用到的 Tungsten 是 Databricks 公司提出的对 Spark 优化内存和 CPU 使用的计划，解决了一些 JVM 在性能上的限制和弊端。Spark 会根据 Shuffle 的情况来自动选择是否采用 Tungsten 排序。Tungsten 采用的页式内存管理机制建立在 MemoryManager 之上，即 Tungsten 对执行内存的使用进行了一步的抽象，这样在 Shuffle 过程中无需关心数据具体存储在堆内还是堆外。每个内存页用一个 MemoryBlock 来定义，并用 Object obj 和 long offset 这两个变量统一标识一个内存页在系统内存中的地址。堆内的 MemoryBlock 是以 long 型数组的形式分配的内存，其 obj 的值为是这个数组的对象引用，offset 是 long 型数组的在 JVM 中的初始偏移地址，两者配合使用可以定位这个数组在堆内的绝对地址；堆外的 MemoryBlock 是直接申请到的内存块，其 obj 为 null，offset 是这个内存块在系统内存中的 64 位绝对地址。Spark 用 MemoryBlock 巧妙地将堆内和堆外内存页统一抽象封装，并用页表(pageTable)管理每个 Task 申请到的内存页。Tungsten 页式管理下的所有内存用 64 位的逻辑地址表示，由页号和页内偏移量组成：</p>
+<ol>
+<li>页号：占 13 位，唯一标识一个内存页，Spark 在申请内存页之前要先申请空闲页号。</li>
+<li>页内偏移量：占 51 位，是在使用内存页存储数据时，数据在页内的偏移地址。</li>
+</ol>
+<p>有了统一的寻址方式，Spark 可以用 64 位逻辑地址的指针定位到堆内或堆外的内存，整个 Shuffle Write 排序的过程只需要对指针进行排序，并且无需反序列化，整个过程非常高效，对于内存访问效率和 CPU 使用效率带来了明显的提升。</p>
+<p>Spark 的存储内存和执行内存有着截然不同的管理方式：对于存储内存来说，Spark 用一个 LinkedHashMap 来集中管理所有的 Block，Block 由需要缓存的 RDD 的 Partition 转化而成；而对于执行内存，Spark 用 AppendOnlyMap 来存储 Shuffle 过程中的数据，在 Tungsten 排序中甚至抽象成为页式内存管理，开辟了全新的 JVM 内存管理机制。</p>
+<h2 id="堆外内存（Off-Heap）"><a href="#堆外内存（Off-Heap）" class="headerlink" title="堆外内存（Off-Heap）"></a>堆外内存（Off-Heap）</h2><p>为了进一步优化内存的使用以及提高 Shuffle 时排序的效率，Spark 引入了堆外（Off-heap）内存，使之可以直接在工作节点的系统内存中开辟空间，存储经过序列化的二进制数据。利用 JDK Unsafe API（从 Spark 2.0 开始，在管理堆外的存储内存时不再基于 Tachyon，而是与堆外的执行内存一样，基于 JDK Unsafe API 实现），Spark 可以直接操作系统堆外内存，减少了不必要的内存开销，以及频繁的 GC 扫描和回收，提升了处理性能。堆外内存可以被精确地申请和释放，而且序列化的数据占用的空间可以被精确计算，所以相比堆内内存来说降低了管理的难度，也降低了误差。</p>
+<p>在默认情况下堆外内存并不启用，可通过配置 <code>spark.memory.offHeap.enabled</code> 参数启用，并由 <code>spark.memory.offHeap.size</code> 参数设定堆外空间的大小。除了没有 other 空间，堆外内存与堆内内存的划分方式相同，所有运行中的并发任务共享存储内存和执行内存。</p>
+<h2 id="运行实例"><a href="#运行实例" class="headerlink" title="运行实例"></a>运行实例</h2><p>假设 Spark 应用程序运行参数设置如下：</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202101152046.png" width="100%" heigh="80%">
+</div>
+
+<p>Spark 应用程序运行过程中，我们可以在 Web UI -&gt; Executors 中查看 Excutor 内存实际使用大小/内存规划大小：</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20212051.png" width="100%" heigh="80%">
+</div>
+
+<p>从该实例可以看出 Executor 的统一内存为 5.9G，与理论计算出来的值相近（10G * 0.6 = 6G），存储内存为 5.8 G，动态占用机制使得存储内存占用了绝大部分统一内存，导致只有很少的内存用于 Shuffle，这也是影响本任务执行效率的关键问题。此外，Driver 的内存基本没有被存储占用，有充足的内存可以用于执行 Spark 程序，可以适当减少 Driver 端内存分配。</p>
+<p>进一步考察存储内存占用过高的原因，可以看到该程序缓存了非常大的中间结果，可以选择把缓存数据全部存储到磁盘，在这个场景下不会对缓存过程有太大影响，却可以保证充足的执行内存：</p>
+<div align="center">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/affdssgg.png" width="100%" heigh="80%">
+</div>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.ibm.com/zh/articles/ba-cn-apache-spark-memory-management/" target="_blank" rel="noopener">Apache Spark 内存管理详解</a><br><a href="https://spark.apache.org/docs/latest/configuration.html" target="_blank" rel="noopener">Spark 配置</a><br><a href="https://blog.csdn.net/suifeng3051/article/details/45477773" target="_blank" rel="noopener">yarn 资源管理参数设置</a><br><a href="https://my.oschina.net/cutexim/blog/4416369" target="_blank" rel="noopener">Spark 性能优化指南(官网文档)</a></p>
+
       
     </div>
     
@@ -585,7 +728,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Life/" rel="tag"># Life</a>
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
           
         </div>
       
@@ -598,8 +741,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Life/Life/人生的时区/" rel="next" title="人生的时区">
-                <i class="fa fa-chevron-left"></i> 人生的时区
+              <a href="/Spark/Spark/Spark 指南：Spark SQL（四）—— 结构化函数/" rel="next" title="Spark 指南：Spark SQL（四）—— 结构化函数">
+                <i class="fa fa-chevron-left"></i> Spark 指南：Spark SQL（四）—— 结构化函数
               </a>
             
           </div>
@@ -608,8 +751,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Python/Python/Python操作Excel：openpyxl/" rel="prev" title="Python 操作 Excel：openpyxl">
-                Python 操作 Excel：openpyxl <i class="fa fa-chevron-right"></i>
+              <a href="/Spark/Spark/Spark 指南：Spark SQL（五）—— SQL/" rel="prev" title="Spark 指南：Spark SQL（五）—— SQL">
+                Spark 指南：Spark SQL（五）—— SQL <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -790,7 +933,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一集：少梁之战"><span class="nav-number">1.</span> <span class="nav-text">第一集：少梁之战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二集：秦军撤兵"><span class="nav-number">2.</span> <span class="nav-text">第二集：秦军撤兵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三集：献公传位"><span class="nav-number">3.</span> <span class="nav-text">第三集：献公传位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#献公召见公子虔"><span class="nav-number">3.1.</span> <span class="nav-text">献公召见公子虔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#献公召见渠梁"><span class="nav-number">3.2.</span> <span class="nav-text">献公召见渠梁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四集：秦国释放公孙痤"><span class="nav-number">4.</span> <span class="nav-text">第四集：秦国释放公孙痤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渠梁阻止荧玉杀公孙痤"><span class="nav-number">4.1.</span> <span class="nav-text">渠梁阻止荧玉杀公孙痤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卫鞅救师求见公子虔"><span class="nav-number">4.2.</span> <span class="nav-text">卫鞅救师求见公子虔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渠梁谈和公孙痤"><span class="nav-number">4.3.</span> <span class="nav-text">渠梁谈和公孙痤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五集：说服魏王谈和"><span class="nav-number">5.</span> <span class="nav-text">第五集：说服魏王谈和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卫鞅支持公孙痤争霸方略"><span class="nav-number">5.1.</span> <span class="nav-text">卫鞅支持公孙痤争霸方略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公孙痤说服魏王谈和"><span class="nav-number">5.2.</span> <span class="nav-text">公孙痤说服魏王谈和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#魏王庞涓密谋分秦策略"><span class="nav-number">5.3.</span> <span class="nav-text">魏王庞涓密谋分秦策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卫鞅推测老师无恙"><span class="nav-number">5.4.</span> <span class="nav-text">卫鞅推测老师无恙</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六集：六国指地分秦"><span class="nav-number">6.</span> <span class="nav-text">第六集：六国指地分秦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七集："><span class="nav-number">7.</span> <span class="nav-text">第七集：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存规划"><span class="nav-number">1.</span> <span class="nav-text">内存规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆内内存（On-Heap）"><span class="nav-number">2.</span> <span class="nav-text">堆内内存（On-Heap）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#统一内存管理"><span class="nav-number">2.1.</span> <span class="nav-text">统一内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储内存管理"><span class="nav-number">2.2.</span> <span class="nav-text">存储内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-持久化机制"><span class="nav-number">2.2.1.</span> <span class="nav-text">RDD 持久化机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-缓存过程"><span class="nav-number">2.2.2.</span> <span class="nav-text">RDD 缓存过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#淘汰和落盘"><span class="nav-number">2.2.3.</span> <span class="nav-text">淘汰和落盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行内存管理"><span class="nav-number">2.3.</span> <span class="nav-text">执行内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多任务间内存分配"><span class="nav-number">2.3.1.</span> <span class="nav-text">多任务间内存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shuffle-内存占用"><span class="nav-number">2.3.2.</span> <span class="nav-text">Shuffle 内存占用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆外内存（Off-Heap）"><span class="nav-number">3.</span> <span class="nav-text">堆外内存（Off-Heap）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行实例"><span class="nav-number">4.</span> <span class="nav-text">运行实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
