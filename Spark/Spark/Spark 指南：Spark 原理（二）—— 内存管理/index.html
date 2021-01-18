@@ -140,7 +140,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202101152046.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20212051.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/affdssgg.png">
-<meta property="og:updated_time" content="2021-01-18T03:08:39.785Z">
+<meta property="og:updated_time" content="2021-01-18T03:17:19.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark 指南：Spark 原理（二）—— 内存管理">
 <meta name="twitter:description" content="原文最初由 IBM developerWorks 中国网站发表，本文在此基础上进行了总结梳理，仅作为个人学习使用。  Spark 作为一个基于内存的分布式计算引擎，其内存管理模块至关重要。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和性能调优。本文基于 Spark 2.1 版本，旨在梳理 Spark 内存管理的基本脉络。 在执行 Spark 应用程序时，Spark">
@@ -404,7 +404,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-18T11:08:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-18T11:17:19+08:00">
                 2021-01-18
               </time>
             
@@ -524,7 +524,7 @@
 <p>由于 Driver 的内存管理相对简单，本文主要对 Executor 的内存管理进行分析，下文中 Spark 内存均指 Executor 内存。</p>
 <h2 id="内存规划"><a href="#内存规划" class="headerlink" title="内存规划"></a>内存规划</h2><p>作为一个 JVM 进程，Executor 的内存管理建立在 JVM 的内存管理之上，Spark 对 JVM 的堆内（On-heap）空间进行了更为详细的分配，以充分利用内存。同时，Spark 引入了堆外（Off-heap）内存，使之可以直接在工作节点的系统内存中开辟空间，进一步优化了内存的使用。</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210112235829.png" width="80%" heigh="80%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210112235829.png" width="100%" heigh="80%">
 </div>
 
 <h2 id="堆内内存（On-Heap）"><a href="#堆内内存（On-Heap）" class="headerlink" title="堆内内存（On-Heap）"></a>堆内内存（On-Heap）</h2><p>Executor 内运行的并发任务共享 JVM 堆内内存，堆内内存的大小由 Spark 应用程序启动时的 <code>–executor-memory</code> 或 <code>spark.executor.memory</code> 参数配置（默认 1g），Spark 对堆内内存进行了详细的规划：</p>
@@ -598,7 +598,7 @@
 <p>JVM 对象可以以序列化（将对象转化为二进制字节流）的方式存储，本质上可以理解为将非连续的链式存储转化为连续存储，在访问时则需要进行反序列化（将字节流转化为对象），这种方式节省了空间，但是增加了存储和读取的计算开销。对于序列化对象，由于是字节流的形式，其占用的内存大小可以直接计算，而对于非序列化对象，其占用的内存则通过周期采样近似估算，这种方式降低了时间开销但是可能误差较大，导致某一时刻的实际内存有可能远远超出预期。此外，在被 Spark 标记为释放的对象实例，很有可能在实际上并没有被 JVM 回收，导致实际可用的内存小于 Spark 记录的可用内存。所以 Spark 并不能准确记录实际可用的堆内内存，从而也就无法完全避免内存溢出（OOM, Out of Memory）的异常。</p>
 <h3 id="统一内存管理"><a href="#统一内存管理" class="headerlink" title="统一内存管理"></a>统一内存管理</h3><p>Spark 1.6 之后引入了统一内存管理机制，存储内存和执行内存共享同一块空间，可以动态占用对方的空闲区域，如图所示：</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/memory_0114.png" width="80%" heigh="80%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/memory_0114.png" width="100%" heigh="80%">
 </div>
 
 <p>统一内存的动态占用机制：</p>
@@ -634,7 +634,7 @@
 </ol>
 <p>因为不能保证存储空间可以一次容纳 Iterator 中的所有数据，当前的计算任务在 Unroll 时要向 MemoryManager 申请足够的 Unroll 空间来临时占位，空间不足则 Unroll 失败，空间足够时可以继续进行。对于序列化的 Partition，其所需的 Unroll 空间可以直接累加计算，一次申请。而非序列化的 Partition 则要在遍历 Record 的过程中依次申请，即每读取一条 Record，采样估算其所需的 Unroll 空间并进行申请，空间不足时可以中断，释放已占用的 Unroll 空间。如果最终 Unroll 成功，当前 Partition 所占用的 Unroll 空间被转换为正常的缓存 RDD 的存储空间，如下图所示：</p>
 <div align="center">
-    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/spark_unroll.png" width="80%" heigh="80%">
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/spark_unroll.png" width="70%" heigh="80%">
 </div>
 
 <h4 id="淘汰和落盘"><a href="#淘汰和落盘" class="headerlink" title="淘汰和落盘"></a>淘汰和落盘</h4><p>由于同一个 Executor 的所有的计算任务共享有限的存储内存空间，当有新的 Block 需要缓存但是剩余内存空间不足且无法动态占用时，就要对 LinkedHashMap 中的旧 Block 进行淘汰（Eviction），而被淘汰的 Block 如果其存储级别中同时包含存储到磁盘的要求，则要对其进行落盘（Drop），否则直接删除该 Block。</p>
