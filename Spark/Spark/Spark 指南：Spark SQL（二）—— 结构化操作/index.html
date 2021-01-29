@@ -133,7 +133,7 @@
 <meta property="og:site_name" content="Like">
 <meta property="og:description" content="从定义上讲，DataFrame 由一系列行和列组成，行的类型为 Row，列可以表示成每个单独行的计算表达式。Schema 定义了每个列的名称和类型，Partition 定义了整个集群中 DataFrame 的物理分布。 SchemaSchema 定义了 DataFrame 的列名和类型，我们可以让数据源定义 Schema（schema-on-read），也可以自己明确地进行定义。对于临时分析，sc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-12T02:41:56.390Z">
+<meta property="og:updated_time" content="2021-01-29T01:15:13.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark 指南：Spark SQL（二）—— 结构化操作">
 <meta name="twitter:description" content="从定义上讲，DataFrame 由一系列行和列组成，行的类型为 Row，列可以表示成每个单独行的计算表达式。Schema 定义了每个列的名称和类型，Partition 定义了整个集群中 DataFrame 的物理分布。 SchemaSchema 定义了 DataFrame 的列名和类型，我们可以让数据源定义 Schema（schema-on-read），也可以自己明确地进行定义。对于临时分析，sc">
@@ -396,8 +396,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-12T10:41:56+08:00">
-                2021-01-12
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-29T09:15:13+08:00">
+                2021-01-29
               </time>
             
           </span>
@@ -674,7 +674,7 @@
 <li>功能：Spark SQL 支持传统 SQL 中可用的所有基本联接操作（这里不再赘述），尽管 Spark 核心联接在设计时不小心会产生巨大的性能问题，因为它涉及到跨网络的数据 shuffe，另一方面，Spark SQL 连接在默认情况下具有更多的优化（多亏了 DataFrames &amp; Dataset），但是在使用时仍然会有一些性能问题需要考虑；</li>
 <li>语法: 三要素为连接表、连接谓词、连接类型；</li>
 </ul>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>) join(right: <span class="type">Dataset</span>[_]): <span class="type">DataFrame</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 usingColumn：join 结果中只会保留左表的 usingColumn，以及左右表其他列</span></span><br><span class="line"><span class="number">2</span>) join(right: <span class="type">Dataset</span>[_], usingColumn: <span class="type">String</span>): <span class="type">DataFrame</span></span><br><span class="line"><span class="number">3</span>) join(right: <span class="type">Dataset</span>[_], usingColumns: <span class="type">Seq</span>[<span class="type">String</span>]): <span class="type">DataFrame</span></span><br><span class="line"><span class="number">4</span>) join(right: <span class="type">Dataset</span>[_], usingColumns: <span class="type">Seq</span>[<span class="type">String</span>], joinType: <span class="type">String</span>): <span class="type">DataFrame</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 joinExprs：join 结果会包含两个表的所有列</span></span><br><span class="line"><span class="number">5</span>) join(right: <span class="type">Dataset</span>[_], joinExprs: <span class="type">Column</span>): <span class="type">DataFrame</span></span><br><span class="line"><span class="number">6</span>) join(right: <span class="type">Dataset</span>[_], joinExprs: <span class="type">Column</span>, joinType: <span class="type">String</span>): <span class="type">DataFrame</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 笛卡尔积：将左表中的每一行与右表中的每一行进行连接</span></span><br><span class="line"><span class="number">7</span>) crossJoin(right: <span class="type">Dataset</span>[_])</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>) join(right: <span class="type">Dataset</span>[_]): <span class="type">DataFrame</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 usingColumn：join 结果中只会保留左表的 usingColumn，以及左右表其他列</span></span><br><span class="line"><span class="number">2</span>) join(right: <span class="type">Dataset</span>[_], usingColumn: <span class="type">String</span>): <span class="type">DataFrame</span></span><br><span class="line"><span class="number">3</span>) join(right: <span class="type">Dataset</span>[_], usingColumns: <span class="type">Seq</span>[<span class="type">String</span>]): <span class="type">DataFrame</span></span><br><span class="line"><span class="number">4</span>) join(right: <span class="type">Dataset</span>[_], usingColumns: <span class="type">Seq</span>[<span class="type">String</span>], joinType: <span class="type">String</span>): <span class="type">DataFrame</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 joinExprs：joinExprs 返回一个布尔型 Column，join 结果会包含两个表的所有列</span></span><br><span class="line"><span class="number">5</span>) join(right: <span class="type">Dataset</span>[_], joinExprs: <span class="type">Column</span>): <span class="type">DataFrame</span></span><br><span class="line"><span class="number">6</span>) join(right: <span class="type">Dataset</span>[_], joinExprs: <span class="type">Column</span>, joinType: <span class="type">String</span>): <span class="type">DataFrame</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 笛卡尔积：将左表中的每一行与右表中的每一行进行连接</span></span><br><span class="line"><span class="number">7</span>) crossJoin(right: <span class="type">Dataset</span>[_])</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>join 类型: 对于上面语句 4 和语句 5，你可以使用 JoinType 或 Join String 中的一种，如果要使用 JoinType，应该先导入 <code>import org.apache.spark.sql.catalyst.plans._</code>，以下示例将采用上面语句 6 的形式</li>
 </ul>
@@ -1164,7 +1164,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">106</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1175,7 +1175,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1186,7 +1186,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1298,7 +1298,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">305.4k</span>
+    <span title="Site words total count">311.5k</span>
   
 </div>
 
