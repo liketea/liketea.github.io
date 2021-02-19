@@ -1,6 +1,6 @@
 ---
 title: Hexo + Github Pages 博客搭建教程（五）：问题解答
-date: 2019-03-19 17:01:09
+date: 2019-03-10 14:03:45
 tags:
     - "搭建博客"
     - "教程"
@@ -285,9 +285,22 @@ mathjax: true
 ![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png)
 
 ### 在手机无法打开博客
-可能的原因是 github 仓库设置了强制 `https`，取消勾选即可：
+博客在某些网络中无法访问，原因可能是 gitpage 被墙，解决办法：
 
-![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201209153226.png)
+- 在[站长工具-DNS查询](https://tool.chinaz.com/dns/?type=1&host=liketea.xyz&ip=)输入博客网址如`liketea.xyz`，查询响应 IP
+
+![](https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201230213808.png)
+
+- 修改电脑 hosts 文件，以 MAC为例：
+
+```zsh
+(base) ➜  ~ sudo vim /etc/hosts
+Password:
+# 将查询到的 IP 和域名写到这里
+185.199.109.153 liketea.xyz
+```
+
+刷新博客网站即可正常访问。
 
 ## 参考
 

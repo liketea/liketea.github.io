@@ -1,6 +1,6 @@
 ---
 title: Scala 教程：Basics（五）—— 函数
-date: 2020-08-11 16:00:04
+date: 2020-08-07 16:00:00
 tags:
     - Scala
     - 教程

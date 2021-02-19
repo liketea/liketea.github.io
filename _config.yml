@@ -85,7 +85,7 @@ pagination_dir: page
 theme: next
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
+## Docs: https://hexo.io/docs/deployment.html 
 deploy:
   type: git
   repo: git@github.com:liketea/liketea.github.io.git

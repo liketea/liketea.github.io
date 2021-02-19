@@ -95,6 +95,31 @@ import org.apache.spark.sql.functions.lit
 df.select(lit(5).as("f_integer"), lit("five").as("f_string"), lit(5.0).as("f_double"))
 ```
 
+需要注意的是，如果传给 `lit()` 的参数本身就是 `Column` 对象，`lit()` 将原样返回该 `Column` 对象：
+
+```scala
+  /**
+   * Creates a [[Column]] of literal value.
+   *
+   * The passed in object is returned directly if it is already a [[Column]].
+   * If the object is a Scala Symbol, it is converted into a [[Column]] also.
+   * Otherwise, a new [[Column]] is created to represent the literal value.
+   *
+   * @group normal_funcs
+   * @since 1.3.0
+   */
+  def lit(literal: Any): Column = {
+    literal match {
+      case c: Column => return c
+      case s: Symbol => return new ColumnName(literal.asInstanceOf[Symbol].name)
+      case _ =>  // continue
+    }
+
+    val literalExpr = Literal(literal)
+    Column(literalExpr)
+  }
+```
+
 #### Spark 类型 & Spark 类型
 将 DataFrame 列类型从一种类型转换到另一种类型有很多种方法：`withColumn()`、`cast()`、`selectExpr`、SQL 表达式，需要注意的是目标类型必须是 DataType 的子类。
 
@@ -346,19 +371,20 @@ df.withColumn("f_split", split(col("dob"), "6")).show()
 // 语法
 concat(exprs: Column*)
 concat_ws(sep: String, exprs: Column*)
-// 示例
+// 示例，第二个参数是变长参数，可以接收一个 array() 或者多个 Column
 df.withColumn("f_concat", concat(col("gender"), lit("-"), col("dob")))
-  .withColumn("f_concat_ws", concat_ws("~", array(col("gender"), col("dob"))))
+  .withColumn("f_concat_ws1", concat_ws("~", col("gender"), col("dob")))
+  .withColumn("f_concat_ws2", concat_ws("~", array(col("gender"), col("dob"))))
   .show()
-+--------------------+-----+------+------+--------+-----------+
-|                name|  dob|gender|salary|f_concat|f_concat_ws|
-+--------------------+-----+------+------+--------+-----------+
-|   [James , , Smith]|36636|     M|  3000| M-36636|    M~36636|
-|  [Michael , Rose, ]|40288|     M|  4000| M-40288|    M~40288|
-|[Robert , , Willi...|42114|     M|  4000| M-42114|    M~42114|
-|[Maria , Anne, Jo...|39192|     F|  4000| F-39192|    F~39192|
-|  [Jen, Mary, Brown]|     |     F|    -1|      F-|         F~|
-+--------------------+-----+------+------+--------+-----------+
++--------------------+-----+------+------+--------+------------+------------+
+|                name|  dob|gender|salary|f_concat|f_concat_ws1|f_concat_ws2|
++--------------------+-----+------+------+--------+------------+------------+
+|   [James , , Smith]|36636|     M|  3000| M-36636|     M~36636|     M~36636|
+|  [Michael , Rose, ]|40288|     M|  4000| M-40288|     M~40288|     M~40288|
+|[Robert , , Willi...|42114|     M|  4000| M-42114|     M~42114|     M~42114|
+|[Maria , Anne, Jo...|39192|     F|  4000| F-39192|     F~39192|     F~39192|
+|  [Jen, Mary, Brown]|     |     F|    -1|      F-|          F~|          F~|
++--------------------+-----+------+------+--------+------------+------------+
 ```
 
 ### 增删两侧
@@ -399,7 +425,7 @@ df.withColumn("f_translate", translate(col("dob"), "36", "+-")).show()
 ### 子串查询
 
 ```scala
-// 语法
+// 语法，other 可以是 Column 对象，将逐行判断
 contains(other: Any)
 // 示例
 df.withColumn("f_contain", col("dob").contains(66)).show()

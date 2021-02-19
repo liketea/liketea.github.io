@@ -1,6 +1,6 @@
 ---
 title: Scala 教程：Basics（二）—— 核心类型
-date: 2020-08-11 16:00:01
+date: 2020-08-10 16:00:00
 tags:
     - Scala
     - 教程

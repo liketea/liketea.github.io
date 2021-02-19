@@ -156,7 +156,6 @@ root
 
 ### 列操作
 #### select —— 筛选列
-##### select
 - 功能：`select()` 用于筛选/操作列；
 
 - 语法：有两种语法形式，但是两种形式不能混用；
@@ -199,7 +198,7 @@ df.select($"name.firstname".cast("String"), col("dob").as("f_dob"), df("*"), lit
 +---------+-----+--------------------+-----+------+------+-------+
 ```
 
-##### selectExpr
+#### selectExpr —— 通过 SQL 语句筛选列
 - 功能：selectExpr 和 select 作用相同，只是 selectExpr 更加简洁、灵活、强大；
 - 语法：可以通过构造任意有效的非聚合 SQL 语句来生成列（如果使用了聚合函数，则只能应用于整个 DataFrame）；这释放了 Spark 的真正力量，我们可以将 selectExpr 视为构建复杂表达式以生成新的 DataFrame 的简单方法；如果列名中包含了保留字或关键字，例如空格或破折号，可以通过反引号（`）字符引用列名；
 
@@ -383,363 +382,6 @@ df.drop("xxx").show()
 |  1|2020-11-04|2020-11-04|2020-11-04 22:19:...|
 |  2|2020-11-04|2020-11-04|2020-11-04 22:19:...|
 +---+----------+----------+--------------------+
-```
-#### 其他列操作
-##### when | otherwise —— 条件控制
-- 功能：`when otherwise` 类似于 SQL 中的 case when 语句；
-- 语法：可以由多个 when 表达式（不满足前一个 when 条件则继续匹配下一个 when 条件），也可以不带 otherwise 表达式（不满足 when 条件则返回 null）；
-
-```scala
-when(condition: Column, value: Any): Column
-otherwise(value: Any): Column
-```
-
-- 示例：
-
-```scala
-df.withColumn("new_gender", when(col("gender") === "M", "Male")).show()
-+--------------------+-----+------+------+----------+
-|                name|  dob|gender|salary|new_gender|
-+--------------------+-----+------+------+----------+
-|   [James , , Smith]|36636|     M|  3000|      Male|
-|  [Michael , Rose, ]|40288|     M|  4000|      Male|
-|[Robert , , Willi...|42114|     M|  4000|      Male|
-|[Maria , Anne, Jo...|39192|     F|  4000|      null|
-|  [Jen, Mary, Brown]|     |     F|    -1|      null|
-+--------------------+-----+------+------+----------+
-
-df.withColumn("new_gender", when(col("gender") === "M", "Male").otherwise("Unknown")).show()
-+--------------------+-----+------+------+----------+
-|                name|  dob|gender|salary|new_gender|
-+--------------------+-----+------+------+----------+
-|   [James , , Smith]|36636|     M|  3000|      Male|
-|  [Michael , Rose, ]|40288|     M|  4000|      Male|
-|[Robert , , Willi...|42114|     M|  4000|      Male|
-|[Maria , Anne, Jo...|39192|     F|  4000|   Unknown|
-|  [Jen, Mary, Brown]|     |     F|    -1|   Unknown|
-+--------------------+-----+------+------+----------+
-df.withColumn("new_gender", 
-       when(col("gender") === "M", "Male")
-      .when(col("gender") === "F", "Female")
-      .otherwise("Unknown"))
-+--------------------+-----+------+------+----------+
-|                name|  dob|gender|salary|new_gender|
-+--------------------+-----+------+------+----------+
-|   [James , , Smith]|36636|     M|  3000|      Male|
-|  [Michael , Rose, ]|40288|     M|  4000|      Male|
-|[Robert , , Willi...|42114|     M|  4000|      Male|
-|[Maria , Anne, Jo...|39192|     F|  4000|    Female|
-|  [Jen, Mary, Brown]|     |     F|    -1|    Female|
-+--------------------+-----+------+------+----------+
-```
-
-##### flatten —— 扁平化列
-- 功能：在 Spark SQL 中，扁平化 DataFrame 的嵌套结构列对于一级嵌套很简单，而对于多级嵌套和存在数百个列的情况下则很复杂。
-
-- 扁平化嵌套 struct: 如果哦列数有限，可以通过引用列名似乎很容易解决，但是请想象一下，如果您有100多个列并在一个select中引用所有列，那么会很麻烦。可以通过创建一个递归函数 flattenStructSchema（）轻松地将数百个嵌套级别列展平。
-
-```scala
-val structureData = Seq(
-    Row(Row("James ","","Smith"),Row(Row("CA","Los Angles"),Row("CA","Sandiago"))),
-    Row(Row("Michael ","Rose",""),Row(Row("NY","New York"),Row("NJ","Newark"))),
-    Row(Row("Robert ","","Williams"),Row(Row("DE","Newark"),Row("CA","Las Vegas"))),
-    Row(Row("Maria ","Anne","Jones"),Row(Row("PA","Harrisburg"),Row("CA","Sandiago"))),
-    Row(Row("Jen","Mary","Brown"),Row(Row("CA","Los Angles"),Row("NJ","Newark")))
-  )
-
-val structureSchema = new StructType()
-    .add("name",new StructType()
-      .add("firstname",StringType)
-      .add("middlename",StringType)
-      .add("lastname",StringType))
-    .add("address",new StructType()
-      .add("current",new StructType()
-        .add("state",StringType)
-        .add("city",StringType))
-      .add("previous",new StructType()
-        .add("state",StringType)
-        .add("city",StringType)))
-
-val df = spark.createDataFrame(
-    spark.sparkContext.parallelize(structureData),structureSchema)
-df.printSchema()
-
-root
- |-- name: struct (nullable = true)
- |    |-- firstname: string (nullable = true)
- |    |-- middlename: string (nullable = true)
- |    |-- lastname: string (nullable = true)
- |-- address: struct (nullable = true)
- |    |-- current: struct (nullable = true)
- |    |    |-- state: string (nullable = true)
- |    |    |-- city: string (nullable = true)
- |    |-- previous: struct (nullable = true)
- |    |    |-- state: string (nullable = true)
- |    |    |-- city: string (nullable = true)
- 
-df.show(false)
-+---------------------+----------------------------------+
-|name                 |address                           |
-+---------------------+----------------------------------+
-|[James , , Smith]    |[[CA, Los Angles], [CA, Sandiago]]|
-|[Michael , Rose, ]   |[[NY, New York], [NJ, Newark]]    |
-|[Robert , , Williams]|[[DE, Newark], [CA, Las Vegas]]   |
-|[Maria , Anne, Jones]|[[PA, Harrisburg], [CA, Sandiago]]|
-|[Jen, Mary, Brown]   |[[CA, Los Angles], [NJ, Newark]]  |
-+---------------------+----------------------------------+
-
-// 可以通过使用点符号（parentColumn.childColumn）来引用嵌套结构列，一种将嵌套结构打平的简单方法如下:
-val df2 = df.select(col("name.*"),
-    col("address.current.*"),
-    col("address.previous.*"))
-val df2Flatten = df2.toDF("fname","mename","lname","currAddState",
-    "currAddCity","prevAddState","prevAddCity")
-df2Flatten.printSchema()
-df2Flatten.show(false)
-
-root
- |-- name_firstname: string (nullable = true)
- |-- name_middlename: string (nullable = true)
- |-- name_lastname: string (nullable = true)
- |-- address_current_state: string (nullable = true)
- |-- address_current_city: string (nullable = true)
- |-- address_previous_state: string (nullable = true)
- |-- address_previous_city: string (nullable = true)
-
-+--------+------+--------+------------+-----------+------------+-----------+
-|fname   |mename|lname   |currAddState|currAddCity|prevAddState|prevAddCity|
-+--------+------+--------+------------+-----------+------------+-----------+
-|James   |      |Smith   |CA          |Los Angles |CA          |Sandiago   |
-|Michael |Rose  |        |NY          |New York   |NJ          |Newark     |
-|Robert  |      |Williams|DE          |Newark     |CA          |Las Vegas  |
-|Maria   |Anne  |Jones   |PA          |Harrisburg |CA          |Sandiago   |
-|Jen     |Mary  |Brown   |CA          |Los Angles |NJ          |Newark     |
-+--------+------+--------+------------+-----------+------------+-----------+
-
-def flattenStructSchema(schema: StructType, prefix: String = null) : Array[Column] = {
-    schema.fields.flatMap(f => {
-      val columnName = if (prefix == null) f.name else (prefix + "." + f.name)
-
-      f.dataType match {
-        case st: StructType => flattenStructSchema(st, columnName)
-        case _ => Array(col(columnName).as(columnName.replace(".","_")))
-      }
-    })
-  }
-  
-val df3 = df.select(flattenStructSchema(df.schema):_*)
-df3.printSchema()
-df3.show(false)
-
-+--------------+---------------+-------------+---------------------+--------------------+----------------------+---------------------+
-|name.firstname|name.middlename|name.lastname|address.current.state|address.current.city|address.previous.state|address.previous.city|
-+--------------+---------------+-------------+---------------------+--------------------+----------------------+---------------------+
-|James         |               |Smith        |CA                   |Los Angles          |CA                    |Sandiago             |
-|Michael       |Rose           |             |NY                   |New York            |NJ                    |Newark               |
-|Robert        |               |Williams     |DE                   |Newark              |CA                    |Las Vegas            |
-|Maria         |Anne           |Jones        |PA                   |Harrisburg          |CA                    |Sandiago             |
-|Jen           |Mary           |Brown        |CA                   |Los Angles          |NJ                    |Newark               |
-+--------------+---------------+-------------+---------------------+--------------------+----------------------+---------------------+
-```
-- 扁平化嵌套 Array: 上个示例展示了如何打平嵌套 Row，对于嵌套 Array 则可以通过 flatten() 方法除去嵌套数组第一层嵌套。
-
-```scala
-val arrayArrayData = Seq(
-    Row("James",List(List("Java","Scala","C++"),List("Spark","Java"))),
-    Row("Michael",List(List("Spark","Java","C++"),List("Spark","Java"))),
-    Row("Robert",List(List("CSharp","VB"),List("Spark","Python")))
-  )
-
-val arrayArraySchema = new StructType().add("name",StringType)
-    .add("subjects",ArrayType(ArrayType(StringType)))
-
-val df = spark.createDataFrame(
-     spark.sparkContext.parallelize(arrayArrayData),arrayArraySchema)
-df.printSchema()
-df.show()
-
-root
- |-- name: string (nullable = true)
- |-- subjects: array (nullable = true)
- |    |-- element: array (containsNull = true)
- |    |    |-- element: string (containsNull = true)
-
-
-+-------+-----------------------------------+
-|name   |subjects                           |
-+-------+-----------------------------------+
-|James  |[[Java, Scala, C++], [Spark, Java]]|
-|Michael|[[Spark, Java, C++], [Spark, Java]]|
-|Robert |[[CSharp, VB], [Spark, Python]]    |
-+-------+-----------------------------------+
-
-df.select($"name",flatten($"subjects")).show(false)
-+-------+-------------------------------+
-|name   |flatten(subjects)              |
-+-------+-------------------------------+
-|James  |[Java, Scala, C++, Spark, Java]|
-|Michael|[Spark, Java, C++, Spark, Java]|
-|Robert |[CSharp, VB, Spark, Python]    |
-+-------+-------------------------------+
-```
-
-##### explode —— 爆炸成行
-- 功能：在处理 JSON，Parquet，Avro 和 XML 等结构化文件时，我们通常需要从数组、列表和字典等集合中获取数据。在这种情况下，explode 函数（explode，explorer_outer，posexplode，posexplode_outer）对于将集合列转换为行以便有效地在 Spark 中进行处理很有用。
-- 语法：
-
-- 示例：
-
-```scala
-// 示例数据
-import spark.implicits._
-
-val arrayData = Seq(
-    Row("James",List("Java","Scala"),Map("hair"->"black","eye"->"brown")),
-    Row("Michael",List("Spark","Java",null),Map("hair"->"brown","eye"->null)),
-    Row("Robert",List("CSharp",""),Map("hair"->"red","eye"->"")),
-    Row("Washington",null,null),
-    Row("Jefferson",List(),Map())
-)
-
-val arraySchema = new StructType()
-    .add("name",StringType)
-    .add("knownLanguages", ArrayType(StringType))
-    .add("properties", MapType(StringType,StringType))
-
-val df = spark.createDataFrame(spark.sparkContext.parallelize(arrayData),arraySchema)
-df.printSchema()
-df.show(false)
-
-root
- |-- name: string (nullable = true)
- |-- knownLanguages: array (nullable = true)
- |    |-- element: string (containsNull = true)
- |-- properties: map (nullable = true)
- |    |-- key: string
- |    |-- value: string (valueContainsNull = true)
-
-+----------+--------------+-----------------------------+
-|name      |knownLanguages|properties                   |
-+----------+--------------+-----------------------------+
-|James     |[Java, Scala] |[hair -> black, eye -> brown]|
-|Michael   |[Spark, Java,]|[hair -> brown, eye ->]      |
-|Robert    |[CSharp, ]    |[hair -> red, eye -> ]       |
-|Washington|null          |null                         |
-|Jefferson |[]            |[]                           |
-+----------+--------------+-----------------------------+
-
-// 将数组爆炸成行，爆炸后的列名默认为 "col"，如果数组为 null 或空则会被跳过，值为null则会返回 null
-df.select($"name",explode($"knownLanguages")).show(false)
-+-------+------+
-|name   |col   |
-+-------+------+
-|James  |Java  |
-|James  |Scala |
-|Michael|Spark |
-|Michael|Java  |
-|Michael|null  |
-|Robert |CSharp|
-|Robert |      |
-+-------+------+
-
-// 将字典爆炸成行，爆炸后键列默认列名为 "key"，值列默认为 "value"
-df.select($"name",explode($"properties")).show(false)
-+-------+----+-----+
-|name   |key |value|
-+-------+----+-----+
-|James  |hair|black|
-|James  |eye |brown|
-|Michael|hair|brown|
-|Michael|eye |null |
-|Robert |hair|red  |
-|Robert |eye |     |
-+-------+----+-----+
-
-// explode_outer 遇到 null 或空的数组、字典将返回 null
-df.select($"name",explode_outer($"properties")).show(false)
-+----------+------+
-|name      |col   |
-+----------+------+
-|James     |Java  |
-|James     |Scala |
-|Michael   |Spark |
-|Michael   |Java  |
-|Michael   |null  |
-|Robert    |CSharp|
-|Robert    |      |
-|Washington|null  |
-|Jeferson  |null  |
-+----------+------+
-
-df.select($"name",explode_outer($"properties")).show(false)
-+----------+----+-----+
-|name      |key |value|
-+----------+----+-----+
-|James     |hair|black|
-|James     |eye |brown|
-|Michael   |hair|brown|
-|Michael   |eye |null |
-|Robert    |hair|red  |
-|Robert    |eye |     |
-|Washington|null|null |
-|Jeferson  |null|null |
-+----------+----+-----+
-
-// posexplode 会在 explode 基础上添加位置列 "pos"
-df.select($"name",posexplode($"knownLanguages")).show(false)
-+-------+---+------+
-|name   |pos|col   |
-+-------+---+------+
-|James  |0  |Java  |
-|James  |1  |Scala |
-|Michael|0  |Spark |
-|Michael|1  |Java  |
-|Michael|2  |null  |
-|Robert |0  |CSharp|
-|Robert |1  |      |
-+-------+---+------+
-
-df.select($"name",posexplode($"properties")).show(false)
-+-------+---+----+-----+
-|name   |pos|key |value|
-+-------+---+----+-----+
-|James  |0  |hair|black|
-|James  |1  |eye |brown|
-|Michael|0  |hair|brown|
-|Michael|1  |eye |null |
-|Robert |0  |hair|red  |
-|Robert |1  |eye |     |
-+-------+---+----+-----+
-
-// posexplode_outer 会在 explode_outer 的基础上添加位置列 "pos"
-df.select($"name",posexplode_outer($"knownLanguages")).show(false)
-+----------+----+------+
-|name      |pos |col   |
-+----------+----+------+
-|James     |0   |Java  |
-|James     |1   |Scala |
-|Michael   |0   |Spark |
-|Michael   |1   |Java  |
-|Michael   |2   |null  |
-|Robert    |0   |CSharp|
-|Robert    |1   |      |
-|Washington|null|null  |
-|Jeferson  |null|null  |
-+----------+----+------+
-
-df.select($"name",posexplode_outer($"properties")).show(false)
-+----------+----+----+-----+
-|name      |pos |key |value|
-+----------+----+----+-----+
-|James     |0   |hair|black|
-|James     |1   |eye |brown|
-|Michael   |0   |hair|brown|
-|Michael   |1   |eye |null |
-|Robert    |0   |hair|red  |
-|Robert    |1   |eye |     |
-|Washington|null|null|null |
-|Jeferson  |null|null|null |
-+----------+----+----+-----+
 ```
 
 ### 行操作
@@ -971,8 +613,7 @@ df.createOrReplaceTempView("EMP")
 spark.sql(" select employee_name,asc('department'),desc('state'),salary,age,bonus from EMP").show(false)
 ```
 
-#### 其他行操作
-##### map —— 映射
+#### map —— 映射
 - 功能：map() 和 mapPartitions() 转换将函数应用于 DataFrame/Dataset 的每个元素/记录/行，并返回新的 DataFrame/Dataset，需要注意的是这两个转换都返回 Dataset[U] 而不是 DataFrame（在Spark 2.0中，DataFrame = Dataset [Row]）。
 - 语法: Spark 提供了 2 个映射转换签名，一个以 scala.function1 作为参数，另一个以 Spark MapFunction 作为签名，注意到这两个函数都返回 Dataset [U]，但不返回DataFrame，即Dataset [Row]。如果希望将 DataFrame 作为输出，则需要使用 toDF() 函数将 Dataset 转换为 DataFrame。
 
@@ -1074,7 +715,7 @@ df4part.printSchema()
 df4part.show(false)
 ```
 
-##### foreach —— 遍历
+#### foreach —— 遍历
 - 功能：foreach() 方法用于在 RDD/DataFrame/Dataset 的每个元素上应用函数，主要用于操作累积器共享变量，也可以用于将 RDD/DataFrame 结果写入数据库，生产消息到 kafka topic 等。foreachPartition() 方法用于在 RDD/DataFrame/Dataset 的每个分区上应用函数，主要用于在每个分区进行复杂的初始化操作（比如连接数据库），也可以用于操作累加器变量。foreach() 和 foreachPartition() 方法都是不会返回值的 action。
 
 - 语法:
@@ -1113,7 +754,7 @@ val longAcc2 = spark.sparkContext.longAccumulator("SumAccumulator2")
   })
 println("Accumulator value:"+longAcc2.value)
 ```
-##### sample —— 随机抽样
+#### sample —— 随机抽样
 - 功能：从 DataFrame 中抽取一些随机记录；
 - 语法：
 
@@ -1153,7 +794,7 @@ df.sample(true, 0.5, 1000L).show()
 +--------------------+-----+------+------+
 ```
 
-##### split —— 随机分割
+#### split —— 随机分割
 - 功能：将原始 DataFrame 随机拆分，这通常与机器学习算法一起使用以创建训练、验证和测试集；
 - 语法：返回 Array(DataFrame)；
 
@@ -1184,7 +825,7 @@ dfs(1).show()
 +--------------------+-----+------+------+
 ```
 
-##### limit —— 限制
+#### limit —— 限制
 - 功能：限制从 DataFrame 中提取的内容，当你需要一个空的 DataFrame 但又想保留 Schema 信息时可以通过 `df.limit(0)` 来实现；
 - 语法：
 
@@ -1211,7 +852,7 @@ df.limit(0).show()
 +----+---+------+------+
 ```
 
-##### first | last —— 首行或末行
+#### first | last —— 首行或末行
 - 功能：获取某列第一行/最后一行的值
 
 - 语法：
@@ -1261,7 +902,7 @@ val df5 = df.union(df2).distinct()
 3) join(right: Dataset[_], usingColumns: Seq[String]): DataFrame
 4) join(right: Dataset[_], usingColumns: Seq[String], joinType: String): DataFrame
 
-// 使用 joinExprs：join 结果会包含两个表的所有列
+// 使用 joinExprs：joinExprs 返回一个布尔型 Column，join 结果会包含两个表的所有列
 5) join(right: Dataset[_], joinExprs: Column): DataFrame
 6) join(right: Dataset[_], joinExprs: Column, joinType: String): DataFrame
 
@@ -1460,10 +1101,11 @@ empDF.as("emp1").join(empDF.as("emp2"), col("emp1.superior_emp_id") === col("emp
 ```
 
 ##### Cross Join
-Cross Join（笛卡尔连接、交叉连接）是不指定谓词的 Inner Join，Cross Join 会将左侧 DataFrame 中的每一行与右侧 DataFrame 中的每一行进行连接，这将导致结果 DataFrame 中的行数发生绝对爆炸。仅在绝对必要时才应使用笛卡尔积，它们很危险，高级用户可以将会话级别的配置 `spark.sql.crossJoin.enable` 设为 `true`，以允许笛卡尔积而不会发出警告或Spark不会尝试为您执行另一种连接。
+Cross Join（笛卡尔连接、交叉连接）会将左侧 DataFrame 中的每一行与右侧 DataFrame 中的每一行进行连接，这将导致结果 DataFrame 中的行数发生绝对爆炸，仅在绝对必要时才应使用笛卡尔积，它们很危险！！！我们分几种场景来讨论和 Cross Join 相关的一些问题：
+
+- `join` 算子中如果指定了连接谓词，那么，即使将参数 `joinType` 设置为 "cross"，实际执行的仍然是 `inner join`
 
 ```scala
-// 如果指定了连接谓词，即使 joinType="cross"，执行的仍然是 inner join
 empDF.join(deptDF, empDF("emp_dept_id") === deptDF("dept_id"), "cross").show()
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
 |emp_id|    name|superior_emp_id|year_joined|emp_dept_id|gender|salary|dept_name|dept_id|
@@ -1474,7 +1116,11 @@ empDF.join(deptDF, empDF("emp_dept_id") === deptDF("dept_id"), "cross").show()
 |     4|   Jones|              2|       2005|         10|     F|  2000|  Finance|     10|
 |     5|   Brown|              2|       2010|         40|      |    -1|       IT|     40|
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
-// 除非连接谓词为恒等式
+```
+
+- `join` 算子中，如果将连接谓词设置为恒等式，可以实现笛卡尔积（`joinType`需同时设置为 "cross"）
+
+```scala
 empDF.join(deptDF, lit(1) === lit(1), "cross").show()
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
 |emp_id|    name|superior_emp_id|year_joined|emp_dept_id|gender|salary|dept_name|dept_id|
@@ -1500,7 +1146,53 @@ empDF.join(deptDF, lit(1) === lit(1), "cross").show()
 |     5|   Brown|              2|       2010|         40|      |    -1|    Sales|     30|
 |     5|   Brown|              2|       2010|         40|      |    -1|       IT|     40|
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
-// 推荐直接用 crossJoin 来表达笛卡尔连接
+```
+
+- `join` 算子中，如果省略了连接谓词，则会报 `AnalysisException` 错误，一种解决办法是设置 `spark.conf.set("spark.sql.crossJoin.enabled",true)`，以允许笛卡尔积而不会发出警告或 Spark 不会尝试为您执行另一种连接
+
+```scala
+empDF.join(deptDF).show()
+org.apache.spark.sql.AnalysisException: Detected implicit cartesian product for INNER join between logical plans
+LocalRelation [emp_id#940, name#941, superior_emp_id#942, year_joined#943, emp_dept_id#944, gender#945, salary#946]
+and
+LocalRelation [dept_name#981, dept_id#982]
+Join condition is missing or trivial.
+Either: use the CROSS JOIN syntax to allow cartesian products between these
+relations, or: enable implicit cartesian products by setting the configuration
+variable spark.sql.crossJoin.enabled=true;
+
+spark.conf.set("spark.sql.crossJoin.enabled",true)
+empDF.join(deptDF).show()
++------+--------+---------------+-----------+-----------+------+------+---------+-------+
+|emp_id|    name|superior_emp_id|year_joined|emp_dept_id|gender|salary|dept_name|dept_id|
++------+--------+---------------+-----------+-----------+------+------+---------+-------+
+|     1|   Smith|             -1|       2018|         10|     M|  3000|  Finance|     10|
+|     1|   Smith|             -1|       2018|         10|     M|  3000|Marketing|     20|
+|     1|   Smith|             -1|       2018|         10|     M|  3000|    Sales|     30|
+|     1|   Smith|             -1|       2018|         10|     M|  3000|       IT|     40|
+|     2|    Rose|              1|       2010|         20|     M|  4000|  Finance|     10|
+|     2|    Rose|              1|       2010|         20|     M|  4000|Marketing|     20|
+|     2|    Rose|              1|       2010|         20|     M|  4000|    Sales|     30|
+|     2|    Rose|              1|       2010|         20|     M|  4000|       IT|     40|
+|     3|Williams|              1|       2010|         10|     M|  1000|  Finance|     10|
+|     3|Williams|              1|       2010|         10|     M|  1000|Marketing|     20|
+|     3|Williams|              1|       2010|         10|     M|  1000|    Sales|     30|
+|     3|Williams|              1|       2010|         10|     M|  1000|       IT|     40|
+|     4|   Jones|              2|       2005|         10|     F|  2000|  Finance|     10|
+|     4|   Jones|              2|       2005|         10|     F|  2000|Marketing|     20|
+|     4|   Jones|              2|       2005|         10|     F|  2000|    Sales|     30|
+|     4|   Jones|              2|       2005|         10|     F|  2000|       IT|     40|
+|     5|   Brown|              2|       2010|         40|      |    -1|  Finance|     10|
+|     5|   Brown|              2|       2010|         40|      |    -1|Marketing|     20|
+|     5|   Brown|              2|       2010|         40|      |    -1|    Sales|     30|
+|     5|   Brown|              2|       2010|         40|      |    -1|       IT|     40|
++------+--------+---------------+-----------+-----------+------+------+---------+-------+
+only showing top 20 rows
+```
+
+- 以上方式虽然可以实现 cross Join，但并不推荐使用，从 `spark-sql_2.11` 2.1.0 之后的版本专门提供了 `crossJoin` 算子来实现笛卡尔积，使用 `crossJoin` 不用修改配置
+
+```scala
 empDF.crossJoin(deptDF).show()
 +------+--------+---------------+-----------+-----------+------+------+---------+-------+
 |emp_id|    name|superior_emp_id|year_joined|emp_dept_id|gender|salary|dept_name|dept_id|
@@ -1620,7 +1312,7 @@ empDF.join(x, empDF("emp_id") === x("superior_emp_id")).show()
 |     2| Rose|              1|       2010|         20|     M|  4000|              2|    3|
 ```
 
-##### usingColumn 语法陷阱
+##### usingColumn 陷阱
 `usingColumn` 语法得到的结果 DataFrame 中会自动去除被 join DataFrame 的关联键，只保留主调 DataFrame 中的关联键，所以不能通过 `select` 或 `expr` 选择被调 DataFrame 中的关联键，但是却可以在 `filter` 中引用被调 DataFrame 中的关联键：
 
 ```scala
@@ -1671,11 +1363,14 @@ org.apache.spark.sql.AnalysisException: Cannot resolve column name "dept_id" amo
 1. 如果需要的字段少：那就 select 你所需要的字段就行了；
 2. 如果需要的字段多：那就 drop 不需要的字段；
 
-在 join 前中后又有不同的处理方式：
+在 join 前中后又可以有不同的处理方式：
 
 1. join 前：修改/删除其中一方 DataFrame 的同名字段名；
-2. join 中：如果同名字段是 join 的关联键，使用 `usingColumn` 语法，join 后只会留下一组关联键；
-3. join 后：要么通过 `select` 明确指定需要的表字段，要么通过 `drop` 删除不需要的表字段；此时 `withColumn` 并不会消除同名字段的分歧，只可能带来新的同名字段；
+2. join 中：如果同名字段是 join 的关联键，使用 `usingColumn` 语法，join 后只会保留左表关联字段；
+3. join 后：
+    1. 要么通过 `select(Expr)` 明确指定需要的表字段；
+    2. 要么通过 `drop` 删除不需要的表字段；
+    3. 要么通过 `withColumn` 添加新的字段，此时 `withColumn` 如果用于修改已有同名字段的内容，将会同时修改所有同名字段，修改后的结果仍会保留同名字段；  
 
 示例：
 
@@ -1810,99 +1505,20 @@ res.selectExpr("a.*", "b.dept_name as f_new_name").show()
 +-------+------+---------------+-----------+------+------+----------+
 ```
 
-看过上面的示例，你可能会觉得 DataFrame 的 JOIN 太不方便了，还不如直接写 SQL 表达式呢，DataFrame API 更加紧凑，更便于编写结构化代码，能够帮助我们完成大部分的语法检查，如果要在 DataFrame 中穿插 SQL 表达式，就使用 expr() 或 selectExpr() 函数吧！
+##### join 最佳实践
+DataFrame API 的 JOIN 操作有诸多需要注意的地方，除了正确使用 JOIN 类型和 JOIN 语法外，经常引起困惑的地方在于如何从 JOIN 结果中选择我们需要的字段，对此，我们总结了一些最佳实践：
 
-#### 其他表操作
-##### pivot | stack —— 行转列 | 列转行
-- 功能：
-    - pivot() 是一种聚合方法（类似于 Excel 中的数据透视表），用于将 DataFrame/Dataset 的行转列，该过程可以被分为三个步骤，① 按 x 列分组，x 的不同取值作为行向标签 ② 将 y 列的不同取值作为列向标签 ③ 将行列标签 (x,y) 对应 z 的聚合结果作为值，如果源表没有 (x,y) 对应的数据则补 null；
-    - stack() 方法可以将 DataFrame/Dataset 的列转行，注意 Spark 没有 unpivot 方法；
+1. 当 DataFrame 不方便通过一个变量来引用时，可以在 JOIN 语句中为 DataFrame 起别名：
+    1. 可以通过 `"表别名.字段名"` 来引用对应字段；
+    2. 如果不存在同名字段，也可以省略掉表别名，直接用 `"字段名"` 来应用对应字段；
+2. 当 JOIN 的两个 DataFrame 中包含同名字段时：
+    1. 可以在 JOIN 前删除/重命名无用的同名字段；
+    2. 如果同名字段作为关联字段，`usingColumn` 语法将只会保留左表关联字段；
+    3. 可以在 JOIN 后 `select(Expr)` 需要的字段，`drop` 不需要的字段，`withColumn` 添加新的字段；
+3. 同源 DataFrame 之间 JOIN，在 JOIN 前通过 `toDF()` 转化其中一个 DataFrame；
 
-- 语法：
+看过上面的示例，你可能会觉得 DataFrame 的 JOIN 太不方便了，还不如直接写 SQL 表达式呢！事实上，DataFrame API 更加紧凑，更便于编写结构化代码，能够帮助我们完成大部分的语法检查，如果要在 DataFrame 中穿插 SQL 表达式，就使用 expr() 或 selectExpr() 函数吧！
 
-```scala
-groupBy(x).pivot(y).sum(z)  // x 列不同值作为行标签，y 列不同值作为列标签，z 列的聚合作为值
-stack(n, expr1, ..., exprk) // 会将 expr1, ..., exprk 折叠为 n 行
-```
-
-- 示例：
-
-```scala
-// 创建一个 DataFrame
-val data = Seq(("Banana",1000,"USA"), ("Carrots",1500,"USA"), ("Beans",1600,"USA"),
-      ("Orange",2000,"USA"),("Orange",2000,"USA"),("Banana",400,"China"),
-      ("Carrots",1200,"China"),("Beans",1500,"China"),("Orange",4000,"China"),
-      ("Banana",2000,"Canada"),("Carrots",2000,"Canada"),("Beans",2000,"Mexico"))
-
-import spark.sqlContext.implicits._
-val df = data.toDF("Product","Amount","Country")
-df.show()
-
-+-------+------+-------+
-|Product|Amount|Country|
-+-------+------+-------+
-| Banana|  1000|    USA|
-|Carrots|  1500|    USA|
-|  Beans|  1600|    USA|
-| Orange|  2000|    USA|
-| Orange|  2000|    USA|
-| Banana|   400|  China|
-|Carrots|  1200|  China|
-|  Beans|  1500|  China|
-| Orange|  4000|  China|
-| Banana|  2000| Canada|
-|Carrots|  2000| Canada|
-|  Beans|  2000| Mexico|
-+-------+-----+-------+
-
-// 行转列：不同 Product、不同 Country 下，Amount 的和
-val pivotDF = df.groupBy("Product").pivot("Country").sum("Amount")
-pivotDF.show()
-
-+-------+------+-----+------+----+
-|Product|Canada|China|Mexico| USA|
-+-------+------+-----+------+----+
-| Orange|  null| 4000|  null|4000|
-|  Beans|  null| 1500|  2000|1600|
-| Banana|  2000|  400|  null|1000|
-|Carrots|  2000| 1200|  null|1500|
-+-------+------+-----+------+----+
-
-// pivot 是一个非常耗时的操作，Spark 2.0 以后的版本对 pivot 的性能进行了优化，如果使用的是更低的版本，可以通过传递一个列值参数来加速计算过程
-val pivotDF = df.groupBy("Product").pivot("Country", Seq("USA","China")).sum("Amount")
-pivotDF.show()
-
-+-------+----+-----+
-|Product| USA|China|
-+-------+----+-----+
-| Orange|4000| 4000|
-|  Beans|1600| 1500|
-| Banana|1000|  400|
-|Carrots|1500| 1200|
-+-------+----+-----+
-```
-
-```scala
-// stack(n, 列1显示名, 列1, ..., 列n显示名, 列n)
-val unPivotDF = pivotDF.select($"Product", expr("stack(2, 'USA', USA, 'China', China) as (Country,Total)"))
-    .where("Total is not null")
-unPivotDF.show()
-
-+-------+-------+-----+
-|Product|Country|Total|
-+-------+-------+-----+
-| Orange|    USA| 4000|
-| Orange|  China| 4000|
-|  Beans|    USA| 1600|
-|  Beans|  China| 1500|
-| Banana|    USA| 1000|
-| Banana|  China|  400|
-|Carrots|    USA| 1500|
-|Carrots|  China| 1200|
-+-------+-------+-----+
-```
-
-### 其他操作
 #### repartition —— 重分区
 - 功能：repartition 会导致数据的完全随机洗牌（shuffle），这意味着通常仅应在将来的分区数大于当前的分区数时或在按一组列进行分区时重新分区；如果经常要按照某个列进行过滤，则值得按该列重新分区；
 - 语法：
@@ -2030,6 +1646,453 @@ Michael ,Rose,,4000
 Robert ,,Williams,4000
 Maria ,Anne,Jones,4000
 Jen,Mary,Brown,-1
+```
+
+### 其他操作
+#### when —— 条件判断
+- 功能：`when otherwise` 类似于 SQL 中的 case when 语句；
+- 语法：可以由多个 when 表达式（不满足前一个 when 条件则继续匹配下一个 when 条件），也可以不带 otherwise 表达式（不满足 when 条件则返回 null）；
+
+```scala
+when(condition: Column, value: Any): Column
+otherwise(value: Any): Column
+```
+
+- 示例：
+
+```scala
+df.withColumn("new_gender", when(col("gender") === "M", "Male")).show()
++--------------------+-----+------+------+----------+
+|                name|  dob|gender|salary|new_gender|
++--------------------+-----+------+------+----------+
+|   [James , , Smith]|36636|     M|  3000|      Male|
+|  [Michael , Rose, ]|40288|     M|  4000|      Male|
+|[Robert , , Willi...|42114|     M|  4000|      Male|
+|[Maria , Anne, Jo...|39192|     F|  4000|      null|
+|  [Jen, Mary, Brown]|     |     F|    -1|      null|
++--------------------+-----+------+------+----------+
+
+df.withColumn("new_gender", when(col("gender") === "M", "Male").otherwise("Unknown")).show()
++--------------------+-----+------+------+----------+
+|                name|  dob|gender|salary|new_gender|
++--------------------+-----+------+------+----------+
+|   [James , , Smith]|36636|     M|  3000|      Male|
+|  [Michael , Rose, ]|40288|     M|  4000|      Male|
+|[Robert , , Willi...|42114|     M|  4000|      Male|
+|[Maria , Anne, Jo...|39192|     F|  4000|   Unknown|
+|  [Jen, Mary, Brown]|     |     F|    -1|   Unknown|
++--------------------+-----+------+------+----------+
+df.withColumn("new_gender", 
+       when(col("gender") === "M", "Male")
+      .when(col("gender") === "F", "Female")
+      .otherwise("Unknown"))
++--------------------+-----+------+------+----------+
+|                name|  dob|gender|salary|new_gender|
++--------------------+-----+------+------+----------+
+|   [James , , Smith]|36636|     M|  3000|      Male|
+|  [Michael , Rose, ]|40288|     M|  4000|      Male|
+|[Robert , , Willi...|42114|     M|  4000|      Male|
+|[Maria , Anne, Jo...|39192|     F|  4000|    Female|
+|  [Jen, Mary, Brown]|     |     F|    -1|    Female|
++--------------------+-----+------+------+----------+
+```
+
+#### flatten —— 列拆多列
+- 功能：在 Spark SQL 中，扁平化 DataFrame 的嵌套结构列对于一级嵌套很简单，而对于多级嵌套和存在数百个列的情况下则很复杂。
+
+- 扁平化嵌套 struct: 如果哦列数有限，可以通过引用列名似乎很容易解决，但是请想象一下，如果您有100多个列并在一个select中引用所有列，那么会很麻烦。可以通过创建一个递归函数 flattenStructSchema（）轻松地将数百个嵌套级别列展平。
+
+```scala
+val structureData = Seq(
+    Row(Row("James ","","Smith"),Row(Row("CA","Los Angles"),Row("CA","Sandiago"))),
+    Row(Row("Michael ","Rose",""),Row(Row("NY","New York"),Row("NJ","Newark"))),
+    Row(Row("Robert ","","Williams"),Row(Row("DE","Newark"),Row("CA","Las Vegas"))),
+    Row(Row("Maria ","Anne","Jones"),Row(Row("PA","Harrisburg"),Row("CA","Sandiago"))),
+    Row(Row("Jen","Mary","Brown"),Row(Row("CA","Los Angles"),Row("NJ","Newark")))
+  )
+
+val structureSchema = new StructType()
+    .add("name",new StructType()
+      .add("firstname",StringType)
+      .add("middlename",StringType)
+      .add("lastname",StringType))
+    .add("address",new StructType()
+      .add("current",new StructType()
+        .add("state",StringType)
+        .add("city",StringType))
+      .add("previous",new StructType()
+        .add("state",StringType)
+        .add("city",StringType)))
+
+val df = spark.createDataFrame(
+    spark.sparkContext.parallelize(structureData),structureSchema)
+df.printSchema()
+
+root
+ |-- name: struct (nullable = true)
+ |    |-- firstname: string (nullable = true)
+ |    |-- middlename: string (nullable = true)
+ |    |-- lastname: string (nullable = true)
+ |-- address: struct (nullable = true)
+ |    |-- current: struct (nullable = true)
+ |    |    |-- state: string (nullable = true)
+ |    |    |-- city: string (nullable = true)
+ |    |-- previous: struct (nullable = true)
+ |    |    |-- state: string (nullable = true)
+ |    |    |-- city: string (nullable = true)
+ 
+df.show(false)
++---------------------+----------------------------------+
+|name                 |address                           |
++---------------------+----------------------------------+
+|[James , , Smith]    |[[CA, Los Angles], [CA, Sandiago]]|
+|[Michael , Rose, ]   |[[NY, New York], [NJ, Newark]]    |
+|[Robert , , Williams]|[[DE, Newark], [CA, Las Vegas]]   |
+|[Maria , Anne, Jones]|[[PA, Harrisburg], [CA, Sandiago]]|
+|[Jen, Mary, Brown]   |[[CA, Los Angles], [NJ, Newark]]  |
++---------------------+----------------------------------+
+
+// 可以通过使用点符号（parentColumn.childColumn）来引用嵌套结构列，一种将嵌套结构打平的简单方法如下:
+val df2 = df.select(col("name.*"),
+    col("address.current.*"),
+    col("address.previous.*"))
+val df2Flatten = df2.toDF("fname","mename","lname","currAddState",
+    "currAddCity","prevAddState","prevAddCity")
+df2Flatten.printSchema()
+df2Flatten.show(false)
+
+root
+ |-- name_firstname: string (nullable = true)
+ |-- name_middlename: string (nullable = true)
+ |-- name_lastname: string (nullable = true)
+ |-- address_current_state: string (nullable = true)
+ |-- address_current_city: string (nullable = true)
+ |-- address_previous_state: string (nullable = true)
+ |-- address_previous_city: string (nullable = true)
+
++--------+------+--------+------------+-----------+------------+-----------+
+|fname   |mename|lname   |currAddState|currAddCity|prevAddState|prevAddCity|
++--------+------+--------+------------+-----------+------------+-----------+
+|James   |      |Smith   |CA          |Los Angles |CA          |Sandiago   |
+|Michael |Rose  |        |NY          |New York   |NJ          |Newark     |
+|Robert  |      |Williams|DE          |Newark     |CA          |Las Vegas  |
+|Maria   |Anne  |Jones   |PA          |Harrisburg |CA          |Sandiago   |
+|Jen     |Mary  |Brown   |CA          |Los Angles |NJ          |Newark     |
++--------+------+--------+------------+-----------+------------+-----------+
+
+def flattenStructSchema(schema: StructType, prefix: String = null) : Array[Column] = {
+    schema.fields.flatMap(f => {
+      val columnName = if (prefix == null) f.name else (prefix + "." + f.name)
+
+      f.dataType match {
+        case st: StructType => flattenStructSchema(st, columnName)
+        case _ => Array(col(columnName).as(columnName.replace(".","_")))
+      }
+    })
+  }
+  
+val df3 = df.select(flattenStructSchema(df.schema):_*)
+df3.printSchema()
+df3.show(false)
+
++--------------+---------------+-------------+---------------------+--------------------+----------------------+---------------------+
+|name.firstname|name.middlename|name.lastname|address.current.state|address.current.city|address.previous.state|address.previous.city|
++--------------+---------------+-------------+---------------------+--------------------+----------------------+---------------------+
+|James         |               |Smith        |CA                   |Los Angles          |CA                    |Sandiago             |
+|Michael       |Rose           |             |NY                   |New York            |NJ                    |Newark               |
+|Robert        |               |Williams     |DE                   |Newark              |CA                    |Las Vegas            |
+|Maria         |Anne           |Jones        |PA                   |Harrisburg          |CA                    |Sandiago             |
+|Jen           |Mary           |Brown        |CA                   |Los Angles          |NJ                    |Newark               |
++--------------+---------------+-------------+---------------------+--------------------+----------------------+---------------------+
+```
+- 扁平化嵌套 Array: 上个示例展示了如何打平嵌套 Row，对于嵌套 Array 则可以通过 flatten() 方法除去嵌套数组第一层嵌套。
+
+```scala
+val arrayArrayData = Seq(
+    Row("James",List(List("Java","Scala","C++"),List("Spark","Java"))),
+    Row("Michael",List(List("Spark","Java","C++"),List("Spark","Java"))),
+    Row("Robert",List(List("CSharp","VB"),List("Spark","Python")))
+  )
+
+val arrayArraySchema = new StructType().add("name",StringType)
+    .add("subjects",ArrayType(ArrayType(StringType)))
+
+val df = spark.createDataFrame(
+     spark.sparkContext.parallelize(arrayArrayData),arrayArraySchema)
+df.printSchema()
+df.show()
+
+root
+ |-- name: string (nullable = true)
+ |-- subjects: array (nullable = true)
+ |    |-- element: array (containsNull = true)
+ |    |    |-- element: string (containsNull = true)
+
+
++-------+-----------------------------------+
+|name   |subjects                           |
++-------+-----------------------------------+
+|James  |[[Java, Scala, C++], [Spark, Java]]|
+|Michael|[[Spark, Java, C++], [Spark, Java]]|
+|Robert |[[CSharp, VB], [Spark, Python]]    |
++-------+-----------------------------------+
+
+df.select($"name",flatten($"subjects")).show(false)
++-------+-------------------------------+
+|name   |flatten(subjects)              |
++-------+-------------------------------+
+|James  |[Java, Scala, C++, Spark, Java]|
+|Michael|[Spark, Java, C++, Spark, Java]|
+|Robert |[CSharp, VB, Spark, Python]    |
++-------+-------------------------------+
+```
+
+#### explode —— 行拆多行
+- 功能：在处理 JSON，Parquet，Avro 和 XML 等结构化文件时，我们通常需要从数组、列表和字典等集合中获取数据。在这种情况下，explode 函数（explode，explorer_outer，posexplode，posexplode_outer）对于将集合列转换为行以便有效地在 Spark 中进行处理很有用。
+- 语法：
+
+- 示例：
+
+```scala
+// 示例数据
+import spark.implicits._
+
+val arrayData = Seq(
+    Row("James",List("Java","Scala"),Map("hair"->"black","eye"->"brown")),
+    Row("Michael",List("Spark","Java",null),Map("hair"->"brown","eye"->null)),
+    Row("Robert",List("CSharp",""),Map("hair"->"red","eye"->"")),
+    Row("Washington",null,null),
+    Row("Jefferson",List(),Map())
+)
+
+val arraySchema = new StructType()
+    .add("name",StringType)
+    .add("knownLanguages", ArrayType(StringType))
+    .add("properties", MapType(StringType,StringType))
+
+val df = spark.createDataFrame(spark.sparkContext.parallelize(arrayData),arraySchema)
+df.printSchema()
+df.show(false)
+
+root
+ |-- name: string (nullable = true)
+ |-- knownLanguages: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- properties: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+
++----------+--------------+-----------------------------+
+|name      |knownLanguages|properties                   |
++----------+--------------+-----------------------------+
+|James     |[Java, Scala] |[hair -> black, eye -> brown]|
+|Michael   |[Spark, Java,]|[hair -> brown, eye ->]      |
+|Robert    |[CSharp, ]    |[hair -> red, eye -> ]       |
+|Washington|null          |null                         |
+|Jefferson |[]            |[]                           |
++----------+--------------+-----------------------------+
+
+// 将数组爆炸成行，爆炸后的列名默认为 "col"，如果数组为 null 或空则会被跳过，值为null则会返回 null
+df.select($"name",explode($"knownLanguages")).show(false)
++-------+------+
+|name   |col   |
++-------+------+
+|James  |Java  |
+|James  |Scala |
+|Michael|Spark |
+|Michael|Java  |
+|Michael|null  |
+|Robert |CSharp|
+|Robert |      |
++-------+------+
+
+// 将字典爆炸成行，爆炸后键列默认列名为 "key"，值列默认为 "value"
+df.select($"name",explode($"properties")).show(false)
++-------+----+-----+
+|name   |key |value|
++-------+----+-----+
+|James  |hair|black|
+|James  |eye |brown|
+|Michael|hair|brown|
+|Michael|eye |null |
+|Robert |hair|red  |
+|Robert |eye |     |
++-------+----+-----+
+
+// explode_outer 遇到 null 或空的数组、字典将返回 null
+df.select($"name",explode_outer($"knownLanguages")).show(false)
++----------+------+
+|name      |col   |
++----------+------+
+|James     |Java  |
+|James     |Scala |
+|Michael   |Spark |
+|Michael   |Java  |
+|Michael   |null  |
+|Robert    |CSharp|
+|Robert    |      |
+|Washington|null  |
+|Jeferson  |null  |
++----------+------+
+
+df.select($"name",explode_outer($"properties")).show(false)
++----------+----+-----+
+|name      |key |value|
++----------+----+-----+
+|James     |hair|black|
+|James     |eye |brown|
+|Michael   |hair|brown|
+|Michael   |eye |null |
+|Robert    |hair|red  |
+|Robert    |eye |     |
+|Washington|null|null |
+|Jeferson  |null|null |
++----------+----+-----+
+
+// posexplode 会在 explode 基础上添加位置列 "pos"
+df.select($"name",posexplode($"knownLanguages")).show(false)
++-------+---+------+
+|name   |pos|col   |
++-------+---+------+
+|James  |0  |Java  |
+|James  |1  |Scala |
+|Michael|0  |Spark |
+|Michael|1  |Java  |
+|Michael|2  |null  |
+|Robert |0  |CSharp|
+|Robert |1  |      |
++-------+---+------+
+
+df.select($"name",posexplode($"properties")).show(false)
++-------+---+----+-----+
+|name   |pos|key |value|
++-------+---+----+-----+
+|James  |0  |hair|black|
+|James  |1  |eye |brown|
+|Michael|0  |hair|brown|
+|Michael|1  |eye |null |
+|Robert |0  |hair|red  |
+|Robert |1  |eye |     |
++-------+---+----+-----+
+
+// posexplode_outer 会在 explode_outer 的基础上添加位置列 "pos"
+df.select($"name",posexplode_outer($"knownLanguages")).show(false)
++----------+----+------+
+|name      |pos |col   |
++----------+----+------+
+|James     |0   |Java  |
+|James     |1   |Scala |
+|Michael   |0   |Spark |
+|Michael   |1   |Java  |
+|Michael   |2   |null  |
+|Robert    |0   |CSharp|
+|Robert    |1   |      |
+|Washington|null|null  |
+|Jeferson  |null|null  |
++----------+----+------+
+
+df.select($"name",posexplode_outer($"properties")).show(false)
++----------+----+----+-----+
+|name      |pos |key |value|
++----------+----+----+-----+
+|James     |0   |hair|black|
+|James     |1   |eye |brown|
+|Michael   |0   |hair|brown|
+|Michael   |1   |eye |null |
+|Robert    |0   |hair|red  |
+|Robert    |1   |eye |     |
+|Washington|null|null|null |
+|Jeferson  |null|null|null |
++----------+----+----+-----+
+```
+
+#### pivot | stack —— 行转列 | 列转行
+- 功能：
+    - pivot() 是一种聚合方法（类似于 Excel 中的数据透视表），用于将 DataFrame/Dataset 的行转列，该过程可以被分为三个步骤，① 按 x 列分组，x 的不同取值作为行向标签 ② 将 y 列的不同取值作为列向标签 ③ 将行列标签 (x,y) 对应 z 的聚合结果作为值，如果源表没有 (x,y) 对应的数据则补 null；
+    - stack() 方法可以将 DataFrame/Dataset 的列转行，注意 Spark 没有 unpivot 方法；
+
+- 语法：
+
+```scala
+groupBy(x).pivot(y).sum(z)  // x 列不同值作为行标签，y 列不同值作为列标签，z 列的聚合作为值
+stack(n, expr1, ..., exprk) // 会将 expr1, ..., exprk 折叠为 n 行
+```
+
+- 示例：
+
+```scala
+// 创建一个 DataFrame
+val data = Seq(("Banana",1000,"USA"), ("Carrots",1500,"USA"), ("Beans",1600,"USA"),
+      ("Orange",2000,"USA"),("Orange",2000,"USA"),("Banana",400,"China"),
+      ("Carrots",1200,"China"),("Beans",1500,"China"),("Orange",4000,"China"),
+      ("Banana",2000,"Canada"),("Carrots",2000,"Canada"),("Beans",2000,"Mexico"))
+
+import spark.sqlContext.implicits._
+val df = data.toDF("Product","Amount","Country")
+df.show()
+
++-------+------+-------+
+|Product|Amount|Country|
++-------+------+-------+
+| Banana|  1000|    USA|
+|Carrots|  1500|    USA|
+|  Beans|  1600|    USA|
+| Orange|  2000|    USA|
+| Orange|  2000|    USA|
+| Banana|   400|  China|
+|Carrots|  1200|  China|
+|  Beans|  1500|  China|
+| Orange|  4000|  China|
+| Banana|  2000| Canada|
+|Carrots|  2000| Canada|
+|  Beans|  2000| Mexico|
++-------+-----+-------+
+
+// 行转列：不同 Product、不同 Country 下，Amount 的和
+val pivotDF = df.groupBy("Product").pivot("Country").sum("Amount")
+pivotDF.show()
+
++-------+------+-----+------+----+
+|Product|Canada|China|Mexico| USA|
++-------+------+-----+------+----+
+| Orange|  null| 4000|  null|4000|
+|  Beans|  null| 1500|  2000|1600|
+| Banana|  2000|  400|  null|1000|
+|Carrots|  2000| 1200|  null|1500|
++-------+------+-----+------+----+
+
+// pivot 是一个非常耗时的操作，Spark 2.0 以后的版本对 pivot 的性能进行了优化，如果使用的是更低的版本，可以通过传递一个列值参数来加速计算过程
+val pivotDF = df.groupBy("Product").pivot("Country", Seq("USA","China")).sum("Amount")
+pivotDF.show()
+
++-------+----+-----+
+|Product| USA|China|
++-------+----+-----+
+| Orange|4000| 4000|
+|  Beans|1600| 1500|
+| Banana|1000|  400|
+|Carrots|1500| 1200|
++-------+----+-----+
+```
+
+```scala
+// stack(n, 列1显示名, 列1, ..., 列n显示名, 列n)
+val unPivotDF = pivotDF.select($"Product", expr("stack(2, 'USA', USA, 'China', China) as (Country,Total)"))
+    .where("Total is not null")
+unPivotDF.show()
+
++-------+-------+-----+
+|Product|Country|Total|
++-------+-------+-----+
+| Orange|    USA| 4000|
+| Orange|  China| 4000|
+|  Beans|    USA| 1600|
+|  Beans|  China| 1500|
+| Banana|    USA| 1000|
+| Banana|  China|  400|
+|Carrots|    USA| 1500|
+|Carrots|  China| 1200|
++-------+-------+-----+
 ```
 
 ## 参考
