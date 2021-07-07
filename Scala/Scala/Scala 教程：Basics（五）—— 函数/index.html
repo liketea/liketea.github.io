@@ -1,37 +1,1610 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="教程,Scala," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在Scala中，函数是命名的参数化表达式，而匿名函数实际上就是参数化表达式，函数可以出现在任何表达式可以出现的地方在Scala中，函数是首类的，不仅可以得到声明和调用，还具有类型和值，函数类型和函数值可以出现在任何类型和值可以出现的地方  对于 Scala 和其他函数式编程语言来说，函数尤其重要。标准函数式编程方法论建议我们尽可能地构建纯（pure）函数，纯函数相对于非纯函数更加稳定，他们没有状">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala 教程：Basics（五）—— 函数">
+<meta property="og:url" content="http://liketea.xyz/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="在Scala中，函数是命名的参数化表达式，而匿名函数实际上就是参数化表达式，函数可以出现在任何表达式可以出现的地方在Scala中，函数是首类的，不仅可以得到声明和调用，还具有类型和值，函数类型和函数值可以出现在任何类型和值可以出现的地方  对于 Scala 和其他函数式编程语言来说，函数尤其重要。标准函数式编程方法论建议我们尽可能地构建纯（pure）函数，纯函数相对于非纯函数更加稳定，他们没有状">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200811162237.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200811162254.png">
+<meta property="article:published_time" content="2020-08-07T08:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.904Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="Scala">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200811162237.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/Scala/Scala/Scala 教程：Basics（五）—— 函数/"/>
+
+
+
+
+
+  <title>Scala 教程：Basics（五）—— 函数 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Scala 教程：Basics（五）—— 函数</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-07T16:00:00+08:00">
+                2020-08-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Scala/" itemprop="url" rel="index">
+                    <span itemprop="name">Scala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="Scala 教程：Basics（五）—— 函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  20
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在Scala中，函数是命名的<strong>参数化表达式</strong>，而匿名函数实际上就是参数化表达式，函数可以出现在任何表达式可以出现的地方<br>在Scala中，函数是首类的，不仅可以得到声明和调用，还具有类型和值，函数类型和函数值可以出现在任何类型和值可以出现的地方</p>
+</blockquote>
+<p>对于 Scala 和其他函数式编程语言来说，函数尤其重要。标准函数式编程方法论建议我们尽可能地构建纯（pure）函数，纯函数相对于非纯函数更加稳定，他们没有状态，且与外部数据正交，事实上它们是不可破坏的纯逻辑表达式：</p>
+<ol>
+<li>有一个或多个输入参数，只使用输入参数完成计算，返回一个值；</li>
+<li>对相同输入总是返回相同的值；</li>
+<li>不使用或影响函数之外的任何数据，也不受函数之外的任何数据的影响；</li>
+</ol>
+<h2 id="作为传统函数"><a href="#作为传统函数" class="headerlink" title="作为传统函数"></a>作为传统函数</h2><p>Scala 函数可以像传统函数那样进行声明和调用，还可以进行嵌套和递归。</p>
+<h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>函数声明的一般格式：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">&lt;function_name&gt;</span></span>[[type_param]](&lt;param1&gt;: &lt;param1_type&gt; [,...]): &lt;function_type&gt; = &lt;expression&gt;</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200811162237.png" alt=""></p>
+<ul>
+<li><code>def</code>：函数声明的关键字</li>
+<li><code>function_name</code>：函数名</li>
+<li><code>type_param</code>：类型参数，如果传入了类型参数，类型参数在函数定义的后续代码中就可以像普通类型一样使用</li>
+<li><code>param1</code>：值参数</li>
+<li><code>:</code>：每个参数后面都必须加上以冒号开始的类型标注，因为Scala并不会推断函数参数的类型</li>
+<li><code>param1_type</code>：值参数类型</li>
+<li><code>function_type</code>：函数的返回值类型是可选的，Scalade的<strong>类型推断</strong>会根据函数的实际返回值来推断函数的返回值类型，但在无法推断出函数返回值类型时必须显式提供函数返回值类型，比如递归函数必须显式给出函数的结果类型</li>
+<li><code>=</code>：等号也有特别的含义，表示在函数式的世界观里，函数定义的是一个可以获取到结果值的表达式</li>
+<li><code>expression</code>：函数体，由表达式或表达式块组成，最后一行将成为函数的返回值，如果需要在函数的表达式块结束前退出并返回一个值，可以使用return关键字显式指定函数的返回值，然后退出函数；如果函数只有一条语句，也可以选择不使用花括号</li>
+</ul>
+<p>没有参数的函数只是表达式的一个<strong>命名包装器</strong>：适用于通过一个函数来格式化当前数据或者返回一个固定的值</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">hi</span></span>() = <span class="string">&quot;hi&quot;</span></span><br><span class="line">hi: ()<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; hi</span><br><span class="line">res11: <span class="type">String</span> = hi</span><br><span class="line"></span><br><span class="line">scala&gt; hi()</span><br><span class="line">res12: <span class="type">String</span> = hi</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">hi</span> </span>= <span class="string">&quot;hi&quot;</span></span><br><span class="line">hi: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; hi</span><br><span class="line">res13: <span class="type">String</span> = hi</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>没有返回值的函数被称作<strong>过程</strong>：以一个语句结尾的函数，如果函数没有显式的返回类型，且最后是一个语句，则Scala会推导出这个函数的返回类型为Unit</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">log</span></span>(d: <span class="type">Double</span>) = println(<span class="string">f&quot;Got Value <span class="subst">$d</span>%.2f&quot;</span>)</span><br><span class="line">log: (d: <span class="type">Double</span>)<span class="type">Unit</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><p>函数调用的通用语法：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;function identifier&gt;(&lt;params&gt;)</span><br></pre></td></tr></table></figure></div>
+<p>调用无参函数时，空括号是可选的：如果在定义时加了空括号，在调用时可加可不加，但如果在定义时没有加，在调用时也不能加，这可以避免混淆调用无括号函数与调用函数返回值。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">hi</span></span>() = <span class="string">&quot;hi&quot;</span></span><br><span class="line">hi: ()<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; hi</span><br><span class="line">res11: <span class="type">String</span> = hi</span><br><span class="line"></span><br><span class="line">scala&gt; hi()</span><br><span class="line">res12: <span class="type">String</span> = hi</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">hi</span> </span>= <span class="string">&quot;hi&quot;</span></span><br><span class="line">hi: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; hi</span><br><span class="line">res13: <span class="type">String</span> = hi</span><br><span class="line"></span><br><span class="line">scala&gt; hi()</span><br><span class="line">&lt;console&gt;:<span class="number">13</span>: error: not enough arguments <span class="keyword">for</span> method apply: (index: <span class="type">Int</span>)<span class="type">Char</span> in <span class="class"><span class="keyword">class</span> <span class="title">StringOps</span>.</span></span><br><span class="line"><span class="type">Unspecified</span> value parameter index.</span><br><span class="line">       hi()</span><br><span class="line">         ^</span><br></pre></td></tr></table></figure></div>
+<p>当函数只有一个参数时，可以使用表达式块来发送参数：不必先计算一个量，然后把它保存在局部值中再传递给函数，完全可以在表达式块中完成计算，表达式块会在调用函数之前计算，将表达式块的返回值用作函数的参数</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">len</span></span>(s: <span class="type">String</span>) = &#123;</span><br><span class="line">     |     s.length()</span><br><span class="line">     | &#125;</span><br><span class="line">len: (s: <span class="type">String</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; len&#123;</span><br><span class="line">     |    <span class="keyword">val</span> x = <span class="string">&quot;Hello&quot;</span></span><br><span class="line">     |    <span class="keyword">val</span> y = <span class="string">&quot;World&quot;</span></span><br><span class="line">     |    x + <span class="string">&quot; &quot;</span> + y</span><br><span class="line">     | &#125;</span><br><span class="line">res6: <span class="type">Int</span> = <span class="number">11</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><h4 id="按顺序传参-amp-按关键字传参"><a href="#按顺序传参-amp-按关键字传参" class="headerlink" title="按顺序传参&amp;按关键字传参"></a>按顺序传参&amp;按关键字传参</h4><p>Scala 中的参数默认按照参数顺序传递，也可以按照关键字传递：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">greet</span></span>(prefix: <span class="type">String</span>, name: <span class="type">String</span>) = <span class="string">s&quot;<span class="subst">$prefix</span> <span class="subst">$name</span>&quot;</span></span><br><span class="line">greet: (prefix: <span class="type">String</span>, name: <span class="type">String</span>)<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; greet(<span class="string">&quot;Mr&quot;</span>, <span class="string">&quot;Bob&quot;</span>)</span><br><span class="line">res0: <span class="type">String</span> = <span class="type">Mr</span> <span class="type">Bob</span></span><br><span class="line"></span><br><span class="line">scala&gt; greet(name = <span class="string">&quot;Bob&quot;</span>, prefix = <span class="string">&quot;Mr&quot;</span>)</span><br><span class="line">res1: <span class="type">String</span> = <span class="type">Mr</span> <span class="type">Bob</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><p>Scala 可以为函数的任意参数指定默认值，使得调用者可以忽略这个参数：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">&lt;identifier&gt;</span></span>(&lt;identifier&gt;: &lt;<span class="class"><span class="keyword">type</span><span class="title">&gt;</span> </span>= &lt;value&gt; [,...]): &lt;<span class="class"><span class="keyword">type</span><span class="title">&gt;</span> </span>= &lt;expression&gt;</span><br></pre></td></tr></table></figure></div>
+<p>如果默认参数后面还有非默认参数，那只能按照关键字传参，因为无法利用参数的顺序了；如果默认参数后面没有非默认参数，则可以按照顺序来传递前面的参数。</p>
+<h4 id="变长参数"><a href="#变长参数" class="headerlink" title="变长参数"></a>变长参数</h4><p>Scala 支持vararg参数，可以定义输入参数个数可变的函数，可变参数后面不可以有非可变参数，因为无法加以区分。</p>
+<p>语法：在参数类型后面加上 <code>*</code> 来标识这是一个可变参数</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(items: <span class="type">Int</span>*): <span class="type">Int</span> = &#123;</span><br><span class="line">     |     <span class="keyword">var</span> total = <span class="number">0</span></span><br><span class="line">     |     <span class="keyword">for</span> (i &lt;- items) total += i</span><br><span class="line">     |     total</span><br><span class="line">     | &#125;</span><br><span class="line">sum: (items: <span class="type">Int</span>*)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">res8: <span class="type">Int</span> = <span class="number">6</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="类型参数"><a href="#类型参数" class="headerlink" title="类型参数"></a>类型参数</h4><p>Scala 函数不仅可以传入“值”参数，还可以传入“类型”参数，这可以提高函数的灵活性和可重用性，这样函数参数或返回值的类型不再是固定的，而是可以由函数调用者控制。</p>
+<p>语法：在函数名后的<code>[]</code>传入类型参数R之后，R就可以像一个具体的类型一样在后面使用了</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">&lt;identifier&gt;</span></span>[<span class="class"><span class="keyword">type</span><span class="title">-param</span>](<span class="params">&lt;value-param&gt;: &lt;type-param&gt;</span>)</span>: &lt;<span class="class"><span class="keyword">type</span><span class="title">&gt;</span> </span>= &lt;expression&gt;</span><br></pre></td></tr></table></figure></div>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">identity</span></span>[<span class="type">R</span>](r: <span class="type">R</span>): <span class="type">R</span> = r</span><br><span class="line">identity: [<span class="type">R</span>](r: <span class="type">R</span>)<span class="type">R</span></span><br><span class="line"></span><br><span class="line">scala&gt; identity[<span class="type">String</span>](<span class="string">&quot;sds&quot;</span>)</span><br><span class="line">res9: <span class="type">String</span> = sds</span><br><span class="line"></span><br><span class="line">scala&gt; identity[<span class="type">Int</span>](<span class="number">23</span>)</span><br><span class="line">res10: <span class="type">Int</span> = <span class="number">23</span></span><br><span class="line"></span><br><span class="line">scala&gt; identity[<span class="type">Int</span>](<span class="string">&quot;fs&quot;</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">13</span>: error: <span class="class"><span class="keyword">type</span> <span class="title">mismatch</span></span>;</span><br><span class="line"> found   : <span class="type">String</span>(<span class="string">&quot;fs&quot;</span>)</span><br><span class="line"> required: <span class="type">Int</span></span><br><span class="line">       identity[<span class="type">Int</span>](<span class="string">&quot;fs&quot;</span>)</span><br><span class="line">                     ^</span><br></pre></td></tr></table></figure></div>
+<p>函数调用时，类型参数的类型推断：在调用包含类型参数的函数时，如果未明确指定类型参数的具体类型，scala会根据<strong>第一个</strong>参数列表的类型来推断类型参数的类型，如果第一个参数列表的类型也未知则会抛出异常。因此在设计柯里化函数时，往往将非函数参数放在第一个参数列表，将函数参数放在最后一个参数列表，这样函数的类型参数的具体类型可以通过第一个非函数入参的类型推断出来，而这个类型又能被继续用于对函数参数列表类型进行检查，使用者需要给出的类型信息更少，在编写函数字面量时可以更精简；</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类型参数未指定，且第一个参数函数字面值类型未指定，抛出异常</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">curry</span></span>[<span class="type">T</span>](f: <span class="type">T</span> =&gt; <span class="type">T</span>)(x:<span class="type">T</span>) = f(x)</span><br><span class="line">curry: [<span class="type">T</span>](f: <span class="type">T</span> =&gt; <span class="type">T</span>)(x: <span class="type">T</span>)<span class="type">T</span></span><br><span class="line"></span><br><span class="line">scala&gt; curry(_ * <span class="number">2</span>)(<span class="number">3</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">13</span>: error: missing parameter <span class="class"><span class="keyword">type</span> <span class="title">for</span> <span class="title">expanded</span> <span class="title">function</span> (<span class="params">(x$1: &lt;error&gt;</span>) <span class="title">=&gt;</span> <span class="title">x$1</span>.<span class="title">$times</span>(<span class="params">2</span>))</span></span><br><span class="line">       curry(_ * <span class="number">2</span>)(<span class="number">3</span>)</span><br><span class="line">             ^</span><br><span class="line"><span class="comment">// 类型参数的具体类型可以通过第一个参数列表的类型推断出来，继而推断出第二个参数列表的类型</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">curry</span></span>[<span class="type">T</span>](x: <span class="type">T</span>)(f: <span class="type">T</span> =&gt; <span class="type">T</span>) = f(x)</span><br><span class="line">curry: [<span class="type">T</span>](x: <span class="type">T</span>)(f: <span class="type">T</span> =&gt; <span class="type">T</span>)<span class="type">T</span></span><br><span class="line"></span><br><span class="line">scala&gt; curry(<span class="number">3</span>)(_ * <span class="number">2</span>)</span><br><span class="line">res97: <span class="type">Int</span> = <span class="number">6</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h3><p>递归函数在函数式编程中很普遍，因为他们为迭代处理数据结构或计算提供了一种很好的方法，而且不必使用可变的数据，因为每个函数调用自己的栈来存储参数。</p>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算正数次幂</span></span><br><span class="line">scala&gt; greet(name = <span class="string">&quot;Bob&quot;</span>, prefix = <span class="string">&quot;Mr&quot;</span>)</span><br><span class="line">res1: <span class="type">String</span> = <span class="type">Mr</span> <span class="type">Bob</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">power</span></span>(x:<span class="type">Int</span>,n:<span class="type">Int</span>):<span class="type">Long</span> = &#123;</span><br><span class="line">     |     <span class="keyword">if</span> (n &gt; <span class="number">1</span>) x * power(x, n<span class="number">-1</span>)</span><br><span class="line">     |     <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">     | &#125;</span><br><span class="line">power: (x: <span class="type">Int</span>, n: <span class="type">Int</span>)<span class="type">Long</span></span><br><span class="line"></span><br><span class="line">scala&gt; power(<span class="number">2</span>,<span class="number">8</span>)</span><br><span class="line">res2: <span class="type">Long</span> = <span class="number">128</span></span><br></pre></td></tr></table></figure></div>
+<p>使用递归函数可能会遇到”栈溢出“错误，为了避免这种情况，Scala编译器可以使用尾递归（tail-recursion）优化一些递归函数，使得递归调用不使用额外的栈空间，而只使用当前函数的栈空间。但是只有最后一个语句是递归调用的函数时（调用函数本身的结果作为直接返回值），Scala编译器才能完成尾递归优化。</p>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用尾递归的方式重写power</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">power</span></span>(x: <span class="type">Int</span>, n: <span class="type">Int</span>, t: <span class="type">Int</span> = <span class="number">1</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">     |     <span class="keyword">if</span> (n &lt; <span class="number">1</span>) t</span><br><span class="line">     |     <span class="keyword">else</span> power(x, n - <span class="number">1</span>, x * t)</span><br><span class="line">     | &#125;</span><br><span class="line">power: (x: <span class="type">Int</span>, n: <span class="type">Int</span>, t: <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; power(<span class="number">2</span>, <span class="number">8</span>)</span><br><span class="line">res4: <span class="type">Int</span> = <span class="number">256</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="嵌套函数"><a href="#嵌套函数" class="headerlink" title="嵌套函数"></a>嵌套函数</h3><p>函数是命名的参数化表达式，而表达式是可以嵌套的，所以函数本身也是可以嵌套的。当需要在一个方法中重复某个逻辑，但是把它作为外部方法有没有太大意义时，可以在函数中定义一个内部函数，这个内部函数只能在该函数内部使用。</p>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>, c: <span class="type">Int</span>) = &#123;</span><br><span class="line">     |     <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(x: <span class="type">Int</span>, y: <span class="type">Int</span>) = <span class="keyword">if</span> (x &gt; y) x <span class="keyword">else</span> y</span><br><span class="line">     |     max(a,max(b,c))</span><br><span class="line">     | &#125;</span><br><span class="line">max: (a: <span class="type">Int</span>, b: <span class="type">Int</span>, c: <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; max(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">res7: <span class="type">Int</span> = <span class="number">3</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="作为首类函数"><a href="#作为首类函数" class="headerlink" title="作为首类函数"></a>作为首类函数</h2><blockquote>
+<p>函数式编程的一个关键是函数应当是首类的（first-class）：函数不仅能得到声明和调用，还具有类型和值，函数类型和函数值可以出现在任何类型和值可以出现的地方</p>
+</blockquote>
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>与函数返回值类型不同，函数类型是函数本身的类型，函数类型可以用 <code>参数类型 =&gt; 返回值类型</code> 来表示：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">([&lt;<span class="class"><span class="keyword">type</span><span class="title">&gt;</span>, ...]) <span class="title">=&gt;</span> <span class="title">&lt;type&gt;</span></span></span><br></pre></td></tr></table></figure></div>
+<p>函数类型可以出现在任何类型可以出现的地方：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">func</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b</span><br><span class="line">func: (a: <span class="type">Int</span>, b: <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 出现在变量/值声明语句中</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> x: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span> = func</span><br><span class="line">x: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1096</span>/<span class="number">23426726</span>@<span class="number">70</span>b037ac</span><br><span class="line"></span><br><span class="line">scala&gt; x(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">res9: <span class="type">Int</span> = <span class="number">2</span></span><br><span class="line"><span class="comment">// 2. 出现在函数参数类型中</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">max</span></span>(a: <span class="type">Int</span>, b: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span>): <span class="type">Int</span> = b(a, <span class="number">3</span>)</span><br><span class="line">max: (a: <span class="type">Int</span>, b: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; max(<span class="number">1</span>, func)</span><br><span class="line">res10: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">// 3. 出现在函数返回值类型中</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">dummy</span></span>(): (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span> = func</span><br><span class="line">dummy: ()(<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; dummy()(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">res11: <span class="type">Int</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="函数值"><a href="#函数值" class="headerlink" title="函数值"></a>函数值</h3><p>与函数返回值不同，函数值是函数本身的值，每个函数值都是某个扩展自scala包的FunctionN系列当中的一个特质的类的<strong>实例</strong>，比如Function0表示不带参数的函数，Function1表示带一个参数的函数，等等。每一个FunctionN特质都有一个apply方法用来调用该函数。</p>
+<p>函数值可以出现在任何值可以出现的地方：</p>
+<ol>
+<li>可以用字面值形式创建，而不必指定标识符；</li>
+<li>可以存储在某个容器，比如值、变量或数据结构；</li>
+<li>作为另一个函数的参数或返回值；</li>
+</ol>
+<p>Scala 中有一些特殊的方法来创建或返回函数值，包括：</p>
+<ol>
+<li>创建函数字面值/匿名函数；</li>
+<li>当通过函数名为一个显式声明为函数类型的变量赋值时，函数名会被推断为一个函数值，而不是函数调用；</li>
+<li>使用通配符替换部分参数来<strong>部分调用函数</strong>，将返回一个能够接收剩余参数的函数值；</li>
+<li>函数柯里化提供了一种更加简洁的方式来实现部分调用函数；</li>
+</ol>
+<h4 id="匿名函数（Anonymous-function）"><a href="#匿名函数（Anonymous-function）" class="headerlink" title="匿名函数（Anonymous function）"></a>匿名函数（Anonymous function）</h4><p>匿名函数是一个没有名字的函数值，匿名函数可以用 <code>输入参数 =&gt; 返回值</code> 来表示：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">([&lt;param1&gt;: &lt;<span class="class"><span class="keyword">type</span><span class="title">&gt;</span>...]) <span class="title">=&gt;</span> <span class="title">&lt;expression&gt;</span></span></span><br></pre></td></tr></table></figure></div>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200811162254.png" alt=""></p>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个没有输入的函数字面值</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> func = () =&gt; <span class="string">&quot;hi&quot;</span></span><br><span class="line">func: () =&gt; <span class="type">String</span> = $$<span class="type">Lambda</span>$<span class="number">1182</span>/<span class="number">355159860</span>@<span class="number">42e71</span>f6c</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> doubler = (x: <span class="type">Int</span>) =&gt; x * <span class="number">2</span></span><br><span class="line">doubler: <span class="type">Int</span> =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1181</span>/<span class="number">1140744858</span>@<span class="number">40</span>fd8aa1</span><br></pre></td></tr></table></figure></div>
+<p>匿名函数有很多名字：</p>
+<blockquote>
+<p>函数字面量(function literal)：由于匿名函数的创建不必指定标识符，且可以出现在一切函数值可以出现的地方，和一般类型中的字面值作用类似；<br>Lambda表达式：C#和Java8都采用这种说法，这是从原先数学中的lambda演算语法得来的；<br>functionN：Scala编译器对函数字面量的叫法，根据输入参数的个数而定；</p>
+</blockquote>
+<p>当函数字面值满足以下两个条件时，甚至可以使用通配符语法把参数和箭头也给匿了：</p>
+<ol>
+<li>函数的显式类型在字面量之外指定，Scala可以通过类型推断推断出参数类型；</li>
+<li>参数最多被使用一次；</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个参数的情形</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">x</span></span>(s: <span class="type">String</span>, f: <span class="type">String</span> =&gt; <span class="type">String</span>) = &#123;</span><br><span class="line">     |     <span class="keyword">if</span> (s != <span class="literal">null</span>) f(s) <span class="keyword">else</span> s</span><br><span class="line">     | &#125;</span><br><span class="line">x: (s: <span class="type">String</span>, f: <span class="type">String</span> =&gt; <span class="type">String</span>)<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; x(<span class="string">&quot;Ready&quot;</span>, _.reverse)</span><br><span class="line">res14: <span class="type">String</span> = ydaeR</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个参数的情形：通配符会按照顺序替换输入参数，通配符必须与输入参数个数一致</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">com</span></span>(x: <span class="type">Int</span>, y:<span class="type">Int</span>, f:(<span class="type">Int</span>, <span class="type">Int</span>)=&gt; <span class="type">Int</span>) = f(x, y)</span><br><span class="line">com: (x: <span class="type">Int</span>, y: <span class="type">Int</span>, f: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; com(<span class="number">23</span>, <span class="number">12</span>, _ * _)</span><br><span class="line">res15: <span class="type">Int</span> = <span class="number">276</span></span><br><span class="line"><span class="comment">// 使用类型参数的情形</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">x</span></span>[<span class="type">A</span>, <span class="type">B</span>](a: <span class="type">A</span>, b: <span class="type">A</span>, c: <span class="type">A</span>, f:(<span class="type">A</span>, <span class="type">A</span>, <span class="type">A</span>)=&gt;<span class="type">B</span>) = f(a,b,c)</span><br><span class="line">x: [<span class="type">A</span>, <span class="type">B</span>](a: <span class="type">A</span>, b: <span class="type">A</span>, c: <span class="type">A</span>, f: (<span class="type">A</span>, <span class="type">A</span>, <span class="type">A</span>) =&gt; <span class="type">B</span>)<span class="type">B</span></span><br><span class="line"></span><br><span class="line">scala&gt; x[<span class="type">Int</span>, <span class="type">Int</span>](<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,_*_+_)</span><br><span class="line">res18: <span class="type">Int</span> = <span class="number">5</span></span><br></pre></td></tr></table></figure></div>
+<p>通配符语法在处理数据结构和集合事尤其有帮助，很多核心的排序、过滤和其他数据结构方法都会使用首类函数和占位符语法来减少调用这些方法所需的额外代码。</p>
+<h4 id="偏函数（partial-function）"><a href="#偏函数（partial-function）" class="headerlink" title="偏函数（partial function）"></a>偏函数（partial function）</h4><p>偏函数是只对满足某些特定模式的输入进行输出的函数字面值，如果输入匹配不到任何给定模式则会导致一个Scala错误（如果要避免这样的错误可以在末尾使用一个通配符）：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> statusHandler: <span class="type">Int</span> =&gt; <span class="type">String</span> = &#123;</span><br><span class="line">     |     <span class="keyword">case</span> <span class="number">200</span> =&gt; <span class="string">&quot;Okay&quot;</span></span><br><span class="line">     |     <span class="keyword">case</span> <span class="number">400</span> =&gt; <span class="string">&quot;Your Error&quot;</span></span><br><span class="line">     |     <span class="keyword">case</span> <span class="number">500</span> =&gt; <span class="string">&quot;Our Error&quot;</span></span><br><span class="line">     | &#125;</span><br><span class="line">statusHandler: <span class="type">Int</span> =&gt; <span class="type">String</span> = $$<span class="type">Lambda</span>$<span class="number">1196</span>/<span class="number">551773385</span>@<span class="number">24</span>efdd16</span><br><span class="line"></span><br><span class="line">scala&gt; statusHandler(<span class="number">200</span>)</span><br><span class="line">res22: <span class="type">String</span> = <span class="type">Okay</span></span><br><span class="line"></span><br><span class="line">scala&gt; statusHandler(<span class="number">20</span>)</span><br><span class="line">scala.<span class="type">MatchError</span>: <span class="number">20</span> (of <span class="class"><span class="keyword">class</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">Integer</span>)</span></span><br><span class="line">  at .$anonfun$statusHandler$<span class="number">1</span>(&lt;console&gt;:<span class="number">11</span>)</span><br><span class="line">  at .$anonfun$statusHandler$<span class="number">1</span>$adapted(&lt;console&gt;:<span class="number">11</span>)</span><br><span class="line">  ... <span class="number">28</span> elided</span><br></pre></td></tr></table></figure></div>
+<p>偏函数无法单独存在，必须要赋值给变量/参数。偏函数有点像 Sql 中的 <code>case when</code> 语句，在处理集合和模式匹配时更为有用。</p>
+<h4 id="函数名用作函数值"><a href="#函数名用作函数值" class="headerlink" title="函数名用作函数值"></a>函数名用作函数值</h4><p>函数名出现的时候会被默认视作一次函数调用，但是当将函数名赋值/传递给一个显式声明的变量/参数时，Scala会将其推断为一个函数值：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">double</span></span>(x: <span class="type">Int</span>): <span class="type">Int</span> = x * <span class="number">2</span></span><br><span class="line">double: (x: <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> myDouble: (<span class="type">Int</span>) =&gt; <span class="type">Int</span> = double</span><br><span class="line">myDouble: <span class="type">Int</span> =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1135</span>/<span class="number">1858051117</span>@<span class="number">753</span>c7411</span><br><span class="line"></span><br><span class="line">scala&gt; myDouble(<span class="number">5</span>)</span><br><span class="line">res6: <span class="type">Int</span> = <span class="number">10</span></span><br><span class="line"><span class="comment">// 没有参数的函数不建议这样使用</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">func</span></span>() = <span class="string">&quot;hi&quot;</span></span><br><span class="line">func: ()<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> x = func</span><br><span class="line">x: <span class="type">String</span> = hi</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> x: () =&gt; <span class="type">String</span> = func</span><br><span class="line">&lt;console&gt;:<span class="number">12</span>: warning: <span class="type">Eta</span>-expansion of zero-argument methods is deprecated. <span class="type">To</span> avoid <span class="keyword">this</span> warning, write (() =&gt; func()).</span><br><span class="line">       <span class="keyword">val</span> x: () =&gt; <span class="type">String</span> = func</span><br><span class="line">                             ^</span><br><span class="line">x: () =&gt; <span class="type">String</span> = $$<span class="type">Lambda</span>$<span class="number">1177</span>/<span class="number">572488693</span>@<span class="number">2986</span>db02</span><br></pre></td></tr></table></figure></div>
+<h4 id="部分调用函数（partially-apply）"><a href="#部分调用函数（partially-apply）" class="headerlink" title="部分调用函数（partially apply）"></a>部分调用函数（partially apply）</h4><p>对于多参数函数，如果固定其中某些参数，剩余参数用通配符替换，将返回一个只接收剩余参数的函数值：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>, c: <span class="type">Int</span>) = a + b + c</span><br><span class="line"><span class="comment">// 返回保留一个参数的函数值</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> left1 = sum(<span class="number">1</span>, _, <span class="number">3</span>)</span><br><span class="line">left1: <span class="type">Int</span> =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1090</span>/<span class="number">466959452</span>@<span class="number">38</span>affd02</span><br><span class="line">scala&gt; left1(<span class="number">2</span>)</span><br><span class="line">res8: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回保留两个参数的函数值</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> left2 = sum(<span class="number">1</span>, _, _)</span><br><span class="line">left2: (<span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1088</span>/<span class="number">1147105139</span>@<span class="number">27</span>f31d91</span><br><span class="line">scala&gt; left2(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">res7: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回保留三个参数，等价于 sum _</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> left3 = sum(_, _, _)</span><br><span class="line">left3: (<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1087</span>/<span class="number">417004859</span>@<span class="number">2954</span>c429</span><br><span class="line">scala&gt; left3(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">res6: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"><span class="comment">// 返回保留所有参数的函数值</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> leftAll = sum _</span><br><span class="line">leftAll: (<span class="type">Int</span>, <span class="type">Int</span>, <span class="type">Int</span>) =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1103</span>/<span class="number">118175968</span>@<span class="number">79414283</span></span><br><span class="line"></span><br><span class="line">scala&gt; leftAll(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">res12: <span class="type">Int</span> = <span class="number">6</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="函数柯里化（function-Currying）"><a href="#函数柯里化（function-Currying）" class="headerlink" title="函数柯里化（function Currying）"></a>函数柯里化（function Currying）</h4><blockquote>
+<p>柯里化（Currying）是以逻辑学家 Haskell Curry 命名的一种将多参数函数转化为<strong>单参数函数链</strong>的技术。某些分析技术只能应用于具有单个参数的函数，在处理多参数函数时，柯里化通过逐一固定参数来得到关于剩余参数的新的函数，这样每次只需要处理单参数函数。</p>
+</blockquote>
+<p>函数柯里化可以看做是部分调用函数的一种简洁语法：使用有多个参数表的函数，而不是将一个参数表分解为调用参数和非调用参数，每次调用一个函数表将返回一个函数而非函数值：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个多参数表的函数</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(x: <span class="type">Int</span>)(y: <span class="type">Int</span>)(z: <span class="type">Int</span>): <span class="type">Int</span> = x + y + z</span><br><span class="line">sum: (x: <span class="type">Int</span>)(y: <span class="type">Int</span>)(z: <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"><span class="comment">// 调用一个参数表将返回一个函数，这个函数默认被视为函数调用，因此报错</span></span><br><span class="line">scala&gt; sum(<span class="number">1</span>)</span><br><span class="line">&lt;console&gt;:<span class="number">13</span>: error: missing argument list <span class="keyword">for</span> method sum</span><br><span class="line"><span class="type">Unapplied</span> methods are only converted to functions when a function <span class="class"><span class="keyword">type</span> <span class="title">is</span> <span class="title">expected</span>.</span></span><br><span class="line"><span class="type">You</span> can make <span class="keyword">this</span> conversion explicit by writing `sum _` or `sum(_)(_)(_)` instead of `sum`.</span><br><span class="line">       sum(<span class="number">1</span>)</span><br><span class="line">          ^</span><br><span class="line"><span class="comment">// 使用部分调用函数语法返回一个函数值</span></span><br><span class="line">scala&gt; sum(<span class="number">1</span>) _</span><br><span class="line">res17: <span class="type">Int</span> =&gt; (<span class="type">Int</span> =&gt; <span class="type">Int</span>) = $$<span class="type">Lambda</span>$<span class="number">1143</span>/<span class="number">106305065</span>@<span class="number">26156929</span></span><br><span class="line"></span><br><span class="line">scala&gt; sum(<span class="number">1</span>)(<span class="number">2</span>) _</span><br><span class="line">res18: <span class="type">Int</span> =&gt; <span class="type">Int</span> = $$<span class="type">Lambda</span>$<span class="number">1144</span>/<span class="number">141828288</span>@<span class="number">1</span>cdb0d7b</span><br><span class="line"><span class="comment">// 函数完全调用后得到函数最终的返回值</span></span><br><span class="line">scala&gt; sum(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)</span><br><span class="line">res19: <span class="type">Int</span> = <span class="number">6</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="高阶函数（high-order-function）"><a href="#高阶函数（high-order-function）" class="headerlink" title="高阶函数（high-order function）"></a>高阶函数（high-order function）</h3><p>如果一个函数不接收任何函数作为入参，就被称为初阶（first-order）函数，<br>高阶（high-order）函数则是包含了函数类型的参数或返回值的函数。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">safeStringOp</span></span>(s: <span class="type">String</span>, f: <span class="type">String</span> =&gt; <span class="type">String</span>) = &#123;</span><br><span class="line">     |     <span class="keyword">if</span> (s != <span class="literal">null</span>) f(s) <span class="keyword">else</span> s</span><br><span class="line">     | &#125;</span><br><span class="line">safeStringOp: (s: <span class="type">String</span>, f: <span class="type">String</span> =&gt; <span class="type">String</span>)<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">reverser</span></span>(s: <span class="type">String</span>) = s.reverse</span><br><span class="line">reverser: (s: <span class="type">String</span>)<span class="type">String</span></span><br><span class="line"></span><br><span class="line">scala&gt; safeStringOp(<span class="string">&quot;Hello&quot;</span>, reverser)</span><br><span class="line">res20: <span class="type">String</span> = olleH</span><br></pre></td></tr></table></figure></div>
+<h3 id="传名参数（by-name）"><a href="#传名参数（by-name）" class="headerlink" title="传名参数（by-name）"></a>传名参数（by-name）</h3><p>对于普通的传值参数（by-value）来说，如果向其传递一个函数调用，那么只会在参数传递的时候调用这个函数并将其<strong>返回值</strong>传递给传值参数，后面在使用这个参数的时候使用的都是它的值。而传名参数（by-name）不同，可以获取一个值，也可以获取最终返回一个值的函数，如果向这个函数传入一个值，和传值参数效果相同，但如果向它传入一个函数调用，那么每次使用这个参数时都会调用这个函数，整体上起到了“延迟调用”的效果。</p>
+<p>传名参数的声明语法：仅仅是在参数和参数类型中间加了一个 <code>=&gt;</code>：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;identifier&gt;: =&gt; &lt;<span class="class"><span class="keyword">type</span><span class="title">&gt;</span></span></span><br></pre></td></tr></table></figure></div>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">f</span></span>(i: <span class="type">Int</span>) = &#123;</span><br><span class="line">     |     println(<span class="string">s&quot;Hello from f(<span class="subst">$i</span>)&quot;</span>)</span><br><span class="line">     |     i</span><br><span class="line">     | &#125;</span><br><span class="line">f: (i: <span class="type">Int</span>)<span class="type">Int</span></span><br><span class="line"><span class="comment">// 传值参数</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">doubles</span></span>(x: <span class="type">Int</span>) = &#123;</span><br><span class="line">     |     println(<span class="string">&quot;Now doubling&quot;</span> + x)</span><br><span class="line">     |     x * <span class="number">2</span></span><br><span class="line">     | &#125;</span><br><span class="line"></span><br><span class="line">scala&gt; doubles(f(<span class="number">3</span>))</span><br><span class="line"><span class="type">Hello</span> from f(<span class="number">3</span>)</span><br><span class="line"><span class="type">Now</span> doubling3</span><br><span class="line">res5: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line"><span class="comment">// 传名参数</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">doubles</span></span>(x: =&gt; <span class="type">Int</span>) = &#123;</span><br><span class="line">     |     println(<span class="string">&quot;Now doubling&quot;</span> + x)</span><br><span class="line">     |     x * <span class="number">2</span></span><br><span class="line">     | &#125;</span><br><span class="line">     </span><br><span class="line">scala&gt; doubles(f(<span class="number">3</span>))</span><br><span class="line"><span class="type">Hello</span> from f(<span class="number">3</span>)</span><br><span class="line"><span class="type">Now</span> doubling3</span><br><span class="line"><span class="type">Hello</span> from f(<span class="number">3</span>)</span><br><span class="line">res4: <span class="type">Int</span> = <span class="number">6</span></span><br><span class="line">scala&gt; doubles(<span class="number">3</span>)</span><br><span class="line"><span class="type">Now</span> doubling3</span><br><span class="line">res0: <span class="type">Int</span> = <span class="number">6</span></span><br></pre></td></tr></table></figure></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" rel="next" title="Scala 教程：Collections（〇）—— 集合框架">
+                <i class="fa fa-chevron-left"></i> Scala 教程：Collections（〇）—— 集合框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%20%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" rel="prev" title="Scala 教程：Basics（四）—— 控制结构">
+                Scala 教程：Basics（四）—— 控制结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E4%BC%A0%E7%BB%9F%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">作为传统函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">1.3.</span> <span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E9%A1%BA%E5%BA%8F%E4%BC%A0%E5%8F%82-amp-%E6%8C%89%E5%85%B3%E9%94%AE%E5%AD%97%E4%BC%A0%E5%8F%82"><span class="nav-number">1.3.1.</span> <span class="nav-text">按顺序传参&amp;按关键字传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">变长参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.4.</span> <span class="nav-text">类型参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">递归函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">嵌套函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E9%A6%96%E7%B1%BB%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">作为首类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">函数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%80%BC"><span class="nav-number">2.2.</span> <span class="nav-text">函数值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%EF%BC%88Anonymous-function%EF%BC%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">匿名函数（Anonymous function）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%81%8F%E5%87%BD%E6%95%B0%EF%BC%88partial-function%EF%BC%89"><span class="nav-number">2.2.2.</span> <span class="nav-text">偏函数（partial function）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%90%8D%E7%94%A8%E4%BD%9C%E5%87%BD%E6%95%B0%E5%80%BC"><span class="nav-number">2.2.3.</span> <span class="nav-text">函数名用作函数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%EF%BC%88partially-apply%EF%BC%89"><span class="nav-number">2.2.4.</span> <span class="nav-text">部分调用函数（partially apply）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96%EF%BC%88function-Currying%EF%BC%89"><span class="nav-number">2.2.5.</span> <span class="nav-text">函数柯里化（function Currying）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%EF%BC%88high-order-function%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">高阶函数（high-order function）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E5%90%8D%E5%8F%82%E6%95%B0%EF%BC%88by-name%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">传名参数（by-name）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

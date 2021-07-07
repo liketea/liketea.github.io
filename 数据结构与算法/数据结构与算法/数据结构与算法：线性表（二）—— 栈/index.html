@@ -1,37 +1,1691 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构与算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="理论篇逻辑结构栈(Stack)：只允许在一端进行插入或删除操作的线性表。  栈顶：允许插入和删除的那一端 栈底：不允许插入和删除的那一端  存储结构栈多以顺序存储的方式进行存储，同时附设一个top指针指示当前栈顶位置。 C语言实现： 12345# define Maxsize 50typedef strucet&amp;#123;    Elemtype data[Maxsize];    int top">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法：线性表（二）—— 栈">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%88/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="理论篇逻辑结构栈(Stack)：只允许在一端进行插入或删除操作的线性表。  栈顶：允许插入和删除的那一端 栈底：不允许插入和删除的那一端  存储结构栈多以顺序存储的方式进行存储，同时附设一个top指针指示当前栈顶位置。 C语言实现： 12345# define Maxsize 50typedef strucet&amp;#123;    Elemtype data[Maxsize];    int top">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/12-29-00.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/13-16-38.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-03-42.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-05-11.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/13-07-05.jpg">
+<meta property="article:published_time" content="2017-10-10T12:13:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.930Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/12-29-00.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：线性表（二）—— 栈/"/>
+
+
+
+
+
+  <title>数据结构与算法：线性表（二）—— 栈 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构与算法：线性表（二）—— 栈</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:13:53+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%88/" class="leancloud_visitors" data-flag-title="数据结构与算法：线性表（二）—— 栈">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论篇"><a href="#理论篇" class="headerlink" title="理论篇"></a>理论篇</h2><h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><p>栈(Stack)：只允许在一端进行插入或删除操作的线性表。</p>
+<ul>
+<li>栈顶：允许插入和删除的那一端</li>
+<li>栈底：不允许插入和删除的那一端</li>
+</ul>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>栈多以顺序存储的方式进行存储，同时附设一个top指针指示当前栈顶位置。</p>
+<p>C语言实现：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="C"><figure class="iseeu highlight /c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> Maxsize 50</span></span><br><span class="line"><span class="keyword">typedef</span> strucet&#123;</span><br><span class="line">    Elemtype data[Maxsize];</span><br><span class="line">    <span class="keyword">int</span> top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>Python中的列表可直接作为栈的实现：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack = []</span><br></pre></td></tr></table></figure></div>
+<p>栈也可以采用链式存储，将头结点作为栈顶，方便节点的插入和删除。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
+<li>创建空栈：InitStack(S)</li>
+<li>入栈：push(S)</li>
+<li>出栈：pop(S)</li>
+<li>读取栈顶：gettop(S)</li>
+<li>判断栈是否为空：is_empty(S)</li>
+</ul>
+<p>python实现：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建空栈</span></span><br><span class="line">stack = []</span><br><span class="line"><span class="comment"># 入栈</span></span><br><span class="line">stack.append(obj)</span><br><span class="line"><span class="comment"># 出栈</span></span><br><span class="line">p = stack.pop()</span><br><span class="line"><span class="comment"># 获取栈顶/栈底对象</span></span><br><span class="line">stack[-<span class="number">1</span>]</span><br><span class="line">stack[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 判断栈是否为空</span></span><br><span class="line"><span class="keyword">if</span> stack:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h2><p>栈的使用核心是解决以下三个问题(类似于递归)：</p>
+<ol>
+<li>入栈和出栈条件(调用前的处理及返回条件)；</li>
+<li>入栈元素(函数参数)；</li>
+<li>出栈处理(返回后的处理)</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将序列中的元素依次通过栈的处理</span></span><br><span class="line">s = []</span><br><span class="line"><span class="keyword">for</span> i,value <span class="keyword">in</span> <span class="built_in">enumerate</span>(a):</span><br><span class="line">    <span class="keyword">while</span> s <span class="keyword">and</span> condition(s[-<span class="number">1</span>],value):</span><br><span class="line">        top = s.pop()</span><br><span class="line">        visit(top)</span><br><span class="line">    s.append(value)        </span><br></pre></td></tr></table></figure></div>
+<h3 id="括号匹配"><a href="#括号匹配" class="headerlink" title="括号匹配"></a>括号匹配</h3><ul>
+<li>问题：[LeetCode 20] 有效的括号</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定一个只包括 &#x27;(&#x27;，&#x27;)&#x27;，&#x27;&#123;&#x27;，&#x27;&#125;&#x27;，&#x27;[&#x27;，&#x27;]&#x27; 的字符串，判断字符串是否有效，有效字符串需满足：</span><br><span class="line"></span><br><span class="line">1. 空字符串，或者满足以下两条</span><br><span class="line">2. 左括号必须用相同类型的右括号闭合</span><br><span class="line">3. 左括号必须以正确的顺序闭合</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：左空入栈，右出栈相消，不能消或者最终栈非空返回False</li>
+<li>代码:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isValid</span>(<span class="params">self, s</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    d = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="string">&#x27;)&#x27;</span>,<span class="string">&#x27;[&#x27;</span>:<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;&#123;&#x27;</span>:<span class="string">&#x27;&#125;&#x27;</span>,<span class="string">&#x27;)&#x27;</span>:<span class="string">&#x27;(&#x27;</span>,<span class="string">&#x27;]&#x27;</span>:<span class="string">&#x27;[&#x27;</span>,<span class="string">&#x27;&#125;&#x27;</span>:<span class="string">&#x27;&#123;&#x27;</span>&#125;</span><br><span class="line">    stack = []</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack <span class="keyword">or</span> c <span class="keyword">in</span> <span class="string">&#x27;(&#123;[&#x27;</span>:</span><br><span class="line">            stack.append(c)</span><br><span class="line">        <span class="keyword">elif</span> stack[-<span class="number">1</span>] == d[c]:</span><br><span class="line">            stack.pop()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> stack</span><br></pre></td></tr></table></figure></div>
+<h3 id="表达式计算"><a href="#表达式计算" class="headerlink" title="表达式计算"></a>表达式计算</h3><h4 id="前-中-后缀表达式"><a href="#前-中-后缀表达式" class="headerlink" title="前/中/后缀表达式"></a>前/中/后缀表达式</h4><p>常用的表达式：</p>
+<ol>
+<li>中缀表达式：运算符位于操作数中间，运算符按照优先级依次运算。A+B×(C-D)-E/F；</li>
+<li>前缀表达式：运算符位于操作数前面，运算符符自右向左依次运算。-+A×B-CD/EF；</li>
+<li>后缀表达式：运算符位与操作数后面，运算符自左向右依次运算。ABCD-×+EF/-；</li>
+</ol>
+<p>表达式是递归定义的，前一个运算符的运算结果会作为下一个运算符的操作数，下一个运算符的运算结果又会作为下下一个运算符的操作数，最终返回整个运算的结果。前缀表达式又称为波兰式，后缀表达式称为逆波兰式(Reverse Polish notation，RPN)。</p>
+<p>表达式可以表示为一颗表达式树：运算符作为内部节点，操作数作为叶节点，子表达式作为内部节点的左右子树。</p>
+<ol>
+<li>中缀表达式：对应表达式树的中序遍历</li>
+<li>前缀表达式：对应表达式树的先序遍历</li>
+<li>后缀表达式：对应表达式树的后序遍历</li>
+</ol>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/12-29-00.jpg" width="60%" heigh="60%"></img>
+</div>
+
+<h4 id="表达式转换"><a href="#表达式转换" class="headerlink" title="表达式转换"></a>表达式转换</h4><p>转换方法：虽然中缀表达式、前缀表达式、后缀表达式表现方式不一样，但是运算符的运算顺序却是是统一的。因此按照表达式的统一的运算顺序，依次将旧表达式的字表达式转化为新表达式的子表达式，最终得到整个新表达式。</p>
+<h5 id="中缀表达式转后缀表达式"><a href="#中缀表达式转后缀表达式" class="headerlink" title="中缀表达式转后缀表达式"></a>中缀表达式转后缀表达式</h5><ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 设置栈内、栈外操作符优先级，栈内1356栈外6241；操作符栈和操作数栈；</span><br><span class="line">2. 遍历中缀表达式</span><br><span class="line">    1. 如果是数字，入数字栈</span><br><span class="line">    2. 如果是操作符</span><br><span class="line">        1. 如果操作符栈非空，且操作符优先级低于操作符栈顶，则操作符出栈、操作数栈入栈；</span><br><span class="line">        2. 如果操作符栈栈非空，且操作符优先级等于操作符栈顶，则操作符出栈；</span><br><span class="line">        3. 否则，操作符入操作符栈；</span><br><span class="line">3. 如果操作符栈非空，则不断出栈移入操作数栈；</span><br><span class="line">4. 顺序返回操作数栈中的元素；</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">mid = <span class="string">&#x27;A+B*(C-D)-E/F&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mid_pos</span>(<span class="params"><span class="built_in">str</span></span>):</span></span><br><span class="line">    dic_in = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">6</span>&#125;</span><br><span class="line">    dic_out = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">6</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line">    ope = []</span><br><span class="line">    res = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> mid:</span><br><span class="line">        <span class="keyword">if</span> c.isalpha():</span><br><span class="line">            res.append(c)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> ope <span class="keyword">and</span> dic_out[c] &lt; dic_in[ope[-<span class="number">1</span>]]:</span><br><span class="line">                res.append(ope.pop())</span><br><span class="line">            <span class="keyword">if</span> ope <span class="keyword">and</span> dic_out[c] == dic_in[ope[-<span class="number">1</span>]]:</span><br><span class="line">                ope.pop()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ope.append(c)</span><br><span class="line">                </span><br><span class="line">    <span class="keyword">while</span> ope:</span><br><span class="line">        res.append(ope.pop())</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(res)</span><br><span class="line"></span><br><span class="line">mid_pos(mid)</span><br><span class="line"><span class="string">&#x27;ABCD-*+EF/-&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="中缀表达式转前缀表达式"><a href="#中缀表达式转前缀表达式" class="headerlink" title="中缀表达式转前缀表达式"></a>中缀表达式转前缀表达式</h5><ul>
+<li><p>思路：与中缀转后缀类似，只需做三个切换即可：反向遍历、反向输出、栈内站外优先级互换；</p>
+</li>
+<li><p>代码：</p>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">mid = <span class="string">&#x27;A+B*(C-D)-E/F&#x27;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mid_pos</span>(<span class="params"><span class="built_in">str</span></span>):</span></span><br><span class="line">    <span class="comment"># 1. 栈内栈外优先级互换</span></span><br><span class="line">    dic_out = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">6</span>&#125;</span><br><span class="line">    dic_in = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">6</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line">    ope = []</span><br><span class="line">    res = []</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 2.反向遍历</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> mid[::-<span class="number">1</span>]:</span><br><span class="line">        <span class="keyword">if</span> c.isalpha():</span><br><span class="line">            res.append(c)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> ope <span class="keyword">and</span> dic_out[c] &lt; dic_in[ope[-<span class="number">1</span>]]:</span><br><span class="line">                res.append(ope.pop())</span><br><span class="line">            <span class="keyword">if</span> ope <span class="keyword">and</span> dic_out[c] == dic_in[ope[-<span class="number">1</span>]]:</span><br><span class="line">                ope.pop()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ope.append(c)</span><br><span class="line">    <span class="keyword">while</span> ope:</span><br><span class="line">        res.append(ope.pop())</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 3. 反向输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(res[::-<span class="number">1</span>])</span><br><span class="line">    </span><br><span class="line">mid_pos(mid)</span><br><span class="line"><span class="string">&#x27;-+A*B-CD/EF&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="计算表达式"><a href="#计算表达式" class="headerlink" title="计算表达式"></a>计算表达式</h4><h5 id="计算中缀表达式"><a href="#计算中缀表达式" class="headerlink" title="计算中缀表达式"></a>计算中缀表达式</h5><p>虽然中缀表达式是人们所习惯的表达方式，但是对于计算机来说它却很复杂，而后缀和前缀表达式则很容易求值。在计算中缀表达式的值时，通常需要先将中缀表达式转化为后缀或前缀表达式，然后再求值。</p>
+<ul>
+<li>问题：将中缀表达式”A+B*(C-D)-E/F”转化为后缀表达式，并求值。其中每个字母表示一个正整数。</li>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 设定栈内(1356)栈外优先级，操作符函数，操作符栈和操作数栈；</span><br><span class="line">2. 遍历中缀表达式：</span><br><span class="line">    1. 如果是数字，收集多位数数值，并入数字栈；</span><br><span class="line">    2. 如果是操作符</span><br><span class="line">        1. 如果栈非空，且栈外操作符优先级小于栈顶优先级，则不断出栈操作符，并从操作数栈出栈两个元素，计算出结果后再次入操作数栈；</span><br><span class="line">        2. 如果栈非空，且栈外优先级等于栈顶优先级，则出栈；</span><br><span class="line">        3. 否则，操作数直接入操作符栈；</span><br><span class="line">3. 如果操作符栈不为空，则操作符出栈、操作数出栈两个操作数，计算结果后再入栈操作数</span><br><span class="line">4. 最后返回操作数栈中的数值；</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码:</li>
+</ul>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/13-16-38.png" width="60%" heigh="60%"></img>
+</div>
+
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mid_pos</span>(<span class="params">mid</span>):</span></span><br><span class="line">    dic_in = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">3</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">5</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">6</span>&#125;</span><br><span class="line">    dic_out = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">6</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line">    dic_fun = &#123;<span class="string">&#x27;+&#x27;</span>:<span class="keyword">lambda</span> x,y:x+y,<span class="string">&#x27;-&#x27;</span>:<span class="keyword">lambda</span> x,y:x-y,<span class="string">&#x27;*&#x27;</span>:<span class="keyword">lambda</span> x,y:x*y,<span class="string">&#x27;/&#x27;</span>:<span class="keyword">lambda</span> x,y:x/y,&#125;</span><br><span class="line">    ope = []</span><br><span class="line">    res = []</span><br><span class="line">    </span><br><span class="line">    n = <span class="built_in">len</span>(mid)</span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(mid):</span><br><span class="line">        <span class="keyword">if</span> c.isdigit():</span><br><span class="line">            num = num * <span class="number">10</span> +<span class="built_in">int</span>(c)</span><br><span class="line">            <span class="keyword">if</span> i == n - <span class="number">1</span> <span class="keyword">or</span> <span class="keyword">not</span> mid[i+<span class="number">1</span>].isdigit():</span><br><span class="line">                res.append(num)</span><br><span class="line">                num = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> ope <span class="keyword">and</span> dic_out[c] &lt; dic_in[ope[-<span class="number">1</span>]]:</span><br><span class="line">                y = res.pop()</span><br><span class="line">                res[-<span class="number">1</span>] = dic_fun[ope.pop()](res[-<span class="number">1</span>],y)</span><br><span class="line">            <span class="keyword">if</span> ope <span class="keyword">and</span> dic_out[c] == dic_in[ope[-<span class="number">1</span>]]:</span><br><span class="line">                ope.pop()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ope.append(c)</span><br><span class="line">    <span class="keyword">while</span> ope:</span><br><span class="line">        y = res.pop()</span><br><span class="line">        res[-<span class="number">1</span>] = dic_fun[ope.pop()](res[-<span class="number">1</span>],y)</span><br><span class="line">    <span class="keyword">return</span> res[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">N = <span class="built_in">input</span>()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> xrange(N):</span><br><span class="line">    line = raw_input().strip()</span><br><span class="line">    <span class="keyword">if</span> line:</span><br><span class="line">        <span class="comment"># 防止首字符为负号</span></span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">0</span>] == <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">            line = <span class="string">&#x27;0&#x27;</span> + line</span><br><span class="line">        <span class="built_in">print</span> mid_pos(line)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="计算后缀表达式"><a href="#计算后缀表达式" class="headerlink" title="计算后缀表达式"></a>计算后缀表达式</h5><ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化中间结果栈res</span><br><span class="line">2. 从左向右扫描表达式</span><br><span class="line">3. 遇到多位数字时，先计算数字真实值，num = num *10 + int(c),如果当前字符是数字且是最后一个字符或当前为运算符，则将刚刚保存的数值压入res</span><br><span class="line">4. 遇到操作符时，出栈两个元素运算后将结果压入栈</span><br><span class="line">5. 扫描结束，栈中的唯一元素就是表达式的结果</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>算法：略，很容易实现，但后缀前缀表达式不好区分多位数，在后面计算中缀表达式时也会涉及这个过程。</li>
+</ul>
+<h5 id="计算前缀表达式"><a href="#计算前缀表达式" class="headerlink" title="计算前缀表达式"></a>计算前缀表达式</h5><ul>
+<li>思路：只需改变扫描方向，还有多位数字的处理</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化中间结果栈res</span><br><span class="line">2. 从右向左扫描表达式</span><br><span class="line">3. 遇到多位数字时，先计算数字真实值，num = num + int(c) * 10,如果当前字符是数字且是最后一个字符或当前为运算符，则将刚刚保存的数值压入res</span><br><span class="line">4. 遇到操作符时，出栈两个元素运算后将结果压入栈</span><br><span class="line">5. 扫描结束，栈中的唯一元素就是表达式的结</span><br></pre></td></tr></table></figure></div>
+<h3 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h3><p>卡特兰数(Dyck word)：满足以下条件的序列的个数称为n阶卡特兰数：</p>
+<ol>
+<li>序列由n个X和n个Y组成；</li>
+<li>所有的前缀序列中X的个数大于等于Y的个数；</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XXXYYY XYXXYY XYXYXY XXYYXY XXYXYY</span><br></pre></td></tr></table></figure></div>
+<p>卡特兰通项：</p>
+<script type="math/tex; mode=display">
+C_n = \binom{2n}{n}-\binom{2n}{n+1}=\frac{\binom{2n}{n}}{n+1},\ n\geqslant 1</script><p>证明：镜像法。令1表示进栈，0表示出栈，则可转化为求一个2n位、含n个1、n个0的二进制数，满足从左往右扫描到任意一位时，经过的0数不多于1数。显然含n个1、n个0的2n位二进制数共有 $\binom{2n}{n}$个。下面考虑不满足要求的数目，考虑一个含n个1、n个0的2n位二进制数，扫描到第2m+1位上时有m+1个0和m个1（容易证明一定存在这样的情况），则后面的0-1排列中必有n-m个1和n-m-1个0。将2m+2及其以后的部分0变成1、1变成0，则对应一个n+1个0和n-1个1的二进制数$\binom{2n}{n+1}$。</p>
+<p>卡特兰数可用于分析“同等数量的两种状态交替出现”的问题。</p>
+<h4 id="合法的进出栈序列个数"><a href="#合法的进出栈序列个数" class="headerlink" title="合法的进出栈序列个数"></a>合法的进出栈序列个数</h4><p>n个不同元素的出栈序列个数=卡特兰数：如果将入栈作为X，出栈作为Y，则每个进出栈过程可表示为01序列，且出入栈次数相等，任何前缀中进栈次数大于等于出栈次数。每个合法的进出序列都唯一对应于一种出栈序列。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">进出进进出进出出</span><br></pre></td></tr></table></figure></div>
+<h4 id="合法的括号表达式个数"><a href="#合法的括号表达式个数" class="headerlink" title="合法的括号表达式个数"></a>合法的括号表达式个数</h4><p>n对括号组成的合法序列数=卡特兰数：左括号作为X，右括号作为Y，合法括号等价于括号序列的所有前缀中左括号个数大于等于右括号个数，且左右总括号数相等。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">()((()()))</span><br></pre></td></tr></table></figure></div>
+<h4 id="合法的二叉树形态个数"><a href="#合法的二叉树形态个数" class="headerlink" title="合法的二叉树形态个数"></a>合法的二叉树形态个数</h4><p>n个节点组成的二叉树的形态数=卡特兰数：节点作为X，空节点作为Y，空节点数比节点树多一，且二叉树的先序遍历序列尾节点一定是空节点，去掉最后一个空节点，那么每一个先序遍历序列都满足卡特兰定理。</p>
+<p>推广： n个内部节点组成的满二叉树个数=卡特兰数：将内部节点作为X，叶节点作为Y</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-03-42.jpg" width="60%" heigh="60%"></img>
+</div>
+
+<h4 id="合法的不超过对角线的网格路径个数"><a href="#合法的不超过对角线的网格路径个数" class="headerlink" title="合法的不超过对角线的网格路径个数"></a>合法的不超过对角线的网格路径个数</h4><p>n×n 网格不越过对角线的路径数=卡特兰数：X代表“向右”，Y代表“向上”。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/22-05-11.png" width="60%" heigh="60%"></img>
+</div>
+
+<h5 id="LeetCode-331-验证二叉树的先序序列化"><a href="#LeetCode-331-验证二叉树的先序序列化" class="headerlink" title="[LeetCode 331] 验证二叉树的先序序列化"></a>[LeetCode 331] 验证二叉树的先序序列化</h5><ul>
+<li>问题：序列化二叉树的一种方法是使用前序遍历。当我们遇到一个非空节点时，我们可以记录下这个节点的值。如果它是一个空节点，我们可以使用一个标记值记录，例如 #。例如，上面的二叉树可以被序列化为字符串 “9,3,4,#,#,1,#,#,2,#,6,#,#”，其中 # 代表一个空节点。给定一串以逗号分隔的序列，验证它是否是正确的二叉树的前序序列化。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">     _9_</span><br><span class="line">    /   \</span><br><span class="line">   3     2</span><br><span class="line">  / \   / \</span><br><span class="line"> 4   1  #  6</span><br><span class="line">/ \ / \   / \</span><br><span class="line"># # # #   # #</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：任意前缀中虚拟叶子节点(#)数不超过内部节点数，且最终虚拟叶子节点(#)数等于内部节点数，等价于该序列是合法先序序列</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    思路：</span></span><br><span class="line"><span class="string">        1. 末尾节点为虚节点，去掉末尾节点后</span></span><br><span class="line"><span class="string">        2. 任何前缀中节点数大于等于虚节点数</span></span><br><span class="line"><span class="string">        3. 前缀节点总个数=虚节点总个数</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidSerialization</span>(<span class="params">self, preorder</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type preorder: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> preorder[-<span class="number">1</span>] != <span class="string">&#x27;#&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        preorder = preorder.split(<span class="string">&#x27;,&#x27;</span>)[:-<span class="number">1</span>]</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(preorder)):</span><br><span class="line">            count += [<span class="number">1</span>,-<span class="number">1</span>][preorder[i] == <span class="string">&#x27;#&#x27;</span>]</span><br><span class="line">            <span class="keyword">if</span> count &lt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> count == <span class="number">0</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="递归转非递归"><a href="#递归转非递归" class="headerlink" title="递归转非递归"></a>递归转非递归</h3><ol>
+<li>递归调用：相当于入栈，函数参数相当于入栈元素；</li>
+<li>递归返回：相当于出栈后做处理的结果；</li>
+<li>递归深度：栈的深度；</li>
+</ol>
+<p>树的先中后序非递归遍历是最好的实例，详见树的遍历。</p>
+<h3 id="递增递减栈"><a href="#递增递减栈" class="headerlink" title="递增递减栈"></a>递增递减栈</h3><p>“递增/递减栈”用于查找线性表中每个元素左右两侧第一个更小/更大(小于等于/大于等于)的元素。有以下几种变形：</p>
+<ol>
+<li>前向递增栈：寻找每个元素右侧第一个小于/小于等于它的元素；</li>
+<li>后向递增栈：寻找每个元素左侧第一个小于/小于等于它的元素；</li>
+<li>前向递减栈：寻找每个元素右侧第一个大于/大于等于它的元素；</li>
+<li>后向递减栈：寻找每个元素左侧第一个大于/大于等于它的元素；</li>
+</ol>
+<p>以前向递增栈为例，维护递增栈的一般过程：</p>
+<ol>
+<li>如果栈非空且入栈元素<strong>小于</strong>栈顶元素，则不断出栈直至条件不满足；出栈时，待入栈元素是栈顶元素右侧第一个小于它的元素；</li>
+<li>将入栈元素下标入栈；入栈时，栈顶元素是待入栈元素左侧第一个小于等于它的元素；</li>
+</ol>
+<p>说明：递增递减栈的灵活性很强，递增栈找邻近更小，递减栈找邻近更大；前向后向，等号视情况而定。</p>
+<h5 id="LeetCode-496-下一个更大元素"><a href="#LeetCode-496-下一个更大元素" class="headerlink" title="[LeetCode 496] 下一个更大元素"></a>[LeetCode 496] 下一个更大元素</h5><ul>
+<li>问题：给定两个没有重复元素的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。找到 nums1 中每个元素在 nums2 中的下一个比其大的值。nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的元素。如果不存在，对应位置输出-1。</li>
+<li>思路：递减栈，寻找a两边最近的比它大的值，可以通过递减栈，入栈元素比栈顶小则入栈，否则一直出栈，直至比栈顶小，每次出栈元素右侧第一个最大就是当前入栈元素，O(n+m)</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nextGreaterElement</span>(<span class="params">self, findNums, nums</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type findNums: List[int]</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    stack = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i,num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">and</span> num &gt; nums[stack[-<span class="number">1</span>]]:</span><br><span class="line">            d[nums[stack[-<span class="number">1</span>]]] = num</span><br><span class="line">            stack.pop()</span><br><span class="line">        stack.append(i)    </span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span> d,stack</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> findNums:</span><br><span class="line">        <span class="keyword">if</span> num <span class="keyword">in</span> d:</span><br><span class="line">            res.append(d[num])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-456-132模式"><a href="#LeetCode-456-132模式" class="headerlink" title="[LeetCode 456] 132模式"></a>[LeetCode 456] 132模式</h5><ul>
+<li>问题：给定一个整数序列：a1, a2, …, an，一个132模式的子序列 ai, aj, ak 被定义为：当 i &lt; j &lt; k 时，ai &lt; ak &lt; aj。设计一个算法，当给定有 n 个数字的序列时，验证这个序列中是否含有132模式的子序列。注意：n 的值小于15000。</li>
+<li>思路：后向递减栈；从后向前遍历数组，如果入栈元素比上一个出栈元素小则返回True，如果入栈元素比栈顶大则出栈直至栈空或不大于栈顶，入栈；否则最后返回False。</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find132pattern</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    s = []</span><br><span class="line">    pre = <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums[::-<span class="number">1</span>]:</span><br><span class="line">        <span class="keyword">if</span> num &lt; pre:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">while</span> s <span class="keyword">and</span> num &gt; s[-<span class="number">1</span>]:</span><br><span class="line">            pre = s.pop()</span><br><span class="line">        s.append(num)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-402-移掉K位数字"><a href="#LeetCode-402-移掉K位数字" class="headerlink" title="[LeetCode 402] 移掉K位数字"></a>[LeetCode 402] 移掉K位数字</h5><ul>
+<li>问题：给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。注意:num 的长度小于 10002 且 ≥ k。num 不会包含任何前导零。</li>
+<li><p>思路：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">思路：前向递增栈+拼接；</span><br><span class="line">        1. 如果待入栈元素比栈顶元素小，则出栈，去掉出栈元素，直至大于等于栈顶或栈为空</span><br><span class="line">        2. 入栈</span><br><span class="line">        出栈个数等于k则结束，去掉出栈元素后的字符串，去掉前导0</span><br><span class="line">        出栈个数不足k则将末尾的差额元素去掉，去掉前导零</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>代码：</p>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeKdigits</span>(<span class="params">self, num, k</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(num)</span><br><span class="line">    s = []</span><br><span class="line">    ns = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> i,x <span class="keyword">in</span> <span class="built_in">enumerate</span>(num):</span><br><span class="line">        <span class="keyword">while</span> s <span class="keyword">and</span> x &lt; num[s[-<span class="number">1</span>]] <span class="keyword">and</span> k:</span><br><span class="line">            ns.add(s.pop())</span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        s.append(i)</span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    </span><br><span class="line">    tmp = [num[i] <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n) <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> ns <span class="keyword">and</span> i &lt; n - k]</span><br><span class="line">    res = <span class="string">&#x27;&#x27;</span>.join(tmp).lstrip(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res <span class="keyword">or</span> <span class="string">&#x27;0&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-42-接雨水"><a href="#LeetCode-42-接雨水" class="headerlink" title="[LeetCode 42] 接雨水"></a>[LeetCode 42] 接雨水</h5><ul>
+<li>问题：给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</li>
+</ul>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/13-07-05.jpg" width="60%" heigh="60%"></img>
+</div>
+
+<ul>
+<li>思路：维护递减栈，如果入栈元素小于栈顶则入栈，如果入栈元素大于栈顶则出栈，如果相等则pass，此时次栈顶元素a&lt;栈顶元素b&lt;入栈元素c，且a,c是b两侧最近的较大元素，abc可以理解为以b为底，ab为两边所能装下的水，将元素全部装入栈的过程统计水和。</li>
+<li>代码:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trap</span>(<span class="params">self, height</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type height: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    s = []</span><br><span class="line">    <span class="keyword">for</span> i,w <span class="keyword">in</span> <span class="built_in">enumerate</span>(height):</span><br><span class="line">        <span class="keyword">while</span> s <span class="keyword">and</span> w &gt;= height[s[-<span class="number">1</span>]]:</span><br><span class="line">            top = s.pop()</span><br><span class="line">            <span class="keyword">if</span> s:</span><br><span class="line">                res += (<span class="built_in">min</span>(w,height[s[-<span class="number">1</span>]]) - height[top]) * (i - s[-<span class="number">1</span>] - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s <span class="keyword">or</span> w &lt; height[s[-<span class="number">1</span>]]:</span><br><span class="line">            s.append(i)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></div>
+<h3 id="栈实现队列"><a href="#栈实现队列" class="headerlink" title="栈实现队列"></a>栈实现队列</h3><ul>
+<li>问题：使用栈实现队列的下列操作：<ul>
+<li>push(x) — 将一个元素放入队列的尾部。</li>
+<li>pop() — 从队列首部移除元素。</li>
+<li>peek() — 返回队列首部的元素。</li>
+<li>empty() — 返回队列是否为空。</li>
+</ul>
+</li>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用两个栈instack, outstack来模拟队列，push入instack，pop出outstack，只有在outstack中没有元素时才会向instack借</span><br><span class="line">    1. 初始化，两个空栈</span><br><span class="line">    2. push，入A</span><br><span class="line">    3. pop从B出，B无则将A中所有元素放入B中</span><br><span class="line">    3. peek，返回队首元素，返回B中栈顶，如果没有则将A中所有元素放入B中，A也没有的话返回空</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.instack = []</span><br><span class="line">        self.outstack = []</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Push element x to the back of queue.</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :rtype: void</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.instack.append(x)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Removes the element from in front of queue and returns that element.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.outstack:</span><br><span class="line">            <span class="keyword">while</span> self.instack:</span><br><span class="line">                self.outstack.append(self.instack.pop())</span><br><span class="line">        <span class="keyword">return</span> self.outstack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peek</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Get the front element.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.outstack:</span><br><span class="line">            <span class="keyword">while</span> self.instack:</span><br><span class="line">                self.outstack.append(self.instack.pop())</span><br><span class="line">        <span class="keyword">return</span> self.outstack[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">empty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Returns whether the queue is empty.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">not</span> (self.instack <span class="keyword">or</span> self.outstack) </span><br></pre></td></tr></table></figure></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="next" title="数据结构与算法：二分查找">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：二分查找
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%8C%E6%8C%87%E9%92%88/" rel="prev" title="数据结构与算法：线性表（三）—— 双指针">
+                数据结构与算法：线性表（三）—— 双指针 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">理论篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="nav-number">2.</span> <span class="nav-text">应用篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="nav-number">2.1.</span> <span class="nav-text">括号匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">2.2.</span> <span class="nav-text">表达式计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D-%E4%B8%AD-%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">前&#x2F;中&#x2F;后缀表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.2.2.</span> <span class="nav-text">表达式转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">中缀表达式转后缀表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%89%8D%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">中缀表达式转前缀表达式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.3.</span> <span class="nav-text">计算表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">计算中缀表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">计算后缀表达式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%89%8D%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">计算前缀表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">卡特兰数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E6%B3%95%E7%9A%84%E8%BF%9B%E5%87%BA%E6%A0%88%E5%BA%8F%E5%88%97%E4%B8%AA%E6%95%B0"><span class="nav-number">2.3.1.</span> <span class="nav-text">合法的进出栈序列个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E6%B3%95%E7%9A%84%E6%8B%AC%E5%8F%B7%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AA%E6%95%B0"><span class="nav-number">2.3.2.</span> <span class="nav-text">合法的括号表达式个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E6%B3%95%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81%E4%B8%AA%E6%95%B0"><span class="nav-number">2.3.3.</span> <span class="nav-text">合法的二叉树形态个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%88%E6%B3%95%E7%9A%84%E4%B8%8D%E8%B6%85%E8%BF%87%E5%AF%B9%E8%A7%92%E7%BA%BF%E7%9A%84%E7%BD%91%E6%A0%BC%E8%B7%AF%E5%BE%84%E4%B8%AA%E6%95%B0"><span class="nav-number">2.3.4.</span> <span class="nav-text">合法的不超过对角线的网格路径个数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-331-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%85%88%E5%BA%8F%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">2.3.4.1.</span> <span class="nav-text">[LeetCode 331] 验证二叉树的先序序列化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E8%BD%AC%E9%9D%9E%E9%80%92%E5%BD%92"><span class="nav-number">2.4.</span> <span class="nav-text">递归转非递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%A2%9E%E9%80%92%E5%87%8F%E6%A0%88"><span class="nav-number">2.5.</span> <span class="nav-text">递增递减栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-496-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">[LeetCode 496] 下一个更大元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-456-132%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.0.2.</span> <span class="nav-text">[LeetCode 456] 132模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-402-%E7%A7%BB%E6%8E%89K%E4%BD%8D%E6%95%B0%E5%AD%97"><span class="nav-number">2.5.0.3.</span> <span class="nav-text">[LeetCode 402] 移掉K位数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-42-%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="nav-number">2.5.0.4.</span> <span class="nav-text">[LeetCode 42] 接雨水</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">2.6.</span> <span class="nav-text">栈实现队列</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

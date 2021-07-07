@@ -1,37 +1,1772 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="机器学习的定义 A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experien">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习：概述">
+<meta property="og:url" content="http://liketea.xyz/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="机器学习的定义 A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experien">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-29-56.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-30-09.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-30-58.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-31-15.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-32-18.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-32-37.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-32-48.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-04.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-14.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-21.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-28.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-34.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-44.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-52.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-59.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-34-14.jpg">
+<meta property="article:published_time" content="2018-10-20T12:13:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.936Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-29-56.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/机器学习/机器学习/机器学习：概述/"/>
+
+
+
+
+
+  <title>机器学习：概述 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">机器学习：概述</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T20:13:53+08:00">
+                2018-10-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%A6%82%E8%BF%B0/" class="leancloud_visitors" data-flag-title="机器学习：概述">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="机器学习的定义"><a href="#机器学习的定义" class="headerlink" title="机器学习的定义"></a>机器学习的定义</h2><blockquote>
+<p>A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P if its performance at tasks in T, as measured by P, improves with experience E.</p>
+<p>如果一个计算机程序在某类任务T上的性能P通过经验E得到了提升，那么就说关于T和P，该程序学习了经验E。</p>
+<p>—— Tom Mitchell《Machine Learning》</p>
+<p>如果说计算机科学是研究“算法”的学科，那么可以说机器学习是研究“学习算法”(从数据中产生模型的算法)的学科。</p>
+<p>从广义上来说，机器学习是一种能够赋予机器学习的能力以此让它完成直接编程无法完成的功能的方法。但从实践的意义上来说，机器学习是一种通过利用数据，训练出模型，然后使用模型预测的一种方法。</p>
+</blockquote>
+<h2 id="机器学习的范围"><a href="#机器学习的范围" class="headerlink" title="机器学习的范围"></a>机器学习的范围</h2><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-29-56.jpg" alt=""></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-30-09.jpg" alt=""></p>
+<h3 id="模式识别（Pattern-Recognition）"><a href="#模式识别（Pattern-Recognition）" class="headerlink" title="模式识别（Pattern Recognition）"></a>模式识别（Pattern Recognition）</h3><p>模式识别 = 机器学习</p>
+<blockquote>
+<p>模式识别源自工业界，而机器学习来自于计算机学科。不过，它们中的活动可以被视为同一个领域的两个方面。<br>——《Pattern Recognition And Machine Learning》</p>
+</blockquote>
+<p>机器学习的目标是发现数据中的模式和关系并予以应用。</p>
+<h3 id="数据挖掘（Data-mining）"><a href="#数据挖掘（Data-mining）" class="headerlink" title="数据挖掘（Data mining）"></a>数据挖掘（Data mining）</h3><p>数据挖掘 = 机器学习 + 数据库</p>
+<blockquote>
+<p>Data mining is the analysis step of the “knowledge discovery in databases.</p>
+</blockquote>
+<h3 id="统计学习（statistical-learning）"><a href="#统计学习（statistical-learning）" class="headerlink" title="统计学习（statistical learning）"></a>统计学习（statistical learning）</h3><p>统计学习 = 贝叶斯学派机器学习</p>
+<blockquote>
+<p>统计学习是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的一门学科。统计学习也称为统计机器学习（statistical machine learning）。<br>——《统计学习方法》</p>
+</blockquote>
+<h3 id="计算机视觉（Computer-vision）"><a href="#计算机视觉（Computer-vision）" class="headerlink" title="计算机视觉（Computer vision）"></a>计算机视觉（Computer vision）</h3><p>计算机视觉 = 机器学习 + 图像处理</p>
+<blockquote>
+<p>Computer vision is an interdisciplinary field that deals with how computers can be made for gaining high-level understanding from digital images or videos.</p>
+</blockquote>
+<h3 id="语音识别（Speech-recognition）"><a href="#语音识别（Speech-recognition）" class="headerlink" title="语音识别（Speech recognition）"></a>语音识别（Speech recognition）</h3><p>语音识别 = 机器学习 + 语音处理</p>
+<blockquote>
+<p>Speech recognition is the inter-disciplinary sub-field of computational linguistics that develops methodologies and technologies that enables the recognition and translation of spoken language into text by computers.</p>
+</blockquote>
+<h3 id="自然语言处理（Natural-language-processing）"><a href="#自然语言处理（Natural-language-processing）" class="headerlink" title="自然语言处理（Natural language processing）"></a>自然语言处理（Natural language processing）</h3><p>自然语言处理 = 机器学习 + 文本处理</p>
+<blockquote>
+<p>Natural language processing (NLP) is a field of computer science, artificial intelligence and computational linguistics concerned with the interactions between computers and human (natural) languages, and, in particular, concerned with programming computers to fruitfully process large natural language corpora.</p>
+</blockquote>
+<h3 id="人工智能（Artificial-intelligence）"><a href="#人工智能（Artificial-intelligence）" class="headerlink" title="人工智能（Artificial intelligence）"></a>人工智能（Artificial intelligence）</h3><blockquote>
+<p>Artificial intelligence(AI,also machine intelligence, MI) is intelligence exhibited by machines, rather than humans or other animals(natural intelligence,NI).</p>
+<p>狭义的人工智能是指让机器获取认知/学习的能力，机器可以不断地通过数据来改善自身的性能。广义的人工智能包括狭义人工智能、人工情感与人工意志三个方面。<br>—— 西部世界</p>
+<p>生命本身就是不断处理数据的过程，生物本身就是算法。<br>—— 尤瓦尔•赫拉利《未来简史》</p>
+<p>人也不过是一台有灵魂的机器而已。<br>—— 丹尼尔·丹尼特《意识的解释》</p>
+</blockquote>
+<h3 id="深度学习（deep-learning）"><a href="#深度学习（deep-learning）" class="headerlink" title="深度学习（deep learning）"></a>深度学习（deep learning）</h3><p>深度学习 = 连接学派机器学习</p>
+<blockquote>
+<p>深度学习是机器学习拉出的分支，它试图使用包含复杂结构或由多重非线性变换构成的多个处理层对数据进行高层抽象的算法。深度学习是对神经网络的“品牌重塑”。</p>
+</blockquote>
+<h2 id="机器学习的工作方式"><a href="#机器学习的工作方式" class="headerlink" title="机器学习的工作方式"></a>机器学习的工作方式</h2><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-30-58.jpg" alt=""></p>
+<p>①选择数据：将你的数据分成三组：训练数据、验证数据和测试数据<br>②模型数据：使用训练数据来构建使用相关特征的模型<br>③验证模型：使用你的验证数据来验证你的模型<br>④测试模型：使用你的测试数据检查被验证的模型的表现<br>⑤使用模型：使用完全训练好的模型在新数据上做预测<br>⑥调优模型：使用更多数据、不同的特征或调整过的参数来提升算法的性能表现</p>
+<h2 id="机器学习对比传统编程"><a href="#机器学习对比传统编程" class="headerlink" title="机器学习对比传统编程"></a>机器学习对比传统编程</h2><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-31-15.jpg" alt=""></p>
+<p>①传统编程：软件工程师编写程序来解决问题。首先存在一些数据→为了解决一个问题，软件工程师编写一个流程来告诉机器应该怎样做→计算机遵照这一流程执行，然后得出结果<br>②统计学：分析师比较变量之间的关系<br>③机器学习：数据科学家使用训练数据集来教计算机应该怎么做，然后系统执行该任务。首先存在大数据→机器会学习使用训练数据集来进行分类，调节特定的算法来实现目标分类→该计算机可学习识别数据中的关系、趋势和模式<br>④智能应用：智能应用使用人工智能所得到的结果，如图是一个精准农业的应用案例示意，该应用基于无人机所收集到的数据</p>
+<h3 id="机器学习的优势"><a href="#机器学习的优势" class="headerlink" title="机器学习的优势"></a>机器学习的优势</h3><ul>
+<li>精确：机器学习是数据驱动的决策系统，随着数据增多，精确性也随之提高</li>
+<li>迅速：机器学习可以在新数据进入的几毫秒内产生结果，允许系统做出实时反应</li>
+<li>自动化：机器学习可以自动学习新的模式，用户可以把机器学习直接嵌入到自动工作流中</li>
+<li>规模化：机器学习可以很容易地处理数据增长问题，有些机器学习可以使用云计算处理大规模数据</li>
+<li>可自定义：许多数据驱动的问题可用机器学习解决，机器学习模型通过自己的数据构建，并可用任何评价标准来进行优化</li>
+</ul>
+<h4 id="机器学习的困难"><a href="#机器学习的困难" class="headerlink" title="机器学习的困难"></a>机器学习的困难</h4><ul>
+<li>获取可用形式的数据：数据科学家80%的时间花费在数据准备上，当前商业捕获的数据比任何以往时候都要多，而且这些数据往往是业务处理的废弃物，从这些“废弃物”中提取有用数据是一件非常繁琐的工作</li>
+<li>对问题进行公式化表示，以便于应用机器学习并产生可操作和度量的结果</li>
+<li>选择算法及如何应用：将原始数据转化为可预测的特征，选择合适的机器学习算法</li>
+<li>过拟合：如果一个模型非常适合训练数据，很可能对新数据不能很好地作出预测</li>
+</ul>
+<h2 id="机器学习的发展"><a href="#机器学习的发展" class="headerlink" title="机器学习的发展"></a>机器学习的发展</h2><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-32-18.jpg" alt=""></p>
+<h3 id="机器学习中的五大流派"><a href="#机器学习中的五大流派" class="headerlink" title="机器学习中的五大流派"></a>机器学习中的五大流派</h3><p>几十年来，人工智能研究者的各个「部落」一直以来都在彼此争夺主导权，现在这些部落开始联合起来，因为合作和算法融合是实现真正通用人工智能（AGI）的唯一方式。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>学派</th>
+<th>核心理念</th>
+<th>主算法</th>
+<th>灵感来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>符号学派</td>
+<td>使用符号、规则和逻辑来表征知识和进行逻辑推理</td>
+<td>规则/决策树</td>
+<td>逻辑学</td>
+</tr>
+<tr>
+<td>贝叶斯学派</td>
+<td>获取发生的可能性来进行概率推理</td>
+<td>贝叶斯/马尔科夫</td>
+<td>统计学</td>
+</tr>
+<tr>
+<td>连接学派</td>
+<td>使用概率矩阵和加权神经元来动态地识别和归纳模式</td>
+<td>反向传播/神经网络</td>
+<td>神经科学</td>
+</tr>
+<tr>
+<td>进化学派</td>
+<td>生成变化，然后为特定目标获取其中最优的</td>
+<td>基因编程</td>
+<td>遗传学</td>
+</tr>
+<tr>
+<td>类推学派</td>
+<td>根据约束条件来优化函数（尽可能走到更高，但同时不要离开道路）</td>
+<td>支持向量机</td>
+<td>数学最优化</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="机器学习的历史演化阶段"><a href="#机器学习的历史演化阶段" class="headerlink" title="机器学习的历史演化阶段"></a>机器学习的历史演化阶段</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-32-37.jpg" alt=""></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>1980s</th>
+<th>1990-2000</th>
+<th>2000-2010s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主导学派</td>
+<td>符号学派</td>
+<td>贝叶斯学派</td>
+<td>联结学派</td>
+</tr>
+<tr>
+<td>架构</td>
+<td>服务器或大型机</td>
+<td>小型服务器集群</td>
+<td>云服务器</td>
+</tr>
+<tr>
+<td>主导理论</td>
+<td>知识工程</td>
+<td>概率论</td>
+<td>神经科学和概率</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>决策支持系统</td>
+<td>可扩展的对比</td>
+<td>在图像和语音识别、情感分析领域更加准确</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="机器学习的未来发展趋势"><a href="#机器学习的未来发展趋势" class="headerlink" title="机器学习的未来发展趋势"></a>机器学习的未来发展趋势</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-32-48.jpg" alt=""></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>Late 2020s</th>
+<th>2020s+</th>
+<th>2040s+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流学派</td>
+<td>连接学派+符号学派</td>
+<td>联结主义+符号主义+贝叶斯+……</td>
+<td>算法融合</td>
+</tr>
+<tr>
+<td>架构</td>
+<td>云计算</td>
+<td>云计算和雾计算</td>
+<td>无处不在的服务器</td>
+</tr>
+<tr>
+<td>主导理论</td>
+<td>记忆神经网络、大规模集成、基于知识的推理</td>
+<td>通过神经网络来感知、通过规则来决策</td>
+<td>最佳组合的元学习</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>简单问答系统</td>
+<td>简单的感知-推理-行动</td>
+<td>基于通过多种学习方式获得的知识或经验采取行动或做出回答</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="机器学习算法"><a href="#机器学习算法" class="headerlink" title="机器学习算法"></a>机器学习算法</h2><p>你应该使用哪种机器学习算法，这很大程度上依赖于可用数据的特征和数量以及你的训练目标。不要使用最复杂的算法，除非其结果值得付出昂贵的开销和资源。这里给出了一些最常见的算法，按使用简单程度排序。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650723438&amp;idx=1&amp;sn=a778051186c0e1fb3cdb4076868fd54a&amp;chksm=871b1010b06c99063ec5599dcecbed5ce3065e7c2f0ab1cc11a8251f2472838302f89cf51d52&amp;scene=21#wechat_redirect">机器学习算法集锦：从贝叶斯到深度学习及各自优缺点</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650723704&amp;idx=1&amp;sn=5e791710b46502661e25ff6f7528003b&amp;chksm=871b1106b06c98107174c81401c1f7017b35939ab20bc83b305ecae8b503690518fd32d75bbd&amp;scene=21#wechat_redirect">经验之谈：如何为你的机器学习问题选择合适的算法？</a></li>
+</ul>
+<h3 id="决策树（Decision-Tree）"><a href="#决策树（Decision-Tree）" class="headerlink" title="决策树（Decision Tree）"></a>决策树（Decision Tree）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-04.jpg" alt=""></p>
+<ul>
+<li><p>原理：典型的决策树分析使用分层变量或决策结点，在逐步决策过程中将一个样本进行分类。</p>
+</li>
+<li><p>优点：擅长对样本的特征进行评估</p>
+</li>
+<li>场景：基于规则的信用评估、扫码结果预测</li>
+<li>扩展阅读：</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650723438&amp;idx=4&amp;sn=cf3902a9933afe08ac3c38452044cddd&amp;chksm=871b1010b06c99062809133f3ad6279bccd64768a761a2aa6495367048069bc13788929b276a&amp;scene=21#wechat_redirect">《教程 | 从头开始：用Python实现决策树算法》</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650725041&amp;idx=1&amp;sn=0c57ba70e2613e6af80c4ab61c996d44&amp;chksm=871b1ecfb06c97d9547e50705d3e74a2b8c41254f0efc2dd88d2e89eec3bfac5da089f28c398&amp;scene=21#wechat_redirect">《想了解概率图模型？你要先理解图论的基本定义与形式》</a></li>
+</ul>
+<h3 id="支持向量机（Support-Vector-Machine）"><a href="#支持向量机（Support-Vector-Machine）" class="headerlink" title="支持向量机（Support Vector Machine）"></a>支持向量机（Support Vector Machine）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-14.jpg" alt=""></p>
+<ul>
+<li>原理：基于超平面（hyperplane），支持向量机可以对数据群进行分类。</li>
+<li>优点：支持向量机擅长在变量 X 与其它变量之间进行二元分类操作，无论其关系是否是线性的</li>
+<li>场景举例：新闻分类、手写识别。</li>
+<li>扩展阅读：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650722941&amp;idx=2&amp;sn=328ba8aa2657217c1d90304018ba3bc6&amp;chksm=871b1603b06c9f155faf0f1e6d6a62f9d014bcaa85f57abc9f0f9ff0ab0ac608b1749f12c170&amp;scene=21#wechat_redirect">《干货 | 详解支持向量机（附学习资源）》</a></li>
+</ul>
+<h3 id="回归（Regression）"><a href="#回归（Regression）" class="headerlink" title="回归（Regression）"></a>回归（Regression）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-21.jpg" alt=""></p>
+<ul>
+<li>原理：回归可以勾画出因变量与一个或多个因变量之间的状态关系。在这个例子中，将垃圾邮件和非垃圾邮件进行了区分。</li>
+<li>优点：回归可用于识别变量之间的连续关系，即便这个关系不是非常明显</li>
+<li>场景举例：路面交通流量分析、邮件过滤</li>
+</ul>
+<h3 id="朴素贝叶斯（Naive-Bayes-Classification）"><a href="#朴素贝叶斯（Naive-Bayes-Classification）" class="headerlink" title="朴素贝叶斯（Naive Bayes Classification）"></a>朴素贝叶斯（Naive Bayes Classification）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-28.jpg" alt=""></p>
+<ul>
+<li>原理：朴素贝叶斯分类器用于计算可能条件的分支概率。每个独立的特征都是「朴素」或条件独立的，因此它们不会影响别的对象。</li>
+<li>优点：对于在小数据集上有显著特征的相关对象，朴素贝叶斯方法可对其进行快速分类</li>
+<li>场景举例：情感分析、消费者分类</li>
+</ul>
+<h3 id="隐马尔可夫模型（Hidden-Markov-model）"><a href="#隐马尔可夫模型（Hidden-Markov-model）" class="headerlink" title="隐马尔可夫模型（Hidden Markov model）"></a>隐马尔可夫模型（Hidden Markov model）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-34.jpg" alt=""></p>
+<ul>
+<li>原理：显马尔可夫过程是完全确定性的——一个给定的状态经常会伴随另一个状态。交通信号灯就是一个例子。相反，隐马尔可夫模型通过分析可见数据来计算隐藏状态的发生。随后，借助隐藏状态分析，隐马尔可夫模型可以估计可能的未来观察模式。在本例中，高或低气压的概率（这是隐藏状态）可用于预测晴天、雨天、多云天的概率。</li>
+<li>优点：容许数据的变化性，适用于识别（recognition）和预测操作</li>
+<li>场景举例：面部表情分析、气象预测</li>
+</ul>
+<h3 id="随机森林（Random-forest）"><a href="#随机森林（Random-forest）" class="headerlink" title="随机森林（Random forest）"></a>随机森林（Random forest）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-44.jpg" alt=""></p>
+<ul>
+<li><p>原理：随机森林算法通过使用多个带有随机选取的数据子集的树（tree）改善了决策树的精确性。本例在基因表达层面上考察了大量与乳腺癌复发相关的基因，并计算出复发风险。</p>
+</li>
+<li><p>优点：随机森林方法被证明对大规模数据集和存在大量且有时不相关特征的项（item）来说很有用</p>
+</li>
+<li><p>场景举例：用户流失分析、风险评估</p>
+</li>
+<li><p>扩展阅读：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650722795&amp;idx=3&amp;sn=53a95b9ecc269dc0ec8926253b2d5412&amp;chksm=871b1595b06c9c83d205dcab550d14f2709bbae290219b2ce0ad913a0677dc617f138d1ebb6f&amp;scene=21#wechat_redirect">《教程 | 从头开始：用 Python 实现随机森林算法》</a></p>
+</li>
+</ul>
+<h3 id="循环神经网络（Recurrent-neural-network）"><a href="#循环神经网络（Recurrent-neural-network）" class="headerlink" title="循环神经网络（Recurrent neural network）"></a>循环神经网络（Recurrent neural network）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-52.jpg" alt=""></p>
+<ul>
+<li>原理：在任意神经网络中，每个神经元都通过 1 个或多个隐藏层来将很多输入转换成单个输出。循环神经网络（RNN）会将值进一步逐层传递，让逐层学习成为可能。换句话说，RNN 存在某种形式的记忆，允许先前的输出去影响后面的输入。</li>
+<li>优点：循环神经网络在存在大量有序信息时具有预测能力</li>
+<li>场景举例：图像分类与字幕添加、政治情感分析</li>
+</ul>
+<h3 id="长短期记忆（Long-short-term-memory，LSTM）"><a href="#长短期记忆（Long-short-term-memory，LSTM）" class="headerlink" title="长短期记忆（Long short-term memory，LSTM）"></a>长短期记忆（Long short-term memory，LSTM）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-33-59.jpg" alt=""></p>
+<ul>
+<li>长短期记忆（Long short-term memory，LSTM）与门控循环单元神经网络（gated recurrent unit nerual network）：早期的 RNN 形式是会存在损耗的。尽管这些早期循环神经网络只允许留存少量的早期信息，新近的长短期记忆（LSTM）与门控循环单元（GRU）神经网络都有长期与短期的记忆。换句话说，这些新近的 RNN 拥有更好的控制记忆的能力，允许保留早先的值或是当有必要处理很多系列步骤时重置这些值，这避免了「梯度衰减」或逐层传递的值的最终 degradation。LSTM 与 GRU 网络使得我们可以使用被称为「门（gate）」的记忆模块或结构来控制记忆，这种门可以在合适的时候传递或重置值。</li>
+<li><p>优点：长短期记忆和门控循环单元神经网络具备与其它循环神经网络一样的优点，但因为它们有更好的记忆能力，所以更常被使用</p>
+</li>
+<li><p>场景举例：自然语言处理、翻译</p>
+</li>
+<li><p>扩展阅读：</p>
+</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650717709&amp;idx=2&amp;sn=2bff1e56bc75d65e178476ea9a93b2c5&amp;scene=21#wechat_redirect">《深度 | LSTM 和递归网络基础教程》</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650719562&amp;idx=1&amp;sn=ad6693cdeaa18034ed1c53271f642ef7&amp;chksm=871b0134b06c8822bf89781a81081c161eb82b06d0c20b655bd7b991202d363b6c233ef137ff&amp;scene=21#wechat_redirect">《干货 | 图解 LSTM 神经网络架构及其 11 种变体（附论文）》</a></li>
+</ul>
+<h3 id="卷积神经网络（convolutional-neural-network）"><a href="#卷积神经网络（convolutional-neural-network）" class="headerlink" title="卷积神经网络（convolutional neural network）"></a>卷积神经网络（convolutional neural network）</h3><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/19-34-14.jpg" alt=""></p>
+<ul>
+<li>原理：卷积是指来自后续层的权重的融合，可用于标记输出层。</li>
+<li>优点：当存在非常大型的数据集、大量特征和复杂的分类任务时，卷积神经网络是非常有用的</li>
+<li>场景举例：图像识别、文本转语音、药物发现</li>
+<li>扩展阅读：</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650723520&amp;idx=4&amp;sn=8ee14dd052766ca3e0afa60dcbb65b2d&amp;chksm=871b10beb06c99a81ef547319637a177142d33a40da5a85024fc6a3b623d60d3a7ac22e3efc3&amp;scene=21#wechat_redirect">《专栏 | 卷积神经网络简介》</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650717691&amp;idx=2&amp;sn=3f0b66aa9706aae1a30b01309aa0214c&amp;scene=21#wechat_redirect">《从入门到精通：卷积神经网络初学者指南》</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2650720302&amp;idx=1&amp;sn=c88634da158f36db23b9dc7d0dc550ad&amp;chksm=871b0c50b06c854694984e193f289deb51a5efe71f53223dc37feb70509fd957c8af5bb61ab3&amp;scene=21#wechat_redirect">《解析深度卷积神经网络的 14 种设计模式》</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/uncategorized/Python/python%20%E5%9F%BA%E7%A1%80%EF%BC%9A%E8%B5%8B%E5%80%BC-%E6%B5%85%E6%8B%B7%E8%B4%9D-%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="next" title="python-赋值-浅拷贝-深拷贝图例">
+                <i class="fa fa-chevron-left"></i> python-赋值-浅拷贝-深拷贝图例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Cluster/" rel="prev" title="机器学习：基础算法（十一）—— 聚类">
+                机器学习：基础算法（十一）—— 聚类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">机器学习的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-number">2.</span> <span class="nav-text">机器学习的范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%EF%BC%88Pattern-Recognition%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">模式识别（Pattern Recognition）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%EF%BC%88Data-mining%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">数据挖掘（Data mining）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%EF%BC%88statistical-learning%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">统计学习（statistical learning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%88Computer-vision%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">计算机视觉（Computer vision）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%EF%BC%88Speech-recognition%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">语音识别（Speech recognition）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%EF%BC%88Natural-language-processing%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">自然语言处理（Natural language processing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%88Artificial-intelligence%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">人工智能（Artificial intelligence）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88deep-learning%EF%BC%89"><span class="nav-number">2.8.</span> <span class="nav-text">深度学习（deep learning）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">机器学习的工作方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AF%B9%E6%AF%94%E4%BC%A0%E7%BB%9F%E7%BC%96%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">机器学习对比传统编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">4.1.</span> <span class="nav-text">机器学习的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9B%B0%E9%9A%BE"><span class="nav-number">4.1.1.</span> <span class="nav-text">机器学习的困难</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">5.</span> <span class="nav-text">机器学习的发展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E4%BA%94%E5%A4%A7%E6%B5%81%E6%B4%BE"><span class="nav-number">5.1.</span> <span class="nav-text">机器学习中的五大流派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8E%86%E5%8F%B2%E6%BC%94%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="nav-number">5.2.</span> <span class="nav-text">机器学习的历史演化阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="nav-number">5.3.</span> <span class="nav-text">机器学习的未来发展趋势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">机器学习算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%EF%BC%88Decision-Tree%EF%BC%89"><span class="nav-number">6.1.</span> <span class="nav-text">决策树（Decision Tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%EF%BC%88Support-Vector-Machine%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">支持向量机（Support Vector Machine）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%EF%BC%88Regression%EF%BC%89"><span class="nav-number">6.3.</span> <span class="nav-text">回归（Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%EF%BC%88Naive-Bayes-Classification%EF%BC%89"><span class="nav-number">6.4.</span> <span class="nav-text">朴素贝叶斯（Naive Bayes Classification）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B%EF%BC%88Hidden-Markov-model%EF%BC%89"><span class="nav-number">6.5.</span> <span class="nav-text">隐马尔可夫模型（Hidden Markov model）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%EF%BC%88Random-forest%EF%BC%89"><span class="nav-number">6.6.</span> <span class="nav-text">随机森林（Random forest）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88Recurrent-neural-network%EF%BC%89"><span class="nav-number">6.7.</span> <span class="nav-text">循环神经网络（Recurrent neural network）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%EF%BC%88Long-short-term-memory%EF%BC%8CLSTM%EF%BC%89"><span class="nav-number">6.8.</span> <span class="nav-text">长短期记忆（Long short-term memory，LSTM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88convolutional-neural-network%EF%BC%89"><span class="nav-number">6.9.</span> <span class="nav-text">卷积神经网络（convolutional neural network）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

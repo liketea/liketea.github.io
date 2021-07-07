@@ -1,37 +1,1848 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构与算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="理论篇二分查找（binary search）又称折半查找（half-interval search），用于在有序数组中以 $O(lgn)$ 的时间复杂度快速查找元素。         问题定义二分查找算法所适用问题的形式化定义：在递增函数$f(x), x \in [l,r]$中, 由函数值y反向求取x。  递增函数 $f(x)$：$f(x)$ 表示由x计算y的一种函数映射，可以是非严格递增函数；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法：二分查找">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="理论篇二分查找（binary search）又称折半查找（half-interval search），用于在有序数组中以 $O(lgn)$ 的时间复杂度快速查找元素。         问题定义二分查找算法所适用问题的形式化定义：在递增函数$f(x), x \in [l,r]$中, 由函数值y反向求取x。  递增函数 $f(x)$：$f(x)$ 表示由x计算y的一种函数映射，可以是非严格递增函数；">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/binary-search.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-51-57.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-05-55.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-09-00.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-08-44.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/21-25-57.jpg">
+<meta property="article:published_time" content="2017-10-10T12:13:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.925Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/binary-search.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：二分查找/"/>
+
+
+
+
+
+  <title>数据结构与算法：二分查找 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构与算法：二分查找</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:13:53+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="leancloud_visitors" data-flag-title="数据结构与算法：二分查找">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  36
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论篇"><a href="#理论篇" class="headerlink" title="理论篇"></a>理论篇</h2><p>二分查找（binary search）又称折半查找（half-interval search），用于在有序数组中以 $O(lgn)$ 的时间复杂度快速查找元素。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/binary-search.gif" width="80%" heigh="80%"></img>
+</div>
+
+<h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>二分查找算法所适用问题的形式化定义：在递增函数$f(x), x \in [l,r]$中, 由函数值y反向求取x。</p>
+<ol>
+<li>递增函数 $f(x)$：$f(x)$ 表示由x计算y的一种函数映射，可以是非严格递增函数；</li>
+<li>x的定义域：x 的定义域标识初始化查找窗口；</li>
+<li>问题变形：该问题常常演化为寻找第一个 $f(x)\geqslant y$ 的x，或者寻找第一个 $f(x)&gt; y$ 的x；</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可将bisect统一理解为返回插入后的位置；</span></span><br><span class="line"><span class="comment"># bisect_left(a,x)返回a中第一个&gt;=x的位置；</span></span><br><span class="line"><span class="comment"># bisect_right(a,x)返回a中第一个&gt;x的位置；</span></span><br><span class="line"><span class="comment"># 如果没有查找到，bisect_left和bisect_right效果相同；</span></span><br><span class="line"><span class="comment"># 如果查找到，bisect_left返回a中第一个等于x的位置，bisect_right返回a中第一个大于x的位置；</span></span><br><span class="line"></span><br><span class="line">bisect.bisect_left([<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>], <span class="number">3</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line">bisect.bisect_right([<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>], <span class="number">3</span>)</span><br><span class="line"><span class="number">5</span></span><br><span class="line">bisect.bisect_left([<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>], <span class="number">2.5</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line">bisect.bisect_right([<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>], <span class="number">2.5</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="一般原理"><a href="#一般原理" class="headerlink" title="一般原理"></a>一般原理</h3><p>二分查找算法的一般框架：</p>
+<ol>
+<li>初始化查找窗口：使用位置变量来表示当前查找窗口范围，可以使用闭区间表示$[l,r]$或开区间表示$[l,r)$</li>
+<li>如果查找窗口不为空则循环以下过程：<ol>
+<li>在查找窗口内选取一个元素作为枢轴点，与目标值进行比较</li>
+<li>如果目标值等于枢轴值，则返回枢轴点下标</li>
+<li>如果目标值大于数轴值，则在枢轴点右侧窗口继续查找</li>
+<li>如果目标值小于枢轴值，则在枢轴点左侧窗口继续查找</li>
+</ol>
+</li>
+<li>如果窗口为空仍未找到目标值，则返回目标值应插入位置的下标</li>
+</ol>
+<p>说明：</p>
+<ol>
+<li>查找区间表示：既可以使用闭区间也可以使用开区间，在代码实现上注意保证循环不变性以及最终返回值的含义；</li>
+<li>枢轴值的选择：枢轴点原则上可以选取窗口内的任意元素，对枢轴值的不同选择可能会影响最终二分查找的效率；</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h4 id="普通二分查找"><a href="#普通二分查找" class="headerlink" title="普通二分查找"></a>普通二分查找</h4><h5 id="闭区间二分查找"><a href="#闭区间二分查找" class="headerlink" title="闭区间二分查找"></a>闭区间二分查找</h5><p><strong>闭区间+下中位数</strong>是折半查找最清晰简便的实现，建议作为一般模板：</p>
+<ol>
+<li>使用闭区间来初始化查找窗口：l=0,r=n-1，[l,r]表示初始化窗口；</li>
+<li>如果窗口不为空则循环以下过程：窗口不为空即$l\leqslant r$<ol>
+<li>下中位数作为枢轴点：下中位数对应$ \frac{l+r}{2} $位置，上中位数对应$\frac{l+r+1}{2}$位置</li>
+<li>如果目标值等于枢轴值，则返回数轴值下标</li>
+<li>如果目标值大于数轴值，则在枢轴点右侧窗口继续查找</li>
+<li>如果目标值小于枢轴值，则在枢轴点左侧窗口继续查找</li>
+</ol>
+</li>
+<li>如果未找到目标值，循环退出时l=r+1，目标值一定处于l和r之间；</li>
+</ol>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-51-57.png" alt=""></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 闭区间写法:用[l,r]代表当前查找范围</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Binary_search</span>(<span class="params">nums,key</span>):</span></span><br><span class="line">    l,r = <span class="number">0</span>,<span class="built_in">len</span>(nums)-<span class="number">1</span> </span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> key == nums[mid]:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> key &gt; nums[mid]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h5 id="半开区间二分查找"><a href="#半开区间二分查找" class="headerlink" title="半开区间二分查找"></a>半开区间二分查找</h5><p>对窗口的描述方式变了，窗口初始化、退出条件都要做出相应修改，建议只作为参考。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开区间写法:用[l,r)代表当前查找范围</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Binary_search</span>(<span class="params">nums,key</span>):</span></span><br><span class="line">    l,r = <span class="number">0</span>,<span class="built_in">len</span>(L) </span><br><span class="line">    <span class="keyword">while</span> l &lt; r: </span><br><span class="line">        mid = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> key == nums[mid]:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> key &gt; nums[mid]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid </span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<p>结论：考虑思路的清晰性和结果的统一性，建议使用闭区间写法，本文以下讨论都是基于二分查找的闭区间写法。</p>
+<h4 id="含重复元素的二分查找"><a href="#含重复元素的二分查找" class="headerlink" title="含重复元素的二分查找"></a>含重复元素的二分查找</h4><p>当数组中含有重复元素时，如果只需要返回任意一个与目标值相同的元素的下标，则上述代码无需变动，但如果需要查找目标值在数组中第一次/最后一次出现的位置，则需要对以上代码稍加改变即可。</p>
+<p>接下来以“LeetCode 34. 在排序数组中查找元素的第一个和最后一个位置”为例，讨论两种方式。</p>
+<h5 id="等于作为小于-大于"><a href="#等于作为小于-大于" class="headerlink" title="等于作为小于/大于"></a>等于作为小于/大于</h5><p>1、如果要寻找target第一次出现的位置，可以假装寻找$target-\varepsilon$，$\varepsilon$是一个大于0的很小的值，实际操作时可以把target==nums[mid]看做是小于，那么最终得到的l,r有以下关系，l=r+1</p>
+<ol>
+<li>如果数组中存在目标值，nums[l]就是第一个等于target的元素；</li>
+<li>如果数组中不存在目标值，nums[l]就是第一个大于target的元素；</li>
+</ol>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-05-55.png" alt=""><br>2、如果要寻找target最后一次出现的位置，可以假装寻找$target+\varepsilon$，$\varepsilon$是一个大于0的很小的值，实际操作时可以把target==nums[mid]看做是大于，那么最终得到的l,r有以下关系，l=r+1</p>
+<ol>
+<li>如果数组中存在目标值，nums[r]就是最后一个等于target的元素；</li>
+<li>如果数组中不存在目标值，nums[r]就是最后一个小于target的元素；</li>
+</ol>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-09-00.png" alt=""></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchRange</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :type target: int</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 寻找第一次出现的位置</span></span><br><span class="line">    l,r = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">    L = R = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = l + (r-l)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> target &lt;= nums[mid]:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    L = l</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 寻找最后一次出现的位置</span></span><br><span class="line">    l,r = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = l + (r-l)/<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> target &lt; nums[mid]:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    R = r</span><br><span class="line">    <span class="comment"># 如果L&lt;=R说明存在目标值</span></span><br><span class="line">    <span class="keyword">return</span> [L,R] <span class="keyword">if</span> L &lt;= R <span class="keyword">else</span> [-<span class="number">1</span>,-<span class="number">1</span>]</span><br></pre></td></tr></table></figure></div>
+<h5 id="记录上一次成功位置"><a href="#记录上一次成功位置" class="headerlink" title="记录上一次成功位置"></a>记录上一次成功位置</h5><p>另一种方法对普通的二分查找的修改更少，只需要记录上次找到的位置，然后如果要找第一个就继续在左半部分找，如果要找最后一个就继续在右半部分继续找。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回key在nums中第一次和最后一次出现的位置[L,R]，如果不存在则返回[-1,-1]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchRange</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        l,r = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        L = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = l + (r-l)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> target == nums[mid]:</span><br><span class="line">                L = mid</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> target &lt; nums[mid]:</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        l,r = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        R = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = l + (r-l)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> target == nums[mid]:</span><br><span class="line">                R = mid</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> target &lt; nums[mid]:</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> [L,R]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：<ul>
+<li>最坏时间复杂度：O(lgn)</li>
+<li>ASL ≈ lg(n+1)-1</li>
+</ul>
+</li>
+</ul>
+<h3 id="二分查找的改进"><a href="#二分查找的改进" class="headerlink" title="二分查找的改进"></a>二分查找的改进</h3><p>折半查找每次选取中间元素作为枢轴点，插值查找和斐波那契查找通过改变枢轴点的选取方式对折半查找进行了改进。插值查找每次以插值的方式确定枢轴点，适合于元素关键字分布比较均匀的情况，斐波那契查找则是每次选取黄金分割点作为枢轴点。</p>
+<h4 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h4><p>插值查找每次通过插值的方式来选取枢轴点：</p>
+<ul>
+<li><p>插值查找：<code>mid = l + (r-l)*(key-L[l])/(L[r]-L[l])</code>，其中<code>L[r] != L[l],L[l] &lt;= key &lt;= L[r]</code></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertion_search</span>(<span class="params">L,key</span>):</span></span><br><span class="line">    l,r = <span class="number">0</span>,<span class="built_in">len</span>(L)-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        <span class="keyword">if</span> key &gt; L[r] <span class="keyword">or</span> key &lt; L[l]:<span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> L[r] == L[l]:<span class="keyword">return</span> r</span><br><span class="line">        mid = <span class="built_in">int</span>(l + (r-l)*(key-L[l])/<span class="built_in">float</span>((L[r]-L[l])))</span><br><span class="line">        <span class="keyword">if</span> key == L[mid]:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> key &gt; L[mid]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>分析：平均时间复杂度O(loglogN)，当关键字在数据集中分布较均匀时性能最好，当分布不均时可能比折半要差</p>
+</li>
+</ul>
+<h4 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h4><ol>
+<li>找到大于F[k]-1 &gt;= n的第一个k，在列表后面补充最后一个元素，使列表长度恰好为F[k]-1</li>
+<li>选取mid = l+F[k-2]-1，恰好将列表分为左右F[k-2]-1和F[k-1]-1个元素</li>
+<li>接下来和折半查找过程一致，只需判断相等时mid是否大于n-1</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">F = [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibonacci</span>(<span class="params">k</span>):</span></span><br><span class="line">    <span class="keyword">if</span> k &lt; <span class="built_in">len</span>(F):</span><br><span class="line">        <span class="keyword">return</span> F[k]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        p = Fibonacci(k-<span class="number">1</span>) + Fibonacci(k-<span class="number">2</span>)</span><br><span class="line">        F.append(p)</span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibonacci_Search</span>(<span class="params">L,key</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(L)</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; Fibonacci(k) - <span class="number">1</span>:</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    L = L + L[-<span class="number">1</span>:] * (F[k]-<span class="number">1</span>-n)</span><br><span class="line">    l,r = <span class="number">0</span>,n-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = l+ F[k-<span class="number">2</span>] - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> key == L[mid]:</span><br><span class="line">            <span class="keyword">if</span> mid &gt;=n:</span><br><span class="line">                <span class="keyword">return</span> n-<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> key &gt; L[mid]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">            k -= <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：同样，斐波那契查找的时间复杂度还是O(log2n)，但是与折半查找相比，斐波那契查找的优点是它只涉及加法和减法运算，而不用除法，而除法比加减法要占用更多的时间，因此，斐波那契查找的运行时间理论上比折半查找小，但是还是得视具体情况而定</li>
+</ul>
+<h2 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h2><p>应用二分查找算法解决实际问题的关键在于将问题抽象为“递增函数由y求x的问题”。具体地，应用二分查找算法分三步：</p>
+<ol>
+<li>定义递增函数$f(x)$：明确递增函数的含义，x一般表示问题待求的值(如下标)，f(x)一般表示条件取值(如数组元素)；实现$f(x)$的计算过程(如数组索引取值)；值得说明的是，在定义出$f(x)$之后，并不需要将x所有定义域上的函数值全部求出，只需要计算每次选取的数轴点处的函数值即可(现取现用)；</li>
+<li>确定$f(x)=k$时的定义域：一般可以通过函数值确定x的一个大致取值范围，该范围不必精确，只需保证包含x的确切解即可；</li>
+<li>问题转化：将原始问题转化为在$f(x)$序列中寻找第一个大于(第一个大于等于、最后一个小于、最后一个小于等于)y的x的问题；</li>
+</ol>
+<p>问题转化后即可套用二分查找的一般框架进行求解。</p>
+<p>二分查找一般用于求解以下问题：</p>
+<ol>
+<li>递增函数中查找某个值的问题：值作为y，下标作为x</li>
+<li>递增函数中查找第k小问题：名次作为y，值作为x</li>
+</ol>
+<h4 id="数学问题"><a href="#数学问题" class="headerlink" title="数学问题"></a>数学问题</h4><h5 id="LeetCode-69-求x的平方根"><a href="#LeetCode-69-求x的平方根" class="headerlink" title="[LeetCode 69] 求x的平方根"></a>[LeetCode 69] 求x的平方根</h5><ul>
+<li>问题：实现 int sqrt(int x) 函数</li>
+<li>思路：f(x)=x**2，$x \in [1,x]$，在f(x)序列中查找最后一个&lt;=target的x</li>
+<li>实现：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mySqrt</span>(<span class="params">self, x</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type x: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    l, r = <span class="number">0</span>, x</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        cur = mid * mid</span><br><span class="line">        <span class="keyword">if</span> x == cur:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> x &lt; cur: </span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-367-有效的完全平方数"><a href="#LeetCode-367-有效的完全平方数" class="headerlink" title="[LeetCode 367] 有效的完全平方数"></a>[LeetCode 367] 有效的完全平方数</h5><ul>
+<li>问题：给定一个正整数 num，编写一个函数，如果 num 是一个完全平方数，则返回 True，否则返回 False</li>
+<li>思路：单调函数f(i) = i*i，f(x)=val，x in [0,num]，是否能找到</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPerfectSquare</span>(<span class="params">self, num</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type num: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    l,r = <span class="number">0</span>, num</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r)/<span class="number">2</span></span><br><span class="line">        cur = mid * mid</span><br><span class="line">        <span class="keyword">if</span> cur == num:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> cur &lt; num:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-668-乘法表中第k小的数"><a href="#LeetCode-668-乘法表中第k小的数" class="headerlink" title="[LeetCode 668] 乘法表中第k小的数"></a>[LeetCode 668] 乘法表中第k小的数</h5><ul>
+<li>问题：给定高度m 、宽度n 的一张 m * n的乘法表，以及正整数k，你需要返回表中第k 小的数字</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入: m = 3, n = 3, k = 5</span><br><span class="line">输出: 3</span><br><span class="line">解释: </span><br><span class="line">乘法表:</span><br><span class="line">1	2	3</span><br><span class="line">2	4	6</span><br><span class="line">3	6	9</span><br><span class="line"></span><br><span class="line">第5小的数字是 3 (1, 2, 2, 3, 3).</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：二分查找。令f(x)表示乘法表中小于等于x的数字个数<ul>
+<li>单调增函数f(x)：sum(min(m, x / i) for i in range(1, n + 1))</li>
+<li>f(x)=k时，x取值范围[1,k]问题转化为在f(x)中查找第一个大于等于k的x</li>
+</ul>
+</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findKthNumber</span>(<span class="params">self, m, n, k</span>):</span></span><br><span class="line">    f = <span class="keyword">lambda</span> x:<span class="built_in">sum</span>(<span class="built_in">min</span>(m, x/i) <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>,n+<span class="number">1</span>))</span><br><span class="line">    l,r = <span class="number">1</span>, k</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> k &lt;= f(mid):</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-275-H指数-II"><a href="#LeetCode-275-H指数-II" class="headerlink" title="[LeetCode 275] H指数 II"></a>[LeetCode 275] H指数 II</h5><ul>
+<li>问题：给定一位研究者论文被引用次数的数组（被引用次数是非负整数），数组已经按照升序排列。编写一个方法，计算出研究者的 h 指数。h 指数的定义: “一位有 h 指数的学者，代表他（她）的 N 篇论文中至多有 h 篇论文，分别被引用了至少 h 次，其余的 N - h 篇论文每篇被引用次数不多于 h 次。”</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: citations = [0,1,3,5,6]</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li><p>思路：定义设f(h)表示”h-引用次数第h大的文章的引用次数”，h取值范围为[1,n]，f(h)是非降函数，问题转化为寻找最后一个h使得f(h)&lt;=0，如果没有则返回0</p>
+</li>
+<li><p>代码：</p>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hIndex</span>(<span class="params">self, citations</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(citations)</span><br><span class="line">    f = <span class="keyword">lambda</span> i:i-citations[n-i]</span><br><span class="line">    l, r = <span class="number">1</span>, n</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r)&gt;&gt;<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> f(mid) &lt;= <span class="number">0</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-483-最小好进制"><a href="#LeetCode-483-最小好进制" class="headerlink" title="[LeetCode 483] 最小好进制"></a>[LeetCode 483] 最小好进制</h5><ul>
+<li>问题：对于给定的整数 n, 如果n的k（k&gt;=2）进制数的所有数位全为1，则称 k（k&gt;=2）是 n 的一个好进制。以字符串的形式给出 n, 以字符串的形式返回 n 的最小好进制。</li>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1+k+k^2+...k^r=(1-k^(r+1))/(1-k)=n</span><br><span class="line">    1. r有最大值：因为k最小为2，r和k负相关，可以得到r的最大值r&lt;=log(n+1,2)-1</span><br><span class="line">    2. 给定r，k有唯一备选解：又(k+1)^r&gt;k^r+k^(r-1)+...+1 = n &gt;= k^r，得k=int(n^(1./r))</span><br><span class="line">r越大k越小，从大到小遍历r，第一次全1二进制和等于n的返回k</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smallestGoodBase</span>(<span class="params">self, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type n: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n = <span class="built_in">int</span>(n)</span><br><span class="line">    max_r = <span class="built_in">int</span>(math.log(n+<span class="number">1</span>, <span class="number">2</span>) - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> xrange(max_r,<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        k = <span class="built_in">int</span>(n ** (<span class="number">1.</span>/r))</span><br><span class="line">        <span class="keyword">if</span> (k ** (r+<span class="number">1</span>)-<span class="number">1</span>)/(k-<span class="number">1</span>) == n:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">str</span>(k)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-878-第-N-个神奇数字"><a href="#LeetCode-878-第-N-个神奇数字" class="headerlink" title="[LeetCode 878] 第 N 个神奇数字"></a>[LeetCode 878] 第 N 个神奇数字</h5><ul>
+<li>问题：如果正整数可以被 A 或 B 整除，那么它是神奇的。返回第 N 个神奇数字。由于答案可能非常大，返回它模 10^9 + 7 的结果</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 1, A = 2, B = 3</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">二分查找，设f(x)表示&lt;=x的正整数中有多少个神奇数字</span><br><span class="line">    1. f(x) = x/A + x/B - x/lcm(A,B)</span><br><span class="line">    2. x的取值范围为：[1,min(A,B)*N]</span><br><span class="line">    问题转化为，求第一个f(x)=N的x</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nthMagicalNumber</span>(<span class="params">self, N, A, B</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type N: int</span></span><br><span class="line"><span class="string">    :type A: int</span></span><br><span class="line"><span class="string">    :type B: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gcd</span>(<span class="params">m,n</span>):</span></span><br><span class="line">        <span class="keyword">while</span> m:</span><br><span class="line">            m,n = n%m, m</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lcm</span>(<span class="params">m,n</span>):</span></span><br><span class="line">        <span class="keyword">return</span> m * n / gcd(m,n)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">x</span>):</span></span><br><span class="line">        <span class="keyword">return</span> x/A + x/B - x/lcm(A,B)</span><br><span class="line">    </span><br><span class="line">    l,r = <span class="built_in">min</span>(A,B), <span class="built_in">min</span>(A,B) * N</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> N &lt;= f(mid):</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l % (<span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-793-阶乘函数后K个零"><a href="#LeetCode-793-阶乘函数后K个零" class="headerlink" title="[LeetCode 793] 阶乘函数后K个零"></a>[LeetCode 793] 阶乘函数后K个零</h5><ul>
+<li>问题:f(x) 是 x! 末尾是0的数量。（回想一下 x! = 1 <em> 2 </em> 3 <em> … </em> x，且0! = 1）找出多少个非负整数x ，有 f(x) = K 的性质。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入:K = 0</span><br><span class="line">输出:5</span><br><span class="line">解释: 0!, 1!, 2!, 3!, and 4! 均符合 K = 0 的条件。</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入:K = 5</span><br><span class="line">输出:0</span><br><span class="line">解释:没有匹配到这样的 x!，符合K = 5 的条件</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n!后缀0的个数K，等于不大于n的所有乘数中，因子5的个数：</span><br><span class="line">    1. f(x)=x/5+x/25+x/125+...+=x/4*(1-(1/5)**n)&lt;x/4，单调增；</span><br><span class="line">    2. f(x) &gt;= x/5;有 5k=&gt;n&gt;4k</span><br><span class="line">    3. 只要存在f(x)==k，那么第一个满足该等式的x必是5的倍数，x+1,x+2,x+3,x+4也都满足有k个0结尾，即只要存在就只有5个，如果不存在有0个；</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preimageSizeFZF</span>(<span class="params">self, K</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type K: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">count</span>(<span class="params">n</span>):</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            res += n/<span class="number">5</span></span><br><span class="line">            n /= <span class="number">5</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    l,r = <span class="number">4</span> * K, <span class="number">5</span> * K</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        tmp = count(mid)</span><br><span class="line">        <span class="keyword">if</span>  tmp == K:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">5</span></span><br><span class="line">        <span class="keyword">elif</span> tmp &lt; K:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-4-两个排序数组的中位数"><a href="#LeetCode-4-两个排序数组的中位数" class="headerlink" title="[LeetCode 4] 两个排序数组的中位数"></a>[LeetCode 4] 两个排序数组的中位数</h5><ul>
+<li>问题：给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。你可以假设 nums1 和 nums2 不同时为空。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">nums1 = [1, 3]</span><br><span class="line">nums2 = [2]</span><br><span class="line">中位数是 2.0</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：对齐+二分查找</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/01-08-44.jpg" alt=""></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">将A、B数组(m&lt;=n)在i、j位置对齐，如果对齐位置满足以下两个条件：</span><br><span class="line">    1. i + j = (m+n)/2</span><br><span class="line">    2. 对齐位置左侧(&lt;i,&lt;j)元素总是小于等于右侧元素</span><br><span class="line">注意到，对整个有序数组来说，左侧有(m+n)/2个元素的位置为上中位数，那么：</span><br><span class="line">    1. 如果m+n为奇数，对齐位置右侧元素中的最小元素即为最终的中位数；</span><br><span class="line">    2. 如果m+n为偶数，对齐位置右侧元素中的最小元素为最终的上中位数，左侧最大元素为最终的下中位数；</span><br><span class="line">问题就转化为寻找这样的i,j，如果设f(i)表示左下大于右上个数-左上大于右下个数，那么f(i)是递增函数(非降)，可以通过二分查找在[0,m]范围内找到这样的i：</span><br><span class="line">    1. 如果i &lt; m and A[i] &lt; B[j-1]，在i的右半部分继续查找；</span><br><span class="line">    2. 如果i &gt; 0 and B[j] &lt; A[i-1]，在i的左半部分继续查找；</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span>(<span class="params">self, nums1, nums2</span>):</span></span><br><span class="line">    A, m, B, n = nums1, <span class="built_in">len</span>(nums1), nums2, <span class="built_in">len</span>(nums2)</span><br><span class="line">    <span class="keyword">if</span> m &gt; n: A, m, B, n = B, n, A, m</span><br><span class="line">    </span><br><span class="line">    l, r = <span class="number">0</span>, m</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        i = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        j = (m+n) / <span class="number">2</span> - i</span><br><span class="line">        <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> A[i-<span class="number">1</span>] &gt; B[j]:</span><br><span class="line">            r = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> i &lt; m <span class="keyword">and</span> B[j-<span class="number">1</span>] &gt; A[i]:</span><br><span class="line">            l = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left_max = <span class="built_in">max</span>(A[i-<span class="number">1</span>] <span class="keyword">if</span> i <span class="keyword">else</span> <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>), B[j-<span class="number">1</span>] <span class="keyword">if</span> j <span class="keyword">else</span> <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>))</span><br><span class="line">            right_min = <span class="built_in">min</span>(A[i] <span class="keyword">if</span> i &lt; m <span class="keyword">else</span> <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>), B[j] <span class="keyword">if</span> j &lt; n <span class="keyword">else</span> <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>))</span><br><span class="line">            <span class="keyword">return</span> right_min <span class="keyword">if</span> (m+n) &amp; <span class="number">1</span> <span class="keyword">else</span> (left_max + right_min) / <span class="number">2.</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：<ul>
+<li>时间复杂度：我们对较短的数组进行了二分查找，所以时间复杂度是 O（log（min（m，n）））</li>
+<li>空间复杂度：只有一些固定的变量，和数组长度无关，所以空间复杂度是 O ( 1 ) </li>
+</ul>
+</li>
+</ul>
+<h4 id="树"><a href="#树" class="headerlink" title="树"></a>树</h4><h5 id="LeetCode-230-二叉搜索树中第K小的元素"><a href="#LeetCode-230-二叉搜索树中第K小的元素" class="headerlink" title="[LeetCode 230] 二叉搜索树中第K小的元素"></a>[LeetCode 230] 二叉搜索树中第K小的元素</h5><ul>
+<li>问题：如题</li>
+<li>思路：统计左子树节点数，如果==k-1则返回根节点，如果&gt;k-1则在左子树中差汇总啊第K小，否则再右子树中查找k-left-1小；</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kthSmallest</span>(<span class="params">self, root, k</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :type k: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNodes</span>(<span class="params">root</span>):</span></span><br><span class="line">        <span class="keyword">return</span> getNodes(root.left) + getNodes(root.right) + <span class="number">1</span> <span class="keyword">if</span> root <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    left = getNodes(root.left)</span><br><span class="line">    <span class="keyword">if</span> left + <span class="number">1</span> == k:</span><br><span class="line">        <span class="keyword">return</span> root.val</span><br><span class="line">    <span class="keyword">elif</span> left &gt;= k:</span><br><span class="line">        <span class="keyword">return</span> self.kthSmallest(root.left, k)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> self.kthSmallest(root.right, k-left -<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-222-完全二叉树的节点个数"><a href="#LeetCode-222-完全二叉树的节点个数" class="headerlink" title="[LeetCode 222] 完全二叉树的节点个数"></a>[LeetCode 222] 完全二叉树的节点个数</h5><ul>
+<li>问题：给出一个完全二叉树，求出该树的节点个数</li>
+<li>思路：<ol>
+<li>如果左右子树高度相同，那么左子树节点数为2^h-1，h为左子树高度，右子树为一个完全二叉树</li>
+<li>如果左右子树高度不同，那么右子树节点数为2^h-1，h为右子树高度，左子树为一个完全二叉树</li>
+</ol>
+</li>
+<li>代码:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countNodes</span>(<span class="params">self, root</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    l, r = self.get_depth(root.left), self.get_depth(root.right)</span><br><span class="line">    <span class="keyword">if</span> l == r:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> ** l + self.countNodes(root.right)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> ** r + self.countNodes(root.left)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_depth</span>(<span class="params">self, root</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> self.get_depth(root.left) + <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="二维矩阵"><a href="#二维矩阵" class="headerlink" title="二维矩阵"></a>二维矩阵</h4><h5 id="LeetCode-74-二维矩阵中的二分查找"><a href="#LeetCode-74-二维矩阵中的二分查找" class="headerlink" title="[LeetCode 74] 二维矩阵中的二分查找"></a>[LeetCode 74] 二维矩阵中的二分查找</h5><ul>
+<li>问题：编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：每行中的整数从左到右按升序排列；每行的第一个整数大于前一行的最后一个整数。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">matrix = [</span><br><span class="line">  [1,   3,  5,  7],</span><br><span class="line">  [10, 11, 16, 20],</span><br><span class="line">  [23, 30, 34, 50]</span><br><span class="line">]</span><br><span class="line">target = 3</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：两次二分查找，现在首列进行二分查找，找到则返回，找不到就返回较小的行号，再在所在行进行二分查找，找到就返回，找不到就返回False；</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchMatrix</span>(<span class="params">self, matrix, target</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">    :type target: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bisect</span>(<span class="params">A, key</span>):</span></span><br><span class="line">        l,r = <span class="number">0</span>, <span class="built_in">len</span>(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">            mid = l + (r-l)/<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mid] == key:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> A[mid] &lt; key:</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">any</span>(matrix):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    tmp = [r[<span class="number">0</span>] <span class="keyword">for</span> r <span class="keyword">in</span> matrix]</span><br><span class="line">    x = bisect(tmp, target)</span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    y = bisect(matrix[x], target)</span><br><span class="line">    <span class="keyword">return</span> matrix[x][y] == target</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-240-二维矩阵中的二分查找II"><a href="#LeetCode-240-二维矩阵中的二分查找II" class="headerlink" title="[LeetCode 240] 二维矩阵中的二分查找II"></a>[LeetCode 240] 二维矩阵中的二分查找II</h5><ul>
+<li>问题：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：</span><br><span class="line"></span><br><span class="line">每行的元素从左到右升序排列。</span><br><span class="line">每列的元素从上到下升序排列。</span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">现有矩阵 matrix 如下：</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [1,   4,  7, 11, 15],</span><br><span class="line">  [2,   5,  8, 12, 19],</span><br><span class="line">  [3,   6,  9, 16, 22],</span><br><span class="line">  [10, 13, 14, 17, 24],</span><br><span class="line">  [18, 21, 23, 26, 30]</span><br><span class="line">]</span><br><span class="line">给定 target = 5，返回 true。</span><br><span class="line"></span><br><span class="line">给定 target = 20，返回 false。</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：取左下角元素为枢轴值，比它大就把规模缩减到右侧，比它小就把规模缩减到上面。O(m+n)</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchMatrix</span>(<span class="params">self, matrix, target</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> matrix:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    m,n = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">    r,c = m - <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> r &gt;= <span class="number">0</span> <span class="keyword">and</span> c &lt; n:</span><br><span class="line">        mid = matrix[r][c]</span><br><span class="line">        <span class="keyword">if</span> mid == target:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> mid &lt; target:</span><br><span class="line">            c += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-378-有序矩阵中第K小的元素"><a href="#LeetCode-378-有序矩阵中第K小的元素" class="headerlink" title="[LeetCode 378] 有序矩阵中第K小的元素"></a>[LeetCode 378] 有序矩阵中第K小的元素</h5><ul>
+<li>问题：给定一个 n x n 矩阵，其中每行和每列元素均按升序排序，找到矩阵中第k小的元素</li>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">思路：二分查找是用于“在递增函数中由y求x的算法”，二分查找用于实际问题的精髓在于将原始问题转化为这在递增函数中由y求x的问题，然后定义递增函数的三要素：定义域、值域、映射；具体的，需要定义函数f(x)，定义域[l,r]，目标值target</span><br><span class="line">    在本问题中，寻找第k小的数，f(x)=k，</span><br><span class="line">        1. 定义域：所有可能的数作为下标，范围为左上角到右下角的整数</span><br><span class="line">        2. 值域：第几小作为y</span><br><span class="line">        3. 映射：计算x是第几小，可以通过在每行进行二分查找求和得到</span><br><span class="line">    因为f(x)存在重复元素，应返回第一个数</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kthSmallest</span>(<span class="params">self, matrix, k</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">    :type k: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>    </span><br><span class="line">    l, r = matrix[<span class="number">0</span>][<span class="number">0</span>], matrix[-<span class="number">1</span>][-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        loc = <span class="built_in">sum</span>(bisect.bisect(m, mid) <span class="keyword">for</span> m <span class="keyword">in</span> matrix)</span><br><span class="line">        <span class="keyword">if</span> loc &gt;= k:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h4 id="旋转数组"><a href="#旋转数组" class="headerlink" title="旋转数组"></a>旋转数组</h4><h5 id="LeetCode-153-查找旋转数组中的最小值"><a href="#LeetCode-153-查找旋转数组中的最小值" class="headerlink" title="[LeetCode 153]查找旋转数组中的最小值"></a>[LeetCode 153]查找旋转数组中的最小值</h5><ul>
+<li>问题：假设按照升序排序的数组在预先未知的某个点上进行了旋转，假设不含重复元素，请找出其中最小的元素。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,4,5,1,2]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：中值和右边界比较，l==r时退出循环；如果中间的值大于右侧的值，说明最小值肯定在mid右侧，否则最小值肯定在mid或mid左侧。</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMin</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">    l, r = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l != r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> nums[mid] &gt; nums[r]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid</span><br><span class="line">    <span class="keyword">return</span> nums[l]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：时间复杂度为O(lgn)</li>
+</ul>
+<h5 id="LeetCode-154-查找含重复元素的旋转数组中的最小值"><a href="#LeetCode-154-查找含重复元素的旋转数组中的最小值" class="headerlink" title="[LeetCode 154]查找含重复元素的旋转数组中的最小值"></a>[LeetCode 154]查找含重复元素的旋转数组中的最小值</h5><ul>
+<li>问题：同153，但是数组中可能含有重复元素</li>
+<li>思路：中值与右边界比较，l==r时退出循环(l&lt;r时mid&lt;r)；如果中值大于右边界，说明最小值在mid右侧，如果中值小于右边界说明最小值在mid或mid左侧，如果中值等于右边界说明最小值在r左侧；</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMin</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">    l,r = <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l != r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> nums[mid] &gt; nums[r]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> nums[mid] &lt; nums[r]:</span><br><span class="line">            r = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> nums[l]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：最坏时间复杂度为O(n)，平均O(lgn)</li>
+</ul>
+<h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h4><h5 id="LeetCode-887-鸡蛋掉落"><a href="#LeetCode-887-鸡蛋掉落" class="headerlink" title="[LeetCode 887] 鸡蛋掉落"></a>[LeetCode 887] 鸡蛋掉落</h5><ul>
+<li>问题:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</span><br><span class="line"></span><br><span class="line">每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。</span><br><span class="line"></span><br><span class="line">你知道存在楼层 F ，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。</span><br><span class="line"></span><br><span class="line">每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。</span><br><span class="line"></span><br><span class="line">你的目标是确切地知道 F 的值是多少。</span><br><span class="line"></span><br><span class="line">无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？</span><br><span class="line"></span><br><span class="line">输入：K = 1, N = 2</span><br><span class="line">输出：2</span><br><span class="line">解释：</span><br><span class="line">鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。</span><br><span class="line">否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。</span><br><span class="line">如果它没碎，那么我们肯定知道 F = 2 。</span><br><span class="line">因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">理解题意：用[0,0,...,1,1,1]表示每层楼的结果，0表示不碎，1表示碎，任务是在与1的比较次数&lt;=K的前提下，最少比较几次才能找到最后一个0的位置。</span><br><span class="line">    思路：动态规划，用dp[m][k]表示使用k个鸡蛋移动m次所能检验的最大层数</span><br><span class="line">        1. dp[m][k] = dp[m-1][k-1] + dp[m-1][k] + 1，蛋碎+蛋不碎+1</span><br><span class="line">        2. 边界：dp[m][0]=0,dp[0][k]=0</span><br><span class="line">        问题转化为求最小的m使得dp[m][K]&gt;=N, 令f(m)=dp[m][K]，f(m)单调增，求第一个大于等于N的m（bisect_left），二分查找</span><br><span class="line">        1. f(m)=dp[m][K]</span><br><span class="line">        2. m 取值范围为 [1,N]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">superEggDrop</span>(<span class="params">self, K, N</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type K: int</span></span><br><span class="line"><span class="string">    :type N: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dp = [[<span class="number">0</span>] * (K + <span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N + <span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, N + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, K + <span class="number">1</span>):</span><br><span class="line">            dp[m][k] = dp[m - <span class="number">1</span>][k - <span class="number">1</span>] + dp[m - <span class="number">1</span>][k] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> dp[m][K] &gt;= N: <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-354-俄罗斯套娃信封问题"><a href="#LeetCode-354-俄罗斯套娃信封问题" class="headerlink" title="[LeetCode 354] 俄罗斯套娃信封问题"></a>[LeetCode 354] 俄罗斯套娃信封问题</h5><ul>
+<li>问题:给定一些标记了宽度和高度的信封，宽度和高度以整数对形式 (w, h) 出现。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。请计算最多能有多少个信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: envelopes = [[5,4],[6,4],[6,7],[2,3]]</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 最多信封的个数为 3, 组合为: [2,3] =&gt; [5,4] =&gt; [6,7]。</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">排序后变成求最长递增子序列问题</span><br><span class="line">    1. 排序：首先按照宽度排序，宽度相同则高度小的在前面；这一点至关重要，可防止宽度相同时，大的包裹小的</span><br><span class="line">    2. 最长递增子序列：维护一个辅助数组，每个元素的下标代表以该元素结尾的最长递增子序列的长度-1</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxEnvelopes</span>(<span class="params">self, envelopes</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type envelopes: List[List[int]]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    envelopes.sort(key=<span class="keyword">lambda</span> x:(x[<span class="number">0</span>],-x[<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">    dp = []</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _, h <span class="keyword">in</span> envelopes:</span><br><span class="line">        idx = bisect.bisect_left(dp, h)</span><br><span class="line">        <span class="keyword">if</span> idx &gt; <span class="built_in">len</span>(dp) - <span class="number">1</span>:</span><br><span class="line">            dp.append(h)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dp[idx] = h</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(dp)</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-410-分割数组的最大值"><a href="#LeetCode-410-分割数组的最大值" class="headerlink" title="[LeetCode 410] 分割数组的最大值"></a>[LeetCode 410] 分割数组的最大值</h5><ul>
+<li>问题:给定一个非负整数数组和一个整数 m，你需要将这个数组分成 m 个非空的连续子数组。设计一个算法使得这 m 个子数组各自和的最大值最小。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">nums = [7,2,5,10,8]</span><br><span class="line">m = 2</span><br><span class="line"></span><br><span class="line">输出:</span><br><span class="line">18</span><br><span class="line"></span><br><span class="line">解释:</span><br><span class="line">一共有四种方法将nums分割为2个子数组。</span><br><span class="line">其中最好的方式是将其分为[7,2,5] 和 [10,8]，</span><br><span class="line">因为此时这两个子数组各自的和的最大值为18，在所有情况中最小。</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路:</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">思路1：动态规划，超时。令dp[i][m]表示以i为结尾(不含i)，分为m段，各段最大值的最小值；有：</span><br><span class="line">        1. dp[i][m] = min(max(dp[j][m-1], sum(nums[j:i]))),j=1,2,...,i-1</span><br><span class="line">        2. 边界：i &lt; m时，取无穷，i==m时，取所有元素的最大值</span><br><span class="line">    思路2：二分查找。设f(x)表示使得子数组各自和的最大值的最小值为x时，所需的最小子数组数是否&lt;=m，则：</span><br><span class="line">        1. x取值范围为[sum(nums)/m,sum(nums)]</span><br><span class="line">        2. f(x)取值[0,0,...,1,1]</span><br><span class="line">        问题转化为求f(x)第一次取1时的x</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">splitArray</span>(<span class="params">self, nums, m</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :type m: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">valid</span>(<span class="params">x</span>):</span></span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        cur = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            cur += num</span><br><span class="line">            <span class="keyword">if</span> cur &gt; x:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> count &gt; m:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">                cur = num</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    l,r = <span class="built_in">max</span>(nums), <span class="built_in">sum</span>(nums)</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> valid(mid):</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-719-找出第-k-小的距离对-至尊二分查找"><a href="#LeetCode-719-找出第-k-小的距离对-至尊二分查找" class="headerlink" title="[LeetCode 719] 找出第 k 小的距离对(至尊二分查找)"></a>[LeetCode 719] 找出第 k 小的距离对(至尊二分查找)</h5><ul>
+<li>问题：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">给定一个整数数组，返回所有数对之间的第 k 个最小距离。一对 (A, B) 的距离被定义为 A 和 B 之间的绝对差值。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入：</span><br><span class="line">nums = [1,3,1]</span><br><span class="line">k = 1</span><br><span class="line">输出：0 </span><br><span class="line">解释：</span><br><span class="line">所有数对如下：</span><br><span class="line">(1,3) -&gt; 2</span><br><span class="line">(1,1) -&gt; 0</span><br><span class="line">(3,1) -&gt; 2</span><br><span class="line">因此第 1 个最小距离的数对是 (1,1)，它们之间的距离为 0。</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li><p>思路：二分查找+含重复元素的二分查找。令f(x)表示距离小于等于x的数对个数，观察到f(x)是单调增(含重复元素)的函数，寻找数对之间第k小的距离，即是寻找x使得f(x-1)&lt;k&lt;=f(x)，这样的问题可以通过二分查找求解；计算f(x)时可以先对nums进行排序，f(x)=sum(i - bisect.bisect_left(nums, num - mid, 0, i) for i, num in enumerate(nums)) </p>
+</li>
+<li><p>代码：</p>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smallestDistancePair</span>(<span class="params">self, nums, k</span>):</span></span><br><span class="line">    nums.sort()</span><br><span class="line">    l, r = <span class="number">0</span>, nums[-<span class="number">1</span>] - nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        cur = <span class="built_in">sum</span>(i - bisect.bisect_left(nums, num - mid, <span class="number">0</span>, i) <span class="keyword">for</span> i, num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums)) </span><br><span class="line">        <span class="keyword">if</span> k &lt;= cur:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h4 id="其他二分查找问题"><a href="#其他二分查找问题" class="headerlink" title="其他二分查找问题"></a>其他二分查找问题</h4><h5 id="LeetCode-852-山脉数组的峰顶索引"><a href="#LeetCode-852-山脉数组的峰顶索引" class="headerlink" title="[LeetCode 852] 山脉数组的峰顶索引"></a>[LeetCode 852] 山脉数组的峰顶索引</h5><ul>
+<li>问题：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我们把符合下列属性的数组 A 称作山脉：</span><br><span class="line"></span><br><span class="line">A.length &gt;= 3</span><br><span class="line">存在 0 &lt; i &lt; A.length - 1 使得A[0] &lt; A[1] &lt; ... A[i-1] &lt; A[i] &gt; A[i+1] &gt; ... &gt; A[A.length - 1]</span><br><span class="line">给定一个确定为山脉的数组，返回任何满足 A[0] &lt; A[1] &lt; ... A[i-1] &lt; A[i] &gt; A[i+1] &gt; ... &gt; A[A.length - 1] 的 i 的值。</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：如果A[mid] &lt; A[mid+1]，说明山峰在mid右侧，否则说明山峰在mid或mid左侧；</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peakIndexInMountainArray</span>(<span class="params">self, A</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type A: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    l, r = <span class="number">0</span>, <span class="built_in">len</span>(A)-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> l != r:</span><br><span class="line">        mid = (l + r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> A[mid] &lt; A[mid+<span class="number">1</span>]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid</span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h5 id="LeetCode-875-爱吃香蕉的珂珂"><a href="#LeetCode-875-爱吃香蕉的珂珂" class="headerlink" title="[LeetCode 875] 爱吃香蕉的珂珂"></a>[LeetCode 875] 爱吃香蕉的珂珂</h5><ul>
+<li>问题：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">珂珂喜欢吃香蕉。这里有 N 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 H 小时后回来。</span><br><span class="line"></span><br><span class="line">珂珂可以决定她吃香蕉的速度 K （单位：根/小时）。每个小时，她将会选择一堆香蕉，从中吃掉 K 根。如果这堆香蕉少于 K 根，她将吃掉这堆的所有香蕉，然后这一小时内不会再吃更多的香蕉。  </span><br><span class="line"></span><br><span class="line">珂珂喜欢慢慢吃，但仍然想在警卫回来前吃掉所有的香蕉。</span><br><span class="line"></span><br><span class="line">返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. f(x)表示速度为x时需要多少个小时吃完，f(x)</span><br><span class="line">=sum(math.ceil(p*1./k) for p in piles)，为单调减函数</span><br><span class="line">2. x取值范围：l,r = 1, max(piles)</span><br><span class="line">3. 问题转化:求f(x)&lt;=H的最小x</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minEatingSpeed</span>(<span class="params">self, piles, H</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type piles: List[int]</span></span><br><span class="line"><span class="string">    :type H: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">k</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(math.ceil(p*<span class="number">1.</span>/k) <span class="keyword">for</span> p <span class="keyword">in</span> piles)</span><br><span class="line">    </span><br><span class="line">    l,r = <span class="number">1</span>, <span class="built_in">max</span>(piles)</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l+r) &gt;&gt; <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> helper(mid) &lt;= H:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h5 id="360-笔试"><a href="#360-笔试" class="headerlink" title="[360 笔试]"></a>[360 笔试]</h5><ul>
+<li>问题：</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/21-25-57.jpg" alt=""></p>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">思路1: 直接对a[l-1:r]进行集合运算，返回长度，时间O(qn)，空间O(n)；超时</span><br><span class="line">思路2：存储count[n][m]，表示&lt;=n时每种花的数目，时间O(mq)，空间O(mn)；超内存</span><br><span class="line">思路3：二分查找，存储每种花出现的下标列表，给定[l,r]，每次在每种花中进行二分查找，对l返回第一个大于等于l的下标x，对r返回第一个大于r的下标y，如果y&gt;l则说明该花在[l,r]内；</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>代码：</li>
+</ul>
+<pre><code class="lang-python">n,m = map(int, raw_input().split())
+a = map(int, raw_input().split())
+q = input()
+
+d = collections.defaultdict(list)
+for i,x in enumerate(a):
+    d[x].append(i)
+
+def solve(l,r):
+    l,r = l-1, r-1
+    res = 0
+    for key in d:
+        x = bisect.bisect_left(d[key], l)
+        y = bisect.bisect_right(d[key], r)
+        res += (y &gt; x)
+    return res
+
+for _ in xrange(q):
+    l,r = map(int, raw_input().split())
+    print solve(l,r)
+</code></pre>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E6%95%B0%E8%AE%BA/" rel="next" title="数据结构与算法：数论">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：数论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%88/" rel="prev" title="数据结构与算法：线性表（二）—— 栈">
+                数据结构与算法：线性表（二）—— 栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">理论篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">一般原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">普通二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AD%E5%8C%BA%E9%97%B4%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">闭区间二分查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%8A%E5%BC%80%E5%8C%BA%E9%97%B4%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">半开区间二分查找</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AB%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.2.</span> <span class="nav-text">含重复元素的二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AD%89%E4%BA%8E%E4%BD%9C%E4%B8%BA%E5%B0%8F%E4%BA%8E-%E5%A4%A7%E4%BA%8E"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">等于作为小于&#x2F;大于</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E4%B8%8A%E4%B8%80%E6%AC%A1%E6%88%90%E5%8A%9F%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">记录上一次成功位置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">1.4.</span> <span class="nav-text">二分查找的改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE"><span class="nav-number">1.4.1.</span> <span class="nav-text">插值查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%9F%A5%E6%89%BE"><span class="nav-number">1.4.2.</span> <span class="nav-text">斐波那契查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="nav-number">2.</span> <span class="nav-text">应用篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E9%97%AE%E9%A2%98"><span class="nav-number">2.0.1.</span> <span class="nav-text">数学问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-69-%E6%B1%82x%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">[LeetCode 69] 求x的平方根</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-367-%E6%9C%89%E6%95%88%E7%9A%84%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">[LeetCode 367] 有效的完全平方数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-668-%E4%B9%98%E6%B3%95%E8%A1%A8%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E6%95%B0"><span class="nav-number">2.0.1.3.</span> <span class="nav-text">[LeetCode 668] 乘法表中第k小的数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-275-H%E6%8C%87%E6%95%B0-II"><span class="nav-number">2.0.1.4.</span> <span class="nav-text">[LeetCode 275] H指数 II</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-483-%E6%9C%80%E5%B0%8F%E5%A5%BD%E8%BF%9B%E5%88%B6"><span class="nav-number">2.0.1.5.</span> <span class="nav-text">[LeetCode 483] 最小好进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-878-%E7%AC%AC-N-%E4%B8%AA%E7%A5%9E%E5%A5%87%E6%95%B0%E5%AD%97"><span class="nav-number">2.0.1.6.</span> <span class="nav-text">[LeetCode 878] 第 N 个神奇数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-793-%E9%98%B6%E4%B9%98%E5%87%BD%E6%95%B0%E5%90%8EK%E4%B8%AA%E9%9B%B6"><span class="nav-number">2.0.1.7.</span> <span class="nav-text">[LeetCode 793] 阶乘函数后K个零</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-4-%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">2.0.1.8.</span> <span class="nav-text">[LeetCode 4] 两个排序数组的中位数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">2.0.2.</span> <span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">[LeetCode 230] 二叉搜索树中第K小的元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">[LeetCode 222] 完全二叉树的节点个数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5"><span class="nav-number">2.0.3.</span> <span class="nav-text">二维矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-74-%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">[LeetCode 74] 二维矩阵中的二分查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-240-%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BEII"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">[LeetCode 240] 二维矩阵中的二分查找II</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-378-%E6%9C%89%E5%BA%8F%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">[LeetCode 378] 有序矩阵中第K小的元素</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="nav-number">2.0.4.</span> <span class="nav-text">旋转数组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-153-%E6%9F%A5%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">[LeetCode 153]查找旋转数组中的最小值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-154-%E6%9F%A5%E6%89%BE%E5%90%AB%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">[LeetCode 154]查找含重复元素的旋转数组中的最小值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.0.5.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-887-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">[LeetCode 887] 鸡蛋掉落</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-354-%E4%BF%84%E7%BD%97%E6%96%AF%E5%A5%97%E5%A8%83%E4%BF%A1%E5%B0%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.0.5.2.</span> <span class="nav-text">[LeetCode 354] 俄罗斯套娃信封问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-410-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-number">2.0.5.3.</span> <span class="nav-text">[LeetCode 410] 分割数组的最大值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-719-%E6%89%BE%E5%87%BA%E7%AC%AC-k-%E5%B0%8F%E7%9A%84%E8%B7%9D%E7%A6%BB%E5%AF%B9-%E8%87%B3%E5%B0%8A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">2.0.5.4.</span> <span class="nav-text">[LeetCode 719] 找出第 k 小的距离对(至尊二分查找)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%97%AE%E9%A2%98"><span class="nav-number">2.0.6.</span> <span class="nav-text">其他二分查找问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-852-%E5%B1%B1%E8%84%89%E6%95%B0%E7%BB%84%E7%9A%84%E5%B3%B0%E9%A1%B6%E7%B4%A2%E5%BC%95"><span class="nav-number">2.0.6.1.</span> <span class="nav-text">[LeetCode 852] 山脉数组的峰顶索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LeetCode-875-%E7%88%B1%E5%90%83%E9%A6%99%E8%95%89%E7%9A%84%E7%8F%82%E7%8F%82"><span class="nav-number">2.0.6.2.</span> <span class="nav-text">[LeetCode 875] 爱吃香蕉的珂珂</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#360-%E7%AC%94%E8%AF%95"><span class="nav-number">2.0.6.3.</span> <span class="nav-text">[360 笔试]</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

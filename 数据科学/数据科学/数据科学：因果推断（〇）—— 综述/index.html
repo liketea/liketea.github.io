@@ -1,37 +1,1682 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据科学," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="我们生活在一个相信大数据能够解决所有问题的时代，然而数据远非万能，数据可以告诉你服药的病人比不服药的病人康复得快，却不能告诉你原因何在。也许，那些服药的人只是因为他们支付得起，即使不服用这种药，他们也能恢复得更快。正如 Kendall 和 Stuart 所说，统计关系无论有多强，有多紧密，也决不能建立起因果关系，因果关系的概念来自统计学之外的某个理论。  因果关系（causality）因果观念是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据科学：因果推断（〇）—— 综述">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="我们生活在一个相信大数据能够解决所有问题的时代，然而数据远非万能，数据可以告诉你服药的病人比不服药的病人康复得快，却不能告诉你原因何在。也许，那些服药的人只是因为他们支付得起，即使不服用这种药，他们也能恢复得更快。正如 Kendall 和 Stuart 所说，统计关系无论有多强，有多紧密，也决不能建立起因果关系，因果关系的概念来自统计学之外的某个理论。  因果关系（causality）因果观念是">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wood123.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210223114030.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210226144947.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210226145420.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210226150110.png">
+<meta property="article:published_time" content="2021-02-06T07:29:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.921Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据科学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wood123.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据科学/数据科学/数据科学：因果推断（〇）—— 综述/"/>
+
+
+
+
+
+  <title>数据科学：因果推断（〇）—— 综述 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%BC%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据科学：因果推断（〇）—— 综述</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-06T15:29:53+08:00">
+                2021-02-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">数据科学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%BC%E8%BF%B0/" class="leancloud_visitors" data-flag-title="数据科学：因果推断（〇）—— 综述">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  25
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>我们生活在一个相信大数据能够解决所有问题的时代，然而数据远非万能，数据可以告诉你服药的病人比不服药的病人康复得快，却不能告诉你原因何在。也许，那些服药的人只是因为他们支付得起，即使不服用这种药，他们也能恢复得更快。正如 Kendall 和 Stuart 所说，统计关系无论有多强，有多紧密，也决不能建立起因果关系，因果关系的概念来自统计学之外的某个理论。</p>
+</blockquote>
+<h2 id="因果关系（causality）"><a href="#因果关系（causality）" class="headerlink" title="因果关系（causality）"></a>因果关系（causality）</h2><p>因果观念是人类认知事物的重要方式，我们相信，世界并非是由简单的事实堆砌而成，相反，这些事实是通过错综复杂的因果网络联系在一起的，科学正是建立在因果律的基础之上的。关于因果的讨论，已经持续了上千年，至今仍没有统一定论，在正式讨论“因果推断”之前，我们有必要搞清楚，当我们提到“因果”时，究竟是在谈论着什么。</p>
+<h3 id="神话时代"><a href="#神话时代" class="headerlink" title="神话时代"></a>神话时代</h3><p>在神话思维时代，人类对诸如雷电、地震等自然现象都会归结为某个神灵的意志。这种拟人化的目的归因，是人类试图捕捉现象背后本质因果思维的最初尝试，并发展出交感巫术、祈祷等手段与神灵沟通，从而对自然过程进行干预。</p>
+<h3 id="希腊时代"><a href="#希腊时代" class="headerlink" title="希腊时代"></a>希腊时代</h3><p>人类文明的轴心时代，是古希腊人最早发扬了理性精神。哲学和科学的诞生，不仅来自经验知识，更因为是有数学和几何。古希腊最早的哲学家，包括泰勒斯、毕达哥拉斯等，都同时也是数学家和自然科学家。数学对象之间的必然关系，放到经验世界，就产生了让哲学脱胎于神话的第一次天问：“世界是如何起源的？从此人类以理性思维探讨世界秩序成为了可能。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wood123.png" width="50%"></img>
+</div>
+
+<p>希腊哲学家对世界起源的回答，无论是水、气、火、数、逻各斯或无定形，最后都被亚里士多德总结为四种原因：</p>
+<ol>
+<li>质料因（Matter - material cause）：构成事物的材料，例如木材就是桌子的质料因；</li>
+<li>形式因（Form - formal cause）：构成事物的样式，例如木工心中桌子的样式，就是桌子的形式因；</li>
+<li>动力因（Agent - efficient cause）：构成事物的过程，例如木工制作桌子的过程就是桌子的动力因；</li>
+<li>目的因（Purpose - final cause）：构成事物的目的，例如放置物品就是桌子的目的因；</li>
+</ol>
+<h3 id="理性主义"><a href="#理性主义" class="headerlink" title="理性主义"></a>理性主义</h3><p>17 世纪，德国数学家和哲学家莱布尼茨，将自己的哲学建立在两个逻辑前提之上：矛盾律（在同一时刻，某个事物不可能在同一方面既是这样又不是这样）和充分理由律（任何事物都有其存在的充足理由）。这两个前提又都建立在一种“分析”命题的概念之上，而所谓的分析命题就是谓项被包含在主项之中的命题 —— 例如，“所有的白种人都是人”。矛盾律所陈述的是“所有分析命题都是真命题”，充分理由律所陈述的则是“所有的真命题都是分析命题”。这一点不仅适用于逻辑陈述，甚至对于那些我们必须当作关于实际问题的经验性陈述也适用。如果“我”做一次旅行，“我”的概念一定自永恒以来就将这次旅行的概念包括在内了，这次旅行就是“我”的谓项。</p>
+<p>19 世纪德国哲学家、唯意志论创始人叔本华，在博士论文《充足理由律的四重根》中给出了莱布尼茨的充足理由律的四种表现形式：</p>
+<blockquote>
+<ol>
+<li>因果关系（Becoming）：生成/变化的充足理由律，适用于<strong>现实对象</strong>；</li>
+<li>逻辑推论（Knowing）：认识的充足理由律，适用于逻辑对象；</li>
+<li>数学证明（Being）：存在的充足理由律，解释时间和空间的必然性；</li>
+<li>行为动机（Willing）：行动的充足理由律，解释动机和行为之间的必然性。</li>
+</ol>
+</blockquote>
+<h3 id="经验主义"><a href="#经验主义" class="headerlink" title="经验主义"></a>经验主义</h3><p>18 世纪，英国经验主义哲学家休谟将因果关系限定在了经验世界的具体对象中，先后在《人性论》和《人类理智研究》中给出了因果关系两个定义：</p>
+<blockquote>
+<p>我们无从得知因果之间的关系，只能得知某些事物总是会连结在一起，而这些事物在过去的经验里又是从不曾分开过的。我们并不能看透连结这些事物背后的理性为何，我们只能观察到这些事物的本身，并且发现这些事物总是透过一种<strong>恒常的连结</strong>而被我们在想像中归类。</p>
+<p align="right">—— 休谟.人性论.1739</p>
+
+<p>我们可以给一个因下定义说，它是先行于、接近于另一个对象的一个对象，而且在这里，凡与前一个对象类似的一切对象都和与后一个对象类似的那些对象处在类似的先行关系和接近关系中。或者，换言之，<strong>假如没有</strong>前一个对象，那么后一个对象就不可能存在。</p>
+<p align="right">—— 休谟.人类理解研究.1748</p>
+
+</blockquote>
+<p>在《人性论》中，休谟对因果关系的客观性提出了怀疑，认为我们只能观察到事物本身及其恒常相继发生，并不能观察到事物背后的因果链接。在《人类理解研究》中，休谟提到了反事实推理的必要因，也即“若非因”。</p>
+<h3 id="经典力学"><a href="#经典力学" class="headerlink" title="经典力学"></a>经典力学</h3><p>17 世纪，牛顿创立经典力学之后，决定论占据了所有学科领域的核心：万事万物都被包含在确定性的因果链条之中。法国数学家皮埃尔-西蒙·拉普拉斯在他的概率论导论中说：</p>
+<blockquote>
+<p>我们可以把宇宙现在的状态视为其过去的果以及未来的因，假若一位智者知道在某一时刻所有促使自然运动的力和所有物体的位置，假若他也能够对这些数据进行分析，则在宇宙里，从最大的物体到最小的粒子，它们的运动都包含在一条简单公式里。对于这位智者来说，没有任何事物会是含糊的，并且未来只会像过去般出现在他眼前。 </p>
+</blockquote>
+<p>拉普拉斯这里所说的“智者”（intelligence）便是后人所称的<strong>拉普拉斯妖</strong>。</p>
+<h3 id="概率论"><a href="#概率论" class="headerlink" title="概率论"></a>概率论</h3><p>从赖欣巴哈和萨普斯开始，哲学家们开始使用“概率提高”的概念来定义因果关系：如果 X 提高了 Y 的概率，那么我们就说 X 导致了 Y，即 $P(Y|X) &gt; P(X) =&gt; X \rightarrow Y$。这个概念也存在于我们的直觉中，并且根深蒂固。但是这种解释是错的，因为“提高”是一个因果概念，意味着 X 对 Y 的因果效应。但是，这种概率提高完全可能是其他因素造成的，比如 Y 是 X 的原因，或者其他变量是它们二者的原因。</p>
+<p>18 世纪，一位英国长老会牧师和业余数学家托马斯·贝叶斯（Thomas Bayes），将概率现象解释为<strong>主观信念程度</strong>的变化和更新，让概率本身也失去了客观性。但自 19 世纪中叶起，随着频率学派（经典统计学派）的兴起，贝叶斯解释逐渐被统计学主流所拒绝。现代贝叶斯统计学的复兴肇始于 Jeffreys(1939)，从 1950 年代开始，经过众多统计学家的努力，贝叶斯统计学才逐渐发展壮大。</p>
+<script type="math/tex; mode=display">
+P(h|D)=P(h)\times \frac{P(D|h)}{P(D)}</script><p>在形式上，贝叶斯定理只是条件概率定义的一个初等推论，但在认识论上，它远远超出了初等的范畴。事实上，它作为一种规范性规则，能够用于<strong>根据证据更新信念</strong>这一重要操作。从许多层面来说，贝叶斯定理都是对科学方法的提炼：1. 提出一个假设 $h$；2. 推断假设的可检验结果；3. 进行实验并收集证据 $D$；4. 更新对假设的信念 $P(h|D)$。</p>
+<p>贝叶斯定理所描述的仍然是“证据”和“假设”之间的相关性，证据所带来的“信念增强”并不意味着“证据”是“假设”的原因。</p>
+<h3 id="统计学"><a href="#统计学" class="headerlink" title="统计学"></a>统计学</h3><p>然而“除了物理学之外，都是集邮”（卢瑟福），纷纷效法物理学的其他自然和社会科学并没有取得想象中确定性的成功。到了19 世纪，统计学创始人高尔顿在研究“遗传均值回归”现象的过程中，以寻找因果关系为起点，最终却发现了相关性 —— 一种无视因果的关系。高尔顿的学生，作为统计学之父的卡尔·皮尔逊，则干脆用相关关系（Correlation）取代了因果关系，认为因果关系只是相关关系的一个特例。</p>
+<blockquote>
+<p>我认为……高尔顿的本意是，存在一个比因果关系更广泛的范畴，即相关性，而因果关系只是被囊括于其中的一个有限的范畴。这种关于相关性的新概念在很大程度上将心理学、人类学、医学和社会学引向了数学处理的领域。</p>
+<p align="right">—— 皮尔逊.1934</p>
+
+<p>一个特定的事件序列在过去已经发生并且重复发生，这只是一个经验问题，对此我们可以借助因果关系的概念给出其表达式……在任何情况下，科学都不能证明该特定事件序列中存在任何内在的必然性，也不能绝对肯定地证明它必定会重复发生。</p>
+<p align="right">—— 皮尔逊.科学语法.1892</p>
+
+</blockquote>
+<p>皮尔逊将因果关系从统计学中剔除，取而代之的是相关关系。统计学告诉我们“<strong>相关关系不等于因果关系</strong>”，但并没有告诉我们因果关系是什么。在统计学教科书的索引里查找“因果”这个词是徒劳的。统计学不允许学生们说 X 是 Y 的原因，只允许他们说 X 与 Y “相关”或“存在关联”。统计学唯一关注的是如何总结数据，而不关注如何解释数据。</p>
+<p>继高尔顿和皮尔逊之后，罗纳德·艾尔默·费舍尔成为当时统计学界无可争议的领袖，他简洁地描述了这种差异：</p>
+<blockquote>
+<p>一旦你从统计学中删除因果关系，那么剩下的就只有数据约简了。</p>
+</blockquote>
+<h3 id="量子力学"><a href="#量子力学" class="headerlink" title="量子力学"></a>量子力学</h3><p>进入 20 世纪，就连在物理学中人们也发现了更多不确定性现象。量子力学对微观世界的描述，让很多人确信，世界在根基上就是不确定性的。混沌理论革命则让人们意识到，对复杂系统即使存在确定的关系，也会因为初始敏感导致计算不可约性。</p>
+<p>在这些科学发展的背景下，不确定性完全占据了上风，大多数人认为可能只存在相关性，在科学实践和决策上也广泛采取统计学方法。科学反映客观实在的观念已一去不复返，物理定律也降格为基于某种观测数据拟合的理论模型。</p>
+<h3 id="因果革命"><a href="#因果革命" class="headerlink" title="因果革命"></a>因果革命</h3><p>2020 年 6 月 21 日，在第二届北京智源大会开幕式及全体会议上，图灵奖得主、贝叶斯网络奠基人Judea Pearl 做了名为《The New Science of Cause and Effect with reflections on data science and artificial intelligence》的主题演讲。</p>
+<p align="center"><iframe src="//player.bilibili.com/player.html?aid=328598977&bvid=BV1EA411i76n&cid=204165785&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="50%" height="200%"> </iframe></p>
+
+<p>在演讲中，Judea Pearl 站在整个数据科学的视角，简单回顾了过去的“大数据革命”，指出数据科学正在从当前以数据为中心的范式向以科学为中心的范式偏移，现在正在发生一场席卷各个研究领域的“因果革命”。</p>
+<blockquote>
+<p>To Build Truly Intelligent Machines, Teach Them Cause and Effect 。</p>
+<p align="right">——Judea Pearl</p>
+
+</blockquote>
+<p>因果革命和以数据为中心的第一次数据科学革命，也就是大数据革命（涉及机器学习，深度学习机器应用，例如 Alpha-Go、语音识别、机器翻译、自动驾驶等等）的不同之处在于，它以科学为中心，涉及从数据到政策、可解释性、机制的泛化，再到一些社会科学中的基础概念信用、责备和公平性， 甚至哲学中的创造性和自由意志 。可以说， 因果革命彻底改变了科学家处理因果问题的方式。</p>
+<p>Judea Pearl 认为，统计学的其他分支，以及那些依赖统计学工具的学科仍然停留在禁令时代，错误地相信所有科学问题的答案都藏于数据之中，有待巧妙的数据挖掘手段将其揭示出来。因果分析绝不只是针对数据的分析，在因果分析中，我们必须将我们对数据生成过程的理解体现出来，并据此得出初始数据不包含的内容。与相关性分析和大多数主流统计学不同，因果分析要求研究者做出主观判断。研究者必须绘制出一个因果图，其反映的是他对于某个研究课题所涉及的因果过程拓扑结构的定性判断，或者更理想的是，他所属的专业领域的研究者对于该研究课题的共识。为了确保客观性，他反而必须放弃传统的客观性教条。在因果关系方面，睿智的主观性比任何客观性都更能阐明我们所处的这个真实世界。</p>
+<h3 id="因果定义"><a href="#因果定义" class="headerlink" title="因果定义"></a>因果定义</h3><p>数据科学所研究的因果关系是<strong>经验世界中事件之间的因果关系</strong>，正如休谟所言，在经验世界中，我们实际所能观测到的只是事件本身，而无法观测到隐藏在事件背后的“因果机理”，事件间的因果关系本质上是对<strong>事件序列间特定关系</strong>的概括性称谓。目前，一个被广泛接受的因果关系的定义是由 Lazarsfeld（1959）给出的：</p>
+<blockquote>
+<p>如果变量 A 和变量 B 满足以下三个条件，则称 A 和 B 之间存在因果关系“A 导致 B”，其中 A 被称为 B 原因，B 被称为 A 的结果： </p>
+<ol>
+<li>A 在时间上必须先于 B；</li>
+<li>A 和 B 应当在经验上相互关联；</li>
+<li>A 和 B 之间观测到的经验相关不能被第三个导致 A 和 B 两者的变量所解释；</li>
+</ol>
+</blockquote>
+<p>相关性只是因果性的一个必要非充分条件，即“相关性不一定意味着因果性”，A 和 B 相关可能是以下情形的结果：</p>
+<ol>
+<li>A 和 B 都由第三个变量 C 决定：如果通过控制 C，A 和 B 之间的相关性会消失，则说此相关是虚假的（spurious）；比如“是否携带打火机”与“癌症发病率”之间的相关性，本质上是因为抽烟的人通常会携带打火机，并且癌症发病率更高所导致的；</li>
+<li>A 导致 B：我们对干扰变量进行了控制，但我们仍然观测到 A 和 B 之间高度相关；</li>
+<li>B 导致 A：相关性本身并没有告诉我们因果关系的方向；比如“公鸡打鸣”和“太阳升起”有高度相关性，但是统计数据本身并不能告诉我们到底是公鸡打鸣导致了太阳升起，还是太阳升起导致了公鸡打鸣；</li>
+</ol>
+<p>至此，我们已经查勘了因果观念的全景，现在可以对数据科学所涉及到的因果关系概括如下：</p>
+<blockquote>
+<p>在<strong>经验世界</strong>中，我们所能观察到的只是事件（数据）本身，而如果仅凭数据间的关联，我们只能得到事件间的相关性，事件间的因果关系是对<strong>事件序列特定关系</strong>的概括：如果 A 和 B 同时满足以下条件 ① A 在时间上先于 B；② A 和 B 在经验上相关；③ A 和 B 间的相关性不能被其他变量所解释；则称 A 是 B 的原因，或称 A 导致了 B。</p>
+</blockquote>
+<h2 id="因果推断（Causal-Inference）"><a href="#因果推断（Causal-Inference）" class="headerlink" title="因果推断（Causal Inference）"></a>因果推断（Causal Inference）</h2><p>因果推断是研究变量间因果关系的学科，作为一门学科，因果推断目前仍然处于大众视野之外。朱迪亚·珀尔（Judea Pearl） 认为，一旦我们真正理解了因果思维背后的逻辑，就可以在现代计算机上模拟它，进而创造出一个“人工科学家”。这个智能机器人将会为我们发现未知的现象，解开悬而未决的科学之谜，设计新的实验，并不断从环境中提取更多的因果知识。</p>
+<p>关于因果推断的讨论，可以有两个方向：</p>
+<ol>
+<li>考察结果的原因：看到结果，寻找结果背后的原因，这种研究往往是科学的起点，但寻找结果背后的原因，非常复杂。某一种结果产生的原因可能有很多，需要通过详细的调查、深入的分析才能找到。</li>
+<li>考察原因的结果：主要关注某一干预对结果的影响，一项干预对结果变量产生的影响，通常称为因果效应（causal effects）或干预效应（treatment effects）。</li>
+</ol>
+<h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>按照所能回答问题的类型，Judea Pearl 将因果信息划分成了三个层级，其中，高层级信息可以回答低层级问题，但是低层级信息无法回答高层级问题：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>任务</th>
+<th>活动</th>
+<th>符号</th>
+<th>问题</th>
+<th>例子</th>
+<th>评价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关联</td>
+<td>基于被动观察做出预测</td>
+<td>观察</td>
+<td>$P(Y\mid X)$</td>
+<td>如果观察到X，如何预测Y？</td>
+<td>购买啤酒的用户多大可能会购买尿布？</td>
+<td>好的预测无需好的解释（因果）<br>  当前机器学习/深度学习/统计学几乎完全是在关联层级下，由一系列观察数据拟合出一个函数</td>
+</tr>
+<tr>
+<td>干预</td>
+<td>基于主动干预做出评估</td>
+<td>行动</td>
+<td>$P(Y\mid do(X))$</td>
+<td>如果改变X，Y会怎样？</td>
+<td>如果价格提高两倍，销量会怎么变化？</td>
+<td>预测干预结果的方法是在严格控制的条件下进行实验</td>
+</tr>
+<tr>
+<td>反事实</td>
+<td>通过因果模型做出预测</td>
+<td>想象</td>
+<td>$P(y_x \mid X’,Y’)$</td>
+<td>假如观察到的不是X’，Y会怎样?</td>
+<td>假如过去没有抽烟，现在身体会更好吗？</td>
+<td>﻿预测在尚未经历甚至未曾设想过的情况下会发生什么——这是所有科学的圣杯</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Judea Pearl 在《The Book of Why》一书中对以上三种因果层级进行了详细描述，并将其称为“<strong>因果关系之梯</strong>”：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210223114030.png" width="50%" heigh="55%"></img>
+</div>
+
+<p>Judea Pearl 认为，人类的大脑拥有某种简洁的信息表示方式，同时还拥有某种十分有效的程序用以正确解释每个问题，并从存储的信息表示中提取正确答案，这就是因果图。Judea Pearl 通过一个被他称作“迷你图灵测试”的例子，借助因果图语言介绍了以上三种因果层级之间的差异。</p>
+<p>如下图所示，假设一个犯人将要被执行枪决，这件事的发生必然会以一连串的事件发生为前提：首先，法院方面要下令处决犯人；命令下达到行刑队长后，他将指示行刑队的士兵（A 和 B）执行枪决；我们假设他们是服从命令的专业抢手，只听命令射击，并且只要其中任何一个抢手开了枪，囚犯都必死无疑。借助这个因果图，我们就可以回答来自因果关系之梯不同层级的因果问题了。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210226144947.png" width="27%" heigh="55%"></img>
+</div>
+
+<p>（1）首先，我们可以回答<strong>关联</strong>问题（一个事实告诉我们有关另一事实的什么信息）。一个可能的问题是，如果犯人死了，那么这是否意味着法院已下令处决犯人？我们（或一台计算机）可以通过核查因果图，追踪每个箭头背后的规则，并根据标准逻辑得出结论：如果没有行刑队队长的命令，两名士兵就不会射击。同样，如果行刑队队长没有接到法院的命令，他就不会发出执行枪决的命令。因此，这个问题的答案是肯定的。另一个可能的问题是，假设我们发现士兵 A 射击了，它告诉了我们关于 B 的什么信息？通过追踪箭头，计算机将断定B一定也射击了。（原因在于，如果行刑队队长没有发出射击命令，士兵A就不会射击，因此接收到同样命令的士兵B也一定射击了。）即使士兵 A 的行为不是士兵 B 做出某一行为的原因（因为从 A 到 B 没有箭头），该判断依然为真。</p>
+<p>（2）沿着因果关系之梯向上攀登，我们可以提出有关<strong>干预</strong>的问题。如果士兵 A 决定按自己的意愿射击，而不等待队长的命令，情况会怎样？犯人会不会死？如果我们希望计算机能理解因果关系，我们就必须教会它如何打破规则，让它懂得“观察到某事件”和“使某事件发生”之间的区别。我们需要告诉计算机：“无论何时，如果你想使某事发生，那就删除指向该事的所有箭头，之后继续根据逻辑规则进行分析，就好像那些箭头从未出现过一样。”如此一来，对于这个问题，我们就需要删除所有指向被干预变量（A）的箭头，并且还要将该变量手动设置为规定值（真）。这种特殊的“外科手术”的基本原理很简单：使某事发生就意味着将它从所有其他影响因子中解放出来，并使它受限于唯一的影响因子——能强制其发生的那个因子。下图表示出了根据这个例子生成的因果图，显然，这种干预会不可避免地导致犯人的死亡，这就是箭头 A 到 D 背后的因果作用。同时，我们还能判断出：B（极有可能）没有开枪，A 的决定不会影响模型中任何不受 A 的行为的影响的其他变量。需要注意的是，仅凭收集大数据无助于我们登上因果关系之梯去回答上面的问题。假设你是一个记者，每天的工作就是记录行刑场中的处决情况，那么你的数据会由两种事件组成：要么所有 5 个变量都为真，要么所有都为假。在未掌握“谁听从于谁”的相关知识的情况下，这种数据根本无法让你（或任何机器学习算法）预测“说服枪手 A 不射击”的结果。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210226145420.png" width="30%" heigh="55%"></img>
+</div>
+
+<p>（3）最后，为了说明因果关系之梯的第三层级，我们提出一个<strong>反事实</strong>问题。假设犯人现在已倒地身亡，从这一点我们（借助第一层级的知识）可以得出结论：A射击了，B射击了，行刑队队长发出了指令，法院下了判决。但是，假如 A 决定不开枪，犯人是否还活着？这个问题需要我们将现实世界和一个与现实世界相矛盾的虚构世界进行比较。在虚构世界中，A 没有射击，指向 A 的箭头被去除，这进而又解除了 A 与 C 的听命关系。现在，我们将A的值设置为假，并让A行动之前的所有其他变量的水平与现实世界保持一致。如此一来，这一虚构世界就如下图所示。为通过迷你图灵测试，计算机一定会得出这样的结论：在虚构世界里犯人也会死，因为B会开枪击毙他。所以，A勇敢改变主意的做法也救不了犯人的命。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210226150110.png" width="30%" heigh="55%"></img>
+</div>
+
+<p>看起来，我们刚刚像是花了很大一番力气回答了一些答案显而易见的小问题。的确，因果推理对你来说很容易，其原因在于你是人类，在你还是三岁儿童时，你所拥有的功能神奇的大脑就比任何动物或计算机都更能理解因果关系。“迷你图灵问题”的重点就是要让计算机也能够进行因果推理，而我们能从人类进行因果推断的做法中得到启示。如上述三个例子所示，我们必须教会计算机如何有选择地打破逻辑规则。计算机不擅长打破规则，而这是儿童的强项。</p>
+<h3 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h3><p>用于因果推断的数据来源一般有三种：</p>
+<ol>
+<li>控制实验：对于实验组和控制组，严格控制混淆变量，结果的差异可以归因于原因变量的差异；控制实验对实验条件要求苛刻，一般用于自然科学研究领域；</li>
+<li>随机实验：Fisher 认为我们不必控制其他变量差异，现实中也没有办法完全控制所有的其他变量，只要让随机机制决定干预变量的分配，就可以获得正确的因果效应；随机试验被称为因果推断的黄金标准；</li>
+<li>观察实验：在很多场景下，尤其是在社会科学领域，我们既没有办法实施控制实验，也没有办法实施随机实验，只能获取到被动观察的自然数据；此时，可以通过一些近似手段模拟随机试验过程，进行因果推断；</li>
+</ol>
+<h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><h3 id="识别策略"><a href="#识别策略" class="headerlink" title="识别策略"></a>识别策略</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>Judea Pearl.The Book of Why: the new science of cause and effect</li>
+<li>赵西亮.基本有用的计量经济学</li>
+<li>罗素.西方哲学史</li>
+<li><a target="_blank" rel="noopener" href="https://swarma.org/?p=19906">因果观念新革命？万字长文，解读复杂系统背后的暗因果</a></li>
+<li><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/pdf/10.1145/3241036">Judea Pearl.The Seven Tools of Causal Inference, with Reflections on Machine Learning</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sohu.com/a/403958209_99979179">图灵奖得主Judea Pearl：从“大数据革命”到“因果革命”</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av328598977/">Judea Pearl.The New Science of Cause and Effect with reflections on data science and AI 视频</a></li>
+<li><a target="_blank" rel="noopener" href="https://publications.mfo.de/handle/mfo/3758">Foundations and new horizons for causal inference 研讨会, 2019</a>（因果推断始于经济和生物统计等学科，它刚刚才开始成为人工智能的一个重要工具，数学基础依旧很零碎，该研讨会聚集了来自人工智能，生物统计学，计算机科学，经济学，流行病学，机器学习，数学和统计学的顶尖研究人员，研讨会上的报告和讨论将有助于在未来几年内塑造和改变这一领域的发展）</li>
+<li>Causality for Machine Learning, Bernhard Schölkopf, 2019（这是一篇刚刚挂 arxiv 就被 Pearl 亲自 twitter 点赞的论文，是马普智能所所长 Bernhard Scholkopf 最引以为傲的论文之一，他将被 Pearl 点赞这事情写在其个人主页自我介绍的第一段中。Scholkopf 及其团队在因果结合机器学习方面做了最多的工作，此文总结和升华了提出了信息革命时代下因果结合机器学习的一般理论和深刻思考）</li>
+<li>A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks, Miguel A. Hernán, John Hsu &amp;Brian Healy, 2019（来自哈佛教授 Migual A. Hernan 对当前数据科学的深刻反思，澄清了数据科学任务如何分类的基本问题：prediction, deion and counterfactual prediction.）</li>
+<li>Causal Inference and Data-Fusion in Econometrics, P. Hünermund, E. Bareinboim.Dec, 2019.(该论文是因果革命，Pearl 的因果图模型框架如何影响某一个特定领域—计量经济学的范例)</li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E7%BB%BC%E8%BF%B0%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9/" rel="next" title="数据科学：综述（一）—— 工作内容">
+                <i class="fa fa-chevron-left"></i> 数据科学：综述（一）—— 工作内容
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E8%BE%9B%E6%99%AE%E6%A3%AE%E6%82%96%E8%AE%BA/" rel="prev" title="数据科学：因果推断（一）—— 辛普森悖论">
+                数据科学：因果推断（一）—— 辛普森悖论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E5%85%B3%E7%B3%BB%EF%BC%88causality%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">因果关系（causality）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A5%9E%E8%AF%9D%E6%97%B6%E4%BB%A3"><span class="nav-number">1.1.</span> <span class="nav-text">神话时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%8C%E8%85%8A%E6%97%B6%E4%BB%A3"><span class="nav-number">1.2.</span> <span class="nav-text">希腊时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E6%80%A7%E4%B8%BB%E4%B9%89"><span class="nav-number">1.3.</span> <span class="nav-text">理性主义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E4%B8%BB%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">经验主义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6"><span class="nav-number">1.5.</span> <span class="nav-text">经典力学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA"><span class="nav-number">1.6.</span> <span class="nav-text">概率论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6"><span class="nav-number">1.7.</span> <span class="nav-text">统计学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6"><span class="nav-number">1.8.</span> <span class="nav-text">量子力学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E9%9D%A9%E5%91%BD"><span class="nav-number">1.9.</span> <span class="nav-text">因果革命</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E5%AE%9A%E4%B9%89"><span class="nav-number">1.10.</span> <span class="nav-text">因果定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%EF%BC%88Causal-Inference%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">因果推断（Causal Inference）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90"><span class="nav-number">2.2.</span> <span class="nav-text">数据来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">2.3.</span> <span class="nav-text">理论基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E7%AD%96%E7%95%A5"><span class="nav-number">2.4.</span> <span class="nav-text">识别策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

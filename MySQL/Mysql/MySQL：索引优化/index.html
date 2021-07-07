@@ -1,37 +1,1770 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在 Relationa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL：索引优化">
+<meta property="og:url" content="http://liketea.xyz/MySQL/Mysql/MySQL%EF%BC%9A%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="What索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：  对于小表：全表扫描更高效； 对于中表：索引非常有效； 对于大表：建议采用分区；  Lahdenmaki 和 Leach 在 Relationa">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200630115000.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200701192719.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200701192758.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200702140345.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200702141105.png">
+<meta property="article:published_time" content="2020-07-03T09:01:09.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.900Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/MySQL/Mysql/MySQL：索引优化/"/>
+
+
+
+
+
+  <title>MySQL：索引优化 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/MySQL/Mysql/MySQL%EF%BC%9A%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">MySQL：索引优化</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-03T17:01:09+08:00">
+                2020-07-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/MySQL/Mysql/MySQL%EF%BC%9A%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/" class="leancloud_visitors" data-flag-title="MySQL：索引优化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  29
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200703102511.png" alt=""></p>
+<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>索引是存储引擎用于快速查找记录的一种数据结构。索引优化是优化查询性能最有效的手段，好的索引能够轻易将查询性能提高几个数量级。但索引并不总是最好的工具，只有当索引帮助存储引擎快速查找记录带来的好处大于其带来的额外工作时，索引才是有效的，一般来讲：</p>
+<ol>
+<li>对于小表：全表扫描更高效；</li>
+<li>对于中表：索引非常有效；</li>
+<li>对于大表：建议采用分区；</li>
+</ol>
+<p>Lahdenmaki 和 Leach 在 Relational Database Index Design and the Optimizers 一书中介绍了如何评价一个索引是否适合某个查询的“三星系统”：</p>
+<ol>
+<li>聚集：索引将相关的记录放到一起则获得“一星”；</li>
+<li>有序：索引中的数据顺序和查找中的排列顺序一致则获得“二星”；</li>
+<li>覆盖：索引中的列包含了查询中需要的全部列则获得“三星”；</li>
+</ol>
+<h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><p>索引是在存储引擎层而不是服务器层实现的，所以没有统一的索引标准：不同存储引擎所支持的索引类型不同，即使同一种类型的索引，其底层实现也可能不同。MySQL 中涉及的索引类型有：</p>
+<ol>
+<li>B-Tree 索引：当人们谈论索引的时候，如果没有特别指明索引类型，一般指的是 B-Tree 索引。大多数 Mysql 引擎都支持这种索引（Archive 例外），NDB 集群存储引擎实际上使用的是 T-Tree，但其名字是 BTREE，InnoDB 使用的是 B+Tree。不同存储引擎以不停方式使用 B-Tree，性能也有所不同，MyISAM 使用前缀压缩技术使得索引更小，InnoDB 则按照原始数据格式进行存储，MyISAM 通过数据的物理位置引用被索引的行，InnoDB 则根据主键引用被索引的行。</li>
+<li>哈希索引：存储引擎会对每一行数据的所有索引列计算一个哈希值，哈希索引将所有的哈希值存储在索引中，并保存指向每个数据行的指针；哈希索引的访问速度非常快，但哈希索引只包含哈希值和行指针，无法避免读取行，也无法用于排序，此外哈希索引只支持等值和比较查询，不支持部分索引列匹配。</li>
+<li>空间数据索引：MyISAM 表支持空间索引，可以用作地理数据存储。和 B-Tree 索引不同，这类索引无须前缀查询。空间索引会从所有维度来索引数据。查询时，可以有效地使用任意维度来组合查询。必须使用 MySQL 的 GIS 相关函数如 MBRCONTAINS() 等来维护数据。MySQL 的 GIS 支持并不完善，所以大部分人都不会使用这个特性。</li>
+<li>全文索引：全文索引是一种特殊类型的索引，它查找的是文本中的关键词，而不是直接比较索引中的值。全文搜索和其他几类索引的匹配方式完全不一样。它有许多需要注意的细节，如停用词、词干和复数、布尔搜索等。全文索引更类似于搜索引擎做的事情，而不是简单的WHERE条件匹配。</li>
+</ol>
+<p>本文接下来要讨论的是 InnoDB 所采用的 B+Tree 索引，这也是最常用的索引类型和实现方式。</p>
+<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B+Tree"></a>B+Tree</h3><p>M 阶 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jRZMMONW3QP43dsDKIV9VQ">B+Tree</a>，满足以下特征：</p>
+<ol>
+<li><strong>根节点</strong>至少有两个子树，最多有 M 个<strong>子树</strong>，节点内<strong>关键字</strong>个数与子树个数相同，每个关键字作为子树的索引，等于对应子树中最大/小关键字；</li>
+<li><strong>中间节点</strong>至少有 M/2 个子树，最多有 M 个子树，节点内关键字个数与子树个数相同，每个关键字作为子树的索引，等于对应子树中最大/小关键字；</li>
+<li><strong>叶子节点</strong>包含了全部关键字，及指向对应记录的指针，叶子节点按关键字<strong>排序</strong>组成双向链表；</li>
+</ol>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200630115000.png" alt=""></p>
+<p>B+Tree 可以进行两种查找运算：</p>
+<ol>
+<li>从最小关键字开始，在叶子节点中顺序查找；</li>
+<li>从根节点开始，向下进行二分查找；</li>
+</ol>
+<p>相比 B-Tree，B+Tree 的优势：</p>
+<ol>
+<li>每次可以读取更多的索引，减少 IO 操作；</li>
+<li>查询性能稳定，只有达到子节点才能命中；</li>
+<li>范围查询简便，对于范围查询，先从根节点出发找到最小索引，再在叶子节点中顺序查找至最大索引；</li>
+</ol>
+<h3 id="聚簇索引和二级索引"><a href="#聚簇索引和二级索引" class="headerlink" title="聚簇索引和二级索引"></a>聚簇索引和二级索引</h3><p>InnoDB 存储引擎同时维护了两种索引存储方式，两种方式均通过 B+Tree 实现：</p>
+<ul>
+<li>聚簇索引(Clustered Index)：也叫主键索引，以主键作为节点页，数据行作为叶子页；聚簇索引不能人为指定，只能自动生成；如果没有定义主键，InnodDB 会选择一个唯一的非空索引代替，如果没有这样的索引，InnoDB 会隐式定义一个主键来作为聚簇索引；一个表只能有一个聚簇索引，在聚簇索引树中，可以通过主键快读查询到对应的数据行。</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200701192719.png" alt=""></p>
+<ul>
+<li>二级索引(Secondary index)：也叫非聚簇索引，以索引作为节点页，主键作为叶子页；一个表可以有多个二级索引，使用二级索引查找数据时，如果查询列包含了二级索引没有覆盖的列，则需要先在二级索引树中查询到对应的主键，再在聚簇索引树中查询主键对应的数据行，称为”回表查询“，性能较扫一遍索引树差。</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200701192758.png" alt=""></p>
+<p>对于索引列值为 NULL 的二级索引记录来说，它们会被放在 B+ 树的最左边：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200702140345.png" alt=""></p>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><h3 id="定义索引"><a href="#定义索引" class="headerlink" title="定义索引"></a>定义索引</h3><h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><p>MySQL创建索引的语法如下：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span><span class="operator">|</span>FULLTEXT<span class="operator">|</span>SPATIAL] INDEX index_name</span><br><span class="line">[<span class="keyword">USING</span> index_type]</span><br><span class="line"><span class="keyword">ON</span> table_name (index_col_name,...)</span><br></pre></td></tr></table></figure></div>
+<p>其中：</p>
+<ol>
+<li>[UNIQUE|FULLTEXT|SPATIAL]：分别代表唯一索引、全文索引、空间索引，如果不指定任何关键字，默认为普通索引；</li>
+<li>index_name：索引名称，用户自行定义；</li>
+<li>index_type：索引类型，存储引擎为 MyISAM 和 InnoDB 的表中只能使用 BTREE；存储引擎为 MEMORY 或者 HEAP 的表中可以使用 HASH 和 BTREE 两种类型的索引，默认值为 HASH；</li>
+<li>index_col_name：要创建索引的字段名称，可以针对多个字段创建联合索引，只需要在多个字段名称之间以英文逗号隔开即可；对于 CHAR 或 VARCHAR 类型的字段，我们还可以只使用字段内容前面的一部分来创建索引，只需要在对应的字段名称后面加上形如(length)的指令即可，表示只需要使用字段内容前面的length个字符来创建索引；</li>
+</ol>
+<p>创建索引的语法有以下变体：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> [<span class="keyword">UNIQUE</span><span class="operator">|</span>FULLTEXT<span class="operator">|</span>SPATIAL] INDEX index_name (index_col_name,...) [<span class="keyword">USING</span> index_type]</span><br></pre></td></tr></table></figure></div>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> index_test;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `index_test` (</span><br><span class="line">  `f_id` mediumint(<span class="number">9</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `f_date` <span class="type">varchar</span>(<span class="number">8</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;日期&#x27;</span>,</span><br><span class="line">  `f_minute` <span class="type">varchar</span>(<span class="number">12</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;分钟&#x27;</span>,</span><br><span class="line">  `f_bizname` <span class="type">varchar</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span> COMMENT <span class="string">&#x27;业务大类&#x27;</span>,</span><br><span class="line">  `f_pv` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;pv&#x27;</span>,</span><br><span class="line">  `f_uv` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;uv&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`f_id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">196606</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8 COMMENT<span class="operator">=</span><span class="string">&#x27;大类实时数据迁移至tube&#x27;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建部分索引</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">table</span> index_test <span class="keyword">add</span> index idx_biz (f_bizname(<span class="number">6</span>));</span><br><span class="line"><span class="comment">-- 创建联合索引</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">table</span> index_test <span class="keyword">add</span> index idx_mix (f_date, f_minute, f_bizname);</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> index_test;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `index_test` (</span><br><span class="line">  `f_id` mediumint(<span class="number">9</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `f_date` <span class="type">varchar</span>(<span class="number">8</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;日期&#x27;</span>,</span><br><span class="line">  `f_minute` <span class="type">varchar</span>(<span class="number">12</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;分钟&#x27;</span>,</span><br><span class="line">  `f_bizname` <span class="type">varchar</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span> COMMENT <span class="string">&#x27;业务大类&#x27;</span>,</span><br><span class="line">  `f_pv` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;pv&#x27;</span>,</span><br><span class="line">  `f_uv` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;uv&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`f_id`),</span><br><span class="line">  KEY `idx_biz` (`f_bizname`(<span class="number">6</span>)),</span><br><span class="line">  KEY `idx_mix` (`f_date`,`f_minute`,`f_bizname`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">196606</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8 COMMENT<span class="operator">=</span><span class="string">&#x27;大类实时数据迁移至tube&#x27;</span> </span><br></pre></td></tr></table></figure></div>
+<h4 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h4><p>在MySQL中删除索引的方法非常简单，其完整语法如下：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除指定表中指定名称的索引</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name </span><br><span class="line"><span class="keyword">DROP</span> INDEX index_name;</span><br></pre></td></tr></table></figure></div>
+<h4 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h4><p>在MySQL中并没有提供修改索引的直接指令，一般情况下，我们需要先删除掉原索引，再根据需要创建一个同名的索引，从而变相地实现修改索引操作。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--先删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">DROP</span> INDEX idx_user_username;</span><br><span class="line"><span class="comment">--再以修改后的内容创建同名索引</span></span><br><span class="line"><span class="keyword">CREATE</span> INDEX idx_user_username <span class="keyword">ON</span> <span class="keyword">user</span> (username(<span class="number">8</span>));</span><br></pre></td></tr></table></figure></div>
+<h4 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h4><p>在MySQL中，要查看某个数据库表中的索引也非常简单：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> table_name</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 示例</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> index <span class="keyword">from</span> index_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">Table</span>      <span class="operator">|</span> Non_unique <span class="operator">|</span> Key_name <span class="operator">|</span> Seq_in_index <span class="operator">|</span> Column_name <span class="operator">|</span> <span class="keyword">Collation</span> <span class="operator">|</span> <span class="keyword">Cardinality</span> <span class="operator">|</span> Sub_part <span class="operator">|</span> Packed <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Index_type <span class="operator">|</span> Comment <span class="operator">|</span> Index_comment <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">0</span> <span class="operator">|</span> <span class="keyword">PRIMARY</span>  <span class="operator">|</span>            <span class="number">1</span> <span class="operator">|</span> f_id        <span class="operator">|</span> A         <span class="operator">|</span>      <span class="number">146475</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_biz  <span class="operator">|</span>            <span class="number">1</span> <span class="operator">|</span> f_bizname   <span class="operator">|</span> A         <span class="operator">|</span>         <span class="number">130</span> <span class="operator">|</span>        <span class="number">6</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_mix  <span class="operator">|</span>            <span class="number">1</span> <span class="operator">|</span> f_date      <span class="operator">|</span> A         <span class="operator">|</span>           <span class="number">4</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> YES  <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_mix  <span class="operator">|</span>            <span class="number">2</span> <span class="operator">|</span> f_minute    <span class="operator">|</span> A         <span class="operator">|</span>        <span class="number">7709</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_mix  <span class="operator">|</span>            <span class="number">3</span> <span class="operator">|</span> f_bizname   <span class="operator">|</span> A         <span class="operator">|</span>      <span class="number">146475</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span></span><br></pre></td></tr></table></figure></div>
+<p>其中：</p>
+<ol>
+<li>Collation：列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或 NULL（无分类）；</li>
+<li><strong>Cardinality</strong>：索引基数，表示索引中不同值个数的<strong>预估值</strong>，值越大，索引的“区分度“（或者说”选择性“）越好；</li>
+<li>Sub_part：列如果被部分编入索引，则为编入索引的字符数，否则为 NULL；</li>
+<li>Packed：指示关键字如何被压缩，如果没有被压缩，则为NULL；</li>
+<li>Null：如果列含有NULL，则含有YES，如果没有，则该列含有NO；</li>
+<li>Index_type：索引类型；</li>
+</ol>
+<h3 id="使用索引"><a href="#使用索引" class="headerlink" title="使用索引"></a>使用索引</h3><p>下面的内容可能会因为 MySQL 版本的不同而有所差异，另外，查询优化器对索引的选择依赖于对索引统计信息的估计，这种估计可能是不准确的、随数据量变化的，前后两次执行同一个查询可能会出现使用不同索引的情况。</p>
+<h4 id="能否命中索引"><a href="#能否命中索引" class="headerlink" title="能否命中索引"></a>能否命中索引</h4><p>只有在表达式中正确使用了索引列，才能命中索引（possible_keys）：</p>
+<ol>
+<li>索引列单独出现：索引列既不能是表达式的一部分，也不能是函数的参数；特别地，如果索引列发生了隐式类型转换，可能会使得索引不可用；</li>
+<li>精确匹配最左前缀 + 范围匹配后一列：对于联合索引，索引前几列采用精确匹配，后一列采用范围匹配，而范围匹配索引列后面（按索引定义中的顺序）的索引都将失效，有以下几种特殊形态<ol>
+<li>精确匹配最左前缀：使用的索引列构成了联合索引的某种前缀，索引列的使用顺序无关紧要，因为查询优化器会将其优化为何索引定义的顺序；</li>
+<li>全值匹配：精确匹配所有索引列，精确匹配指的是 <code>=</code>；</li>
+<li>范围匹配：使用 &gt;、&lt;、&gt;=、&lt;=，!= 、&lt;&gt;，between，或 LIKE 不以通配符(%)开头的索引列与常量值比较作为范围条件，如果在联合索引中使用了范围索引，那么在范围索引后面的索引会失效（在10.1.9-MariaDB实测，范围条件后面的索引也会生效，可能是版本带来的差异）；</li>
+</ol>
+</li>
+</ol>
+<p><strong>最左前缀原则</strong>：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200702141105.png" alt=""></p>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 索引结构</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> index_test;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `index_test` (</span><br><span class="line">  `f_id` mediumint(<span class="number">9</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `f_date` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;日期&#x27;</span>,</span><br><span class="line">  `f_minute` <span class="type">varchar</span>(<span class="number">12</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;分钟&#x27;</span>,</span><br><span class="line">  `f_bizname` <span class="type">varchar</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span> COMMENT <span class="string">&#x27;业务大类&#x27;</span>,</span><br><span class="line">  `f_pv` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;pv&#x27;</span>,</span><br><span class="line">  `f_uv` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;uv&#x27;</span>,</span><br><span class="line">  `f_const` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`f_id`),</span><br><span class="line">  KEY `idx_mix` (`f_date`,`f_minute`,`f_bizname`),</span><br><span class="line">  KEY `idx_const` (`f_const`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">2032124</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8 COMMENT<span class="operator">=</span><span class="string">&#x27;大类实时数据迁移至tube&#x27;</span></span><br><span class="line"><span class="comment">-- 索引明细</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> index <span class="keyword">from</span> index_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------+------------+-----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">Table</span>      <span class="operator">|</span> Non_unique <span class="operator">|</span> Key_name  <span class="operator">|</span> Seq_in_index <span class="operator">|</span> Column_name <span class="operator">|</span> <span class="keyword">Collation</span> <span class="operator">|</span> <span class="keyword">Cardinality</span> <span class="operator">|</span> Sub_part <span class="operator">|</span> Packed <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Index_type <span class="operator">|</span> Comment <span class="operator">|</span> Index_comment <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+------------+-----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">0</span> <span class="operator">|</span> <span class="keyword">PRIMARY</span>   <span class="operator">|</span>            <span class="number">1</span> <span class="operator">|</span> f_id        <span class="operator">|</span> A         <span class="operator">|</span>     <span class="number">1191444</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_mix   <span class="operator">|</span>            <span class="number">1</span> <span class="operator">|</span> f_date      <span class="operator">|</span> A         <span class="operator">|</span>          <span class="number">44</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_mix   <span class="operator">|</span>            <span class="number">2</span> <span class="operator">|</span> f_minute    <span class="operator">|</span> A         <span class="operator">|</span>       <span class="number">70084</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_mix   <span class="operator">|</span>            <span class="number">3</span> <span class="operator">|</span> f_bizname   <span class="operator">|</span> A         <span class="operator">|</span>     <span class="number">1191444</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> index_test <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> idx_const <span class="operator">|</span>            <span class="number">1</span> <span class="operator">|</span> f_const     <span class="operator">|</span> A         <span class="operator">|</span>           <span class="number">2</span> <span class="operator">|</span>     <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span>      <span class="operator">|</span> BTREE      <span class="operator">|</span>         <span class="operator">|</span>               <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+------------+-----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不带 WHERE 条件，且查询了非索引字段，全表扫描</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不带 WHERE 条件，count(*) 直接在二级索引树种就可以计算出来</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+-----------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key       <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+-----------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> index <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> idx_const <span class="operator">|</span> <span class="number">4</span>       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+-----------+---------+------+---------+-------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 按主键/索引排序，索引扫描</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">order</span> <span class="keyword">by</span> f_id;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+---------+-------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> index <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> <span class="keyword">PRIMARY</span> <span class="operator">|</span> <span class="number">3</span>       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+---------+-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 索引列不能作为表达式的一部分</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="operator">-</span> <span class="number">1</span><span class="operator">=</span> <span class="number">20200622</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 索引列不能作为函数的参数</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> <span class="built_in">cast</span>(f_date <span class="keyword">as</span> unsigned) <span class="operator">=</span> <span class="number">20200622</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 索引查找，只使用了联合索引idx_mix中第一个字段</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="operator">=</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------+------+-------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>   <span class="operator">|</span> <span class="keyword">rows</span> <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------+------+-------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">4</span>       <span class="operator">|</span> const <span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------+------+-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 索引查找，只使用了联合索引idx_mix中前两个字段，索引使用顺序不影响</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_minute<span class="operator">=</span><span class="string">&#x27;202006220001&#x27;</span> <span class="keyword">and</span> f_date <span class="operator">=</span> <span class="string">&#x27;20200622&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------------+------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>         <span class="operator">|</span> <span class="keyword">rows</span> <span class="operator">|</span> Extra                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------------+------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">42</span>      <span class="operator">|</span> const,const <span class="operator">|</span>   <span class="number">39</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="keyword">condition</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------------+------+-----------------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 全值匹配</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_minute<span class="operator">=</span><span class="string">&#x27;202006220001&#x27;</span> <span class="keyword">and</span> f_date <span class="operator">=</span> <span class="string">&#x27;20200622&#x27;</span> <span class="keyword">and</span> f_bizname<span class="operator">=</span><span class="string">&#x27;首页&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------------------+------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>               <span class="operator">|</span> <span class="keyword">rows</span> <span class="operator">|</span> Extra                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------------------+------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">140</span>     <span class="operator">|</span> const,const,const <span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="keyword">condition</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+---------+---------+-------------------+------+-----------------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 最左前缀 + 范围查询，范围后的索引列仍会有效（在我测试的10.1.9-MariaDB版本是这样）</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span>  </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_minute<span class="operator">=</span><span class="string">&#x27;202006220001&#x27;</span> <span class="keyword">and</span> f_bizname<span class="operator">=</span><span class="string">&#x27;首页&#x27;</span> <span class="keyword">and</span> f_date <span class="keyword">between</span> <span class="number">20200622</span> <span class="keyword">and</span> <span class="number">20200623</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>   <span class="operator">|</span> Extra                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">range</span> <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">140</span>     <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">101998</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="keyword">condition</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+-----------------------+</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure></div>
+<h4 id="是否使用索引"><a href="#是否使用索引" class="headerlink" title="是否使用索引"></a>是否使用索引</h4><h5 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h5><p>即使正确定义并命中了索引，最终的执行计划是否会使用索引仍要取决于查询优化器的判断，优化器会对比所有可能的方案，找出成本最低的方案作为最终的执行计划，大致过程如下：</p>
+<ol>
+<li>根据查找条件找出所有可能使用的索引，计算使用不同索引执行查询的代价；</li>
+<li>计算全表扫描的代价；</li>
+<li>选择代价最低的方案作为执行计划；</li>
+</ol>
+<p>Mysql 的代价模型比较复杂，感兴趣的话可以参考 <a target="_blank" rel="noopener" href="http://mysql.taobao.org/monthly/2016/07/02/">MySQL 5.7 代价模型浅析</a>，这里不对细节进行深究。</p>
+<h5 id="范围索引"><a href="#范围索引" class="headerlink" title="范围索引"></a>范围索引</h5><p>范围访问方法使用单个索引来检索包含在一个或多个索引值区间内的表行的子集，这里的单个索引可以是单列索引或联合索引。</p>
+<ol>
+<li>对于单列索引，可以通过 WHERE 子句中的条件表达式来表示范围条件，当使用 &gt;、&lt;、&gt;=、&lt;=，between，!= 、&lt;&gt; 或 LIKE 不以通配符(%)开头的索引列与常量值比较时，是个范围条件，多个范围条件使用 OR 或 AND 组合而成。</li>
+<li>对于联合索引，区间可能适用于 AND 的条件组合，其中每个条件使用 =、&lt;=&gt;、IS NULL、&gt;、&gt;=、&lt;、&lt;=、!= 、&lt;&gt;、BETWEEN 或 LIEK 模糊匹配(不能通配符开头) 来比较索引和常量值。</li>
+</ol>
+<p>对于范围索引，查询优化器会通过“索引统计信息”来估计每个范围的行数，如果行数占表总行比例较大，且不会触发覆盖索引，查询优化器会放弃使用范围索引，直接使用全表扫描：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 只是修改了数据范围，就改变了索引选择；实验表明，如果减少表中整体的数据量，以下两个都不会走索引</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="keyword">between</span> <span class="number">20200620</span> <span class="keyword">and</span> <span class="number">20200621</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>   <span class="operator">|</span> Extra                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">range</span> <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">4</span>       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">115016</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="keyword">condition</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+-----------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.03</span> sec)</span><br><span class="line"></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="keyword">between</span> <span class="number">20200618</span> <span class="keyword">and</span> <span class="number">20200619</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> idx_mix       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h5><p>如果一个索引包含（覆盖）所有需要查询的字段（主键以外的字段），我们就称之为“覆盖索引”。覆盖索引可以直接在二级索引树种查询到所有字段，无需进行回表查询，可以<strong>极大</strong>提高查询性能。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- (f_minute, f_bizname) 是主键，(f_date, f_minute, f_bizname) 是一个联合索引</span></span><br><span class="line">explain </span><br><span class="line"><span class="keyword">select</span> f_date, f_minute, f_bizname</span><br><span class="line"><span class="keyword">from</span> index_test </span><br><span class="line"><span class="keyword">where</span> f_date<span class="operator">=</span><span class="string">&#x27;20200622&#x27;</span> <span class="keyword">and</span> f_minute <span class="keyword">like</span> <span class="string">&#x27;2020062200%&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Extra 列中的 Using index 表示使用的是覆盖索引</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span> <span class="operator">|</span> Extra                    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">range</span> <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">42</span>      <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">2160</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span>; <span class="keyword">Using</span> index <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+------+--------------------------+</span></span><br></pre></td></tr></table></figure></div>
+<p>但如果索引不能覆盖查询所需的全部列，那就不得不每扫描一条索引记录就回表查询一次对应的行。<br>这基本上都是随机I/O，因此按索引顺序读取数据的速度通常要比顺序地全表扫描慢，尤其是在I/O密集型的工作负载时。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> pager cat <span class="operator">&gt;</span> <span class="operator">/</span>dev<span class="operator">/</span><span class="keyword">null</span>;</span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br><span class="line"><span class="number">1195949</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">1.63</span> sec)</span><br><span class="line"></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname, f_uv</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br><span class="line"><span class="number">1195949</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">4.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 排序没有走索引，而是进行了全表扫描</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname, f_uv</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> filesort <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+----------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> index <span class="operator">|</span> <span class="keyword">NULL</span>          <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">140</span>     <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+---------+-------------+</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="延迟关联"><a href="#延迟关联" class="headerlink" title="延迟关联"></a>延迟关联</h5><p>如果查询字段中包含了该索引（以及主键）以外的字段，便无法使用覆盖索引，此时可以通过一种“延迟关联”的技术先在子查询中通过覆盖索引查询对应主键集合，再通过主键关联其余字段。这样就不用每次都进行回表查询，减少了磁盘 I/O 读取次数。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- f_uv 不在索引内，无法使用覆盖索引</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname, f_uv</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="keyword">between</span> <span class="string">&#x27;20200620&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;20200622&#x27;</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>    <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> idx_mix       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">1191444</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+------+---------------+------+---------+------+---------+-------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.03</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- f_date, f_minute, f_bizname 在索引内，可以使用覆盖索引</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="keyword">between</span> <span class="string">&#x27;20200620&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;20200622&#x27;</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span>   <span class="operator">|</span> Extra                    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">range</span> <span class="operator">|</span> idx_mix       <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">4</span>       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="number">217974</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span>; <span class="keyword">Using</span> index <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+---------------+---------+---------+------+--------+--------------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.03</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 延迟关联，子查询使用覆盖索引，a 使用索引查找</span></span><br><span class="line">MariaDB [db_data_anlysis]<span class="operator">&gt;</span> explain</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> a.<span class="operator">*</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> index_test a</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">join</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="keyword">select</span> f_date, f_minute, f_bizname</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> index_test </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> f_date <span class="keyword">between</span> <span class="string">&#x27;20200620&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;20200622&#x27;</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ) b </span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">on</span> a.f_bizname <span class="operator">=</span> b.f_bizname <span class="keyword">and</span> a.f_minute <span class="operator">=</span> b.f_minute</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+-----------------+---------+---------+--------------------------------------+--------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span> id   <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span>      <span class="operator">|</span> type  <span class="operator">|</span> possible_keys   <span class="operator">|</span> key     <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>                                  <span class="operator">|</span> <span class="keyword">rows</span>   <span class="operator">|</span> Extra                    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+-----------------+---------+---------+--------------------------------------+--------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> index_test <span class="operator">|</span> <span class="keyword">range</span> <span class="operator">|</span> idx_biz,idx_mix <span class="operator">|</span> idx_mix <span class="operator">|</span> <span class="number">4</span>       <span class="operator">|</span> <span class="keyword">NULL</span>                                 <span class="operator">|</span> <span class="number">217974</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span>; <span class="keyword">Using</span> index <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>    <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> a          <span class="operator">|</span> <span class="keyword">ref</span>   <span class="operator">|</span> idx_biz         <span class="operator">|</span> idx_biz <span class="operator">|</span> <span class="number">20</span>      <span class="operator">|</span> db_data_anlysis.index_test.f_bizname <span class="operator">|</span>  <span class="number">10451</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span>              <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+-------------+------------+-------+-----------------+---------+---------+--------------------------------------+--------+--------------------------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.03</span> sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h5 id="索引提示"><a href="#索引提示" class="headerlink" title="索引提示"></a>索引提示</h5><p>MySQL 支持通过“索引提示”显式地告诉优化器使用哪个索引，这在以下两种情况下可能会用到：</p>
+<ol>
+<li>查询优化器错误地选择了某个索引：这种情况在最新的 MySQL 版本中已经非常少见了；</li>
+<li>查询可选索引非常多，导致选择执行计划的事件开销很大：这是可以通过索引提示强行指定索引来完成查询；</li>
+</ol>
+<p>常用的 Index Hint 语法如下：如果是对主键的 Hint，可以用 <code>PRI</code> 指代主键</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- USE INDEX 只是告诉优化器可以选择该索引，但实际上优化器还是会再根据自己的判断进行选择</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> t</span><br><span class="line">USE INDEX(index_a)</span><br><span class="line"><span class="keyword">WHERE</span> a<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> b<span class="operator">=</span><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- FORCE INDEX 可以强制优化器使用该索引</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> t</span><br><span class="line">FORCE INDEX(index_a)</span><br><span class="line"><span class="keyword">WHERE</span> a<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> b<span class="operator">=</span><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- IGNORE INDEX 可以强制优化器不使用某个索引</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> t</span><br><span class="line">IGNORE INDEX(index_a)</span><br><span class="line"><span class="keyword">WHERE</span> a<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> b<span class="operator">=</span><span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="辅助信息"><a href="#辅助信息" class="headerlink" title="辅助信息"></a>辅助信息</h3><h4 id="查看查询耗时"><a href="#查看查询耗时" class="headerlink" title="查看查询耗时"></a>查看查询耗时</h4><p>在执行完查询语句之后可以通过 <code>show profiles</code> 查看查询时间：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看profiling 是否是on状态</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;%profiling%&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 如果是off，则 </span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> profiling <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 执行自己的sql语句</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> f_date, f_minute, f_bizname<span class="keyword">from</span> index_test <span class="keyword">where</span> f_minute <span class="operator">=</span> <span class="number">202006200001</span> <span class="keyword">and</span> f_bizname <span class="operator">=</span> <span class="string">&#x27;首页&#x27;</span><span class="operator">+</span><span class="comment">----------+--------------+-----------+</span></span><br><span class="line"><span class="operator">|</span> f_date   <span class="operator">|</span> f_minute     <span class="operator">|</span> f_bizname <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+--------------+-----------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">20200620</span> <span class="operator">|</span> <span class="number">202006200001</span> <span class="operator">|</span> 首页      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+--------------+-----------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.20</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- show profiles 查看语句执行时间</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> profiles;</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+------------+------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Query_ID <span class="operator">|</span> Duration   <span class="operator">|</span> Query                                                                                                      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+------------+------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span> <span class="number">0.16595042</span> <span class="operator">|</span> <span class="keyword">select</span> f_date, f_minute, f_bizname</span><br><span class="line"><span class="keyword">from</span> index_test </span><br><span class="line"><span class="keyword">where</span> f_minute <span class="operator">=</span> <span class="number">202006200001</span> <span class="keyword">and</span> f_bizname <span class="operator">=</span> <span class="string">&#x27;首页&#x27;</span>   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+------------+------------------------------------------------------------------------------------------------------------+</span></span><br></pre></td></tr></table></figure>
+<h4 id="查看索引统计信息"><a href="#查看索引统计信息" class="headerlink" title="查看索引统计信息"></a>查看索引统计信息</h4><p>MySQL 执行 SQL 会经过 SQL 解析和查询优化的过程，解析器将 SQL 分解成数据结构并传递到后续步骤，查询优化器发现执行 SQL 查询的最佳方案、生成执行计划。查询优化器决定 SQL 如何执行，依赖于数据库的统计信息，下面我们介绍MySQL 5.7中innodb统计信息的相关内容。</p>
+<p>MySQL统计信息的存储分为两种，非持久化和持久化统计信息。</p>
+<h5 id="非持久化统计信息"><a href="#非持久化统计信息" class="headerlink" title="非持久化统计信息"></a>非持久化统计信息</h5><p>非持久化统计信息存储在内存里，如果数据库重启，统计信息将丢失，有两种方式可以设置为非持久化统计信息：</p>
+<ol>
+<li>全局变量，INNODB_ STATS_PERSISTENT=OFF</li>
+<li>CREATE/ALTER 表的参数，STATS_PERSISTENT=0</li>
+</ol>
+<p>非持久化统计信息在以下情况会被自动更新：</p>
+<ol>
+<li>执行 <code>ANALYZE TABLE</code> 语句</li>
+<li>innodb_stats_on_metadata=ON 情况下，执 SHOW TABLE STATUS, SHOW INDEX, 查询  INFORMATION_SCHEMA下的TABLES, STATISTICS</li>
+<li>启用 —auto-rehash 功能情况下，使用 mysql client 登录</li>
+<li>表第一次被打开</li>
+<li>距上一次更新统计信息，表 1/16 的数据被修改</li>
+</ol>
+<p>非持久化统计信息的缺点显而易见，数据库重启后如果大量表开始更新统计信息，会对实例造成很大影响，所以目前都会使用持久化统计信息。</p>
+<h5 id="持久化统计信息"><a href="#持久化统计信息" class="headerlink" title="持久化统计信息"></a>持久化统计信息</h5><p>5.6.6开始，MySQL默认使用了持久化统计信息，即 INNODB_STATS_PERSISTENT=ON ，持久化统计信息保存在表 mysql.innodb_table_stats 和 mysql.innodb_index_stats 。</p>
+<p>持久化统计信息在以下情况会被自动更新：</p>
+<ol>
+<li>INNODB_ STATS _AUTO_RECALC=ON 情况下，表中 10% 的数据被修改</li>
+<li>增加新的索引  </li>
+</ol>
+<p>innodb_table_stats 是表的统计信息：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database_name</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>table_name</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>last_update</td>
+<td>统计信息最后一次更新时间</td>
+</tr>
+<tr>
+<td>n_rows</td>
+<td>表的行数</td>
+</tr>
+<tr>
+<td>clustered_index_size</td>
+<td>聚集索引的页的数量</td>
+</tr>
+<tr>
+<td>sum_of_other_index_sizes</td>
+<td>其他索引的页的数量</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>innodb_index_stats 是索引的统计信息：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database_name</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>table_name</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>index_name</td>
+<td>索引名</td>
+</tr>
+<tr>
+<td>last_update</td>
+<td>统计信息最后一次更新时间</td>
+</tr>
+<tr>
+<td>stat_name</td>
+<td>统计信息名</td>
+</tr>
+<tr>
+<td>stat_value</td>
+<td>统计信息的值</td>
+</tr>
+<tr>
+<td>sample_size</td>
+<td>采样大小</td>
+</tr>
+<tr>
+<td>stat_description</td>
+<td>类型说明</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t1 ( </span><br><span class="line">	a <span class="type">INT</span>, b <span class="type">INT</span>, c <span class="type">INT</span>, d <span class="type">INT</span>, e <span class="type">INT</span>, f <span class="type">INT</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> KEY (a, b), </span><br><span class="line">	KEY i1 (c, d), </span><br><span class="line">	<span class="keyword">UNIQUE</span> KEY i2uniq (e, f)</span><br><span class="line">) ENGINE<span class="operator">=</span>INNODB;</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">+</span><span class="comment">---+---+------+------+------+------+</span></span><br><span class="line"><span class="operator">|</span> a <span class="operator">|</span> b <span class="operator">|</span> c    <span class="operator">|</span> d    <span class="operator">|</span> e    <span class="operator">|</span> f    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---+---+------+------+------+------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span> <span class="operator">|</span> <span class="number">1</span> <span class="operator">|</span>   <span class="number">10</span> <span class="operator">|</span>   <span class="number">11</span> <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span>  <span class="number">101</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span> <span class="operator">|</span> <span class="number">2</span> <span class="operator">|</span>   <span class="number">10</span> <span class="operator">|</span>   <span class="number">11</span> <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span>  <span class="number">102</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span> <span class="operator">|</span> <span class="number">3</span> <span class="operator">|</span>   <span class="number">10</span> <span class="operator">|</span>   <span class="number">12</span> <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span>  <span class="number">103</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span> <span class="operator">|</span> <span class="number">4</span> <span class="operator">|</span>   <span class="number">10</span> <span class="operator">|</span>   <span class="number">12</span> <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span>  <span class="number">104</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---+---+------+------+------+------+</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> last_update, n_rows, clustered_index_size, sum_of_other_index_sizes</span><br><span class="line"><span class="keyword">from</span> mysql.innodb_table_stats </span><br><span class="line"><span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;t1&#x27;</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+--------+----------------------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span> last_update         <span class="operator">|</span> n_rows <span class="operator">|</span> clustered_index_size <span class="operator">|</span> sum_of_other_index_sizes <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+--------+----------------------+--------------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2020</span><span class="number">-07</span><span class="number">-02</span> <span class="number">15</span>:<span class="number">42</span>:<span class="number">11</span> <span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span>                    <span class="number">1</span> <span class="operator">|</span>                        <span class="number">2</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+--------+----------------------+--------------------------+</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> index_name, stat_name, stat_value, stat_description</span><br><span class="line"><span class="keyword">from</span> mysql.innodb_index_stats </span><br><span class="line"><span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;t1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+------------+-----------------------------------+</span></span><br><span class="line"><span class="operator">|</span> index_name <span class="operator">|</span> stat_name    <span class="operator">|</span> stat_value <span class="operator">|</span> stat_description                  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+------------+-----------------------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">PRIMARY</span>    <span class="operator">|</span> n_diff_pfx01 <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> a                                 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">PRIMARY</span>    <span class="operator">|</span> n_diff_pfx02 <span class="operator">|</span>          <span class="number">4</span> <span class="operator">|</span> a,b                               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">PRIMARY</span>    <span class="operator">|</span> n_leaf_pages <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> Number <span class="keyword">of</span> leaf pages <span class="keyword">in</span> the index <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">PRIMARY</span>    <span class="operator">|</span> size         <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> Number <span class="keyword">of</span> pages <span class="keyword">in</span> the index      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i1         <span class="operator">|</span> n_diff_pfx01 <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> c                                 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i1         <span class="operator">|</span> n_diff_pfx02 <span class="operator">|</span>          <span class="number">2</span> <span class="operator">|</span> c,d                               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i1         <span class="operator">|</span> n_diff_pfx03 <span class="operator">|</span>          <span class="number">2</span> <span class="operator">|</span> c,d,a                             <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i1         <span class="operator">|</span> n_diff_pfx04 <span class="operator">|</span>          <span class="number">4</span> <span class="operator">|</span> c,d,a,b                           <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i1         <span class="operator">|</span> n_leaf_pages <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> Number <span class="keyword">of</span> leaf pages <span class="keyword">in</span> the index <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i1         <span class="operator">|</span> size         <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> Number <span class="keyword">of</span> pages <span class="keyword">in</span> the index      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i2uniq     <span class="operator">|</span> n_diff_pfx01 <span class="operator">|</span>          <span class="number">2</span> <span class="operator">|</span> e                                 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i2uniq     <span class="operator">|</span> n_diff_pfx02 <span class="operator">|</span>          <span class="number">4</span> <span class="operator">|</span> e,f                               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i2uniq     <span class="operator">|</span> n_leaf_pages <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> Number <span class="keyword">of</span> leaf pages <span class="keyword">in</span> the index <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> i2uniq     <span class="operator">|</span> size         <span class="operator">|</span>          <span class="number">1</span> <span class="operator">|</span> Number <span class="keyword">of</span> pages <span class="keyword">in</span> the index      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------+--------------+------------+-----------------------------------+</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>stat_name=size 时：stat_value 表示索引页的数量</li>
+<li>stat_name=n_leaf_pages 时： stat_value 表示叶子节点的数量</li>
+<li>stat_name=n_diff_pfxNN 时： stat_value 表示索引字段上唯一值的数量，此处做一下具体说明：<ul>
+<li>n_diff_pfx01 表示索引第一列 distinct 之后的数量，如 PRIMARY 的a列，只有一个值1，所以 index_name=’PRIMARY’ and stat_name=’n_diff_pfx01’ 时， stat_value=1；</li>
+<li>n_diff_pfx02 表示索引前两列 distinct 之后的数量，如 i2uniq 的 e,f 列，有4个值，所以 index_name=’i2uniq’ and stat_name=’n_diff_pfx02’ 时， stat_value=4；</li>
+<li>对于非唯一索引，会在原有列之后加上主键索引，如 index_name=’i1’ and stat_name=’n_diff_pfx03’ ，在原索引列c,d后加了主键列 a，(c,d,a) 的 distinct 结果为2；</li>
+</ul>
+</li>
+</ul>
+<p>了解了 stat_name 和 stat_value 的具体含义，就可以协助我们排查SQL执行时为什么没有使用合适的索引，例如某个索引 n_diff_pfxNN 的 stat_value 远小于实际值，查询优化器认为该索引选择度较差，就有可能导致使用错误的索引。</p>
+<h5 id="统计信息不准确的处理"><a href="#统计信息不准确的处理" class="headerlink" title="统计信息不准确的处理"></a>统计信息不准确的处理</h5><p>我们查看执行计划，发现未使用正确的索引，如果是 innodb_index_stats 中统计信息差别较大引起，可通过以下方式处理：</p>
+<ol>
+<li>手动更新统计信息 <code>ANALYZE TABLE TABLE_NAME</code>，注意执行过程中会加读锁；</li>
+<li>如果更新后统计信息仍不准确，可考虑增加表采样的数据页，两种方式可以修改：<ol>
+<li>全局变量 <code>INNODB_STATS_PERSISTENT_SAMPLE_PAGES</code>，默认为20；</li>
+<li>单个表可以指定该表的采样：<code>ALTER TABLE TABLE_NAME STATS_SAMPLE_PAGES=40</code>； 经测试，此处 STATS_SAMPLE_PAGES 的最大值是65535，超出会报错。</li>
+</ol>
+</li>
+</ol>
+<p>目前MySQL并没有提供直方图的功能，某些情况下（如数据分布不均）仅仅更新统计信息不一定能得到准确的执行计划，只能通过 index hint 的方式指定索引，新版本8.0会增加直方图功能。</p>
+<h3 id="索引设计原则"><a href="#索引设计原则" class="headerlink" title="索引设计原则"></a>索引设计原则</h3><p>实践中的一些经验法则：</p>
+<ol>
+<li>在使用频繁的条件字段上建立索引：根据表上最频繁的查询语句，在 WHERE 条件字段或 JOIN 关联字段上建立索引，关联字段尽量保持和关联表字段相同的数据类型；</li>
+<li>在选择性好的字段上建索引：选择性可以用索引基数来衡量，尽量选择不同值较多的字段建立索引，如果索引基数很小，就没有建索引的必要了，建了优化器可能也不会选择，除非是为了满足最左前缀的需求；</li>
+<li>过长的字段可以在列前缀上建立索引：在类似 url 这样长度特别大的字段上建立索引，会增加系统开销，如果前几个字段就有不错的选择性，只需要在其前缀上建立索引就好了；</li>
+<li>定义联合索引以实现覆盖索引：覆盖索引能够带来性能的极大提升，可以考虑把需要经常查询的字段也加到索引中去；</li>
+<li>联合索引选择合适的索引列顺序：需要综合考虑满足频繁查询的最左前缀，以及高选择性字段在前的原则；</li>
+<li>减少冗余索引：优化器在选择索引的时候会计算各种索引方案的代价，索引太多也会影响查询性能<ol>
+<li>如果创建了索引(A, B) 再创建 (A) 就是冗余索引，因为这只是一个索引前缀</li>
+<li>如果创建了索引(A, B) 再创建 (A, PRIMARY) 也是冗余索引，因为主键已将包含在二级索引树中了</li>
+<li>删除重复索引，重复索引是指在相同列上按相同顺序创建的相同类型的索引，如已经将ID作为主键了，再添加先的索引 INDEX(ID)</li>
+<li>删除未使用的索引</li>
+</ol>
+</li>
+</ol>
+<p>理解索引是如何工作的非常重要，应该根据这些理解来创建最合适的索引，而不是根据一些诸如“在多列索引中将选择性最高的列放在第一列”或“应该为WHERE子句中出现的所有列创建索引”之类的经验法则及其推论。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jRZMMONW3QP43dsDKIV9VQ">漫画：什么是 B+树</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020416577">B树和B+树</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.itpub.net/26736162/viewspace-2644274/">MySQL统计信息系列</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/73204847">我以为我对Mysql索引很了解，直到我遇到了阿里的面试官</a></li>
+<li><a target="_blank" rel="noopener" href="http://mysql.taobao.org/monthly/2016/07/02/">MySQL · 特性分析 · 5.7 代价模型浅析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.gxitsky.com/2019/03/21/mysql-20-Optimizing-Rang-Scan/">MySQL系列(二十)：优化 之 范围查询优化</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Linux/Tools/Linux%EF%BC%9A%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" rel="next" title="Linux：定时任务">
+                <i class="fa fa-chevron-left"></i> Linux：定时任务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94%20Option/" rel="prev" title="Scala 教程：Collections（五）—— Option">
+                Scala 教程：Collections（五）—— Option <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">1.</span> <span class="nav-text">What</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">索引类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">B+Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.</span> <span class="nav-text">聚簇索引和二级索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.</span> <span class="nav-text">定义索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">删除索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.3.</span> <span class="nav-text">修改索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.4.</span> <span class="nav-text">查看索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.</span> <span class="nav-text">使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E5%90%A6%E5%91%BD%E4%B8%AD%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">能否命中索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">是否使用索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">查询优化器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">范围索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">覆盖索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BB%B6%E8%BF%9F%E5%85%B3%E8%81%94"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">延迟关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%8F%90%E7%A4%BA"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">索引提示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E4%BF%A1%E6%81%AF"><span class="nav-number">2.3.</span> <span class="nav-text">辅助信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9F%A5%E8%AF%A2%E8%80%97%E6%97%B6"><span class="nav-number">2.3.1.</span> <span class="nav-text">查看查询耗时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="nav-number">2.3.2.</span> <span class="nav-text">查看索引统计信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%9E%E6%8C%81%E4%B9%85%E5%8C%96%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">非持久化统计信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">持久化统计信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E4%B8%8D%E5%87%86%E7%A1%AE%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">统计信息不准确的处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">2.4.</span> <span class="nav-text">索引设计原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

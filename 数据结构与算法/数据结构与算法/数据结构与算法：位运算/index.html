@@ -1,37 +1,1747 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构与算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="原码-反码-补码 机器数：一个数在计算机中的二进制表示叫做这个数的机器数。机器数是带符号的，在计算机中用一个数的最高位存放符号，正数为0，负数为1。 符号位：机器数的最高位 数值位：机器数的其余位 真值：将带符号的机器数对应的真正数值称为机器数的真值。  原码、反码、补码是机器数的不同编码方式，它们都以最高位作为符号位（0代表正数，1代表负数），它们对正数的编码完全相同，不同的只是负数和0的编码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法：位运算">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="原码-反码-补码 机器数：一个数在计算机中的二进制表示叫做这个数的机器数。机器数是带符号的，在计算机中用一个数的最高位存放符号，正数为0，负数为1。 符号位：机器数的最高位 数值位：机器数的其余位 真值：将带符号的机器数对应的真正数值称为机器数的真值。  原码、反码、补码是机器数的不同编码方式，它们都以最高位作为符号位（0代表正数，1代表负数），它们对正数的编码完全相同，不同的只是负数和0的编码。">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/12-05-31.jpg">
+<meta property="article:published_time" content="2017-10-10T12:13:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.926Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/12-05-31.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：位运算/"/>
+
+
+
+
+
+  <title>数据结构与算法：位运算 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构与算法：位运算</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:13:53+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97/" class="leancloud_visitors" data-flag-title="数据结构与算法：位运算">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="原码-反码-补码"><a href="#原码-反码-补码" class="headerlink" title="原码-反码-补码"></a>原码-反码-补码</h2><ul>
+<li>机器数：一个数在计算机中的二进制表示叫做这个数的机器数。机器数是带符号的，在计算机中用一个数的最高位存放符号，正数为0，负数为1。</li>
+<li>符号位：机器数的最高位</li>
+<li>数值位：机器数的其余位</li>
+<li>真值：将带符号的机器数对应的真正数值称为机器数的真值。</li>
+</ul>
+<p>原码、反码、补码是机器数的不同编码方式，它们都以最高位作为符号位（0代表正数，1代表负数），它们对正数的编码完全相同，不同的只是负数和0的编码。</p>
+<h3 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h3><p>规则：</p>
+<ul>
+<li>正数的原码就是其自身</li>
+<li>负数的原码就是符号位为1，数值位为真值绝对值</li>
+<li>0的原码有两种表示，数值位全为0，符号位为0表+0，为1表-0</li>
+<li>可表示范围$[-(2^{31}-1),2^{31}-1]$</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 以4字节int型为例</span><br><span class="line">[1] = 00000000 00000000 00000000 000000001</span><br><span class="line">[-1] = 10000000 00000000 00000000 000000001</span><br><span class="line">[2147483647] = 01111111 11111111 11111111 11111111</span><br><span class="line">[-2147483647] = 11111111 11111111 11111111 11111111</span><br><span class="line">[+0] = 00000000 00000000 00000000 000000000</span><br><span class="line">[-0] = 10000000 00000000 00000000 000000000</span><br></pre></td></tr></table></figure></div>
+<h3 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h3><p>规则：</p>
+<ul>
+<li>正数的反码就是其自身</li>
+<li>负数的反码为其绝对值各位取反</li>
+<li>0的反码有两种表示，全为0表+0，全为1表-0</li>
+<li>可表示范围$[-(2^{31}-1),2^{31}-1]$</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 以4字节int型为例</span><br><span class="line">[1] = 00000000 00000000 00000000 000000001</span><br><span class="line">[-1] = 11111111 11111111 11111111 11111110</span><br><span class="line">[2147483647] = 01111111 11111111 11111111 11111111</span><br><span class="line">[-2147483647] = 10000000 00000000 00000000 00000000</span><br><span class="line">[+0] = 00000000 00000000 00000000 000000000</span><br><span class="line">[-0] = 11111111 11111111 11111111 11111111</span><br></pre></td></tr></table></figure></div>
+<h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><p>规则：</p>
+<ul>
+<li>正数的补码就是其自身</li>
+<li>负数的补码为其绝对值各位取反后加1：-n = ~n + 1</li>
+<li>0的补码只有一种，全为0</li>
+<li>可表示范围$[-2^{31},2^{31}-1]$</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 以4字节int型为例</span><br><span class="line">[1] = 00000000 00000000 00000000 000000001</span><br><span class="line">[-1] = 11111111 11111111 11111111 11111111</span><br><span class="line">[2147483647] = 01111111 11111111 11111111 11111111</span><br><span class="line">[-2147483648] = 10000000 00000000 00000000 00000000</span><br><span class="line">[0] = 00000000 00000000 00000000 000000000</span><br></pre></td></tr></table></figure></div>
+<p>计算机普遍采用补码，这是因为：</p>
+<ul>
+<li>修复了0的重复编码，还能多表示一个最低位</li>
+<li>可统一加减运算规则</li>
+</ul>
+<h4 id="补码黄金公式"><a href="#补码黄金公式" class="headerlink" title="补码黄金公式"></a>补码黄金公式</h4><p>补码黄金公式，对所有n都成立：</p>
+<script type="math/tex; mode=display">
+-n = \sim n +1 = \sim (n-1)</script><ul>
+<li>~(n-1) = ~n + 1是二进制数按位取补的恒等式，即是说对一个整数先减1再求反和先求反再加1得到的结果是一样的。</li>
+<li>-n = ~n + 1 连接了相反数和取补的关系（相反数取反加一）。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明：</span><br><span class="line">    -n = ~n + 1 &lt;=&gt; -(n-1) = ~(n-1) + 1 &lt;=&gt; -n = ~(n-1)</span><br><span class="line">    -n = ~n + 1 &lt;=&gt; ~(-n) =~(~n+1)=~(~(n-1))=n-1 &lt;=&gt; n = ~(-n) + 1 </span><br></pre></td></tr></table></figure></div>
+<h4 id="常见数字的补码"><a href="#常见数字的补码" class="headerlink" title="常见数字的补码"></a>常见数字的补码</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 32位整型上界2*31-1</span><br><span class="line">01111111 11111111 11111111 11111111</span><br><span class="line"># 1</span><br><span class="line">00000000 00000000 00000000 00000001</span><br><span class="line"># 0</span><br><span class="line">00000000 00000000 00000000 00000000</span><br><span class="line"># -1</span><br><span class="line">11111111 11111111 11111111 11111111</span><br><span class="line"># 32位整型下界-2**31</span><br><span class="line">10000000 00000000 00000000 00000000</span><br></pre></td></tr></table></figure></div>
+<h4 id="补码的加减运算"><a href="#补码的加减运算" class="headerlink" title="补码的加减运算"></a>补码的加减运算</h4><p>和的补码等于补码的和，若符号位有进位则丢掉：[x + y]补 = [x]补 + [y]补</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[33-15]补=[33]补+[-15]补</span><br><span class="line"> 0000 .... 0010 0001</span><br><span class="line"> 1111 .... 1111 0001</span><br><span class="line">10000 .... 0001 0010</span><br><span class="line">丢掉符号位的进位得18</span><br><span class="line"></span><br><span class="line">[3-15]补=[2]补+[-15]补</span><br><span class="line"> 0000 .... 0000 0011</span><br><span class="line"> 1111 .... 1111 0001</span><br><span class="line"> 1111 .... 1111 0100&lt;=&gt;减1取反得绝对值：0000 .... 0000 1100</span><br><span class="line">得-12</span><br></pre></td></tr></table></figure></div>
+<h4 id="C与Python对补码处理的比较"><a href="#C与Python对补码处理的比较" class="headerlink" title="C与Python对补码处理的比较"></a>C与Python对补码处理的比较</h4><p>C和python对整型数据的各种位操作都是按照对该数据的补码进行的，但是在对符号位和溢出的处理上有很大不同，这些差异可能会影响到算法移植的有效性。</p>
+<ul>
+<li><p>C</p>
+<ul>
+<li>固定符号位：C语言中有符号整型数据在不同机器上可能是32位或64位，但无论位宽多少其符号位总是固定的</li>
+<li>可能溢出：对于unsigned整型溢出，C的规范是有定义的——“溢出后的数会以2^(8*sizeof(type))作模运算”。对于signed整型的溢出，C的规范定义是“undefined behavior”，也就是说，编译器爱怎么实现就怎么实现。</li>
+</ul>
+</li>
+<li><p>Python</p>
+<ul>
+<li>浮动符号位：python中int型数据在32位机器上位宽为32位，在64位机器上位宽为64位。自从Python2.2起，如果发生溢出，Python会自动将整型数据转换为长整型，Python中的长整型，没有指定位宽，也就是说Python没有限制长整型数值的大小，只限制于机器内存。由于其位宽不定，其补码的符号位可向外无限扩展</li>
+<li>不存在溢出：由于符号位是根据数据长度自动扩展，因此python中也不存在溢出的可能</li>
+</ul>
+</li>
+</ul>
+<p>python处理32位整数：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 截取32位二进制</span></span><br><span class="line"><span class="number">0xffffffff</span> &amp; -<span class="number">1</span></span><br><span class="line"><span class="number">4294967295</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 补全32位二进制</span></span><br><span class="line"><span class="string">&#x27;&#123;:032b&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="number">3</span>)</span><br><span class="line"><span class="string">&#x27;00000000000000000000000000000011&#x27;</span></span><br><span class="line"><span class="string">&#x27;&#123;:032b&#125;&#x27;</span>.<span class="built_in">format</span>(-<span class="number">3</span>)</span><br><span class="line"><span class="string">&#x27;-0000000000000000000000000000011&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="原码、反码和补码的相互转换"><a href="#原码、反码和补码的相互转换" class="headerlink" title="原码、反码和补码的相互转换"></a>原码、反码和补码的相互转换</h4><p>三者正数的表达是一致的，对于负数三者之间的相互转化规则如下：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/12-05-31.jpg" width="30%" heigh="30%"></img>
+</div>
+
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>C和python对整型数据的各种位操作都是按照对该数据的补码进行的</p>
+<p>两种视角看待位运算符：</p>
+<ul>
+<li>平等视角：两个操作数地位平等</li>
+<li>主从视角：把A当做被操作数，把B当做主操作数，把A * B，看做是用B去改造A，我们只需关注B的不同构造对A的不同影响。</li>
+</ul>
+<h3 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>位操作符</th>
+<th>说明</th>
+<th>C</th>
+<th>Python</th>
+<th>等价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x &lt;&lt; y</td>
+<td>左移，x左移y位</td>
+<td>右侧补零，左侧截断</td>
+<td>右侧补零，左侧不会溢出</td>
+<td><code>x*(2**y)</code></td>
+</tr>
+<tr>
+<td>x &gt;&gt; y</td>
+<td>右移，x右移y位</td>
+<td>右侧截断，左侧不定</td>
+<td>右侧截断，左侧补符号位</td>
+<td><code>x//(2**y)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>C语言中的右移：</p>
+<ul>
+<li>算术移位：右移时，某些机器将对左边空出的部分用符号位填补</li>
+<li>逻辑移位：另一些机器则对左边空出的部分用0填补</li>
+</ul>
+</li>
+<li><p>将某位移至指定位置</p>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 获取二进制各位</span><br><span class="line">x = 10</span><br><span class="line">for i in xrange(32):</span><br><span class="line">    visit(x &gt;&gt; i &amp; 1)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>模拟乘除运算</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1&lt;&lt;2</span><br><span class="line">4</span><br><span class="line">15&gt;&gt;3</span><br><span class="line">1</span><br><span class="line">-2&gt;&gt;222</span><br><span class="line">-1</span><br></pre></td></tr></table></figure></div>
+<h3 id="位逻辑运算符"><a href="#位逻辑运算符" class="headerlink" title="位逻辑运算符"></a>位逻辑运算符</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>位操作符</th>
+<th>平等视角</th>
+<th>主从视角</th>
+<th>运算律</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x &amp; y</td>
+<td>位与，都是1才是1</td>
+<td>1处不变、0处置零</td>
+<td>交换结合、x&amp;x=x、x&amp;0=0、x&amp;1=x</td>
+</tr>
+<tr>
+<td>x `</td>
+<td>` y</td>
+<td>位或，都是0才是0</td>
+<td>1处置1、0处不变</td>
+<td>交换结合、x`</td>
+<td><code>x=x、x</code></td>
+<td><code>0=x、x</code></td>
+<td>`1=x</td>
+</tr>
+<tr>
+<td>x ^ y</td>
+<td>位异或，一个1一个0才是1</td>
+<td>1处取反、0处不变</td>
+<td>交换结合、x<code>^</code>x=0、x<code>^</code>0=x、x<code>^</code>1=~x</td>
+</tr>
+<tr>
+<td>~ x</td>
+<td>按位求补，1变0，0变1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="与"><a href="#与" class="headerlink" title="与"></a>与</h4><p><strong>将某些位变成零</strong>：合理安排主操作数B中的1，结果中将会保留A中对应的位，而将其他位置0，起到过滤效果，因此越与越小。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># 保留A中最后一位，可用于判断整数奇偶</span><br><span class="line">45&amp;1</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line"># 保留A中第32位，可用于提取符号位</span><br><span class="line">-1&gt;&gt;31</span><br><span class="line">-1</span><br><span class="line">-1&gt;&gt;31 &amp; 1</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line"># 保留偶数位</span><br><span class="line">22&amp;0xAAAAAAAA</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line"># 保留奇数位</span><br><span class="line">22&amp;0x55555555</span><br><span class="line"></span><br><span class="line"># 保留第i+1位</span><br><span class="line">a &amp; 1&lt;&lt;i</span><br><span class="line"></span><br><span class="line"># 保留最后一个1</span><br><span class="line">n&amp;~(n-1)</span><br><span class="line"></span><br><span class="line"># 去掉最后一个1</span><br><span class="line">n&amp;(n-1)</span><br><span class="line"></span><br><span class="line"># 保留最后一个字节</span><br><span class="line">257 &amp; 0xFF</span><br><span class="line">1</span><br></pre></td></tr></table></figure></div>
+<h4 id="或"><a href="#或" class="headerlink" title="或"></a>或</h4><p><strong>将某些位置为1</strong>：B为1的位置会将A对应位置置为1，其他位保持不变，因此越或越大。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 将奇数位置1</span><br><span class="line">22|0x55555555</span><br></pre></td></tr></table></figure></div>
+<p>二进制位合并：整体上看，或运算会融合A和B中所有的1；从单个操作数来看，结果会保留本元素中所有的1，0处则取对方的数位。<br><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 由一些二进制位拼出完整二进制序列</span><br><span class="line">res = 0</span><br><span class="line">    for i in xrange(32):</span><br><span class="line">        bit = 0</span><br><span class="line">        for num in nums:</span><br><span class="line">            bit += num &gt;&gt; i &amp; 1</span><br><span class="line">        res |= bit % 3 &lt;&lt; i</span><br><span class="line">    </span><br><span class="line">    if res &gt;&gt; 31 == 1:  # python 32位不是符号位，所以要手动处理</span><br><span class="line">        res -= 2**32</span><br><span class="line">    return res</span><br><span class="line">    </span><br><span class="line">#互换二进制数的奇偶位</span><br><span class="line">  # 先通过左移将奇数位移动到偶数位，再与0xAAAA的与运算，只保留偶数位，奇数位置零</span><br><span class="line">  # 再通过右移将偶数位移动到奇数位，再与0x5555的与运算，只保留奇数位，偶数位置零</span><br><span class="line">  # 对以上两个结果进行或运算</span><br><span class="line">(n&lt;&lt;1)&amp;(0xAAAA))|((n&gt;&gt;1)&amp;(0x5555)</span><br></pre></td></tr></table></figure></div></p>
+<h4 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h4><ul>
+<li>常用公式</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 交换律和结合律</span><br><span class="line">A ^ B = B ^ A</span><br><span class="line">A ^ B ^ C = A ^ (B ^ C)</span><br><span class="line"></span><br><span class="line"># 恒等率、归零律、奇偶律</span><br><span class="line">X ^ 0 = X</span><br><span class="line">X ^ X = 0</span><br><span class="line">A ^ A ^...^ A ^ A = 奇数个就是A,偶数个就是0</span><br><span class="line"></span><br><span class="line"># 移项</span><br><span class="line">A ^ B = C &lt;=&gt; A = C ^ B &lt;=&gt; B = C ^ A</span><br><span class="line"></span><br><span class="line"># 与-1异或相当于求反</span><br><span class="line">A ^ -1 = ~A</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li><p><strong>翻转某些位</strong>：合理安排主操作数B中的1，结果中将会翻转A中对应的位，而将其他位不变，达到翻转被操作数A中某些位的目的。常用的有以下几种：</p>
+</li>
+<li><p>交换两值</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 不用多余空间实现两值交换</span><br><span class="line">a = a ^ b</span><br><span class="line">b = a ^ b</span><br><span class="line">a = a ^ b</span><br></pre></td></tr></table></figure></div></li>
+<li>判断序列中某元素出现次数的奇偶性</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A ^ A ^...^ A ^ A = 奇数个就是A,偶数个就是0</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>整型数组中寻找出现特殊次数的元素</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># 问题1：除了一个元素出现一次，所有数字都出现了偶数次，找到该元素</span><br><span class="line"># 解法：只需求出所有数字的异或结果就是那个只出现一次的数字</span><br><span class="line">A ^ B ^ C ^ B ^ C ^ D ^ A</span><br><span class="line">= A ^ A ^ B ^ B ^ C ^ C ^ D</span><br><span class="line">= 0 ^ 0 ^ 0 ^ D</span><br><span class="line">= 0 ^ D</span><br><span class="line">= D</span><br><span class="line"></span><br><span class="line"># 问题2：除了两个数字出现一次，其他数字都出现两次，找到这两个元素</span><br><span class="line"># 解法：① 先求所有元素的异或，得到这两个数的异或，获取该异或最右侧的1，说明这两个元素在该位上不同；</span><br><span class="line">#    ② 筛选所有该位为1的元素，求其异或就可以得到该位为1的那个出现一次的数；</span><br><span class="line">#    ③ 然后用该数与第一步得到的值进行异或就可得到另外一个数；</span><br><span class="line">xor = 0</span><br><span class="line">for num in nums:</span><br><span class="line">    xor ^= num</span><br><span class="line">last1 = xor &amp; ~(xor-1)</span><br><span class="line">xo = 0</span><br><span class="line">for num in nums:</span><br><span class="line">    if last1 &amp; num:</span><br><span class="line">        xo ^= num</span><br><span class="line">return [xo,xo^xor]</span><br><span class="line"></span><br><span class="line"># 问题3：除了一个数字出现1次，其他数字都出现了3次</span><br><span class="line"># 解法：把所有整数的每一位分别相加后对3取余，即得到该数字的各个二进制位，然后再把二进制位合并转化为数值</span><br><span class="line"># 该方法可以作为求解“只有一个数字出现1次，其他都出现了N次的问题(N&gt;1)”</span><br><span class="line">def singleNumber(nums):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    :type nums: List[int]</span><br><span class="line">    :rtype: int</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    res = 0</span><br><span class="line">    for i in xrange(32):</span><br><span class="line">        bit = 0</span><br><span class="line">        for num in nums:</span><br><span class="line">            bit += num &gt;&gt; i &amp; 1</span><br><span class="line">        res |= bit % 3 &lt;&lt; i</span><br><span class="line">    </span><br><span class="line">    if res &gt;&gt; 31 == 1:  # python 32位不是符号位，所以要手动处理</span><br><span class="line">        res -= 2**32</span><br><span class="line">    return res</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h4 id="非"><a href="#非" class="headerlink" title="非"></a>非</h4><ul>
+<li>各位取反</li>
+<li>求相反数：-n = ~n + 1 = ~(n-1)</li>
+</ul>
+<h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><ul>
+<li>python处理32位整数:使用python做位运算时，谨记python的“符号位浮动”、“不存在溢出”这两大特征！</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># 三个有用的数</span><br><span class="line">mask = 0xFFFFFFFF       # 掩码，用于截断、按位取反</span><br><span class="line">MIN_INT = 0x80000000    # 32位最小负数</span><br><span class="line">MIN_MAX = 0x7FFFFFFF    # 32位最大正数</span><br><span class="line"></span><br><span class="line"># 32位截断</span><br><span class="line">a &amp; 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line"># 32位取反</span><br><span class="line">a ^ 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line"># 获取符号位</span><br><span class="line">a &gt;&gt; 31 &amp; 1</span><br><span class="line"></span><br><span class="line"># 32位正整数：不溢出</span><br><span class="line">    # 在不超出0x7FFFFFFF的范围内，python正整数和C语言signedint机器数一致</span><br><span class="line">    </span><br><span class="line">    # 超出0x7FFFFFFF，python不会溢出，也不会截断</span><br><span class="line">    2**32</span><br><span class="line">    4294967296</span><br><span class="line"></span><br><span class="line"># 32位负整数：浮动符号位</span><br><span class="line">    # 在不超出0x80000000范围内将python负数转化为32位负数，直接截断即可。截断后的二进制在python中会被当做是一个正数，在C语言中则是与截断前真值相等的负整数</span><br><span class="line">    -1&amp;0xFFFFFFFF</span><br><span class="line">    4294967295</span><br><span class="line"></span><br><span class="line">    # 将32位负数转化为python负数，高位需要补1；</span><br><span class="line">    # 或者从另一个角度看，因为它们的正数表示是一致的，可以先将负数转化为绝对值，再转化为python中的负数</span><br><span class="line">~(a^mask+1)+1 = ~(a^mask)</span><br><span class="line">~(4294967295^0xFFFFFFFF)</span><br><span class="line">-1</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>bin和int的用法</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># bin()将整数转化为二进制字符串,有几点需注意</span><br><span class="line">    # ① 返回的二进制字符串只显示第一个1后面的二进制位，不显示更高位</span><br><span class="line">bin(255)</span><br><span class="line">&#x27;0b11111111&#x27;   </span><br><span class="line">    # ② 返回的二进制字符串以原码形式表示，正数以0b开头，负数0b前面有负号,可能是因为浮动符号位的原因，无法全部显示出来</span><br><span class="line">bin(-255)</span><br><span class="line">&#x27;-0b11111111&#x27;</span><br><span class="line"></span><br><span class="line"># int(str,2)将字符串转化为对应的整数，0b可带可不带</span><br><span class="line">int(&#x27;-11111111&#x27;,2)</span><br><span class="line">-255</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>获取32位整型的二进制补码表示</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 对应小于2**31-1的正数</span><br><span class="line">&#x27;&#123;:0&gt;32b&#125;&#x27;.format(255)</span><br><span class="line">&#x27;00000000000000000000000011111111&#x27;</span><br><span class="line"># 负数不行</span><br><span class="line">&#x27;&#123;:0&gt;32b&#125;&#x27;.format(-1)</span><br><span class="line">&#x27;000000000000000000000000000000-1&#x27;</span><br><span class="line"></span><br><span class="line"># 自定义方法</span><br><span class="line">def get32bits(num):</span><br><span class="line">    res = &#x27;&#x27;</span><br><span class="line">    for i in xrange(31,-1,-1):</span><br><span class="line">        res += str(num &gt;&gt; i &amp; 1)</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line"># 将python的整数转化为补码形式的二进制字符串之后，可方便的利用字符串方法求解二进制的一些问题</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>如何将32位二进制补码转化为整数</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def bits_32nums(s):</span><br><span class="line">    res = 0</span><br><span class="line">    for i in xrange(32):</span><br><span class="line">        res &lt;&lt;= 1</span><br><span class="line">        res |= int(s[i])</span><br><span class="line">    if res &gt;&gt; 31 == 1:  # python 32位不是符号位，所以要手动处理</span><br><span class="line">        res -= 2**32</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure></div>
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 问题1：判断一个数是否为2的幂</span><br><span class="line"># 解法：是2的幂&lt;=&gt;首位为1其他位为0&lt;=&gt; </span><br><span class="line">n!=0 and not n&amp;(n-1)</span><br><span class="line"></span><br><span class="line"># 问题2：判断一个数是否为4的幂</span><br><span class="line"># 解法：是4的幂&lt;=&gt;是2的幂，且1在奇数位&lt;=&gt;</span><br><span class="line">n!=0 and not n&amp;(n-1) and n&amp;0x55555555 == n</span><br><span class="line"></span><br><span class="line"># 问题3：不用条件判断求绝对值</span><br><span class="line"># 解法：非负数直接返回，负数，-n = ~n + 1=n^-1 - (-1)</span><br><span class="line">def bit_abs(num):</span><br><span class="line">    negative = num &gt;&gt; 31</span><br><span class="line">    return (num ^ negative) - negative</span><br><span class="line">    </span><br><span class="line"># 问题4：按整数位求解一般问题</span><br><span class="line">？？？</span><br></pre></td></tr></table></figure></div>
+<h3 id="位操作实现加减乘除"><a href="#位操作实现加减乘除" class="headerlink" title="位操作实现加减乘除"></a>位操作实现加减乘除</h3><p>基于以下公式：</p>
+<ol>
+<li>-n = ~n + 1 = ~(n-1)</li>
+<li>去掉整数n二进制中最右边一个1：n &amp; (n-1),如：n=010100，n-1=010011，n&amp;(n-1)=010000</li>
+<li>仅保留整数n二进制中最后一个1：n &amp; ~(n-1),如：n=010100，则<code>~(n-1)=101100，n&amp;~(n-1)=000100</code></li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>原理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加法</td>
+<td>a+b = a^b + (a&amp;b)&lt;&lt;1</td>
+</tr>
+<tr>
+<td>减法</td>
+<td>a-b = a + ~(n-1)</td>
+</tr>
+<tr>
+<td>乘法</td>
+<td><code>a*b = a*(1&lt;&lt;i1+1&lt;&lt;i2...)</code></td>
+</tr>
+<tr>
+<td>除法</td>
+<td><code>a = b*(1&lt;&lt;imax + 1&lt;i2...)+mod</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="加减运算"><a href="#加减运算" class="headerlink" title="加减运算"></a>加减运算</h4><p><strong>原理</strong>：将加法计算分解为两部分：①计算不进位的结果，②是计算各位的进位，然后再将两者相加即得到结果。a,b = a^b,(a&amp;b)&lt;&lt;1</p>
+<p>1、不进位的结果</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0 + 0 = 0</span><br><span class="line">0 + 1 = 1</span><br><span class="line">1 + 0 = 1</span><br><span class="line">1 + 1 = 0</span><br><span class="line">这个过程可以用异或运算实现：</span><br><span class="line">0 ^ 0 = 0</span><br><span class="line">0 ^ 1 = 1</span><br><span class="line">1 ^ 0 = 1</span><br><span class="line">1 ^ 1 = 0</span><br></pre></td></tr></table></figure></div>
+<p>2、各位的进位</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0 + 0 = 0</span><br><span class="line">0 + 1 = 0</span><br><span class="line">1 + 0 = 0</span><br><span class="line">1 + 1 = 10</span><br><span class="line">这个过程可以用位与和移位来实现：</span><br><span class="line">0 &amp; 0 = 0   (0 &amp; 0)&lt;&lt;1 = 0 </span><br><span class="line">0 &amp; 1 = 0   (0 &amp; 1)&lt;&lt;1 = 0</span><br><span class="line">1 &amp; 0 = 0   (1 &amp; 0)&lt;&lt;1 = 0</span><br><span class="line">1 &amp; 1 = 1   (1 &amp; 1)&lt;&lt;1 = 10</span><br></pre></td></tr></table></figure></div>
+<p><strong>代码一般实现</strong></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 加法-非递归</span><br><span class="line">def getSum(a,b):</span><br><span class="line">    while b:</span><br><span class="line">        a,b = a^b, (a&amp;b)&lt;&lt;1</span><br><span class="line">    return a</span><br><span class="line"># 加法-递归</span><br><span class="line">def getSum(a,b):</span><br><span class="line">    if b:</span><br><span class="line">        return getSum(a^b,(a&amp;b)&lt;&lt;1)</span><br><span class="line">    else:</span><br><span class="line">        return a</span><br><span class="line"></span><br><span class="line"># 减法a-b=a+(-b)=a+(~b+1)</span><br><span class="line">def subtraction(a,b):</span><br><span class="line">    return getSum(a,getSum(~b,1)</span><br></pre></td></tr></table></figure></div>
+<p><strong>Python实现</strong><br>因为在python中不存在溢出截断、符号位也不固定，以上减法无法得到正确结果。为了模拟C的行为，需要在每次计算完之后人为截断符号位的进位，以及将符号位固定在32位。<br><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def getSum(a,b):</span><br><span class="line">    MAX = 0x7FFFFFFF                                # 32位整型最大值</span><br><span class="line">    MIN = 0x80000000                                # 32位整型最小值</span><br><span class="line">    mask = 0xFFFFFFFF</span><br><span class="line">    while b != 0:</span><br><span class="line">        a, b = (a ^ b) &amp; mask, ((a &amp; b) &lt;&lt; 1) &amp; mask # 截断32位</span><br><span class="line">    return a if a &lt;= MAX else ~(a ^ mask)            # 如果为负数，先按补码划为正数再划为负数~(a^mask+1)+1= ~(a^mask)</span><br></pre></td></tr></table></figure></div></p>
+<h4 id="乘法运算"><a href="#乘法运算" class="headerlink" title="乘法运算"></a>乘法运算</h4><ul>
+<li>原理：<code>a*b = a*(2**i1+2**i2+...) = a*(1&lt;&lt;i1 + 1&lt;&lt;i2...)=a&lt;&lt;i1+a&lt;&lt;i2...</code>，从低到高检测b的每一位，如果是1，则在结果中累加（res += a&lt;&lt;i）</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def multiply(a,b):</span><br><span class="line">    res =0</span><br><span class="line">    for i in xrange(32):</span><br><span class="line">        if b&amp;(1&lt;&lt;i):res += a&lt;&lt;i</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure></div>
+<h4 id="除法运算"><a href="#除法运算" class="headerlink" title="除法运算"></a>除法运算</h4><ul>
+<li>原理：<code>x = y*(1&lt;&lt;i1+1&lt;&lt;i2...) + mod</code>，从高到低，减得动y&lt;&lt;i就减，同时把1&lt;&lt;i加到结果中去。<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def divide(x,y):</span><br><span class="line">    res = 0</span><br><span class="line">    for i in xrange(31,-1,-1):</span><br><span class="line">        if x &gt;= y&lt;&lt;i:</span><br><span class="line">            res += 1&lt;&lt;i</span><br><span class="line">            x -= y&lt;&lt;i</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html">原码, 反码, 补码 详解</a></li>
+<li>[2] <a target="_blank" rel="noopener" href="http://m.2cto.com/kf/201605/507855.html">整型溢出</a></li>
+<li>[3] <a target="_blank" rel="noopener" href="http://blog.csdn.net/u012505432/article/details/51902155">不用加减乘除做加法中Python存在的bug</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9B%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E5%BF%B5/" rel="next" title="数据结构与算法：图（一）—— 概念">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：图（一）—— 概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9ATrie%20%E6%A0%91/" rel="prev" title="数据结构与算法：Trie 树">
+                数据结构与算法：Trie 树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81-%E5%8F%8D%E7%A0%81-%E8%A1%A5%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">原码-反码-补码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">原码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">反码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">补码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E9%BB%84%E9%87%91%E5%85%AC%E5%BC%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">补码黄金公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%95%B0%E5%AD%97%E7%9A%84%E8%A1%A5%E7%A0%81"><span class="nav-number">1.3.2.</span> <span class="nav-text">常见数字的补码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E7%9A%84%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.3.</span> <span class="nav-text">补码的加减运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C%E4%B8%8EPython%E5%AF%B9%E8%A1%A5%E7%A0%81%E5%A4%84%E7%90%86%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.4.</span> <span class="nav-text">C与Python对补码处理的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E5%92%8C%E8%A1%A5%E7%A0%81%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.5.</span> <span class="nav-text">原码、反码和补码的相互转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">位运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.1.</span> <span class="nav-text">移位运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.2.</span> <span class="nav-text">位逻辑运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E"><span class="nav-number">2.2.1.</span> <span class="nav-text">与</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%96"><span class="nav-number">2.2.2.</span> <span class="nav-text">或</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E6%88%96"><span class="nav-number">2.2.3.</span> <span class="nav-text">异或</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E"><span class="nav-number">2.2.4.</span> <span class="nav-text">非</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.</span> <span class="nav-text">常规操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">其他问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4"><span class="nav-number">2.5.</span> <span class="nav-text">位操作实现加减乘除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-number">2.5.1.</span> <span class="nav-text">加减运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">2.5.2.</span> <span class="nav-text">乘法运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-number">2.5.3.</span> <span class="nav-text">除法运算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

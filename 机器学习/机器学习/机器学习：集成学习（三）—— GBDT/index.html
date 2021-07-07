@@ -1,37 +1,1692 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="GBDT（Gradient Boosted Decision Tree，梯度提升决策树，常被戏称为 “广播电台”），又叫MART（Multiple Additive Regression Tree，多重累加回归树），是通过回归树不断拟合当前模型的残差，并将所得到的残差不断累加至当前模型来得到最终模型的boosting方法。  GBDT 是老牌 ensemble 模型，在10年前那个属于ense">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习：集成学习（三）—— GBDT">
+<meta property="og:url" content="http://liketea.xyz/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20GBDT/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="GBDT（Gradient Boosted Decision Tree，梯度提升决策树，常被戏称为 “广播电台”），又叫MART（Multiple Additive Regression Tree，多重累加回归树），是通过回归树不断拟合当前模型的残差，并将所得到的残差不断累加至当前模型来得到最终模型的boosting方法。  GBDT 是老牌 ensemble 模型，在10年前那个属于ense">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-18-28.jpg">
+<meta property="article:published_time" content="2018-10-20T12:23:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.939Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-18-28.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/机器学习/机器学习/机器学习：集成学习（三）—— GBDT/"/>
+
+
+
+
+
+  <title>机器学习：集成学习（三）—— GBDT | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20GBDT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">机器学习：集成学习（三）—— GBDT</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T20:23:53+08:00">
+                2018-10-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20GBDT/" class="leancloud_visitors" data-flag-title="机器学习：集成学习（三）—— GBDT">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20-18-28.jpg" alt=""></p>
+<blockquote>
+<p>GBDT（Gradient Boosted Decision Tree，梯度提升决策树，常被戏称为 “广播电台”），又叫MART（Multiple Additive Regression Tree，多重累加回归树），是通过回归树不断拟合当前模型的残差，并将所得到的残差不断累加至当前模型来得到最终模型的boosting方法。</p>
+</blockquote>
+<p>GBDT 是老牌 ensemble 模型，在10年前那个属于ensemble的年代，它既在学术界掀起了研究热点，也在工业界甚至比赛界都有广泛的应用。</p>
+<h2 id="原理篇"><a href="#原理篇" class="headerlink" title="原理篇"></a>原理篇</h2><p>我们可以从机器学习的三个要素出发来考察GBDT方法：</p>
+<ol>
+<li>模型（假设空间）：是由一组含参数的函数所组成的函数空间，其中每个函数以特征为输入，以标签为输出；</li>
+<li>策略（损失函数）：如何在假设空间中寻找最优函数；</li>
+<li>算法（计算方法）：参数的具体求解过程；</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GBDT = 提升树 + 梯度提升算法 </span><br><span class="line">     = (决策树加法模型 + 经验风险最小化 + 前向分步算法) + 梯度提升算法</span><br></pre></td></tr></table></figure></div>
+<h3 id="提升树（boosting-tree）"><a href="#提升树（boosting-tree）" class="headerlink" title="提升树（boosting tree）"></a>提升树（boosting tree）</h3><p>提升树 = 决策树加法模型 + 经验风险最小化 + 前向分步算法</p>
+<h4 id="加法模型（additive-model）"><a href="#加法模型（additive-model）" class="headerlink" title="加法模型（additive model）"></a>加法模型（additive model）</h4><p><strong>加法模型</strong>：是由多个基学习器通过线性组合得到最终预测值的一种集成学习方法，本质上是一种特征转换方法</p>
+<script type="math/tex; mode=display">
+f(x) = \sum_{m=1}^{M}\beta _mb(x;\gamma _m)</script><ul>
+<li>$b(x;\gamma _m)$：基学习器；</li>
+<li>$\beta _m$：基学习器的系数；</li>
+</ul>
+<p><strong>决策树加法模型</strong>：基学习器是决策树的加法模型</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+f_M(x) &= \sum_{m=1}^{M}T(x;\gamma _m)\\
+T(x;\gamma)&= \sum_{j=1}^{J}c_j[x \in R_j]
+\end{align*}</script><ul>
+<li>$f_M(x)$: 第M次迭代后的集成模型；</li>
+<li>$T(x;\gamma_m)$：第m次迭代的基模型（决策树），对分类问题是二叉分类树，对回归问题是二叉回归树，以下以回归树为例;</li>
+<li>$\gamma$：{$(R_1,c_1),(R_2,c_2),…,(R_J,c_J)$}表示树的区域划分和各区域上的预测值，J是回归树的复杂度即叶子节点数；</li>
+</ul>
+<h4 id="经验风险最小化（ERM）"><a href="#经验风险最小化（ERM）" class="headerlink" title="经验风险最小化（ERM）"></a>经验风险最小化（ERM）</h4><p>在给定训练数据及损失函数$L(y,f(x))$的前提下，学习加法模型$f(x)$成为<strong>经验风险最小化</strong>问题：</p>
+<script type="math/tex; mode=display">
+\underset{\beta _m,\gamma _m,m=1,2,..,M}{argmin} \sum_{i=1}^{N} L(y_i, \sum_{m=1}^{M}\beta _mb(x_i;\gamma _m))</script><p>如果采用平方差损失函数：</p>
+<script type="math/tex; mode=display">
+L(y_i,f(x_i))=(y_i - \sum_{m=1}^{M}\beta _mb(x_i;\gamma _m))^2</script><h4 id="前向分步算法（forward-stagewise-algorithm）"><a href="#前向分步算法（forward-stagewise-algorithm）" class="headerlink" title="前向分步算法（forward stagewise algorithm）"></a>前向分步算法（forward stagewise algorithm）</h4><p>上述经验风险最小化问题通常是一个很复杂的优化问题，前向分步算法是一种简便的近似迭代求解方法：</p>
+<ol>
+<li>首先初始化目标函数；</li>
+<li>然后从前向后，每一步只学习一个基学习器，用来拟合上一步得到的目标函数与真实值的残差；</li>
+<li>将当前基学习器与上一步得到的目标函数相加得到新的目标函数；</li>
+<li>迭代2、3，逐步逼近最终的目标函数$f(x)$。</li>
+</ol>
+<p><strong>前向分步算法：</strong></p>
+<ol>
+<li>输入：训练数据集$ T = { (x_1,y_1),(x_2,y_2),…,(x_N,y_N) } $；损失函数$L(y,f(x)$;基学习器${b(x;\gamma)}$</li>
+<li>输出：加法模型$f(x)$</li>
+<li>步骤：<ol>
+<li>初始化目标函数：$f_0(x)=0$;</li>
+<li>对$m=1,2,…,M$<ol>
+<li>$f<em>m(x)=f</em>{m-1}(x)+\beta _mb(x;\gamma _m)$</li>
+<li>极小化损失函数，得到$\beta _m,\gamma _m$<script type="math/tex; mode=display">
+\begin{align*}
+\beta _m,\gamma _m &=  arg \underset{\beta,\gamma}{min}\sum_{i=1}^{N}L(y_i,f_m(x))\\
+&= arg \underset{\beta,\gamma}{min}\sum_{i=1}^{N}L(y_i,f_{m-1}(x_i) + \beta b(x_i;\gamma))
+\end{align*}</script></li>
+</ol>
+</li>
+<li>得到加法模型<script type="math/tex; mode=display">
+f(x) = f_M(x) =  \sum_{m=1}^{M}\beta _mb(x;\gamma _m)</script></li>
+</ol>
+</li>
+</ol>
+<p><strong>回归树</strong>：对回归问题的提升树算法来说，只需简单地拟合当前模型的残差：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&f_0(x)=0\\
+&f_m(x)=f_{m-1}(x)+T(x;\gamma _m)\\
+&\gamma _m = arg \underset{\gamma _m}{min} \sum_{i=1}^{N} L(y_i,f_{m-1}(x)+T(x;\gamma_m))= arg \underset{\gamma _m}{min} \sum_{i=1}^{N}( y_i-f_{m-1}(x)-T(x;\gamma_m))^2\\
+&f_M(x)=\sum_{m=1}^{M}T(x; \gamma _m)\\
+\end{align*}</script><p><strong>分类树</strong>: GBDT 最初用来解决回归问题，但只需稍加转换就可以用它来解决多分类问题，核心是将分类问题转化为回归问题。</p>
+<p>在多分类问题中，假设有k个类别，那么每一轮迭代实质是构建了k棵树，对某个样本x的预测值为：</p>
+<script type="math/tex; mode=display">
+f_1(x),f_2(x),...,f_k(x)</script><p>在这里我们仿照多分类的逻辑回归，使用softmax来产生概率，则属于某个类别c的概率为:</p>
+<script type="math/tex; mode=display">
+p_c = exp(f_c(x))/\sum_{k}^{K}exp(f_k(x))</script><p>此时该样本的loss即可以用logitloss来表示，并对f1~fk都可以算出一个梯度，f1~fk便可以计算出当前轮的残差，供下一轮迭代学习。</p>
+<p>最终做预测时，输入的x会得到k个输出值，然后通过softmax获得其属于各类别的概率即可。</p>
+<h3 id="梯度提升（gradient-boosting）"><a href="#梯度提升（gradient-boosting）" class="headerlink" title="梯度提升（gradient boosting）"></a>梯度提升（gradient boosting）</h3><p>当损失函数是平方损失或者指数损失时，求解较简单，但对一般损失函数并不那么容易，Freidman提出了梯度提升算法，它的基本思想是：<strong>用损失函数在当前模型的负梯度(函数空间)作为残差的近似值来拟合决策树</strong>。对于平方损失函数，它就是通常所说的残差。</p>
+<script type="math/tex; mode=display">
+T(x;\gamma_m)=f_m(x)-f_{m-1}(x)=-\left [ \frac{\partial L(y,f(x_i))}{\partial f(x_i)} \right ]_{f(x)=f_{m-1}(x)}</script><p><strong>梯度提升算法</strong></p>
+<ol>
+<li>输入：训练数据集T={$(x_1,y_1),(x_2,y_2),…,(x_N,y_N)$}，损失函数$L(y,f(x))$</li>
+<li>输出：回归树$\hat{f}(x)$</li>
+<li>算法：<ol>
+<li>初始化：$f<em>0(x)=arg \underset{c}{min}\sum</em>{i=1}^{N}L(y_i,c)$</li>
+<li>对m=1,2,…,M<ol>
+<li>对i=1,2,…,N，计算<script type="math/tex; mode=display">
+r_{mi}=-\left [ \frac{\partial L(y,f(x_i))}{\partial f(x_i)} \right ]_{f(x)=f_{m-1}(x)}</script></li>
+<li>对 $r<em>{mi}$ 拟合一个回归树，得到第m棵树的叶节点区域$R</em>{mj},j=1,2,…,J$</li>
+<li>对 $j=1,2,…,J$，计算每个叶节点区域的输出值：$c<em>{mj}=arg \underset{c}{min}\sum</em>{x \in R<em>{mj}}L(y_i,f</em>{m-1}(x_i)+c)$</li>
+<li>更新模型 $f<em>m(x)=f</em>{m-1}(x)+\sum<em>{j=1}^{J}c</em>{mj}[x \in R_{mj}]$</li>
+</ol>
+</li>
+<li>得到回归树: $\hat{f}(x)=\sum<em>{m=1}^{M}\sum</em>{j=1}^{J}c<em>{mj}[x \in R</em>{mj}]$</li>
+</ol>
+</li>
+</ol>
+<h2 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h2><p>在sacikit-learn中，GradientBoostingClassifier为GBDT的分类类， 而GradientBoostingRegressor为GBDT的回归类。两者的参数类型完全相同，当然有些参数比如损失函数loss的可选择项并不相同。这些参数中，类似于Adaboost，我们把重要参数分为两类，第一类是Boosting框架的重要参数，第二类是弱学习器即CART回归树的重要参数。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分类树</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sklearn</span>.<span class="title">ensemble</span>.<span class="title">GradientBoostingClassifier</span>(<span class="params">loss=’deviance’, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  learning_rate=<span class="number">0.1</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  n_estimators=<span class="number">100</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  subsample=<span class="number">1.0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  criterion=’friedman_mse’,</span></span></span><br><span class="line"><span class="params"><span class="class">                                                  min_samples_split=<span class="number">2</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  min_samples_leaf=<span class="number">1</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  min_weight_fraction_leaf=<span class="number">0.0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  max_depth=<span class="number">3</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  min_impurity_decrease=<span class="number">0.0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  min_impurity_split=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  init=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  random_state=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  max_features=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  verbose=<span class="number">0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  max_leaf_nodes=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  warm_start=<span class="literal">False</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                  presort=’auto’</span>)</span></span><br><span class="line"><span class="class"># 回归树</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">sklearn</span>.<span class="title">ensemble</span>.<span class="title">GradientBoostingRegressor</span>(<span class="params">loss=’ls’, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 learning_rate=<span class="number">0.1</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 n_estimators=<span class="number">100</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 subsample=<span class="number">1.0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 criterion=’friedman_mse’, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 min_samples_split=<span class="number">2</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 min_samples_leaf=<span class="number">1</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 min_weight_fraction_leaf=<span class="number">0.0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 max_depth=<span class="number">3</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 min_impurity_decrease=<span class="number">0.0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 min_impurity_split=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 init=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 random_state=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 max_features=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 alpha=<span class="number">0.9</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 verbose=<span class="number">0</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 max_leaf_nodes=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 warm_start=<span class="literal">False</span>, </span></span></span><br><span class="line"><span class="params"><span class="class">                                                 presort=’auto’</span>)</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="boosting框架参数"><a href="#boosting框架参数" class="headerlink" title="boosting框架参数"></a>boosting框架参数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>调参</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loss</td>
+<td>损失函数</td>
+<td>对于分类树，默认为对数似然函数：”deviance”。一般来说，推荐使用默认的”deviance”。它对二元分离和多元分类各自都有比较好的优化。而指数损失函数”deviance”等于把我们带到了Adaboost算法。</td>
+</tr>
+<tr>
+<td>learning_rate</td>
+<td>学习率</td>
+<td>fk(x)=fk−1(x)+νhk(x)，ν的取值范围为0&lt;ν≤1，默认为1，较小的ν意味着我们需要更多的弱学习器的迭代次数，n_estimators和learning_rate要一起调参</td>
+</tr>
+<tr>
+<td>n_estimators</td>
+<td>最大迭代次数</td>
+<td>默认100，越大越容易过拟合</td>
+</tr>
+<tr>
+<td>subsample</td>
+<td>无放回样本采样</td>
+<td>推荐在[0.5, 0.8]之间，默认是1.0，即不使用子采样，越小方差越小偏差越大</td>
+</tr>
+<tr>
+<td>alpha</td>
+<td>分位数</td>
+<td>这个参数只有GradientBoostingRegressor有，当我们使用Huber损失”huber”和分位数损失“quantile”时，需要指定分位数的值。默认是0.9，如果噪音点较多，可以适当降低这个分位数的值。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="基学习器参数"><a href="#基学习器参数" class="headerlink" title="基学习器参数"></a>基学习器参数</h3><p>由于GBDT使用了CART回归决策树，因此它的参数基本来源于决策树类，也就是说，和DecisionTreeClassifier和DecisionTreeRegressor的参数基本类似。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>调参</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_depth</td>
+<td>决策树最大深度</td>
+<td>数据少或者特征少的时候可以不管这个值。如果模型样本量多，特征也多的情况下，推荐限制这个最大深度，具体的取值取决于数据的分布。常用的可以取值10-100之间</td>
+</tr>
+<tr>
+<td>max_features</td>
+<td>划分时考虑的最大特征数</td>
+<td>可以使用很多种类型的值，默认是”None”,意味着划分时考虑所有的特征数；如果是”log2”意味着划分时最多考虑log2N个特征；如果是”sqrt”或者”auto”意味着划分时最多考虑N‾‾√个特征。如果是整数，代表考虑的特征绝对数。如果是浮点数，代表考虑特征百分比，即考虑（百分比xN）取整后的特征数。其中N为样本总特征数。一般来说，如果样本特征数不多，比如小于50，我们用默认的”None”就可以了，如果特征数非常多，我们可以灵活使用刚才描述的其他取值来控制划分时考虑的最大特征数，以控制决策树的生成时间。</td>
+</tr>
+<tr>
+<td>min_samples_split</td>
+<td>内部节点再划分所需最小样本数</td>
+<td>这个值限制了子树继续划分的条件，如果某节点的样本数少于min_samples_split，则不会继续再尝试选择最优特征来进行划分，默认为2，如果样本量不大，不需要管这个值。如果样本量数量级非常大，则推荐增大这个值。</td>
+</tr>
+<tr>
+<td>min_samples_leaf</td>
+<td>叶子节点最少样本数</td>
+<td>默认为1，如果某叶子节点数目小于样本数，则会和兄弟节点一起被剪枝，如果样本量不大，不需要管这个值。如果样本量数量级非常大，则推荐增大这个值。</td>
+</tr>
+<tr>
+<td>min_weight_fraction_leaf</td>
+<td>叶子节点最小的样本权重和</td>
+<td>这个值限制了叶子节点所有样本权重和的最小值，如果小于这个值，则会和兄弟节点一起被剪枝。 默认是0，就是不考虑权重问题。一般来说，如果我们有较多样本有缺失值，或者分类树样本的分布类别偏差很大，就会引入样本权重，这时我们就要注意这个值了</td>
+</tr>
+<tr>
+<td>max_leaf_nodes</td>
+<td>最大叶子节点数</td>
+<td>通过限制最大叶子节点数，可以防止过拟合，默认是”None”，即不限制最大的叶子节点数。如果加了限制，算法会建立在最大叶子节点数内最优的决策树。如果特征不多，可以不考虑这个值，但是如果特征分成多的话，可以加以限制，具体的值可以通过交叉验证得到。</td>
+</tr>
+<tr>
+<td>min_impurity_split</td>
+<td>节点划分最小不纯度</td>
+<td>这个值限制了决策树的增长，如果某节点的不纯度(基于基尼系数，均方差)小于这个阈值，则该节点不再生成子节点。即为叶子节点 。一般不推荐改动默认值1e-7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="总结篇"><a href="#总结篇" class="headerlink" title="总结篇"></a>总结篇</h2><p>优点：</p>
+<ol>
+<li>不需要做过多的数据预处理，特征可以是离散的或者连续的，不需要处理缺失值和异常值；</li>
+<li>相当于是一种非线性的特征变换，表达能力强（叶节点对应路径上的节点相当于特征选择，叶节点位置相当于特征组合）；</li>
+<li>模型解释性好；</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>GBDT是一个串行过程，不容易并行化，计算复杂度高；</li>
+<li>同时其不太适合高维稀疏特征；</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://www.flickering.cn/machine_learning/2016/08/gbdt%E8%AF%A6%E8%A7%A3%E4%B8%8A-%E7%90%86%E8%AE%BA/">GBDT详解上 + 下 + 后补</a></li>
+<li>《统计学习方法》</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/55379008">GBDT如何应用于二分类问题？具体如何使用logitloss？</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/pinard/p/6143927.html">scikit-learn 梯度提升树(GBDT)调参小结</a></li>
+</ol>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20Adaboost/" rel="next" title="机器学习：集成学习（二）—— Adaboost">
+                <i class="fa fa-chevron-left"></i> 机器学习：集成学习（二）—— Adaboost
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9A%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E8%BF%B0/" rel="prev" title="机器学习：集成学习（〇）—— 概述">
+                机器学习：集成学习（〇）—— 概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">原理篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E6%A0%91%EF%BC%88boosting-tree%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">提升树（boosting tree）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E6%A8%A1%E5%9E%8B%EF%BC%88additive-model%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">加法模型（additive model）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E9%A3%8E%E9%99%A9%E6%9C%80%E5%B0%8F%E5%8C%96%EF%BC%88ERM%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">经验风险最小化（ERM）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%90%91%E5%88%86%E6%AD%A5%E7%AE%97%E6%B3%95%EF%BC%88forward-stagewise-algorithm%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">前向分步算法（forward stagewise algorithm）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E6%8F%90%E5%8D%87%EF%BC%88gradient-boosting%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">梯度提升（gradient boosting）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%AF%87"><span class="nav-number">2.</span> <span class="nav-text">应用篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#boosting%E6%A1%86%E6%9E%B6%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">boosting框架参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%AD%A6%E4%B9%A0%E5%99%A8%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">基学习器参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E7%AF%87"><span class="nav-number">3.</span> <span class="nav-text">总结篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

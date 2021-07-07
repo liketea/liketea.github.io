@@ -1,37 +1,1658 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark 指南：Spark SQL（〇）—— 结构化 API">
+<meta property="og:url" content="http://liketea.xyz/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20SQL%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%93%E6%9E%84%E5%8C%96%20API/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以">
+<meta property="og:locale">
+<meta property="og:image" content="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16041255796022.jpg">
+<meta property="og:image" content="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201103184649.png">
+<meta property="og:image" content="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201113110151.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201031144631.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507143337.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Spark-SQL.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507185403.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507200440.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507200627.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507201159.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507201220.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203422.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203837.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203845.png">
+<meta property="article:published_time" content="2020-11-03T10:51:22.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.909Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16041255796022.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/Spark/Spark/Spark 指南：Spark SQL（〇）—— 结构化 API/"/>
+
+
+
+
+
+  <title>Spark 指南：Spark SQL（〇）—— 结构化 API | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20SQL%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%93%E6%9E%84%E5%8C%96%20API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Spark 指南：Spark SQL（〇）—— 结构化 API</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-03T18:51:22+08:00">
+                2020-11-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20SQL%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%93%E6%9E%84%E5%8C%96%20API/" class="leancloud_visitors" data-flag-title="Spark 指南：Spark SQL（〇）—— 结构化 API">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Spark SQL 是 Spark 用于处理结构化数据的一个模块，不同于 Spark RDD，Spark SQL 接口提供了更多关于数据的结构化信息，Spark SQL 会通过这些信息执行一些额外的优化操作。Spark SQL 提供了 SQL 和 DataSet 两种 API，二者底层使用的执行引擎相同，效率也一样，开发人员可以很容易地的在不同 API 之间切换，选择何种 API 要看哪种方式可以更自然地来表达给定的变换。</p>
+<div align=center>
+    <img src="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16041255796022.jpg" width="80%" heigh="80%"></img>
+</div>
+
+<h2 id="结构化-API"><a href="#结构化-API" class="headerlink" title="结构化 API"></a>结构化 API</h2><p>Spark SQL API 可以在模块 <a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/expressions/index.html"><code>org.apache.spark.sql</code></a>下查看：</p>
+<div align=center>
+    <img src="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201103184649.png" width="80%" heigh="80%"></img>
+</div>
+
+<p>常用的 API 模块：</p>
+<ol>
+<li>Spark SQL 数据类型：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/types/index.html">org.apache.spark.sql.types</a></li>
+<li>Spark SQL 函数：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/functions$.html">org.apache.spark.sql.functions</a></li>
+<li>Spark SQL DataFrame:<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Dataset.html"></a>，Dataset 的大部分 API 同样适用于 DataFrame</li>
+<li>Spark SQL Column:<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Column.html">org.apache.spark.sql.Column</a></li>
+<li>Spark SQL Row：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Row.html">org.apache.spark.sql.Row</a></li>
+<li>Spark SQL Window：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/expressions/Window.html">org.apache.spark.sql.Window</a><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3>Spark SQL 的用法之一是执行 SQL 查询，它也可以从现有的 Hive 中读取数据，如果从其它编程语言内部运行 SQL，查询结果将作为一个 Dataset/DataFrame 返回。</li>
+</ol>
+<p>表和视图与 DataFrame 基本相同，为我们只是针对它们执行 SQL 而不是 DataFrame 代码。</p>
+<h3 id="DataSet"><a href="#DataSet" class="headerlink" title="DataSet"></a>DataSet</h3><p>Spark 结构化 API 可以细分为两个 API：有类型的 Dataset 和无类型的 DataFrame。说 DataFrame 是无类型的并不准确，它们具有类型，但是 Spark 会完全维护它们，并且仅在运行时检查那些类型是否与模式中指定的类型一致。而 DataSet 在编译时检查类型是否符合规范，DataSet 仅适用于基于 Java 虚拟机（JVM）的语言（Scala 和 Java）。</p>
+<ul>
+<li><p>Dataset 是一个分布式数据集，它是 Spark 1.6 版本中新增的一个接口, 它结合了 RDD（强类型，可以使用强大的 lambda 表达式函数） 和 Spark SQL 的优化执行引擎的好处。Dataset 可以从 JVM 对象构造得到，随后可以使用函数式的变换（map，flatMap，filter 等）进行操作。Dataset API 目前支持 Scala 和 Java 语言，还不支持 Python, 不过由于 Python 语言的动态性, Dataset API 的许多好处早就已经可用了，例如，你可以使用 row.columnName 来访问数据行的某个字段。</p>
+</li>
+<li><p>DataFrame 是按命名列方式组织的一个 Dataset。从概念上来讲，它等同于关系型数据库中的一张表或者 R 和 Python 中的一个 dataframe， 只不过在底层进行了更多的优化。DataFrame 可以从很多数据源构造得到，比如：结构化的数据文件，Hive 表，外部数据库或现有的 RDD。 DataFrame API 支持 Scala, Java, Python 以及 R 语言。在 Scala 和 Java 语言中, DataFrame 由 Row 的 Dataset 来 表示的。在 Scala API 中, DataFrame 仅仅只是 <strong>Dataset[Row]</strong> 的一个类型别名，而在 Java API 中, 开发人员需要使用 Dataset<Row> 来表示一个 DataFrame。</p>
+</li>
+</ul>
+<p>下图对比了 SQL、DataFrame 和 DataSet 三种 Spark SQL 编程方式错误检查机制：</p>
+<ol>
+<li>对于 SQL 来说，编译的时候并不知道你写的对不对，只有到运行的时候才知道；</li>
+<li>对于 DataFrame，语法错误可以在编译时发现（比如将 select 写错），但分析错误只有到运行时才能知道（比如将字段名写错）；</li>
+<li>对于 DataSet，在编译阶段就可以发现语法和分析错误，即静态类型和运行时类型安全。</li>
+</ol>
+<div align=center>
+    <img src="
+https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg" width="80%" heigh="80%"></img>
+</div>
+
+<p>在大多数情况下，您可能会使用 DataFrame。对于 Scala-Spark，DataFrame 只是类型为 Row 的数据集，Row 类型是 Spark 内部优化表示的内部表示形式，这种格式可以进行高度专业化和高效的计算，而不是使用 JVM（可能导致高昂的垃圾处理和对象实例化成本）。对于 PySpark，一切都是 DataFrame。</p>
+<h3 id="DataFrame-VS-RDD"><a href="#DataFrame-VS-RDD" class="headerlink" title="DataFrame VS RDD"></a>DataFrame VS RDD</h3><p>DataFrame 和 RDD 都是可以并行处理的集合，但 DataFrame 更像是一个传统数据库里的表，除了数据之外还可以知道更多信息，比如列名、值、类型。从 API 角度来看 DataFrame 提供了更高级的 API，比 RDD 编程要方便很多，由于 R 语言和 Pandas 也有 DataFrame，这就降低了 Spark 的学习门槛，在编写 Spark 程序时根本不需要关心最后是运行在单机上还是分布式集群上，因为代码都是一样的。</p>
+<p>假设 RDD 里面支持的是一个 Person 类型，那么每一条记录都相当于一个 Person，但是 Person 里面到底有什么我们并不知道。DataFrame 存储了各字段的列名、数据类型以及值，有了这些信息，Spark SQL 的查询优化器（Catalyst）在编译的时候就能够做更多的优化。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201113110151.png" width="60%" heigh="60%"></img>
+</div>
+
+<p>SQL、DataFrame 和 RDD 运行时<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GDeePbbCz2g&amp;feature=youtu.be">性能对比</a>：在大多数情况下 SQL 和 DataFrame 性能要好于 RDD</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201031144631.png" width="80%" heigh="80%"></img>
+</div>
+
+<h2 id="优化器-Catalyst"><a href="#优化器-Catalyst" class="headerlink" title="优化器 Catalyst"></a>优化器 Catalyst</h2><p>Spark SQL 的核心是 Catalyst 优化器，一种函数式的可扩展的查询优化器：</p>
+<ol>
+<li>优化：Catalyst 使查询以更少的资源获取更快的效率；</li>
+<li>函数式：Catalyst 基于 Scala 的模式匹配和 quasiquotes 机制；</li>
+<li>可扩展：Catalyst 允许用户扩展优化器；</li>
+</ol>
+<h3 id="Catalyst-优化策略"><a href="#Catalyst-优化策略" class="headerlink" title="Catalyst 优化策略"></a>Catalyst 优化策略</h3><p>Catalyst 支持两种优化策略：</p>
+<ol>
+<li>基于规则的优化(Rule-Based Optimization, RBO)：使用一组规则来确定如何执行查询；RBO 是一种经验式、启发式优化思路，对于核心优化算子 join 有点力不从心，如两张表执行join 到底使用 BroadcaseHashJoin 还是 sortMergeJoin，目前 Spark SQL 是通过手工设定参数来确定的，如果一个表的数据量小于某个阈值（默认10M）就使用BroadcastHashJoin；</li>
+<li>基于代价的优化(Cost-Based Optimization, CBO)：使用规则生成多个计划，然后选取代价最小的计划执行查询；不同 Physical Plans 输入到代价模型，调整 Join 顺序，减少中间Shuffle 数据集大小，达到最优输出；</li>
+</ol>
+<h3 id="Catalyst-工作流程"><a href="#Catalyst-工作流程" class="headerlink" title="Catalyst 工作流程"></a>Catalyst 工作流程</h3><div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507143337.png" width="80%" heigh="80%"></img>
+</div>
+
+<p>无论是直接使用 SQL 语句还是使用 DataFrame，都会经过如下环节转换成 DAG 对 RDD 的操作：</p>
+<ol>
+<li>Parser：通过 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/ANTLR">ANTLR</a> 将 Spark SQL 字符串解析为抽象语法树(Abstract Syntax Tree，AST)，即未解析的逻辑计划(Unresolved Logical Plan, ULP)；</li>
+<li>Analyzer：通过元数据信息 Catalog 将 ULP 解析为携带 Schema 信息的逻辑计划(Logical Plan, LP)；</li>
+<li>RBO：通过 RBO 对 Logical Plan 进行谓词下推、列值裁剪、常量累加等操作，得到优化后的逻辑计划(Optimized logical plan, OLP)；</li>
+<li>Planner：将 OLP 转换成多个物理计划(Physical Plan)；</li>
+<li>CBO：根据 Cost Model 算出每个 Physical Plan 的代价并选取代价最小的 Physical Plan 作为最终的 Physical Plan；</li>
+<li>WholeStageCodegen：生成 Java bytecode 然后在每一台机器上执行，形成 RDD graph/DAG；</li>
+</ol>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Spark-SQL.png" width="80%" heigh="80%"></img>
+</div>
+
+<h4 id="Parser-阶段"><a href="#Parser-阶段" class="headerlink" title="Parser 阶段"></a>Parser 阶段</h4><p>Spark2.x SQL 语句的解析采用的是 ANTLR4，ANTLR4 根据语法文件 <a target="_blank" rel="noopener" href="https://github.com/apache/spark/blob/master/sql/catalyst/src/main/antlr4/org/apache/spark/sql/catalyst/parser/SqlBase.g4">SqlBase.g4</a> 自动解析生成两个Java类：词法解析器 SqlBaseLexer 和语法解析器 SqlBaseParser。使用这两个解析器将SQL字符串语句解析成了ANTLR4 的 ParseTree 语法树结构。然后在 parsePlan 过程中，使用 <a target="_blank" rel="noopener" href="https://github.com/apache/spark/blob/master/sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/parser/AstBuilder.scala">AstBuilder.scala</a> 将 ParseTree 转换成catalyst 表达式逻辑计划 Unresolved Logical Plan，ULP。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507185403.png" width="80%" heigh="80%"></img>
+</div>
+
+<h4 id="Analyzer-阶段"><a href="#Analyzer-阶段" class="headerlink" title="Analyzer 阶段"></a>Analyzer 阶段</h4><p>ULP 还只是一个语法树，系统需要通过元数据信息 Calalog 来获取表的 schema 信息（表名、列名、数据类型）和函数信息（类信息）。Analyzer 会再次遍历整个 AST，对树上的每个节点进行<strong>数据类型绑定</strong>以及<strong>函数绑定</strong>，比如people 词素会根据元数据表信息解析为包含 age、id 以及 name 三列的表，people.age会被解析为数据类型为 int 的变量，sum 会被解析为特定的聚合函数，解析后得到 Logical Plan，LP。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507200440.png" width="80%" heigh="80%"></img>
+</div>
+
+<h4 id="RBO-阶段"><a href="#RBO-阶段" class="headerlink" title="RBO 阶段"></a>RBO 阶段</h4><p>RBO 的优化策略就是对语法树进行一次遍历，模式匹配能够满足特定规则的节点，再进行相应的等价转换，即将一棵树等价地转换为另一棵树，最终得到优化后的逻辑计划 Optimized logical plan, OLP。</p>
+<p>SQL 中经典的常见优化规则有：</p>
+<ul>
+<li>谓词下推（predicate pushdown）：将 Filter 算子尽可能下推，尽可能早地对数据源进行过滤，以减少参与计算的数据量（语法树是从下往上看的）</li>
+</ul>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507200627.png" width="80%" heigh="80%"></img>
+</div>
+
+<ul>
+<li>列值裁剪（column pruning）：剪裁不需要的字段，特别是嵌套里面的不需要字段。如只需people.age，不需要 people.address，那么可以将 address 字段丢弃</li>
+</ul>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507201159.png" width="80%" heigh="80%"></img>
+</div>
+
+<ul>
+<li>常量合并（constant folding）：从<code>100+80</code>优化为<code>180</code>，避免每一条 record 都需要执行一次<code>100+80</code>的操作</li>
+</ul>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507201220.png" width="80%" heigh="80%"></img>
+</div>
+
+<h4 id="Planner-阶段"><a href="#Planner-阶段" class="headerlink" title="Planner 阶段"></a>Planner 阶段</h4><p>OLP 只是逻辑上可行，实际上 spark 并不知道如何去执行这个OLP。一个逻辑计划（Logical Plan）经过一系列的策略（Strategy）处理之后，得到多个物理计划（Physical Plans），物理计划在 Spark 是由 SparkPlan 实现的。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203422.png" width="80%" heigh="80%"></img>
+</div>
+
+<h4 id="CBO-阶段"><a href="#CBO-阶段" class="headerlink" title="CBO 阶段"></a>CBO 阶段</h4><p>RBO 属于 LogicalPlan 的优化，所有优化均基于 LogicalPlan 本身的特点，未考虑数据本身的特点，也未考虑算子本身的代价。CBO 充分考虑了数据本身的特点（如大小、分布）以及操作算子的特点（中间结果集的分布及大小）及代价，从而更好的选择执行代价最小的物理执行计划，即 SparkPlan。</p>
+<p>比如 join 算子，Spark 根据不同场景为该算子制定了不同的算法策略，有 broadcastHashJoin、shuffleHashJoin 以及 sortMergeJoin。CBO 中常见的优化是 join 换位，以便尽量减少中间shuffle 数据集大小，达到最优输出。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203837.png" width="80%" heigh="80%"></img>
+</div>
+
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203845.png" width="80%" heigh="80%"></img>
+</div>
+
+<h4 id="Code-Generation-阶段"><a href="#Code-Generation-阶段" class="headerlink" title="Code Generation 阶段"></a>Code Generation 阶段</h4><p>选出的物理计划还是不能直接交给 Spark 执行，Spark 最后仍然会用一些 Rule 对 SparkPlan 进行处理：</p>
+<ul>
+<li>全阶段代码生成（Whole-stage Code Generation）：用来将多个处理逻辑整合到单个代码模块中。通过引入全阶段代码生成，大大减少了虚函数的调用，减少了 CPU 的调用，使得 SQL 的执行速度有很大提升。</li>
+<li>代码编译：生成代码之后需要解决的另一个问题是如何将生成的代码进行编译然后加载到同一个 JVM 中去，Spark 引入了 Janino 项目，参见 <a target="_blank" rel="noopener" href="https://www.iteblog.com/redirect.php?url=aHR0cHM6Ly9pc3N1ZXMuYXBhY2hlLm9yZy9qaXJhL2Jyb3dzZS9TUEFSSy03OTU2&amp;article=true">SPARK-7956</a>。Janino 是一个超级小但又超级快的 Java™ 编译器. 它不仅能像 javac 工具那样将一组源文件编译成字节码文件，还可以对一些 Java 表达式，代码块，类中的文本(class body)或者内存中源文件进行编译，并把编译后的字节码直接加载到同一个 JVM 中运行。Janino 不是一个开发工具, 而是作为运行时的嵌入式编译器，比如作为表达式求值的翻译器或类似于 JSP 的服务端页面引擎，关于 Janino 的更多知识请参见<a target="_blank" rel="noopener" href="https://janino-compiler.github.io/janino/">这里</a>。通过引入了 Janino 来编译生成的代码，结果显示 SQL 表达式的编译时间减少到 5ms。需要注意的是，代码生成是在 Driver 端进行的，而代码编译是在 Executor 端进行的。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide">《Spark 权威指南》</a>_online/)：正如书名所言，对Spark 各个方面做了权威的介绍，中文版现已出版，网上也有牛人博客的翻译</li>
+<li><a target="_blank" rel="noopener" href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html">Spark 2.2.x 中文文档</a>：官方文档中文版翻译，每一块内容都蜻蜓点水</li>
+<li><a target="_blank" rel="noopener" href="https://sparkbyexamples.com/apache-spark-tutorial-with-scala-examples/">Spark By Examples</a>：通过实际例子学习 Spark 的绝佳去处</li>
+<li><a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Dataset.html">org.apache.spark.sql.Dataset</a>：Dataset 对象方法</li>
+<li><a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Column.html">org.apache.spark.sql.Dataset.Column</a>：Column 对象方法</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/410c23efb565">Spark SQL Catalyst优化器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.iteblog.com/archives/2561.html">一条 SQL 在 Apache Spark 之旅（上）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.iteblog.com/archives/2562.html">一条 SQL 在 Apache Spark 之旅（中）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.iteblog.com/archives/2563.html">一条 SQL 在 Apache Spark 之旅（下）</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1032529">SparkSql的优化器-Catalyst</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jasongj.com/spark/rbo/">Spark SQL / Catalyst 内部原理 与 RBO</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.jasongj.com/spark/cbo/">Spark SQL 性能优化再进一步 CBO 基于代价的优化</a></li>
+<li><a target="_blank" rel="noopener" href="https://data-flair.training/blogs/spark-sql-optimization/">Spark SQL Optimization – Understanding the Catalyst Optimizer</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Jupyter%20Lab%20%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" rel="next" title="数据科学：工具篇（一）—— Jupyter Lab 配置环境">
+                <i class="fa fa-chevron-left"></i> 数据科学：工具篇（一）—— Jupyter Lab 配置环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20SQL%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%93%E6%9E%84%E5%8C%96%E5%AF%B9%E8%B1%A1/" rel="prev" title="Spark 指南：Spark SQL（一）—— 结构化对象">
+                Spark 指南：Spark SQL（一）—— 结构化对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96-API"><span class="nav-number">1.</span> <span class="nav-text">结构化 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number">1.1.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataSet"><span class="nav-number">1.2.</span> <span class="nav-text">DataSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame-VS-RDD"><span class="nav-number">1.3.</span> <span class="nav-text">DataFrame VS RDD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8-Catalyst"><span class="nav-number">2.</span> <span class="nav-text">优化器 Catalyst</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst-%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.</span> <span class="nav-text">Catalyst 优化策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">Catalyst 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Parser-%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">Parser 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Analyzer-%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.2.</span> <span class="nav-text">Analyzer 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RBO-%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.3.</span> <span class="nav-text">RBO 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Planner-%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.4.</span> <span class="nav-text">Planner 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CBO-%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.5.</span> <span class="nav-text">CBO 阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-Generation-%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.6.</span> <span class="nav-text">Code Generation 阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

@@ -1,37 +1,1802 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构与算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="线性表中的双指针法是指通过两个指针（游标）来指示线性表中的元素的方法。双指针的使用本身并没有什么神奇之处，但是通过合适地操纵指针的移动，在某些特定问题中却能化腐朽为神奇，大大降低算法的时间复杂度。 根据对双指针不同的移动规则，整理了常用的双指针方法及其所用来解决的问题：     双指针法 操作说明 经典问题     首尾指针 使用两个指针指示线性表的首尾元素 二分查找、NSum   口袋指针 一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法：线性表（三）—— 双指针">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%8C%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="线性表中的双指针法是指通过两个指针（游标）来指示线性表中的元素的方法。双指针的使用本身并没有什么神奇之处，但是通过合适地操纵指针的移动，在某些特定问题中却能化腐朽为神奇，大大降低算法的时间复杂度。 根据对双指针不同的移动规则，整理了常用的双指针方法及其所用来解决的问题：     双指针法 操作说明 经典问题     首尾指针 使用两个指针指示线性表的首尾元素 二分查找、NSum   口袋指针 一个">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-29-16.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/23-44-33.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/200743143217100.gif">
+<meta property="article:published_time" content="2017-10-10T12:13:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.929Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-29-16.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：线性表（三）—— 双指针/"/>
+
+
+
+
+
+  <title>数据结构与算法：线性表（三）—— 双指针 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%8C%E6%8C%87%E9%92%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构与算法：线性表（三）—— 双指针</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:13:53+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%8C%E6%8C%87%E9%92%88/" class="leancloud_visitors" data-flag-title="数据结构与算法：线性表（三）—— 双指针">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>线性表中的双指针法是指通过两个指针（游标）来指示线性表中的元素的方法。双指针的使用本身并没有什么神奇之处，但是通过合适地操纵指针的移动，在某些特定问题中却能化腐朽为神奇，大大降低算法的时间复杂度。</p>
+<p>根据对双指针不同的移动规则，整理了常用的双指针方法及其所用来解决的问题：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">双指针法</th>
+<th style="text-align:left">操作说明</th>
+<th style="text-align:left">经典问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">首尾指针</td>
+<td style="text-align:left">使用两个指针指示线性表的首尾元素</td>
+<td style="text-align:left">二分查找、NSum</td>
+</tr>
+<tr>
+<td style="text-align:left">口袋指针</td>
+<td style="text-align:left">一个指针指示口袋口，另一个指针用于遍历</td>
+<td style="text-align:left">数组划分</td>
+</tr>
+<tr>
+<td style="text-align:left">窗口指针</td>
+<td style="text-align:left">两个指针指示窗口范围</td>
+<td style="text-align:left">窗口蠕动法求解连续子序列问题</td>
+</tr>
+<tr>
+<td style="text-align:left">快慢指针</td>
+<td style="text-align:left">使用两个移动速度不同的指针</td>
+<td style="text-align:left">环的检测和交点确定</td>
+</tr>
+<tr>
+<td style="text-align:left">早晚指针</td>
+<td style="text-align:left">使用出发时间不同的两个指针</td>
+<td style="text-align:left">消除距离差额</td>
+</tr>
+<tr>
+<td style="text-align:left">双表指针</td>
+<td style="text-align:left">两个指针分别指示两个线性表当前位置</td>
+<td style="text-align:left">数组归并</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="首尾指针"><a href="#首尾指针" class="headerlink" title="首尾指针"></a>首尾指针</h2><ul>
+<li>适用问题：需要同时操作首尾元素，或者需要指示变化中的线性表范围，使用首尾指针经常需要先对数组进行排序；</li>
+<li>使用思路：<ul>
+<li>指针含义：l指示线性表首部元素，r指示线性表尾部元素</li>
+<li>移动规则：依条件向内移动，直至相遇</li>
+</ul>
+</li>
+</ul>
+<h3 id="反转线性表"><a href="#反转线性表" class="headerlink" title="反转线性表"></a>反转线性表</h3><ul>
+<li>问题：[344] 反转字符串，请编写一个函数，其功能是将输入的字符串反转过来；</li>
+<li>思路：使用首尾指针交换元素，然后首尾指针向内移动，直至首指针不再小于尾指针；</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseString</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        l, r = <span class="number">0</span>, <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">        res = <span class="built_in">list</span>(s)</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            res[l],res[r] = res[r],res[l]</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(res)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(n)，时间O(n)</li>
+</ul>
+<h3 id="盛最多水的容器"><a href="#盛最多水的容器" class="headerlink" title="盛最多水的容器"></a>盛最多水的容器</h3><ul>
+<li>问题：[11]盛最多水的容器，给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。画 n 条垂直线，使得垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</li>
+<li>思路：分治+首尾指针，问题首先划分为两个子问题，使用两侧较小边和不使用两侧较小边，然后取二者中的最大值；使用较小边时，容器两侧容纳最多的水，不使用较小边的子问题可以是原始问题的同类子问题，可以用递归求解，也可以用首尾指针来求，如果使用了较小边l，收集当前最大后l++，反之较小边为r则r—，直至l == r。</li>
+</ul>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/17-29-16.png" width="80%" heigh="80%"></img>
+</div>
+
+<ul>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxArea</span>(<span class="params">self, height</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type height: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        l,r = <span class="number">0</span>,<span class="built_in">len</span>(height) - <span class="number">1</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> height[l] &lt; height[r]:</span><br><span class="line">                res = <span class="built_in">max</span>(res,height[l]*(r-l))</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res = <span class="built_in">max</span>(res,height[r]*(r-l))</span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(1)，时间O(n)</li>
+</ul>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 闭区间写法:用[l,r]代表当前查找范围</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Binary_search</span>(<span class="params">L,key</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    @L:有序数组</span></span><br><span class="line"><span class="string">    @key:目标值</span></span><br><span class="line"><span class="string">    @return:如果查找成功则返回目标元素索引，如果查找失败则返回目标值应插入的位置</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 闭区间-初始化窗口</span></span><br><span class="line">    l,r = <span class="number">0</span>,<span class="built_in">len</span>(L)-<span class="number">1</span> </span><br><span class="line">    <span class="comment"># 闭区间-退出条件：窗口内不含元素，l=r+1，目标值在l,r之间</span></span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l + r)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> key == L[mid]:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> key &gt; L[mid]:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> l</span><br></pre></td></tr></table></figure></div>
+<h3 id="2-Sum"><a href="#2-Sum" class="headerlink" title="2 Sum"></a>2 Sum</h3><h4 id="无序数组的-2-Sum"><a href="#无序数组的-2-Sum" class="headerlink" title="无序数组的 2 Sum"></a>无序数组的 2 Sum</h4><ul>
+<li>问题：[1] 两数之和，给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用</li>
+<li>思路：使用哈希表存储元素残差，如果元素在哈希表则说明和为target，返回</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        d = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i,num <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> d:</span><br><span class="line">                d[target-num] = i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> [d[num],i]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析:空间O(n)，时间O(n)</li>
+</ul>
+<h4 id="有序数组的2Sum"><a href="#有序数组的2Sum" class="headerlink" title="有序数组的2Sum"></a>有序数组的2Sum</h4><ul>
+<li>问题：[167] 两数之和 II，给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2</li>
+<li>思路：首尾指针法，如果量元素之和小于target则移动右移左指针，如果大于则左移右指针，如果相等，则返回两下标</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span>(<span class="params">self, numbers, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type numbers: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        low,high = <span class="number">0</span>,<span class="built_in">len</span>(numbers)-<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">            total = numbers[low] + numbers[high]</span><br><span class="line">            <span class="keyword">if</span> total == target:</span><br><span class="line">                <span class="keyword">return</span> [low+<span class="number">1</span>,high+<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> total &lt; target:</span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                high -= <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(1)，时间O(n)</li>
+</ul>
+<h3 id="3-Sum"><a href="#3-Sum" class="headerlink" title="3 Sum"></a>3 Sum</h3><ul>
+<li>问题：[15]三数之和，给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。</li>
+<li>思路：先排序+2Sum，先对数组进行排序，从前向后每次选取一个不同的元素x作为基准，然后在后面的数组中找到所有不重复的2Sum等于target-x的组合，再合并收集；保证解完备且不重复的核心有两点（选择下一个不同元素中的第一个）：①基准选择：每次选择下一个不同元素中的第一个，不同基准不会有重复解，第一个元素作为基准不会漏解②2Sum时：每次移动指针到第一个不重复的位置，也保证了2Sum的完备且不重复</li>
+<li>代码：<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSum</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        target = <span class="number">0</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> nums[i] != nums[i-<span class="number">1</span>]:</span><br><span class="line">                base = nums[i]</span><br><span class="line">                l,r = i + <span class="number">1</span>, n - <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> l &lt; r:</span><br><span class="line">                    <span class="keyword">if</span> nums[l] + nums[r] == target - base:</span><br><span class="line">                        res.append([base,nums[l],nums[r]])</span><br><span class="line">                        l,r = l+<span class="number">1</span>,r-<span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> nums[l] == nums[l-<span class="number">1</span>]: l += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> nums[r] == nums[r+<span class="number">1</span>]: r -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> nums[l] + nums[r] &lt; target - base:</span><br><span class="line">                        l += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res       </span><br></pre></td></tr></table></figure></div></li>
+<li>分析：空间$O(1)$，时间$O(n^2)$</li>
+</ul>
+<h3 id="N-sum"><a href="#N-sum" class="headerlink" title="N sum"></a>N sum</h3><ul>
+<li>问题：[18] 四数之和，给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组</li>
+<li>思路：排序+递归+2Sum，NSum可以转化为N-1Sum，逐步转化为2Sum，类似的只要每次选取下一个不同元素中的第一个元素，就能保证最终解的完备且不重复</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSum</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">NSum</span>(<span class="params">nums, target, N</span>):</span></span><br><span class="line">            n = <span class="built_in">len</span>(nums)</span><br><span class="line">            <span class="keyword">if</span> n &lt; N <span class="keyword">or</span> nums[<span class="number">0</span>] * N &gt; target <span class="keyword">or</span> nums[-<span class="number">1</span>] * N &lt; target:</span><br><span class="line">                <span class="keyword">return</span> []</span><br><span class="line">            res = []</span><br><span class="line">            <span class="keyword">if</span> N == <span class="number">2</span>:</span><br><span class="line">                l,r = <span class="number">0</span>, n-<span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> l &lt; r:</span><br><span class="line">                    <span class="keyword">if</span> nums[l] + nums[r] &lt; target:</span><br><span class="line">                        l += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> nums[l] + nums[r] &gt; target:</span><br><span class="line">                        r -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        res.append([nums[l],nums[r]])</span><br><span class="line">                        l += <span class="number">1</span></span><br><span class="line">                        r -= <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> nums[l] == nums[l-<span class="number">1</span>]:l += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> nums[r] == nums[r+<span class="number">1</span>]:r -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-N+<span class="number">1</span>):</span><br><span class="line">                    <span class="comment"># 核心，保证了两轮解中不包含重复解</span></span><br><span class="line">                    <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> nums[i] != nums[i-<span class="number">1</span>]:</span><br><span class="line">                        <span class="keyword">for</span> pre <span class="keyword">in</span> NSum(nums[i+<span class="number">1</span>:],target-nums[i],N-<span class="number">1</span>):</span><br><span class="line">                            res.append([nums[i]] + pre)  </span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> NSum(<span class="built_in">sorted</span>(nums),target,<span class="number">4</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间$O(1)$，时间$O(n^{N-1})$</li>
+</ul>
+<h4 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h4><ul>
+<li>问题：[16. 最接近的三数之和]给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</li>
+<li>思路：排序后转化为2Sum，收集绝对差值最小的组合</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        nums.sort()</span><br><span class="line">        res = <span class="literal">None</span></span><br><span class="line">        delta = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n-<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> nums[i] != nums[i-<span class="number">1</span>]:</span><br><span class="line">                l, r = i + <span class="number">1</span>, n-<span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> l &lt; r:</span><br><span class="line">                    cur = nums[i] + nums[l] + nums[r] - target</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">abs</span>(cur) &lt; delta:</span><br><span class="line">                        res = [nums[i],nums[l],nums[r]]</span><br><span class="line">                        delta = <span class="built_in">abs</span>(cur)</span><br><span class="line">                    <span class="keyword">if</span> cur == <span class="number">0</span>:</span><br><span class="line">                        <span class="keyword">return</span> target</span><br><span class="line">                    <span class="keyword">elif</span> cur &gt; <span class="number">0</span>:</span><br><span class="line">                        r -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        l += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(res)</span><br></pre></td></tr></table></figure></div>
+<h2 id="口袋指针"><a href="#口袋指针" class="headerlink" title="口袋指针"></a>口袋指针</h2><ul>
+<li>适用问题：将数组中满足条件的元素移至一端，要求原地修改且满足条件的元素相互位置保持稳定；</li>
+<li>使用思路：假想用一只“袋子”盛放满足条件的元素，初始时袋子为空，用l=-1指示袋子口的位置，使用另一个指针从0开始遍历整个数组，如果当前元素满足条件，则袋口+1，将当前元素通过交换放入袋中，当遍历结束时，所有满足条件的元素就都被放入到袋子中了。</li>
+</ul>
+<h3 id="移动-0"><a href="#移动-0" class="headerlink" title="移动 0"></a>移动 0</h3><ul>
+<li>问题：[283] 移动零，给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序</li>
+<li>思路：口袋指针法，初始口袋口-1，遍历整个数组，如果元素不等于0，袋口扩充，并将该元素和袋口元素交换</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        i = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[j]:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                nums[i],nums[j] = nums[j], nums[i]</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(1)，时间O(n)</li>
+</ul>
+<h3 id="红白蓝划分"><a href="#红白蓝划分" class="headerlink" title="红白蓝划分"></a>红白蓝划分</h3><ul>
+<li>问题：[75] 分类颜色，给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色</li>
+<li>思路：两次口袋指针法，先把0放头部，再把1放0后面数组的头部；或者使用首尾两个口袋，一次遍历将0放头口袋，将2放尾口袋</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    思路1：使用前后指针，口袋交换法，将等于0的交换至前面，将等于2的交换至右边</span></span><br><span class="line"><span class="string">        开区间表示两次装袋</span></span><br><span class="line"><span class="string">    思路2：双边装袋，略显复杂，还不如遍历两次</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortColors</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        i,j = -<span class="number">1</span>,n</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> k &lt; j:</span><br><span class="line">            <span class="keyword">if</span> nums[k] == <span class="number">0</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                nums[k],nums[i] = nums[i],nums[k]</span><br><span class="line">                k += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[k] == <span class="number">2</span>:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">                nums[k],nums[j] = nums[j],nums[k]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                k += <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(1)，时间O(n)</li>
+</ul>
+<h3 id="快排划分"><a href="#快排划分" class="headerlink" title="快排划分"></a>快排划分</h3><ul>
+<li>问题：选取首元素作为枢轴值，将数组中小于等于该值的元素交换至头部，大于该值的交换置数组尾部，返回枢轴值最终的位置</li>
+<li>思路：口袋指针法</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">A,low,high</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    在A[low:high+1]中选取枢轴点，并按首轴值排序</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    i = low                         </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(low+<span class="number">1</span>,high+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> A[j] &lt;= A[low]:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            A[i],A[j] = A[j],A[i]</span><br><span class="line">    A[i],A[low] = A[low],A[i]</span><br><span class="line">    <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析:空间O(1)，时间O(n)</li>
+</ul>
+<h3 id="寻找第k大"><a href="#寻找第k大" class="headerlink" title="寻找第k大"></a>寻找第k大</h3><ul>
+<li>问题：[215] 数组中的第K个最大元素,在未排序的数组中找到第 k 个最大的元素</li>
+<li>思路：有很多方法可以求解此问题，但最高效的方法是口袋指针法，类似于快排划分，将首元素(先做随机交换)作为枢轴值，将所有大于等于它的元素交换至数组头部，返回数轴值最终位置pivot，如果枢轴值位置刚好是k-1，则说明该位置的值即为第k大的值，如果i <k-1,在有半部分nums[i+1:]寻找k-i-1大，如果i > k-1，在左半边nums[:i]寻找第k大</li>
+<li>代码：如果枢轴值不进行随机选择，效率还不如先排序！！</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    思路1：先排序，时间O(nlgn)</span></span><br><span class="line"><span class="string">    思路2：建立大根堆，弹出第k个O(n+klgn)</span></span><br><span class="line"><span class="string">    思路3：口袋指针法，平均O(n)，以首元素为枢轴值，进行划分</span></span><br><span class="line"><span class="string">        1. 如果数轴位置i==k-1则直接返回i对应的值</span></span><br><span class="line"><span class="string">        2. 如果i &lt;k-1,在有半部分nums[i+1:]寻找k-i-1大</span></span><br><span class="line"><span class="string">        3. 如果i &gt; k-1，在左半边nums[:i]寻找第k大</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthLargest</span>(<span class="params">self, nums, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">1</span> <span class="keyword">or</span> n &lt; k:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        pivot = self.partition(nums,<span class="number">0</span>,n-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> pivot == k - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[pivot]</span><br><span class="line">        <span class="keyword">elif</span> pivot &lt; k - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> self.findKthLargest(nums[pivot+<span class="number">1</span>:],k-pivot-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.findKthLargest(nums[:pivot],k)</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">self,nums,low,high</span>):</span></span><br><span class="line">        rand = random.randint(low,high)</span><br><span class="line">        nums[rand],nums[low] = nums[low],nums[rand]</span><br><span class="line">        bag = low</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(low+<span class="number">1</span>,high+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt;= nums[low]:</span><br><span class="line">                bag += <span class="number">1</span></span><br><span class="line">                nums[bag],nums[i] = nums[i], nums[bag]</span><br><span class="line">        nums[bag], nums[low] = nums[low],nums[bag]</span><br><span class="line">        <span class="keyword">return</span> bag</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：最好情形$T(n)=T(n/2)+O(n)$，空间复杂度O(lgn)，时间复杂度为O(n)</li>
+</ul>
+<h2 id="窗口指针"><a href="#窗口指针" class="headerlink" title="窗口指针"></a>窗口指针</h2><p><strong>包含剪枝条件的连续子序列问题</strong>：</p>
+<ol>
+<li>连续子序列问题：求解满足条件f的连续子序列；</li>
+<li>包含剪枝条件：如果在找到了一个首次满足特定条件g的连续子序列之后，发现可以排除掉(l&lt;=x<r,x<=y<r)以及(x=l,y>r)部分的解，就可以左移连续子序列的左侧边界l直至条件g不再满足，即(l’&lt;=x,r&lt;=y)不能排除；</li>
+</ol>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/23-44-33.jpg" width="60%" heigh="60%"></img>
+</div>
+
+<p>常见的这类问题有：</p>
+<ol>
+<li>满足条件的最长连续子序列问题；</li>
+<li>满足条件的最短连续子序列问题；</li>
+<li>内在的满足剪枝条件的其他类型连续子序列问题；</li>
+</ol>
+<p><strong>窗口蠕动法</strong>：将连续子序列看做是一个“窗口”，用左右指针l,r来标识窗口，起初窗口为空(l=0,r=-1)，备选解解存在于(x&gt;=l,y&gt;r)，每次通过右移右指针来扩展窗口(l,r)，如果当前窗口满足上述减枝条件g，则通过右移左指针实现剪枝(l’,r)，移动过程中收集满足条件f的解，剩余备选解在(x&gt;=l’,y&gt;r)中，循环以上过程得到所有满足条件的连续子序列。因为窗口移动的过程通常是由右指针来扩展，由左指针来收缩，很像虫子向前蠕动的过程，因此叫窗口蠕动更形象。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/200743143217100.gif" width="60%" heigh="60%"></img>
+</div>
+
+<p>窗口蠕动包含三个步骤：扩展-剪枝-收集（核心是设计出合适的减枝条件）</p>
+<ol>
+<li>初始化空窗口l=0,r=-1</li>
+<li>循环以下过程直至右指针越界<ol>
+<li>扩展：右移右指针</li>
+<li>剪枝：如果达到下一个可剪枝的窗口，则右移左指针，直至不能再剪枝</li>
+<li>在窗口满足条件时收集备选解</li>
+</ol>
+</li>
+<li>返回最终解</li>
+</ol>
+<h3 id="满足条件的最长连续子序列"><a href="#满足条件的最长连续子序列" class="headerlink" title="满足条件的最长连续子序列"></a>满足条件的最长连续子序列</h3><h4 id="无重复最长子串"><a href="#无重复最长子串" class="headerlink" title="无重复最长子串"></a>无重复最长子串</h4><ul>
+<li>问题:[3] 无重复字符的最长子串，给定一个字符串，找出不含有重复字符的最长子串的长度</li>
+<li><p>思路：当窗口首次包含重复时，(r&gt;x&gt;l,r&gt;y&gt;l)(不是最长)以及(x=l,y&gt;r)(包含重复)部分可以剪枝，右移左指针直至包含重复</p>
+<ul>
+<li>① 初始化窗口l=0,r=-1</li>
+<li>② 循环以下过程直至右指针越界r==n<ul>
+<li>右移右指针</li>
+<li>如果当前窗口包含重复，右移左指针，直至当前窗口不包含重复</li>
+<li>更新不包含重复字符的子串的最大长度</li>
+</ul>
+</li>
+<li>③ 返回最大长度</li>
+</ul>
+</li>
+<li><p>代码：</p>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span>(<span class="params">self, s</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    dic = Counter()</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    l = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> xrange(n):</span><br><span class="line">        dic[s[r]] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> dic[s[r]] &gt; <span class="number">1</span>:</span><br><span class="line">            dic[s[l]] -= <span class="number">1</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        res = <span class="built_in">max</span>(res,r-l+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(n)，时间O(n)</li>
+</ul>
+<h3 id="满足条件的最短连续子序列"><a href="#满足条件的最短连续子序列" class="headerlink" title="满足条件的最短连续子序列"></a>满足条件的最短连续子序列</h3><h4 id="和大于s的最短子数组"><a href="#和大于s的最短子数组" class="headerlink" title="和大于s的最短子数组"></a>和大于s的最短子数组</h4><ul>
+<li>问题：[209] 长度最小的子数组，给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的子数组。如果不存在符合条件的子数组，返回 0</li>
+<li>思路：当窗口和首次大于等于s时，(r&gt;x&gt;l,r&gt;y&gt;l)(小于s)以及(x=l,y&gt;r)(不是最短)部分可以剪枝，右移左指针直至窗口和小于s<ul>
+<li>① 初始化窗口l=0,r=-1</li>
+<li>② 循环以下过程直至右指针越界r==n<ul>
+<li>右移右指针</li>
+<li>如果当前窗口和&gt;=s，更新最短数组的的长度，右移左指针，直至当前窗口&lt;s</li>
+</ul>
+</li>
+<li>③ 返回最大长度</li>
+</ul>
+</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minSubArrayLen</span>(<span class="params">self, s, nums</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type s: int</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    cur = <span class="number">0</span></span><br><span class="line">    res = n + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(n):</span><br><span class="line">        cur += nums[j]</span><br><span class="line">        <span class="keyword">while</span> cur &gt;= s:</span><br><span class="line">            res = <span class="built_in">min</span>(res,j-i+<span class="number">1</span>)</span><br><span class="line">            cur -= nums[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> res <span class="keyword">if</span> res &lt;= n <span class="keyword">else</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(1)，时间O(n)</li>
+</ul>
+<h4 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h4><p>连续序列覆盖子串问题是一类非常经典的问题，值得认真体会，关键点有两个：</p>
+<ol>
+<li>剪枝条件：当已经覆盖时，可以剪枝，l右移至不再覆盖，即第一次need[s[l]]从0变成1的时候</li>
+<li>用count和need标识总需求和每个字符的需求数：count=0时表示已经覆盖，need为负数时表示已超出需求</li>
+</ol>
+<ul>
+<li>问题：[76] 最小覆盖子串，给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot;</span><br><span class="line">输出: &quot;BANC&quot;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路:当窗口首次覆盖子串时，继续扩展r不是最优，(l,r)内不能覆盖，可进行剪枝，右移l直至不再覆盖，不再覆盖不好判断，但不再覆盖的前一位置可以判断。用count统计当前窗口还缺多少个字符，用need记录当前每种字符需求数，如果是负数代表多余个个数。（覆盖问题使用need存放每个元素的需求，使用count存放总需求对于剪枝判断是个很好的技巧，下面我们还会反复遇到）</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minWindow</span>(<span class="params">self, s, t</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :type t: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    count,need = <span class="built_in">len</span>(t), Counter(t)</span><br><span class="line">    l, L, R = <span class="number">0</span>, <span class="number">0</span>, -<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> r, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">        count -= need[c] &gt; <span class="number">0</span></span><br><span class="line">        need[c] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> count == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> R == -<span class="number">1</span> <span class="keyword">or</span> r - l &lt; R - L:</span><br><span class="line">                L, R = l, r</span><br><span class="line">            need[s[l]] += <span class="number">1</span></span><br><span class="line">            count += need[s[l]] &gt; <span class="number">0</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">    <span class="keyword">return</span> s[L:R+<span class="number">1</span>]</span><br></pre></td></tr></table></figure></div>
+<p>-分析：空间O(n)，时间O(n)</p>
+<h4 id="最小区间"><a href="#最小区间" class="headerlink" title="最小区间"></a>最小区间</h4><ul>
+<li>问题:[632] 最小区间， 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。我们定义如果 b-a &lt; d-c 或者在 b-a == d-c 时 a &lt; c，则区间 [a,b] 比 [c,d] 小</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入:[[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]</span><br><span class="line">输出: [20,24]</span><br><span class="line">解释: </span><br><span class="line">列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。</span><br><span class="line">列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。</span><br><span class="line">列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：同最小覆盖子串，核心在于如何判断刚好已覆盖和刚好未覆盖，将所有值按照(值,所属分组号)排序，在排序后的数组上进行窗口滑动，当刚好都覆盖时进行剪枝，同时收集最优结果，右值l直至刚好不再覆盖。</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smallestRange</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type nums: List[List[int]]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    count = <span class="built_in">len</span>(nums)</span><br><span class="line">    need = Counter(<span class="built_in">range</span>(count))</span><br><span class="line">    p = [(val,i) <span class="keyword">for</span> i <span class="keyword">in</span> xrange(count) <span class="keyword">for</span> val <span class="keyword">in</span> nums[i]]</span><br><span class="line">    n = <span class="built_in">len</span>(p)</span><br><span class="line">    p.sort()</span><br><span class="line">    </span><br><span class="line">    l = <span class="number">0</span></span><br><span class="line">    res = [p[<span class="number">0</span>][<span class="number">0</span>],p[-<span class="number">1</span>][<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> xrange(n):</span><br><span class="line">        count -= need[p[r][<span class="number">1</span>]] &gt; <span class="number">0</span></span><br><span class="line">        need[p[r][<span class="number">1</span>]] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> count == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> res[-<span class="number">1</span>] - res[<span class="number">0</span>] &gt; p[r][<span class="number">0</span>] - p[l][<span class="number">0</span>]:</span><br><span class="line">                res = [p[l][<span class="number">0</span>],p[r][<span class="number">0</span>]]</span><br><span class="line">            need[p[l][<span class="number">1</span>]] += <span class="number">1</span></span><br><span class="line">            count += need[p[l][<span class="number">1</span>]] &gt; <span class="number">0</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：涉及到排序，空间O(n)，时间O(nlgn)</li>
+</ul>
+<h3 id="其他包含剪枝的连续子序列问题"><a href="#其他包含剪枝的连续子序列问题" class="headerlink" title="其他包含剪枝的连续子序列问题"></a>其他包含剪枝的连续子序列问题</h3><h4 id="包含字符串的排列"><a href="#包含字符串的排列" class="headerlink" title="包含字符串的排列"></a>包含字符串的排列</h4><ul>
+<li>问题：[567] 字符串的排列，给定两个字符串 s1 和 s2，写一个函数来判断 s2 是否包含 s1 的排列</li>
+<li>思路：窗口蠕动法，只要s2的某个子串的字符统计量等于s1的字符统计量，即返回True。该问题包含减枝条件，当加入的字符统计量超出s1的需求时可以剪枝，右移左指针直至不超，此时判断s1的需求数是否刚好满足，满足则返回True（不多、又刚好满足需求），否则继续扩展窗口。仍然使用need代表每个元素的需求数，用count代表总体需求数。</li>
+<li>代码：可以看到，代码与上面两题基本上相同</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">checkInclusion</span>(<span class="params">self, s1, s2</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type s1: str</span></span><br><span class="line"><span class="string">    :type s2: str</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    count,need = <span class="built_in">len</span>(s1),Counter(s1)</span><br><span class="line">    l = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> r,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(s2):</span><br><span class="line">        count -= need[c] &gt; <span class="number">0</span></span><br><span class="line">        need[c] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> need[c] &lt; <span class="number">0</span>:</span><br><span class="line">            need[s2[l]] += <span class="number">1</span></span><br><span class="line">            count += need[s2[l]] &gt; <span class="number">0</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(n)，时间O(n)</li>
+</ul>
+<h4 id="乘积小于K的子数组"><a href="#乘积小于K的子数组" class="headerlink" title="乘积小于K的子数组"></a>乘积小于K的子数组</h4><ul>
+<li>问题：[713] 乘积小于K的子数组，给定一个正整数数组 nums，找出该数组内乘积小于 k 的连续的子数组的个数</li>
+<li>思路：直接应用窗口移动法时，不满足剪枝条件，因为(l&lt;x&lt;r,x&lt;=y&lt;r)这部分不能被剪掉，但如果这一部分已被统计过了，就仍然可以正常剪枝。当窗口满足条件时，我们统计以r结束的满足条件的连续数组个数，当r放入后如果不满足条件，我们就可以进行正常的剪枝了，因为后面的肯定不满足，前面的已经被统计过，此时只需要将l移至下个满足条件的位置即可。</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numSubarrayProductLessThanK</span>(<span class="params">self, nums, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        i,j,count,prod = <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= j &lt; n:</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            prod *= nums[j-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> prod &gt;= k:</span><br><span class="line">                prod /= nums[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            count += j - i</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>分析：空间O(1)，时间O(n)</li>
+</ul>
+<h2 id="区间子数组的个数"><a href="#区间子数组的个数" class="headerlink" title="区间子数组的个数"></a>区间子数组的个数</h2><ul>
+<li>题目：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">给定一个元素都是正整数的数组A ，正整数 L 以及 R (L &lt;= R)。</span><br><span class="line"></span><br><span class="line">求连续、非空且其中最大元素满足大于等于L 小于等于R的子数组个数。</span><br><span class="line"></span><br><span class="line">例如 :</span><br><span class="line">输入: </span><br><span class="line">A = [2, 1, 4, 3]</span><br><span class="line">L = 2</span><br><span class="line">R = 3</span><br><span class="line">输出: 3</span><br><span class="line">解释: 满足条件的子数组: [2], [2, 1], [3].</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    思路：窗口滑动法，窗口为满足条件的子数组，统计收集窗口内以右指针为末尾且满足条件的子数组个数count，移动右指针</span></span><br><span class="line"><span class="string">        1. 如果新元素在范围内那么以新元素为末尾的满足条件的子数组个数为j-i+1</span></span><br><span class="line"><span class="string">        2. 如果新元素小于L，那么以新元素为末尾的子数组为count</span></span><br><span class="line"><span class="string">        3. 如果新元素大于R，那么不可能以新元素为末尾，移动左指针到新的位置j+1</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayBoundedMax</span>(<span class="params">self, A, L, R</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :type L: int</span></span><br><span class="line"><span class="string">        :type R: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        l = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> r <span class="keyword">in</span> xrange(<span class="built_in">len</span>(A)):</span><br><span class="line">            <span class="keyword">if</span> L &lt;= A[r] &lt;= R:</span><br><span class="line">                res += r - l + <span class="number">1</span></span><br><span class="line">                count = r - l + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> A[r] &lt; L:</span><br><span class="line">                res += count</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count = <span class="number">0</span></span><br><span class="line">                l = r + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br></pre></td></tr></table></figure></div>
+<h2 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h2><p>快慢指针：使用移动速度不同的两个指针slow,fast(通常fast移动速度是slow的两倍)来遍历线性表。</p>
+<p>环形检测：如果线性表中存在环，那么快慢指针从同一起点出发，如果能够再次相遇，则说明线性表中存在环。</p>
+<p>寻找中位数：快慢指针同时从线性表首元素出发，当快指针无法前进时，慢指针会指向下中位。</p>
+<p>链表中用的最多，比如[141] 环形链表，[142] 环形链表 II，[234]回文链表，详情参考链表，这里仅讨论在顺序表中的使用</p>
+<h3 id="寻找重复数"><a href="#寻找重复数" class="headerlink" title="寻找重复数"></a>寻找重复数</h3><ul>
+<li>问题：[287]寻找重复数，给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不能更改原数组（假设数组是只读的）。</span><br><span class="line">只能使用额外的 O(1) 的空间。</span><br><span class="line">时间复杂度小于 O(n2) 。</span><br><span class="line">数组中只有一个重复的数字，但它可能不止重复出现一次</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>思路:1~n的n+1个整数组成的数组，可以看作是一条静态链表，下标0代表头指针，列表中的值代表next指针，类似于链表中寻找环的交点算法，可以找到数组中的重复元素</li>
+<li>代码：<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    slow = fast = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 首先找到下一个交点</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">        fast = nums[nums[fast]]</span><br><span class="line">        <span class="keyword">if</span> slow == fast:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 排除另一个慢指针，与上一个慢指针同时出发，交点即重复元素</span></span><br><span class="line">    slow2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">        slow2 = nums[slow2]</span><br><span class="line">        <span class="keyword">if</span> slow == slow2:</span><br><span class="line">            <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure></div></li>
+<li>分析：空间O(1)，时间O(n^2)</li>
+</ul>
+<h2 id="早晚指针"><a href="#早晚指针" class="headerlink" title="早晚指针"></a>早晚指针</h2><p>早晚指针：在指针移动某位置时，另一个指针从头出发，主要用处在于产生/消除差额。</p>
+<p>使用快慢指针判断环的交点问题中也使用到了早晚指针，另一个经典的应用是寻找链表中倒数第k个节点，原理是当第一个指针移动了k次时，再派出一个指针从头开始同步移动，最后当早指针不能前进时，晚指针指向的就是倒数第k个节点。</p>
+<h2 id="双表指针"><a href="#双表指针" class="headerlink" title="双表指针"></a>双表指针</h2><ul>
+<li>指针含义：两个指针分别用于指示两个线性表中的当前位置</li>
+<li>指针移动：具体问题具体分析</li>
+<li>问题特点：当需要同时操作两个线性表时，典型的有数组归并，链表逆序</li>
+</ul>
+<h3 id="数组交集"><a href="#数组交集" class="headerlink" title="数组交集"></a>数组交集</h3><ul>
+<li>问题：[349] 两个数组的交集，给定两个数组，写一个函数来计算它们的交集</li>
+<li>思路：该问题使用集合很容易在O(n)时间复杂度下求解，如果不使用集合，可先对数组排序，用两个指针指示两个数组的出现不同元素的第一个元素，如果相等则收集，直至其中一个遍历完。虽然是一种笨的方法，但用到的方法在很多问题中都会遇到。</li>
+<li>代码：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intersection</span>(<span class="params">self, nums1, nums2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums1.sort()</span><br><span class="line">        nums2.sort()</span><br><span class="line">        m,n = <span class="built_in">len</span>(nums1),<span class="built_in">len</span>(nums2)</span><br><span class="line">        res = []</span><br><span class="line">        i = j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; m <span class="keyword">and</span> j &lt; n:</span><br><span class="line">            <span class="keyword">if</span> nums1[i] == nums2[j]:</span><br><span class="line">                res.append(nums1[i])</span><br><span class="line">                i,j = i + <span class="number">1</span>, j + <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> i &lt; m <span class="keyword">and</span> nums1[i] == nums1[i-<span class="number">1</span>]: i+= <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> j &lt; n <span class="keyword">and</span> nums2[j] == nums2[j-<span class="number">1</span>]: j+= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums1[i] &gt; nums2[j]:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res        </span><br></pre></td></tr></table></figure></div>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>详见链表或者排序</p>
+<h3 id="链表逆序"><a href="#链表逆序" class="headerlink" title="链表逆序"></a>链表逆序</h3><p>详见链表</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%88/" rel="next" title="数据结构与算法：线性表（二）—— 栈">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：线性表（二）—— 栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="prev" title="数据结构与算法：并查集">
+                数据结构与算法：并查集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E5%B0%BE%E6%8C%87%E9%92%88"><span class="nav-number">1.</span> <span class="nav-text">首尾指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%BD%AC%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">反转线性表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">盛最多水的容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Sum"><span class="nav-number">1.4.</span> <span class="nav-text">2 Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84-2-Sum"><span class="nav-number">1.4.1.</span> <span class="nav-text">无序数组的 2 Sum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%842Sum"><span class="nav-number">1.4.2.</span> <span class="nav-text">有序数组的2Sum</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Sum"><span class="nav-number">1.5.</span> <span class="nav-text">3 Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#N-sum"><span class="nav-number">1.6.</span> <span class="nav-text">N sum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-number">1.6.1.</span> <span class="nav-text">最接近的三数之和</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A3%E8%A2%8B%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">口袋指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8-0"><span class="nav-number">2.1.</span> <span class="nav-text">移动 0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E7%99%BD%E8%93%9D%E5%88%92%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">红白蓝划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8E%92%E5%88%92%E5%88%86"><span class="nav-number">2.3.</span> <span class="nav-text">快排划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E7%AC%ACk%E5%A4%A7"><span class="nav-number">2.4.</span> <span class="nav-text">寻找第k大</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E6%8C%87%E9%92%88"><span class="nav-number">3.</span> <span class="nav-text">窗口指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">3.1.</span> <span class="nav-text">满足条件的最长连续子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E9%87%8D%E5%A4%8D%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2"><span class="nav-number">3.1.1.</span> <span class="nav-text">无重复最长子串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%9C%80%E7%9F%AD%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">3.2.</span> <span class="nav-text">满足条件的最短连续子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%92%8C%E5%A4%A7%E4%BA%8Es%E7%9A%84%E6%9C%80%E7%9F%AD%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">3.2.1.</span> <span class="nav-text">和大于s的最短子数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2"><span class="nav-number">3.2.2.</span> <span class="nav-text">最小覆盖子串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%8C%BA%E9%97%B4"><span class="nav-number">3.2.3.</span> <span class="nav-text">最小区间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8C%85%E5%90%AB%E5%89%AA%E6%9E%9D%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">其他包含剪枝的连续子序列问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97"><span class="nav-number">3.3.1.</span> <span class="nav-text">包含字符串的排列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%98%E7%A7%AF%E5%B0%8F%E4%BA%8EK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">3.3.2.</span> <span class="nav-text">乘积小于K的子数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">区间子数组的个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88"><span class="nav-number">5.</span> <span class="nav-text">快慢指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0"><span class="nav-number">5.1.</span> <span class="nav-text">寻找重复数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A9%E6%99%9A%E6%8C%87%E9%92%88"><span class="nav-number">6.</span> <span class="nav-text">早晚指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E8%A1%A8%E6%8C%87%E9%92%88"><span class="nav-number">7.</span> <span class="nav-text">双表指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E4%BA%A4%E9%9B%86"><span class="nav-number">7.1.</span> <span class="nav-text">数组交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">7.2.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E9%80%86%E5%BA%8F"><span class="nav-number">7.3.</span> <span class="nav-text">链表逆序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

@@ -1,37 +1,1671 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据科学," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="JupyterLab 是 Jupyter 团队为 Jupyter 项目开发的下一代基于 Web 的交互式开发环境。相对于 Jupyter Notebook，它的集成性更强、更灵活并且更易扩展。它支持 100 种多种语言，支持多种文档相互集成，实现了交互式计算的新工作流程。如果说 Jupyter Notebook 像是一个交互式的笔记本，那么 Jupyter Lab 更像是一个交互式的 VSCod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据科学：工具篇（一）—— Jupyter Lab 配置环境">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Jupyter%20Lab%20%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="JupyterLab 是 Jupyter 团队为 Jupyter 项目开发的下一代基于 Web 的交互式开发环境。相对于 Jupyter Notebook，它的集成性更强、更灵活并且更易扩展。它支持 100 种多种语言，支持多种文档相互集成，实现了交互式计算的新工作流程。如果说 Jupyter Notebook 像是一个交互式的笔记本，那么 Jupyter Lab 更像是一个交互式的 VSCod">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201023183040.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201023182853.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031814006335.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031815825233.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031816905266.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/formatter.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/click.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/preview.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Qgrid_basic.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Qgrid_tweakData.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/filtering_demo.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/boek.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/dash.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/early_demo.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031950705517.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/screencast.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/toc.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Demo2.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/example1.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/drawio.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/showcase.gif">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032502274677.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032660834478.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032700843174.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032798130948.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032572845419.jpg">
+<meta property="article:published_time" content="2020-10-23T06:16:46.000Z">
+<meta property="article:modified_time" content="2021-06-21T11:32:46.269Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据科学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201023183040.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据科学/数据科学/数据科学：工具使用（一）—— Jupyter Lab 配置环境/"/>
+
+
+
+
+
+  <title>数据科学：工具篇（一）—— Jupyter Lab 配置环境 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Jupyter%20Lab%20%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据科学：工具篇（一）—— Jupyter Lab 配置环境</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-23T14:16:46+08:00">
+                2020-10-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-21T19:32:46+08:00">
+                2021-06-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">数据科学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%EF%BC%9A%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Jupyter%20Lab%20%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" class="leancloud_visitors" data-flag-title="数据科学：工具篇（一）—— Jupyter Lab 配置环境">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201023183040.png" alt=""></p>
+<p><a target="_blank" rel="noopener" href="https://jupyter.org/">JupyterLab</a> 是 Jupyter 团队为 Jupyter 项目开发的下一代基于 Web 的交互式开发环境。相对于 Jupyter Notebook，它的集成性更强、更灵活并且更易扩展。它支持 100 种多种语言，支持多种文档相互集成，实现了交互式计算的新工作流程。如果说 Jupyter Notebook 像是一个交互式的笔记本，那么 Jupyter Lab 更像是一个交互式的 VSCode。另外，JupyterLab 非常强大的一点是，你可以将它部署在云服务器，不管是电脑、平板还是手机，都只需一个浏览器，即可远程访问使用。使用 JupyterLab，你可以进行数据分析相关的工作，可以进行交互式编程，可以学习社区中丰富的 Notebook 资料。</p>
+<blockquote>
+<p>本文只是提供一个 Jupyter lab 的基本配置思路和索引，Jupyter lab 还在快速发展，文中提到的很多内容可能已经不再适用了，大家在配置时不要拘泥于文中细节，还是要去官网上查看具体安装细节，否则可能导致版本兼容的各种问题</p>
+</blockquote>
+<h2 id="安装-Jupyter"><a href="#安装-Jupyter" class="headerlink" title="安装 Jupyter"></a>安装 Jupyter</h2><p>建议先安装 <a target="_blank" rel="noopener" href="https://www.anaconda.com/">Anaconda</a>，Anaconda 自带 Jupyter 和常用的科学计算包，且方便通过 conda 进行环境管理。为了不污染本地 Python 环境，建议单独为 Jupyter lab 创建一个虚拟环境（在 base 环境下可能遇到各种奇怪的错误）:</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="ZSH"><figure class="iseeu highlight /zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建虚拟环境，同时安装完整anaconda集合包（假设已经成功安装了 Anaconda）</span></span><br><span class="line">$ conda create -n mylab python=3.7 anaconda</span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活虚拟环境</span></span><br><span class="line">$ conda activate mylab</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Jupyter 版本</span></span><br><span class="line">$ jupyter --version</span><br><span class="line">jupyter core     : 4.6.3</span><br><span class="line">jupyter-notebook : 6.0.3</span><br><span class="line">qtconsole        : 4.7.5</span><br><span class="line">ipython          : 7.16.1</span><br><span class="line">ipykernel        : 5.3.2</span><br><span class="line">jupyter client   : 6.1.6</span><br><span class="line">jupyter lab      : 2.1.5</span><br><span class="line">nbconvert        : 5.6.1</span><br><span class="line">ipywidgets       : 7.5.1</span><br><span class="line">nbformat         : 5.0.7</span><br><span class="line">traitlets        : 4.3.3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看相关路径</span></span><br><span class="line">$ jupyter lab paths</span><br><span class="line">Application directory: /Users/likewang/opt/anaconda3/share/jupyter/lab</span><br><span class="line">User Settings directory: /Users/likewang/.jupyter/lab/user-settings</span><br><span class="line">Workspaces directory: /Users/likewang/.jupyter/lab/workspaces</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置文件路径</span></span><br><span class="line">$ jupyter notebook --generate-config</span><br><span class="line">Overwrite /Users/likewang/.jupyter/jupyter_notebook_config.py with default config? [y/N]n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置文件，设置 jupyter 默认打开的目录</span></span><br><span class="line">$ vim .jupyter/jupyter_notebook_config.py</span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">&#x27;/Users/likewang/ilab&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<h2 id="插件管理"><a href="#插件管理" class="headerlink" title="插件管理"></a>插件管理</h2><p>jupyter-lab 提供了两种方式来管理 Jupyter-lab 的插件：</p>
+<ul>
+<li>命令行：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="ZSH"><figure class="iseeu highlight /zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jupyter-lab 运行插件需要先安装 nodejs</span></span><br><span class="line">$ conda install nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询安装的插件</span></span><br><span class="line">$ jupyter labextension list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装插件</span></span><br><span class="line">$ jupyter labextension install xxx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除插件</span></span><br><span class="line">$ jupyter labextension uninstall xxx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新所有插件（当插件版本过低或与当前jupyter版本不兼容的时候很好用）</span></span><br><span class="line">$ jupyter labextension update --all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建插件</span></span><br><span class="line">$ jupyter lab build</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>通过 juputer-lab 插件图形化管理：进入jupyter界面，点击插件图标，在搜索栏中搜索对应插件名，如jupytext，可直接管理对应的插件</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201023182853.png" alt=""></p>
+<p>安装插件时，通常需要先通过 <code>pip/conda</code> 安装相关依赖，再通过 <code>jupyter labextension</code> 来安装对应插件，部分插件在成功安装之后需要重启 jupyter-lab 才能生效。建议只安装必要的插件，插件过多会拖慢 jupyter-lab 的打开速度。</p>
+<h3 id="kite-——-代码补全"><a href="#kite-——-代码补全" class="headerlink" title="kite —— 代码补全"></a>kite —— 代码补全</h3><p><a target="_blank" rel="noopener" href="https://kite.com/">kite</a> 是一个功能非常强大的代码补全工具，目前可用于 Python 与 javascript，为许多知名的编辑器譬如 Vs Code、Pycharm 提供对应的插件，详细的安装过程可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/feffery/p/13199472.html">Jupyter lab 最强代码补全插件</a>。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>安装 kite 的一般步骤：</p>
+<ol>
+<li>下载安装 <a target="_blank" rel="noopener" href="https://kite.com/">kite 客户端</a>：安装后登陆 kite 客户端，并保持 kite 客户端开启；</li>
+<li>配置 <code>jupyter-lab</code>：需要注意的是 kite 只支持 2.2.0 以上版本的jupyter lab，但是目前jupyter lab的最新正式版本为2.1.5，因此我们需要使用pip来安装其提前发行版本，这里我选择2.2.0a1；</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="ZSH"><figure class="iseeu highlight /zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 升级 jupyterlab 到 2.2.0</span></span><br><span class="line">$ pip install --pre jupyterlab==2.2.0a1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 jupyter-kite 依赖</span></span><br><span class="line">$ pip install jupyter-kite</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 @kiteco/jupyterlab-kite 插件</span></span><br><span class="line">$ jupyter labextension install @kiteco/jupyterlab-kite</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>成功安装 kite 后，会自动跳转到 kite 使用说明文档 kite_tutorial.ipynb，这里简单介绍 kite 的几项核心功能：</p>
+<ul>
+<li>自动补全：写代码的时候不需要按 <Tab> 健，也会弹出代码补全提示，可以在命令面板中通过 <code>Kite: Toggle Docs Panel</code> 来关闭或打开完整说明文档</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031814006335.gif" alt=""></p>
+<ul>
+<li>手动补全：仍然可以继续使用 jupyter-lab 本身的 <Tab> 补全功能</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031815825233.gif" alt=""></p>
+<ul>
+<li>实时文档：如果在 Kite 中打开了 Copilot，Copilot 会自动地根据光标在 Jupyter-lab 中的位置更新说明文档</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031816905266.gif" alt=""></p>
+<h3 id="jupyterlab-code-formatter-——-代码格式化"><a href="#jupyterlab-code-formatter-——-代码格式化" class="headerlink" title="jupyterlab_code_formatter —— 代码格式化"></a>jupyterlab_code_formatter —— 代码格式化</h3><p><a target="_blank" rel="noopener" href="https://github.com/ryantam626/jupyterlab_code_formatter">jupyterlab_code_formatter</a> 用于代码一键格式化。</p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 安装依赖</span><br><span class="line">$ conda install -c conda-forge jupyterlab_code_formatter</span><br><span class="line">$ jupyter labextension install @ryantam626/jupyterlab_code_formatter</span><br><span class="line"># 安装插件</span><br><span class="line">$ jupyter serverextension enable --py jupyterlab_code_formatter</span><br><span class="line"># 安装支持的代码格式</span><br><span class="line">$ conda install black isort</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/formatter.gif" alt="formatte"></p>
+<h3 id="jupyterlab-go-to-definition-——-代码跳转"><a href="#jupyterlab-go-to-definition-——-代码跳转" class="headerlink" title="jupyterlab-go-to-definition —— 代码跳转"></a>jupyterlab-go-to-definition —— 代码跳转</h3><p><a href="">jupyterlab-go-to-definition</a> 用于Lab笔记本和文件编辑器中跳转到变量或函数的定义</p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="ZSH"><figure class="iseeu highlight /zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JuupyterLab 2.x</span></span><br><span class="line">$ jupyter labextension install @krassowski/jupyterlab_go_to_definition   </span><br><span class="line"><span class="comment"># JupyterLab 1.x</span></span><br><span class="line">$ jupyter labextension install @krassowski/jupyterlab_go_to_definition@0.7.1   </span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h4><p>默认快捷键 <code>alt+click</code>：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/click.gif" alt="click"></p>
+<h3 id="jupyterlab-git-——-版本管理"><a href="#jupyterlab-git-——-版本管理" class="headerlink" title="jupyterlab-git —— 版本管理"></a>jupyterlab-git —— 版本管理</h3><p><a target="_blank" rel="noopener" href="https://github.com/jupyterlab/jupyterlab-git">jupyterlab-git</a> 是 jupyter-lab 的 git 插件，可以方便地进行版本管理。</p>
+<h4 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ conda install -c conda-forge jupyterlab jupyterlab-git</span><br><span class="line">jupyter lab build</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/preview.gif" alt="previe"></p>
+<h3 id="qgrid-——-DataFrame-交互"><a href="#qgrid-——-DataFrame-交互" class="headerlink" title="qgrid —— DataFrame 交互"></a>qgrid —— DataFrame 交互</h3><p><a target="_blank" rel="noopener" href="https://github.com/quantopian/qgrid">qgrid</a> 是一个可以用交互的方式操作 Pandas DataFrame 的插件，主要优点有：</p>
+<ol>
+<li>直接用点选的方式进行选择、排序甚至是修改单元格中的值；</li>
+<li>做 EDA 时可以看到整个 DataFrame 的全貌，而不是用 … 的方式来显示，而且读取速度很快；</li>
+</ol>
+<h4 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ conda install qgrid</span><br><span class="line">$ jupyter labextension install @jupyter-widgets/jupyterlab-manager</span><br><span class="line">$ jupyter labextension install qgrid2</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>以交互的方式显示 Pandas DataFrame：可以显示完整数据</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 載入所需套件</span><br><span class="line">import qgrid</span><br><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 為了讓結果相同，設定種子以及資料數量</span><br><span class="line">np.random.seed(1)</span><br><span class="line">nrow = 1000000</span><br><span class="line"></span><br><span class="line"># 建立 Dataframe</span><br><span class="line">df = pd.DataFrame(&#123;&#x27;Index&#x27;: range(nrow), </span><br><span class="line">                   &#x27;Sex&#x27;: np.random.choice([&#x27;M&#x27;, &#x27;F&#x27;], nrow), </span><br><span class="line">                   &#x27;Age&#x27;: np.random.randint(12, 56, nrow),</span><br><span class="line">                   &#x27;Height&#x27;: np.round(np.random.random(nrow),3)*30+160,</span><br><span class="line">                   &#x27;Weight&#x27;: np.round(np.random.random(nrow),3)*30+55,</span><br><span class="line">                   &#x27;Tag&#x27;: np.random.choice([True, False], nrow)&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qgrid_widget = qgrid.show_grid(df, show_toolbar=True)</span><br><span class="line">qgrid_widget</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>在 DataFrame 上排序、筛选数据：</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Qgrid_basic.gif" alt="Qgrid_basi"></p>
+<ul>
+<li>甚至可以直接更改 Dataframe 的值：</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Qgrid_tweakData.gif" alt="Qgrid_tweakData"></p>
+<ul>
+<li>还可以获取改动过的数据：qgrid_widget.get_changed_df() 可以获取经过筛选、排序、修改后的 DataFrame 数据：</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qgrid_widget.get_changed_df()</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/filtering_demo.gif" alt="filtering_demo"></p>
+<h3 id="jupyter-bokeh-——-可视化效果"><a href="#jupyter-bokeh-——-可视化效果" class="headerlink" title="jupyter_bokeh —— 可视化效果"></a>jupyter_bokeh —— 可视化效果</h3><p><a target="_blank" rel="noopener" href="https://github.com/bokeh/jupyter_bokeh">jupyter_bokeh</a> 该插件可以在 Lab 中展示bokeh 可视化效果。</p>
+<h4 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda install -c bokeh jupyter_bokeh</span><br><span class="line">jupyter labextension install @jupyter-widgets/jupyterlab-manager</span><br><span class="line">jupyter labextension install @bokeh/jupyter_bokeh</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/boek.gif" alt="boek"></p>
+<h3 id="jupyterlab-dash-——-单独面板"><a href="#jupyterlab-dash-——-单独面板" class="headerlink" title="jupyterlab-dash —— 单独面板"></a>jupyterlab-dash —— 单独面板</h3><p><a target="_blank" rel="noopener" href="https://github.com/plotly/jupyterlab-dash">jupyterlab-dash</a> 该插件可以在Lab中展示 plotly dash 交互式面板。</p>
+<h4 id="安装-6"><a href="#安装-6" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ conda install -c plotly -c defaults -c conda-forge &quot;jupyterlab&gt;=1.0&quot; jupyterlab-dash=0.1.0a3</span><br><span class="line">$ jupyter labextension install jupyterlab-dash@0.1.0-alpha.3</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-6"><a href="#使用-6" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/dash.gif" alt="dash"></p>
+<h3 id="jupyterlab-variableinspector-——-变量显示"><a href="#jupyterlab-variableinspector-——-变量显示" class="headerlink" title="jupyterlab_variableinspector —— 变量显示"></a>jupyterlab_variableinspector —— 变量显示</h3><p><a target="_blank" rel="noopener" href="https://github.com/lckr/jupyterlab-variableInspector">jupyterlab_variableinspector</a> 可以在 Lab 中展示代码中的变量及其属性，类似RStudio中的变量检查器。你可以一边撸代码，一边看有哪些变量。对 Spark 和 Tensorflow 的支持需要解决依赖。</p>
+<h4 id="安装-7"><a href="#安装-7" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jupyter labextension install @lckr/jupyterlab_variableinspector</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-7"><a href="#使用-7" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/early_demo.gif" alt="early_demo"></p>
+<h3 id="jupyterlab-system-monitor-——-资源监控"><a href="#jupyterlab-system-monitor-——-资源监控" class="headerlink" title="jupyterlab-system-monitor —— 资源监控"></a>jupyterlab-system-monitor —— 资源监控</h3><p><a target="_blank" rel="noopener" href="https://github.com/jtpio/jupyterlab-system-monitor">jupyterlab-system-monitor</a> 用于监控 jupyter-lab 的资源使用情况。</p>
+<h4 id="安装-8"><a href="#安装-8" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ conda install -c conda-forge nbresuse</span><br><span class="line">$ jupyter labextension install jupyterlab-topbar-extension jupyterlab-system-monitor</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-8"><a href="#使用-8" class="headerlink" title="使用"></a>使用</h4><p>默认只显示内存使用情况：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16031950705517.jpg" alt=""></p>
+<p>编辑配置文件 <code>~/.jupyter/jupyter_notebook_config.py</code>：添加一下内容，重启 jupyter-lab 就可以显示 CPU 利用率以及内存使用情况了。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = get_config()</span><br><span class="line"></span><br><span class="line"># memory</span><br><span class="line">c.NotebookApp.ResourceUseDisplay.mem_limit = &lt;size_in_GB&gt; *1024*1024*1024</span><br><span class="line"></span><br><span class="line"># cpu</span><br><span class="line">c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True</span><br><span class="line">c.NotebookApp.ResourceUseDisplay.cpu_limit = &lt;number_of_cpus&gt;</span><br></pre></td></tr></table></figure></div>
+<p>示例：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 示例：限制最大内存 4G，2 个 CPU，显示 CPU 利用率</span><br><span class="line">c.NotebookApp.ResourceUseDisplay.mem_limit = 4294967296</span><br><span class="line">c.NotebookApp.ResourceUseDisplay.track_cpu_percent = True</span><br><span class="line">c.NotebookApp.ResourceUseDisplay.cpu_limit = 2</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/screencast.gif" alt="screencast"></p>
+<h3 id="jupyterlab-toc-——-显示目录"><a href="#jupyterlab-toc-——-显示目录" class="headerlink" title="jupyterlab-toc —— 显示目录"></a>jupyterlab-toc —— 显示目录</h3><p><a target="_blank" rel="noopener" href="https://github.com/jupyterlab/jupyterlab-toc">jupyterlab-toc</a> 用于在 jupyter-lab 中显示文档的目录。</p>
+<h4 id="安装-9"><a href="#安装-9" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jupyter labextension install @jupyterlab/toc</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-9"><a href="#使用-9" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/toc.gif" alt="to"></p>
+<h3 id="Collapsible-Headings-——-折叠标题"><a href="#Collapsible-Headings-——-折叠标题" class="headerlink" title="Collapsible_Headings —— 折叠标题"></a>Collapsible_Headings —— 折叠标题</h3><p><a target="_blank" rel="noopener" href="https://github.com/aquirdTurtle/Collapsible_Headings">Collapsible_Headings</a> 可实现标题的折叠。</p>
+<h4 id="安装-10"><a href="#安装-10" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jupyter labextension install @aquirdturtle/collapsible_headings</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-10"><a href="#使用-10" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/Demo2.gif" alt="Demo2"></p>
+<h3 id="jupyterlab-html-——-显示-HTML"><a href="#jupyterlab-html-——-显示-HTML" class="headerlink" title="jupyterlab_html —— 显示 HTML"></a>jupyterlab_html —— 显示 HTML</h3><p>该插件允许你在Jupyter Lab内部呈现HTML文件，这在打开例如d3可视化效果时非常有用</p>
+<h4 id="安装-11"><a href="#安装-11" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jupyter labextension install @mflevine/jupyterlab_html</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-11"><a href="#使用-11" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/example1.gif" alt="example1"></p>
+<h3 id="jupyterlab-drawio-——-绘制流程图"><a href="#jupyterlab-drawio-——-绘制流程图" class="headerlink" title="jupyterlab-drawio —— 绘制流程图"></a>jupyterlab-drawio —— 绘制流程图</h3><p><a target="_blank" rel="noopener" href="https://github.com/QuantStack/jupyterlab-drawio">jupyterlab-drawio</a> 可以在Lab中启用 drawio 绘图工具，drawio是一款非常棒的流程图工具。</p>
+<h4 id="安装-12"><a href="#安装-12" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jupyter labextension install jupyterlab-drawio</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-12"><a href="#使用-12" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/drawio.gif" alt="drawio"></p>
+<h3 id="jupyterlab-tabular-data-editor-——-CSV-编辑"><a href="#jupyterlab-tabular-data-editor-——-CSV-编辑" class="headerlink" title="jupyterlab-tabular-data-editor —— CSV 编辑"></a>jupyterlab-tabular-data-editor —— CSV 编辑</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/feffery/p/13647422.html">jupyterlab-tabular-data-editor</a> 插件赋予我们高度的交互式操纵 csv 文件的自由，无需excel，就可以实现对csv表格数据的增删改查。</p>
+<h4 id="安装-13"><a href="#安装-13" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jupyter labextension install jupyterlab-tabular-data-editor</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-13"><a href="#使用-13" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/showcase.gif" alt="showcase"></p>
+<h3 id="jupyter-themes-——-切换主题"><a href="#jupyter-themes-——-切换主题" class="headerlink" title="jupyter-themes —— 切换主题"></a>jupyter-themes —— 切换主题</h3><p><a target="_blank" rel="noopener" href="https://github.com/arbennett/jupyterlab-themes">jupyterlab-themes</a> 用于切换 jupyter 的主题。</p>
+<h4 id="安装-14"><a href="#安装-14" class="headerlink" title="安装"></a>安装</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 目前还只能一个一个安装</span><br><span class="line">$ jupyter labextension install @arbennett/base16-&#123;$themename&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用-14"><a href="#使用-14" class="headerlink" title="使用"></a>使用</h4><p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032502274677.jpg" alt=""></p>
+<h3 id="更多插件"><a href="#更多插件" class="headerlink" title="更多插件"></a>更多插件</h3><p>更多插件可以参考以下网站：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/mauhai/awesome-jupyterlab">Awesome JupyterLab</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/101070029">15个好用到爆炸的Jupyter Lab插件</a></li>
+</ol>
+<h2 id="kernel-管理"><a href="#kernel-管理" class="headerlink" title="kernel 管理"></a>kernel 管理</h2><p>Jupyter kernel 可以用任何语言实现，只要它们遵循基于 ZeroMQ 的 Jupyter 通信协议。IPython 是最流行的内核，默认情况下包括在内。这并不奇怪，因为 Jupyter（Jupyter，Jupyter，Python，R）来自IPython项目。它是将独立于语言的部分从IPython内核中分离出来，使其能够与其他语言一起工作的结果，现在有超过100种编程语言的内核可用。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032660834478.jpg" alt=""></p>
+<p>除了内核和前端之外，Jupyter 还包括与语言无关的后端部分，它管理内核、笔记本和与前端的通信。这个组件称为Jupyter服务器。笔记本存储在.ipynb文件中，在服务器上以Json格式编码。基于Json的格式允许以结构化的方式存储单元输入、输出和元数据。二进制输出数据采用base64编码。缺点是，与基于行的文本格式相比，json使diff和merge更困难。您可以将笔记本导出为其他格式，如Markdown、Scala（仅包含代码输入单元格）或类似本文的HTML。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看 kernel 列表</span><br><span class="line">jupyter kernelspec list</span><br><span class="line"># 卸载指定 kernel </span><br><span class="line">jupyter kernelspec remove kernel_name</span><br></pre></td></tr></table></figure></div>
+<h3 id="安装-Scala-kernel"><a href="#安装-Scala-kernel" class="headerlink" title="安装 Scala kernel"></a>安装 Scala kernel</h3><p>在Scala中对Jupyter的支持是怎样的？实际上有很多不同的内核。但是，如果仔细观察，它们中的许多在功能上有一定的局限性，存在可伸缩性问题，甚至已经被放弃。其他人只关注Spark而不是Scala和其他框架。</p>
+<p>其中一个原因是，几乎所有现有内核都构建在默认REPL之上。由于其局限性，他们对其进行定制和扩展，以添加自己的特性，如依赖关系管理或框架支持。一些内核还使用sparkshell，它基本上是scalarepl的一个分支，专门为Spark支持而定制。这一切都会导致碎片化、重用困难和重复工作，使得创建一个与其他语言相当的内核变得更加困难。</p>
+<p>关于一些原因的更详细讨论，请查看 Alexandre Archambault 在2017年 JupyterCon 上的演讲 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=pgVtdveelAQ">Scala: Why hasn’t an Official Scala Kernel for Jupyter emerged yet?</a>。</p>
+<h4 id="almond（推荐）"><a href="#almond（推荐）" class="headerlink" title="almond（推荐）"></a>almond（推荐）</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/almond-sh/almond">almond（之前叫jupyter-scala）</a> 使得 jupyter 强大的功能向 Scala 开放，包括 <a target="_blank" rel="noopener" href="http://ammonite.io/#Ammonite-REPL">Ammonite</a> 的所有细节，尽管它还需要一些更多的集成和文档，但是它已经非常有用，并且非常有趣。<br>——<a target="_blank" rel="noopener" href="https://brunk.io/interactive-computing-in-scala-with-jupyter-and-almond.html">Interactive Computing in Scala with Jupyter and almond</a></p>
+</blockquote>
+<p>安装 almond 需要特别注意 almond 版本、Scala 版本以及 Spark版本之间的兼容性（almond 0.10.0 支持 scala 2.12.11 and 2.13.2 支持 park 2.4.x），almond 详细安装过程及版本对应关系请参考 <a target="_blank" rel="noopener" href="https://almond.sh/docs/install-versions">almond 官方文档</a>。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 查看可用的 Scala 版本</span><br><span class="line">$ brew search scala</span><br><span class="line">==&gt; Formulae</span><br><span class="line">scala         scala@2.11    scala@2.12    scalaenv      scalapack     scalariform   scalastyle</span><br><span class="line"></span><br><span class="line"># 安装 scala 2.12.x</span><br><span class="line">$ brew install scala@2.12</span><br><span class="line"></span><br><span class="line"># 查看实际安装的 scala 版本</span><br><span class="line">$ scala -version</span><br><span class="line">Scala code runner version 2.12.11 -- Copyright 2002-2020, LAMP/EPFL and Lightbend, Inc.</span><br><span class="line"></span><br><span class="line"># 安装 coursier，scala 的依赖解析器</span><br><span class="line">$ brew install coursier/formulas/coursier</span><br><span class="line"></span><br><span class="line"># 通过 coursier 安装 almond，指定 almond 版本=0.10.0，scala版本=2.12.11，重复安装需要加--force</span><br><span class="line">$ coursier launch --fork almond:0.10.0 --scala 2.12.11 -- --install --force</span><br><span class="line"></span><br><span class="line"># 成功安装后，可以看到 jupyter kernelspec 多了一个 Scala 的核</span><br><span class="line">$ jupyter kernelspec list</span><br><span class="line">Available kernels:</span><br><span class="line">  scala            /Users/likewang/Library/Jupyter/kernels/scala</span><br><span class="line">  python3          /Users/likewang/opt/anaconda3/envs/mylab/share/jupyter/kernels/python3</span><br><span class="line">  python2          /usr/local/share/jupyter/kernels/python2</span><br><span class="line">  spylon-kernel    /usr/local/share/jupyter/kernels/spylon-kernel</span><br><span class="line"></span><br><span class="line"># 安装 Spark 依赖</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032700843174.jpg" alt=""></p>
+<p>配置 Spark：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Or use any other 2.x version here</span></span><br><span class="line"><span class="keyword">import</span> $ivy.`org.apache.spark::spark-sql:<span class="number">2.4</span><span class="number">.0</span>`</span><br><span class="line"></span><br><span class="line"><span class="comment"># Not required since almond 0.7.0 (will be automatically added when importing spark)</span></span><br><span class="line"><span class="keyword">import</span> $ivy.`sh.almond::almond-spark:<span class="number">0.10</span><span class="number">.9</span>` </span><br><span class="line"><span class="comment"># 通常，为了避免污染单元输出，您需要禁用日志记录</span></span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.&#123;Level, Logger&#125;</span><br><span class="line">Logger.getLogger(<span class="string">&quot;org&quot;</span>).setLevel(Level.OFF)</span><br><span class="line"><span class="comment"># 引入 NotebookSparkSession</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql._</span><br><span class="line"></span><br><span class="line">val spark = &#123;</span><br><span class="line">  NotebookSparkSession.builder()</span><br><span class="line">    .master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">    .getOrCreate()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 引入隐式转换</span></span><br><span class="line"><span class="keyword">import</span> spark.implicits._</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032798130948.jpg" alt=""></p>
+<h4 id="其他-Scala-kernel"><a href="#其他-Scala-kernel" class="headerlink" title="其他 Scala kernel"></a>其他 Scala kernel</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Valassis-Digital-Media/spylon-kernel">spylon-kernel</a> 是一个 Scala Jupyter Kernel。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jegonzal/jupyter-scala">jupyter-scala</a> 依赖于 scala 2.11.x，还不支持 2.12；jupyter-scala 只能用于 jupyter notebook 无法用于 jupyter lab：</li>
+</ul>
+<h3 id="安装-python-kernel"><a href="#安装-python-kernel" class="headerlink" title="安装 python kernel"></a>安装 python kernel</h3><p>由于我们是在 python 3 虚拟环境下安装了 jupyter lab，自带的是 python 3 kernel，现在需要添加 python 2 的 kernel：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 假设已经安装了名为 python2 的虚拟环境，切换到 python 2 环境</span><br><span class="line">$ conda activate python2</span><br><span class="line"># 安装 python 2 kernel  </span><br><span class="line">$ python2 -m ipykernel install --name python2</span><br></pre></td></tr></table></figure></div>
+<p>安装成功后，在 jupyter lab 新建文件页面会出现 python 2 的图标：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/16032572845419.jpg" alt=""></p>
+<h2 id="各种奇怪的问题"><a href="#各种奇怪的问题" class="headerlink" title="各种奇怪的问题"></a>各种奇怪的问题</h2><h4 id="插件同时出现在已安装和未安装列表中"><a href="#插件同时出现在已安装和未安装列表中" class="headerlink" title="插件同时出现在已安装和未安装列表中"></a>插件同时出现在已安装和未安装列表中</h4><ul>
+<li>问题描述：在uninstall 插件后，插件同时出现在 Known labextensions 和 Uninstalled core extensions。</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="ZSH"><figure class="iseeu highlight /zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  ~ jupyter labextension list</span><br><span class="line">JupyterLab v1.2.6</span><br><span class="line">Known labextensions:</span><br><span class="line">   app dir: /Users/likewang/opt/anaconda3/share/jupyter/lab</span><br><span class="line">        @bokeh/jupyter_bokeh v1.2.0  enabled  OK</span><br><span class="line">        @jupyterlab/github v1.0.1  enabled  OK</span><br><span class="line">        @jupyterlab/toc v2.0.0  enabled  OK</span><br><span class="line">        @mflevine/jupyterlab_html v0.1.4  enabled  OK</span><br><span class="line">        @pyviz/jupyterlab_pyviz v0.8.0  enabled  OK</span><br><span class="line">        @ryantam626/jupyterlab_code_formatter v1.1.0  enabled  OK</span><br><span class="line">        jupyterlab-dash v0.1.0-alpha.3  enabled  OK</span><br><span class="line">        jupyterlab-drawio v0.6.0  enabled  OK</span><br><span class="line"></span><br><span class="line">Uninstalled core extensions:</span><br><span class="line">    @ryantam626/jupyterlab_code_formatter</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>解决办法：删除 <code>jupyter\lab\settings\build_config.json，https://github.com/jupyterlab/jupyterlab/issues/8122</code></li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(base) ➜  ~ jupyter lab build</span><br><span class="line">[LabBuildApp] JupyterLab 1.2.6</span><br><span class="line">[LabBuildApp] Building in /Users/likewang/opt/anaconda3/share/jupyter/lab</span><br><span class="line">[LabBuildApp] Building jupyterlab assets (build:prod:minimize)</span><br><span class="line">(base) ➜  ~ jupyter labextension list</span><br><span class="line">JupyterLab v1.2.6</span><br><span class="line">Known labextensions:</span><br><span class="line">   app dir: /Users/likewang/opt/anaconda3/share/jupyter/lab</span><br><span class="line">        @bokeh/jupyter_bokeh v1.2.0  enabled  OK</span><br><span class="line">        @jupyterlab/github v1.0.1  enabled  OK</span><br><span class="line">        @jupyterlab/toc v2.0.0  enabled  OK</span><br><span class="line">        @mflevine/jupyterlab_html v0.1.4  enabled  OK</span><br><span class="line">        @pyviz/jupyterlab_pyviz v0.8.0  enabled  OK</span><br><span class="line">        @ryantam626/jupyterlab_code_formatter v1.1.0  enabled  OK</span><br><span class="line">        jupyterlab-dash v0.1.0-alpha.3  enabled  OK</span><br><span class="line">        jupyterlab-drawio v0.6.0  enabled  OK</span><br></pre></td></tr></table></figure></div>
+<h4 id="No-module-named-‘jupyter-nbextensions-configurator’"><a href="#No-module-named-‘jupyter-nbextensions-configurator’" class="headerlink" title="No module named ‘jupyter_nbextensions_configurator’"></a>No module named ‘jupyter_nbextensions_configurator’</h4><ul>
+<li>问题描述：启动 jupyter-lab 时报错 <code>ModuleNotFoundError: No module named &#39;jupyter_nbextensions_configurator&#39;</code></li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(mylab) ➜  ilab jupyter-lab</span><br><span class="line">[W 19:37:20.086 LabApp] Error loading server extension jupyter_nbextensions_configurator</span><br><span class="line">    Traceback (most recent call last):</span><br><span class="line">      File &quot;/Users/likewang/opt/anaconda3/envs/mylab/lib/python3.7/site-packages/notebook/notebookapp.py&quot;, line 1670, in init_server_extensions</span><br><span class="line">        mod = importlib.import_module(modulename)</span><br><span class="line">      File &quot;/Users/likewang/opt/anaconda3/envs/mylab/lib/python3.7/importlib/__init__.py&quot;, line 127, in import_module</span><br><span class="line">        return _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">      File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 1006, in _gcd_import</span><br><span class="line">      File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 983, in _find_and_load</span><br><span class="line">      File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 965, in _find_and_load_unlocked</span><br><span class="line">    ModuleNotFoundError: No module named &#x27;jupyter_nbextensions_configurator&#x27;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>解决办法：以上问题出现在虚拟环境中启动 jupyter-lab，jupyter-nbextensions_configurator 和 python pip 不在同一个环境，解决办法是在对应的虚拟环境中安装 jupyter_nbextensions_configurator</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(mylab) ➜  ~ which jupyter-nbextensions_configurator</span><br><span class="line">/Users/likewang/opt/anaconda3/bin/jupyter-nbextensions_configurator</span><br><span class="line">(mylab) ➜  ~ which python</span><br><span class="line">/Users/likewang/opt/anaconda3/envs/mylab/bin/python</span><br><span class="line">(mylab) ➜  ~ which jupyter</span><br><span class="line">/Users/likewang/opt/anaconda3/envs/mylab/bin/jupyter</span><br><span class="line">(mylab) ➜  ~ which jupyter-notebook</span><br><span class="line">/Users/likewang/opt/anaconda3/envs/mylab/bin/jupyter-notebook</span><br><span class="line"># 重新在虚拟环境安装 jupyter_nbextensions_configurator</span><br><span class="line">conda install -c conda-forge jupyter_nbextensions_configurator</span><br><span class="line">(mylab) ➜  .jupyter which jupyter-nbextensions_configurator</span><br><span class="line">/Users/likewang/opt/anaconda3/envs/mylab/bin/jupyter-nbextensions_configurator</span><br></pre></td></tr></table></figure></div>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://towardsdatascience.com/getting-the-most-out-of-jupyter-lab-9b3198f88f2d">Getting the most out of Jupyter Lab</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/" rel="tag"># 数据科学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A0%B8%E5%BF%83%E7%B1%BB%E5%9E%8B/" rel="next" title="Scala 教程：Basics（二）—— 核心类型">
+                <i class="fa fa-chevron-left"></i> Scala 教程：Basics（二）—— 核心类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20SQL%EF%BC%88%E3%80%87%EF%BC%89%E2%80%94%E2%80%94%20%E7%BB%93%E6%9E%84%E5%8C%96%20API/" rel="prev" title="Spark 指南：Spark SQL（〇）—— 结构化 API">
+                Spark 指南：Spark SQL（〇）—— 结构化 API <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Jupyter"><span class="nav-number">1.</span> <span class="nav-text">安装 Jupyter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">插件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kite-%E2%80%94%E2%80%94-%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%A8"><span class="nav-number">2.1.</span> <span class="nav-text">kite —— 代码补全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-code-formatter-%E2%80%94%E2%80%94-%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.2.</span> <span class="nav-text">jupyterlab_code_formatter —— 代码格式化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-go-to-definition-%E2%80%94%E2%80%94-%E4%BB%A3%E7%A0%81%E8%B7%B3%E8%BD%AC"><span class="nav-number">2.3.</span> <span class="nav-text">jupyterlab-go-to-definition —— 代码跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-git-%E2%80%94%E2%80%94-%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">jupyterlab-git —— 版本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-3"><span class="nav-number">2.4.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qgrid-%E2%80%94%E2%80%94-DataFrame-%E4%BA%A4%E4%BA%92"><span class="nav-number">2.5.</span> <span class="nav-text">qgrid —— DataFrame 交互</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-4"><span class="nav-number">2.5.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-4"><span class="nav-number">2.5.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyter-bokeh-%E2%80%94%E2%80%94-%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%88%E6%9E%9C"><span class="nav-number">2.6.</span> <span class="nav-text">jupyter_bokeh —— 可视化效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-5"><span class="nav-number">2.6.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-5"><span class="nav-number">2.6.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-dash-%E2%80%94%E2%80%94-%E5%8D%95%E7%8B%AC%E9%9D%A2%E6%9D%BF"><span class="nav-number">2.7.</span> <span class="nav-text">jupyterlab-dash —— 单独面板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-6"><span class="nav-number">2.7.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-6"><span class="nav-number">2.7.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-variableinspector-%E2%80%94%E2%80%94-%E5%8F%98%E9%87%8F%E6%98%BE%E7%A4%BA"><span class="nav-number">2.8.</span> <span class="nav-text">jupyterlab_variableinspector —— 变量显示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-7"><span class="nav-number">2.8.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-7"><span class="nav-number">2.8.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-system-monitor-%E2%80%94%E2%80%94-%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7"><span class="nav-number">2.9.</span> <span class="nav-text">jupyterlab-system-monitor —— 资源监控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-8"><span class="nav-number">2.9.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-8"><span class="nav-number">2.9.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-toc-%E2%80%94%E2%80%94-%E6%98%BE%E7%A4%BA%E7%9B%AE%E5%BD%95"><span class="nav-number">2.10.</span> <span class="nav-text">jupyterlab-toc —— 显示目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-9"><span class="nav-number">2.10.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-9"><span class="nav-number">2.10.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collapsible-Headings-%E2%80%94%E2%80%94-%E6%8A%98%E5%8F%A0%E6%A0%87%E9%A2%98"><span class="nav-number">2.11.</span> <span class="nav-text">Collapsible_Headings —— 折叠标题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-10"><span class="nav-number">2.11.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-10"><span class="nav-number">2.11.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-html-%E2%80%94%E2%80%94-%E6%98%BE%E7%A4%BA-HTML"><span class="nav-number">2.12.</span> <span class="nav-text">jupyterlab_html —— 显示 HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-11"><span class="nav-number">2.12.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-11"><span class="nav-number">2.12.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-drawio-%E2%80%94%E2%80%94-%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">2.13.</span> <span class="nav-text">jupyterlab-drawio —— 绘制流程图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-12"><span class="nav-number">2.13.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-12"><span class="nav-number">2.13.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyterlab-tabular-data-editor-%E2%80%94%E2%80%94-CSV-%E7%BC%96%E8%BE%91"><span class="nav-number">2.14.</span> <span class="nav-text">jupyterlab-tabular-data-editor —— CSV 编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-13"><span class="nav-number">2.14.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-13"><span class="nav-number">2.14.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyter-themes-%E2%80%94%E2%80%94-%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">2.15.</span> <span class="nav-text">jupyter-themes —— 切换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-14"><span class="nav-number">2.15.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-14"><span class="nav-number">2.15.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E6%8F%92%E4%BB%B6"><span class="nav-number">2.16.</span> <span class="nav-text">更多插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kernel-%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">kernel 管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Scala-kernel"><span class="nav-number">3.1.</span> <span class="nav-text">安装 Scala kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#almond%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">almond（推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-Scala-kernel"><span class="nav-number">3.1.2.</span> <span class="nav-text">其他 Scala kernel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-python-kernel"><span class="nav-number">3.2.</span> <span class="nav-text">安装 python kernel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%A5%87%E6%80%AA%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">各种奇怪的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E5%90%8C%E6%97%B6%E5%87%BA%E7%8E%B0%E5%9C%A8%E5%B7%B2%E5%AE%89%E8%A3%85%E5%92%8C%E6%9C%AA%E5%AE%89%E8%A3%85%E5%88%97%E8%A1%A8%E4%B8%AD"><span class="nav-number">4.0.1.</span> <span class="nav-text">插件同时出现在已安装和未安装列表中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#No-module-named-%E2%80%98jupyter-nbextensions-configurator%E2%80%99"><span class="nav-number">4.0.2.</span> <span class="nav-text">No module named ‘jupyter_nbextensions_configurator’</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

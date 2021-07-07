@@ -1,37 +1,1903 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Life," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="昔时贤文，诲汝谆谆。 集韵增广，多见多闻。 观今宜鉴古，无古不成今。 知己知彼，将心比心。 酒逢知己饮，诗向会人吟。 相识满天下，知心能几人? 相逢好似初相识，到老终无怨恨心。 近水知鱼性，近山识鸟音。 易涨易退山溪水，易反易覆小人心。 运去金成铁，时来铁似金。 读书须用意，一字值千金。 逢人且说三分话，未可全抛一片心。 有意栽花花不发，无心插柳柳成荫。 画虎画皮难画骨，知人知面不知心。 钱财如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="曾广贤文：上集">
+<meta property="og:url" content="http://liketea.xyz/Life/Life/%E6%9B%BE%E5%B9%BF%E8%B4%A4%E6%96%87%EF%BC%9A%E4%B8%8A%E9%9B%86/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="昔时贤文，诲汝谆谆。 集韵增广，多见多闻。 观今宜鉴古，无古不成今。 知己知彼，将心比心。 酒逢知己饮，诗向会人吟。 相识满天下，知心能几人? 相逢好似初相识，到老终无怨恨心。 近水知鱼性，近山识鸟音。 易涨易退山溪水，易反易覆小人心。 运去金成铁，时来铁似金。 读书须用意，一字值千金。 逢人且说三分话，未可全抛一片心。 有意栽花花不发，无心插柳柳成荫。 画虎画皮难画骨，知人知面不知心。 钱财如">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/曾广贤文.jpg">
+<meta property="article:published_time" content="2019-08-31T13:10:05.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.898Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="Life">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/曾广贤文.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/Life/Life/曾广贤文：上集/"/>
+
+
+
+
+
+  <title>曾广贤文：上集 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Life/Life/%E6%9B%BE%E5%B9%BF%E8%B4%A4%E6%96%87%EF%BC%9A%E4%B8%8A%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">曾广贤文：上集</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-31T21:10:05+08:00">
+                2019-08-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index">
+                    <span itemprop="name">Life</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Life/Life/%E6%9B%BE%E5%B9%BF%E8%B4%A4%E6%96%87%EF%BC%9A%E4%B8%8A%E9%9B%86/" class="leancloud_visitors" data-flag-title="曾广贤文：上集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/曾广贤文.jpg" alt=""></p>
+<p>昔时贤文，诲汝谆谆。</p>
+<p>集韵增广，多见多闻。</p>
+<p>观今宜鉴古，无古不成今。</p>
+<p>知己知彼，将心比心。</p>
+<p>酒逢知己饮，诗向会人吟。</p>
+<p>相识满天下，知心能几人?</p>
+<p>相逢好似初相识，到老终无怨恨心。</p>
+<p>近水知鱼性，近山识鸟音。</p>
+<p>易涨易退山溪水，易反易覆小人心。</p>
+<p>运去金成铁，时来铁似金。</p>
+<p>读书须用意，一字值千金。</p>
+<p>逢人且说三分话，未可全抛一片心。</p>
+<p>有意栽花花不发，无心插柳柳成荫。</p>
+<p>画虎画皮难画骨，知人知面不知心。</p>
+<p>钱财如粪土，仁义值千金。</p>
+<p>流水下滩非有意，白云出岫本无心。</p>
+<p>当时若不登高望，谁信东流海洋深?</p>
+<p>路遥知马力，日久见人心。</p>
+<p>两人一般心，无钱堪买金;</p>
+<p>一人一般心，有钱难买针。</p>
+<p>相见易得好，久住难为人。</p>
+<p>马行无力皆因瘦，人不风流只为贫。</p>
+<p>饶人不是痴汉，痴汉不会饶人。</p>
+<p>是亲不是亲，非亲却是亲。</p>
+<p>美不美，乡中水;亲不亲，故乡人。</p>
+<p>莺花犹怕春光老，岂可教人枉度春?</p>
+<p>相逢不饮空归去，洞口桃花也笑人。</p>
+<p>红粉佳人休使老，风流浪子莫教贫。</p>
+<p>在家不会迎宾客，出门方知少主人。</p>
+<p>黄芩无假，阿魏无真。</p>
+<p>客来主不顾，自是无良宾。</p>
+<p>良宾方不顾，应恐是痴人。</p>
+<p>贫居闹市无人问，富在深山有远亲。</p>
+<p>谁人背后无人说，哪个人前不说人?</p>
+<p>有钱道真语，无钱语不真。</p>
+<p>不信但看筵中酒，杯杯先劝有钱人。</p>
+<p>闹里挣钱，静处安身。</p>
+<p>来如风雨，去似微尘。</p>
+<p>长江后浪推前浪，世上新人赶旧人。</p>
+<p>近水楼台先得月，向阳花木早逢春。</p>
+<p>古人不见今时月，今月曾经照古人。</p>
+<p>先到为君，后到为臣。</p>
+<p>莫道君行早，更有早行人。</p>
+<p>莫信直中直，须防仁不仁。</p>
+<p>山中有直树，世上无直人。</p>
+<p>自恨枝无叶，莫怨太阳偏。</p>
+<p>一切都是命，半点不由人。</p>
+<p>一年之计在于春，一日之计在于寅。</p>
+<p>一家之计在于和，一生之计在于勤。</p>
+<p>责人之心责己，恕己之心恕人。</p>
+<p>守口如瓶，防意如城。</p>
+<p>宁可人负我，切莫我负人。</p>
+<p>再三须慎意，第一莫欺心。</p>
+<p>虎身犹可近，人毒不堪亲。</p>
+<p>来说是非者，便是是非人。</p>
+<p>远水难救近火，远亲不如近邻。</p>
+<p>有酒有肉多兄弟，急难何曾见一人?</p>
+<p>人情似纸张张薄，世事如棋局局新。</p>
+<p>山中也有千年树，世上难逢百岁人。</p>
+<p>力微休负重，言轻莫劝人。</p>
+<p>无钱休入众，遭难莫寻亲。</p>
+<p>平生不做皱眉事，世上应无切齿人。</p>
+<p>士者国之宝，儒为席上珍。</p>
+<p>若要断酒法，醒眼看醉人。</p>
+<p>求人须求大丈夫，济人须济急时无。</p>
+<p>渴时一滴如甘露，醉后添杯不如无。</p>
+<p>久住令人贱，频来亲也疏。</p>
+<p>酒中不语真君子，财上分明大丈夫。</p>
+<p>出家如初，成佛有余。</p>
+<p>积金千两，不如明解经书。</p>
+<p>养子不教如养驴，养女不教如养猪。</p>
+<p>有田不耕仓廪虚，有书不读子孙愚。</p>
+<p>仓廪虚兮岁月乏，子孙愚兮礼仪疏。</p>
+<p>听君一席话，胜读十年书。</p>
+<p>人不通今古，马牛如襟裾。</p>
+<p>茫茫四海人无数，哪个男儿是丈夫?</p>
+<p>白酒酿成缘好客，黄金散尽为收书。</p>
+<p>救人一命，胜造七级浮屠。</p>
+<p>城门失火，殃及池鱼。</p>
+<p>庭前生瑞草，好事不如无。</p>
+<p>欲求生富贵，须下死工夫。</p>
+<p>百年成之不足，一旦坏之有余。</p>
+<p>人心似铁，官法如炉。</p>
+<p>善化不足，恶化有余。</p>
+<p>水至清则无鱼，人太急则无智。</p>
+<p>知者减半，愚者全无。</p>
+<p>在家由父，出嫁从夫。</p>
+<p>痴人畏妇，贤女敬夫。</p>
+<p>是非终日有，不听自然无。</p>
+<p>竹篱茅舍风光好，道院僧房终不如。</p>
+<p>宁可正而不足，不可邪而有余。</p>
+<p>宁可信其有，不可信其无。</p>
+<p>命里有时终须有，命里无时莫强求。</p>
+<p>道院迎仙客，书堂隐相儒。</p>
+<p>庭栽栖凤竹，池养化龙鱼。</p>
+<p>结交须胜己，似我不如无。</p>
+<p>但看三五日，相见不如初。</p>
+<p>人情似水分高下，世事如云任卷舒。</p>
+<p>会说说都是，不会说无理。</p>
+<p>磨刀恨不利，刀利伤人指;</p>
+<p>求财恨不多，财多害自己。</p>
+<p>知足常足，终身不辱;</p>
+<p>知止常止，终身不耻。</p>
+<p>有福伤财，无福伤己。</p>
+<p>差之毫厘，失之千里。</p>
+<p>若登高必自卑，若涉远必自迩。</p>
+<p>三思而行，再思可矣。</p>
+<p>动口不如亲为，求人不如求己。</p>
+<p>小时是兄弟，长大各乡里。</p>
+<p>嫉财莫嫉食，怨生莫怨死。</p>
+<p>人见白头嗔，我见白头喜。</p>
+<p>多少少年郎，不到白头死。</p>
+<p>墙有缝，壁有耳。</p>
+<p>好事不出门，坏事传千里。</p>
+<p>若要人不知，除非己莫为。</p>
+<p>为人不做亏心事，半夜敲门心不惊。</p>
+<p>贼是小人，智过君子。</p>
+<p>君子固穷，小人穷斯溢矣。</p>
+<p>富贵多忧，贫穷自在。</p>
+<p>不以我为德，反以我为仇。</p>
+<p>宁可直中取，不可曲中求。</p>
+<p>人无远虑，必有近忧。</p>
+<p>知我者谓我心忧，不知我者谓我何求?</p>
+<p>晴天不肯去，直待雨淋头。</p>
+<p>成事莫说，覆水难收。</p>
+<p>是非只为多开口，烦恼皆因强出头。</p>
+<p>忍得一时之气，免得百日之忧。</p>
+<p>近来学得乌龟法，得缩头时且缩头。</p>
+<p>惧法朝朝乐，欺公日日忧。</p>
+<p>人生一世，草长一春。</p>
+<p>黑发不知勤学早，转眼便是白头翁。</p>
+<p>月过十五光明少，人到中年万事休。</p>
+<p>儿孙自有儿孙福，莫为儿孙做马牛。</p>
+<p>人生不满百，常怀千岁忧。</p>
+<p>今朝有酒今朝醉，明日愁来明日忧。</p>
+<p>路逢险处须回避，事到临头不自由。</p>
+<p>人贫不语，水平不流。</p>
+<p>一家养女百家求，一马不行百马忧。</p>
+<p>有花方酌酒，无月不登楼。</p>
+<p>三杯通大道，一醉解千愁。</p>
+<p>深山毕竟藏猛虎，大海终须纳细流。</p>
+<p>惜花须检点，爱月不梳头。</p>
+<p>大抵选她肌骨好，不搽红粉也风流。</p>
+<p>受恩深处宜先退，得意浓时便可休。</p>
+<p>莫待是非来入耳，从前恩爱反为仇。</p>
+<p>留得五湖明月在，不愁无处下金钩。</p>
+<p>休别有鱼处，莫恋浅滩头。</p>
+<p>去时终须去，再三留不住。</p>
+<p>忍一句，息一怒，饶一着，退一步。</p>
+<p>三十不豪，四十不富，五十将来寻死路。</p>
+<p>生不认魂，死不认尸。</p>
+<p>一寸光阴一寸金，寸金难买寸光阴。</p>
+<p>父母恩深终有别，夫妻义重也分离。</p>
+<p>人生似鸟同林宿，大难来时各自飞。</p>
+<p>人善被人欺，马善被人骑。</p>
+<p>人无横财不富，马无夜草不肥。</p>
+<p>人恶人怕天不怕，人善人欺天不欺。</p>
+<p>善恶到头终有报，只盼来早与来迟。</p>
+<p>黄河尚有澄清日，岂能人无得运时?</p>
+<p>得宠思辱，居安思危。</p>
+<p>念念有如临敌日，心心常似过桥时。</p>
+<p>英雄行险道，富贵似花枝。</p>
+<p>人情莫道春光好，只怕秋来有冷时。</p>
+<p>送君千里，终有一别。</p>
+<p>但将冷眼观螃蟹，看你横行到几时。</p>
+<p>见事莫说，问事不知。</p>
+<p>闲事莫管，无事早归。</p>
+<p>假缎染就真红色，也被旁人说是非。</p>
+<p>善事可做，恶事莫为。</p>
+<p>许人一物，千金不移。</p>
+<p>龙生龙子，虎生虎儿。</p>
+<p>龙游浅水遭虾戏，虎落平原被犬欺。</p>
+<p>一举首登龙虎榜，十年身到凤凰池。</p>
+<p>十年寒窗无人问，一举成名天下知。</p>
+<p>酒债寻常处处有，人生七十古来稀!</p>
+<p>养儿防老，积谷防饥。</p>
+<p>鸡豚狗彘之畜，无失其时，数口之家，可以无饥矣。</p>
+<p>当家才知盐米贵，养子方知父母恩。</p>
+<p>常将有日思无日，莫把无时当有时。</p>
+<p>树欲静而风不止，子欲养而亲不待。</p>
+<p>时来风送滕王阁，运去雷轰荐福碑。</p>
+<p>入门休问荣枯事，且看容颜便得知。</p>
+<p>官清司吏瘦，神灵庙祝肥。</p>
+<p>息却雷霆之怒，罢却虎豹之威。</p>
+<p>饶人算之本，输人算之机。</p>
+<p>好言难得，恶语易施。</p>
+<p>一言既出，驷马难追。</p>
+<p>道吾好者是吾贼，道吾恶者是吾师。</p>
+<p>路逢侠客须呈剑，不是才人莫献诗。</p>
+<p>三人行必有我师焉。</p>
+<p>择其善者而从之，其不善者而改之。</p>
+<p>欲昌和顺须为善，要振家声在读书。</p>
+<p>少壮不努力，老大徒伤悲。</p>
+<p>人有善愿，天必佑之。</p>
+<p>莫饮卯时酒，昏昏醉到酉。</p>
+<p>莫骂酉时妻，一夜受孤凄。</p>
+<p>种麻得麻，种豆得豆。</p>
+<p>天眼恢恢，疏而不漏。</p>
+<p>做官莫向前，作客莫在后。</p>
+<p>宁添一斗，莫添一口。</p>
+<p>螳螂捕蝉，岂知黄雀在后?</p>
+<p>不求金玉重重贵，但愿儿孙个个贤。</p>
+<p>一日夫妻，百世姻缘。</p>
+<p>百世修来同船渡，千世修来共枕眠。</p>
+<p>杀人一万，自损三千。</p>
+<p>伤人一语，利如刀割。</p>
+<p>枯木逢春犹再发，人无两度再少年。</p>
+<p>未晚先投宿，鸡鸣早看天。</p>
+<p>将相顶头堪走马，公候肚内好撑船。</p>
+<p>富人思来年，穷人想眼前。</p>
+<p>世上若要人情好，赊去物品莫取钱。</p>
+<p>生死有命，富贵在天。</p>
+<p>击石原有火，不击乃无烟。</p>
+<p>人学始知道，不学亦徒然。</p>
+<p>莫笑他人老，终须还到老。</p>
+<p>和得邻里好，犹如拾片宝。</p>
+<p>但能守本分，终身无烦恼。</p>
+<p>大家做事寻常，小家做事慌张。</p>
+<p>大家礼义教子弟，小家凶恶训儿郎。</p>
+<p>君子爱财，取之有道。</p>
+<p>贞妇爱色，纳之以礼。</p>
+<p>善有善报，恶有恶报。</p>
+<p>不是不报，时候未到。</p>
+<p>万恶淫为首，百行孝当先。</p>
+<p>人而无信，不知其可也。</p>
+<p>一人道虚，千人传实。</p>
+<p>凡事要好，须问三老。</p>
+<p>若争小利，便失大道。</p>
+<p>家中不和邻里欺，邻里不和说是非。</p>
+<p>年年防饥，夜夜防盗。</p>
+<p>学者是好，不学不好。</p>
+<p>学者如禾如稻，不学如草如蒿。</p>
+<p>遇饮酒时须防醉，得高歌处且高歌。</p>
+<p>因风吹火，用力不多。</p>
+<p>不因渔夫引，怎能见波涛?</p>
+<p>无求到处人情好，不饮任他酒价高。</p>
+<p>知事少时烦恼少，识人多处是非多。</p>
+<p>进山不怕伤人虎，只怕人情两面刀。</p>
+<p>强中更有强中手，恶人须用恶人磨。</p>
+<p>会使不在家富豪，风流不用衣着佳。</p>
+<p>光阴似箭，日月如梭。</p>
+<p>天时不如地利，地利不如人和。</p>
+<p>黄金未为贵，安乐值钱多。</p>
+<p>为善最乐，作恶难逃。</p>
+<p>羊有跪乳之恩，鸦有反哺之情。</p>
+<p>孝顺还生孝顺子，忤逆还生忤逆儿。</p>
+<p>不信但看檐前水，点点滴滴旧窝池。</p>
+<p>隐恶扬善，执其两端。</p>
+<p>妻贤夫祸少，子孝父心宽。</p>
+<p>已覆之水，收之实难。</p>
+<p>人生知足时常足，人老偷闲且是闲。</p>
+<p>处处绿杨堪系马，家家有路通长安。</p>
+<p>既坠釜甑，反顾何益。</p>
+<p>见者易，学者难。</p>
+<p>厌静还思喧，嫌喧又忆山。</p>
+<p>自从心定后，无处不安然。</p>
+<p>莫将容易得，便作等闲看。</p>
+<p>用心计较般般错，退后思量事事宽。</p>
+<p>道路各别，养家一般。</p>
+<p>由俭入奢易，从奢入俭难。</p>
+<p>知音说与知音听，不是知音莫与谈。</p>
+<p>点石化为金，人心犹未足。</p>
+<p>信了赌，卖了屋。</p>
+<p>他人观花，不涉你目。</p>
+<p>他人碌碌，不涉你足。</p>
+<p>谁人不爱子孙贤，谁人不爱千钟粟。</p>
+<p>奈五行，不是这般题目。</p>
+<p>莫把真心空计较，儿孙自有儿孙福。</p>
+<p>书到用时方恨少，事非经过不知难。</p>
+<p>天下无不是的父母，世上最难得者兄弟。</p>
+<p>与人不和，劝人养鹅;与人不睦，劝人架屋。</p>
+<p>但行好事，莫问前程。不交僧道，便是好人。</p>
+<p>河狭水激，人急计生。</p>
+<p>明知山有虎，莫向虎山行。</p>
+<p>路不铲不平，事不为不成。</p>
+<p>无钱方断酒，临老始读经。</p>
+<p>点塔七层，不如暗处一灯。</p>
+<p>堂上二老是活佛，何用灵山朝世尊。</p>
+<p>万事劝人休瞒昧，举头三尺有神明。</p>
+<p>但存方寸土，留与子孙耕。</p>
+<p>灭却心头火，剔起佛前灯。</p>
+<p>惺惺多不足，蒙蒙作公卿。</p>
+<p>众星朗朗，不如孤月独明。</p>
+<p>兄弟相害，不如友生。</p>
+<p>合理可作，小利不争。</p>
+<p>牡丹花好空入目，枣花虽小结实多。</p>
+<p>欺老莫欺小，欺人心不明。</p>
+<p>勤奋耕锄收地利，他时饱暖谢苍天。</p>
+<p>得忍且忍，得耐且耐，不忍不耐，小事成灾。</p>
+<p>相论逞英豪，家计渐渐退。</p>
+<p>贤妇令夫贵，恶妇令夫败。</p>
+<p>一人有庆，兆民咸赖。</p>
+<p>人老心未老，人穷志莫穷。</p>
+<p>人无千日好，花无百日红。</p>
+<p>黄蜂一口针，橘子两边分。</p>
+<p>世间痛恨事，最毒淫妇心。</p>
+<p>杀人可恕，情理不容。</p>
+<p>乍富不知新受用，乍贫难改旧家风。</p>
+<p>座上客常满，杯中酒不空。</p>
+<p>屋漏更遭连夜雨，行船又遇打头风。</p>
+<p>笋因落箨方成竹，鱼为奔波始化龙。</p>
+<p>记得少年骑竹马，转眼又是白头翁。</p>
+<p>礼义生于富足，盗贼出于赌博。</p>
+<p>天上众星皆拱北，世间无水不朝东。</p>
+<p>士为知己者死，女为悦己者容。</p>
+<p>色即是空，空即是色。</p>
+<p>君子安贫，达人知命。</p>
+<p>良药苦口利于病，忠言逆耳利于行。</p>
+<p>顺天者昌，逆天者亡。</p>
+<p>有缘千里来相会，无缘对面不相逢。</p>
+<p>有福者昌，无福者亡。</p>
+<p>人为财死，鸟为食亡。</p>
+<p>夫妻相和好，琴瑟与笙簧。</p>
+<p>红粉易妆娇态女，无钱难作好儿郎。</p>
+<p>有子之人贫不久，无儿无女富不长。</p>
+<p>善必寿老，恶必早亡。</p>
+<p>爽口食多偏作病，快心事过恐遭殃。</p>
+<p>富贵定要依本分，贫穷不必再思量。</p>
+<p>画水无风空作浪，绣花虽好不闻香。</p>
+<p>贪他一斗米，失却半年粮。</p>
+<p>争他一脚豚，反失一肘羊。</p>
+<p>龙归晚洞云犹湿，麝过春山草木香。</p>
+<p>平生只会说人短，何不回头把己量?</p>
+<p>见善如不及，见恶如探汤。</p>
+<p>人穷志短，马瘦毛长。</p>
+<p>自家心里急，他人未知忙。</p>
+<p>贫无达士将金赠，病有高人说药方。</p>
+<p>触来莫与竞，事过心清凉。</p>
+<p>秋来满山多秀色，春来无处不花香。</p>
+<p>凡人不可貌相，海水不可斗量。</p>
+<p>清清之水为土所防，济济之士为酒所伤。</p>
+<p>蒿草之下或有兰香，茅茨之屋或有侯王。</p>
+<p>无限朱门生饿殍，几多白屋出公卿。</p>
+<p>酒里乾坤大，壶中日月长。</p>
+<p>拂石坐来春衫冷，踏花归去马蹄香。</p>
+<p>万事前身定，浮生空自忙。</p>
+<p>叫月子规喉舌冷，宿花蝴蝶梦魂香。</p>
+<p>一言不中，千言不用。</p>
+<p>一人传虚，百人传实。</p>
+<p>万金良药，不如无疾。</p>
+<p>千里送鹅毛，礼轻情义重。</p>
+<p>世事如明镜，前程暗似漆。</p>
+<p>君子怀刑，小人怀惠。</p>
+<p>架上碗儿轮流转，媳妇自有做婆时。</p>
+<p>人生一世，如驹过隙。</p>
+<p>良田万顷，日食一升。</p>
+<p>大厦千间，夜眠八尺。</p>
+<p>千经万典，孝义为先。</p>
+<p>天上人间，方便第一。</p>
+<p>一字入公门，九牛拔不出。</p>
+<p>八字衙门向南开，有理无钱莫进来。</p>
+<p>欲求天下事，须用世间财。</p>
+<p>富从升合起，贫因不算来。</p>
+<p>近河不得枉使水，近山不得枉烧柴。</p>
+<p>家无读书子，官从何处来?</p>
+<p>慈不掌兵，义不掌财。</p>
+<p>一夫当关，万夫莫开。</p>
+<p>万事不由人计较，一生都是命安排。</p>
+<p>白云本是无心物，却被清风引出来。</p>
+<p>慢行急行，逆取顺取。</p>
+<p>命中只有如许财，丝毫不可有闪失。</p>
+<p>人间私语，天闻若雷。</p>
+<p>暗室亏心，神目如电。</p>
+<p>一毫之恶，劝人莫作。一毫之善，与人方便。</p>
+<p>亏人是祸，饶人是福，天眼恢恢，报应甚速。</p>
+<p>圣贤言语，神钦鬼服。</p>
+<p>人各有心，心各有见。</p>
+<p>口说不如身逢，耳闻不如目见。</p>
+<p>见人富贵生欢喜，莫把心头似火烧。</p>
+<p>养兵千日，用在一时。</p>
+<p>国清才子贵，家富小儿娇。</p>
+<p>利刀割体疮犹使，恶语伤人恨不消。</p>
+<p>公道世间唯白发，贵人头上不曾饶。</p>
+<p>有才堪出众，无衣懒出门。</p>
+<p>为官须作相，及第必争先。</p>
+<p>苗从地发，树由枝分。</p>
+<p>宅里燃火，烟气成云。</p>
+<p>以直报怨，知恩报恩。</p>
+<p>红颜今日虽欺我，白发他时不放君。</p>
+<p>借问酒家何处有，牧童遥指杏花村。</p>
+<p>父子和而家不退，兄弟和而家不分。</p>
+<p>一片云间不相识，三千里外却逢君。</p>
+<p>官有公法，民有私约。</p>
+<p>平时不烧香，临时抱佛脚。</p>
+<p>幸生太平无事日，恐防年老不多时。</p>
+<p>国乱思良将，家贫思良妻。</p>
+<p>池塘积水须防旱，田地深耕足养家。</p>
+<p>根深不怕风摇动，树正何愁月影斜。</p>
+<p>争得猫儿，失却牛脚。</p>
+<p>愚者千虑，必有一得，智者千虑，必有一失。</p>
+<p>始吾于人也，听其言而信其行。</p>
+<p>今吾于人也，听其言而观其行。</p>
+<p>哪个梳头无乱发，情人眼里出西施。</p>
+<p>珠沉渊而川媚，玉韫石而山辉。</p>
+<p>夕阳无限好，只恐不多时。</p>
+<p>久旱逢甘霖，他乡遇故知;洞房花烛夜，金榜题名时。</p>
+<p>惜花春起早，爱月夜眠迟。</p>
+<p>掬水月在手，弄花香满衣。</p>
+<p>桃红李白蔷薇紫，问着东君总不知。</p>
+<p>教子教孙须教义，栽桑栽柘少栽花。</p>
+<p>休念故乡生处好，受恩深处便为家。</p>
+<p>学在一人之下，用在万人之上。</p>
+<p>一日为师，终生为父。</p>
+<p>忘恩负义，禽兽之徒。</p>
+<p>劝君莫将油炒菜，留与儿孙夜读书。</p>
+<p>书中自有千钟粟，书中自有颜如玉。</p>
+<p>莫怨天来莫怨人，五行八字命生成。</p>
+<p>莫怨自己穷，穷要穷得干净;莫羡他人富，富要富得清高。</p>
+<p>别人骑马我骑驴，仔细思量我不如，</p>
+<p>待我回头看，还有挑脚汉。</p>
+<p>路上有饥人，家中有剩饭。</p>
+<p>积德与儿孙，要广行方便。</p>
+<p>作善鬼神钦，作恶遭天遣。</p>
+<p>积钱积谷不如积德，买田买地不如买书。</p>
+<p>一日春工十日粮，十日春工半年粮。</p>
+<p>疏懒人没吃，勤俭粮满仓。</p>
+<p>人亲财不亲，财利要分清。</p>
+<p>十分伶俐使七分，常留三分与儿孙，</p>
+<p>若要十分都使尽，远在儿孙近在身。</p>
+<p>君子乐得做君子，小人枉自做小人。</p>
+<p>好学者则庶民之子为公卿，不好学者则公卿之子为庶民。</p>
+<p>惜钱莫教子，护短莫从师。</p>
+<p>记得旧文章，便是新举子。</p>
+<p>人在家中坐，祸从天上落。</p>
+<p>但求心无愧，不怕有后灾。</p>
+<p>只有和气去迎人，哪有相打得太平。</p>
+<p>忠厚自有忠厚报，豪强一定受官刑。</p>
+<p>人到公门正好修，留些阴德在后头。</p>
+<p>为人何必争高下，一旦无命万事休。</p>
+<p>山高不算高，人心比天高。</p>
+<p>白水变酒卖，还嫌猪无糟。</p>
+<p>贫寒休要怨，宝贵不须骄。</p>
+<p>善恶随人作，祸福自己招。</p>
+<p>奉劝君子，各宜守己。</p>
+<p>只此呈示，万无一失。</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Life/" rel="tag"># Life</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python/Python/Python%E6%93%8D%E4%BD%9CMySQL%EF%BC%9AMySQLdb/" rel="next" title="Python 操作 MySQL：MySQLdb">
+                <i class="fa fa-chevron-left"></i> Python 操作 MySQL：MySQLdb
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Life/Life/%E6%9B%BE%E5%B9%BF%E8%B4%A4%E6%96%87%EF%BC%9A%E4%B8%8B%E9%9B%86/" rel="prev" title="曾广贤文：下集">
+                曾广贤文：下集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

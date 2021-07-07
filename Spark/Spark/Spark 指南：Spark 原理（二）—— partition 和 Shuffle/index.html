@@ -1,37 +1,1783 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="分区分区（Partition）是控制 RDD 在各节点上分布情况的高级特性，RDD 的存储和计算都是基于分区来进行的。为分布式数据集选择正确的分区方式和为本地数据选择合适的数据结构很相似 —— 数据分布都会极其明显地影响程序的性能。有时使用可控的分区方式把常被一起访问的数据放到同一个节点上，可以大大减少应用的通信开销，带来明显的性能提升。 分区的特性RDD、分区、TASK、节点、核">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark 指南：Spark 原理（二）—— Partition 和 Shuffle">
+<meta property="og:url" content="http://liketea.xyz/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20partition%20%E5%92%8C%20Shuffle/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="分区分区（Partition）是控制 RDD 在各节点上分布情况的高级特性，RDD 的存储和计算都是基于分区来进行的。为分布式数据集选择正确的分区方式和为本地数据选择合适的数据结构很相似 —— 数据分布都会极其明显地影响程序的性能。有时使用可控的分区方式把常被一起访问的数据放到同一个节点上，可以大大减少应用的通信开销，带来明显的性能提升。 分区的特性RDD、分区、TASK、节点、核">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328183846.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210326203725.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328184256.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328183145.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328192155.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210329151036.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328220015.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215915.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215853.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215725.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328220733.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215514.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215435.png">
+<meta property="article:published_time" content="2020-11-13T07:29:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.914Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328183846.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/Spark/Spark/Spark 指南：Spark 原理（二）—— partition 和 Shuffle/"/>
+
+
+
+
+
+  <title>Spark 指南：Spark 原理（二）—— Partition 和 Shuffle | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20partition%20%E5%92%8C%20Shuffle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Spark 指南：Spark 原理（二）—— Partition 和 Shuffle</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-13T15:29:53+08:00">
+                2020-11-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20partition%20%E5%92%8C%20Shuffle/" class="leancloud_visitors" data-flag-title="Spark 指南：Spark 原理（二）—— Partition 和 Shuffle">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328183846.png" width="80%" heigh="55%"></img>
+</div>
+
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>分区（Partition）是控制 RDD 在各节点上分布情况的高级特性，RDD 的存储和计算都是基于分区来进行的。为分布式数据集选择正确的分区方式和为本地数据选择合适的数据结构很相似 —— 数据分布都会极其明显地影响程序的性能。有时使用可控的分区方式把常被一起访问的数据放到同一个节点上，可以大大减少应用的通信开销，带来明显的性能提升。</p>
+<h3 id="分区的特性"><a href="#分区的特性" class="headerlink" title="分区的特性"></a>分区的特性</h3><p>RDD、分区、TASK、节点、核之间的关系：</p>
+<ol>
+<li>一个 RDD 会被划分为一个或多个分区；</li>
+<li>这些分区会被保存到多个节点，每个节点可能存储一个或多个分区，但是一个分区只能位于同一个节点，不能跨节点保存，分区是决定 RDD 分布的最小单位；</li>
+<li>RDD 的分区数是可以配置的，默认会等于所有 executor 的核数；</li>
+<li>Spark 会为每个分区分配一个 TASK，每个核一次处理一个 TASK；</li>
+</ol>
+<h3 id="默认分区"><a href="#默认分区" class="headerlink" title="默认分区"></a>默认分区</h3><p>RDD 创建方式不同，会产生不同的默认分区行为。比如，从 HDFS 中读取文件来创建 RDD 和通过一个 RDD 转换操作生成另一个新的 RDD 的分区行为是不同的。</p>
+<ul>
+<li>分布式化一个本地数据集：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>调用 API</th>
+<th>默认分区数</th>
+<th>分区器类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sc.parallelize(...)</code></td>
+<td><code>sc.defaultParallelism</code></td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>从 HDFS 读取数据：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>调用 API</th>
+<th>默认分区数</th>
+<th>分区器类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sc.textFile(...)</code></td>
+<td><code>sc.defaultParallelism</code> 和文件 block 数中较大值</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>转换操作：由于 map、flatMap 操作结果可能会改变原 RDD 的 KEY，结果 RDD 会丢失分区器，如果希望继承父 RDD，可以使用 mapValues、flatMapValues，后两者会针对于 (K,V) 形式的类型只对 V 进行操作 </li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>调用 API</th>
+<th>默认分区数</th>
+<th>分区器类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter,map,flatMap,distinct</td>
+<td>同父 RDD</td>
+<td>filter同父 RDD，其他无分区器</td>
+</tr>
+<tr>
+<td>mapValues, flatMapValues</td>
+<td>同父 RDD</td>
+<td>同父 RDD</td>
+</tr>
+<tr>
+<td>union</td>
+<td>union 的两个 RDD 分区数之和</td>
+<td>无</td>
+</tr>
+<tr>
+<td>subtract</td>
+<td>同第一个RDD</td>
+<td>无</td>
+</tr>
+<tr>
+<td>cartesian</td>
+<td>两个 RDD 分区数乘积</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>聚合操作：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>调用 API</th>
+<th>默认分区数</th>
+<th>分区器类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reduceByKey,foldByKey,combineByKey</td>
+<td>同父 RDD</td>
+<td>HashPartitioner</td>
+</tr>
+<tr>
+<td>sortByKey</td>
+<td>同父 RDD</td>
+<td>RangePartitioner</td>
+</tr>
+<tr>
+<td>cogroup,groupByKey,join,leftOuterJoin,rightOuterJoin</td>
+<td>取决于 RDD 的输入属性</td>
+<td>HashPartitioner</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="分区器"><a href="#分区器" class="headerlink" title="分区器"></a>分区器</h3><p>Partitioner（分区器）定义了 RDD 的分区分布，决定了一个 RDD 可以被分成多少个分区，以及每个分区的数据量有多大，进而决定了每个 Task 将处理哪些数据。一般来说，分区器是针对 key-value 值 RDD 的，并通过对 key 的运算来划分分区，非 key-value 形式的 RDD 无法根据数据特征来进行分区，也就没有设置分区器，此时 Spark 会把数据均匀的分配到执行节点上。</p>
+<p>目前的版本提供了三种分区器:</p>
+<ol>
+<li>HashPartitioner（哈希分区器）: HashPartitioner 是基于 Java 的 <code>Object.hashCode</code> 来实现的分区器，根据 <code>Object.hashCode</code> 来对 key 进行计算得到一个整数，再通过公式<code>Object.hashCode % numPartitions</code> 计算某个 key 该分到哪个分区，当 RDD 没有 Partitioner 时，会把 HashPartitioner 作为默认的 Partitioner；</li>
+<li>RangePartitioner（范围分区器）: RangePartitioner 将 key 位于相同范围内的记录分配给给定分区，排序需要 RangePartitioner，因为 RangePartitioner 能够确保通过对给定分区内的记录进行排序，最终完成整个RDD的排序；</li>
+<li>自定义分区器: 通过继承 Partitioner 抽象类，可以定制自己的分区器；</li>
+</ol>
+<h3 id="获取分区"><a href="#获取分区" class="headerlink" title="获取分区"></a>获取分区</h3><p>在 Scala 和 Java 中，你可以使用 RDD 的 partitioner 属性（Java 中使用 partitioner() 方法）来获取 RDD 的分区方式。它会返回一个 scala.Option 对象，这是 Scala 中用来存放可能存在的对象的容器类。你可以对这个 Option 对象调用 isDefined() 来检查其中是否有值，调用 get() 来获取其中的值。如果存在值的话，这个值会是一个 spark.Partitioner 对象。这本质上是一个告诉我们 RDD 中各个键分别属于哪个分区的函数。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pairs.groupByKey().partitioner.get</span><br><span class="line">res8: org.apache.spark.<span class="type">Partitioner</span> = org.apache.spark.<span class="type">HashPartitioner</span><span class="meta">@c</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="设置分区"><a href="#设置分区" class="headerlink" title="设置分区"></a>设置分区</h3><p>有三种方式可以用于设置 RDD 的分区数，但要注意，若改变分区数量或分区器通常会导致 Shuffle 操作，务必在调整分区后进行缓存：</p>
+<ul>
+<li>调用 <code>partitionBy</code> 方法：下面代码，我们自定义了一个分区器，并根据自定义的分区器对 RDD 进行重新分区，需要特别注意的是，在每次调用 <code>partitionBy</code> 之后，务必对结果进行缓存，否则后续每次惰性执行时都会重新执行分区动作，严重影响程序性能；</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="function">Partitioner</span></span><br><span class="line"><span class="function">class <span class="title">CustTwoPartitioner</span><span class="params">(override val numPartitions: Int)</span> extends Partitioner </span>&#123;</span><br><span class="line">    <span class="function">def <span class="title">getPartition</span><span class="params">(key: Any)</span>: Int </span>= key match &#123;</span><br><span class="line">        <span class="keyword">case</span> s: String =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (s(<span class="number">0</span>).toUpper &gt; <span class="string">&#x27;C&#x27;</span>) <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = sc.parallelize(Array((<span class="string">&quot;aa&quot;</span>,<span class="number">1</span>),(<span class="string">&quot;bb&quot;</span>,<span class="number">1</span>),(<span class="string">&quot;cc&quot;</span>,<span class="number">1</span>),(<span class="string">&quot;dd&quot;</span>,<span class="number">1</span>),(<span class="string">&quot;ee&quot;</span>,<span class="number">1</span>)), <span class="number">3</span>)</span><br><span class="line"><span class="keyword">var</span> y = x.partitionBy(<span class="keyword">new</span> CustTwoPartitioner(<span class="number">2</span>)).persist()</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>通过转换操作返回带有特定分区的 RDD：这部分（读取数据源、转换继承）在上面默认分区器部分已讲过；</li>
+<li>调用 <code>repartition</code> 或 <code>coalesec</code> 方法：<ul>
+<li><code>coalesce(numPartitions: Int, shuffle: Boolean = false)</code>：对 RDD 进行重分区，使用 HashPartitioner，第一个参数为重分区的数目，第二个为是否进行 shuffle，默认为false（此时是合并分区，父 RDD 和子 RDD 是窄依赖，不会产生 Shuffle）；如果重分区的数目大于原来的分区数，那么必须指定 shuffle 参数为 true；</li>
+<li><code>repartition(numPartitions: Int, partitionExprs: Column*)</code>：repartition 是 coalesce shuffle 参数为 true 的简易实现，返回一个按 partitionExprs 将原 RDD 划分为 numPartitions 个分区的新 RDD，过程中会发生 Shuffle，父 RDD 和子 RDD 之间构成宽依赖；</li>
+</ul>
+</li>
+</ul>
+<p>分区并不是对所有应用都有好处的，如果给定 RDD 只需要被扫描一次，我们完全没有必要对其预先进行分区处理，只有当数据集多次在诸如 JOIN 这种基于键的操作中使用时，分区才会有帮助。</p>
+<h2 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h2><h3 id="Shuffle-定义"><a href="#Shuffle-定义" class="headerlink" title="Shuffle 定义"></a>Shuffle 定义</h3><p>你永远不会调用一个名为 shuffle 的方法，但是有很多方法会导致 shuffle 的发生，比如在 RDD 上调用 <code>groupByKey()</code> 方法时，会返回一个 <code>ShuffledRDD</code>：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> pairs = sc.parallelize(<span class="type">List</span>((<span class="number">1</span>, <span class="string">&quot;one&quot;</span>), (<span class="number">2</span>, <span class="string">&quot;two&quot;</span>), (<span class="number">3</span>, <span class="string">&quot;three&quot;</span>)))</span><br><span class="line">pairs.groupByKey()</span><br><span class="line"></span><br><span class="line">pairs: org.apache.spark.rdd.<span class="type">RDD</span>[(<span class="type">Int</span>, <span class="type">String</span>)] = <span class="type">ParallelCollectionRDD</span>[<span class="number">0</span>] at parallelize at &lt;console&gt;:<span class="number">35</span></span><br><span class="line">res1: org.apache.spark.rdd.<span class="type">RDD</span>[(<span class="type">Int</span>, <span class="type">Iterable</span>[<span class="type">String</span>])] = <span class="type">ShuffledRDD</span>[<span class="number">1</span>] at groupByKey at &lt;console&gt;:<span class="number">38</span></span><br></pre></td></tr></table></figure></div>
+<p>要执行分布式 groupByKey 操作，我们通常必须在节点之间移动数据，以便数据可以按照它的 KEY 收集到单个机器上：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210326203725.png" width="80%" heigh="55%"></img>
+</div>
+
+<p><strong>数据通过网络在节点之间移动的过程</strong>，称为 Shuffle（洗牌或混洗）。</p>
+<h3 id="Shuffle-过程"><a href="#Shuffle-过程" class="headerlink" title="Shuffle 过程"></a>Shuffle 过程</h3><p>以 Shuffle 为边界，Spark 将一个 Job 划分为不同的 Stage，这些 Stage 构成了一个大粒度的 DAG。Spark 的 Shuffle 过程分为 Write 和 Read 两个阶段，分属于两个不同的 Stage，前者是 Parent Stage 的最后一步，后者是 Child Stage 的第一步，如下图所示:</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328184256.png" width="80%" heigh="55%"></img>
+</div>
+
+<p>Shuffle 过程首先会将前置 Stage 的 Map Task 结果写入本地磁盘（Shuffle Write），然后后续 Stage 的 reduce Task 再从磁盘中读取这些文件（Shuffle Read）来执行计算，这有两点好处：</p>
+<ol>
+<li>将 Shuffle 文件写入磁盘（称为 Shuffle 持久化），使得 Spark 能够在时间上串行地执行不同的 Stage；</li>
+<li>出现故障时，只需要重启 Reduce Task ，而不用重新运行所有的任务。</li>
+</ol>
+<p>Spark 在 Shuffle 的实现上做了很多优化改进，Spark Shuffle 的演进过程如下（最早实现是 Hash Based Shuffle，2.0 以后就只有 Sort Based Shuffle 了）：</p>
+<ul>
+<li>Spark 0.8及以前 <strong>Hash Based Shuffle</strong></li>
+<li>Spark 0.8.1 为 Hash Based Shuffle 引入 File Consolidation机制</li>
+<li>Spark 0.9 引入 ExternalAppendOnlyMap</li>
+<li>Spark 1.1 引入 Sort Based Shuffle，但默认仍为Hash Based Shuffle</li>
+<li>Spark 1.2 默认的 Shuffle 方式改为 Sort Based Shuffle</li>
+<li>Spark 1.4 引入 Tungsten-Sort Based Shuffle</li>
+<li>Spark 1.6 Tungsten-sort 并入 <strong>Sort Based Shuffle</strong></li>
+<li>Spark 2.0 Hash Based Shuffle 退出历史舞台</li>
+</ul>
+<h4 id="Hash-Based-Shuffle"><a href="#Hash-Based-Shuffle" class="headerlink" title="Hash Based Shuffle"></a>Hash Based Shuffle</h4><div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328183145.png" width="80%" heigh="55%"></img>
+</div>
+
+<p>Hash Based Shuffle 的基本流程：</p>
+<ol>
+<li>Shuffle Write: 每个 Map Task 将计算结果数据分成多份（bucket），每一份对应到下游 stage 的每个 Partition 中，写入当前节点的本地磁盘，bucket 的数量就是 $M\times R$，这样会产生大量的小文件，对文件系统压力很大，而且不利于 IO 吞吐量，后面 Spark 做了优化，把在统一 Core 上运行的多个 Mapper 输出合并到同一个文件，这样 bucket 的数量就是 $Cores\times R$；</li>
+<li>Shuffle Read: 每个 Reduce Task 通过网络拉取属于当前任务的 bucket 数据，根据数据的 Key 进行聚合，然后判断是否需要排序，最后生成新的 RDD；</li>
+</ol>
+<h4 id="Sort-Based-Shuffle"><a href="#Sort-Based-Shuffle" class="headerlink" title="Sort Based Shuffle"></a>Sort Based Shuffle</h4><div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328192155.png" width="80%" heigh="55%"></img>
+</div>
+
+<p>Sort Based Shuffle 的基本流程：</p>
+<ol>
+<li>Shuffle Write: 不会为每个 Reduce Task 生成一个单独的文件，相反会把每个 Map Task 的结果数据写到一个 <strong>Data 文件</strong>中，并使用 <strong>Index 文件</strong>存储具体 Map Task 输出数据在同一个 Data 文件中是如何分类的信息；Shuffle Write 过程对每个 Map Task 生成两个文件 —— Data 文件和 Index 文件，因此生成的总文件数为 2M；Shuffle Write 阶段会按照 Reduce Task 的 PartitionId 和记录本身的 Key 进行排序，方便 Reducer 获取数据；</li>
+<li>Shuffle Read: Reduce Task 首先找 Driver 获取每个 Map Task 输出的位置信息，根据位置信息获取 Index 文件，解析 Index 文件获取 Data 文件中属于自己的那部分数据；</li>
+</ol>
+<h3 id="Shuffle-规避"><a href="#Shuffle-规避" class="headerlink" title="Shuffle 规避"></a>Shuffle 规避</h3><p>和内存计算相比，网络通信和磁盘读写是非常耗时的过程，会严重影响程序执行效率，因此如非必要，应该尽可能避免数据 Shuffle。</p>
+<h2 id="宽窄依赖"><a href="#宽窄依赖" class="headerlink" title="宽窄依赖"></a>宽窄依赖</h2><h3 id="宽窄依赖定义"><a href="#宽窄依赖定义" class="headerlink" title="宽窄依赖定义"></a>宽窄依赖定义</h3><p>为了更好地理解什么时候可能发生 Shuffle，我们需要先看看 RDD 是如何表示的：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210329151036.png" width="80%" heigh="55%"></img>
+</div>
+
+<p>RDD 由四部分组成：</p>
+<ol>
+<li>Partitions（分区）: 数据的原子性片段，每个节点有一个或多个分区；</li>
+<li>Dependencies（依赖）: RDD 转化过程可以表示为一个 DAG，父 RDD 和子 RDD 之间的分区衍生关系；</li>
+<li>Function（函数）: 基于父 RDD 的计算；</li>
+<li>Metadata（元数据）: 分区 Schema 和数据位置；</li>
+</ol>
+<p>事实上，RDD 之间的依赖关系定义了数据何时需要在网络中进行移动，根据父 RDD 和子 RDD 之间的依赖关系，可以将 Transformation 划分为两种：</p>
+<ol>
+<li>Narrow Dependencies（窄依赖）: 父 RDD 的每个分区只被子 RDD 中的一个分区依赖，窄依赖不会发生 Shuffle，执行非常块，可以按照 pipeline 进行优化；</li>
+<li>Wide Dependencies（宽依赖）: 父 RDD 的每个分区被子 RDD 中的多个分区依赖，宽依赖会导致 Shuffle，执行非常慢，是 Spark 用来划分 Stage 的依据；</li>
+</ol>
+<h3 id="宽窄依赖算子"><a href="#宽窄依赖算子" class="headerlink" title="宽窄依赖算子"></a>宽窄依赖算子</h3><div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328220015.png" width="80%" heigh="55%"></img>
+</div>
+
+<p>总结 Spark 中常见的宽窄依赖 Transformation:</p>
+<ol>
+<li>窄依赖:<ol>
+<li>map、mapValues、flatMap、mapPartitions</li>
+<li>filter</li>
+<li>union</li>
+<li>co-partitioned join: 两个 RDD 分区方式相同的 JOIN 操作</li>
+<li>coalesce: shuffle=false</li>
+</ol>
+</li>
+<li>窄依赖:<ol>
+<li>groupByKey、reduceByKey、combineByKey、cogroup、groupWith</li>
+<li>join、leftOuterJoin、rightOuterJoin</li>
+<li>intersection、distinct</li>
+<li>repartition</li>
+</ol>
+</li>
+</ol>
+<h3 id="容错机制"><a href="#容错机制" class="headerlink" title="容错机制"></a>容错机制</h3><p>通过追踪分区间的依赖关系可以从血缘图中重新计算丢失的分区数据：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215915.png" width="60%" heigh="55%"></img>
+</div>
+
+<p>重新计算窄依赖中丢失的分区数据很快，但是要重新计算宽依赖中丢失的分区数据很慢：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215853.png" width="60%" heigh="55%"></img>
+</div>
+
+<h2 id="使用分区器减少-Shuffle"><a href="#使用分区器减少-Shuffle" class="headerlink" title="使用分区器减少 Shuffle"></a>使用分区器减少 Shuffle</h2><p>有一些方法可以让你在使用宽依赖算子的同时尽量避免或减少 shuffle 的发生，其核心思想是通过重分区在集群中合理地组织数据。</p>
+<h3 id="分组前预分区"><a href="#分组前预分区" class="headerlink" title="分组前预分区"></a>分组前预分区</h3><p>在使用 groupByKey 之类的算子之前先对 RDD 进行预分区（预 Shuffle），之后所有工作都可以在工作节点上的本地分区上完成，无需将数据重新 shuffle 到另一个节点上，在这种情况下，必须移动数据的唯一时间是将最终的 reduce 值从工作节点发送会 Driver 节点：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215725.png" width="60%" heigh="55%"></img>
+</div>
+
+<p>可以通过 toDebugString 方法查看执行计划：</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328220733.png" width="60%" heigh="55%"></img>
+</div>
+
+<h3 id="JOIN-前预分区"><a href="#JOIN-前预分区" class="headerlink" title="JOIN 前预分区"></a>JOIN 前预分区</h3><p>在执行 JOIN 前，使用相同的的分区器对连接的两个 RDD 进行预分区，可以避免 Shuffle，因为需要连接的两个 RDD 的数据已经被重新定位到同一分区中的相同节点上，不需要移动数据。</p>
+<p>通过一个实际的例子来看，假设我们想统计有多少用户访问了他们没有订阅的主题，这可以通过用户订阅表和用户点击事件表进行 JOIN 得到：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>( ... )</span><br><span class="line"><span class="comment">// 大表：用户ID-用户订阅列表</span></span><br><span class="line"><span class="keyword">val</span> userData = sc.sequenceFile[<span class="type">UserID</span>, <span class="type">Userlnfo</span>](<span class="string">&quot;hdfs:// ... &quot;</span>).persist()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">processNewlogs</span></span>(logFileName: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="comment">// 小表：用户点击事件表</span></span><br><span class="line">    <span class="keyword">val</span> events = sc.sequenceFile[<span class="type">UserID</span>, <span class="type">Linklnfo</span>](logFileName)</span><br><span class="line">    <span class="keyword">val</span> joined = userData.join(events) </span><br><span class="line">    <span class="keyword">val</span> offTopicVisits = joined.filter &#123;</span><br><span class="line">        <span class="keyword">case</span> (userld, (userlnfo, linklnfo)) =&gt; </span><br><span class="line">            !userlnfo.topics.contains(linklnfo.topic)</span><br><span class="line">    &#125;.count()</span><br><span class="line">    println(&#x27;<span class="symbol">&#x27;Number</span> of visits to non-subscribed topics: &#x27;&#x27; + offTopicVisi ts)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215514.png" width="60%" heigh="55%"></img>
+</div>
+
+<p>“htt上面的 JOIN 操作会非常耗时，因为 JOIN 操作不知道任何关于数据的分区信息。JOIN 操作默认会 hash 两个数据集所有的 key，并将具有相同 hash 值的记录发送到同一个节点上进行 JOIN。解决办法很简单，就是在 JOIN 之前使用 partitionBy 对大表 RDD 进行重分区：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> userData = sc.sequenceFile[<span class="type">UserID</span>, <span class="type">Userlnfo</span>](<span class="string">&quot;hdfs:// ... &quot;</span>)</span><br><span class="line">    .partitionBy(<span class="keyword">new</span> <span class="type">HashPartitioner</span>(<span class="number">100</span>)) <span class="comment">// Create 100 partitions</span></span><br><span class="line">    .persist() </span><br></pre></td></tr></table></figure></div>
+<p>我们在读入 userData 时调用了 partitionBy，Spark 会知道它被 hash 分区了，在后面调用 <code>userData.join(events)</code> 时会利用这一点，按照每个特定的 UserID 将 events RDD shuffle 到包含 userData 对应 hash 分区的节点上。</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210328215435.png" width="60%" heigh="55%"></img>
+</div>
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/scala-spark-big-data/lecture/Vkhm0/partitioning">Coursera: Big Data Analysis with Scala and Spark</a></li>
+<li><a target="_blank" rel="noopener" href="https://analyticsindiamag.com/shuffle-operation-hadoop-spark/">Shuffle Operation in Hadoop and Spark</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55954840">彻底搞懂spark的shuffle过程（shuffle write）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30697239/article/details/96647403?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-8.control">Spark 2.1.0 中 Sort-Based Shuffle 产生的内幕</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Spark%20%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%9B%86%E7%BE%A4%E4%B8%8A%E8%BF%90%E8%A1%8C/" rel="next" title="Spark 指南：Spark 原理（一）—— Spark 程序如何在集群上运行">
+                <i class="fa fa-chevron-left"></i> Spark 指南：Spark 原理（一）—— Spark 程序如何在集群上运行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Spark/Spark/Spark%20%E6%8C%87%E5%8D%97%EF%BC%9ASpark%20%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="Spark 指南：Spark 原理（三）—— 内存管理">
+                Spark 指南：Spark 原理（三）—— 内存管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA"><span class="nav-number">1.</span> <span class="nav-text">分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">分区的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%88%86%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">默认分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">分区器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%88%86%E5%8C%BA"><span class="nav-number">1.4.</span> <span class="nav-text">获取分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%88%86%E5%8C%BA"><span class="nav-number">1.5.</span> <span class="nav-text">设置分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shuffle"><span class="nav-number">2.</span> <span class="nav-text">Shuffle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shuffle-%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">Shuffle 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shuffle-%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">Shuffle 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash-Based-Shuffle"><span class="nav-number">2.2.1.</span> <span class="nav-text">Hash Based Shuffle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sort-Based-Shuffle"><span class="nav-number">2.2.2.</span> <span class="nav-text">Sort Based Shuffle</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shuffle-%E8%A7%84%E9%81%BF"><span class="nav-number">2.3.</span> <span class="nav-text">Shuffle 规避</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">宽窄依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96%E5%AE%9A%E4%B9%89"><span class="nav-number">3.1.</span> <span class="nav-text">宽窄依赖定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96%E7%AE%97%E5%AD%90"><span class="nav-number">3.2.</span> <span class="nav-text">宽窄依赖算子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6"><span class="nav-number">3.3.</span> <span class="nav-text">容错机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%88%86%E5%8C%BA%E5%99%A8%E5%87%8F%E5%B0%91-Shuffle"><span class="nav-number">4.</span> <span class="nav-text">使用分区器减少 Shuffle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E5%89%8D%E9%A2%84%E5%88%86%E5%8C%BA"><span class="nav-number">4.1.</span> <span class="nav-text">分组前预分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JOIN-%E5%89%8D%E9%A2%84%E5%88%86%E5%8C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">JOIN 前预分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

@@ -1,37 +1,1540 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Life," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第一集：少梁之战秦兵：赳赳老秦，复我河山。血不流干，死不休战。 第二集：秦军撤兵少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。 第三集：献公传位献公召见公子虔 献公：跟公父说实话，你想不想做国君？ 公子虔：公父让我做，我便做，公父不让我做，我便不做。 献公：好，为父没有看错你，铮铮铁骨，定国柱石。 公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。 献公：老大啊，你说实话，为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大秦帝国之裂变》语录">
+<meta property="og:url" content="http://liketea.xyz/Life/Life/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E4%B9%8B%E8%A3%82%E5%8F%98/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="第一集：少梁之战秦兵：赳赳老秦，复我河山。血不流干，死不休战。 第二集：秦军撤兵少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。 第三集：献公传位献公召见公子虔 献公：跟公父说实话，你想不想做国君？ 公子虔：公父让我做，我便做，公父不让我做，我便不做。 献公：好，为父没有看错你，铮铮铁骨，定国柱石。 公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。 献公：老大啊，你说实话，为">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190405130157.png">
+<meta property="article:published_time" content="2019-04-05T05:00:21.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.898Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="Life">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190405130157.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/Life/Life/大秦帝国之裂变/"/>
+
+
+
+
+
+  <title>《大秦帝国之裂变》语录 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Life/Life/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E4%B9%8B%E8%A3%82%E5%8F%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">《大秦帝国之裂变》语录</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-05T13:00:21+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index">
+                    <span itemprop="name">Life</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Life/Life/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E4%B9%8B%E8%A3%82%E5%8F%98/" class="leancloud_visitors" data-flag-title="《大秦帝国之裂变》语录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20190405130157.png" alt=""></p>
+<h2 id="第一集：少梁之战"><a href="#第一集：少梁之战" class="headerlink" title="第一集：少梁之战"></a>第一集：少梁之战</h2><p>秦兵：赳赳老秦，复我河山。血不流干，死不休战。</p>
+<h2 id="第二集：秦军撤兵"><a href="#第二集：秦军撤兵" class="headerlink" title="第二集：秦军撤兵"></a>第二集：秦军撤兵</h2><p>少梁之战，秦献公身中狼毒箭，魏国丞相公孙痤被俘，秦军撤兵。</p>
+<h2 id="第三集：献公传位"><a href="#第三集：献公传位" class="headerlink" title="第三集：献公传位"></a>第三集：献公传位</h2><h3 id="献公召见公子虔"><a href="#献公召见公子虔" class="headerlink" title="献公召见公子虔"></a>献公召见公子虔</h3><ul>
+<li>献公：跟公父说实话，你想不想做国君？</li>
+<li>公子虔：公父让我做，我便做，公父不让我做，我便不做。</li>
+<li>献公：好，为父没有看错你，铮铮铁骨，定国柱石。</li>
+<li>公子虔：公父说过，秦国疲弱，祸在内斗，惟有一心，方能强国。</li>
+<li>献公：老大啊，你说实话，为父有没有把你和渠梁分过嫡庶？</li>
+<li>公子虔：公父何出此言啊，儿臣周岁丧母，国后娘抱儿养儿，历尽了艰辛万苦，爱儿如同亲生，养儿胜于亲娘，此恩是天高地厚，儿臣纵是禽兽也九死不能报万一，儿臣又怎会生出嫡庶异心之分。</li>
+<li>献公：你娘是你娘啊。。。</li>
+<li>公子虔：公父待儿，倚重之心天地可鉴，庶出疏离之感，儿臣从未有过。</li>
+<li>献公：好，好，老大，为父那就放开说话了。老大，你说，假如你是农夫，是工匠，或者是个军士，你看谁做国君更好？</li>
+<li>公子虔：渠梁更合适。儿臣绝无虚言。</li>
+<li>献公：老大，为父还是要你立誓明心啊。</li>
+<li>公子虔：公父是信不过儿臣吗？</li>
+<li>献公：不，老大，不是不信任你，实在是国家公器不能寄予一言，即使是骨肉兄弟，也得是公心为先</li>
+<li>公子虔：（自断手指中。。。）</li>
+<li>献公：老大，老大，我看看，哎呀。。。你呀。。。</li>
+</ul>
+<h3 id="献公召见渠梁"><a href="#献公召见渠梁" class="headerlink" title="献公召见渠梁"></a>献公召见渠梁</h3><ul>
+<li>献公：渠梁啊，公父有话跟你说，不要分心，公父的路要走完了，我决定立你为太子，即刻继国君之位。</li>
+<li>渠梁：公父，这。。。</li>
+<li>献公：听我说完！这是老大的血誓，他若有二心，你就可以公诸朝野，人人得以诛之。</li>
+<li>渠梁：公父，我与大哥素来同心同德，为何让大哥如此折磨自己？</li>
+<li>献公：渠梁啊，千万要记住，同德易，同心难，大德大节，求同就更难，历来公室内乱，哪个不是骨肉相残？赢虔，他是内明之人，你要倚重他，血誓，只防万一。</li>
+<li>渠梁：公父放心，公父教诲渠梁铭记在心，如果食言，死不得入赢氏太庙。</li>
+</ul>
+<h2 id="第四集：秦国释放公孙痤"><a href="#第四集：秦国释放公孙痤" class="headerlink" title="第四集：秦国释放公孙痤"></a>第四集：秦国释放公孙痤</h2><h3 id="渠梁阻止荧玉杀公孙痤"><a href="#渠梁阻止荧玉杀公孙痤" class="headerlink" title="渠梁阻止荧玉杀公孙痤"></a>渠梁阻止荧玉杀公孙痤</h3><ul>
+<li>渠梁：小妹，你可以不认我这个哥哥，但你不能不认我这个国君。</li>
+<li>荧玉：你为何不让我杀公叔老贼？</li>
+<li>渠梁：私仇滥杀，乱国乱局。</li>
+<li>荧玉：君仇国恨自古一体，何谓私仇？</li>
+<li>渠梁：无视国家存亡，惟泄一己怨恨，就是私仇。</li>
+<li>荧玉：得先君之位忘先君之仇，这才是天地难容！</li>
+<li>渠梁：公器不存私念，公父若在，也会如此。左庶长，公叔痤不能杀。</li>
+<li>嬴虔：左庶长？我是你大哥！</li>
+<li>渠梁：事涉国家，没有大哥，只有君臣。</li>
+<li>嬴虔：老秦人同仇敌忾，我看哪个国君敢护仇？</li>
+<li>渠梁：父仇为私，不能公报！娘，大哥，小妹，大臣将士们，渠梁少入军旅，和父老兄弟并肩血战沙场，脚下踩过万千老秦人的尸骨，哪个不是做梦都想着复仇啊，杀一个俘虏，就能证明我们老秦人的血性吗？今日杀了公孙痤，只能解一时之恨，然而必然引起山东六国集体攻秦，到时候邦国灭亡，尸骨成山，谁来复仇啊，复个鸟！说到底，只有保住国家，保住百姓，保住将士，秦国才能复仇，才能翻身，才能雪耻！</li>
+</ul>
+<h3 id="卫鞅救师求见公子虔"><a href="#卫鞅救师求见公子虔" class="headerlink" title="卫鞅救师求见公子虔"></a>卫鞅救师求见公子虔</h3><p>公子虔：什么事那么重要，别绕弯子，说吧。<br>卫鞅：原本申明非秦公不言，念公子虔是秦国栋梁，新君兄长，说也无妨。<br>公子虔：直说，实说。<br>卫鞅：在下入秦，一非官派，二非私托，只为一事，救回老丞相以全师生之交。<br>公子虔：就凭你啊。<br>卫鞅：卫鞅救师，也救秦国。<br>公子虔：哈哈哈。。。魏人救秦？笑话。<br>卫鞅：上将军未免浅见，在下明言，魏国朝野，庞涓力主灭秦，而丞相公叔图谋称霸，二人势同水火。庞涓奇袭骊山，就是要夺回公叔明正典刑，一举剪除政敌，从而全力灭秦，今奇袭未成，庞涓自然退而求其次，希望借秦人之手杀死我师，若秦国当真如此，无异于助了庞涓一臂之力，加重了自己的危机处境。眼下，唯有一策，即可救我师，又可救秦国。<br>公子虔：说下去。<br>卫鞅：这一策便是，秦国放人、割地、求和。使魏国一时无攻秦口实，日后再做图谋，如此，两全，否则秦国危在旦夕。<br>公子虔：卖国求私，还大言侃侃，天下一奇啊。<br>卫鞅：在下并非魏人，更非魏臣，何谈卖国。<br>公子虔：带入大营。。。</p>
+<h3 id="渠梁谈和公孙痤"><a href="#渠梁谈和公孙痤" class="headerlink" title="渠梁谈和公孙痤"></a>渠梁谈和公孙痤</h3><p>公孙痤：你说，老秦公死了？既然如此，老夫的人头归你了，何时开刀？<br>渠梁：老丞相差矣，渠梁不是要杀你，而是来放你。<br>公孙痤：哈哈哈。。。小子，你敢嘲弄老夫，士可杀，不可辱<br>渠梁：渠梁怎敢侮辱前辈，我诚意放老丞相回归安邑，想当时秦魏两国激战多年，生灵涂炭，死伤无数，渠梁新任国君，只图秦国庶民安居耕牧，并不想两国纠缠交恶，素知老丞相深明大义，嬴渠梁欲与老丞相共谋两国休战歇兵，并无它意。<br>公孙痤：秦公不记杀父之仇？<br>渠梁：父仇为私，和战为公。嬴渠梁若非真心，愿受上天惩罚。<br>公孙痤：好，老夫信你。只是这疆界，不知秦公如何打算？<br>渠梁：以石门大战之前为定。<br>公孙痤：河西高原，秦东地带，函谷关都给魏国？<br>渠梁：嗯。<br>公孙痤：两国邦交作何说法？<br>渠梁：秦国承认魏国霸主地位。<br>公孙痤：纳贡，称臣？<br>渠梁：不称臣，不纳贡。<br>公孙痤：再让一步，会更稳妥一些。<br>渠梁：老丞相，凡事都有底线，秦国穷困，无贡可纳，秦人硬骨，不能折腰。<br>公孙痤：秦公大明！<br>渠梁：二十年后我会夺回来的。<br>公孙痤：共有此心，老夫拭目以待，只是这缓兵之计太过明显<br>渠梁：老丞相，秦国虽穷，却是尚武善战之邦，若魏国执意灭秦，老秦人必将拼死血战，魏国纵然灭秦，也将在惨胜之后元气大伤，那时，魏国必成众矢之的，非但保不住霸主地位，反而被五大强国瓜分，如果魏王不明此理，秦国宁肯血战到底。休息三五日之后，渠梁派出特使护送老丞相返回安邑，不言俘获，只当做魏王议和特使对待，行吗？<br>公孙痤：哎，老夫阅人无数，秦公气量胸怀，数年之后必令天下刮目相看。<br>渠梁：渠梁浅陋，哪敢当此褒奖。<br>公孙痤：可惜老夫来日不多，不能与你并世争雄了。</p>
+<h2 id="第五集：说服魏王谈和"><a href="#第五集：说服魏王谈和" class="headerlink" title="第五集：说服魏王谈和"></a>第五集：说服魏王谈和</h2><h3 id="卫鞅支持公孙痤争霸方略"><a href="#卫鞅支持公孙痤争霸方略" class="headerlink" title="卫鞅支持公孙痤争霸方略"></a>卫鞅支持公孙痤争霸方略</h3><p>公孙痤：卫鞅，你到酒肆去了？<br>卫鞅：老师，族人有望解禁。<br>公孙痤：酒肆消息你也信？荒唐<br>卫鞅：哈哈。。。断事不在消息源头，在自家评判。<br>公孙痤：算了，不说在这些了，鞅啊，总算是有惊无险。<br>卫鞅：不，险关还未过，庞涓以一统天下为终身大志，铁了心要拿秦国开刀，魏王未必不为所动。<br>公孙痤：庞涓、公子卬都想杀老夫。<br>卫鞅：公子卬不足为虑，争功夺权罢了，庞涓才是真正的大患。<br>公孙痤：这一统天下也是大魏功业所在，老夫若是为了保住性命而反对，公心何在？<br>卫鞅：老师差矣，一统天下如果可行，卫鞅也不会帮老师与庞涓对峙。<br>公孙痤：你说一统天下不可行？<br>卫鞅：时势未到，眼下不可行。<br>公孙痤：为何?<br>卫鞅：天下无一心，七国无独强，未来之势未见分晓，冒然灭国定会招致灾祸。<br>公孙痤：你是说，还是老夫的争霸方略，适合魏国？<br>卫鞅：正是。<br>卫鞅：备车！</p>
+<h3 id="公孙痤说服魏王谈和"><a href="#公孙痤说服魏王谈和" class="headerlink" title="公孙痤说服魏王谈和"></a>公孙痤说服魏王谈和</h3><p>魏王：那老丞相你说，让本人怎么接受秦国那几块鸡零狗碎？<br>公孙痤：如何对秦，首在长策！<br>魏王：先说办法，再讲长策！<br>公孙痤：老臣的办法分两步走。<br>魏王：第一步。<br>公孙痤：与秦罢兵，接纳割地，河西秦东数十县，再加上函谷关天险，绝非鸡零狗碎。<br>魏王：第二步。<br>公孙痤：待秦地完全划入魏国，等到时机成熟再变灭秦为分秦。<br>魏王：灭秦分秦有何区别？<br>公孙痤：灭秦，魏国独吞；分秦，六国分吞。<br>魏王：那如此一来，我既无后顾之忧，又可稳坐天下霸主了。<br>公孙痤：正是<br>魏王：果然姜是老的辣！</p>
+<h3 id="魏王庞涓密谋分秦策略"><a href="#魏王庞涓密谋分秦策略" class="headerlink" title="魏王庞涓密谋分秦策略"></a>魏王庞涓密谋分秦策略</h3><p>魏王：本王在庙堂上的运筹，上将军明白吗？<br>庞涓：我王一番指点，臣恍然醒悟<br>魏王：这就对了，你今天想谋兵灭秦固然是上策，但是现在到达嘴边的这块肥肉不能让它滑了，一纸休兵盟书，不费一兵一卒，我大魏便可稳稳占了秦国东部最肥美的土地城池，到哪去找这等好事去？实咬一口当然胜过虚啃三日，治国之道尽在此矣！<br>庞涓：不过，我王，臣以为，先食言于秦国，再食言于五国，只怕有失道义。<br>魏王：道义？现在天下大争，谁讲道义，讲道义干什么？我今天就是要咬秦国这块肥肉，然后啃秦国这块骨头，谁敢奈我何？不服，不服就等你先强大了再说；你弱，你就没有说话的资格，就只能等着做别人砧板上的鱼肉，明白吗？什么叫邦交？下刀之前的动作才叫邦交。<br>庞涓：臣以为，还是打出来的地盘更实在。<br>魏王：打归打，谈归谈嘛，两手并用才能得天下，明白吗？六国分秦，即刻交你放手去做，彻底灭秦之日就是你上将军首功之时。<br>庞涓：臣遵命。</p>
+<h3 id="卫鞅推测老师无恙"><a href="#卫鞅推测老师无恙" class="headerlink" title="卫鞅推测老师无恙"></a>卫鞅推测老师无恙</h3><p>公叔痤：庞涓、公子卬都想杀了老夫取而代之，魏王耳根子又软。<br>卫鞅：魏王醉心权谋，喜好均衡朝局，鞅以为，老师无恙。魏王派庞涓为全权特使，正密谋六国分秦。<br>公叔痤：魏王，你的心也太急了，盟约刚立，就谋分秦，你让老夫有何颜立足于天下，让大魏又有何面目立于天下?<br>卫鞅：更重要的，魏国死盯弱小秦国，丧失了中原扩张的最佳时机。</p>
+<h2 id="第六集：六国指地分秦"><a href="#第六集：六国指地分秦" class="headerlink" title="第六集：六国指地分秦"></a>第六集：六国指地分秦</h2><p>楚王：这商於、武关归我大楚了。<br>韩王：那崤函、关中一带就归我大韩。<br>赵王：陇西、北地全部归赵了。<br>燕王：河西、河套归我大燕。<br>齐王：齐秦相隔太远，本王不争秦地，然则我灭他国，列国不得插手。<br>庞涓：哼，如此分秦，盟主国是一无所得了?<br>众王：魏国已吞肥肉，再分居心何在？天下三王，不能只听魏王的。<br>庞涓：五君之意，是不认我魏国盟主了？<br>众王：庞涓，魏王国书原说，公平分秦，今日公平何在？<br>庞涓：公平？以本上将军谋划，根本不需要六国分秦。</p>
+<h2 id="第七集："><a href="#第七集：" class="headerlink" title="第七集："></a>第七集：</h2><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Life/" rel="tag"># Life</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Life/Life/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%97%B6%E5%8C%BA/" rel="next" title="人生的时区">
+                <i class="fa fa-chevron-left"></i> 人生的时区
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Python/Python/python%20%E6%A0%87%E5%87%86%E5%BA%93%EF%BC%9A%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B%20collections/" rel="prev" title="python 标准库：容器类型 collections">
+                python 标准库：容器类型 collections <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%9B%86%EF%BC%9A%E5%B0%91%E6%A2%81%E4%B9%8B%E6%88%98"><span class="nav-number">1.</span> <span class="nav-text">第一集：少梁之战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%9B%86%EF%BC%9A%E7%A7%A6%E5%86%9B%E6%92%A4%E5%85%B5"><span class="nav-number">2.</span> <span class="nav-text">第二集：秦军撤兵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%9B%86%EF%BC%9A%E7%8C%AE%E5%85%AC%E4%BC%A0%E4%BD%8D"><span class="nav-number">3.</span> <span class="nav-text">第三集：献公传位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8C%AE%E5%85%AC%E5%8F%AC%E8%A7%81%E5%85%AC%E5%AD%90%E8%99%94"><span class="nav-number">3.1.</span> <span class="nav-text">献公召见公子虔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8C%AE%E5%85%AC%E5%8F%AC%E8%A7%81%E6%B8%A0%E6%A2%81"><span class="nav-number">3.2.</span> <span class="nav-text">献公召见渠梁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%9B%86%EF%BC%9A%E7%A7%A6%E5%9B%BD%E9%87%8A%E6%94%BE%E5%85%AC%E5%AD%99%E7%97%A4"><span class="nav-number">4.</span> <span class="nav-text">第四集：秦国释放公孙痤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%A0%E6%A2%81%E9%98%BB%E6%AD%A2%E8%8D%A7%E7%8E%89%E6%9D%80%E5%85%AC%E5%AD%99%E7%97%A4"><span class="nav-number">4.1.</span> <span class="nav-text">渠梁阻止荧玉杀公孙痤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%AB%E9%9E%85%E6%95%91%E5%B8%88%E6%B1%82%E8%A7%81%E5%85%AC%E5%AD%90%E8%99%94"><span class="nav-number">4.2.</span> <span class="nav-text">卫鞅救师求见公子虔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%A0%E6%A2%81%E8%B0%88%E5%92%8C%E5%85%AC%E5%AD%99%E7%97%A4"><span class="nav-number">4.3.</span> <span class="nav-text">渠梁谈和公孙痤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%9B%86%EF%BC%9A%E8%AF%B4%E6%9C%8D%E9%AD%8F%E7%8E%8B%E8%B0%88%E5%92%8C"><span class="nav-number">5.</span> <span class="nav-text">第五集：说服魏王谈和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%AB%E9%9E%85%E6%94%AF%E6%8C%81%E5%85%AC%E5%AD%99%E7%97%A4%E4%BA%89%E9%9C%B8%E6%96%B9%E7%95%A5"><span class="nav-number">5.1.</span> <span class="nav-text">卫鞅支持公孙痤争霸方略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%AD%99%E7%97%A4%E8%AF%B4%E6%9C%8D%E9%AD%8F%E7%8E%8B%E8%B0%88%E5%92%8C"><span class="nav-number">5.2.</span> <span class="nav-text">公孙痤说服魏王谈和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AD%8F%E7%8E%8B%E5%BA%9E%E6%B6%93%E5%AF%86%E8%B0%8B%E5%88%86%E7%A7%A6%E7%AD%96%E7%95%A5"><span class="nav-number">5.3.</span> <span class="nav-text">魏王庞涓密谋分秦策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%AB%E9%9E%85%E6%8E%A8%E6%B5%8B%E8%80%81%E5%B8%88%E6%97%A0%E6%81%99"><span class="nav-number">5.4.</span> <span class="nav-text">卫鞅推测老师无恙</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E9%9B%86%EF%BC%9A%E5%85%AD%E5%9B%BD%E6%8C%87%E5%9C%B0%E5%88%86%E7%A7%A6"><span class="nav-number">6.</span> <span class="nav-text">第六集：六国指地分秦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E9%9B%86%EF%BC%9A"><span class="nav-number">7.</span> <span class="nav-text">第七集：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

@@ -1,37 +1,2162 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="教程,Scala," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Seq 是所有序列（有序集合）的根类型，序列集合的 Seq 层次体系如图所示：   序列的操作有以下几种：  索引和长度的操作 apply、isDefinedAt、length、indices，及lengthCompare。序列的apply操作用于索引访问；因此，Seq[T]类型的序列也是一个以单个Int（索引下标）为参数、返回值类型为T的偏函数。换言之，Seq[T]继承自Partial Func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala 教程：Collections（一）—— Seq">
+<meta property="og:url" content="http://liketea.xyz/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Seq/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="Seq 是所有序列（有序集合）的根类型，序列集合的 Seq 层次体系如图所示：   序列的操作有以下几种：  索引和长度的操作 apply、isDefinedAt、length、indices，及lengthCompare。序列的apply操作用于索引访问；因此，Seq[T]类型的序列也是一个以单个Int（索引下标）为参数、返回值类型为T的偏函数。换言之，Seq[T]继承自Partial Func">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204231949.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191205001030.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215120.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215318.png">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191205002539.png">
+<meta property="article:published_time" content="2017-08-05T08:00:06.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.906Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="Scala">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204231949.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/Scala/Scala/Scala 教程：Collections（一）—— Seq/"/>
+
+
+
+
+
+  <title>Scala 教程：Collections（一）—— Seq | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Seq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Scala 教程：Collections（一）—— Seq</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T16:00:06+08:00">
+                2017-08-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Scala/" itemprop="url" rel="index">
+                    <span itemprop="name">Scala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ACollections%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20Seq/" class="leancloud_visitors" data-flag-title="Scala 教程：Collections（一）—— Seq">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  37
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Seq 是所有序列（有序集合）的根类型，序列集合的 Seq 层次体系如图所示：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191204231949.png" alt="-c"></p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191205001030.png" alt=""></p>
+<p>序列的操作有以下几种：</p>
+<ol>
+<li><strong>索引和长度的操作</strong> apply、isDefinedAt、length、indices，及lengthCompare。序列的apply操作用于索引访问；因此，Seq[T]类型的序列也是一个以单个Int（索引下标）为参数、返回值类型为T的偏函数。换言之，Seq[T]继承自Partial Function[Int, T]。序列各元素的索引下标从0开始计数，最大索引下标为序列长度减一。序列的length方法是collection的size方法的别名。lengthCompare方法可以比较两个序列的长度，即便其中一个序列长度无限也可以处理。</li>
+<li><strong>索引检索操作</strong>（indexOf、lastIndexOf、indexofSlice、lastIndexOfSlice、indexWhere、lastIndexWhere、segmentLength、prefixLength）用于返回等于给定值或满足某个谓词的元素的索引。</li>
+<li><strong>加法运算</strong>（+:，:+，padTo）用于在序列的前面或者后面添加一个元素并作为新序列返回。</li>
+<li><strong>更新操作</strong>（updated，patch）用于替换原序列的某些元素并作为一个新序列返回</li>
+<li><strong>排序操作</strong>（sorted, sortWith, sortBy）根据不同的条件对序列元素进行排序。</li>
+<li><strong>反转操作</strong>（reverse, reverseIterator, reverseMap）用于将序列中的元素以相反的顺序排列。</li>
+<li><strong>比较</strong>（startsWith, endsWith, contains, containsSlice, corresponds）用于对两个序列进行比较，或者在序列中查找某个元素。</li>
+<li><strong>多集操作</strong>（intersect, diff, union, distinct）用于对两个序列中的元素进行类似集合的操作，或者删除重复元素。</li>
+</ol>
+<p>Seq 在 Iterator 的基础上添加了其他一些操作 ：</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215120.png" alt="-c"></p>
+<p><code>Seq trait</code> 具有三个子特征（subtrait）：</p>
+<ul>
+<li>线性序列（LinearSeq）：不添加新的操作，具有高效的 head 和 tail 操作，常用线性序列有 <code>scala.collection.immutable.List</code> 和 <code>scala.collection.immutable.Stream</code>；</li>
+<li>索引序列（IndexedSeq）：不添加新的操作，具有高效的apply, length, 和 (如果可变) update操作，常用索引序列有 <code>scala.collection.mutable.ArrayBuffer</code> 和 <code>scala.collection.immutable.Vector</code>；</li>
+<li>缓冲器（Buffer）：缓冲器允许对现有元素进行增、删、改操作，常用的Buffer序列有 <code>ListBuffer</code> 和 <code>ArrayBuffer</code>，Buffer 在 Seq 的基础上增加了一些添加和删除的操作；</li>
+</ul>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191203215318.png" alt="-c"></p>
+<h2 id="列表（List）"><a href="#列表（List）" class="headerlink" title="列表（List）"></a>列表（List）</h2><p>List 是一个不可变链表，它既不能调整大小也不能改变其内容/状态。</p>
+<h3 id="List-的创建"><a href="#List-的创建" class="headerlink" title="List 的创建"></a>List 的创建</h3><h4 id="创建列表的标准做法"><a href="#创建列表的标准做法" class="headerlink" title="创建列表的标准做法"></a>创建列表的标准做法</h4><p>Scala中创建List或者其他类型集合时，标准做法是作为一个函数来调用这个集合，并提供必要的内容：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> colors = <span class="type">List</span>(<span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;blue&quot;</span>)</span><br><span class="line">colors: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(red, green, blue)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> nums: <span class="type">List</span>[<span class="type">List</span>[<span class="type">Int</span>]] =</span><br><span class="line">     | <span class="type">List</span>(</span><br><span class="line">     |     <span class="type">List</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>),</span><br><span class="line">     |     <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>),</span><br><span class="line">     |     <span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">     | )</span><br><span class="line">nums: <span class="type">List</span>[<span class="type">List</span>[<span class="type">Int</span>]] = <span class="type">List</span>(<span class="type">List</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure></div>
+<p>Scala 的列表类型是协变的（covariant），对每一组类型的S和T，如果S是T的子类型，那么List[S]就是List[T]的子类型。空列表的类型是List[Nothing]，对任何T来说，List[Nothing] 都是List[T]的子类型，这也是为什么编译器允许我们编写一下代码：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> x = <span class="type">List</span>()</span><br><span class="line">x: <span class="type">List</span>[<span class="type">Nothing</span>] = <span class="type">List</span>()</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> s: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>()</span><br><span class="line">s: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>()</span><br></pre></td></tr></table></figure></div>
+<h4 id="创建列表的构建单元"><a href="#创建列表的构建单元" class="headerlink" title="创建列表的构建单元"></a>创建列表的构建单元</h4><p>所有列表都构建自两个基础的构建单元：<code>Nil</code> 和 <code>::</code>，<code>Nil</code> 表示空列表，中缀表达式<code>::</code>表示在列表前追加元素，List(…)不过是最终展开成这些定义的包装方法而已</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以:结束的操作符是右结合的，等价于val colors = (&quot;red&quot; :: (&quot;green&quot; :: (&quot;blue&quot; :: Nil)))</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> colors = <span class="string">&quot;red&quot;</span> :: <span class="string">&quot;green&quot;</span> :: <span class="string">&quot;blue&quot;</span> :: <span class="type">Nil</span></span><br><span class="line">colors: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(red, green, blue)</span><br></pre></td></tr></table></figure></div>
+<h3 id="List-的基本操作"><a href="#List-的基本操作" class="headerlink" title="List 的基本操作"></a>List 的基本操作</h3><h4 id="列表原始操作"><a href="#列表原始操作" class="headerlink" title="列表原始操作"></a>列表原始操作</h4><p>List 的所有操作都可以用下面三个原始操作来完成：</p>
+<ol>
+<li>head 返回列表的第一个元素，对空列表将抛出异常</li>
+<li>tail 返回列表中除第一个元素之外的所有元素，对空列表将抛出异常</li>
+<li>isEmpty 返回列表是否为空列表</li>
+</ol>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> emptyList = <span class="type">Nil</span></span><br><span class="line">emptyList: scala.collection.immutable.<span class="type">Nil</span>.<span class="keyword">type</span> = <span class="type">List</span>()</span><br><span class="line"></span><br><span class="line">scala&gt; emptyList.head</span><br><span class="line">java.util.<span class="type">NoSuchElementException</span>: head of empty list</span><br><span class="line">  at scala.collection.immutable.<span class="type">Nil</span>$.head(<span class="type">List</span>.scala:<span class="number">430</span>)</span><br><span class="line">  ... <span class="number">28</span> elided</span><br><span class="line"></span><br><span class="line">scala&gt; emptyList.tail</span><br><span class="line">java.lang.<span class="type">UnsupportedOperationException</span>: tail of empty list</span><br><span class="line">  at scala.collection.immutable.<span class="type">Nil</span>$.tail(<span class="type">List</span>.scala:<span class="number">432</span>)</span><br><span class="line">  ... <span class="number">28</span> elided</span><br><span class="line"></span><br><span class="line">scala&gt; emptyList.isEmpty</span><br><span class="line">res6: <span class="type">Boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">scala&gt; colors.head</span><br><span class="line">res7: <span class="type">String</span> = red</span><br><span class="line"></span><br><span class="line">scala&gt; colors.tail</span><br><span class="line">res8: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(green, blue)</span><br></pre></td></tr></table></figure></div>
+<p>与 head 和 tail 方法对应，List还提供了相应的对偶方法，last 获取列表的最后一个元素，init返回除了最后一个元素之外的剩余部分，所不同的是后两种方法的时间复杂度为 O(n)</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> abc = <span class="type">List</span>(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span><br><span class="line">abc: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(a, b, c)</span><br><span class="line"></span><br><span class="line">scala&gt; abc.last</span><br><span class="line">res14: <span class="type">Char</span> = c</span><br><span class="line"></span><br><span class="line">scala&gt; abc.init</span><br><span class="line">res3: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(a, b)</span><br></pre></td></tr></table></figure></div>
+<h4 id="列表解构"><a href="#列表解构" class="headerlink" title="列表解构"></a>列表解构</h4><p>列表支持解构：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> <span class="type">List</span>(a, b, c) = colors</span><br><span class="line">a: <span class="type">String</span> = red</span><br><span class="line">b: <span class="type">String</span> = green</span><br><span class="line">c: <span class="type">String</span> = blue</span><br></pre></td></tr></table></figure></div>
+<p>列表解构可以用于模式匹配：<code>x :: xs</code> 是中缀操作模式的一个特例，中缀操作等同于一次方法调用，而<code>::</code>作为模式有着不同的规则，它是被当做构造方法模式处理的，<code>x::xs</code>相当于 <code>::(x, xs)</code>，Scala中有一个类叫<code>scala.::</code> 就是用来构建非空列表的。通常，对列表做模式匹配比用方法来解构更清晰，下面是一个使用列表的模式匹配实现插入排序的一个例子</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isort</span></span>(xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] = xs <span class="keyword">match</span> &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="type">List</span>() =&gt; <span class="type">List</span>()</span><br><span class="line">	<span class="keyword">case</span> x :: xs1 =&gt; insert(x, isort(xs1))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span></span>(x: <span class="type">Int</span>, xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] = xs <span class="keyword">match</span> &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="type">List</span>() =&gt; <span class="type">List</span>(x)</span><br><span class="line">	<span class="keyword">case</span> y :: ys =&gt;	<span class="keyword">if</span> (x &lt;= y) x:: xs <span class="keyword">else</span> y :: insert(x, ys)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> l = <span class="type">List</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">println(isort(l))</span><br><span class="line"><span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h3 id="List-的初阶方法"><a href="#List-的初阶方法" class="headerlink" title="List 的初阶方法"></a>List 的初阶方法</h3><p>List 继承了 Seq 特质（LinearSeq 没有添加新的操作）中不可变类型的所有方法，此外 List 还增加了一些自身独有的操作。</p>
+<h4 id="索引和长度"><a href="#索引和长度" class="headerlink" title="索引和长度"></a>索引和长度</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> abc = <span class="type">List</span>(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span><br><span class="line">abc: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(a, b, c)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按索引获取元素：当对象出现在方法调用中函数出现的位置时，编译器会帮我们插入apply</span></span><br><span class="line">scala&gt; abc.apply(<span class="number">1</span>)</span><br><span class="line">res4: <span class="type">Char</span> = b</span><br><span class="line">scala&gt; abc(<span class="number">1</span>)</span><br><span class="line">res5: <span class="type">Char</span> = b</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取列表长度：length 和 size 方法都可以返回列表长度</span></span><br><span class="line">scala&gt; abc.length</span><br><span class="line">res13: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line">scala&gt; abc.size</span><br><span class="line">res14: <span class="type">Int</span> = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取索引范围：indices属性返回列表的索引范围(0~list.size-1)</span></span><br><span class="line">scala&gt; abc.indices</span><br><span class="line">res43: scala.collection.immutable.<span class="type">Range</span> = <span class="type">Range</span> <span class="number">0</span> until <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取列表切片：`xs.slice(start, end)` 返回列表的一个连续部分，从第一个索引到第二个索引（不包含第二个索引）</span></span><br><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).slice(<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line">res5: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取列表前缀</span></span><br><span class="line">scala&gt; abc.take(<span class="number">2</span>)</span><br><span class="line">res9: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(a, b)</span><br><span class="line"><span class="comment">// 获取列表后缀</span></span><br><span class="line">scala&gt; abc.drop(<span class="number">2</span>)</span><br><span class="line">res8: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(c)</span><br><span class="line"><span class="comment">// splitAt(n) 将列表从指定下标切开，返回这两个列表组成的元组，元组的第一个列表长度为 n</span></span><br><span class="line">scala&gt; abc.splitAt(<span class="number">1</span>)</span><br><span class="line">res16: (<span class="type">List</span>[<span class="type">Char</span>], <span class="type">List</span>[<span class="type">Char</span>]) = (<span class="type">List</span>(a),<span class="type">List</span>(b, c))</span><br></pre></td></tr></table></figure></div>
+<h4 id="按索引查找"><a href="#按索引查找" class="headerlink" title="按索引查找"></a>按索引查找</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> list = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>)</span><br><span class="line">list: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>)</span><br><span class="line"><span class="comment">// 返回序列xs中等于x的第一个元素的索引</span></span><br><span class="line">scala&gt; list.indexOf(<span class="number">2</span>)</span><br><span class="line">res50: <span class="type">Int</span> = <span class="number">1</span></span><br><span class="line"><span class="comment">// 返回序列xs中等于x的最后一个元素的索引</span></span><br><span class="line">scala&gt; list.lastIndexOf(<span class="number">2</span>)</span><br><span class="line">res51: <span class="type">Int</span> = <span class="number">4</span></span><br><span class="line"><span class="comment">// 查找子序列ys，返回xs中匹配的第一个索引</span></span><br><span class="line">scala&gt; list.indexOfSlice(<span class="type">List</span>(<span class="number">2</span>,<span class="number">4</span>))</span><br><span class="line">res52: <span class="type">Int</span> = <span class="number">1</span></span><br><span class="line"><span class="comment">// xs序列中满足p的第一个元素</span></span><br><span class="line">scala&gt; list.indexWhere(_ &gt; <span class="number">2</span>)</span><br><span class="line">res53: <span class="type">Int</span> = <span class="number">2</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="列表加法"><a href="#列表加法" class="headerlink" title="列表加法"></a>列表加法</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> y = <span class="type">List</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">y: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> xs = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> ys = <span class="type">List</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">ys: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> x = <span class="number">0</span></span><br><span class="line">x: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在列表xs首部插入一个元素x，返回一个新的列表</span></span><br><span class="line">scala&gt; x +: xs</span><br><span class="line">res54: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 在列表xs尾部插入一个元素x，返回一个新的列表</span></span><br><span class="line">scala&gt; xs :+ x</span><br><span class="line">res55: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在列表ys首部插入另一个集合，返回一个新的列表</span></span><br><span class="line">scala&gt; xs ++: ys</span><br><span class="line">res56: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 在列表xs尾部插入另一个集合，返回一个新的列表</span></span><br><span class="line">scala&gt; xs ++ ys</span><br><span class="line">res58: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 拼接列表xs和ys，以上三种形式最终效果等价，但:::要求左右两个操作数均为列表</span></span><br><span class="line">scala&gt; xs ::: ys</span><br><span class="line">res62: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; xs</span><br><span class="line">res71: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; ys</span><br><span class="line">res72: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将xs中索引为i的元素替换为x，返回一个新的列表</span></span><br><span class="line">scala&gt; xs.updated(<span class="number">1</span>, <span class="number">9</span>)</span><br><span class="line">res75: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">9</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将xs中slice(i,j)的切片替换为序列 Seq ys</span></span><br><span class="line">scala&gt; xs.patch(<span class="number">0</span>, ys, <span class="number">3</span>)</span><br><span class="line">res76: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">scala&gt; xs.patch(<span class="number">0</span>, ys, <span class="number">0</span>)</span><br><span class="line">res78: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><ul>
+<li>xs.sorted：按自然值对核心类型的列表排序（升序），返回一个新列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对数值型来说就是值的大小</span></span><br><span class="line">scala&gt; <span class="type">List</span>(<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>).sorted</span><br><span class="line">res8: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="type">List</span>(&#x27;a&#x27;,&#x27;<span class="type">A</span>&#x27;,&#x27;b&#x27;).sorted</span><br><span class="line">res80: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(<span class="type">A</span>, a, b)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对字符串来说是其字典序</span></span><br><span class="line">scala&gt; <span class="type">List</span>(<span class="string">&quot;w&quot;</span>, <span class="string">&quot;da&quot;</span>, <span class="string">&quot;h&quot;</span>).sorted</span><br><span class="line">res9: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(da, h, w)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>sortBy：<code>xs.sortBy(f)</code> 接收一个列表xs，对每个元素调用函数 f，按照函数返回值的自然值对列表中的元素进行排序（升序）</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="string">&quot;w&quot;</span>, <span class="string">&quot;da&quot;</span>, <span class="string">&quot;h&quot;</span>).sortBy(_.size)</span><br><span class="line">res10: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(w, h, da)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>sortWith：<code>xs.sortWith(before)</code> 接收一个列表 xs，before是一个用来比较两个元素的布尔函数，<code>x before y</code> 返回true则代表x应该排列在y前面</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>, <span class="number">-3</span> ,<span class="number">4</span>, <span class="number">2</span>).sortWith(_ &lt; _)</span><br><span class="line">res77: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">-3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>列表反转：由于列表是一个链表，当需要频繁访问列表的末尾时，先将列表反转，操作结束再对反转后的列表进行反转通常是更好的选择</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.reverse</span><br><span class="line">res10: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(c, b, a)</span><br><span class="line"></span><br><span class="line">scala&gt; abc.reverse.head</span><br><span class="line">res11: <span class="type">Char</span> = c</span><br><span class="line"></span><br><span class="line">scala&gt; abc.reverse.tail</span><br><span class="line">res12: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(b, a)</span><br></pre></td></tr></table></figure></div>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试序列xs是否以序列ys开头</span></span><br><span class="line">scala&gt; xs.startsWith(ys)</span><br><span class="line">res85: <span class="type">Boolean</span> = <span class="literal">false</span></span><br><span class="line"><span class="comment">// 测试序列xs是否以序列ys结尾</span></span><br><span class="line">scala&gt; xs.endsWith(ys)</span><br><span class="line">res86: <span class="type">Boolean</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">// 测试xs序列中是否存在一个与x相等的元素</span></span><br><span class="line">scala&gt; xs.contains(<span class="number">1</span>)</span><br><span class="line">res88: <span class="type">Boolean</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">// 测试xs序列中是否存在一个与ys相同的连续子序列</span></span><br><span class="line">scala&gt; xs.containsSlice(ys)</span><br><span class="line">res89: <span class="type">Boolean</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="多集操作"><a href="#多集操作" class="headerlink" title="多集操作"></a>多集操作</h4><ul>
+<li>集合操作：并非真的”集合“操作，因为不去重</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> xs = <span class="type">List</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> ys = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">ys: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 序列xs和ys的交集，并保留序列xs中的顺序，遍历xs中的元素，在ys中查找，找不到就pass，找到保留，并从ys中去掉这个元素，重复以上过程</span></span><br><span class="line">scala&gt; xs intersect ys</span><br><span class="line">res97: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment">// 序列xs和ys的差集，并保留序列xs中的顺序，遍历xs中的元素，在ys中查找，找到就pass，找不到保留，并从ys中去掉这个元素，重复以上过程</span></span><br><span class="line">scala&gt; xs diff ys</span><br><span class="line">res98: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 并集；同xs ++ ys</span></span><br><span class="line">scala&gt; xs union ys</span><br><span class="line">res96: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">// 去重</span></span><br><span class="line">scala&gt; xs.distinct</span><br><span class="line">res99: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>列表扁平化：flatten 方法接收一个列表的列表并将它扁平化，返回单个列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> efg = <span class="type">List</span>(&#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;)</span><br><span class="line">efg: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(e, f, g)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="type">List</span>(abc, efg).flatten</span><br><span class="line">res18: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(a, b, c, e, f, g)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>列表拉链/解拉链：zip 方法接收两个列表，一一匹配两个列表中的元素，返回一个元组列表，如果两个列表长度不同则会丢弃没有匹配上的元素；</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.zip(efg)</span><br><span class="line">res19: <span class="type">List</span>[(<span class="type">Char</span>, <span class="type">Char</span>)] = <span class="type">List</span>((a,e), (b,f), (c,g))</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>列表解拉链：unzip 方法是zip的逆方法，接收一个元组列表，返回一个列表元组</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.zip(efg).unzip</span><br><span class="line">res20: (<span class="type">List</span>[<span class="type">Char</span>], <span class="type">List</span>[<span class="type">Char</span>]) = (<span class="type">List</span>(a, b, c),<span class="type">List</span>(e, f, g))</span><br></pre></td></tr></table></figure></div>
+<h4 id="var列表赋值"><a href="#var列表赋值" class="headerlink" title="var列表赋值"></a>var列表赋值</h4><blockquote>
+<p>不可变集合同样提供了 += 和 -= 操作，虽然效果相同，但它们在实现上是不同的。可变集合的+=是在可变集合上调用+=方法，它会改变s的内容；但不可变类型的+=却是赋值操作的简写，它是在集合上应用方法+，并把结果赋值给集合变量。这体现了一个重要的原则：我们通常能用一个非不可变集合的变量(var)来替换可变集合的常量(val)。</p>
+</blockquote>
+<p>列表虽然是不可变的，但是可以通过重新赋值来改变列表变量的值，从最终结果来看与使用可变类型相同，但有效率上的差异。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">var</span> xs = <span class="type">List</span>[<span class="type">Int</span>]()</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>()</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> ys = <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">ys: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment">// += 操作</span></span><br><span class="line">scala&gt; xs +:= <span class="number">0</span></span><br><span class="line"></span><br><span class="line">scala&gt; xs</span><br><span class="line">res112: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; xs :+= <span class="number">3</span></span><br><span class="line"></span><br><span class="line">scala&gt; xs</span><br><span class="line">res114: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; xs ++= ys</span><br><span class="line"></span><br><span class="line">scala&gt; xs</span><br><span class="line">res116: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; xs :::= ys</span><br><span class="line"></span><br><span class="line">scala&gt; xs</span><br><span class="line">res118: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment">// 普通赋值</span></span><br><span class="line">scala&gt; xs = xs.updated(<span class="number">0</span>,<span class="number">9</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">9</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; xs</span><br><span class="line">res119: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">9</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; xs = xs.sorted</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; xs</span><br><span class="line">res120: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">9</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h4 id="转换列表"><a href="#转换列表" class="headerlink" title="转换列表"></a>转换列表</h4><p>列表无处不在，需要集合时推荐优先使用List，Scala的集合类型可以很容易的进行相互转换</p>
+<ul>
+<li>toString 返回列表的标准字符串表现形式；</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.toString</span><br><span class="line">res16: <span class="type">String</span> = <span class="type">List</span>(a, b, c)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>mkString(pre, sep, post) 通过分隔符seq拼接列表中的元素，然后再首位添加前缀pre和后缀；</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.mkString(&quot;[&quot;, &quot;,&quot;, &quot;]&quot;)</span><br><span class="line">res23: String = [a,b,c]</span><br><span class="line"></span><br><span class="line">scala&gt; abc.mkString(&quot;,&quot;)</span><br><span class="line">res24: String = a,b,c</span><br><span class="line"></span><br><span class="line">scala&gt; abc.mkString(&quot;&quot;)</span><br><span class="line">res26: String = abc</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>toArray：将列表转化为数组（顺序表）</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.toArray</span><br><span class="line">res36: <span class="type">Array</span>[<span class="type">Char</span>] = <span class="type">Array</span>(a, b, c)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>copyToArray：将列表中的元素依次复制到目标数组的指定位置</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> arr = <span class="keyword">new</span> <span class="type">Array</span>[<span class="type">Char</span>](<span class="number">10</span>)</span><br><span class="line">?[<span class="number">1</span>m?[<span class="number">34</span>marr?[<span class="number">0</span>m: ?[<span class="number">1</span>m?[<span class="number">32</span>mArray[<span class="type">Char</span>]?[<span class="number">0</span>m = <span class="type">Array</span>(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</span><br><span class="line"></span><br><span class="line">scala&gt; abc.copyToArray(arr, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arr</span><br><span class="line">?[<span class="number">1</span>m?[<span class="number">34</span>mres35?[<span class="number">0</span>m: ?[<span class="number">1</span>m?[<span class="number">32</span>mArray[<span class="type">Char</span>]?[<span class="number">0</span>m = <span class="type">Array</span>(?, ?, ?, a, b, c, ?, ?, ?, ?)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>iterator：将列表转化为迭代器</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.iterator</span><br><span class="line">res37: <span class="type">Iterator</span>[<span class="type">Char</span>] = &lt;iterator&gt;</span><br></pre></td></tr></table></figure></div>
+<h3 id="List-的高阶方法"><a href="#List-的高阶方法" class="headerlink" title="List 的高阶方法"></a>List 的高阶方法</h3><h4 id="列表映射-map-："><a href="#列表映射-map-：" class="headerlink" title="列表映射(map)："></a>列表映射(map)：</h4><ul>
+<li>map：<code>xs.map(f)</code> 接收一个列表 xs，依次对列表中每个元素调用 f ，返回一个包含所有返回值的列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).map(_ * <span class="number">2</span>)</span><br><span class="line">res38: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>flatMap：<code>xs.flatMap(f)</code> 接收一个列表 xs，依次对列表中的每个元素调用 f，f 必须要返回一个collection，然后将所有collection拼接起来，返回一个包含所有collection中各个元素的列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="string">&quot;ab c&quot;</span>, <span class="string">&quot;d e f&quot;</span>).flatMap(_.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line">res45: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(ab, c, d, e, f)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>foreach：<code>xs.foreach(g)</code>接收一个列表 xs， 依次对列表中的每个元素调用过程 g，返回Unit</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">sum: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>).foreach(sum +=  _)</span><br><span class="line"></span><br><span class="line">scala&gt; sum</span><br><span class="line">res49: <span class="type">Int</span> = <span class="number">10</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="列表过滤-filter-："><a href="#列表过滤-filter-：" class="headerlink" title="列表过滤(filter)："></a>列表过滤(filter)：</h4><ul>
+<li>filter：<code>xs.filter(p)</code> 接收一个列表xs，依次对列表中的每个元素调用布尔函数 p，返回包含所有返回值为 true 的元素的列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).filter(_ % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">res50: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">2</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>partition：<code>xs.partition(p)</code> 接收一个列表 xs，依次对列表中的每个元素调用布尔函数 p，返回一个列表二元组，第一个列表包含了所有返回true的元素，第二个列表包含了所有返回false的元素</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).partition( _ &lt; <span class="number">3</span>)</span><br><span class="line">res51: (<span class="type">List</span>[<span class="type">Int</span>], <span class="type">List</span>[<span class="type">Int</span>]) = (<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>),<span class="type">List</span>(<span class="number">3</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>find：<code>xs.find(p)</code> 接收一个列表xs，依次对列表中的每个元素调用布尔函数 p，返回一个可选值(Option)，如果存在返回值为true的元素x，则返回第一个匹配成功的元素Some(x)，否则返回None</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).find(_ % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">res52: <span class="type">Option</span>[<span class="type">Int</span>] = <span class="type">Some</span>(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).find(_ % <span class="number">5</span> == <span class="number">0</span>)</span><br><span class="line">res53: <span class="type">Option</span>[<span class="type">Int</span>] = <span class="type">None</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="列表归约-reduce-："><a href="#列表归约-reduce-：" class="headerlink" title="列表归约(reduce)："></a>列表归约(reduce)：</h4><p>实现归约的三要素：</p>
+<ol>
+<li>可迭代对象(iterator)：进行迭代归约的对象；</li>
+<li>累加器变量(accumulator)：在迭代开始时拥有一个初始值，在迭代过程中基于归约函数和当前元素进行更新，在迭代结束时作为最终的返回值；</li>
+<li>归约函数(op)：接收当前元素和累加器变量更新累加器变量；</li>
+</ol>
+<p>Scala 支持数学归约（如计算一个列表的总和）和逻辑归约（例如确定一个列表是否包含给定元素）。Scala支持三种归约的高阶操作：fold、reduce 和 scan，这三个归约操作实际并没有本质区别，可以相互实现。对于每种归约操作，Scala又划分了三个版本：默认版本（等价于从左到右归约）、从左到右归约、从右到左归约。</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191205002539.png" alt="-c"></p>
+<ul>
+<li>左折叠：<code>(z /: xs)(op)</code> 或者 <code>xs.foldLeft(z)(op)</code> 接收一个列表 xs 和初始化累加器 z，z作为左操作数，从左到右依次对列表中的每个元素调用二元操作 op 来更新 z，返回最终的z（<code>/:</code> 操作符形象地表示该操作符会产生一颗向向左靠的操作树）</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foldLeft等价于fold</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> xs = <span class="type">List</span>(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>)</span><br><span class="line">xs: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(a, b, c)</span><br><span class="line"></span><br><span class="line">scala&gt; (<span class="string">&quot;0&quot;</span> /: xs)(_ + _)</span><br><span class="line">res66: <span class="type">String</span> = <span class="number">0</span>abc</span><br><span class="line"></span><br><span class="line">scala&gt; xs.fold(<span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res67: <span class="type">String</span> = <span class="number">0</span>abc</span><br><span class="line"></span><br><span class="line">scala&gt; xs.foldLeft(<span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res67: <span class="type">String</span> = <span class="number">0</span>abc</span><br><span class="line"><span class="comment">// 使用左折叠实现列表反转</span></span><br><span class="line">scala&gt; <span class="function"><span class="keyword">def</span> <span class="title">reverseLeft</span></span>[<span class="type">T</span>](xs: <span class="type">List</span>[<span class="type">T</span>]) = (<span class="type">List</span>[<span class="type">T</span>]() /: xs)&#123;(ys, y) =&gt; y :: ys&#125;</span><br><span class="line">reverseLeft: [<span class="type">T</span>](xs: <span class="type">List</span>[<span class="type">T</span>])<span class="type">List</span>[<span class="type">T</span>]</span><br><span class="line"></span><br><span class="line">scala&gt; reverseLeft(abc)</span><br><span class="line">res76: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(c, b, a)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>右折叠：<code>(xs :\ z)(op)</code> 或 <code>xs.foldRight(z)(op)</code>，接收一个列表 xs 和初始化累加器 z，z作为右操组数，从右到左依次对列表中的每个元素调用二元操作 op 来更新 z，返回最终的z（<code>:\</code> 操作符形象地表示该操作符会产生一颗向右靠的操作树）</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; xs.foldRight(<span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res68: <span class="type">String</span> = abc0</span><br><span class="line"></span><br><span class="line">scala&gt; (xs :\ <span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res69: <span class="type">String</span> = abc0</span><br><span class="line">```     </span><br><span class="line"></span><br><span class="line">- reduce：与 fold 用法类似，只不过不用提供初始值</span><br><span class="line">    -  `xs.reduce(op)` / `xs.reduceLeft(op)` 给定一个归约函数，从列表中第一个元素开始从左到右归约列表；</span><br><span class="line">    -  `xs.reduceRight(op)` 给定一个归约函数，从列表中第一个元素开始从右到左归约列表；</span><br><span class="line"></span><br><span class="line">```scala</span><br><span class="line">scala&gt; abc.reduce(_ + _)</span><br><span class="line">res19: <span class="type">String</span> = abc</span><br><span class="line"></span><br><span class="line">scala&gt; abc.reduceLeft(_ + _)</span><br><span class="line">res20: <span class="type">String</span> = abc</span><br><span class="line"></span><br><span class="line">scala&gt; abc.reduceRight(_ + _)</span><br><span class="line">res21: <span class="type">String</span> = abc</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>scan：与 fold 用法相同，只不过返回的是归约过程中各个累积起的一个列表<ul>
+<li><code>xs.scan(z)(op)</code> / <code>xs.scanLeft(z)(op)</code> 给定一个初始值和一个归约函数，从左到右返回各个累计值的一个列表</li>
+<li><code>xs.scanRight(z)(op)</code> 给定一个初始值和一个归约函数，从右到左返回各个累计值的一个列表</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; abc.scan(<span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res22: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>a, <span class="number">0</span>ab, <span class="number">0</span>abc)</span><br><span class="line"></span><br><span class="line">scala&gt; abc.scanLeft(<span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res23: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>a, <span class="number">0</span>ab, <span class="number">0</span>abc)</span><br><span class="line"></span><br><span class="line">scala&gt; abc.scanRight(<span class="string">&quot;0&quot;</span>)(_ + _)</span><br><span class="line">res24: <span class="type">List</span>[<span class="type">String</span>] = <span class="type">List</span>(abc0, bc0, c0, <span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="列表检查"><a href="#列表检查" class="headerlink" title="列表检查"></a>列表检查</h4><ul>
+<li>forall：<code>xs.forall(p)</code> 接收一个列表 xs，依次对每个元素应用布尔函数 p，如果所有元素返回值均为true则返回true，否则返回false</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).forall(_ &lt; <span class="number">5</span>)</span><br><span class="line">res54: <span class="type">Boolean</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>exists：<code>xs.exists(p)</code> 接收一个列表 xs，依次对每个元素应用布尔函数 p，只要有一个元素的返回值为true则返回true，否则返回false</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).exists(_ == <span class="number">4</span>)</span><br><span class="line">res57: <span class="type">Boolean</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="List-伴生对象方法"><a href="#List-伴生对象方法" class="headerlink" title="List 伴生对象方法"></a>List 伴生对象方法</h3><p>上面介绍的方法都是List类的方法，还有些方法是定义在全局可访问对象scala.List上的，这是List类的伴生对象，某些操作是用于创建列表的工厂方法，另一些则是对特定形状的列表进行操作。</p>
+<ul>
+<li>从元素创建列表：List(1,2,3) 这样的字面量只不过是简单地将对象应用到元素1，2，3而已，与List.apply(1,2,3) 是等效的</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">res81: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="type">List</span>.apply(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">res82: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>创建整数区间：<code>List.range(from, until[, step])</code> 创建一个从 from 开始，到until结束（不包含until），步长为step的整数列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>.range(<span class="number">1</span>,<span class="number">10</span>,<span class="number">2</span>)</span><br><span class="line">res86: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>创建相同元素的列表：<code>List.fill(n)(value)</code> 创建一个包含 n 个 value 元素的列表</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>.fill(<span class="number">10</span>)(&#x27;<span class="number">1</span>&#x27;)</span><br><span class="line">res87: <span class="type">List</span>[<span class="type">Char</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>创建一个表格化的列表：<code>List.tabulate(m, n)(f)</code> 创建一个 m 行 n 列的二维列表xs，<code>xs(i)(j)=f(i,j), 0 &lt;= i &lt; m, 0 &lt;= j &lt; n</code></li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="type">List</span>.tabulate(<span class="number">2</span>,<span class="number">3</span>)(_ * _)</span><br><span class="line">res90: <span class="type">List</span>[<span class="type">List</span>[<span class="type">Int</span>]] = <span class="type">List</span>(<span class="type">List</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="type">List</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure></div>
+<h2 id="向量（Vector）"><a href="#向量（Vector）" class="headerlink" title="向量（Vector）"></a>向量（Vector）</h2><p>Vector 是一个不可变的索引序列，通过多分支树实现。Vector 是用来解决 List 不能随机存取的一种结构，它在快速随机选择和快速随机更新的性能方面做到很好的平衡，所以目前正被用作不可变索引序列的默认实现方式。当你不知道该选择什么时，Vector是你最好的选择，因为它在Scala集合中是最灵活和高效的。</p>
+<blockquote>
+<p>Vector结构通常被表示成具有多分支的树，每个节点包含最多32个vector元素或者至多32个子树节点，一次间接引用则可以用来表示一个包含至多32*32=1024个元素的vector。从树的根节点经过两跳到达叶节点足够存下有2的15次方个元素的vector结构，经过3跳可以存2的20次方个，4跳2的25次方个，5跳2的30次方个。所以对于一般大小的vector数据结构，一般经过至多5次数组访问就可以访问到指定的元素，这也就是我们之前所提及的随机数据访问时“运行时间的相对高效”。</p>
+</blockquote>
+<h3 id="Vector-创建"><a href="#Vector-创建" class="headerlink" title="Vector 创建"></a>Vector 创建</h3><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 标准形式</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> vec1 = <span class="type">Vector</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">vec1: scala.collection.immutable.<span class="type">Vector</span>[<span class="type">Int</span>] = <span class="type">Vector</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 创建一个空的Vector</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> vec2 = <span class="type">Vector</span>[<span class="type">Int</span>]()</span><br><span class="line">vec2: scala.collection.immutable.<span class="type">Vector</span>[<span class="type">Int</span>] = <span class="type">Vector</span>()</span><br><span class="line"><span class="comment">// 使用 IndexedSeq 默认创建一个Vector</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> vec3 = <span class="type">IndexedSeq</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">vec3: <span class="type">IndexedSeq</span>[<span class="type">Int</span>] = <span class="type">Vector</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h3 id="Vector-操作"><a href="#Vector-操作" class="headerlink" title="Vector 操作"></a>Vector 操作</h3><p>与 List 相比， Vector 的操作没有什么不同，只是效率上有所差异。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; vec1 ++ vec3</span><br><span class="line">res0: scala.collection.immutable.<span class="type">Vector</span>[<span class="type">Int</span>] = <span class="type">Vector</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; vec1.updated(<span class="number">0</span>,<span class="number">9</span>)</span><br><span class="line">res2: scala.collection.immutable.<span class="type">Vector</span>[<span class="type">Int</span>] = <span class="type">Vector</span>(<span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; vec1.take(<span class="number">2</span>)</span><br><span class="line">res3: scala.collection.immutable.<span class="type">Vector</span>[<span class="type">Int</span>] = <span class="type">Vector</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; vec1.filter(_ &gt; <span class="number">2</span>)</span><br><span class="line">res4: scala.collection.immutable.<span class="type">Vector</span>[<span class="type">Int</span>] = <span class="type">Vector</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="数组缓冲器（ArrayBuffer）"><a href="#数组缓冲器（ArrayBuffer）" class="headerlink" title="数组缓冲器（ArrayBuffer）"></a>数组缓冲器（ArrayBuffer）</h2><p>ArrayBuffer 是一个变长数组，目前正被用作可变索引序列的默认实现方式。当新元素总是添加到最后的时候，可以用 ArrayBuffer 来高效地构造一个大型的容器。</p>
+<h3 id="ArrayBuffer-创建"><a href="#ArrayBuffer-创建" class="headerlink" title="ArrayBuffer 创建"></a>ArrayBuffer 创建</h3><p>在创建 ArrayBuffer 之前必须先引入它：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">import</span> scala.collection.mutable</span><br><span class="line"><span class="comment">// 标准方式</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> arrb1 = mutable.<span class="type">ArrayBuffer</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">arrb1: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 创建一个空的 ArrayBuffer，必须显式知名元素类型</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> arrb2 = mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>]()</span><br><span class="line">arrb2: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>()</span><br><span class="line"><span class="comment">// 创建一个 Buffer，默认返回一个 ArrayBuffer</span></span><br><span class="line">scala&gt; <span class="keyword">val</span> arrb3 = mutable.<span class="type">Buffer</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">arrb3: scala.collection.mutable.<span class="type">Buffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h3 id="ArrayBuffer-操作"><a href="#ArrayBuffer-操作" class="headerlink" title="ArrayBuffer 操作"></a>ArrayBuffer 操作</h3><p>与 List 相比，ArrayBuffer 支持原地修改操作，ArrayBuffer 的大多数操作，其速度与数组本身无异，因为这些操作直接访问、修改底层数组。</p>
+<p>ArrayBuffer 可以通过 <code>+=</code> 和 <code>++=</code> 添加元素或另一个集合中的元素，也可以通过 <code>-=</code> 和 <code>--=</code> 从数组中删除元素或另一个集合中的元素，在删除元素时会从后向前删除，如果找到就删找不到就跳过：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; arrb = mutable.<span class="type">ArrayBuffer</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">arrb: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb += <span class="number">4</span></span><br><span class="line">res11: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb -= <span class="number">1</span></span><br><span class="line">res12: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb -= <span class="number">9</span></span><br><span class="line">res12: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb ++= <span class="type">Array</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">res13: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb --= <span class="type">Array</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">res14: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb --= <span class="type">Array</span>(<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">res15: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>ArrayBuffer 还有很多其它方法用来添加或者删除元素：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="type">ArrayBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// ArrayBuffer(1, 2, 3)</span></span><br><span class="line"></span><br><span class="line">scala&gt; a.append(<span class="number">4</span>) <span class="comment">// ArrayBuffer(1, 2, 3, 4)</span></span><br><span class="line">scala&gt; a.append(<span class="number">5</span>, <span class="number">6</span>) <span class="comment">// ArrayBuffer(1, 2, 3, 4, 5, 6)</span></span><br><span class="line">scala&gt; a.appendAll(<span class="type">Seq</span>(<span class="number">7</span>,<span class="number">8</span>)) <span class="comment">// ArrayBuffer(1, 2, 3, 4, 5, 6, 7, 8)</span></span><br><span class="line"></span><br><span class="line">scala&gt; a.clear <span class="comment">// ArrayBuffer()</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="type">ArrayBuffer</span>(<span class="number">9</span>, <span class="number">10</span>) <span class="comment">// ArrayBuffer(9, 10)</span></span><br><span class="line">a: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">9</span>, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; a.insert(<span class="number">0</span>, <span class="number">8</span>) <span class="comment">// ArrayBuffer(8, 9, 10)</span></span><br><span class="line">scala&gt; a.insert(<span class="number">0</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">// ArrayBuffer(6, 7, 8, 9, 10)</span></span><br><span class="line">scala&gt; a.insertAll(<span class="number">0</span>, <span class="type">Vector</span>(<span class="number">4</span>, <span class="number">5</span>)) <span class="comment">// ArrayBuffer(4, 5, 6, 7, 8, 9, 10)</span></span><br><span class="line"></span><br><span class="line">scala&gt; a.prepend(<span class="number">3</span>) <span class="comment">// ArrayBuffer(3, 4, 5, 6, 7, 8, 9, 10)</span></span><br><span class="line">scala&gt; a.prepend(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// ArrayBuffer(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</span></span><br><span class="line">scala&gt; a.prependAll(<span class="type">Array</span>(<span class="number">0</span>)) <span class="comment">// ArrayBuffer(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="type">ArrayBuffer</span>.range(&#x27;a&#x27;, &#x27;h&#x27;) <span class="comment">// ArrayBuffer(a, b, c, d, e, f, g)</span></span><br><span class="line">a: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Char</span>] = <span class="type">ArrayBuffer</span>(a, b, c, d, e, f, g)</span><br><span class="line"></span><br><span class="line">scala&gt; a.remove(<span class="number">0</span>) <span class="comment">// ArrayBuffer(b, c, d, e, f, g)</span></span><br><span class="line">res17: <span class="type">Char</span> = a</span><br><span class="line">scala&gt; a.remove(<span class="number">2</span>, <span class="number">3</span>) <span class="comment">// ArrayBuffer(b, c, g)</span></span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="type">ArrayBuffer</span>.range(&#x27;a&#x27;, &#x27;h&#x27;) <span class="comment">// ArrayBuffer(a, b, c, d, e, f, g)</span></span><br><span class="line">a: scala.collection.mutable.<span class="type">ArrayBuffer</span>[<span class="type">Char</span>] = <span class="type">ArrayBuffer</span>(a, b, c, d, e, f, g)</span><br><span class="line"></span><br><span class="line">scala&gt; a.trimStart(<span class="number">2</span>) <span class="comment">// ArrayBuffer(c, d, e, f, g)</span></span><br><span class="line">scala&gt; a.trimEnd(<span class="number">2</span>) <span class="comment">// ArrayBuffer(c, d, e)</span></span><br></pre></td></tr></table></figure></div>
+<p>ArrayBuffer 还支持原地修改序列中的元素：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ArrayBuffer 的 updated方法是在原地修改</span></span><br><span class="line">scala&gt; arrb.updated(<span class="number">0</span>,<span class="number">9</span>)</span><br><span class="line">res17: scala.collection.mutable.<span class="type">Buffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; arrb</span><br><span class="line">res18: scala.collection.mutable.<span class="type">Buffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// ArrayBuffer 支持下面快速修改语法</span></span><br><span class="line">scala&gt; arrb(<span class="number">0</span>) = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">scala&gt; arrb</span><br><span class="line">res20: scala.collection.mutable.<span class="type">Buffer</span>[<span class="type">Int</span>] = <span class="type">ArrayBuffer</span>(<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="列表缓冲器（ListBuffer）"><a href="#列表缓冲器（ListBuffer）" class="headerlink" title="列表缓冲器（ListBuffer）"></a>列表缓冲器（ListBuffer）</h2><p>ListBuffer 是一个可变链表。如果你还需要像使用 List 那样使用可变序列，或者需要将可变序列转化为 List，使用ListBuffer是一个更好的选择。</p>
+<h3 id="ListBuffer-创建"><a href="#ListBuffer-创建" class="headerlink" title="ListBuffer 创建"></a>ListBuffer 创建</h3><p>在创建 ListBuffer 之前必须先引入它：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">import</span> scala.collection.mutable</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> listb = mutable.<span class="type">ListBuffer</span>[<span class="type">Int</span>]()</span><br><span class="line">listb: scala.collection.mutable.<span class="type">ListBuffer</span>[<span class="type">Int</span>] = <span class="type">ListBuffer</span>()</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> listb = mutable.<span class="type">ListBuffer</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">listb: scala.collection.mutable.<span class="type">ListBuffer</span>[<span class="type">Int</span>] = <span class="type">ListBuffer</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="ListBuffer-操作"><a href="#ListBuffer-操作" class="headerlink" title="ListBuffer 操作"></a>ListBuffer 操作</h3><p>ListBuffer 的操作和 ArrayBuffer类似，通过 <code>toList</code> 方法可以转化为 List：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; listb.toList</span><br><span class="line">res22: <span class="type">List</span>[<span class="type">Int</span>] = <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="数组（Array）"><a href="#数组（Array）" class="headerlink" title="数组（Array）"></a>数组（Array）</h2><p>Array 是一个定长数组：Scala 2.8 中数组不再被看作是序列，因为本地数组的类型不是Seq的子类型，而是在数组和 scala.collection.mutable.WrappedArray 这个类的实例之间隐式转换，后者则是Seq的子类</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> a1 = <span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">a1: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> seq: <span class="type">Seq</span>[<span class="type">Int</span>] = a1</span><br><span class="line">seq: <span class="type">Seq</span>[<span class="type">Int</span>] = <span class="type">WrappedArray</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; <span class="keyword">val</span> a4: <span class="type">Array</span>[<span class="type">Int</span>] = seq.toArray</span><br><span class="line">a4: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<p>关于Array，需要知道：</p>
+<ul>
+<li>Scala 数组与 Java 数组是一一对应的：Array类型实际上只是数组类型的一个包装器，Scala数组Array[Int]可看作Java的Int[]，Array[Double]可看作Java的double[]，以及Array[String]可看作Java的String[]</li>
+<li>Scala 数组是一种泛型：可以定义一个Array[T]，T可以是一种类型参数或抽象类型</li>
+<li>Scala 数组与 Scala 序列是兼容的：在需要Seq[T]的地方可由Array[T]代替，Scala 数组支持所有的序列操作</li>
+</ul>
+<p>不建议经常使用Array类型，除非JVM代码中需要用到。</p>
+<h3 id="Array-创建"><a href="#Array-创建" class="headerlink" title="Array 创建"></a>Array 创建</h3><ul>
+<li>标准做法：作为一个函数来调用Array</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="type">Array</span>[<span class="type">Int</span>](<span class="number">5</span>)</span><br><span class="line">a: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>new 语句：根据给定类型和长度创建数组</li>
+</ul>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Array</span>[<span class="type">Int</span>](<span class="number">5</span>)</span><br><span class="line">a: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
+<h3 id="Array-操作"><a href="#Array-操作" class="headerlink" title="Array 操作"></a>Array 操作</h3><p>Array 可原地修改但不能改变其大小：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; a</span><br><span class="line">res17: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">999</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; a :+ <span class="number">1</span></span><br><span class="line">res18: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">999</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">scala&gt; a += <span class="number">1</span></span><br><span class="line">&lt;console&gt;:<span class="number">13</span>: error: value += is not a member of <span class="type">Array</span>[<span class="type">Int</span>]</span><br><span class="line">  <span class="type">Expression</span> does not convert to assignment because receiver is not assignable.</span><br><span class="line">       a += <span class="number">1</span></span><br><span class="line">         ^</span><br></pre></td></tr></table></figure></div>
+<p>Array[T] 泛型数组：类型参数 T.ClassTag，当Array[T] 构造时，在任何情况下会发生的是，编译器会寻找类型参数T的一个类声明，这就是说，它会寻找ClassTag[T]一个隐式类型的值。如果如此的一个值被发现，声明会用来构造正确的数组类型；否则，你就会看到一个错误信息</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SCALA"><figure class="iseeu highlight /scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.reflect.<span class="type">ClassTag</span></span><br><span class="line"><span class="comment">// 创建泛型数组</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evenElems</span></span>[<span class="type">T</span>: <span class="type">ClassTag</span>](xs: <span class="type">Vector</span>[<span class="type">T</span>]): <span class="type">Array</span>[<span class="type">T</span>] = &#123;</span><br><span class="line">  <span class="keyword">val</span> arr = <span class="keyword">new</span> <span class="type">Array</span>[<span class="type">T</span>]((xs.length + <span class="number">1</span>) / <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">for</span> (i &lt;- <span class="number">0</span> until xs.length by <span class="number">2</span>)</span><br><span class="line">    arr(i / <span class="number">2</span>) = xs(i)</span><br><span class="line">  arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用泛型数组</span></span><br><span class="line">scala&gt; evenElems(<span class="type">Vector</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line">res6: <span class="type">Array</span>[<span class="type">Int</span>] = <span class="type">Array</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+<h2 id="Seq-选择"><a href="#Seq-选择" class="headerlink" title="Seq 选择"></a>Seq 选择</h2><p>选择一个 Seq 的时候，你需要考虑两件事：</p>
+<ol>
+<li>选择线性序列还是索引序列：线性序列方便头尾操作、索引序列方便随机存取；</li>
+<li>选择可变序列还是不可变序列：可变序列方便原地修改、不可变序列安全无副作用；</li>
+</ol>
+<p>主要的不可变序列：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">IndexedSeq</th>
+<th style="text-align:center">LinearSeq</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A singly linked list. Suited for recursive algorithms that work by splitting the head from the remainder of the list.</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A first-in, first-out data structure.</td>
+</tr>
+<tr>
+<td>Range</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>A range of integer values.</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A last-in, first-out data structure.</td>
+</tr>
+<tr>
+<td>Stream</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>Similar to List, but it’s lazy and persistent. Good for a large or infinite sequence, similar to a Haskell List.</td>
+</tr>
+<tr>
+<td>String</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>Can be treated as an immutable, indexed sequence of characters.</td>
+</tr>
+<tr>
+<td>Vector</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>The “go to” immutable, indexed sequence. The Scaladoc describes it as, “Implemented as a set of nested arrays that’s efficient at splitting and joining.”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>主要的可变序列：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">IndexedSeq</th>
+<th style="text-align:center">LinearSeq</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Array</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>Backed by a Java array, its elements are mutable, but it can’t change in size.</td>
+</tr>
+<tr>
+<td>ArrayBuffer</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>The “go to” class for a mutable, sequential collection. The amortized cost for appending elements is constant.</td>
+</tr>
+<tr>
+<td>ArrayStack</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>A last-in, first-out data structure. Prefer over Stack when performance is important.</td>
+</tr>
+<tr>
+<td>DoubleLinkedList</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>Like a singly linked list, but with a prev method as well. The documentation states, “the additional links make element removal very fast.”</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A mutable, singly linked list.</td>
+</tr>
+<tr>
+<td>ListBuffer</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>Like an ArrayBuffer, but backed by a list. The documentation states, “If you plan to convert the buffer to a list, use ListBuffer instead of ArrayBuffer.” Offers constant-time prepend and append; most other operations are linear.</td>
+</tr>
+<tr>
+<td>MutableList</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A mutable, singly linked list with constant-time append.</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A first-in, first-out data structure.</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">✓</td>
+<td>A last-in, first-out data structure. (The documentation suggests that an ArrayStack is slightly more efficient.)</td>
+</tr>
+<tr>
+<td>StringBuilder</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center"></td>
+<td>Used to build strings, as in a loop. Like the Java StringBuilder.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>序列类型常用操作的性能特点：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>具体类型</th>
+<th>head</th>
+<th>tail</th>
+<th>apply</th>
+<th>update</th>
+<th>prepend</th>
+<th>append</th>
+<th>insert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>immutable</td>
+<td>List</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>L</td>
+<td>-</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>Stream</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>L</td>
+<td>-</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>Vector</td>
+<td>eC</td>
+<td>eC</td>
+<td>eC</td>
+<td>eC</td>
+<td>eC</td>
+<td>eC</td>
+<td>-</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>Stack</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>Queue</td>
+<td>aC</td>
+<td>aC</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>-</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>Range</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>immutable</td>
+<td>String</td>
+<td>C</td>
+<td>L</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>L</td>
+<td>-</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>ArrayBuffer</td>
+<td>C</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+<td>aC</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>ListBuffer</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>StringBuilder</td>
+<td>C</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+<td>aC</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>MutableList</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>Queue</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>ArraySeq</td>
+<td>C</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>Stack</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+<td>L</td>
+<td>C</td>
+<td>L</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>ArrayStack</td>
+<td>C</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>aC</td>
+<td>L</td>
+<td>L</td>
+</tr>
+<tr>
+<td>mutable</td>
+<td>Array</td>
+<td>C</td>
+<td>L</td>
+<td>C</td>
+<td>C</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>其中，时间复杂度符号解释如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>指操作的时间复杂度为常数</td>
+</tr>
+<tr>
+<td>eC</td>
+<td>指操作的时间复杂度实际上为常数，但可能依赖于诸如一个向量最大长度或是哈希键的分布情况等一些假设。</td>
+</tr>
+<tr>
+<td>aC</td>
+<td>该操作的均摊运行时间为常数。某些调用的可能耗时较长，但多次调用之下，每次调用的平均耗时是常数。</td>
+</tr>
+<tr>
+<td>Log</td>
+<td>操作的耗时与容器大小的对数成正比。</td>
+</tr>
+<tr>
+<td>L</td>
+<td>操作是线性的，耗时与容器的大小成正比。</td>
+</tr>
+<tr>
+<td>-</td>
+<td>操作不被支持。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>序列操作说明：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>head</td>
+<td>选择序列的第一个元素。</td>
+</tr>
+<tr>
+<td>tail</td>
+<td>生成一个包含除第一个元素以外所有其他元素的新的列表。</td>
+</tr>
+<tr>
+<td>apply</td>
+<td>索引。</td>
+</tr>
+<tr>
+<td>update</td>
+<td>功能性更新不可变序列，同步更新可变序列。</td>
+</tr>
+<tr>
+<td>prepend</td>
+<td>添加一个元素到序列头。对于不可变序列，操作会生成个新的序列。对于可变序列，操作会修改原有的序列。</td>
+</tr>
+<tr>
+<td>append</td>
+<td>在序列尾部插入一个元素。对于不可变序列，这将产生一个新的序列。对于可变序列，这将修改原有的序列。</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>在序列的任意位置上插入一个元素。只有可变序列支持该操作。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>针对数组／链表，可变／不可变的组合，推荐使用以下四种通用容器类：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Immutable</th>
+<th>Mutable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear (Linked lists)</td>
+<td>List</td>
+<td>ListBuffer</td>
+</tr>
+<tr>
+<td>Indexed</td>
+<td>Vector</td>
+<td>ArrayBuffer</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>总结 Seq 的一般选择原则：</p>
+<ul>
+<li>如果你需要一个不可变序列，那么首选 List；</li>
+<li>如果你还需要快速访问不可变序列的中间元素，那么就选 Vector；</li>
+<li>如果你需要一个可变序列，那么首选 ArrayBuffer；</li>
+<li>如果你还需要像使用 List 那样使用可变序列，或者需要将可变序列转化为 List，那么就选 ListBuffer；</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://my.oschina.net/nenusoul/blog/656317">Scala CookBook</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.scala-lang.org/zh-cn/overviews/collections/strings.html">Scala 官方文档</a></p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Scala/Scala/Scala%20%E6%95%99%E7%A8%8B%EF%BC%9ABasics%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E/" rel="prev" title="Scala 教程：Basics（一）—— 变量声明">
+                Scala 教程：Basics（一）—— 变量声明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%EF%BC%88List%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">列表（List）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List-%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">1.1.</span> <span class="nav-text">List 的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%97%E8%A1%A8%E7%9A%84%E6%A0%87%E5%87%86%E5%81%9A%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">创建列表的标准做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%97%E8%A1%A8%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8D%95%E5%85%83"><span class="nav-number">1.1.2.</span> <span class="nav-text">创建列表的构建单元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">List 的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E5%8E%9F%E5%A7%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.1.</span> <span class="nav-text">列表原始操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E8%A7%A3%E6%9E%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">列表解构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List-%E7%9A%84%E5%88%9D%E9%98%B6%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">List 的初阶方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E9%95%BF%E5%BA%A6"><span class="nav-number">1.3.1.</span> <span class="nav-text">索引和长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E7%B4%A2%E5%BC%95%E6%9F%A5%E6%89%BE"><span class="nav-number">1.3.2.</span> <span class="nav-text">按索引查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E5%8A%A0%E6%B3%95"><span class="nav-number">1.3.3.</span> <span class="nav-text">列表加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-number">1.3.4.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-number">1.3.5.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.6.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%9B%86%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.7.</span> <span class="nav-text">多集操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#var%E5%88%97%E8%A1%A8%E8%B5%8B%E5%80%BC"><span class="nav-number">1.3.8.</span> <span class="nav-text">var列表赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E5%88%97%E8%A1%A8"><span class="nav-number">1.3.9.</span> <span class="nav-text">转换列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List-%E7%9A%84%E9%AB%98%E9%98%B6%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">List 的高阶方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%98%A0%E5%B0%84-map-%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">列表映射(map)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E8%BF%87%E6%BB%A4-filter-%EF%BC%9A"><span class="nav-number">1.4.2.</span> <span class="nav-text">列表过滤(filter)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E5%BD%92%E7%BA%A6-reduce-%EF%BC%9A"><span class="nav-number">1.4.3.</span> <span class="nav-text">列表归约(reduce)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%A3%80%E6%9F%A5"><span class="nav-number">1.4.4.</span> <span class="nav-text">列表检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List-%E4%BC%B4%E7%94%9F%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">List 伴生对象方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%EF%BC%88Vector%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">向量（Vector）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector-%E5%88%9B%E5%BB%BA"><span class="nav-number">2.1.</span> <span class="nav-text">Vector 创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector-%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">Vector 操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%BC%93%E5%86%B2%E5%99%A8%EF%BC%88ArrayBuffer%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">数组缓冲器（ArrayBuffer）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayBuffer-%E5%88%9B%E5%BB%BA"><span class="nav-number">3.1.</span> <span class="nav-text">ArrayBuffer 创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayBuffer-%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">ArrayBuffer 操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E7%BC%93%E5%86%B2%E5%99%A8%EF%BC%88ListBuffer%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">列表缓冲器（ListBuffer）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ListBuffer-%E5%88%9B%E5%BB%BA"><span class="nav-number">4.1.</span> <span class="nav-text">ListBuffer 创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ListBuffer-%E6%93%8D%E4%BD%9C"><span class="nav-number">4.2.</span> <span class="nav-text">ListBuffer 操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%EF%BC%88Array%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">数组（Array）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-%E5%88%9B%E5%BB%BA"><span class="nav-number">5.1.</span> <span class="nav-text">Array 创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.</span> <span class="nav-text">Array 操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seq-%E9%80%89%E6%8B%A9"><span class="nav-number">6.</span> <span class="nav-text">Seq 选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+

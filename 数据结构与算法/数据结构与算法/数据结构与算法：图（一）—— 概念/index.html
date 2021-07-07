@@ -1,37 +1,1834 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/feather-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/feather-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/apple-touch-icon-feather.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构与算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Like" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="如果一个问题可以基于实体&#x2F;状态间的某种多对多的关系来求解，那么可以尝试用图的数据结构和相关算法来求解。用图解决实际问题的一般步骤：  定义图的数据结构：从实际问题中抽象出相互关联的可区分的状态 状态作为图的顶点：将状态参数作为不同顶点的唯一标识； 关联作为节点的边：通过这种关联找到顶点的邻接点；   图的搜索算法：以某种方式沿着图中的边遍历图中各个顶点，图搜索算法可以用来发现图的结构，可以借助一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法：图（一）—— 概念">
+<meta property="og:url" content="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9B%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Like">
+<meta property="og:description" content="如果一个问题可以基于实体&#x2F;状态间的某种多对多的关系来求解，那么可以尝试用图的数据结构和相关算法来求解。用图解决实际问题的一般步骤：  定义图的数据结构：从实际问题中抽象出相互关联的可区分的状态 状态作为图的顶点：将状态参数作为不同顶点的唯一标识； 关联作为节点的边：通过这种关联找到顶点的邻接点；   图的搜索算法：以某种方式沿着图中的边遍历图中各个顶点，图搜索算法可以用来发现图的结构，可以借助一些">
+<meta property="og:locale">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-37-15.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/13-30-41.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-16-45.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-20-33.jpg">
+<meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/totaltu.png">
+<meta property="article:published_time" content="2017-10-10T12:13:53.000Z">
+<meta property="article:modified_time" content="2021-06-02T10:44:40.926Z">
+<meta property="article:author" content="Like">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-37-15.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liketea.xyz/数据结构与算法/数据结构与算法/数据结构与算法：图（一）—— 概念/"/>
+
+
+
+
+
+  <title>数据结构与算法：图（一）—— 概念 | Like</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Like</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">哈哈哈</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rank">
+          <a href="/rank/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            排行榜
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liketea.xyz/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9B%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://joeschmoe.io/api/v1/random">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Like">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构与算法：图（一）—— 概念</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:13:53+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
+                2021-06-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9B%BE%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E5%BF%B5/" class="leancloud_visitors" data-flag-title="数据结构与算法：图（一）—— 概念">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果一个问题可以基于实体/状态间的某种多对多的关系来求解，那么可以尝试用图的数据结构和相关算法来求解。用图解决实际问题的一般步骤：</p>
+<ol>
+<li>定义图的数据结构：从实际问题中抽象出<strong>相互关联的可区分的状态</strong><ol>
+<li>状态作为图的顶点：将状态参数作为不同顶点的唯一标识；</li>
+<li>关联作为节点的边：通过这种关联找到顶点的邻接点；</li>
+</ol>
+</li>
+<li>图的搜索算法：以某种方式沿着图中的边遍历图中各个顶点，图搜索算法可以用来发现图的结构，可以借助一些辅助的数据结构来描述图中的某种结构；</li>
+<li>原问题的求解：基于图的结构和辅助数据结果求解原问题的解；</li>
+</ol>
+<p>如果对图的相关算法熟悉的话，那么解决实际问题的关键就在于第一步了，即如何从实际问题中抽象出相互关联的状态，进而定义出图中的不同顶点和边，然后通过合适的搜索算法发现图中的结构，求解原问题的解。本文相关算法实例将按照以上步骤来整理解题思路。</p>
+<h2 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h2><p>图G由有限非空的顶点集V和边集E组成，记做G=(V,E)。</p>
+<p>1、有向图：图中的边<u,v>是有向的，u称为边头，v称为边尾</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-37-15.jpg" width="30%" heigh="30%"></img>
+</div>
+
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G = (V,E)</span><br><span class="line">V = &#123;A,B,C,D&#125;</span><br><span class="line">E = &#123;&lt;A,D&gt;,&lt;B,A&gt;,&lt;B,C&gt;,&lt;C,A&gt;&#125;</span><br></pre></td></tr></table></figure></div>
+<p>2、无向图：图中的边是无向的</p>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/13-30-41.jpg" width="30%" heigh="30%"></img>
+</div>
+
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">G = (V,E)</span><br><span class="line">V = &#123;A,B,C,D&#125;</span><br><span class="line">E = &#123;(A,B),(A,C),(A,D),(B,C),(C,D)&#125;</span><br></pre></td></tr></table></figure></div>
+<p>3、简单图：无自边无重复边</p>
+<p>4、完全图：任意两个节点间都存在边的简单图，对于含n个顶点的无向完全图来说，存在n(n-1)/2条边，对于含n个顶点的有向完全图来说，存在n(n-1)条边</p>
+<p>5、子图：图g中顶点集和边集是图G中顶点集和边集的子集</p>
+<p>6、连通图：在无向图中，如果任意两个顶点之间都有路径，则称该图为连通图。如果含n个顶点的无向图中边的个数小于n-1，则该图一定不是连通图</p>
+<p>7、连通分量：无向图的极大连通子图（子图中包含子图节点间所有可能的边）称为该图的一个连通分量，直观的理解图中可以相互“导电”的节点和边构成图的一个连通分量</p>
+<p>8、强连通图：在有向图中，任意两个顶点u,v间都有从u到v和从v到u的路径，则称该图为强连通图</p>
+<p>9、强连通分量：有向图的极大强连通子图称为该图的一个强连通分量</p>
+<p>10、生成树/生成森林：在连通图中，包含图中所有顶点的一个极小连通子图称为该图的一个生成树；在非连通图中，每个连通分量的生成树构成了非连通图的生成森林</p>
+<p>11、顶点的度：在无向图中，顶点v的度等于依附于该顶点的边的个数；在有向图中，顶点v的度等于顶点v的出度和入度之和，顶点v的出度指所有以顶点v开始的边的个数，顶点v的入度指所有以顶点v结束的边的个数</p>
+<p>12、边的权：图中每条边可以标上具有某种含义的数值，该数值称为该边的权值</p>
+<p>13、路径：u到v的一条路径是指u,p1,p2,…,v，路径上边权值之和称为路径长度，u==v的路径称为回路或环</p>
+<p>14、距离：从顶点u到顶点v的最短路径如果存在，则此路径的长度称为从u到v的距离</p>
+<p>15、稀疏/稠密图：边很少的图称为稀疏图，反之称为稠密图，一般将E&lt;VlogV的图称为稀疏图</p>
+<h2 id="1-2-存储结构"><a href="#1-2-存储结构" class="headerlink" title="1.2 存储结构"></a>1.2 存储结构</h2><p>图的存储结构通常包含两个部分：</p>
+<ol>
+<li>顶点存储V：使用某种数据结构存储图中所有顶点，如果用一个列表存储图中所有顶点，那么后面我们就可以用顶点下标来指代该顶点</li>
+<li>关系存储E：存储顶点间的所有邻接关系，关系存储是图的存储结构的核心，根据关系存储形式的不同，可以将图的存储结构划分为邻接表、邻接矩阵、边表等</li>
+</ol>
+<p>对于存储结构的选择需要综合考虑空间和时间上的开销，时间上的开销可以用图上最常用的基本操作来衡量，以下简单列举了图中最常用的操作API:</p>
+<ol>
+<li>adj(G,u):获取图G中顶点u的所有邻接点</li>
+<li>edge(G,u,v):获取图G中的边(u,v)</li>
+<li>insert_v(G,u):在图G中添加顶点u</li>
+<li>delete_v(G,u):删除图G中的顶点u</li>
+<li>insert_e(G,u,v):在图G中添加边(u,v)</li>
+<li>delete_e(G,u,v):删除图G中的的边(u,v)</li>
+</ol>
+<p>比较常用的几种图的存储结构对于空间存储以及以上各种操作的时间效率：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>存储结构</th>
+<th>空间</th>
+<th>获取邻接点</th>
+<th>获取边</th>
+<th>插入顶点</th>
+<th>删除顶点</th>
+<th>插入边</th>
+<th>删除边</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>邻接表</td>
+<td>$O(V+E)$</td>
+<td>$O(1)$</td>
+<td>$O(1)$</td>
+<td>$O(V)$</td>
+<td>$O(V)$</td>
+<td>$O(1)$</td>
+<td>$O(1)$</td>
+</tr>
+<tr>
+<td>邻接矩阵</td>
+<td>$O(V^2)$</td>
+<td>$O(V)$</td>
+<td>$O(1)$</td>
+<td>$O(V)$</td>
+<td>$O(V)$</td>
+<td>$O(1)$</td>
+<td>$O(1)$</td>
+</tr>
+<tr>
+<td>边表</td>
+<td>$O(V+E)$</td>
+<td>$O(E)$</td>
+<td>$O(E)$</td>
+<td>$O(V)$</td>
+<td>$O(E)$</td>
+<td>$O(1)$</td>
+<td>$O(1)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>假设以上邻接表通过hash实现，可见在大多数情形邻接表的哈希实现效率更高</p>
+<h3 id="1-2-1-邻接表"><a href="#1-2-1-邻接表" class="headerlink" title="1.2.1 邻接表"></a>1.2.1 邻接表</h3><h4 id="1-2-1-1-邻接表实现"><a href="#1-2-1-1-邻接表实现" class="headerlink" title="1.2.1.1 邻接表实现"></a>1.2.1.1 邻接表实现</h4><p>邻接表存储了各个顶点到其邻接点集的映射关系：</p>
+<script type="math/tex; mode=display">
+\left \{ v:\left \{ adjv1:weight1,... \right \},...\right \}</script><ul>
+<li>v1：顶点</li>
+<li>{$adjv1:weight1,… $}：v1的邻接表</li>
+<li>adjv1：顶点v1的一个邻接点</li>
+<li>weight1：边(v1,adjv1)的权重</li>
+</ul>
+<p>邻接表存储结构通常包含两部分结构：</p>
+<ol>
+<li>存储图中每个顶点的结构:可以用字典、列表等数据结构</li>
+<li>存储每个顶点的邻接点集：可以用字典、集合、列表、元组、链表等数据结构</li>
+</ol>
+<div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/14-16-45.jpg" width="50%" heigh="50%"></img>
+</div>
+
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 字典-字典(适用范围最广，可以直接以状态作为键值)</span><br><span class="line">G = &#123;0:&#123;1:1,2:5,3:2&#125;,1:&#123;2:3,4:7&#125;,2:&#123;5:6&#125;,3:&#123;5:8&#125;,4:&#123;5:4&#125;,5:&#123;&#125;&#125;</span><br><span class="line"># 字典-列表</span><br><span class="line">G = &#123;0:[(1,1),(2,5),(3,2)],1:[(2,3),(4,7)],2:[(5,6)],3:[(5,8)],4:[(5,4)],5:[]&#125;</span><br><span class="line"># 列表-列表(如果顶点不是0~n-1范围，可以定义另一个数组建立下标与顶点的映射)</span><br><span class="line">G = [[(1,1),(2,5),(3,2)],[(2,3),(4,7)],[(5,6)],[(5,8)],[(5,4)],[]]</span><br></pre></td></tr></table></figure></div>
+<h4 id="邻接表基本操作实现"><a href="#邻接表基本操作实现" class="headerlink" title="邻接表基本操作实现"></a>邻接表基本操作实现</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">G = &#123;<span class="number">0</span>:&#123;<span class="number">1</span>:<span class="number">1</span>,<span class="number">2</span>:<span class="number">5</span>,<span class="number">3</span>:<span class="number">2</span>&#125;,<span class="number">1</span>:&#123;<span class="number">2</span>:<span class="number">3</span>,<span class="number">4</span>:<span class="number">7</span>&#125;,<span class="number">2</span>:&#123;<span class="number">5</span>:<span class="number">6</span>&#125;,<span class="number">3</span>:&#123;<span class="number">5</span>:<span class="number">8</span>&#125;,<span class="number">4</span>:&#123;<span class="number">5</span>:<span class="number">4</span>&#125;,<span class="number">5</span>:&#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adj</span>(<span class="params">G,u</span>):</span></span><br><span class="line">    <span class="keyword">return</span> G[u]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edge</span>(<span class="params">G,u,v</span>):</span></span><br><span class="line">    <span class="keyword">return</span> G[u][v]</span><br><span class="line"><span class="built_in">print</span> adj(G,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span> edge(G,<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="邻接表转化为邻接矩阵和边表"><a href="#邻接表转化为邻接矩阵和边表" class="headerlink" title="邻接表转化为邻接矩阵和边表"></a>邻接表转化为邻接矩阵和边表</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">G = &#123;<span class="number">0</span>:&#123;<span class="number">1</span>:<span class="number">1</span>,<span class="number">2</span>:<span class="number">5</span>,<span class="number">3</span>:<span class="number">2</span>&#125;,<span class="number">1</span>:&#123;<span class="number">2</span>:<span class="number">3</span>,<span class="number">4</span>:<span class="number">7</span>&#125;,<span class="number">2</span>:&#123;<span class="number">5</span>:<span class="number">6</span>&#125;,<span class="number">3</span>:&#123;<span class="number">5</span>:<span class="number">8</span>&#125;,<span class="number">4</span>:&#123;<span class="number">5</span>:<span class="number">4</span>&#125;,<span class="number">5</span>:&#123;&#125;&#125;</span><br><span class="line"><span class="comment"># 邻接表转化为邻接矩阵</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adj2matrix</span>(<span class="params">G</span>):</span></span><br><span class="line">    V = G.keys()</span><br><span class="line">    n = <span class="built_in">len</span>(V)</span><br><span class="line">    matrix = [[<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)] * n <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(n)]</span><br><span class="line">    <span class="keyword">for</span> u,adj <span class="keyword">in</span> G.items():</span><br><span class="line">        <span class="keyword">for</span> v,w <span class="keyword">in</span> adj.items():</span><br><span class="line">            matrix[u][v] = w</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"></span><br><span class="line">adj2matrix(G)   </span><br><span class="line">[[inf, <span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>, inf, inf],</span><br><span class="line"> [inf, inf, <span class="number">3</span>, inf, <span class="number">7</span>, inf],</span><br><span class="line"> [inf, inf, inf, inf, inf, <span class="number">6</span>],</span><br><span class="line"> [inf, inf, inf, inf, inf, <span class="number">8</span>],</span><br><span class="line"> [inf, inf, inf, inf, inf, <span class="number">4</span>],</span><br><span class="line"> [inf, inf, inf, inf, inf, inf]]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 邻接表转化为边表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adj2edge</span>(<span class="params">G</span>):</span></span><br><span class="line">    V = G.keys()</span><br><span class="line">    n = <span class="built_in">len</span>(V)</span><br><span class="line">    edge = []</span><br><span class="line">    <span class="keyword">for</span> u,adj <span class="keyword">in</span> G.items():</span><br><span class="line">        <span class="keyword">for</span> v,w <span class="keyword">in</span> adj.items():</span><br><span class="line">            edge.append((u,v,w))</span><br><span class="line">    <span class="keyword">return</span> edge</span><br><span class="line"></span><br><span class="line">adj2edge(G) </span><br><span class="line">[(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line"> (<span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>),</span><br><span class="line"> (<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>),</span><br><span class="line"> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>),</span><br><span class="line"> (<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>),</span><br><span class="line"> (<span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>),</span><br><span class="line"> (<span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>),</span><br><span class="line"> (<span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>)]</span><br></pre></td></tr></table></figure></div>
+<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><h4 id="邻接矩阵实现"><a href="#邻接矩阵实现" class="headerlink" title="邻接矩阵实现"></a>邻接矩阵实现</h4><p>邻接矩阵：用一个二维数组存储图中边的信息</p>
+<script type="math/tex; mode=display">
+A[i][j]=\left\{\begin{matrix}
+ w_{ij}& (v_i,v_j)\ or\ <v_i,v_j> \in \ E\\ 
+ \infty & else
+\end{matrix}\right.</script><div align=center>
+    <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/15-20-33.jpg" width="50%" heigh="50%"></img>
+</div>
+
+<h4 id="邻接矩阵基本操作实现"><a href="#邻接矩阵基本操作实现" class="headerlink" title="邻接矩阵基本操作实现"></a>邻接矩阵基本操作实现</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adj</span>(<span class="params">G,u</span>):</span></span><br><span class="line">    <span class="keyword">return</span> [v <span class="keyword">for</span> v <span class="keyword">in</span> G[u] <span class="keyword">if</span> v != <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edge</span>(<span class="params">G,u,v</span>):</span></span><br><span class="line">    <span class="keyword">return</span> G[u][v]</span><br><span class="line"><span class="built_in">print</span> adj(G,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span> edge(G,<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="邻接矩阵转化为邻接表和边表"><a href="#邻接矩阵转化为邻接表和边表" class="headerlink" title="邻接矩阵转化为邻接表和边表"></a>邻接矩阵转化为邻接表和边表</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">inf = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">G = [[inf, <span class="number">1</span>,   <span class="number">5</span>,   <span class="number">2</span>,   inf, inf],</span><br><span class="line">     [inf, inf, <span class="number">3</span>,   inf, <span class="number">7</span>,   inf],</span><br><span class="line">     [inf, inf, inf, inf, inf, <span class="number">6</span>  ],</span><br><span class="line">     [inf, inf, inf, inf, inf, <span class="number">8</span>  ],</span><br><span class="line">     [inf, inf, inf, inf, inf, <span class="number">4</span>  ],</span><br><span class="line">     [inf, inf, inf, inf, inf, inf]]</span><br><span class="line"> <span class="comment"># 将邻接矩阵转化为邻接表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">matrix2adj</span>(<span class="params">G</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(G)</span><br><span class="line">    adj = collections.defaultdict(<span class="built_in">dict</span>)</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> xrange(n):</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> G[u][v] != <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>):</span><br><span class="line">                adj[u][v] = G[u][v]</span><br><span class="line">    <span class="keyword">return</span> adj</span><br><span class="line">matrix2adj(G) </span><br><span class="line">defaultdict(<span class="built_in">dict</span>,</span><br><span class="line">            &#123;<span class="number">0</span>: &#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">2</span>: <span class="number">5</span>, <span class="number">3</span>: <span class="number">2</span>&#125;,</span><br><span class="line">             <span class="number">1</span>: &#123;<span class="number">2</span>: <span class="number">3</span>, <span class="number">4</span>: <span class="number">7</span>&#125;,</span><br><span class="line">             <span class="number">2</span>: &#123;<span class="number">5</span>: <span class="number">6</span>&#125;,</span><br><span class="line">             <span class="number">3</span>: &#123;<span class="number">5</span>: <span class="number">8</span>&#125;,</span><br><span class="line">             <span class="number">4</span>: &#123;<span class="number">5</span>: <span class="number">4</span>&#125;&#125;)</span><br><span class="line"> <span class="comment"># 将邻接矩阵转化为边表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">matrix2edge</span>(<span class="params">G</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(G)</span><br><span class="line">    edge = []</span><br><span class="line">    <span class="keyword">for</span> u <span class="keyword">in</span> xrange(n):</span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> G[u][v] != <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>):</span><br><span class="line">                edge.append((u,v,G[u][v]))</span><br><span class="line">    <span class="keyword">return</span> edge</span><br><span class="line"></span><br><span class="line">matrix2edge(G)</span><br><span class="line">[(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line"> (<span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>),</span><br><span class="line"> (<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>),</span><br><span class="line"> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>),</span><br><span class="line"> (<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>),</span><br><span class="line"> (<span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>),</span><br><span class="line"> (<span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>),</span><br><span class="line"> (<span class="number">4</span>, <span class="number">5</span>, <span class="number">4</span>)]</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="边表"><a href="#边表" class="headerlink" title="边表"></a>边表</h3><h4 id="边表实现"><a href="#边表实现" class="headerlink" title="边表实现"></a>边表实现</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>起点</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>终点</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>权</td>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+<td>3</td>
+<td>7</td>
+<td>6</td>
+<td>8</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>边表中不能包含所有顶点，需与顶点存储相结合使用。</p>
+<h4 id="边表基本操作实现"><a href="#边表基本操作实现" class="headerlink" title="边表基本操作实现"></a>边表基本操作实现</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adj</span>(<span class="params">G,u</span>):</span></span><br><span class="line">    <span class="keyword">return</span> &#123;y:w <span class="keyword">for</span> x,y,w <span class="keyword">in</span> G <span class="keyword">if</span> x == u&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edge</span>(<span class="params">G,u,v</span>):</span></span><br><span class="line">    <span class="keyword">for</span> x,y,w <span class="keyword">in</span> G:</span><br><span class="line">        <span class="keyword">if</span> (x,y) == (u,v):</span><br><span class="line">            <span class="keyword">return</span> x,y,w</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"><span class="built_in">print</span> adj(G,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span> edge(G,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">&#123;<span class="number">2</span>: <span class="number">3</span>, <span class="number">4</span>: <span class="number">7</span>&#125;</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure></div>
+<h4 id="边表转化为邻接表和邻接矩阵"><a href="#边表转化为邻接表和邻接矩阵" class="headerlink" title="边表转化为邻接表和邻接矩阵"></a>边表转化为邻接表和邻接矩阵</h4><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edge2adj</span>(<span class="params">G</span>):</span></span><br><span class="line">    adj = collections.defaultdict(<span class="built_in">dict</span>)</span><br><span class="line">    <span class="keyword">for</span> u,v,w <span class="keyword">in</span> G:</span><br><span class="line">        adj[u][v] = w</span><br><span class="line">    <span class="keyword">return</span> adj</span><br><span class="line"><span class="built_in">print</span> edge2adj(G)</span><br><span class="line">defaultdict(&lt;<span class="built_in">type</span> <span class="string">&#x27;dict&#x27;</span>&gt;, &#123;<span class="number">0</span>: &#123;<span class="number">1</span>: <span class="number">1</span>, <span class="number">2</span>: <span class="number">5</span>, <span class="number">3</span>: <span class="number">2</span>&#125;, <span class="number">1</span>: &#123;<span class="number">2</span>: <span class="number">3</span>, <span class="number">4</span>: <span class="number">7</span>&#125;, <span class="number">2</span>: &#123;<span class="number">5</span>: <span class="number">6</span>&#125;, <span class="number">3</span>: &#123;<span class="number">5</span>: <span class="number">8</span>&#125;, <span class="number">4</span>: &#123;<span class="number">5</span>: <span class="number">4</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edge2matrix</span>(<span class="params">G,V</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(V)</span><br><span class="line">    matrix = [[<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)] * n <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(n)]</span><br><span class="line">    <span class="keyword">for</span> u,v,w <span class="keyword">in</span> G:</span><br><span class="line">        matrix[u][v] = w</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> edge2matrix(G,xrange(<span class="number">6</span>))</span><br><span class="line">[[inf, <span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>, inf, inf], </span><br><span class="line"> [inf, inf, <span class="number">3</span>, inf, <span class="number">7</span>, inf], </span><br><span class="line"> [inf, inf, inf, inf, inf, <span class="number">6</span>], </span><br><span class="line"> [inf, inf, inf, inf, inf, <span class="number">8</span>], </span><br><span class="line"> [inf, inf, inf, inf, inf, <span class="number">4</span>], </span><br><span class="line"> [inf, inf, inf, inf, inf, inf]]</span><br></pre></td></tr></table></figure></div>
+<h2 id="实战篇"><a href="#实战篇" class="headerlink" title="实战篇"></a>实战篇</h2><p>python的collections库提供了众多容器，方便对图的操作，包括:</p>
+<ul>
+<li>defaultdict：常用于存储图的数据结构</li>
+<li>deque：相比于内置的list，双端队列deque可以实现在O(1)的时间复杂度下在两端进行append和pop操作</li>
+<li>set：常用于visited</li>
+</ul>
+<p>DIJ单源最短路径：488祖玛游戏</p>
+<p>应用：</p>
+<p>有环、无环、环中元素；</p>
+<p>连通子图</p>
+<p>强连通图；</p>
+<p>生成树；</p>
+<p>最小生成树；</p>
+<p>最短路径；</p>
+<p>802拓扑排序；前提：有向无环图</p>
+<p>并查集：</p>
+<p>括号匹配：</p>
+<ol>
+<li>DFS进行拓扑排序</li>
+<li>BFS出度入度进行拓扑排序：每次取出一个入度/出度为0的节点，并更新相关节点的出度/入度；一般由邻接表得到，零度队列、入度字典，出度邻接点；<ol>
+<li>初始化零度队列、出度入度字典</li>
+<li>出队收集、更新相关节点的度，如果更新后度为0放入队列！！</li>
+</ol>
+</li>
+</ol>
+<p>割韭菜，有环的话，会把环剩下！！！</p>
+<p>从BFS视角看，拓扑排序类似于层序遍历，首先将所有度为0的节点入队，然后每一次出队，修改与出队元素相关的节点的度，将修改后度为0的入队</p>
+<ol>
+<li>邻接法<ol>
+<li>邻接矩阵</li>
+<li>邻接表</li>
+<li>邻接字典</li>
+</ol>
+</li>
+<li>边表法</li>
+</ol>
+<p>Dijkstra</p>
+<p>前提：如果权值非负，最短路径上的子路径也必定是最短路径</p>
+<h3 id="分治思路"><a href="#分治思路" class="headerlink" title="分治思路"></a>分治思路</h3><p>尝试用分治思想解决树相关的问题：首先将原问题转化为关于左右子树的子问题(同性质的或不同性质的)，然后通过对子问题进行综合得到原问题的解，可以形式化表示为：</p>
+<p>f(root)=h(g(root.left),g(root.right))</p>
+<p>这类问题有：</p>
+<ol>
+<li>树是否对称</li>
+<li>树的最大深度</li>
+<li>树中节点值之和</li>
+<li>叶节点最短路径</li>
+<li>到叶节点的路径：最短-最长-和，</li>
+<li>相同树、镜像树</li>
+</ol>
+<p>图算法可以看做是树算法的扩展(树可以看做是无环连通图)，所不同的是：</p>
+<ol>
+<li>图可能多源</li>
+<li>图可能包含环</li>
+<li>每个节点由多个邻接点</li>
+</ol>
+<p>相应的处理方法：</p>
+<ol>
+<li>遍历图中所有节点，以未访问过的节点为地点进行遍历</li>
+<li>标记每个节点是否访问过，递归调用只发生在未访问过的节点</li>
+<li>找到每个节点的邻接点表示法，遍历每个邻接点进行递归调用</li>
+</ol>
+<p>标准的DFS</p>
+<p>规范的DFS包括两个步骤：调用时保证合法性，通过参数向下传递数据，通过返回值向上传递数据</p>
+<ol>
+<li>整体遍历dfs(G)：<ol>
+<li>初始化标记：将所有节点初始化为未访问</li>
+<li>遍历所有节点：对未访问过的节点调用单源dfs</li>
+</ol>
+</li>
+<li>单源遍历dfs_visit(v)：<ol>
+<li>标记节点：将当前节点标记为已访问</li>
+<li>遍历所有邻接点：对未访问过的邻接点递归调用单源dfs</li>
+</ol>
+</li>
+</ol>
+<p>如何与问题结合：在深度遍历过程中解决实际应用问题</p>
+<ol>
+<li>判断题</li>
+<li>最优题</li>
+<li>列出所有题</li>
+</ol>
+<p>DP的两种实现方式：</p>
+<ol>
+<li>自下向上的毯式填表法：先求解边界的较小子问题并填表，再依据状态转移方程依次求解较大子问题并填表，当表填满时，即可方便查到最终问题的解。<ol>
+<li>求解次数：所有子问题都将被求解一次；</li>
+<li>查询次数：查询次数等于依赖的边数；</li>
+</ol>
+</li>
+<li>自上向下递归填表法：如果解已在表中，直接从表中读取，否则通过递归求解，并填表。<ol>
+<li>求解次数：只会求解相关的子问题的解，每个子问题只会被求解一次；</li>
+<li>查表次数：等于依赖边数；</li>
+</ol>
+</li>
+</ol>
+<p>评价：自上向下的递归填表法，更加容易实现，且求解次数较少；</p>
+<p>表的形式：</p>
+<ol>
+<li>如果问题规模可以通过连续的整数来表示，则一般可以使用矩阵来表示；</li>
+<li>如果问题规模不方便用连续整数表示，则可以用字典表示，{(问题规模的参数):对应的解}；</li>
+</ol>
+<p>评价：字典更通用，但会用掉更多的空间；</p>
+<h2 id="树宽度"><a href="#树宽度" class="headerlink" title="树宽度"></a>树宽度</h2><p>层序遍历：<br><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Q = [root]</span><br><span class="line"><span class="keyword">while</span> Q:</span><br><span class="line">    left = Q[<span class="number">0</span>].val</span><br><span class="line">    Q = [y <span class="keyword">for</span> x <span class="keyword">in</span> Q <span class="keyword">for</span> y <span class="keyword">in</span> [x.left,x.right] <span class="keyword">if</span> y]</span><br><span class="line"><span class="keyword">return</span> left</span><br></pre></td></tr></table></figure></div></p>
+<p>变形：</p>
+<ol>
+<li>逐层处理：每次用新的一层节点替换掉队列中的节点，方便统计总共有多少层、计算每层的统计量；如最左侧、最右侧元素、每层元素个数、最大值、平均值</li>
+<li></li>
+</ol>
+<p>利用左右子树做递归时边界往往有四种情形：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">elif</span> root.left==<span class="literal">None</span> <span class="keyword">and</span> root.right==<span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">elif</span> root.left==<span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">elif</span> root.right==<span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>保证边界正确、递归正确，整个过程就是正确的。</p>
+<p>树的遍历用的最多的是先序遍历和层序遍历，这可以被看做是图的BFS和DFS，在写法上有些不同，因为单源、无环、邻接点固定，所以写起来更简单：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">root</span>):</span></span><br><span class="line">    <span class="keyword">if</span> root:</span><br><span class="line">        visit(root)</span><br><span class="line">        <span class="keyword">for</span> child <span class="keyword">in</span> [root.left,root.right]:</span><br><span class="line">            dfs(child)            </span><br></pre></td></tr></table></figure></div>
+<p>edge = [(i,j) for i in range(m) for j in [0,n-1]]<br>        edge += [(i,j) for j in range(n) for i in [0,m-1]]</p>
+<p>关于树的算法：第一反应必须是能否用递归解！！左子树、右子树的解和整体解有什么关系？？分情况讨论后能否和子树的解建立关系？？</p>
+<p>如果跟层有关用层序遍历！！</p>
+<p>矩阵中的DFS</p>
+<h3 id="DFS和DP"><a href="#DFS和DP" class="headerlink" title="DFS和DP"></a>DFS和DP</h3><p>在求解DFS最优值时，如果出现了重叠子问题，可以通过记录中间结果来加快求解速度。</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">i,j</span>):</span></span><br><span class="line">    <span class="keyword">if</span> dp[i][j]:</span><br><span class="line">        <span class="keyword">return</span> dp[i][j]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> ii,jj <span class="keyword">in</span> adj[i,j]:</span><br><span class="line">            <span class="keyword">if</span> 合法邻接点:</span><br><span class="line">                res = f(res,dfs(ii,jj))</span><br><span class="line">        dp[i][j] = res</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">dp = [[]]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> ...:</span><br><span class="line">            dfs(i,j)</span><br><span class="line"></span><br><span class="line">解在dp中        </span><br></pre></td></tr></table></figure></div>
+<p>解决问题的一般思路：</p>
+<p>问题的结构化描述→设计相关数据结构→设计算法</p>
+<p>先写思路，貌似思维更清晰，代码书写速度也更快</p>
+<p>连通图、强连通图<br>连通图：在外层遍历统计进入多少次574朋友圈</p>
+<h3 id="图的表示法"><a href="#图的表示法" class="headerlink" title="图的表示法"></a>图的表示法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/woaidapaopao/article/details/51732947">https://blog.csdn.net/woaidapaopao/article/details/51732947</a></p>
+<p>邻接法：“节点-邻接点”的形式方便直接用于遍历</p>
+<ol>
+<li><p>自定义</p>
+</li>
+<li><p>邻接矩阵</p>
+</li>
+<li><p>邻接表</p>
+</li>
+<li><p>邻接字典：{节点:邻接点}</p>
+</li>
+<li><p>边表/集合/元组：节点编号+边表[(i,j)]<br>210,边表中有可能某些节点未出现</p>
+</li>
+</ol>
+<p>4, [[1,0],[2,0],[3,1],[3,2]]</p>
+<ol>
+<li>递归字典</li>
+</ol>
+<h3 id="拓扑排序-有环无环"><a href="#拓扑排序-有环无环" class="headerlink" title="拓扑排序-有环无环"></a>拓扑排序-有环无环</h3><p>210</p>
+<ul>
+<li><p>节点颜色：白-灰-黑</p>
+</li>
+<li><p>边的分类：u→v时v的颜色、判断有无环、两节点在生成树中的关系，白边-灰边-黑边</p>
+</li>
+</ul>
+<p>先判断有环无环：灰边理论</p>
+<ul>
+<li>变色时间：拓扑排序、合法括号</li>
+</ul>
+<p>在无环状态下，按u.f逆序排列</p>
+<p>多源层序遍历：</p>
+<p>初始Q放多个就行了</p>
+<p>DFS如果需要自己构造图，可以通过构造一个哑结点来简化代码，但是也没必要引入逻辑的例外，反而复杂.不如统一为按图原来最直观的样子不做额外处理！！这样的好处是外层循环调用和内层循环调用形式一样，不用特殊处理了！</p>
+<p>判断一个矩阵是否为空：if not any(A):</p>
+<p>494一类题：满足条件的路径，中间路径作为DFS的参数，每次维护路径，满足条件时处理</p>
+<p>DFS超时的处理思路：DP或者剪枝</p>
+<p>待整理：</p>
+<p>理论：<br>实践：索引形式、每种题型的思路</p>
+<p><img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/totaltu.png" alt=""></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">T = <span class="built_in">input</span>()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>(<span class="params">adj,n</span>):</span></span><br><span class="line">    color = [<span class="number">0</span>] * n</span><br><span class="line">    base = <span class="built_in">set</span>(xrange(n))</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">i</span>):</span></span><br><span class="line">        si = base - <span class="built_in">set</span>(adj[i])</span><br><span class="line">        si.add(i)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> si:</span><br><span class="line">            <span class="keyword">if</span> j != i <span class="keyword">and</span> color[j] == <span class="number">0</span>:</span><br><span class="line">                color[j] = <span class="number">1</span></span><br><span class="line">                ssi = base - <span class="built_in">set</span>(adj[j])</span><br><span class="line">                ssi.add(j)</span><br><span class="line">                <span class="keyword">if</span> ssi != si:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">        <span class="keyword">if</span> color[i] == <span class="number">0</span>:</span><br><span class="line">            color[i] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> helper(i):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> xrange(T):</span><br><span class="line">    N,M = <span class="built_in">map</span>(<span class="built_in">int</span>,raw_input().split())</span><br><span class="line">    adj = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(M):</span><br><span class="line">        x,y = <span class="built_in">map</span>(<span class="built_in">int</span>,raw_input().split())</span><br><span class="line">        adj[x-<span class="number">1</span>].append(y-<span class="number">1</span>)</span><br><span class="line">        adj[y-<span class="number">1</span>].append(x-<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span>(<span class="params">adj,n</span>):</span></span><br><span class="line">        color = [<span class="number">0</span>] * n</span><br><span class="line">        base = <span class="built_in">set</span>(xrange(n))</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">i</span>):</span></span><br><span class="line">            si = base - <span class="built_in">set</span>(adj[i])</span><br><span class="line">            si.add(i)</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> si:</span><br><span class="line">                <span class="keyword">if</span> j != i <span class="keyword">and</span> color[j] == <span class="number">0</span>:</span><br><span class="line">                    color[j] = <span class="number">1</span></span><br><span class="line">                    ssi = base - <span class="built_in">set</span>(adj[j])</span><br><span class="line">                    ssi.add(j)</span><br><span class="line">                    <span class="keyword">if</span> ssi != si:</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> color[i] == <span class="number">0</span>:</span><br><span class="line">                color[i] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> helper(i):</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> solve(adj,N):</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&#x27;Yes&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&#x27;No&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.2.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9B%BE%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20BFS/" rel="next" title="数据结构与算法：图（二）—— BFS">
+                <i class="fa fa-chevron-left"></i> 数据结构与算法：图（二）—— BFS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="prev" title="数据结构与算法：位运算">
+                数据结构与算法：位运算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE5OS8xOTc0NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://joeschmoe.io/api/v1/random"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://likew.bitcron.com" title="bitcron" target="_blank">bitcron</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.hust.edu.cn/" title="HUST" target="_blank">HUST</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">逻辑结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">1.2 存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E9%82%BB%E6%8E%A5%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1.2.1 邻接表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-1-%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.2.1.1 邻接表实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">邻接表基本操作实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%92%8C%E8%BE%B9%E8%A1%A8"><span class="nav-number">2.1.3.</span> <span class="nav-text">邻接表转化为邻接矩阵和边表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.</span> <span class="nav-text">邻接矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.1.</span> <span class="nav-text">邻接矩阵实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.2.</span> <span class="nav-text">邻接矩阵基本操作实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%92%8C%E8%BE%B9%E8%A1%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">邻接矩阵转化为邻接表和边表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E8%A1%A8"><span class="nav-number">2.3.</span> <span class="nav-text">边表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E8%A1%A8%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.3.1.</span> <span class="nav-text">边表实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.3.2.</span> <span class="nav-text">边表基本操作实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E8%A1%A8%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%92%8C%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="nav-number">2.3.3.</span> <span class="nav-text">边表转化为邻接表和邻接矩阵</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E7%AF%87"><span class="nav-number">3.</span> <span class="nav-text">实战篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%B2%BB%E6%80%9D%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">分治思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E5%AE%BD%E5%BA%A6"><span class="nav-number">4.</span> <span class="nav-text">树宽度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS%E5%92%8CDP"><span class="nav-number">4.1.</span> <span class="nav-text">DFS和DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">图的表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-%E6%9C%89%E7%8E%AF%E6%97%A0%E7%8E%AF"><span class="nav-number">4.3.</span> <span class="nav-text">拓扑排序-有环无环</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    <div id="music163player">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=89772009&auto=0&height=90"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Like</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">366.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("q4Cb3wR0nqm135LmdEWo9GrD-gzGzoHsz", "CtoawzwWheAQhgeEYEa1nDYn");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" src="/js/src/love.js"></script> -->
+
+</body>
+</html>
+
+
