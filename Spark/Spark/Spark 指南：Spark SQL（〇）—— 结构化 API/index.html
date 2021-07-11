@@ -151,7 +151,7 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/v2-a.jpg"
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203837.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20200507203845.png">
 <meta property="article:published_time" content="2020-11-03T10:51:22.000Z">
-<meta property="article:modified_time" content="2021-06-02T10:44:40.909Z">
+<meta property="article:modified_time" content="2021-07-11T08:49:39.990Z">
 <meta property="article:author" content="Like">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -418,8 +418,8 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/160412557
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
-                2021-06-02
+              <time title="更新于" itemprop="dateModified" datetime="2021-07-11T16:49:39+08:00">
+                2021-07-11
               </time>
             
           </span>
@@ -535,8 +535,9 @@ https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202011031
 <li>Spark SQL DataFrame:<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Dataset.html"></a>，Dataset 的大部分 API 同样适用于 DataFrame</li>
 <li>Spark SQL Column:<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Column.html">org.apache.spark.sql.Column</a></li>
 <li>Spark SQL Row：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/Row.html">org.apache.spark.sql.Row</a></li>
-<li>Spark SQL Window：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/expressions/Window.html">org.apache.spark.sql.Window</a><h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3>Spark SQL 的用法之一是执行 SQL 查询，它也可以从现有的 Hive 中读取数据，如果从其它编程语言内部运行 SQL，查询结果将作为一个 Dataset/DataFrame 返回。</li>
+<li>Spark SQL Window：<a target="_blank" rel="noopener" href="http://spark.apache.org/docs/latest/api/scala/org/apache/spark/sql/expressions/Window.html">org.apache.spark.sql.Window</a></li>
 </ol>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>Spark SQL 的用法之一是执行 SQL 查询，它也可以从现有的 Hive 中读取数据，如果从其它编程语言内部运行 SQL，查询结果将作为一个 Dataset/DataFrame 返回。</p>
 <p>表和视图与 DataFrame 基本相同，为我们只是针对它们执行 SQL 而不是 DataFrame 代码。</p>
 <h3 id="DataSet"><a href="#DataSet" class="headerlink" title="DataSet"></a>DataSet</h3><p>Spark 结构化 API 可以细分为两个 API：有类型的 Dataset 和无类型的 DataFrame。说 DataFrame 是无类型的并不准确，它们具有类型，但是 Spark 会完全维护它们，并且仅在运行时检查那些类型是否与模式中指定的类型一致。而 DataSet 在编译时检查类型是否符合规范，DataSet 仅适用于基于 Java 虚拟机（JVM）的语言（Scala 和 Java）。</p>
 <ul>
