@@ -145,7 +145,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20191231143732.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20201230213808.png">
 <meta property="article:published_time" content="2019-03-10T06:03:45.000Z">
-<meta property="article:modified_time" content="2021-08-28T13:03:23.458Z">
+<meta property="article:modified_time" content="2021-08-28T13:11:39.173Z">
 <meta property="article:author" content="Like">
 <meta property="article:tag" content="搭建博客">
 <meta property="article:tag" content="教程">
@@ -412,7 +412,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-28T21:03:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-28T21:11:39+08:00">
                 2021-08-28
               </time>
             
@@ -473,7 +473,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.1k
+                  3k
                 </span>
               
 
@@ -489,7 +489,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  11
                 </span>
               
             </div>
@@ -567,12 +567,12 @@
 <div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建本地仓库（本地已有可忽略，如需重建本地仓库，可以先删除本地 .git 目录，再做以下操作）</span></span><br><span class="line">$ git init</span><br><span class="line">$ git add -A</span><br><span class="line">$ git commit -m <span class="string">&quot;创建本地仓库&quot;</span></span><br><span class="line"><span class="comment"># 添加远程仓库</span></span><br><span class="line">$ git remote</span><br><span class="line">$ git remote add origin https://github.com/paulboone/ticgit</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>创建新的远程分支：通过将本地默认分支 master 分支关联到远程 origin/files 分支，我们就可以同时实现网站部署、文件管理的效果了，而且二者不会发生相互干扰<ul>
-<li>网站部署：当通过 <code>Hexo</code> 命令进行网站生成和部署的时候，会默认按照网站配置文件 <code>_config.yml</code> 中 deploy 所设置的远程仓库地址和分支将静态网站文件 push 到远程仓库中（这里我饿设置了 <code>origin/blog</code> 分支），然后再通过 gitPage 读取分支内容（需要在仓库 settings 里设置读取哪个分支）渲染出前端页面；</li>
+<li>网站部署：当通过 <code>Hexo</code> 命令进行网站生成和部署的时候，会默认按照网站配置文件 <code>_config.yml</code> 中 deploy 所设置的远程仓库地址和分支将静态网站文件 push 到远程仓库中（这里我饿设置了 <code>origin/blog</code> 分支），然后再通过 gitPage 读取分支内容（记得在仓库 settings 里设置读取哪个分支）渲染出前端页面；</li>
 <li>文件管理：当通过 <code>git</code> 命令进行文件管理时，可以将本地文件 push 到 <code>origin/master</code> 分支，或者反之将远程分支文件拉取到本地 master 分支；</li>
 </ul>
 </li>
 </ul>
-<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看已有分支/远程分支</span></span><br><span class="line">$ git branch     <span class="comment"># 查看本地分支</span></span><br><span class="line">$ git branch -r  <span class="comment"># 查看远程分支</span></span><br><span class="line">$ git branch -a  <span class="comment"># 查看本地分支与远程分支（远程分支会加remotes/前缀）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新的分支（我们不用创建新的本地分支，只需要创建一个远程分支就行了）</span></span><br><span class="line">$ git branch &lt;name&gt;</span><br><span class="line"><span class="comment"># 创建远程分支（将本地分支 push 到远程分支，如果远程分支不存在则自动创建，-u 可以在 push 时自动建立关联，-f 是强制覆盖远程分支内容）</span></span><br><span class="line">$ git push -u -f origin master:master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除冗余本地分支</span></span><br><span class="line">$ git branch -d &lt;name&gt;</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">$ git push origin --delete origin/&lt;name&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地分支（master分支）关联到远程分支（origin/files分支）</span></span><br><span class="line">$ git branch --set-upstream-to=origin/files</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地分支与远程分支关联</span></span><br><span class="line">$ git branch -vv</span><br><span class="line">* master 0e23ff7 [origin/files]  <span class="comment"># 本地 master 关联了远程 origin/files</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程推送，不同名分支还不让直接推。。</span></span><br><span class="line">$ git push</span><br><span class="line">fatal: 您当前分支的上游分支和您当前分支名不匹配，为推送到远程的上游分支，</span><br><span class="line">使用</span><br><span class="line"></span><br><span class="line">    git push origin HEAD:files</span><br><span class="line"></span><br><span class="line">为推送至远程同名分支，使用</span><br><span class="line"></span><br><span class="line">    git push origin HEAD</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制覆盖远程分支内容</span></span><br><span class="line">$ git push origin HEAD:files -f</span><br><span class="line"></span><br><span class="line"><span class="comment">######### 上米昂的方式</span></span><br><span class="line">git push origin --delete origin/files</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看已有分支/远程分支</span></span><br><span class="line">$ git branch     <span class="comment"># 查看本地分支</span></span><br><span class="line">$ git branch -r  <span class="comment"># 查看远程分支</span></span><br><span class="line">$ git branch -a  <span class="comment"># 查看本地分支与远程分支（远程分支会加remotes/前缀）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新的分支（我们不用创建新的本地分支，只需要创建一个远程分支就行了）</span></span><br><span class="line">$ git branch &lt;name&gt;</span><br><span class="line"><span class="comment"># 创建远程分支（将本地分支 push 到远程分支，如果远程分支不存在则自动创建，-u 可以在 push 时自动建立关联，-f 是强制覆盖远程分支内容）</span></span><br><span class="line">$ git push -u -f origin master:master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除冗余本地分支</span></span><br><span class="line">$ git branch -d &lt;name&gt;</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">$ git push origin --delete origin/&lt;name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地分支（master分支）关联到远程分支</span></span><br><span class="line">$ git branch --set-upstream-to=origin/files</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地分支与远程分支关联</span></span><br><span class="line">$ git branch -vv</span><br><span class="line">* master 0e23ff7 [origin/master]  <span class="comment"># 本地 master 关联了远程 origin/files</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支</span></span><br><span class="line">$ git branch</span><br><span class="line">* master</span><br><span class="line">  remotes/origin/master</span><br></pre></td></tr></table></figure></div>
 <ul>
 <li>修改 <code>.gitignore</code> 文件：默认<code>.gitignore</code>文件中过滤了以下文件，这些文件都是被动生成的，不用托管</li>
 </ul>
@@ -824,6 +824,22 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liketea/blog.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:likeitea@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -858,7 +874,11 @@
 
     </div>
 
-
+    # auto=0 禁止网页打开自动播放
+    <div id="music163player">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66">
+        </iframe>
+    </div>
 
   </aside>
 
@@ -883,7 +903,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">364.5k</span>
+    <span title="Site words total count">364.4k</span>
   
 </div>
 
