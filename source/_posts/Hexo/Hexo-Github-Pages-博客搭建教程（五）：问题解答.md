@@ -121,8 +121,8 @@ Hexo生成的文件里面是有一个`.gitignore`的，所以它的本意应该�
 
 - 默认情况下，Hexo 博客目录应该已经是一个本地 git 仓库了(包含.git)，且已经将静态网页所存放的远程仓库添加为了远程仓库，否则你需要先将静态网页关联的github仓库添加为博客本地仓库的远程仓库：
 
-```
-# 创建本地仓库
+```bash
+# 创建本地仓库（本地已有可忽略，如需重建本地仓库，可以先删除本地 .git 目录，再做以下操作）
 $ git init
 $ git add -A
 $ git commit -m "创建本地仓库"
@@ -131,13 +131,37 @@ $ git remote
 $ git remote add origin https://github.com/paulboone/ticgit
 ```
 
-- 创建新的分支：
+- 创建新的远程分支：通过将本地默认分支 master 分支关联到远程 origin/files 分支，我们就可以同时实现网站部署、文件管理的效果了，而且二者不会发生相互干扰
+    - 网站部署：当通过 `Hexo` 命令进行网站生成和部署的时候，会默认按照网站配置文件 `_config.yml` 中 deploy 所设置的远程仓库地址和分支将静态网站文件 push 到远程仓库中（这里我饿设置了 `origin/blog` 分支），然后再通过 gitPage 读取分支内容（记得在仓库 settings 里设置读取哪个分支）渲染出前端页面；
+    - 文件管理：当通过 `git` 命令进行文件管理时，可以将本地文件 push 到 `origin/master` 分支，或者反之将远程分支文件拉取到本地 master 分支；
 
 ```bash
-# 创建新的分支
-$ git branch files
-# 创建远程分支
-$ git push origin files:files
+# 查看已有分支/远程分支
+$ git branch     # 查看本地分支
+$ git branch -r  # 查看远程分支
+$ git branch -a  # 查看本地分支与远程分支（远程分支会加remotes/前缀）
+
+# 创建新的分支（我们不用创建新的本地分支，只需要创建一个远程分支就行了）
+$ git branch <name>
+# 创建远程分支（将本地分支 push 到远程分支，如果远程分支不存在则自动创建，-u 可以在 push 时自动建立关联，-f 是强制覆盖远程分支内容）
+$ git push -u -f origin master:master
+
+# 删除冗余本地分支
+$ git branch -d <name>
+# 删除远程分支
+$ git push origin --delete origin/<name>
+
+# 将本地分支（master分支）关联到远程分支
+$ git branch --set-upstream-to=origin/files
+
+# 查看本地分支与远程分支关联
+$ git branch -vv
+* master 0e23ff7 [origin/master]  # 本地 master 关联了远程 origin/files
+
+# 查看分支
+$ git branch
+* master
+  remotes/origin/master
 ```
 
 - 修改 `.gitignore` 文件：默认`.gitignore`文件中过滤了以下文件，这些文件都是被动生成的，不用托管
