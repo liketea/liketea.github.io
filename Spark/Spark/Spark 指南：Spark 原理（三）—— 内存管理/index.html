@@ -140,7 +140,7 @@
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20212051.png">
 <meta property="og:image" content="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/affdssgg.png">
 <meta property="article:published_time" content="2020-11-14T07:29:53.000Z">
-<meta property="article:modified_time" content="2021-06-02T10:44:40.913Z">
+<meta property="article:modified_time" content="2021-09-22T05:09:43.128Z">
 <meta property="article:author" content="Like">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-06-02T18:44:40+08:00">
-                2021-06-02
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-22T13:09:43+08:00">
+                2021-09-22
               </time>
             
           </span>
@@ -467,7 +467,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.1k
+                  5.4k
                 </span>
               
 
@@ -483,7 +483,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  18
+                  20
                 </span>
               
             </div>
@@ -528,6 +528,7 @@
 <div align=center>
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/20210112235829.png" width="100%" heigh="80%"></img>
 </div>
+
 
 <h2 id="堆内内存（On-Heap）"><a href="#堆内内存（On-Heap）" class="headerlink" title="堆内内存（On-Heap）"></a>堆内内存（On-Heap）</h2><p>Executor 内运行的并发任务共享 JVM 堆内内存，堆内内存的大小由 Spark 应用程序启动时的 <code>–executor-memory</code> 或 <code>spark.executor.memory</code> 参数配置（默认 1g），Spark 对堆内内存进行了详细的规划：</p>
 <ol>
@@ -670,8 +671,47 @@
 </ol>
 <p>有了统一的寻址方式，Spark 可以用 64 位逻辑地址的指针定位到堆内或堆外的内存，整个 Shuffle Write 排序的过程只需要对指针进行排序，并且无需反序列化，整个过程非常高效，对于内存访问效率和 CPU 使用效率带来了明显的提升。</p>
 <p>Spark 的存储内存和执行内存有着截然不同的管理方式：对于存储内存来说，Spark 用一个 LinkedHashMap 来集中管理所有的 Block，Block 由需要缓存的 RDD 的 Partition 转化而成；而对于执行内存，Spark 用 AppendOnlyMap 来存储 Shuffle 过程中的数据，在 Tungsten 排序中甚至抽象成为页式内存管理，开辟了全新的 JVM 内存管理机制。</p>
-<h2 id="堆外内存（Off-Heap）"><a href="#堆外内存（Off-Heap）" class="headerlink" title="堆外内存（Off-Heap）"></a>堆外内存（Off-Heap）</h2><p>为了进一步优化内存的使用以及提高 Shuffle 时排序的效率，Spark 引入了堆外（Off-heap）内存，使之可以直接在工作节点的系统内存中开辟空间，存储经过序列化的二进制数据。利用 JDK Unsafe API（从 Spark 2.0 开始，在管理堆外的存储内存时不再基于 Tachyon，而是与堆外的执行内存一样，基于 JDK Unsafe API 实现），Spark 可以直接操作系统堆外内存，减少了不必要的内存开销，以及频繁的 GC 扫描和回收，提升了处理性能。堆外内存可以被精确地申请和释放，而且序列化的数据占用的空间可以被精确计算，所以相比堆内内存来说降低了管理的难度，也降低了误差。</p>
+<h2 id="堆外内存（Out-Of-Heap）"><a href="#堆外内存（Out-Of-Heap）" class="headerlink" title="堆外内存（Out Of Heap）"></a>堆外内存（Out Of Heap）</h2><p>Spark 3.0 堆外内存相关参数（详情参考<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/3.0.0-preview2/configuration.html">Spark Configuration</a>）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Spark 参数</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.memory.offHeap.enabled</td>
+<td>FALSE</td>
+<td>If true, Spark will attempt to use off-heap memory for certain operations. If off-heap memory use is enabled, then spark.memory.offHeap.size must be positive.</td>
+</tr>
+<tr>
+<td>spark.memory.offHeap.size</td>
+<td>0</td>
+<td>The absolute amount of memory which can be used for off-heap allocation, in bytes unless otherwise specified. This setting has no impact on heap memory usage, so if your executors’ total memory consumption must fit within some hard limit then be sure to shrink your JVM heap size accordingly. This must be set to a positive value when spark.memory.offHeap.enabled=true.</td>
+</tr>
+<tr>
+<td>spark.executor.memoryOverhead</td>
+<td>executorMemory * 0.10, with minimum of 384</td>
+<td>Amount of additional memory to be allocated per executor process in cluster mode, in MiB unless otherwise specified. This is memory that accounts for things like VM overheads, interned strings, other native overheads, etc. This tends to grow with the executor size (typically 6-10%). This option is currently supported on YARN and Kubernetes.Note: Additional memory includes PySpark executor memory (when spark.executor.pyspark.memory is not configured) and memory used by other non-executor processes running in the same container. The maximum memory size of container to running executor is determined by the sum of spark.executor.memoryOverhead, spark.executor.memory, spark.memory.offHeap.size and spark.executor.pyspark.memory.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>运行 executor 的最大内存取决于以下四者之和：</p>
+<ol>
+<li>spark.executor.memory: 堆内内存</li>
+<li>spark.executor.memoryOverhead: Overhead 内存</li>
+<li>spark.memory.offHeap.size: OffHeap 内存</li>
+<li>spark.executor.pyspark.memory: Pyspark 内存</li>
+</ol>
+<p>从 Spark 3.0 源码中也可看到：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span>[yarn] val resource: Resource = &#123;</span><br><span class="line">    val resource = Resource.newInstance(</span><br><span class="line">      executorMemory + executorOffHeapMemory + memoryOverhead + pysparkWorkerMemory, executorCores)</span><br><span class="line">    ResourceRequestHelper.setResourceRequests(executorResourceRequests, resource)</span><br><span class="line">    logDebug(s<span class="string">&quot;Created resource capability: $resource&quot;</span>)</span><br><span class="line">    resource</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="Off-Heap-内存"><a href="#Off-Heap-内存" class="headerlink" title="Off-Heap 内存"></a>Off-Heap 内存</h3><p>为了进一步优化内存的使用以及提高 Shuffle 时排序的效率，Spark 引入了堆外（Off-heap）内存，使之可以直接在工作节点的系统内存中开辟空间，存储经过序列化的二进制数据。利用 JDK Unsafe API（从 Spark 2.0 开始，在管理堆外的存储内存时不再基于 Tachyon，而是与堆外的执行内存一样，基于 JDK Unsafe API 实现），Spark 可以直接操作系统堆外内存，减少了不必要的内存开销，以及频繁的 GC 扫描和回收，提升了处理性能。堆外内存可以被精确地申请和释放，而且序列化的数据占用的空间可以被精确计算，所以相比堆内内存来说降低了管理的难度，也降低了误差。</p>
 <p>在默认情况下堆外内存并不启用，可通过配置 <code>spark.memory.offHeap.enabled</code> 参数启用，并由 <code>spark.memory.offHeap.size</code> 参数设定堆外空间的大小。除了没有 other 空间，堆外内存与堆内内存的划分方式相同，所有运行中的并发任务共享存储内存和执行内存。</p>
+<h3 id="Overhead-内存"><a href="#Overhead-内存" class="headerlink" title="Overhead 内存"></a>Overhead 内存</h3><p>待补充</p>
 <h2 id="运行实例"><a href="#运行实例" class="headerlink" title="运行实例"></a>运行实例</h2><p>假设 Spark 应用程序运行参数设置如下：</p>
 <div align=center>
     <img src="https://likeitea-1257692904.cos.ap-guangzhou.myqcloud.com/liketea_blog/202101152046.png" width="100%" heigh="80%"></img>
@@ -919,7 +959,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">内存规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%86%85%E5%AD%98%EF%BC%88On-Heap%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">堆内内存（On-Heap）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">统一内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">存储内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">RDD 持久化机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-%E7%BC%93%E5%AD%98%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.2.</span> <span class="nav-text">RDD 缓存过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%98%E6%B1%B0%E5%92%8C%E8%90%BD%E7%9B%98"><span class="nav-number">2.2.3.</span> <span class="nav-text">淘汰和落盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">执行内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">2.3.1.</span> <span class="nav-text">多任务间内存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shuffle-%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8"><span class="nav-number">2.3.2.</span> <span class="nav-text">Shuffle 内存占用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98%EF%BC%88Off-Heap%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">堆外内存（Off-Heap）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">运行实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">内存规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%86%85%E5%AD%98%EF%BC%88On-Heap%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">堆内内存（On-Heap）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">统一内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">存储内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">RDD 持久化机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD-%E7%BC%93%E5%AD%98%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.2.</span> <span class="nav-text">RDD 缓存过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%98%E6%B1%B0%E5%92%8C%E8%90%BD%E7%9B%98"><span class="nav-number">2.2.3.</span> <span class="nav-text">淘汰和落盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">执行内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E9%97%B4%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">2.3.1.</span> <span class="nav-text">多任务间内存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Shuffle-%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8"><span class="nav-number">2.3.2.</span> <span class="nav-text">Shuffle 内存占用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%A4%96%E5%86%85%E5%AD%98%EF%BC%88Out-Of-Heap%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">堆外内存（Out Of Heap）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Off-Heap-%E5%86%85%E5%AD%98"><span class="nav-number">3.1.</span> <span class="nav-text">Off-Heap 内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overhead-%E5%86%85%E5%AD%98"><span class="nav-number">3.2.</span> <span class="nav-text">Overhead 内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">运行实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -941,7 +981,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -955,7 +995,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">364.5k</span>
+    <span title="Site words total count">364.9k</span>
   
 </div>
 
